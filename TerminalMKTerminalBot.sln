@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TerminalMK.DAL", "TerminalM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TerminalMK.BLL", "TerminalMK.BLL\TerminalMK.BLL.csproj", "{5085E3E3-9DB9-4C0A-A5D6-B61A40AC3065}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TerminalMKBot", "..\..\TerminalMKBot\TerminalMKBot\revcom_bot\TerminalMKBot.csproj", "{4ADD59E9-497A-452B-ABF7-1316CB5EA4CF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TerminalMKBot", "TerminalMKBot\revcom_bot\TerminalMKBot.csproj", "{4ADD59E9-497A-452B-ABF7-1316CB5EA4CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
