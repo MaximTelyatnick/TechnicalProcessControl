@@ -73,7 +73,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="BigMath, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\TerminalMKTelegramBot\TerminalMKBot\packages\TLSharp.0.1.0.429\lib\net45\BigMath.dll</HintPath>
+      <HintPath>..\..\packages\TLSharp.0.1.0.429\lib\net45\BigMath.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.BonusSkins.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -108,7 +108,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Ionic.ZLib, Version=2.0.0.14, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\TerminalMKTelegramBot\TerminalMKBot\packages\TLSharp.0.1.0.429\lib\net45\Ionic.ZLib.dll</HintPath>
+      <HintPath>..\..\packages\TLSharp.0.1.0.429\lib\net45\Ionic.ZLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -146,19 +146,16 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="TeleSharp.TL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\TerminalMKTelegramBot\TerminalMKBot\packages\TLSharp.0.1.0.429\lib\net45\TeleSharp.TL.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\TLSharp.0.1.0.429\lib\net45\TeleSharp.TL.dll</HintPath>
     </Reference>
-    <Reference Include="TerminalMK.BLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\TerminalMKTelegramBot\TerminalMKBot\TerminalMK.BLL\bin\Debug\TerminalMK.BLL.dll</HintPath>
+    <Reference Include="TerminalMK.BLL">
+      <HintPath>..\..\TerminalMK.BLL\bin\Debug\TerminalMK.BLL.dll</HintPath>
     </Reference>
     <Reference Include="TerminalMK.DAL">
-      <HintPath>..\..\..\TerminalMKTelegramBot\TerminalMKBot\TerminalMK.BLL\bin\Debug\TerminalMK.DAL.dll</HintPath>
+      <HintPath>..\..\TerminalMK.BLL\bin\Debug\TerminalMK.DAL.dll</HintPath>
     </Reference>
     <Reference Include="TLSharp.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\TerminalMKTelegramBot\TerminalMKBot\packages\TLSharp.0.1.0.429\lib\net45\TLSharp.Core.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\TLSharp.0.1.0.429\lib\net45\TLSharp.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
