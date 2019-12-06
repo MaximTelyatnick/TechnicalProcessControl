@@ -16,8 +16,10 @@ namespace TerminalMKTelegramBot.Infrastructure
         public override void Load()
         {
             Bind<IUnitOfWork>().To<UnitOfWork>();
+            Bind<IUnitOfWorkMysql>().To<UnitOfWorkMysql>();
             Bind<IBotService>().To<BotService>();
             Bind<IControlPanelService>().To<ControlPanelService>();
+            Bind<IMySqlService>().To<MySqlService>();
         }
     }
 }

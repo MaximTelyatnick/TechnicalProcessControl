@@ -20,7 +20,15 @@ namespace TerminalMKBot
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Main());
-            Application.Run(new MainMenuFm());
+
+
+
+
+
+
+            Application.Run(new TestFm());
+
+            //Application.Run(new MainMenuFm());
 
             //Application.Run(new AuthTelegramUserFm());
         }

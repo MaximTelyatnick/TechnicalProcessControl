@@ -3,35 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TerminalMK.DAL.Interfaces;
 using TerminalMK.DAL.EF;
+using TerminalMK.DAL.Interfaces;
 using TerminalMK.DAL.Repositories;
 
 namespace TerminalMKTelegramBot.Services
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWorkMysql : IUnitOfWorkMysql
     {
-        private readonly ConnectionContext db;
+        private readonly ConnectionMysqlContext dbmysql;
         private bool disposed;
-        private Dictionary<Type, object> repositories;
+        private Dictionary<Type, object> repositoriesMysql;
 
-        public UnitOfWork()
+        public UnitOfWorkMysql()
         {
-            db = new ConnectionContext();
-            repositories = new Dictionary<Type, object>();
+            dbmysql = new ConnectionMysqlContext();
+            repositoriesMysql = new Dictionary<Type, object>();
             disposed = false;
         }
 
         public IRepository<T> GetRepository<T>() where T : class
         {
-            if (repositories.ContainsKey(typeof(T)))
+            if (repositoriesMysql.ContainsKey(typeof(T)))
             {
-                return repositories[typeof(T)] as IRepository<T>;
+                return repositoriesMysql[typeof(T)] as IRepository<T>;
             }
 
-            var repository = new Repository<T>(db);
+            var repository = new RepositoryMySQL<T>(dbmysql);
 
-            repositories.Add(typeof(T), repository);
+            repositoriesMysql.Add(typeof(T), repository);
 
             return repository;
         }
@@ -42,7 +42,7 @@ namespace TerminalMKTelegramBot.Services
             {
                 if (disposing)
                 {
-                    db.Dispose();
+                    dbmysql.Dispose();
                 }
             }
             this.disposed = true;

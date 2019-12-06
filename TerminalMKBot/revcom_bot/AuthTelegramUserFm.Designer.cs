@@ -29,19 +29,28 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.splashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::TerminalMKBot.WaitFm), true, true);
+            this.dxValidationProvider = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             this.phoneEdit = new DevExpress.XtraEditors.TextEdit();
             this.codeEdit = new DevExpress.XtraEditors.TextEdit();
             this.setPhoneBtn = new DevExpress.XtraEditors.SimpleButton();
             this.setCodeActivationBtn = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.splashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::TerminalMKBot.WaitFm), true, true);
-            this.dxValidationProvider = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.phoneEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.codeEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider)).BeginInit();
             this.SuspendLayout();
+            // 
+            // splashScreenManager
+            // 
+            this.splashScreenManager.ClosingDelay = 500;
+            // 
+            // dxValidationProvider
+            // 
+            this.dxValidationProvider.ValidationFailed += new DevExpress.XtraEditors.DXErrorProvider.ValidationFailedEventHandler(this.dxValidationProvider_ValidationFailed);
+            this.dxValidationProvider.ValidationSucceeded += new DevExpress.XtraEditors.DXErrorProvider.ValidationSucceededEventHandler(this.dxValidationProvider_ValidationSucceeded);
             // 
             // phoneEdit
             // 
@@ -101,15 +110,6 @@
             this.labelControl2.TabIndex = 5;
             this.labelControl2.Text = "Код подтверждения";
             // 
-            // splashScreenManager
-            // 
-            this.splashScreenManager.ClosingDelay = 500;
-            // 
-            // dxValidationProvider
-            // 
-            this.dxValidationProvider.ValidationFailed += new DevExpress.XtraEditors.DXErrorProvider.ValidationFailedEventHandler(this.dxValidationProvider_ValidationFailed);
-            this.dxValidationProvider.ValidationSucceeded += new DevExpress.XtraEditors.DXErrorProvider.ValidationSucceededEventHandler(this.dxValidationProvider_ValidationSucceeded);
-            // 
             // simpleButton1
             // 
             this.simpleButton1.Location = new System.Drawing.Point(36, 137);
@@ -138,24 +138,23 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AuthTelegramUserFm_FormClosed);
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.phoneEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.codeEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
+        private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager;
+        private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider dxValidationProvider;
         private DevExpress.XtraEditors.TextEdit phoneEdit;
         private DevExpress.XtraEditors.TextEdit codeEdit;
         private DevExpress.XtraEditors.SimpleButton setPhoneBtn;
         private DevExpress.XtraEditors.SimpleButton setCodeActivationBtn;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager;
-        private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider dxValidationProvider;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
     }
 }

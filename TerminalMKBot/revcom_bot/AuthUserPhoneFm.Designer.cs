@@ -49,7 +49,7 @@
             // phoneEdit
             // 
             this.phoneEdit.EditValue = "380687300860";
-            this.phoneEdit.Location = new System.Drawing.Point(12, 30);
+            this.phoneEdit.Location = new System.Drawing.Point(11, 30);
             this.phoneEdit.Name = "phoneEdit";
             this.phoneEdit.Properties.MaxLength = 12;
             this.phoneEdit.Size = new System.Drawing.Size(292, 20);

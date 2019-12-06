@@ -15,6 +15,8 @@ namespace TerminalMK.DAL.Repositories
     {
         private ConnectionContext db;
 
+
+
         public Repository(ConnectionContext context)
         {
             this.db = context;
@@ -56,10 +58,10 @@ namespace TerminalMK.DAL.Repositories
             db.SaveChanges();
         }
 
-        public IEnumerable<T> SQLExecuteProc(string executeProcString, params FbParameter[] paramArr)
-        {
-            return db.Set<T>().SqlQuery(executeProcString, paramArr);
-        }
+        //public IEnumerable<T> SQLExecuteProc(string executeProcString, params FbParameter[] paramArr)
+        //{
+        //    return db.Set<T>().SqlQuery(executeProcString, paramArr);
+        //}
 
 
     }
