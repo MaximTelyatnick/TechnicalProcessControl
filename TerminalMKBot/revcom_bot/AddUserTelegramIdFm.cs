@@ -57,7 +57,6 @@ namespace TerminalMKBot
         {
             try
             {
-
                 string Name = ((UsersTelegramDTO)telegramUserEdit.GetSelectedDataRow()).Name;
 
                 UsersTelegramDTO updateUser = ((UsersTelegramDTO)telegramUserEdit.GetSelectedDataRow());

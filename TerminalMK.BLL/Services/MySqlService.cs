@@ -16,6 +16,7 @@ namespace TerminalMK.BLL.Services
 
         private IUnitOfWorkMysql Database { get; set; }
         private IRepository<City> city;
+        private IRepository<Production> production;
 
 
         private IMapper mapper;
@@ -24,23 +25,31 @@ namespace TerminalMK.BLL.Services
         {
             Database = uowsql;
 
-            city = Database.GetRepository<City>();
+            //city = Database.GetRepository<City>();
+            production = Database.GetRepository<Production>();
 
 
             var config = new MapperConfiguration(cfg =>
             {
 
-                cfg.CreateMap<City, CityDTO>();
-                cfg.CreateMap<CityDTO, City>();
-                
+                //cfg.CreateMap<City, CityDTO>();
+                //cfg.CreateMap<CityDTO, City>();
+                cfg.CreateMap<Production, ProductionDTO>();
+                cfg.CreateMap<ProductionDTO, Production>();
+
             });
 
             mapper = config.CreateMapper();
         }
 
-        public IEnumerable<CityDTO> GetCity()
+        //public IEnumerable<CityDTO> GetCity()
+        //{
+        //    return mapper.Map<IEnumerable<City>, List<CityDTO>>(city.GetAll());
+        //}
+
+        public IEnumerable<ProductionDTO> GetProduction()
         {
-            return mapper.Map<IEnumerable<City>, List<CityDTO>>(city.GetAll());
+            return mapper.Map<IEnumerable<Production>, List<ProductionDTO>>(production.GetAll());
         }
     }
 }

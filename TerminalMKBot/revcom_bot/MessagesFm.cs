@@ -74,8 +74,17 @@ namespace TerminalMKBot
                 {
                     controlPanelService.MessagesUpdate((MessagesDTO)messagesBS.Current);
 
-                    await client.SendMessageAsync(new TLInputPeerUser() { UserId = (int)((MessagesDTO)messagesBS.Current).UserTelegramId }, "Вы зарегистрированы в системе, для использования чат бота перейдите по ссылке https://t.me/terminalmktestbot?start ");
+                    var result = await client.GetContactsAsync();
 
+                    var user = result.Users
+                        .Where(x => x.GetType() == typeof(TLUser))
+                        .Cast<TLUser>()
+                        .FirstOrDefault(x => x.Id == (int)((MessagesDTO)messagesBS.Current).UserTelegramId);
+
+                    if (user != null)
+                        await client.SendMessageAsync(new TLInputPeerUser() { UserId = (int)((MessagesDTO)messagesBS.Current).UserTelegramId }, "Вы зарегистрированы в системе, для использования чат бота перейдите по ссылке https://t.me/terminalmktestbot?start ");
+                    else
+                        MessageBox.Show("Вказаний користувач відсутній у ваших контактах. Додайте користувача до списку ваших контактів" , "Підтвердження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     //UsersTelegramDTO return_Id = contractorsEditFm.Return();
                     //contractorsGridView.BeginDataUpdate();
                     //LoadData();
@@ -90,6 +99,9 @@ namespace TerminalMKBot
                 }
             }
         }
+
+
+
 
         private void deleteMsgBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {

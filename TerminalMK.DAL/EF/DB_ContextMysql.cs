@@ -29,7 +29,8 @@ namespace TerminalMK.DAL.EF
         //public DbSet<Contractors> Contractors { get; set; }
         //public DbSet<City> City { get; set; }
 
-        public DbSet<City> City { get; set; }
+        //public DbSet<City> City { get; set; }
+        public DbSet<Production> Production { get; set; }
 
 
 
@@ -60,7 +61,7 @@ namespace TerminalMK.DAL.EF
             {
                 //ConnectionString = "server=localhost;port=3305;database=parking;uid=root"
                 //ConnectionString = "server = localhost; UserId = root; Password = 12345678; database = user"
-                ConnectionString = "Server=localhost;Database=user;Uid=root;Pwd=12345678"
+                ConnectionString = "Server=u0890548.plsk.regruhosting.ru;Database=u0890548_terminalmk;Uid=u0890_maxtel;Pwd=620930620Maks"
 
 
             };
@@ -68,7 +69,15 @@ namespace TerminalMK.DAL.EF
 
             //server = localhost; UserId = root; Password = 12345678; database = test;
 #endif
+            csb = new MySqlConnection()
+            {
+                //ConnectionString = "server=localhost;port=3305;database=parking;uid=root"
+                //ConnectionString = "server = localhost; UserId = root; Password = 12345678; database = user"
+                //ConnectionString = "Server=u0890548.plsk.regruhosting.ru;Database=u0890548_terminalmk;Uid=u0890_root;Pwd=12345678"
+                ConnectionString = "Server=u0890548.plsk.regruhosting.ru;Database=u0890548_terminalmk;Uid=u0890_maxtel;Pwd=620930620Maks"
 
+
+            };
             ConnectionMysql.ConnectionString = csb.ConnectionString;
             Database.SetInitializer<ConnectionMysqlContext>(null);
         }

@@ -25,7 +25,7 @@ namespace TerminalMKBot
             botService = Program.kernel.Get<IBotService>();
 
             mySqlService = Program.kernel.Get<IMySqlService>();
-            cityBS.DataSource = mySqlService.GetCity();
+            //cityBS.DataSource = mySqlService.GetCity();
             //messagesGrid.DataSource = messagesBS;
 
 

@@ -17,7 +17,7 @@ namespace TerminalMK.BLL.Interfaces
         bool ContainMessages(long telegramId);
 
         int ProductionCreate(ProductionDTO productionDTO);
-        void ProductionUpdate(ProductionDTO productionDTO);
+        bool ProductionUpdate(ProductionDTO productionDTO);
         bool ProductionDelete(int id);
 
         int MessagesCreate(MessagesDTO messagesDTO);

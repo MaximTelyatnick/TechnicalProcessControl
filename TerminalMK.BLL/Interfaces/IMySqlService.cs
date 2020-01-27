@@ -9,6 +9,7 @@ namespace TerminalMK.BLL.Interfaces
 {
     public interface IMySqlService
     {
-        IEnumerable<CityDTO> GetCity();
+        //IEnumerable<CityDTO> GetCity();
+        IEnumerable<ProductionDTO> GetProduction();
     }
 }

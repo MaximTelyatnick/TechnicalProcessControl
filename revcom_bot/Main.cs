@@ -42,16 +42,9 @@ namespace TerminalMKTelegramBot
         string botToken = "810022910:AAGXsYcVViTbBH-sq1VpKX5Hd0oD7ZDWKKs";
 
 
-        //string botTwo = "832649306:AAG3_DgCP4RgF_H70dB_-SmNaL9bv9ptfE0";
-
-
-
         public Main()
         {
-
             InitializeComponent();
-
-
             bw = new BackgroundWorker();
             bw.DoWork += bw_DoWork;
         }

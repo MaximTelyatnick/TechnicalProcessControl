@@ -26,9 +26,9 @@ namespace TerminalMKBot
 
 
 
-            Application.Run(new TestFm());
+            //Application.Run(new TestFm());
 
-            //Application.Run(new MainMenuFm());
+            Application.Run(new MainMenuFm());
 
             //Application.Run(new AuthTelegramUserFm());
         }

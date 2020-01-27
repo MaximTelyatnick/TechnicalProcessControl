@@ -76,10 +76,16 @@ namespace TerminalMKTelegramBot.Services
             return (int)createProductiont.Id;
         }
 
-        public void ProductionUpdate(ProductionDTO productionDTO)
+        public bool ProductionUpdate(ProductionDTO productionDTO)
         {
             var updateProduction = production.GetAll().SingleOrDefault(c => c.Id == productionDTO.Id);
-            production.Update((mapper.Map<ProductionDTO, Production>(productionDTO, updateProduction)));
+            if (updateProduction != null)
+            {
+                production.Update((mapper.Map<ProductionDTO, Production>(productionDTO, updateProduction)));
+                return true;
+            }
+            else
+                return false;
         }
 
         public bool ProductionDelete(int id)
