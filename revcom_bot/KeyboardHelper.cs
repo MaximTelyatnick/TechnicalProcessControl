@@ -21,24 +21,26 @@ namespace TerminalMKTerminalBot
                 cols = new List<KeyboardButton>();
             }
             rkm.Keyboard = rows.ToArray();
+            rkm.OneTimeKeyboard = true;
             return rkm;
         }
 
-        private static InlineKeyboardButton[][] GetInlineKeyboard(string[] stringArray)
-        {
-            var keyboardInline = new InlineKeyboardButton[1][];
-            var keyboardButtons = new InlineKeyboardButton[stringArray.Length];
-            for (var i = 0; i < stringArray.Length; i++)
-            {
-                keyboardButtons[i] = new InlineKeyboardButton
-                {
-                    Text = stringArray[i],
-                    CallbackData = "Some Callback Data",
-                };
-            }
-            keyboardInline[0] = keyboardButtons;
-            return keyboardInline;
-        }
+        //private static InlineKeyboardButton[][] GetInlineKeyboard(string[] stringArray)
+        //{
+        //    var keyboardInline = new InlineKeyboardButton[1][];
+        //    var keyboardButtons = new InlineKeyboardButton[stringArray.Length];
+        //    for (var i = 0; i < stringArray.Length; i++)
+        //    {
+        //        keyboardButtons[i] = new InlineKeyboardButton
+        //        {
+        //            Text = stringArray[i],
+        //            CallbackData = "Some Callback Data",
+        //        };
+        //    }
+        //    keyboardInline[0] = keyboardButtons;
+        //    keyboardInline. = true;
+        //    return keyboardInline;
+        //}
     }
 
 

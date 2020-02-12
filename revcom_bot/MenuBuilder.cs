@@ -66,6 +66,7 @@ namespace TerminalMKTelegramBot
 
                     };
                     keyboard.ResizeKeyboard = true;
+                    keyboard.OneTimeKeyboard = true;
 
                     break;
 
@@ -88,6 +89,7 @@ namespace TerminalMKTelegramBot
 
             ReplyKeyboardMarkup productionTypeKeyboard = KeyboardHelper.GetKeyboard(production);
             productionTypeKeyboard.ResizeKeyboard = true;
+            productionTypeKeyboard.OneTimeKeyboard = true;
 
             return productionTypeKeyboard;
         }
@@ -102,6 +104,7 @@ namespace TerminalMKTelegramBot
 
             ReplyKeyboardMarkup loadCityKeyboard = KeyboardHelper.GetKeyboard(cityLoadList);
             loadCityKeyboard.ResizeKeyboard = true;
+            loadCityKeyboard.OneTimeKeyboard = true;
 
             return loadCityKeyboard;
         }
@@ -115,6 +118,7 @@ namespace TerminalMKTelegramBot
             cityUnloadList.Add("Отмена");
 
             ReplyKeyboardMarkup unloadCityKeyboard = KeyboardHelper.GetKeyboard(cityUnloadList);
+            unloadCityKeyboard.ResizeKeyboard = true;
             unloadCityKeyboard.ResizeKeyboard = true;
 
             return unloadCityKeyboard;
@@ -143,6 +147,7 @@ namespace TerminalMKTelegramBot
                                 };
 
             numberMachineKeyboard.ResizeKeyboard = true;
+            numberMachineKeyboard.OneTimeKeyboard = true;
 
             return numberMachineKeyboard;
         }
@@ -186,6 +191,7 @@ namespace TerminalMKTelegramBot
                                                 },
             };
             dateKeyboard.ResizeKeyboard = true;
+            dateKeyboard.OneTimeKeyboard = true;
 
             return dateKeyboard;
         }
@@ -204,6 +210,7 @@ namespace TerminalMKTelegramBot
                                                 },
                                 };
             acessKeyboard.ResizeKeyboard = true;
+            acessKeyboard.OneTimeKeyboard = true;
 
             return acessKeyboard;
         }

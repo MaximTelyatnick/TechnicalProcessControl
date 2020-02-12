@@ -94,6 +94,8 @@ namespace TerminalMKTelegramBot
 
         async void bw_DoWork(object sender, DoWorkEventArgs e)
         {
+
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             var worker = sender as BackgroundWorker;
             var key = e.Argument as String; // получаем ключ из аргументов
             try
@@ -126,6 +128,18 @@ namespace TerminalMKTelegramBot
                     if (message == null) return;
 
                     botService = Program.kernel.Get<IBotService>();
+                    //Telegram.Bot.Types.ReplyMarkups.ReplyKeyboardMarkup keyboard = new Telegram.Bot.Types.ReplyMarkups.ReplyKeyboardMarkup();
+                    //keyboard = new[]
+                    //                    {
+                    //    new[]
+                    //    {
+                    //        "Обработка"
+                    //    },
+                    //};
+
+                    //await botTelegram.SendTextMessageAsync(message.Chat.Id, " Обработка", replyMarkup: keyboard);
+
+                    //await botTelegram.SendTextMessage(message.Chat.Id, msg, false, 0, rmu);
 
 
                     // добавление нового пользователя
@@ -350,6 +364,11 @@ namespace TerminalMKTelegramBot
 
                     if (message.Type == Telegram.Bot.Types.Enums.MessageType.Text)
                     {
+
+                       // botTelegram.StopReceiving();
+                       //await botTelegram.SendTextMessageAsync(message.Chat.Id, " f", replyMarkup: new ReplyKeyboardRemove());
+
+
                         if (message.Text != "" && !allComands.Contains(message.Text) && allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.CurrentLevelMenu == 10))
                         {
                             if (!message.Text.HasEmojis())
@@ -1004,20 +1023,22 @@ namespace TerminalMKTelegramBot
                 };
 
 
-               // botTelegram.OnCallbackQuery += (object sc, Telegram.Bot.Args.CallbackQueryEventArgs ev) =>
-               //{
-               //    var message = ev.CallbackQuery.Data;
-               //    if (ev.CallbackQuery.Data == "callback1")
-               //    {
-               //        long kkk = ev.CallbackQuery.Message.Chat.Id;
-               //         //await; 
-               //     }
-               //    else
-               //    if (ev.CallbackQuery.Data == "callback2")
-               //    {
-               //         // сюда то что нужно сделать при нажатии на вторую кнопку
-               //     }
-               //};
+                // botTelegram.OnCallbackQuery += (object sc, Telegram.Bot.Args.CallbackQueryEventArgs ev) =>
+                //{
+                //    var message = ev.CallbackQuery.Data;
+                //    if (ev.CallbackQuery.Data == "callback1")
+                //    {
+                //        long kkk = ev.CallbackQuery.Message.Chat.Id;
+                //         //await; 
+                //     }
+                //    else
+                //    if (ev.CallbackQuery.Data == "callback2")
+                //    {
+                //         // сюда то что нужно сделать при нажатии на вторую кнопку
+                //     }
+                //};
+
+                
 
                 botTelegram.StartReceiving();
             }
