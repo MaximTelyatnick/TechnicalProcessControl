@@ -30,6 +30,7 @@ namespace TerminalMKTelegramBot
         BackgroundWorker bw = new BackgroundWorker();
         //BackgroundWorker bws;
         public static IBotService botService;
+        public static IMySqlService mySqlService;
         public static IControlPanelService controlPanelService;
         public static Telegram.Bot.TelegramBotClient botTelegram;
 
@@ -37,6 +38,14 @@ namespace TerminalMKTelegramBot
 
         List<UsersTelegramDTO> allUsers = new List<UsersTelegramDTO>();
         List<TelegramBotDTO> allBots = new List<TelegramBotDTO>();
+        List<string> allComands = new List<string>() { "\U0001F4BB Сайт" , "\U0001F60E Комерческие предложения" ,
+                 "\U0001F4A5 Акции","\U0001F4AA Наши работы", "\U0001F4F2 Контакты", "\U0001F4BB Заказать настройку бота",
+                 "\U0001F632 Жалобы","\U0001F4DD Связаться с менеджером","\U0001F4B2 Оплата","Подписаться","Отписаться",
+                 "Отправить сообщение", "\U0001F3A5 Видео","\U0001F464 Соц. сети", "Главное меню","Отмена","Instagram","Facebook",
+                     "Отложить пост", "Посмотреть как выглядит пост","Отменить пост","/start", "Отправить пост подписчикам", "Оплата", "Изменить комерческое","Изменить акции",
+                     "Изменить комерческое", "\U0001F527 Техподдержка","Управление отложенными постами","Посмотреть все отложенные посты","Удалить пост по его номеру","Удалить все посты",
+                     "Facebook","Instagram", "Наш сайт"
+                 };
         //List<PostTelegramDTO> allAutopostPost = new List<PostTelegramDTO>();
 
         string botToken = "810022910:AAGXsYcVViTbBH-sq1VpKX5Hd0oD7ZDWKKs";
@@ -49,24 +58,6 @@ namespace TerminalMKTelegramBot
             bw.DoWork += bw_DoWork;
         }
 
-
-
-
-
-        public async Task SendContactManagers(string message, Telegram.Bot.Types.Message contact)
-        {
-
-            botService = Program.kernel.Get<IBotService>();
-
-            var managerUser = botService.GetTelegramBotUsers(1).Where(mn => mn.Rules == 3);
-
-            foreach (var item in managerUser)
-            {
-                await botTelegram.SendTextMessageAsync(item.UserTelegramId, message, parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, disableWebPagePreview: true, disableNotification: false);
-                await botTelegram.SendContactAsync(item.UserTelegramId, contact.Contact.PhoneNumber, contact.Contact.FirstName, contact.Contact.LastName, disableNotification: false);
-            }
-
-        }
 
         public async Task SendLocationManagers(string messageType, Telegram.Bot.Types.Message message)
         {
@@ -83,15 +74,6 @@ namespace TerminalMKTelegramBot
 
         }
 
-
-
-
-
-
-
-
-
-
         async void bw_DoWork(object sender, DoWorkEventArgs e)
         {
 
@@ -106,28 +88,27 @@ namespace TerminalMKTelegramBot
 
 
                 botService = Program.kernel.Get<IBotService>();
+                mySqlService = Program.kernel.Get<IMySqlService>();
 
                 allBots = botService.GetTelegramBots().ToList();
-                allUsers = botService.GetTelegramBotUsers(1).ToList();
+                //allUsers = botService.GetTelegramBotUsers(1).ToList();
 
-                List<string> allComands = new List<string>() { "\U0001F4BB Сайт" , "\U0001F60E Комерческие предложения" ,
-                 "\U0001F4A5 Акции","\U0001F4AA Наши работы", "\U0001F4F2 Контакты", "\U0001F4BB Заказать настройку бота",
-                 "\U0001F632 Жалобы","\U0001F4DD Связаться с менеджером","\U0001F4B2 Оплата","Подписаться","Отписаться",
-                 "Отправить сообщение", "\U0001F3A5 Видео","\U0001F464 Соц. сети", "Главное меню","Отмена","Instagram","Facebook",
-                     "Отложить пост", "Посмотреть как выглядит пост","Отменить пост","/start", "Отправить пост подписчикам", "Оплата", "Изменить комерческое","Изменить акции",
-                     "Изменить комерческое", "\U0001F527 Техподдержка","Управление отложенными постами","Посмотреть все отложенные посты","Удалить пост по его номеру","Удалить все посты",
-                     "Facebook","Instagram"
-                 };
+                allUsers = mySqlService.GetTelegramBotUsers(1).ToList();
 
 
-                botTelegram.OnUpdate += async (object su, Telegram.Bot.Args.UpdateEventArgs evu) =>
+                botTelegram.OnUpdate += (object su, Telegram.Bot.Args.UpdateEventArgs evu) =>
                 {
+
+
                     if (evu.Update.CallbackQuery != null || evu.Update.InlineQuery != null) return;
                     var update = evu.Update;
                     var message = update.Message;
                     if (message == null) return;
 
-                    botService = Program.kernel.Get<IBotService>();
+                    ////////botService = Program.kernel.Get<IBotService>();
+                    mySqlService = Program.kernel.Get<IMySqlService>();
+
+
                     //Telegram.Bot.Types.ReplyMarkups.ReplyKeyboardMarkup keyboard = new Telegram.Bot.Types.ReplyMarkups.ReplyKeyboardMarkup();
                     //keyboard = new[]
                     //                    {
@@ -151,14 +132,14 @@ namespace TerminalMKTelegramBot
 
 
 
-                    allBots = botService.GetTelegramBots().ToList();
-                    allUsers = botService.GetTelegramBotUsers(1).ToList();
+                    allBots = mySqlService.GetTelegramBots().ToList();
+                    allUsers = mySqlService.GetTelegramBotUsers(1).ToList();
 
                     #region Обработчик видеофайлов
 
                     if (message.Type == Telegram.Bot.Types.Enums.MessageType.Video)
                     {
-                        await botTelegram.SendTextMessageAsync(message.Chat.Id, "В текущий момент я не поддерживаю обработку видеофайлов, но я работаю над собой.");
+                        botTelegram.SendTextMessageAsync(message.Chat.Id, "В текущий момент я не поддерживаю обработку видеофайлов, но я работаю над собой.");
 
                     }
 
@@ -168,7 +149,7 @@ namespace TerminalMKTelegramBot
 
                     if (message.Type == Telegram.Bot.Types.Enums.MessageType.Audio)
                     {
-                        await botTelegram.SendTextMessageAsync(message.Chat.Id, "В текущий момент я не поддерживаю обработку аудиофайлов, но я работаю над собой.");
+                        botTelegram.SendTextMessageAsync(message.Chat.Id, "В текущий момент я не поддерживаю обработку аудиофайлов, но я работаю над собой.");
 
                     }
 
@@ -178,7 +159,7 @@ namespace TerminalMKTelegramBot
 
                     if (message.Type == Telegram.Bot.Types.Enums.MessageType.Sticker)
                     {
-                        await botTelegram.SendTextMessageAsync(message.Chat.Id, "В текущий момент я не поддерживаю обработку стикеров, но я работаю над собой.");
+                        botTelegram.SendTextMessageAsync(message.Chat.Id, "В текущий момент я не поддерживаю обработку стикеров, но я работаю над собой.");
 
                     }
 
@@ -189,7 +170,7 @@ namespace TerminalMKTelegramBot
                     if (message.Type == Telegram.Bot.Types.Enums.MessageType.Location)
                     {
 
-                        await botTelegram.SendTextMessageAsync(message.Chat.Id, "В текущий момент я не поддерживаю обработку геоданных, но я работаю над собой.");
+                        botTelegram.SendTextMessageAsync(message.Chat.Id, "В текущий момент я не поддерживаю обработку геоданных, но я работаю над собой.");
 
                     }
 
@@ -197,143 +178,141 @@ namespace TerminalMKTelegramBot
 
                     #region Обработчик контактов
 
-                    if (message.Type == Telegram.Bot.Types.Enums.MessageType.Contact)
-                    {
-                        if (message.Contact != null && allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.CurrentLevelMenu == 20))
-                        {
+                    //if (message.Type == Telegram.Bot.Types.Enums.MessageType.Contact)
+                    //{
+                    //    if (message.Contact != null && allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.CurrentLevelMenu == 20))
+                    //    {
 
-                            if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules > 1))
-                            {
-                                botService = Program.kernel.Get<IBotService>();
-                                botService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
+                    //        if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules > 1))
+                    //        {
+                    //            botService = Program.kernel.Get<IBotService>();
+                    //            botService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
 
-                                var keyboard1 = MenuBuilder.Menu(Utils.Rules.Manager);
+                    //            var keyboard1 = MenuBuilder.Menu(Utils.Rules.Manager);
 
-                                await SendContactManagers("Свяжитесь со мной: ", message);
+                    //            SendContactManagers("Свяжитесь со мной: ", message);
 
-                                //await botTelegram.SendTextMessageAsync(799808566, "Свяжитесь со мной: ");
-                                //await botTelegram.SendContactAsync(799808566, message.Contact.PhoneNumber, message.Contact.FirstName, message.Contact.LastName);
-                                await botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка отправлена менеджеру и в ближайшее время будет обработана", replyMarkup: keyboard1);
-                            }
-                            else if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
-                            {
-                                botService = Program.kernel.Get<IBotService>();
-                                botService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
 
-                                var keyboard2 = MenuBuilder.Menu(Utils.Rules.NoAuthUser);
+                    //            botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка отправлена менеджеру и в ближайшее время будет обработана", replyMarkup: keyboard1);
+                    //        }
+                    //        else if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
+                    //        {
+                    //            botService = Program.kernel.Get<IBotService>();
+                    //            botService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
 
-                                await SendContactManagers("Свяжитесь со мной: ", message);
+                    //            var keyboard2 = MenuBuilder.Menu(Utils.Rules.NoAuthUser);
 
-                                //await botTelegram.SendTextMessageAsync(799808566, "Свяжитесь со мной: ");
-                                //await botTelegram.SendContactAsync(799808566, message.Contact.PhoneNumber, message.Contact.FirstName, message.Contact.LastName);
-                                await botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка отправлена менеджеру и в ближайшее время будет обработана", replyMarkup: keyboard2);
-                            }
-                            else
-                            {
-                                botService = Program.kernel.Get<IBotService>();
-                                botService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
+                    //            await SendContactManagers("Свяжитесь со мной: ", message);
 
-                                var keyboard3 = MenuBuilder.Menu(Utils.Rules.NoAuthUser);
 
-                                await SendContactManagers("Свяжитесь со мной: ", message);
+                    //            await botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка отправлена менеджеру и в ближайшее время будет обработана", replyMarkup: keyboard2);
+                    //        }
+                    //        else
+                    //        {
+                    //            botService = Program.kernel.Get<IBotService>();
+                    //            botService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
 
-                                //await botTelegram.SendTextMessageAsync(799808566, "Свяжитесь со мной: ");
-                                //await botTelegram.SendContactAsync(799808566, message.Contact.PhoneNumber, message.Contact.FirstName, message.Contact.LastName);
-                                await botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка отправлена менеджеру и в ближайшее время будет обработана", replyMarkup: keyboard3);
-                            }
-                        }
-                        else if (message.Contact != null && allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.CurrentLevelMenu == 20))
-                        {
+                    //            var keyboard3 = MenuBuilder.Menu(Utils.Rules.NoAuthUser);
 
-                            if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules > 1))
-                            {
-                                botService = Program.kernel.Get<IBotService>();
-                                botService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
+                    //            await SendContactManagers("Свяжитесь со мной: ", message);
 
-                                var keyboard1 = MenuBuilder.Menu(Utils.Rules.Manager);
+                    //            //await botTelegram.SendTextMessageAsync(799808566, "Свяжитесь со мной: ");
+                    //            //await botTelegram.SendContactAsync(799808566, message.Contact.PhoneNumber, message.Contact.FirstName, message.Contact.LastName);
+                    //            await botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка отправлена менеджеру и в ближайшее время будет обработана", replyMarkup: keyboard3);
+                    //        }
+                    //    }
+                    //    else if (message.Contact != null && allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.CurrentLevelMenu == 20))
+                    //    {
 
-                                await SendContactManagers("Хочу заказать разработку телеграм бота, свяжитесь со мной: ", message);
+                    //        if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules > 1))
+                    //        {
+                    //            botService = Program.kernel.Get<IBotService>();
+                    //            botService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
 
-                                //await botTelegram.SendTextMessageAsync(799808566, "Хочу заказать разработку телеграм бота, свяжитесь со мной: ");
-                                //await botTelegram.SendContactAsync(799808566, message.Contact.PhoneNumber, message.Contact.FirstName, message.Contact.LastName);
-                                await botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка отправлена менеджеру и в ближайшее время будет обработана", replyMarkup: keyboard1);
-                            }
-                            else if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
-                            {
-                                botService = Program.kernel.Get<IBotService>();
-                                botService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
+                    //            var keyboard1 = MenuBuilder.Menu(Utils.Rules.Manager);
 
-                                var keyboard2 = MenuBuilder.Menu(Utils.Rules.NoAuthUser);
+                    //            await SendContactManagers("Хочу заказать разработку телеграм бота, свяжитесь со мной: ", message);
 
-                                await SendContactManagers("Хочу заказать разработку телеграм бота, свяжитесь со мной: ", message);
+                    //            //await botTelegram.SendTextMessageAsync(799808566, "Хочу заказать разработку телеграм бота, свяжитесь со мной: ");
+                    //            //await botTelegram.SendContactAsync(799808566, message.Contact.PhoneNumber, message.Contact.FirstName, message.Contact.LastName);
+                    //            await botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка отправлена менеджеру и в ближайшее время будет обработана", replyMarkup: keyboard1);
+                    //        }
+                    //        else if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
+                    //        {
+                    //            botService = Program.kernel.Get<IBotService>();
+                    //            botService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
 
-                                //await botTelegram.SendTextMessageAsync(799808566, "Хочу заказать разработку телеграм бота, свяжитесь со мной: ");
-                                //await botTelegram.SendContactAsync(799808566, message.Contact.PhoneNumber, message.Contact.FirstName, message.Contact.LastName);
-                                await botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка отправлена менеджеру и в ближайшее время будет обработана", replyMarkup: keyboard2);
-                            }
-                            else
-                            {
-                                botService = Program.kernel.Get<IBotService>();
-                                botService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
+                    //            var keyboard2 = MenuBuilder.Menu(Utils.Rules.NoAuthUser);
 
-                                var keyboard3 = MenuBuilder.Menu(Utils.Rules.NoAuthUser);
+                    //            await SendContactManagers("Хочу заказать разработку телеграм бота, свяжитесь со мной: ", message);
 
-                                //await SendContactManagers("Хочу заказать разработку телеграм бота, свяжитесь со мной: ", message);
+                    //            //await botTelegram.SendTextMessageAsync(799808566, "Хочу заказать разработку телеграм бота, свяжитесь со мной: ");
+                    //            //await botTelegram.SendContactAsync(799808566, message.Contact.PhoneNumber, message.Contact.FirstName, message.Contact.LastName);
+                    //            await botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка отправлена менеджеру и в ближайшее время будет обработана", replyMarkup: keyboard2);
+                    //        }
+                    //        else
+                    //        {
+                    //            botService = Program.kernel.Get<IBotService>();
+                    //            botService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
 
-                                //await botTelegram.SendTextMessageAsync(799808566, "Хочу заказать разработку телеграм бота, свяжитесь со мной: ");
-                                //await botTelegram.SendContactAsync(799808566, message.Contact.PhoneNumber, message.Contact.FirstName, message.Contact.LastName);
-                                await botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка отправлена менеджеру и в ближайшее время будет обработана", replyMarkup: keyboard3);
-                            }
-                        }
-                        else if (message.Contact != null && allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.CurrentLevelMenu == 55))
-                        {
+                    //            var keyboard3 = MenuBuilder.Menu(Utils.Rules.NoAuthUser);
 
-                            if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules > 1))
-                            {
-                                botService = Program.kernel.Get<IBotService>();
-                                botService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
+                    //            //await SendContactManagers("Хочу заказать разработку телеграм бота, свяжитесь со мной: ", message);
 
-                                var keyboard1 = MenuBuilder.Menu(Utils.Rules.Manager);
+                    //            //await botTelegram.SendTextMessageAsync(799808566, "Хочу заказать разработку телеграм бота, свяжитесь со мной: ");
+                    //            //await botTelegram.SendContactAsync(799808566, message.Contact.PhoneNumber, message.Contact.FirstName, message.Contact.LastName);
+                    //            await botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка отправлена менеджеру и в ближайшее время будет обработана", replyMarkup: keyboard3);
+                    //        }
+                    //    }
+                    //    else if (message.Contact != null && allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.CurrentLevelMenu == 55))
+                    //    {
 
-                                await SendContactManagers("Хочу заказать продвижение: ", message);
+                    //        if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules > 1))
+                    //        {
+                    //            botService = Program.kernel.Get<IBotService>();
+                    //            botService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
 
-                                //await botTelegram.SendTextMessageAsync(799808566, "Хочу заказать разработку телеграм бота, свяжитесь со мной: ");
-                                //await botTelegram.SendContactAsync(799808566, message.Contact.PhoneNumber, message.Contact.FirstName, message.Contact.LastName);
-                                await botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка отправлена менеджеру и в ближайшее время будет обработана", replyMarkup: keyboard1);
-                            }
-                            else if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
-                            {
-                                botService = Program.kernel.Get<IBotService>();
-                                botService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
+                    //            var keyboard1 = MenuBuilder.Menu(Utils.Rules.Manager);
 
-                                var keyboard2 = MenuBuilder.Menu(Utils.Rules.NoAuthUser);
+                    //            await SendContactManagers("Хочу заказать продвижение: ", message);
 
-                                await SendContactManagers("Хочу заказать продвижение: ", message);
+                    //            //await botTelegram.SendTextMessageAsync(799808566, "Хочу заказать разработку телеграм бота, свяжитесь со мной: ");
+                    //            //await botTelegram.SendContactAsync(799808566, message.Contact.PhoneNumber, message.Contact.FirstName, message.Contact.LastName);
+                    //            await botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка отправлена менеджеру и в ближайшее время будет обработана", replyMarkup: keyboard1);
+                    //        }
+                    //        else if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
+                    //        {
+                    //            botService = Program.kernel.Get<IBotService>();
+                    //            botService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
 
-                                //await botTelegram.SendTextMessageAsync(799808566, "Хочу заказать разработку телеграм бота, свяжитесь со мной: ");
-                                //await botTelegram.SendContactAsync(799808566, message.Contact.PhoneNumber, message.Contact.FirstName, message.Contact.LastName);
-                                await botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка отправлена менеджеру и в ближайшее время будет обработана", replyMarkup: keyboard2);
-                            }
-                            else
-                            {
-                                botService = Program.kernel.Get<IBotService>();
-                                botService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
+                    //            var keyboard2 = MenuBuilder.Menu(Utils.Rules.NoAuthUser);
 
-                                var keyboard3 = MenuBuilder.Menu(Utils.Rules.NoAuthUser);
+                    //            await SendContactManagers("Хочу заказать продвижение: ", message);
 
-                                await SendContactManagers("Хочу заказать продвижение: ", message);
+                    //            //await botTelegram.SendTextMessageAsync(799808566, "Хочу заказать разработку телеграм бота, свяжитесь со мной: ");
+                    //            //await botTelegram.SendContactAsync(799808566, message.Contact.PhoneNumber, message.Contact.FirstName, message.Contact.LastName);
+                    //            await botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка отправлена менеджеру и в ближайшее время будет обработана", replyMarkup: keyboard2);
+                    //        }
+                    //        else
+                    //        {
+                    //            botService = Program.kernel.Get<IBotService>();
+                    //            botService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
 
-                                //await botTelegram.SendTextMessageAsync(799808566, "Хочу заказать разработку телеграм бота, свяжитесь со мной: ");
-                                //await botTelegram.SendContactAsync(799808566, message.Contact.PhoneNumber, message.Contact.FirstName, message.Contact.LastName);
-                                await botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка отправлена менеджеру и в ближайшее время будет обработана", replyMarkup: keyboard3);
-                            }
-                        }
-                        else
-                        {
-                            await botTelegram.SendTextMessageAsync(message.Chat.Id, "Отправка контактных даных возможна в режимах: 'Заказать настройку бота', 'Заказать рекламу', 'Связаться с менеджером'");
-                        }
+                    //            var keyboard3 = MenuBuilder.Menu(Utils.Rules.NoAuthUser);
 
-                    }
+                    //            await SendContactManagers("Хочу заказать продвижение: ", message);
+
+                    //            //await botTelegram.SendTextMessageAsync(799808566, "Хочу заказать разработку телеграм бота, свяжитесь со мной: ");
+                    //            //await botTelegram.SendContactAsync(799808566, message.Contact.PhoneNumber, message.Contact.FirstName, message.Contact.LastName);
+                    //            await botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка отправлена менеджеру и в ближайшее время будет обработана", replyMarkup: keyboard3);
+                    //        }
+                    //    }
+                    //    else
+                    //    {
+                    //        await botTelegram.SendTextMessageAsync(message.Chat.Id, "Отправка контактных даных возможна в режимах: 'Заказать настройку бота', 'Заказать рекламу', 'Связаться с менеджером'");
+                    //    }
+
+                    //}
 
 
                     #endregion
@@ -341,22 +320,14 @@ namespace TerminalMKTelegramBot
                     #region Обработчик документов
 
                     if (message.Type == Telegram.Bot.Types.Enums.MessageType.Document && allUsers.Any(x => x.UserTelegramId == message.Chat.Id))
-                    {
-                        await botTelegram.SendTextMessageAsync(message.Chat.Id, "В текущий момент я не поддерживаю обработку документов, но я работаю над собой.");
-
-                    }
+                        botTelegram.SendTextMessageAsync(message.Chat.Id, "В текущий момент я не поддерживаю обработку документов, но я работаю над собой.");
 
                     #endregion
 
                     #region Обработчик картинок
 
-
                     if (message.Type == Telegram.Bot.Types.Enums.MessageType.Photo)
-                    {
-
-                        await botTelegram.SendTextMessageAsync(message.Chat.Id, "В текущий момент я не поддерживаю обработку фотографий, но я работаю над собой.");
-
-                    }
+                        botTelegram.SendTextMessageAsync(message.Chat.Id, "В текущий момент я не поддерживаю обработку фотографий, но я работаю над собой.");
 
                     #endregion
 
@@ -365,247 +336,7 @@ namespace TerminalMKTelegramBot
                     if (message.Type == Telegram.Bot.Types.Enums.MessageType.Text)
                     {
 
-                       // botTelegram.StopReceiving();
-                       //await botTelegram.SendTextMessageAsync(message.Chat.Id, " f", replyMarkup: new ReplyKeyboardRemove());
-
-
-                        if (message.Text != "" && !allComands.Contains(message.Text) && allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.CurrentLevelMenu == 10))
-                        {
-                            if (!message.Text.HasEmojis())
-                            {
-
-                            }
-                            else
-                                await botTelegram.SendTextMessageAsync(message.Chat.Id, "Сообщение содержит эмодзи, создайте сообщение без них!");
-
-
-                        }
-                        else if (message.Text != "" && allUsers.All(x => x.UserTelegramId != message.Chat.Id))
-                        {
-                            botService = Program.kernel.Get<IBotService>();
-                            controlPanelService = Program.kernel.Get<IControlPanelService>();
-
-                            var keyboard1 = MenuBuilder.Menu(Utils.Rules.NoAuthUser);
-
-                            if (!controlPanelService.ContainMessages(message.Chat.Id))
-                            {
-                                MessagesDTO messageDTO = new MessagesDTO()
-                                {
-                                    Read = false,
-                                    UserTelegramId = message.Chat.Id,
-                                    Text = "Загистрируйте меня в системе " + message.Chat.FirstName + " " + message.Chat.LastName
-                                };
-
-                                controlPanelService.MessagesCreate(messageDTO);
-                                await botTelegram.SendTextMessageAsync(message.Chat.Id, "Вы не зарегистрирвоаны в системе, ваша заявка отправлена и в ближайшее время будет обработана нашим оператором.", replyMarkup: MenuBuilder.Menu(Utils.Rules.NoAuthUser));
-                            }
-                            else
-                            {
-                                await botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка обрабатывается нашим оператором, благодарим за понимание", replyMarkup: MenuBuilder.Menu(Utils.Rules.NoAuthUser));
-                            }
-
-                        }
-                        else if (message.Text != "" && !allComands.Contains(message.Text) && allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.CurrentLevelMenu == 41))
-                        {
-                            if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
-                            {
-                                botService = Program.kernel.Get<IBotService>();
-
-                                int? productId = botService.GetProductionId(message.Text);
-
-                                if (productId != null)
-                                {
-                                    botService.TelegramUsersUpdateCheckProductionIdByTelegramUserId(message.Chat.Id, (int)productId);
-                                    message.Text = "Пункт загрузки (расчет)";
-                                }
-
-                            }
-                        }
-                        else if (message.Text != "" && !allComands.Contains(message.Text) && allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.CurrentLevelMenu == 42))
-                        {
-                            if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
-                            {
-                                botService = Program.kernel.Get<IBotService>();
-
-                                int? cityId = botService.GetCityId(message.Text);
-
-                                if (cityId != null)
-                                {
-                                    botService.TelegramUsersUpdateCheckLoadAreaIdByTelegramUserId(message.Chat.Id, (int)cityId);
-                                    message.Text = "Пункт доставки (расчет)";
-                                }
-
-                            }
-                        }
-                        else if (message.Text != "" && !allComands.Contains(message.Text) && allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.CurrentLevelMenu == 43))
-                        {
-                            if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
-                            {
-                                botService = Program.kernel.Get<IBotService>();
-
-                                int? cityId = botService.GetCityId(message.Text);
-
-                                if (cityId != null)
-                                {
-                                    botService.TelegramUsersUpdateCheckUnloadAreaIdByTelegramUserId(message.Chat.Id, (int)cityId);
-                                    message.Text = "Количество машин (расчет)";
-                                }
-
-                            }
-                        }
-
-                        else if (message.Text != "" && !allComands.Contains(message.Text) && allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.CurrentLevelMenu == 44))
-                        {
-                            if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
-                            {
-                                botService = Program.kernel.Get<IBotService>();
-
-                                short numberOfMachine = 0;
-
-                                if (Int16.TryParse(message.Text, out numberOfMachine))
-                                {
-                                    botService.TelegramUsersUpdateCheckNumberOfMachineByTelegramUserId(message.Chat.Id, (short)numberOfMachine);
-                                    message.Text = "Стоимость доставки";
-                                }
-
-
-
-                            }
-                        }
-
-                        else if (message.Text != "" && !allComands.Contains(message.Text) && allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.CurrentLevelMenu == 51))
-                        {
-                            if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
-                            {
-                                botService = Program.kernel.Get<IBotService>();
-
-                                int? productId = botService.GetProductionId(message.Text);
-
-                                if (productId != null)
-                                {
-                                    botService.TelegramUsersUpdateCheckProductionIdByTelegramUserId(message.Chat.Id, (int)productId);
-                                    message.Text = "Пункт загрузки (заявка)";
-                                }
-
-                            }
-                        }
-
-                        else if (message.Text != "" && !allComands.Contains(message.Text) && allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.CurrentLevelMenu == 52))
-                        {
-                            if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
-                            {
-                                botService = Program.kernel.Get<IBotService>();
-
-                                int? cityId = botService.GetCityId(message.Text);
-
-                                if (cityId != null)
-                                {
-                                    botService.TelegramUsersUpdateCheckLoadAreaIdByTelegramUserId(message.Chat.Id, (int)cityId);
-                                    message.Text = "Пункт доставки (заявка)";
-                                }
-
-                            }
-                        }
-
-                        else if (message.Text != "" && !allComands.Contains(message.Text) && allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.CurrentLevelMenu == 53))
-                        {
-                            if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
-                            {
-                                botService = Program.kernel.Get<IBotService>();
-
-                                int? cityId = botService.GetCityId(message.Text);
-
-                                if (cityId != null)
-                                {
-                                    botService.TelegramUsersUpdateCheckUnloadAreaIdByTelegramUserId(message.Chat.Id, (int)cityId);
-                                    message.Text = "Количество машин (заявка)";
-                                }
-
-                            }
-                        }
-                        else if (message.Text != "" && !allComands.Contains(message.Text) && allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.CurrentLevelMenu == 54))
-                        {
-                            if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
-                            {
-                                botService = Program.kernel.Get<IBotService>();
-
-                                short numberOfMachine = 0;
-
-                                if (Int16.TryParse(message.Text, out numberOfMachine))
-                                {
-                                    botService.TelegramUsersUpdateCheckNumberOfMachineByTelegramUserId(message.Chat.Id, (short)numberOfMachine);
-                                    message.Text = "Дата доставки";
-                                }
-
-                            }
-                        }
-
-                        else if (message.Text != "" && !allComands.Contains(message.Text) && allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.CurrentLevelMenu == 55))
-                        {
-                            if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
-                            {
-                                botService = Program.kernel.Get<IBotService>();
-
-                                DateTime enteredDate = DateTime.Parse(message.Text);
-
-                                botService.TelegramUsersUpdateCheckOrderDateByTelegramUserId(message.Chat.Id, enteredDate);
-
-                                message.Text = "Потверждение заявки";
-
-                            }
-                        }
-                        else if (message.Text != "" && !allComands.Contains(message.Text) && allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.CurrentLevelMenu == 56))
-                        {
-                            if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
-                            {
-                                botService = Program.kernel.Get<IBotService>();
-                                controlPanelService = Program.kernel.Get<IControlPanelService>();
-
-                                if (message.Text == "Подтвердить заявку")
-                                {
-
-                                    await botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка отправлена менеджеру");
-
-                                    UsersTelegramDTO userOrderTelegramDTO = botService.GetTelegramUserByUserTelegramId(message.Chat.Id);
-                                    //RoutesDTO routesDTO = botService.GetRouteByProductionLoadAreaUnloadArea((int)userTelegramDTO.CheckProductionId, (int)userTelegramDTO.CheckLoadAreaId, (int)userTelegramDTO.CheckUnloadAreaId);
-
-                                    string productOrder = "\nВид продукции: " + botService.GetProductionByid((int)userOrderTelegramDTO.CheckProductionId).FullName;
-                                    string routeOrder = "\nМаршрут: " + botService.GetCityByid((int)userOrderTelegramDTO.CheckLoadAreaId).Name + " - " + botService.GetCityByid((int)userOrderTelegramDTO.CheckUnloadAreaId).Name;
-                                    //string distance = "\nРасстояние: " + routesDTO.Distance + " км";
-                                    string machineNumberOrder = "\nКоличество машин: " + userOrderTelegramDTO.CheckNumberOfMachine;
-                                    string orderDateOrder = "\nДата доставки: " + userOrderTelegramDTO.OrderDate.Value.ToShortDateString() + "\n\n";
-
-                                    //await botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка отправлена нашему менеджеру",
-                                    //     replyMarkup: MenuBuilder.AccessOrderMenu(), parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, disableWebPagePreview: true, disableNotification: false);
-
-                                    MessagesDTO messageDTO = new MessagesDTO()
-                                    {
-                                        Read = false,
-                                        UserTelegramId = message.Chat.Id,
-                                        Text = "Хочу заказать битум. " + productOrder + routeOrder + machineNumberOrder + orderDateOrder
-                                    };
-
-                                    controlPanelService.MessagesCreate(messageDTO);
-
-                                }
-                                else
-                                {
-                                    await botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка отменена");
-                                }
-
-                                message.Text = "Отмена";
-                                //DateTime enteredDate = DateTime.Parse(message.Text);
-
-                                //botService.TelegramUsersUpdateCheckOrderDateByTelegramUserId(message.Chat.Id, enteredDate);
-
-                                //message.Text = "Потверждение заявки";
-
-                            }
-                        }
-                        else
-                        {
-                            
-                        }
+                        CheckMessage(message);
 
                         switch (message.Text)
                         {
@@ -642,7 +373,7 @@ namespace TerminalMKTelegramBot
 
                                         controlPanelService.MessagesCreate(messageDTO);
 
-                                        await botTelegram.SendTextMessageAsync(message.Chat.Id, "Вы не зарегистрирвоаны в системе, ваша заявка отправлена и в ближайшее время будет обработана нашим оператором.", replyMarkup: keyboard121);
+                                        botTelegram.SendTextMessageAsync(message.Chat.Id, "Вы не зарегистрирвоаны в системе, ваша заявка отправлена и в ближайшее время будет обработана нашим оператором.", replyMarkup: keyboard121);
                                     }
                                     else
                                     {
@@ -657,7 +388,7 @@ namespace TerminalMKTelegramBot
 
                                         keyboard122.ResizeKeyboard = true;
 
-                                        await botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка обрабатывается нашим оператором, благодарим за понимание", replyMarkup: keyboard122);
+                                         botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка обрабатывается нашим оператором, благодарим за понимание", replyMarkup: keyboard122);
                                     }
 
 
@@ -671,7 +402,7 @@ namespace TerminalMKTelegramBot
 
                                     var keyboard2 = MenuBuilder.Menu(Utils.Rules.AuthUser);
 
-                                    await botTelegram.SendTextMessageAsync(message.Chat.Id, "Здравствуйте, выберети интересуюущую вас услугу.", replyMarkup: keyboard2);
+                                     botTelegram.SendTextMessageAsync(message.Chat.Id, "Здравствуйте, выберети интересуюущую вас услугу.", replyMarkup: keyboard2);
                                 }
                                 else
                                 {
@@ -688,7 +419,7 @@ namespace TerminalMKTelegramBot
                                 if (!CheckUser(message.Chat.Id))
                                     break;
 
-                                await botTelegram.SendTextMessageAsync(message.Chat.Id, "  Наш сайт:   \n  - [TERMINAL-MK](http://terminal-mk.com/) ", replyMarkup: MenuBuilder.Menu(Utils.Rules.AuthUser), parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, disableWebPagePreview: false, disableNotification: false);
+                                 botTelegram.SendTextMessageAsync(message.Chat.Id, "  Наш сайт:   \n  - [TERMINAL-MK](http://terminal-mk.com/) ", replyMarkup: MenuBuilder.Menu(Utils.Rules.AuthUser), parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, disableWebPagePreview: false, disableNotification: false);
 
                                 break;
                             #endregion
@@ -700,7 +431,7 @@ namespace TerminalMKTelegramBot
                                 if (!CheckUser(message.Chat.Id))
                                     break;
 
-                                await botTelegram.SendTextMessageAsync(message.Chat.Id, " Вул. Соборна, 18/4, Кременчук, Полтавська область \n" +
+                                 botTelegram.SendTextMessageAsync(message.Chat.Id, " Вул. Соборна, 18/4, Кременчук, Полтавська область \n" +
                                     " 6090 с мобильного \n" + " mail@terminal-mk.com \n", parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, disableWebPagePreview: true, disableNotification: false);
 
                                 break;
@@ -714,10 +445,10 @@ namespace TerminalMKTelegramBot
                                 if (!CheckUser(message.Chat.Id))
                                     break;
 
-                                botService = Program.kernel.Get<IBotService>();
-                                botService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 51);
+                                mySqlService = Program.kernel.Get<IMySqlService>();
+                                mySqlService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 51);
 
-                                await botTelegram.SendTextMessageAsync(message.Chat.Id, "Выберите вид продукции:", replyMarkup: MenuBuilder.ProductionMenu(message.Chat.Id), parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, disableWebPagePreview: true, disableNotification: false);
+                                 botTelegram.SendTextMessageAsync(message.Chat.Id, "Выберите вид продукции:", replyMarkup: MenuBuilder.ProductionMenu(message.Chat.Id), parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, disableWebPagePreview: true, disableNotification: false);
 
                                 break;
 
@@ -730,10 +461,10 @@ namespace TerminalMKTelegramBot
                                 if (!CheckUser(message.Chat.Id))
                                     break;
 
-                                botService = Program.kernel.Get<IBotService>();
-                                botService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 52);
+                                mySqlService = Program.kernel.Get<IMySqlService>();
+                                mySqlService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 52);
 
-                                await botTelegram.SendTextMessageAsync(message.Chat.Id, "Выберите склад продукции:", replyMarkup: MenuBuilder.LoadAreaMenu(message.Chat.Id), parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, disableWebPagePreview: true, disableNotification: false);
+                                 botTelegram.SendTextMessageAsync(message.Chat.Id, "Выберите склад продукции:", replyMarkup: MenuBuilder.LoadAreaMenu(message.Chat.Id), parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, disableWebPagePreview: true, disableNotification: false);
 
                                 break;
 
@@ -746,10 +477,10 @@ namespace TerminalMKTelegramBot
                                 if (!CheckUser(message.Chat.Id))
                                     break;
 
-                                botService = Program.kernel.Get<IBotService>();
-                                botService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 53);
+                                mySqlService = Program.kernel.Get<IMySqlService>();
+                                mySqlService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 53);
 
-                                await botTelegram.SendTextMessageAsync(message.Chat.Id, "Выберите город доставки продукции:", replyMarkup: MenuBuilder.UnloadAreaMenu(message.Chat.Id), parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, disableWebPagePreview: true, disableNotification: false);
+                                 botTelegram.SendTextMessageAsync(message.Chat.Id, "Выберите город доставки продукции:", replyMarkup: MenuBuilder.UnloadAreaMenu(message.Chat.Id), parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, disableWebPagePreview: true, disableNotification: false);
 
                                 break;
 
@@ -762,10 +493,10 @@ namespace TerminalMKTelegramBot
                                 if (!CheckUser(message.Chat.Id))
                                     break;
 
-                                botService = Program.kernel.Get<IBotService>();
-                                botService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 54);
+                                mySqlService = Program.kernel.Get<IMySqlService>();
+                                mySqlService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 54);
 
-                                await botTelegram.SendTextMessageAsync(message.Chat.Id, "Укажите количество машин:", replyMarkup: MenuBuilder.NumberOfCarMenu(), parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, disableWebPagePreview: true, disableNotification: false);
+                                 botTelegram.SendTextMessageAsync(message.Chat.Id, "Укажите количество машин:", replyMarkup: MenuBuilder.NumberOfCarMenu(), parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, disableWebPagePreview: true, disableNotification: false);
 
                                 break;
 
@@ -778,10 +509,10 @@ namespace TerminalMKTelegramBot
                                 if (!CheckUser(message.Chat.Id))
                                     break;
 
-                                botService = Program.kernel.Get<IBotService>();
-                                botService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 55);
+                                mySqlService = Program.kernel.Get<IMySqlService>();
+                                mySqlService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 55);
 
-                                await botTelegram.SendTextMessageAsync(message.Chat.Id, "Выберите дату доставки:", replyMarkup: MenuBuilder.OrderDateMenu(), parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, disableWebPagePreview: true, disableNotification: false);
+                                 botTelegram.SendTextMessageAsync(message.Chat.Id, "Выберите дату доставки:", replyMarkup: MenuBuilder.OrderDateMenu(), parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, disableWebPagePreview: true, disableNotification: false);
 
                                 break;
 
@@ -794,21 +525,21 @@ namespace TerminalMKTelegramBot
                                 if (!CheckUser(message.Chat.Id))
                                     break;
 
-                                botService = Program.kernel.Get<IBotService>();
-                                botService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 56);
+                                mySqlService = Program.kernel.Get<IMySqlService>();
+                                mySqlService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 56);
 
                                 // UsersTelegramDTO currentuser = allUsers.First(x => x.UserTelegramId == message.Chat.Id);
 
-                                UsersTelegramDTO userOrderTelegramDTO = botService.GetTelegramUserByUserTelegramId(message.Chat.Id);
+                                UsersTelegramDTO userOrderTelegramDTO = mySqlService.GetTelegramUserByUserTelegramId(message.Chat.Id);
                                 //RoutesDTO routesDTO = botService.GetRouteByProductionLoadAreaUnloadArea((int)userTelegramDTO.CheckProductionId, (int)userTelegramDTO.CheckLoadAreaId, (int)userTelegramDTO.CheckUnloadAreaId);
 
-                                string productOrder = "\nВид продукции: " + botService.GetProductionByid((int)userOrderTelegramDTO.CheckProductionId).FullName;
-                                string routeOrder = "\nМаршрут: " + botService.GetCityByid((int)userOrderTelegramDTO.CheckLoadAreaId).Name + " - " + botService.GetCityByid((int)userOrderTelegramDTO.CheckUnloadAreaId).Name;
+                                string productOrder = "\nВид продукции: " + mySqlService.GetProductionByid((int)userOrderTelegramDTO.CheckProductionId).FullName;
+                                string routeOrder = "\nМаршрут: " + mySqlService.GetCityByid((int)userOrderTelegramDTO.CheckLoadAreaId).Name + " - " + mySqlService.GetCityByid((int)userOrderTelegramDTO.CheckUnloadAreaId).Name;
                                 //string distance = "\nРасстояние: " + routesDTO.Distance + " км";
                                 string machineNumberOrder = "\nКоличество машин: " + userOrderTelegramDTO.CheckNumberOfMachine;
                                 string orderDateOrder = "\nДата доставки: " + userOrderTelegramDTO.OrderDate.Value.ToShortDateString() + "\n\n";
 
-                                await botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка " + productOrder + routeOrder + machineNumberOrder + orderDateOrder
+                                 botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка " + productOrder + routeOrder + machineNumberOrder + orderDateOrder
                                     , replyMarkup: MenuBuilder.AccessOrderMenu(), parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, disableWebPagePreview: true, disableNotification: false);
 
                                 break;
@@ -822,10 +553,10 @@ namespace TerminalMKTelegramBot
                                 if (!CheckUser(message.Chat.Id))
                                     break;
 
-                                botService = Program.kernel.Get<IBotService>();
-                                botService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 41);
+                                mySqlService = Program.kernel.Get<IMySqlService>();
+                                mySqlService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 41);
 
-                                await botTelegram.SendTextMessageAsync(message.Chat.Id, "Выберите вид продукции:", replyMarkup: MenuBuilder.ProductionMenu(message.Chat.Id), parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, disableWebPagePreview: true, disableNotification: false);
+                                 botTelegram.SendTextMessageAsync(message.Chat.Id, "Выберите вид продукции:", replyMarkup: MenuBuilder.ProductionMenu(message.Chat.Id), parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, disableWebPagePreview: true, disableNotification: false);
 
                                 break;
 
@@ -838,10 +569,10 @@ namespace TerminalMKTelegramBot
                                 if (!CheckUser(message.Chat.Id))
                                     break;
 
-                                botService = Program.kernel.Get<IBotService>();
-                                botService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 42);
+                                mySqlService = Program.kernel.Get<IMySqlService>();
+                                mySqlService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 42);
 
-                                await botTelegram.SendTextMessageAsync(message.Chat.Id, "Выберите склад продукции:", replyMarkup: MenuBuilder.LoadAreaMenu(message.Chat.Id), parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, disableWebPagePreview: true, disableNotification: false);
+                                 botTelegram.SendTextMessageAsync(message.Chat.Id, "Выберите склад продукции:", replyMarkup: MenuBuilder.LoadAreaMenu(message.Chat.Id), parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, disableWebPagePreview: true, disableNotification: false);
 
                                 break;
 
@@ -854,10 +585,10 @@ namespace TerminalMKTelegramBot
                                 if (!CheckUser(message.Chat.Id))
                                     break;
 
-                                botService = Program.kernel.Get<IBotService>();
-                                botService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 43);
+                                mySqlService = Program.kernel.Get<IMySqlService>();
+                                mySqlService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 43);
 
-                                await botTelegram.SendTextMessageAsync(message.Chat.Id, "Выберите город доставки продукции:", replyMarkup: MenuBuilder.UnloadAreaMenu(message.Chat.Id), parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, disableWebPagePreview: true, disableNotification: false);
+                                 botTelegram.SendTextMessageAsync(message.Chat.Id, "Выберите город доставки продукции:", replyMarkup: MenuBuilder.UnloadAreaMenu(message.Chat.Id), parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, disableWebPagePreview: true, disableNotification: false);
 
                                 break;
 
@@ -870,10 +601,10 @@ namespace TerminalMKTelegramBot
                                 if (!CheckUser(message.Chat.Id))
                                     break;
 
-                                botService = Program.kernel.Get<IBotService>();
-                                botService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 44);
+                                mySqlService = Program.kernel.Get<IMySqlService>();
+                                mySqlService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 44);
 
-                                await botTelegram.SendTextMessageAsync(message.Chat.Id, "Укажите количество машин:", replyMarkup: MenuBuilder.NumberOfCarMenu(), parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, disableWebPagePreview: true, disableNotification: false);
+                                 botTelegram.SendTextMessageAsync(message.Chat.Id, "Укажите количество машин:", replyMarkup: MenuBuilder.NumberOfCarMenu(), parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, disableWebPagePreview: true, disableNotification: false);
 
                                 break;
 
@@ -886,10 +617,10 @@ namespace TerminalMKTelegramBot
                                 if (!CheckUser(message.Chat.Id))
                                     break;
 
-                                botService = Program.kernel.Get<IBotService>();
-                                botService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
+                                mySqlService = Program.kernel.Get<IMySqlService>();
+                                mySqlService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
 
-                                await botTelegram.SendTextMessageAsync(message.Chat.Id, "Здравствуйте, выберети интересуюущую вас услугу.", replyMarkup: MenuBuilder.Menu(Utils.Rules.AuthUser));
+                                 botTelegram.SendTextMessageAsync(message.Chat.Id, "Здравствуйте, выберети интересуюущую вас услугу.", replyMarkup: MenuBuilder.Menu(Utils.Rules.AuthUser));
 
                                 break;
 
@@ -902,8 +633,8 @@ namespace TerminalMKTelegramBot
                                 if (!CheckUser(message.Chat.Id))
                                     break;
 
-                                botService = Program.kernel.Get<IBotService>();
-                                botService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
+                                mySqlService = Program.kernel.Get<IMySqlService>();
+                                mySqlService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
 
                                 MessagesDTO messageNewDTO = new MessagesDTO()
                                 {
@@ -912,9 +643,9 @@ namespace TerminalMKTelegramBot
                                     Text = "Перезвоните мне пожалуйста"
                                 };
 
-                                controlPanelService.MessagesCreate(messageNewDTO);
+                                //controlPanelService.MessagesCreate(messageNewDTO);
 
-                                await botTelegram.SendTextMessageAsync(message.Chat.Id, "Наш оператор в ближайшее время с вами свяжется.", replyMarkup: MenuBuilder.Menu(Utils.Rules.AuthUser));
+                                 botTelegram.SendTextMessageAsync(message.Chat.Id, "Наш оператор в ближайшее время с вами свяжется.", replyMarkup: MenuBuilder.Menu(Utils.Rules.AuthUser));
 
                                 break;
 
@@ -927,22 +658,31 @@ namespace TerminalMKTelegramBot
                                 if (!CheckUser(message.Chat.Id))
                                     break;
 
-                                botService = Program.kernel.Get<IBotService>();
+                                mySqlService = Program.kernel.Get<IMySqlService>();
+                                try
+                                {
+                                    UsersTelegramDTO userTelegramDTO = mySqlService.GetTelegramUserByUserTelegramId(message.Chat.Id);
+                                    RoutesDTO routesDTO = mySqlService.GetRouteByProductionLoadAreaUnloadArea((int)userTelegramDTO.CheckProductionId, (int)userTelegramDTO.CheckLoadAreaId, (int)userTelegramDTO.CheckUnloadAreaId);
 
-                                UsersTelegramDTO userTelegramDTO = botService.GetTelegramUserByUserTelegramId(message.Chat.Id);
-                                RoutesDTO routesDTO = botService.GetRouteByProductionLoadAreaUnloadArea((int)userTelegramDTO.CheckProductionId, (int)userTelegramDTO.CheckLoadAreaId, (int)userTelegramDTO.CheckUnloadAreaId);
+                                    string product = "\nВид продукции: " + botService.GetProductionByid((int)userTelegramDTO.CheckProductionId).FullName;
+                                    string route = "\nМаршрут: " + botService.GetCityByid((int)userTelegramDTO.CheckLoadAreaId).Name + " - " + botService.GetCityByid((int)userTelegramDTO.CheckUnloadAreaId).Name;
+                                    string distance = "\nРасстояние: " + routesDTO.Distance + " км";
+                                    string machineNumber = "\nКоличество машин: " + userTelegramDTO.CheckNumberOfMachine;
+                                    string shipPrice = "\nСтоимость: " + routesDTO.Rate * userTelegramDTO.CheckNumberOfMachine * routesDTO.Distance + " грн";
 
-                                string product = "\nВид продукции: " + botService.GetProductionByid((int)userTelegramDTO.CheckProductionId).FullName;
-                                string route = "\nМаршрут: " + botService.GetCityByid((int)userTelegramDTO.CheckLoadAreaId).Name + " - " + botService.GetCityByid((int)userTelegramDTO.CheckUnloadAreaId).Name;
-                                string distance = "\nРасстояние: " + routesDTO.Distance + " км";
-                                string machineNumber = "\nКоличество машин: " + userTelegramDTO.CheckNumberOfMachine;
-                                string shipPrice = "\nСтоимость: " + routesDTO.Rate * userTelegramDTO.CheckNumberOfMachine * routesDTO.Distance + " грн";
+                                    botTelegram.SendTextMessageAsync(message.Chat.Id, product + route + distance + machineNumber + shipPrice,
+                                       replyMarkup: MenuBuilder.Menu(Utils.Rules.AuthUser), parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, disableWebPagePreview: true, disableNotification: false);
 
-                                await botTelegram.SendTextMessageAsync(message.Chat.Id, product + route + distance + machineNumber + shipPrice,
-                                    replyMarkup: MenuBuilder.Menu(Utils.Rules.AuthUser), parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, disableWebPagePreview: true, disableNotification: false);
+                                    mySqlService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
+                                    mySqlService.TelegramUsersClearDeiveryCost(message.Chat.Id);
+                                }
+                                catch (Exception)
+                                {
+                                    mySqlService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
+                                    mySqlService.TelegramUsersClearDeiveryCost(message.Chat.Id);
+                                }
 
-                                botService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
-                                botService.TelegramUsersClearDeiveryCost(message.Chat.Id);
+                                
                                 break;
 
                             #endregion
@@ -961,7 +701,7 @@ namespace TerminalMKTelegramBot
 
                                     var keyboard1 = MenuBuilder.Menu(Utils.Rules.Manager);
 
-                                    await botTelegram.SendTextMessageAsync(message.Chat.Id, "Здравствуйте, выберите пункт меню и узнайте о Ad Simple больше.", replyMarkup: keyboard1);
+                                     botTelegram.SendTextMessageAsync(message.Chat.Id, "Здравствуйте, выберите пункт меню и узнайте о Ad Simple больше.", replyMarkup: keyboard1);
                                 }
                                 else if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
                                 {
@@ -970,7 +710,7 @@ namespace TerminalMKTelegramBot
 
                                     var keyboard2 = MenuBuilder.Menu(Utils.Rules.AuthUser);
 
-                                    await botTelegram.SendTextMessageAsync(message.Chat.Id, "Здравствуйте, выберите пункт меню и узнайте о Ad Simple больше.", replyMarkup: keyboard2);
+                                     botTelegram.SendTextMessageAsync(message.Chat.Id, "Здравствуйте, выберите пункт меню и узнайте о Ad Simple больше.", replyMarkup: keyboard2);
                                 }
                                 else
                                 {
@@ -979,7 +719,7 @@ namespace TerminalMKTelegramBot
 
                                     var keyboard3 = MenuBuilder.Menu(Utils.Rules.NoAuthUser);
 
-                                    await botTelegram.SendTextMessageAsync(message.Chat.Id, "Здравствуйте, выберите пункт меню и узнайте о Ad Simple больше.", replyMarkup: keyboard3);
+                                     botTelegram.SendTextMessageAsync(message.Chat.Id, "Здравствуйте, выберите пункт меню и узнайте о Ad Simple больше.", replyMarkup: keyboard3);
                                 }
 
                                 break;
@@ -1004,13 +744,12 @@ namespace TerminalMKTelegramBot
 
                                 //var keyboard2 = MenuBuilder.Menu(Utils.Rules.AuthUser);
 
-                                await botTelegram.SendTextMessageAsync(message.Chat.Id, "Выберети интересуюущую вас услугу.", replyMarkup: MenuBuilder.Menu(Utils.Rules.AuthUser));
+                                 botTelegram.SendTextMessageAsync(message.Chat.Id, "Выберети интересуюущую вас услугу.", replyMarkup: MenuBuilder.Menu(Utils.Rules.AuthUser));
 
 
                                 break;
 
                             #endregion
-
 
                             default:
 
@@ -1022,24 +761,6 @@ namespace TerminalMKTelegramBot
 
                 };
 
-
-                // botTelegram.OnCallbackQuery += (object sc, Telegram.Bot.Args.CallbackQueryEventArgs ev) =>
-                //{
-                //    var message = ev.CallbackQuery.Data;
-                //    if (ev.CallbackQuery.Data == "callback1")
-                //    {
-                //        long kkk = ev.CallbackQuery.Message.Chat.Id;
-                //         //await; 
-                //     }
-                //    else
-                //    if (ev.CallbackQuery.Data == "callback2")
-                //    {
-                //         // сюда то что нужно сделать при нажатии на вторую кнопку
-                //     }
-                //};
-
-                
-
                 botTelegram.StartReceiving();
             }
 
@@ -1047,6 +768,588 @@ namespace TerminalMKTelegramBot
             {
                 Console.WriteLine(ex.Message); // если ключ не подошел - пишем об этом в консоль отладки
             }
+
+        }
+
+        private void CheckMessage(Telegram.Bot.Types.Message message)
+        {
+
+            controlPanelService = Program.kernel.Get<IControlPanelService>();
+
+            if (allUsers.All(x => x.UserTelegramId != message.Chat.Id))
+            {
+                var keyboard1 = MenuBuilder.Menu(Utils.Rules.NoAuthUser);
+
+                try
+                {
+                    if (!controlPanelService.ContainMessages(message.Chat.Id))
+                    {
+                        MessagesDTO messageDTO = new MessagesDTO()
+                        {
+                            Read = false,
+                            UserTelegramId = message.Chat.Id,
+                            Text = "Загистрируйте меня в системе " + message.Chat.FirstName + " " + message.Chat.LastName
+                        };
+
+                        controlPanelService.MessagesCreate(messageDTO);
+                        botTelegram.SendTextMessageAsync(message.Chat.Id, "Вы не зарегистрирвоаны в системе, ваша заявка отправлена и в ближайшее время будет обработана нашим оператором.", replyMarkup: MenuBuilder.Menu(Utils.Rules.NoAuthUser));
+                    }
+                    else
+                    {
+                        botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка обрабатывается нашим оператором, благодарим за понимание", replyMarkup: MenuBuilder.Menu(Utils.Rules.NoAuthUser));
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
+    
+            }
+            else if (!allComands.Contains(message.Text) && allUsers.Any(x => x.UserTelegramId == message.Chat.Id))
+            {
+                int levelMenu = allUsers.First(x => x.UserTelegramId == message.Chat.Id).CurrentLevelMenu;
+
+                switch (levelMenu)
+                {
+                    case 41:
+                        {
+                            if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
+                            {
+                                mySqlService = Program.kernel.Get<IMySqlService>();
+                                try
+                                {
+                                    int? productId = mySqlService.GetProductionId(message.Text);
+
+                                    if (productId != null)
+                                    {
+                                        mySqlService.TelegramUsersUpdateCheckProductionIdByTelegramUserId(message.Chat.Id, (int)productId);
+                                        message.Text = "Пункт загрузки (расчет)";
+                                    }
+                                }
+                                catch (Exception)
+                                {
+                                    mySqlService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
+                                    mySqlService.TelegramUsersClearDeiveryCost(message.Chat.Id);
+                                    //botTelegram.SendTextMessageAsync(message.Chat.Id, "Выберети интересуюущую вас услугу.", replyMarkup: MenuBuilder.Menu(Utils.Rules.AuthUser));
+
+                                }
+
+
+                            }
+                        }
+
+                        break;
+
+                    case 42:
+                        {
+                            if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
+                            {
+                                mySqlService = Program.kernel.Get<IMySqlService>();
+
+                                try
+                                {
+                                    int? cityId = mySqlService.GetCityId(message.Text);
+
+                                    if (cityId != null)
+                                    {
+                                        mySqlService.TelegramUsersUpdateCheckLoadAreaIdByTelegramUserId(message.Chat.Id, (int)cityId);
+                                        message.Text = "Пункт доставки (расчет)";
+                                    }
+                                }
+                                catch (Exception)
+                                {
+                                    
+                                }
+                            }
+                        }
+                        break;
+
+                    case 43:
+                        {
+                            if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
+                            {
+                                mySqlService = Program.kernel.Get<IMySqlService>();
+
+                                try
+                                {
+                                    int? cityId = mySqlService.GetCityId(message.Text);
+
+                                    if (cityId != null)
+                                    {
+                                        mySqlService.TelegramUsersUpdateCheckUnloadAreaIdByTelegramUserId(message.Chat.Id, (int)cityId);
+                                        message.Text = "Количество машин (расчет)";
+                                    }
+                                }
+                                catch (Exception)
+                                {
+                                    mySqlService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
+                                    mySqlService.TelegramUsersClearDeiveryCost(message.Chat.Id);
+                                }
+                            }
+                        }
+                        break;
+
+                    case 44:
+                        {
+                            if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
+                            {
+                                mySqlService = Program.kernel.Get<IMySqlService>();
+
+                                try
+                                {
+                                    short numberOfMachine = 0;
+
+                                    if (Int16.TryParse(message.Text, out numberOfMachine))
+                                    {
+                                        mySqlService.TelegramUsersUpdateCheckNumberOfMachineByTelegramUserId(message.Chat.Id, (short)numberOfMachine);
+                                        message.Text = "Стоимость доставки";
+                                    }
+                                }
+                                catch (Exception)
+                                {
+                                    mySqlService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
+                                    mySqlService.TelegramUsersClearDeiveryCost(message.Chat.Id);
+                                }
+                            }
+                        }
+                        
+                        break;
+
+                    case 51:
+                        {
+                            if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
+                            {
+                                mySqlService = Program.kernel.Get<IMySqlService>();
+
+                                try
+                                {
+                                    int? productId = mySqlService.GetProductionId(message.Text);
+
+                                    if (productId != null)
+                                    {
+                                        mySqlService.TelegramUsersUpdateCheckProductionIdByTelegramUserId(message.Chat.Id, (int)productId);
+                                        message.Text = "Пункт загрузки (заявка)";
+                                    }
+                                }
+                                catch (Exception)
+                                {
+                                    mySqlService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
+                                    mySqlService.TelegramUsersClearDeiveryCost(message.Chat.Id);
+                                }
+                            }
+                        }
+                        break;
+
+                    case 52:
+                        {
+                            if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
+                            {
+                                mySqlService = Program.kernel.Get<IMySqlService>();
+                                try
+                                {
+                                    int? cityId = botService.GetCityId(message.Text);
+
+                                    if (cityId != null)
+                                    {
+                                        mySqlService.TelegramUsersUpdateCheckLoadAreaIdByTelegramUserId(message.Chat.Id, (int)cityId);
+                                        message.Text = "Пункт доставки (заявка)";
+                                    }
+                                }
+                                catch (Exception)
+                                {
+                                    mySqlService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
+                                    mySqlService.TelegramUsersClearDeiveryCost(message.Chat.Id);
+                                }
+
+
+                            }
+                        }
+                        break;
+
+                    case 53:
+                        {
+                            if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
+                            {
+                                mySqlService = Program.kernel.Get<IMySqlService>();
+                                try
+                                {
+                                    int? cityId = botService.GetCityId(message.Text);
+
+                                    if (cityId != null)
+                                    {
+                                        mySqlService.TelegramUsersUpdateCheckUnloadAreaIdByTelegramUserId(message.Chat.Id, (int)cityId);
+                                        message.Text = "Количество машин (заявка)";
+                                    }
+                                }
+                                catch (Exception)
+                                {
+                                    mySqlService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
+                                    mySqlService.TelegramUsersClearDeiveryCost(message.Chat.Id);
+                                }
+
+                                
+
+                            }
+                        }
+                        break;
+
+                    case 54:
+                        {
+                            if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
+                            {
+                                mySqlService = Program.kernel.Get<IMySqlService>();
+
+                                try
+                                {
+                                    short numberOfMachine = 0;
+
+                                    if (Int16.TryParse(message.Text, out numberOfMachine))
+                                    {
+                                        mySqlService.TelegramUsersUpdateCheckNumberOfMachineByTelegramUserId(message.Chat.Id, (short)numberOfMachine);
+                                        message.Text = "Дата доставки";
+                                    }
+                                }
+                                catch (Exception)
+                                {
+                                    mySqlService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
+                                    mySqlService.TelegramUsersClearDeiveryCost(message.Chat.Id);
+                                }
+
+                                
+
+                            }
+                        }
+                        break;
+
+                    case 55:
+                        {
+                            if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
+                            {
+                                mySqlService = Program.kernel.Get<IMySqlService>();
+
+                                try
+                                {
+                                    DateTime enteredDate = DateTime.Parse(message.Text);
+                                    mySqlService.TelegramUsersUpdateCheckOrderDateByTelegramUserId(message.Chat.Id, enteredDate);
+                                    message.Text = "Потверждение заявки";
+                                }
+                                catch (Exception)
+                                {
+                                    mySqlService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
+                                    mySqlService.TelegramUsersClearDeiveryCost(message.Chat.Id);
+                                }
+                            }
+                        }
+                        break;
+
+                    case 56:
+                        {
+                            if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
+                            {
+                                mySqlService = Program.kernel.Get<IMySqlService>();
+                                controlPanelService = Program.kernel.Get<IControlPanelService>();
+
+                                try
+                                {
+                                    if (message.Text == "Подтвердить заявку")
+                                    {
+
+                                        botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка отправлена менеджеру");
+
+                                        UsersTelegramDTO userOrderTelegramDTO = mySqlService.GetTelegramUserByUserTelegramId(message.Chat.Id);
+                                        //RoutesDTO routesDTO = botService.GetRouteByProductionLoadAreaUnloadArea((int)userTelegramDTO.CheckProductionId, (int)userTelegramDTO.CheckLoadAreaId, (int)userTelegramDTO.CheckUnloadAreaId);
+
+                                        string productOrder = "\nВид продукции: " + mySqlService.GetProductionByid((int)userOrderTelegramDTO.CheckProductionId).FullName;
+                                        string routeOrder = "\nМаршрут: " + mySqlService.GetCityByid((int)userOrderTelegramDTO.CheckLoadAreaId).Name + " - " + mySqlService.GetCityByid((int)userOrderTelegramDTO.CheckUnloadAreaId).Name;
+                                        //string distance = "\nРасстояние: " + routesDTO.Distance + " км";
+                                        string machineNumberOrder = "\nКоличество машин: " + userOrderTelegramDTO.CheckNumberOfMachine;
+                                        string orderDateOrder = "\nДата доставки: " + userOrderTelegramDTO.OrderDate.Value.ToShortDateString() + "\n\n";
+
+                                        //await botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка отправлена нашему менеджеру",
+                                        //     replyMarkup: MenuBuilder.AccessOrderMenu(), parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, disableWebPagePreview: true, disableNotification: false);
+
+                                        MessagesDTO messageDTO = new MessagesDTO()
+                                        {
+                                            Read = false,
+                                            UserTelegramId = message.Chat.Id,
+                                            Text = "Хочу заказать битум. " + productOrder + routeOrder + machineNumberOrder + orderDateOrder
+                                        };
+
+                                        controlPanelService.MessagesCreate(messageDTO);
+
+                                    }
+                                    else
+                                    {
+                                        botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка отменена");
+                                    }
+
+                                    message.Text = "Отмена";
+                                }
+                                catch (Exception)
+                                {
+                                    mySqlService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
+                                    mySqlService.TelegramUsersClearDeiveryCost(message.Chat.Id);
+                                }
+                            }
+                        }
+
+                        break;
+
+
+                    default:
+                        break;
+                }
+
+            }
+
+
+            //if (message.Text != "" && !allComands.Contains(message.Text) && allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.CurrentLevelMenu == 10))
+            //{
+            //    if (!message.Text.HasEmojis())
+            //    {
+
+            //    }
+            //    else
+            //        botTelegram.SendTextMessageAsync(message.Chat.Id, "Сообщение содержит эмодзи, создайте сообщение без них!");
+
+
+            //}
+            //else if (message.Text != "" && allUsers.All(x => x.UserTelegramId != message.Chat.Id))
+            //{
+            //    botService = Program.kernel.Get<IBotService>();
+            //    controlPanelService = Program.kernel.Get<IControlPanelService>();
+
+            //    var keyboard1 = MenuBuilder.Menu(Utils.Rules.NoAuthUser);
+
+            //    if (!controlPanelService.ContainMessages(message.Chat.Id))
+            //    {
+            //        MessagesDTO messageDTO = new MessagesDTO()
+            //        {
+            //            Read = false,
+            //            UserTelegramId = message.Chat.Id,
+            //            Text = "Загистрируйте меня в системе " + message.Chat.FirstName + " " + message.Chat.LastName
+            //        };
+
+            //        controlPanelService.MessagesCreate(messageDTO);
+            //        botTelegram.SendTextMessageAsync(message.Chat.Id, "Вы не зарегистрирвоаны в системе, ваша заявка отправлена и в ближайшее время будет обработана нашим оператором.", replyMarkup: MenuBuilder.Menu(Utils.Rules.NoAuthUser));
+            //    }
+            //    else
+            //    {
+            //        botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка обрабатывается нашим оператором, благодарим за понимание", replyMarkup: MenuBuilder.Menu(Utils.Rules.NoAuthUser));
+            //    }
+
+            //}
+            //else if (message.Text != "" && !allComands.Contains(message.Text) && allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.CurrentLevelMenu == 41))
+            //{
+            //    if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
+            //    {
+            //        botService = Program.kernel.Get<IBotService>();
+            //        try
+            //        {
+            //            int? productId = botService.GetProductionId(message.Text);
+
+            //            if (productId != null)
+            //            {
+            //                botService.TelegramUsersUpdateCheckProductionIdByTelegramUserId(message.Chat.Id, (int)productId);
+            //                message.Text = "Пункт загрузки (расчет)";
+            //            }
+            //        }
+            //        catch (Exception)
+            //        {
+            //            botService.TelegramUsersUpdateRulesByTelegramUserId(message.Chat.Id, 0);
+            //            botService.TelegramUsersClearDeiveryCost(message.Chat.Id);
+            //            //botTelegram.SendTextMessageAsync(message.Chat.Id, "Выберети интересуюущую вас услугу.", replyMarkup: MenuBuilder.Menu(Utils.Rules.AuthUser));
+
+            //        }
+
+
+            //    }
+            //}
+            //else if (message.Text != "" && !allComands.Contains(message.Text) && allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.CurrentLevelMenu == 42))
+            //{
+            //    if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
+            //    {
+            //        botService = Program.kernel.Get<IBotService>();
+
+            //        int? cityId = botService.GetCityId(message.Text);
+
+            //        if (cityId != null)
+            //        {
+            //            botService.TelegramUsersUpdateCheckLoadAreaIdByTelegramUserId(message.Chat.Id, (int)cityId);
+            //            message.Text = "Пункт доставки (расчет)";
+            //        }
+
+            //    }
+            //}
+            //else if (message.Text != "" && !allComands.Contains(message.Text) && allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.CurrentLevelMenu == 43))
+            //{
+            //    if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
+            //    {
+            //        botService = Program.kernel.Get<IBotService>();
+
+            //        int? cityId = botService.GetCityId(message.Text);
+
+            //        if (cityId != null)
+            //        {
+            //            botService.TelegramUsersUpdateCheckUnloadAreaIdByTelegramUserId(message.Chat.Id, (int)cityId);
+            //            message.Text = "Количество машин (расчет)";
+            //        }
+
+            //    }
+            //}
+
+            //else if (message.Text != "" && !allComands.Contains(message.Text) && allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.CurrentLevelMenu == 44))
+            //{
+            //    if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
+            //    {
+            //        botService = Program.kernel.Get<IBotService>();
+
+            //        short numberOfMachine = 0;
+
+            //        if (Int16.TryParse(message.Text, out numberOfMachine))
+            //        {
+            //            botService.TelegramUsersUpdateCheckNumberOfMachineByTelegramUserId(message.Chat.Id, (short)numberOfMachine);
+            //            message.Text = "Стоимость доставки";
+            //        }
+
+
+
+            //    }
+            //}
+
+            //else if (message.Text != "" && !allComands.Contains(message.Text) && allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.CurrentLevelMenu == 51))
+            //{
+            //    if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
+            //    {
+            //        botService = Program.kernel.Get<IBotService>();
+
+            //        int? productId = botService.GetProductionId(message.Text);
+
+            //        if (productId != null)
+            //        {
+            //            botService.TelegramUsersUpdateCheckProductionIdByTelegramUserId(message.Chat.Id, (int)productId);
+            //            message.Text = "Пункт загрузки (заявка)";
+            //        }
+
+            //    }
+            //}
+
+            //else if (message.Text != "" && !allComands.Contains(message.Text) && allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.CurrentLevelMenu == 52))
+            //{
+            //    if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
+            //    {
+            //        botService = Program.kernel.Get<IBotService>();
+
+            //        int? cityId = botService.GetCityId(message.Text);
+
+            //        if (cityId != null)
+            //        {
+            //            botService.TelegramUsersUpdateCheckLoadAreaIdByTelegramUserId(message.Chat.Id, (int)cityId);
+            //            message.Text = "Пункт доставки (заявка)";
+            //        }
+
+            //    }
+            //}
+
+            //else if (message.Text != "" && !allComands.Contains(message.Text) && allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.CurrentLevelMenu == 53))
+            //{
+            //    if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
+            //    {
+            //        botService = Program.kernel.Get<IBotService>();
+
+            //        int? cityId = botService.GetCityId(message.Text);
+
+            //        if (cityId != null)
+            //        {
+            //            botService.TelegramUsersUpdateCheckUnloadAreaIdByTelegramUserId(message.Chat.Id, (int)cityId);
+            //            message.Text = "Количество машин (заявка)";
+            //        }
+
+            //    }
+            //}
+            //else if (message.Text != "" && !allComands.Contains(message.Text) && allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.CurrentLevelMenu == 54))
+            //{
+            //    if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
+            //    {
+            //        botService = Program.kernel.Get<IBotService>();
+
+            //        short numberOfMachine = 0;
+
+            //        if (Int16.TryParse(message.Text, out numberOfMachine))
+            //        {
+            //            botService.TelegramUsersUpdateCheckNumberOfMachineByTelegramUserId(message.Chat.Id, (short)numberOfMachine);
+            //            message.Text = "Дата доставки";
+            //        }
+
+            //    }
+            //}
+
+            //else if (message.Text != "" && !allComands.Contains(message.Text) && allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.CurrentLevelMenu == 55))
+            //{
+            //    if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
+            //    {
+            //        botService = Program.kernel.Get<IBotService>();
+
+            //        DateTime enteredDate = DateTime.Parse(message.Text);
+
+            //        botService.TelegramUsersUpdateCheckOrderDateByTelegramUserId(message.Chat.Id, enteredDate);
+
+            //        message.Text = "Потверждение заявки";
+
+            //    }
+            //}
+            //else if (message.Text != "" && !allComands.Contains(message.Text) && allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.CurrentLevelMenu == 56))
+            //{
+            //    if (allUsers.Any(x => x.UserTelegramId == message.Chat.Id && x.Rules == 1))
+            //    {
+            //        botService = Program.kernel.Get<IBotService>();
+            //        controlPanelService = Program.kernel.Get<IControlPanelService>();
+
+            //        if (message.Text == "Подтвердить заявку")
+            //        {
+
+            //            botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка отправлена менеджеру");
+
+            //            UsersTelegramDTO userOrderTelegramDTO = botService.GetTelegramUserByUserTelegramId(message.Chat.Id);
+            //            //RoutesDTO routesDTO = botService.GetRouteByProductionLoadAreaUnloadArea((int)userTelegramDTO.CheckProductionId, (int)userTelegramDTO.CheckLoadAreaId, (int)userTelegramDTO.CheckUnloadAreaId);
+
+            //            string productOrder = "\nВид продукции: " + botService.GetProductionByid((int)userOrderTelegramDTO.CheckProductionId).FullName;
+            //            string routeOrder = "\nМаршрут: " + botService.GetCityByid((int)userOrderTelegramDTO.CheckLoadAreaId).Name + " - " + botService.GetCityByid((int)userOrderTelegramDTO.CheckUnloadAreaId).Name;
+            //            //string distance = "\nРасстояние: " + routesDTO.Distance + " км";
+            //            string machineNumberOrder = "\nКоличество машин: " + userOrderTelegramDTO.CheckNumberOfMachine;
+            //            string orderDateOrder = "\nДата доставки: " + userOrderTelegramDTO.OrderDate.Value.ToShortDateString() + "\n\n";
+
+            //            //await botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка отправлена нашему менеджеру",
+            //            //     replyMarkup: MenuBuilder.AccessOrderMenu(), parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, disableWebPagePreview: true, disableNotification: false);
+
+            //            MessagesDTO messageDTO = new MessagesDTO()
+            //            {
+            //                Read = false,
+            //                UserTelegramId = message.Chat.Id,
+            //                Text = "Хочу заказать битум. " + productOrder + routeOrder + machineNumberOrder + orderDateOrder
+            //            };
+
+            //            controlPanelService.MessagesCreate(messageDTO);
+
+            //        }
+            //        else
+            //        {
+            //            botTelegram.SendTextMessageAsync(message.Chat.Id, "Ваша заявка отменена");
+            //        }
+
+            //        message.Text = "Отмена";
+            //        //DateTime enteredDate = DateTime.Parse(message.Text);
+
+            //        //botService.TelegramUsersUpdateCheckOrderDateByTelegramUserId(message.Chat.Id, enteredDate);
+
+            //        //message.Text = "Потверждение заявки";
+
+            //    }
+            //}
+            //else
+            //{
+
+            //}
 
         }
 

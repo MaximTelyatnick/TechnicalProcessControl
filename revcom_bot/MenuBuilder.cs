@@ -15,6 +15,7 @@ namespace TerminalMKTelegramBot
     {
 
         public static IBotService botService;
+        public static IMySqlService mySqlService;
         MenuBuilder()
         {
 
@@ -24,27 +25,27 @@ namespace TerminalMKTelegramBot
 
         public static Telegram.Bot.Types.ReplyMarkups.ReplyKeyboardMarkup Menu(Utils.Rules rules)
         {
-            Telegram.Bot.Types.ReplyMarkups.ReplyKeyboardMarkup keyboard = new Telegram.Bot.Types.ReplyMarkups.ReplyKeyboardMarkup();
+            Telegram.Bot.Types.ReplyMarkups.ReplyKeyboardMarkup mainKeyboard = new Telegram.Bot.Types.ReplyMarkups.ReplyKeyboardMarkup();
 
             switch (rules)
             {
                 case Utils.Rules.NoAuthUser:
 
-                    keyboard = new[]
+                    mainKeyboard = new[]
                     {
                         new[] 
                         {
                             "Отправить запрос на регистрацию"
                         },
                     };
-                    keyboard.ResizeKeyboard = true;
+                    mainKeyboard.ResizeKeyboard = true;
 
 
                     break;
 
                 case Utils.Rules.AuthUser:
 
-                    keyboard = new[]
+                    mainKeyboard = new[]
                     {
                         new[]
                         {
@@ -65,8 +66,8 @@ namespace TerminalMKTelegramBot
                         },
 
                     };
-                    keyboard.ResizeKeyboard = true;
-                    keyboard.OneTimeKeyboard = true;
+                    mainKeyboard.ResizeKeyboard = true;
+                    mainKeyboard.OneTimeKeyboard = true;
 
                     break;
 
@@ -74,52 +75,55 @@ namespace TerminalMKTelegramBot
                     break;
             }
 
-            return keyboard;
+            return mainKeyboard;
         }
 
         public static Telegram.Bot.Types.ReplyMarkups.ReplyKeyboardMarkup ProductionMenu(long telegramUserId)
         {
-            botService = Program.kernel.Get<IBotService>();
+            //botService = Program.kernel.Get<IBotService>();
+            mySqlService = Program.kernel.Get<IMySqlService>();
 
-            var productionOrder = botService.GetProductionByContractorId(telegramUserId);
+            var productionOrder = mySqlService.GetProductionByContractorId(telegramUserId);
             List<string> production = new List<string>();
             foreach (var item in productionOrder)
                 production.Add(item.FullName);
             production.Add("Отмена");
 
-            ReplyKeyboardMarkup productionTypeKeyboard = KeyboardHelper.GetKeyboard(production);
+            ReplyKeyboardMarkup productionTypeKeyboard = MenuBuilder.GetKeyboard(production);
             productionTypeKeyboard.ResizeKeyboard = true;
-            productionTypeKeyboard.OneTimeKeyboard = true;
+            //productionTypeKeyboard.OneTimeKeyboard = true;
 
             return productionTypeKeyboard;
         }
 
         public static Telegram.Bot.Types.ReplyMarkups.ReplyKeyboardMarkup LoadAreaMenu(long telegramUserId)
         {
-            var loadCity = botService.GetLoadAreaByContractorId(telegramUserId, (int)botService.GetTelegramUserByUserTelegramId(telegramUserId).CheckProductionId);
+            mySqlService = Program.kernel.Get<IMySqlService>();
+            int currentId = (int)mySqlService.GetTelegramUserByUserTelegramId(telegramUserId).CheckProductionId;
+            var loadCity = mySqlService.GetLoadAreaByContractorId(telegramUserId, currentId);
             List<string> cityLoadList = new List<string>();
             foreach (var item in loadCity)
                 cityLoadList.Add(item.Name);
             cityLoadList.Add("Отмена");
 
-            ReplyKeyboardMarkup loadCityKeyboard = KeyboardHelper.GetKeyboard(cityLoadList);
+            ReplyKeyboardMarkup loadCityKeyboard = MenuBuilder.GetKeyboard(cityLoadList);
             loadCityKeyboard.ResizeKeyboard = true;
-            loadCityKeyboard.OneTimeKeyboard = true;
+            //loadCityKeyboard.OneTimeKeyboard = true;
 
             return loadCityKeyboard;
         }
 
         public static Telegram.Bot.Types.ReplyMarkups.ReplyKeyboardMarkup UnloadAreaMenu(long telegramUserId)
         {
-            var unloadCity = botService.GetUnloadAreaByContractorId(telegramUserId, (int)botService.GetTelegramUserByUserTelegramId(telegramUserId).CheckProductionId);
+            var unloadCity = mySqlService.GetUnloadAreaByContractorId(telegramUserId, (int)mySqlService.GetTelegramUserByUserTelegramId(telegramUserId).CheckProductionId);
             List<string> cityUnloadList = new List<string>();
             foreach (var item in unloadCity)
                 cityUnloadList.Add(item.Name);
             cityUnloadList.Add("Отмена");
 
-            ReplyKeyboardMarkup unloadCityKeyboard = KeyboardHelper.GetKeyboard(cityUnloadList);
+            ReplyKeyboardMarkup unloadCityKeyboard = MenuBuilder.GetKeyboard(cityUnloadList);
             unloadCityKeyboard.ResizeKeyboard = true;
-            unloadCityKeyboard.ResizeKeyboard = true;
+            //unloadCityKeyboard.ResizeKeyboard = true;
 
             return unloadCityKeyboard;
         }
@@ -147,7 +151,7 @@ namespace TerminalMKTelegramBot
                                 };
 
             numberMachineKeyboard.ResizeKeyboard = true;
-            numberMachineKeyboard.OneTimeKeyboard = true;
+            //numberMachineKeyboard.OneTimeKeyboard = true;
 
             return numberMachineKeyboard;
         }
@@ -191,7 +195,7 @@ namespace TerminalMKTelegramBot
                                                 },
             };
             dateKeyboard.ResizeKeyboard = true;
-            dateKeyboard.OneTimeKeyboard = true;
+            //dateKeyboard.OneTimeKeyboard = true;
 
             return dateKeyboard;
         }
@@ -210,12 +214,28 @@ namespace TerminalMKTelegramBot
                                                 },
                                 };
             acessKeyboard.ResizeKeyboard = true;
-            acessKeyboard.OneTimeKeyboard = true;
+            //acessKeyboard.OneTimeKeyboard = true;
 
             return acessKeyboard;
         }
 
+        public static ReplyKeyboardMarkup GetKeyboard(List<string> keys)
+        {
+            var rkm = new ReplyKeyboardMarkup();
+            var rows = new List<KeyboardButton[]>();
+            var cols = new List<KeyboardButton>();
+            foreach (var t in keys)
+            {
+                cols.Add(new KeyboardButton(t));
+                rows.Add(cols.ToArray());
+                cols = new List<KeyboardButton>();
+            }
+            rkm.Keyboard = rows.ToArray();
+            //rkm.OneTimeKeyboard = true;
+            return rkm;
+        }
 
-        
+
+
     }
 }
