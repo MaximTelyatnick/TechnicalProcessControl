@@ -58,7 +58,7 @@ namespace TechnicalProcessControl
 
         }
 
-        private async void addUserIdBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void addUserIdBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             using (AddUserTelegramIdFm addUserTelegramIdFm = new AddUserTelegramIdFm((MessagesDTO)messagesBS.Current))
             {

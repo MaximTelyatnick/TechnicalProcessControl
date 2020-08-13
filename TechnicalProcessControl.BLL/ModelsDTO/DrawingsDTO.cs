@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TechnicalProcessControl.BLL.Infrastructure;
 
 namespace TechnicalProcessControl.BLL.ModelsDTO
 {
-    public class DrawingsDTO
+    public class DrawingsDTO : ObjectBase
     {
         public int Id { get; set; }
         public int? ParentId { get; set; }
@@ -14,6 +15,7 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public string CurrentLevelMenu { get; set; }
         public string Number { get; set; }
         public int? DetailId { get; set; }
+        public int? ScanId { get; set; }
         public int? TechProcess001Id { get; set; }
         public int? TechProcess002Id { get; set; }
         public int? TechProcess003Id { get; set; }

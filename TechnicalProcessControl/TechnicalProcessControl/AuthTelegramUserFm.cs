@@ -7,10 +7,7 @@ namespace TechnicalProcessControl
     public partial class AuthTelegramUserFm : DevExpress.XtraEditors.XtraForm
     {
 
-        int telegramApiId = 1090023;
-        string telegramApiHash = "3651d2c505bed6f082a7314219c848f6";
-        string hash;
-        bool isValidate;
+        
         
         public AuthTelegramUserFm()
         {
@@ -26,7 +23,7 @@ namespace TechnicalProcessControl
 
         }
 
-        private async void setPhoneBtn_Click(object sender, EventArgs e)
+        private void setPhoneBtn_Click(object sender, EventArgs e)
         {
             splashScreenManager.ShowWaitForm();
 
@@ -73,14 +70,14 @@ namespace TechnicalProcessControl
 
         private void dxValidationProvider_ValidationFailed(object sender, DevExpress.XtraEditors.DXErrorProvider.ValidationFailedEventArgs e)
         {
-            this.setCodeActivationBtn.Enabled = false;
+            //this.setCodeActivationBtn.Enabled = false;
             //this.validateLbl.Visible = true;
         }
 
         private void dxValidationProvider_ValidationSucceeded(object sender, DevExpress.XtraEditors.DXErrorProvider.ValidationSucceededEventArgs e)
         {
             //isValidate = (dxValidationProvider.GetInvalidControls().Count == 0);
-            this.setCodeActivationBtn.Enabled = isValidate;
+            //this.setCodeActivationBtn.Enabled = isValidate;
             //this.validateLbl.Visible = !isValidate;
         }
 
@@ -89,10 +86,10 @@ namespace TechnicalProcessControl
         private void phoneEdit_EditValueChanged(object sender, EventArgs e)
         {
 
-            if (phoneEdit.Text.Count() == 12)
-                setCodeActivationBtn.Enabled = true;
-            else
-                setCodeActivationBtn.Enabled = false;
+            //if (phoneEdit.Text.Count() == 12)
+            //    setCodeActivationBtn.Enabled = true;
+            //else
+            //    setCodeActivationBtn.Enabled = false;
             //dxValidationProvider.Validate((Control)sender);
         }
 
@@ -101,7 +98,7 @@ namespace TechnicalProcessControl
            
         }
 
-        private async void simpleButton1_Click(object sender, EventArgs e)
+        private void simpleButton1_Click(object sender, EventArgs e)
         {
             
             

@@ -2,7 +2,7 @@
 using TechnicalProcessControl.BLL.Interfaces;
 using Ninject;
 using TechnicalProcessControl.BLL.ModelsDTO;
-
+using TechnicalProcessControl.Drawings;
 
 namespace TechnicalProcessControl
 {
@@ -46,16 +46,16 @@ namespace TechnicalProcessControl
             splashScreenManager.CloseWaitForm();
         }
 
-        public void EditUserTelegram(Utils.Operation operation, UsersTelegramDTO userTelegramDTO)
+        public void EditDrawing(Utils.Operation operation, DrawingsDTO userTelegramDTO)
         {
-            using (ContractorsEditFm contractorsEditFm = new ContractorsEditFm(userTelegramDTO, operation))
+            using (DrawingsEditFm drawingsEditFm = new DrawingsEditFm(userTelegramDTO, operation))
             {
-                if (contractorsEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                if (drawingsEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    UsersTelegramDTO return_Id = contractorsEditFm.Return();
-                    //contractorsGridView.BeginDataUpdate();
-                    //LoadData();
-                    //contractorsGridView.EndDataUpdate();
+                    //UsersTelegramDTO return_Id = contractorsEditFm.Return();
+                    drawingTreeListGrid.BeginUpdate();
+                    LoadData();
+                    drawingTreeListGrid.EndUpdate();
                     //int rowHandle = contractorsGridView.LocateByValue("Id", return_Id.Id);
                     //contractorsGridView.FocusedRowHandle = rowHandle;
 
@@ -65,12 +65,12 @@ namespace TechnicalProcessControl
 
         private void addBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            EditUserTelegram(Utils.Operation.Add, new UsersTelegramDTO());
+            EditDrawing(Utils.Operation.Add, new DrawingsDTO());
         }
 
         private void editBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //EditUserTelegram(Utils.Operation.Update, (UsersTelegramDTO)usersTelegramBS.Current);
+            EditDrawing(Utils.Operation.Update, (DrawingsDTO)drawingsBS.Current);
         }
 
         private void deleteBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -104,6 +104,21 @@ namespace TechnicalProcessControl
         private void sendMessageBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
 
+        }
+
+        private void drawingTreeListGrid_CustomUnboundColumnData(object sender, DevExpress.XtraTreeList.TreeListCustomColumnDataEventArgs e)
+        {
+            
+        }
+
+        private void drawingTreeListGrid_GetStateImage(object sender, DevExpress.XtraTreeList.GetStateImageEventArgs e)
+        {
+            var item = (DrawingsDTO)drawingTreeListGrid.GetDataRecordByNode(e.Node);
+
+            if (item == null)
+                return;
+        
+            e.Node.StateImageIndex = (item.ScanId == null) ? 0 : 1;
         }
     }
 }

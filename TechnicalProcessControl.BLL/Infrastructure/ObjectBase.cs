@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Reflection;
+using TechnicalProcessControl.BLL.ModelsDTO;
 
 namespace TechnicalProcessControl.BLL.Infrastructure
 {
@@ -66,7 +68,9 @@ namespace TechnicalProcessControl.BLL.Infrastructure
                 props = null;
             }
 
-            #endregion
-        }
+
+
+        #endregion
+    }
     
 }

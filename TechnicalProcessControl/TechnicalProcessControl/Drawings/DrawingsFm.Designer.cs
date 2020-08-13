@@ -42,9 +42,11 @@
             this.addTechProcess003Btn = new DevExpress.XtraBars.BarButtonItem();
             this.addTechProcess004Btn = new DevExpress.XtraBars.BarButtonItem();
             this.addTechProcess005Btn = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.splashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::TechnicalProcessControl.WaitFm), true, true);
             this.drawingGrid = new DevExpress.XtraGrid.GridControl();
             this.drawingBandedGridView = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
@@ -94,6 +96,7 @@
             this.statusTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.drawingNumberTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.partNameTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.drawingScanCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListBand6 = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.treeListBand7 = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.techProcessOneTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
@@ -129,12 +132,12 @@
             this.treeListBand15 = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.consumptionPaintTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.consumptionPaintTotalTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.repositoryItemPictureEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
             ((System.ComponentModel.ISupportInitialize)(this.contractorsRibonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawingGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawingBandedGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawingTreeListGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).BeginInit();
             this.SuspendLayout();
             // 
             // contractorsRibonControl
@@ -255,6 +258,15 @@
             this.addTechProcess005Btn.Name = "addTechProcess005Btn";
             this.addTechProcess005Btn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "Расчитать трудоемкость";
+            this.barButtonItem1.Id = 11;
+            this.barButtonItem1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
+            this.barButtonItem1.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
+            this.barButtonItem1.Name = "barButtonItem1";
+            this.barButtonItem1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -282,6 +294,12 @@
             this.ribbonPageGroup2.ItemLinks.Add(this.addTechProcess005Btn);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             this.ribbonPageGroup2.Text = "Техпроцессы";
+            // 
+            // ribbonPageGroup3
+            // 
+            this.ribbonPageGroup3.ItemLinks.Add(this.barButtonItem1);
+            this.ribbonPageGroup3.Name = "ribbonPageGroup3";
+            this.ribbonPageGroup3.Text = "Функции";
             // 
             // splashScreenManager
             // 
@@ -864,7 +882,8 @@
             this.techProcessTwoTTreeCol,
             this.techProcessThreeTTreeCol,
             this.techProcessFourTTreeCol,
-            this.techProcessFiveTTreeCol});
+            this.techProcessFiveTTreeCol,
+            this.drawingScanCol});
             this.drawingTreeListGrid.Cursor = System.Windows.Forms.Cursors.SizeWE;
             this.drawingTreeListGrid.DataSource = null;
             this.drawingTreeListGrid.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -879,11 +898,15 @@
             this.drawingTreeListGrid.OptionsView.ShowBandsMode = DevExpress.Utils.DefaultBoolean.True;
             this.drawingTreeListGrid.OptionsView.ShowSummaryFooter = true;
             this.drawingTreeListGrid.OptionsView.WaitAnimationOptions = DevExpress.XtraEditors.WaitAnimationOptions.Panel;
+            this.drawingTreeListGrid.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemPictureEdit1});
             this.drawingTreeListGrid.Size = new System.Drawing.Size(1718, 641);
             this.drawingTreeListGrid.TabIndex = 3;
             this.drawingTreeListGrid.TreeLevelWidth = 12;
             this.drawingTreeListGrid.TreeLineStyle = DevExpress.XtraTreeList.LineStyle.None;
             this.drawingTreeListGrid.ViewStyle = DevExpress.XtraTreeList.TreeListViewStyle.TreeList;
+            this.drawingTreeListGrid.GetStateImage += new DevExpress.XtraTreeList.GetStateImageEventHandler(this.drawingTreeListGrid_GetStateImage);
+            this.drawingTreeListGrid.CustomUnboundColumnData += new DevExpress.XtraTreeList.CustomColumnDataEventHandler(this.drawingTreeListGrid_CustomUnboundColumnData);
             // 
             // treeListBand1
             // 
@@ -897,6 +920,7 @@
             this.treeListBand1.Columns.Add(this.statusTreeCol);
             this.treeListBand1.Columns.Add(this.drawingNumberTreeCol);
             this.treeListBand1.Columns.Add(this.partNameTreeCol);
+            this.treeListBand1.Columns.Add(this.drawingScanCol);
             this.treeListBand1.ImageOptions.Alignment = System.Drawing.StringAlignment.Center;
             this.treeListBand1.Name = "treeListBand1";
             this.treeListBand1.Width = 250;
@@ -911,7 +935,7 @@
             this.curentLevelMenuTreeCol.Name = "curentLevelMenuTreeCol";
             this.curentLevelMenuTreeCol.Visible = true;
             this.curentLevelMenuTreeCol.VisibleIndex = 0;
-            this.curentLevelMenuTreeCol.Width = 194;
+            this.curentLevelMenuTreeCol.Width = 193;
             // 
             // statusTreeCol
             // 
@@ -923,7 +947,7 @@
             this.statusTreeCol.Name = "statusTreeCol";
             this.statusTreeCol.Visible = true;
             this.statusTreeCol.VisibleIndex = 1;
-            this.statusTreeCol.Width = 51;
+            this.statusTreeCol.Width = 50;
             // 
             // drawingNumberTreeCol
             // 
@@ -935,7 +959,7 @@
             this.drawingNumberTreeCol.Name = "drawingNumberTreeCol";
             this.drawingNumberTreeCol.Visible = true;
             this.drawingNumberTreeCol.VisibleIndex = 2;
-            this.drawingNumberTreeCol.Width = 51;
+            this.drawingNumberTreeCol.Width = 68;
             // 
             // partNameTreeCol
             // 
@@ -947,7 +971,18 @@
             this.partNameTreeCol.Name = "partNameTreeCol";
             this.partNameTreeCol.Visible = true;
             this.partNameTreeCol.VisibleIndex = 3;
-            this.partNameTreeCol.Width = 69;
+            this.partNameTreeCol.Width = 68;
+            // 
+            // drawingScanCol
+            // 
+            this.drawingScanCol.AppearanceHeader.Image = ((System.Drawing.Image)(resources.GetObject("drawingScanCol.AppearanceHeader.Image")));
+            this.drawingScanCol.AppearanceHeader.Options.UseImage = true;
+            this.drawingScanCol.FieldName = "DrawingScan";
+            this.drawingScanCol.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("drawingScanCol.ImageOptions.Image")));
+            this.drawingScanCol.Name = "drawingScanCol";
+            this.drawingScanCol.SortOrder = System.Windows.Forms.SortOrder.Ascending;
+            this.drawingScanCol.Visible = true;
+            this.drawingScanCol.VisibleIndex = 4;
             // 
             // treeListBand6
             // 
@@ -990,8 +1025,8 @@
             this.techProcessOneTreeCol.FieldName = "TechProcess001Name";
             this.techProcessOneTreeCol.Name = "techProcessOneTreeCol";
             this.techProcessOneTreeCol.Visible = true;
-            this.techProcessOneTreeCol.VisibleIndex = 4;
-            this.techProcessOneTreeCol.Width = 98;
+            this.techProcessOneTreeCol.VisibleIndex = 5;
+            this.techProcessOneTreeCol.Width = 97;
             // 
             // techProcessOneTTreeCol
             // 
@@ -1004,8 +1039,8 @@
             this.techProcessOneTTreeCol.FieldName = "T 001";
             this.techProcessOneTTreeCol.Name = "techProcessOneTTreeCol";
             this.techProcessOneTTreeCol.Visible = true;
-            this.techProcessOneTTreeCol.VisibleIndex = 5;
-            this.techProcessOneTTreeCol.Width = 40;
+            this.techProcessOneTTreeCol.VisibleIndex = 6;
+            this.techProcessOneTTreeCol.Width = 39;
             // 
             // treeListBand8
             // 
@@ -1031,8 +1066,8 @@
             this.techProcessTwooTreeCol.FieldName = "TechProcess002Name";
             this.techProcessTwooTreeCol.Name = "techProcessTwooTreeCol";
             this.techProcessTwooTreeCol.Visible = true;
-            this.techProcessTwooTreeCol.VisibleIndex = 6;
-            this.techProcessTwooTreeCol.Width = 92;
+            this.techProcessTwooTreeCol.VisibleIndex = 7;
+            this.techProcessTwooTreeCol.Width = 91;
             // 
             // techProcessTwoTTreeCol
             // 
@@ -1045,8 +1080,8 @@
             this.techProcessTwoTTreeCol.FieldName = "T 002";
             this.techProcessTwoTTreeCol.Name = "techProcessTwoTTreeCol";
             this.techProcessTwoTTreeCol.Visible = true;
-            this.techProcessTwoTTreeCol.VisibleIndex = 7;
-            this.techProcessTwoTTreeCol.Width = 35;
+            this.techProcessTwoTTreeCol.VisibleIndex = 8;
+            this.techProcessTwoTTreeCol.Width = 34;
             // 
             // treeListBand9
             // 
@@ -1072,8 +1107,8 @@
             this.techProcessThreeTreeCol.FieldName = "TechProcess003Name";
             this.techProcessThreeTreeCol.Name = "techProcessThreeTreeCol";
             this.techProcessThreeTreeCol.Visible = true;
-            this.techProcessThreeTreeCol.VisibleIndex = 8;
-            this.techProcessThreeTreeCol.Width = 99;
+            this.techProcessThreeTreeCol.VisibleIndex = 9;
+            this.techProcessThreeTreeCol.Width = 98;
             // 
             // techProcessThreeTTreeCol
             // 
@@ -1086,8 +1121,8 @@
             this.techProcessThreeTTreeCol.FieldName = "T 003";
             this.techProcessThreeTTreeCol.Name = "techProcessThreeTTreeCol";
             this.techProcessThreeTTreeCol.Visible = true;
-            this.techProcessThreeTTreeCol.VisibleIndex = 9;
-            this.techProcessThreeTTreeCol.Width = 30;
+            this.techProcessThreeTTreeCol.VisibleIndex = 10;
+            this.techProcessThreeTTreeCol.Width = 29;
             // 
             // treeListBand10
             // 
@@ -1113,8 +1148,8 @@
             this.techProcessFourTreeCol.FieldName = "TechProcess004Name";
             this.techProcessFourTreeCol.Name = "techProcessFourTreeCol";
             this.techProcessFourTreeCol.Visible = true;
-            this.techProcessFourTreeCol.VisibleIndex = 10;
-            this.techProcessFourTreeCol.Width = 55;
+            this.techProcessFourTreeCol.VisibleIndex = 11;
+            this.techProcessFourTreeCol.Width = 54;
             // 
             // techProcessFourTTreeCol
             // 
@@ -1127,8 +1162,8 @@
             this.techProcessFourTTreeCol.FieldName = "T 004";
             this.techProcessFourTTreeCol.Name = "techProcessFourTTreeCol";
             this.techProcessFourTTreeCol.Visible = true;
-            this.techProcessFourTTreeCol.VisibleIndex = 11;
-            this.techProcessFourTTreeCol.Width = 30;
+            this.techProcessFourTTreeCol.VisibleIndex = 12;
+            this.techProcessFourTTreeCol.Width = 29;
             // 
             // treeListBand11
             // 
@@ -1154,8 +1189,8 @@
             this.techProcessFiveTreeCol.FieldName = "TechProcess005Name";
             this.techProcessFiveTreeCol.Name = "techProcessFiveTreeCol";
             this.techProcessFiveTreeCol.Visible = true;
-            this.techProcessFiveTreeCol.VisibleIndex = 12;
-            this.techProcessFiveTreeCol.Width = 87;
+            this.techProcessFiveTreeCol.VisibleIndex = 13;
+            this.techProcessFiveTreeCol.Width = 86;
             // 
             // techProcessFiveTTreeCol
             // 
@@ -1168,8 +1203,8 @@
             this.techProcessFiveTTreeCol.FieldName = "T 005";
             this.techProcessFiveTTreeCol.Name = "techProcessFiveTTreeCol";
             this.techProcessFiveTTreeCol.Visible = true;
-            this.techProcessFiveTTreeCol.VisibleIndex = 13;
-            this.techProcessFiveTTreeCol.Width = 36;
+            this.techProcessFiveTTreeCol.VisibleIndex = 14;
+            this.techProcessFiveTTreeCol.Width = 35;
             // 
             // treeListBand12
             // 
@@ -1196,8 +1231,8 @@
             this.ltreeCol.FieldName = "L";
             this.ltreeCol.Name = "ltreeCol";
             this.ltreeCol.Visible = true;
-            this.ltreeCol.VisibleIndex = 14;
-            this.ltreeCol.Width = 33;
+            this.ltreeCol.VisibleIndex = 15;
+            this.ltreeCol.Width = 32;
             // 
             // wTreeCol
             // 
@@ -1208,8 +1243,8 @@
             this.wTreeCol.FieldName = "W";
             this.wTreeCol.Name = "wTreeCol";
             this.wTreeCol.Visible = true;
-            this.wTreeCol.VisibleIndex = 15;
-            this.wTreeCol.Width = 38;
+            this.wTreeCol.VisibleIndex = 16;
+            this.wTreeCol.Width = 37;
             // 
             // w2TreeCol
             // 
@@ -1220,8 +1255,8 @@
             this.w2TreeCol.FieldName = "W2";
             this.w2TreeCol.Name = "w2TreeCol";
             this.w2TreeCol.Visible = true;
-            this.w2TreeCol.VisibleIndex = 16;
-            this.w2TreeCol.Width = 47;
+            this.w2TreeCol.VisibleIndex = 17;
+            this.w2TreeCol.Width = 46;
             // 
             // thTreeCol
             // 
@@ -1232,8 +1267,8 @@
             this.thTreeCol.FieldName = "TH";
             this.thTreeCol.Name = "thTreeCol";
             this.thTreeCol.Visible = true;
-            this.thTreeCol.VisibleIndex = 17;
-            this.thTreeCol.Width = 29;
+            this.thTreeCol.VisibleIndex = 18;
+            this.thTreeCol.Width = 28;
             // 
             // quantityTreeCol
             // 
@@ -1244,7 +1279,7 @@
             this.quantityTreeCol.FieldName = "Quantity";
             this.quantityTreeCol.Name = "quantityTreeCol";
             this.quantityTreeCol.Visible = true;
-            this.quantityTreeCol.VisibleIndex = 18;
+            this.quantityTreeCol.VisibleIndex = 19;
             this.quantityTreeCol.Width = 67;
             // 
             // treeListBand13
@@ -1268,9 +1303,8 @@
             this.weightTreeCol.Caption = "Вес";
             this.weightTreeCol.FieldName = "DetailWeight";
             this.weightTreeCol.Name = "weightTreeCol";
-            this.weightTreeCol.SortOrder = System.Windows.Forms.SortOrder.Ascending;
             this.weightTreeCol.Visible = true;
-            this.weightTreeCol.VisibleIndex = 19;
+            this.weightTreeCol.VisibleIndex = 20;
             this.weightTreeCol.Width = 64;
             // 
             // weightTotalTreeCol
@@ -1282,7 +1316,7 @@
             this.weightTotalTreeCol.FieldName = "Всего";
             this.weightTotalTreeCol.Name = "weightTotalTreeCol";
             this.weightTotalTreeCol.Visible = true;
-            this.weightTotalTreeCol.VisibleIndex = 20;
+            this.weightTotalTreeCol.VisibleIndex = 21;
             this.weightTotalTreeCol.Width = 65;
             // 
             // treeListBand14
@@ -1321,7 +1355,7 @@
             this.consumptionWireTreeCol.FieldName = "Расход проволки";
             this.consumptionWireTreeCol.Name = "consumptionWireTreeCol";
             this.consumptionWireTreeCol.Visible = true;
-            this.consumptionWireTreeCol.VisibleIndex = 21;
+            this.consumptionWireTreeCol.VisibleIndex = 22;
             this.consumptionWireTreeCol.Width = 66;
             // 
             // consumptionWireTotalTreeCol
@@ -1333,7 +1367,7 @@
             this.consumptionWireTotalTreeCol.FieldName = "Всего проволки";
             this.consumptionWireTotalTreeCol.Name = "consumptionWireTotalTreeCol";
             this.consumptionWireTotalTreeCol.Visible = true;
-            this.consumptionWireTotalTreeCol.VisibleIndex = 22;
+            this.consumptionWireTotalTreeCol.VisibleIndex = 23;
             this.consumptionWireTotalTreeCol.Width = 64;
             // 
             // treeListBand16
@@ -1358,7 +1392,7 @@
             this.consumptionGasTreeCol.FieldName = "Расход газа";
             this.consumptionGasTreeCol.Name = "consumptionGasTreeCol";
             this.consumptionGasTreeCol.Visible = true;
-            this.consumptionGasTreeCol.VisibleIndex = 23;
+            this.consumptionGasTreeCol.VisibleIndex = 24;
             this.consumptionGasTreeCol.Width = 63;
             // 
             // consumptionGasTotalTreeCol
@@ -1370,7 +1404,7 @@
             this.consumptionGasTotalTreeCol.FieldName = "Всего газа";
             this.consumptionGasTotalTreeCol.Name = "consumptionGasTotalTreeCol";
             this.consumptionGasTotalTreeCol.Visible = true;
-            this.consumptionGasTotalTreeCol.VisibleIndex = 24;
+            this.consumptionGasTotalTreeCol.VisibleIndex = 25;
             this.consumptionGasTotalTreeCol.Width = 67;
             // 
             // treeListBand15
@@ -1396,7 +1430,7 @@
             this.consumptionPaintTreeCol.FieldName = "Расход лакокраски";
             this.consumptionPaintTreeCol.Name = "consumptionPaintTreeCol";
             this.consumptionPaintTreeCol.Visible = true;
-            this.consumptionPaintTreeCol.VisibleIndex = 25;
+            this.consumptionPaintTreeCol.VisibleIndex = 26;
             this.consumptionPaintTreeCol.Width = 65;
             // 
             // consumptionPaintTotalTreeCol
@@ -1408,23 +1442,12 @@
             this.consumptionPaintTotalTreeCol.FieldName = "Всего лакокраски";
             this.consumptionPaintTotalTreeCol.Name = "consumptionPaintTotalTreeCol";
             this.consumptionPaintTotalTreeCol.Visible = true;
-            this.consumptionPaintTotalTreeCol.VisibleIndex = 26;
+            this.consumptionPaintTotalTreeCol.VisibleIndex = 27;
             this.consumptionPaintTotalTreeCol.Width = 65;
             // 
-            // ribbonPageGroup3
+            // repositoryItemPictureEdit1
             // 
-            this.ribbonPageGroup3.ItemLinks.Add(this.barButtonItem1);
-            this.ribbonPageGroup3.Name = "ribbonPageGroup3";
-            this.ribbonPageGroup3.Text = "Функции";
-            // 
-            // barButtonItem1
-            // 
-            this.barButtonItem1.Caption = "Расчитать трудоемкость";
-            this.barButtonItem1.Id = 11;
-            this.barButtonItem1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
-            this.barButtonItem1.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
-            this.barButtonItem1.Name = "barButtonItem1";
-            this.barButtonItem1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.repositoryItemPictureEdit1.Name = "repositoryItemPictureEdit1";
             // 
             // DrawingsFm
             // 
@@ -1440,6 +1463,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.drawingGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawingBandedGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawingTreeListGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1526,7 +1550,16 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn techProcessThreeTTreeCol;
         private DevExpress.XtraTreeList.Columns.TreeListColumn techProcessFourTTreeCol;
         private DevExpress.XtraTreeList.Columns.TreeListColumn techProcessFiveTTreeCol;
+        private DevExpress.XtraBars.BarButtonItem addTechProcess001Btn;
+        private DevExpress.XtraBars.BarButtonItem addTechProcess002Btn;
+        private DevExpress.XtraBars.BarButtonItem addTechProcess003Btn;
+        private DevExpress.XtraBars.BarButtonItem addTechProcess004Btn;
+        private DevExpress.XtraBars.BarButtonItem addTechProcess005Btn;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
         private DevExpress.XtraTreeList.Columns.TreeListBand treeListBand1;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn drawingScanCol;
         private DevExpress.XtraTreeList.Columns.TreeListBand treeListBand6;
         private DevExpress.XtraTreeList.Columns.TreeListBand treeListBand7;
         private DevExpress.XtraTreeList.Columns.TreeListBand treeListBand8;
@@ -1539,13 +1572,6 @@
         private DevExpress.XtraTreeList.Columns.TreeListBand treeListBand17;
         private DevExpress.XtraTreeList.Columns.TreeListBand treeListBand16;
         private DevExpress.XtraTreeList.Columns.TreeListBand treeListBand15;
-        private DevExpress.XtraBars.BarButtonItem addTechProcess001Btn;
-        private DevExpress.XtraBars.BarButtonItem addTechProcess002Btn;
-        private DevExpress.XtraBars.BarButtonItem addTechProcess003Btn;
-        private DevExpress.XtraBars.BarButtonItem addTechProcess004Btn;
-        private DevExpress.XtraBars.BarButtonItem addTechProcess005Btn;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
+        private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit1;
     }
 }

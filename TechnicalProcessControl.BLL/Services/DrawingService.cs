@@ -16,6 +16,7 @@ namespace TechnicalProcessControl.BLL.Services
         private IUnitOfWork Database { get; set; }
 
         private IRepository<Drawings> drawings;
+        private IRepository<DrawingScan> drawingScan;
         private IRepository<Details> details;
         private IRepository<DAL.Models.Type> type;
         private IRepository<TechProcess001> techProcess001;
@@ -32,6 +33,7 @@ namespace TechnicalProcessControl.BLL.Services
             Database = uow;
 
             drawings = Database.GetRepository<Drawings>();
+            drawingScan = Database.GetRepository<DrawingScan>();
             details = Database.GetRepository<Details>();
             type = Database.GetRepository<DAL.Models.Type>();
             techProcess001 = Database.GetRepository<TechProcess001>();
@@ -45,6 +47,8 @@ namespace TechnicalProcessControl.BLL.Services
             {
                 cfg.CreateMap<Drawings, DrawingsDTO>();
                 cfg.CreateMap<DrawingsDTO, Drawings>();
+                cfg.CreateMap<DrawingScan, DrawingScanDTO>();
+                cfg.CreateMap<DrawingScanDTO, DrawingScan>();
                 cfg.CreateMap<Details, DetailsDTO>();
                 cfg.CreateMap<DetailsDTO, Details>();
                 cfg.CreateMap<DAL.Models.Type, TypeDTO>();
@@ -84,6 +88,9 @@ namespace TechnicalProcessControl.BLL.Services
                           from tcp004 in tcpp004.DefaultIfEmpty()
                           join tcp005 in techProcess005.GetAll() on drw.TechProcess005Id equals tcp005.Id into tcpp005
                           from tcp005 in tcpp005.DefaultIfEmpty()
+                          join drws in drawingScan.GetAll() on drw.Id equals drws.DrawingId into drwss
+                          from drws in drwss.DefaultIfEmpty()
+                          where drws.Status == null
                           select new DrawingsDTO
                           {
                               Id = drw.Id,
@@ -118,7 +125,8 @@ namespace TechnicalProcessControl.BLL.Services
                               TechProcess002Name = tcp002.TechProcessName,
                               TechProcess003Name = tcp003.TechProcessName,
                               TechProcess004Name = tcp004.TechProcessName,
-                              TechProcess005Name = tcp005.TechProcessName
+                              TechProcess005Name = tcp005.TechProcessName,
+                               ScanId = drws.Id
 
                           }).ToList();
             return result;
@@ -138,6 +146,12 @@ namespace TechnicalProcessControl.BLL.Services
         {
             return mapper.Map<IEnumerable<Details>, List<DetailsDTO>>(details.GetAll());
         }
+
+        public DrawingScanDTO GetDrawingScanById(int DrawingId)
+        {
+            return mapper.Map<DrawingScan, DrawingScanDTO>(drawingScan.GetAll().FirstOrDefault(s => s.DrawingId == DrawingId && s.Status == null));
+        }
+
 
         #region Drawing's CRUD method's
 

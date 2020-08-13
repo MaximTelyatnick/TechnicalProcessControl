@@ -4,6 +4,7 @@ namespace TechnicalProcessControl
 {
     public class Utils
     {
+        internal static string HomePath;
 
         public enum Rules
         {

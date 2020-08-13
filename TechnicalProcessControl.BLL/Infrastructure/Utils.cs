@@ -1,7 +1,13 @@
-﻿namespace TechnicalProcessControl.BLL.Infrastructure
+﻿using System;
+using System.IO;
+
+namespace TechnicalProcessControl.BLL.Infrastructure
 {
-    public static class Utils
+    public class Utils
     {
+
+        public static string HomePath = Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
+
         public enum Operation
         {
             Add,

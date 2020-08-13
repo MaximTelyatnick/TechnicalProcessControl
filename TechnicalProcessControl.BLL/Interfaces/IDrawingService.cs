@@ -18,6 +18,8 @@ namespace TechnicalProcessControl.BLL.Interfaces
 
         IEnumerable<DetailsDTO> GetDetails();
 
+        DrawingScanDTO GetDrawingScanById(int DrawingId);
+
         #region Drawing's CRUD method's
 
         int DrawingCreate(DrawingsDTO drawingsDTO);
@@ -41,7 +43,7 @@ namespace TechnicalProcessControl.BLL.Interfaces
 
         #region Detail's CRUD method's
 
-        int DetailCreate(DetailsDTO detailsDTO)
+        int DetailCreate(DetailsDTO detailsDTO);
 
         void DetailsUpdate(DetailsDTO detailsDTO);
 

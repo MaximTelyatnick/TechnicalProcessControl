@@ -33,8 +33,6 @@
             this.dxValidationProvider = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             this.phoneEdit = new DevExpress.XtraEditors.TextEdit();
             this.codeEdit = new DevExpress.XtraEditors.TextEdit();
-            this.setPhoneBtn = new DevExpress.XtraEditors.SimpleButton();
-            this.setCodeActivationBtn = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
@@ -58,33 +56,15 @@
             this.phoneEdit.Location = new System.Drawing.Point(36, 30);
             this.phoneEdit.Name = "phoneEdit";
             this.phoneEdit.Properties.MaxLength = 12;
-            this.phoneEdit.Size = new System.Drawing.Size(292, 20);
+            this.phoneEdit.Size = new System.Drawing.Size(166, 20);
             this.phoneEdit.TabIndex = 0;
             // 
             // codeEdit
             // 
             this.codeEdit.Location = new System.Drawing.Point(36, 75);
             this.codeEdit.Name = "codeEdit";
-            this.codeEdit.Size = new System.Drawing.Size(292, 20);
+            this.codeEdit.Size = new System.Drawing.Size(166, 20);
             this.codeEdit.TabIndex = 1;
-            // 
-            // setPhoneBtn
-            // 
-            this.setPhoneBtn.Location = new System.Drawing.Point(36, 108);
-            this.setPhoneBtn.Name = "setPhoneBtn";
-            this.setPhoneBtn.Size = new System.Drawing.Size(143, 23);
-            this.setPhoneBtn.TabIndex = 2;
-            this.setPhoneBtn.Text = "Указать номер телефона";
-            this.setPhoneBtn.Click += new System.EventHandler(this.setPhoneBtn_Click);
-            // 
-            // setCodeActivationBtn
-            // 
-            this.setCodeActivationBtn.Location = new System.Drawing.Point(185, 108);
-            this.setCodeActivationBtn.Name = "setCodeActivationBtn";
-            this.setCodeActivationBtn.Size = new System.Drawing.Size(143, 23);
-            this.setCodeActivationBtn.TabIndex = 3;
-            this.setCodeActivationBtn.Text = "Указать ключ";
-            this.setCodeActivationBtn.Click += new System.EventHandler(this.setCodeActivationBtn_Click);
             // 
             // labelControl1
             // 
@@ -94,9 +74,9 @@
             this.labelControl1.Appearance.Options.UseForeColor = true;
             this.labelControl1.Location = new System.Drawing.Point(36, 11);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(98, 13);
+            this.labelControl1.Size = new System.Drawing.Size(34, 13);
             this.labelControl1.TabIndex = 4;
-            this.labelControl1.Text = "Номер телефона";
+            this.labelControl1.Text = "Логин";
             // 
             // labelControl2
             // 
@@ -106,29 +86,27 @@
             this.labelControl2.Appearance.Options.UseForeColor = true;
             this.labelControl2.Location = new System.Drawing.Point(36, 56);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(124, 13);
+            this.labelControl2.Size = new System.Drawing.Size(43, 13);
             this.labelControl2.TabIndex = 5;
-            this.labelControl2.Text = "Код подтверждения";
+            this.labelControl2.Text = "Пароль";
             // 
             // simpleButton1
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(36, 137);
+            this.simpleButton1.Location = new System.Drawing.Point(36, 107);
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(292, 23);
+            this.simpleButton1.Size = new System.Drawing.Size(166, 23);
             this.simpleButton1.TabIndex = 6;
-            this.simpleButton1.Text = "Отправить сообщение";
+            this.simpleButton1.Text = "Войти";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // AuthTelegramUserFm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(361, 176);
+            this.ClientSize = new System.Drawing.Size(229, 151);
             this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
-            this.Controls.Add(this.setCodeActivationBtn);
-            this.Controls.Add(this.setPhoneBtn);
             this.Controls.Add(this.codeEdit);
             this.Controls.Add(this.phoneEdit);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -151,8 +129,6 @@
         private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider dxValidationProvider;
         private DevExpress.XtraEditors.TextEdit phoneEdit;
         private DevExpress.XtraEditors.TextEdit codeEdit;
-        private DevExpress.XtraEditors.SimpleButton setPhoneBtn;
-        private DevExpress.XtraEditors.SimpleButton setCodeActivationBtn;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;

@@ -8,14 +8,280 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using TechnicalProcessControl.BLL.ModelsDTO;
+using TechnicalProcessControl.BLL.Infrastructure;
+using TechnicalProcessControl.BLL.Interfaces;
+using Ninject;
+using DevExpress.XtraEditors.Controls;
 
 namespace TechnicalProcessControl.Drawings
 {
     public partial class DrawingsEditFm : DevExpress.XtraEditors.XtraForm
     {
-        public DrawingsEditFm()
+        private IDrawingService drawingService;
+
+        private Utils.Operation operation;
+
+        private UsersTelegramDTO models;
+
+        private BindingSource drawingsBS = new BindingSource();
+
+        private DrawingScanDTO drawingScanDTO = new DrawingScanDTO();
+
+        private BindingSource parentCurrentLevelMenuEditBS = new BindingSource();
+        private BindingSource typeBS = new BindingSource();
+        private BindingSource detailsBS = new BindingSource();
+        private BindingSource curentLevelMenuBS = new BindingSource();
+
+        private ObjectBase Item
+        {
+            get { return drawingsBS.Current as ObjectBase; }
+            set
+            {
+                drawingsBS.DataSource = value;
+                value.BeginEdit();
+            }
+        }
+
+        public DrawingsEditFm(DrawingsDTO model, Utils.Operation operation)
         {
             InitializeComponent();
+
+            drawingService = Program.kernel.Get<IDrawingService>();
+
+            this.operation = operation;
+
+            drawingsBS.DataSource = Item = model;
+
+            wEdit.DataBindings.Add("EditValue", drawingsBS, "W", true, DataSourceUpdateMode.OnPropertyChanged);
+            w2Edit.DataBindings.Add("EditValue", drawingsBS, "W2", true, DataSourceUpdateMode.OnPropertyChanged);
+            lEdit.DataBindings.Add("EditValue", drawingsBS, "L", true, DataSourceUpdateMode.OnPropertyChanged);
+            thEdit.DataBindings.Add("EditValue", drawingsBS, "TH", true, DataSourceUpdateMode.OnPropertyChanged);
+            weightEdit.DataBindings.Add("EditValue", drawingsBS, "DetailWeight", true, DataSourceUpdateMode.OnPropertyChanged);
+            numberEdit.DataBindings.Add("EditValue", drawingsBS, "Number", true, DataSourceUpdateMode.OnPropertyChanged);
+            quantityEdit.DataBindings.Add("EditValue", drawingsBS, "Quantity", true, DataSourceUpdateMode.OnPropertyChanged);
+            currentLevelMenuEdit.DataBindings.Add("EditValue", drawingsBS, "CurrentLevelMenu", true, DataSourceUpdateMode.OnPropertyChanged);
+            detailEdit.DataBindings.Add("EditValue", drawingsBS, "DetailId", true, DataSourceUpdateMode.OnPropertyChanged);
+
+            detailsBS.DataSource = drawingService.GetDetails();
+            detailEdit.Properties.DataSource = detailsBS;
+            detailEdit.Properties.ValueMember = "Id";
+            detailEdit.Properties.DisplayMember = "DetailName";
+            detailEdit.Properties.NullText = "Немає данних";
+
+            typeBS.DataSource = drawingService.GetType();
+            typeEdit.Properties.DataSource = typeBS;
+            typeEdit.Properties.ValueMember = "Id";
+            typeEdit.Properties.DisplayMember = "TypeName";
+            typeEdit.Properties.NullText = "Немає данних";
+
+            parentCurrentLevelMenuEditBS.DataSource = drawingService.GetShortDrawing();
+            parentCurrentLevelMenuEdit.Properties.DataSource = parentCurrentLevelMenuEditBS;
+            parentCurrentLevelMenuEdit.Properties.ValueMember = "Id";
+            parentCurrentLevelMenuEdit.Properties.DisplayMember = "CurrentLevelMenu";
+            parentCurrentLevelMenuEdit.Properties.NullText = "Немає данних";
+
+
+            if (operation == Utils.Operation.Add)
+            {
+                //parentCurrentLevelMenuEdit.DataBindings.Add("EditValue", drawingsBS, "ParentId", true, DataSourceUpdateMode.OnPropertyChanged);
+                //((UsersTelegramDTO)Item).RegistrationDate = DateTime.Now;
+                //((UsersTelegramDTO)Item).UserTelegramId = 0;
+                //((UsersTelegramDTO)Item).CurrentLevelMenu = 0;
+                //((UsersTelegramDTO)Item).Rules = 2;
+            }
+            else
+            {
+                //parentCurrentLevelMenuEdit.DataBindings.Add("EditValue", drawingsBS, "Id", true, DataSourceUpdateMode.OnPropertyChanged);
+            }
+
+            switch (operation)
+            {
+                case Utils.Operation.Add:
+
+                    parentCurrentLevelMenuEdit.DataBindings.Add("EditValue", drawingsBS, "ParentId", true, DataSourceUpdateMode.OnPropertyChanged);
+                    //drawingScanDTO = new DrawingScanDTO();
+                    break;
+
+                case Utils.Operation.Update:
+                    parentCurrentLevelMenuEdit.DataBindings.Add("EditValue", drawingsBS, "Id", true, DataSourceUpdateMode.OnPropertyChanged);
+
+                    drawingScanDTO = drawingService.GetDrawingScanById(((DrawingsDTO)Item).Id);
+
+                    if (drawingScanDTO != null)
+                    {
+                        int stratIndex = drawingScanDTO.FileName.IndexOf('.');
+                        string typeFile = drawingScanDTO.FileName.Substring(stratIndex);
+
+                        switch (typeFile)
+                        {
+                            case ".pdf":
+                                pictureEdit.Image = imageCollection.Images[1];
+                                pictureEdit.Properties.SizeMode = PictureSizeMode.Clip;
+                                break;
+                            default:
+                                pictureEdit.Image = imageCollection.Images[0];
+                                pictureEdit.Properties.SizeMode = PictureSizeMode.Clip;
+                                break;
+                        }
+
+                        fileNameTbox.EditValue = drawingScanDTO.FileName;
+                    }
+                    break;
+
+                default:
+                    MessageBox.Show("При завантаженні форми " + this.Text + " виникла помилка. ", "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+            }
+
+
+
+            //ControlValidation();
+            //splashScreenManager.CloseWaitForm();
+        }
+
+        private bool SaveItem()
+        {
+            this.Item.EndEdit();
+            try
+            {
+                drawingService = Program.kernel.Get<IDrawingService>();
+
+
+                if (operation == Utils.Operation.Add)
+                {
+                    ((ProductionDTO)Item).Id = drawingService.DrawingCreate((DrawingsDTO)Item);
+                    return true;
+                }
+                else
+                {
+
+                    drawingService.DrawingUpdate((DrawingsDTO)Item);
+                    return true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("При сохранении возникла ошибка. " + ex.Message, "Сохранение", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+        }
+
+
+
+
+
+        private void groupControl1_Paint(object sender, PaintEventArgs e)
+        {
+            
+        }
+
+        private void groupControl2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void cancelBtn_Click(object sender, EventArgs e)
+        {
+            this.Item.CancelEdit();
+            DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+
+        private void saveBtn_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Сохранить?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                try
+                {
+                    if (SaveItem())
+                    {
+                        DialogResult = DialogResult.OK;
+                        this.Close();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("При сохранение возникла ошибка. " + ex.Message, "Сохранение чертежа", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void openFileBtn_Click(object sender, EventArgs e)
+        {
+            if (drawingScanDTO == null)
+                drawingScanDTO = new DrawingScanDTO();
+
+            string filePath = "";
+            string fileName = "";
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.InitialDirectory = @"D:\";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                filePath = ofd.FileName;
+                fileName = ofd.SafeFileName;
+            }
+            if (filePath.Length > 0)
+            {
+                byte[] scan = System.IO.File.ReadAllBytes(@filePath);
+
+                drawingScanDTO.Scan = scan;
+                drawingScanDTO.FileName = fileName;
+            }
+            else
+                return;
+
+            try
+            {
+                Bitmap bitmap = new Bitmap(filePath);
+                pictureEdit.Properties.SizeMode = PictureSizeMode.Zoom;
+                pictureEdit.EditValue = bitmap;
+                fileNameTbox.EditValue = fileName;
+            }
+            catch (Exception)
+            {
+                int stratIndex = filePath.IndexOf('.');
+                string typeFile = filePath.Substring(stratIndex);
+
+                switch (typeFile)
+                {
+                    case ".pdf":
+                        fileNameTbox.EditValue = fileName;
+                        pictureEdit.Image = imageCollection.Images[1];
+                        pictureEdit.Properties.SizeMode = PictureSizeMode.Clip;
+                        break;
+                    default:
+                        fileNameTbox.EditValue = fileName;
+                        pictureEdit.Image = imageCollection.Images[0];
+                        pictureEdit.Properties.SizeMode = PictureSizeMode.Clip;
+                        break;
+                }
+            }
+        }
+
+        private void clearBtn_Click(object sender, EventArgs e)
+        {
+            drawingScanDTO.Scan = null;
+            drawingScanDTO.FileName = null;
+            pictureEdit.EditValue = null;
+            fileNameTbox.EditValue = null;
+        }
+
+        private void showBtn_Click(object sender, EventArgs e)
+        {
+            string fileName = (string)fileNameTbox.EditValue;
+            byte[] scan = drawingScanDTO.Scan;
+            if (fileName != null)
+            {
+                string puth = Utils.HomePath + @"\Temp";
+
+                System.IO.File.WriteAllBytes(puth + fileName, scan);
+
+                System.Diagnostics.Process.Start(puth + fileName);
+            }
         }
     }
 }
