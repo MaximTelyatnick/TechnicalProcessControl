@@ -25,7 +25,6 @@ namespace TechnicalProcessControl.BLL.Services
         private IRepository<TechProcess004> techProcess004;
         private IRepository<TechProcess005> techProcess005;
 
-
         private IMapper mapper;
 
         public DrawingService(IUnitOfWork uow)
@@ -152,6 +151,70 @@ namespace TechnicalProcessControl.BLL.Services
             return mapper.Map<DrawingScan, DrawingScanDTO>(drawingScan.GetAll().FirstOrDefault(s => s.DrawingId == DrawingId && s.Status == null));
         }
 
+        public long GetLastTechProcess001()
+        {
+            long maxValue = techProcess001.GetAll().Select(bdsm => bdsm.TechProcessName).Max();
+            ++maxValue;
+            return maxValue;
+        }
+
+        #region TechProcess001 CRUD method's
+
+        public int TechProcess001Create(TechProcess001DTO techProcess001DTO)
+        {
+            var createTechProcess001 = techProcess001.Create(mapper.Map<TechProcess001>(techProcess001DTO));
+            return (int)createTechProcess001.Id;
+        }
+
+        public void TechProcess001Update(TechProcess001DTO techProcess001DTO)
+        {
+            var techProcess001Update = techProcess001.GetAll().SingleOrDefault(c => c.Id == techProcess001DTO.Id);
+            techProcess001.Update((mapper.Map<TechProcess001DTO, TechProcess001>(techProcess001DTO, techProcess001Update)));
+        }
+
+        public bool TechProcess001Delete(int id)
+        {
+            try
+            {
+                techProcess001.Delete(techProcess001.GetAll().FirstOrDefault(c => c.Id == id));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        #endregion
+
+        #region DrawingScan CRUD method's
+
+        public int DrawingScanCreate(DrawingScanDTO drawingScanDTO)
+        {
+            var createDrawingScan = drawingScan.Create(mapper.Map<DrawingScan>(drawingScanDTO));
+            return (int)createDrawingScan.Id;
+        }
+
+        public void DrawingScanUpdate(DrawingScanDTO drawingScanDTO)
+        {
+            var updateDrawingScan = drawingScan.GetAll().SingleOrDefault(c => c.Id == drawingScanDTO.Id);
+            drawingScan.Update((mapper.Map<DrawingScanDTO, DrawingScan>(drawingScanDTO, updateDrawingScan)));
+        }
+
+        public bool DrawingScanDelete(int id)
+        {
+            try
+            {
+                drawingScan.Delete(drawingScan.GetAll().FirstOrDefault(c => c.Id == id));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        #endregion
 
         #region Drawing's CRUD method's
 

@@ -11,7 +11,7 @@ namespace TechnicalProcessControl.DAL.Models
     {
         [Key]
         public int Id { get; set; }
-        public string TechProcessName { get; set; }
+        public long TechProcessName { get; set; }
         public string TechProcessPath { get; set; }
         public decimal? LaborIntensity001 { get; set; }
         public decimal? LaborIntensity002 { get; set; }

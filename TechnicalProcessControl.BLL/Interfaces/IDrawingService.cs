@@ -20,6 +20,27 @@ namespace TechnicalProcessControl.BLL.Interfaces
 
         DrawingScanDTO GetDrawingScanById(int DrawingId);
 
+        long GetLastTechProcess001();
+
+        #region TechProcess001 CRUD method's
+
+        int TechProcess001Create(TechProcess001DTO techProcess001DTO);
+        void TechProcess001Update(TechProcess001DTO techProcess001DTO);
+        bool TechProcess001Delete(int id);
+
+
+        #endregion
+
+        #region DrawingScan CRUD method's
+
+        int DrawingScanCreate(DrawingScanDTO drawingScanDTO);
+
+        void DrawingScanUpdate(DrawingScanDTO drawingScanDTO);
+
+        bool DrawingScanDelete(int id);
+
+        #endregion
+
         #region Drawing's CRUD method's
 
         int DrawingCreate(DrawingsDTO drawingsDTO);

@@ -115,10 +115,10 @@ namespace TechnicalProcessControl.Drawings
 
                         switch (typeFile)
                         {
-                            case ".pdf":
-                                pictureEdit.Image = imageCollection.Images[1];
-                                pictureEdit.Properties.SizeMode = PictureSizeMode.Clip;
-                                break;
+                            //case ".pdf":
+                            //    pictureEdit.Image = imageCollection.Images[1];
+                            //    pictureEdit.Properties.SizeMode = PictureSizeMode.Clip;
+                            //    break;
                             default:
                                 pictureEdit.Image = imageCollection.Images[0];
                                 pictureEdit.Properties.SizeMode = PictureSizeMode.Clip;
@@ -150,13 +150,38 @@ namespace TechnicalProcessControl.Drawings
 
                 if (operation == Utils.Operation.Add)
                 {
-                    ((ProductionDTO)Item).Id = drawingService.DrawingCreate((DrawingsDTO)Item);
+                    ((DrawingsDTO)Item).Id = drawingService.DrawingCreate((DrawingsDTO)Item);
                     return true;
+                    if (drawingScanDTO.Scan != null)
+                    {
+                        drawingScanDTO.DrawingId = ((DrawingsDTO)Item).Id;
+                        ((DrawingsDTO)Item).ScanId = drawingService.DrawingScanCreate(drawingScanDTO);
+
+                    }
                 }
                 else
                 {
 
                     drawingService.DrawingUpdate((DrawingsDTO)Item);
+                    if (drawingScanDTO != null)
+                    {
+                        if (drawingScanDTO.Scan == null && drawingScanDTO.Id > 0)
+                        {
+                            drawingService.DrawingScanDelete(drawingScanDTO.Id);
+                            ((DrawingsDTO)Item).ScanId = null;
+                        }
+                        else if (drawingScanDTO.Scan != null && drawingScanDTO.Id == 0)
+                        {
+                            drawingScanDTO.DrawingId = ((DrawingsDTO)Item).Id;
+                            ((DrawingsDTO)Item).ScanId = drawingService.DrawingScanCreate(drawingScanDTO);
+                        }
+                        else
+                        {
+                            drawingService.DrawingScanUpdate(drawingScanDTO);
+                        }
+                    }
+
+
                     return true;
                 }
 
@@ -167,7 +192,70 @@ namespace TechnicalProcessControl.Drawings
                 return false;
             }
 
-        }
+
+        //    switch (operation)
+        //    {
+        //        case Utils.Operation.Add:
+        //            if (contractorsService.CheckAgreementOrderNumber((DateTime)((AgreementOrderDTO)Item).AgreementOrderDate, ((AgreementOrderDTO)Item).AgreementOrderNumber))
+        //            {
+        //                MessageBox.Show("рахунок з номером " + ((AgreementOrderDTO)Item).AgreementOrderNumber + " вже існує!", "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //                agreemtnOrderNumberEdit.Text = contractorsService.GetAgreementOrderLastNumber((DateTime)((AgreementOrderDTO)Item).AgreementOrderDate).ToString();
+
+        //                //((AgreementOrderDTO)Item).AgreementOrderNumber = contractorsService.GetAgreementOrderLastNumber((DateTime)((AgreementOrderDTO)Item).AgreementOrderDate);
+        //                return false;
+        //            }
+
+        //            if (agreementOrderScanDTO.Scan != null)
+        //                ((AgreementOrderDTO)Item).AgreementOrderScanId = contractorsService.AgreementOrderScanCreate(agreementOrderScanDTO);
+
+        //            ((AgreementOrderDTO)Item).ResponsibleId = userTasksDTO.UserId;
+        //            ((AgreementOrderDTO)Item).Id = contractorsService.AgreementOrderCreate((AgreementOrderDTO)Item);
+
+        //            break;
+        //        case Utils.Operation.Update:
+        //            ((AgreementOrderDTO)Item).ResponsibleId = userTasksDTO.UserId;
+
+        //            if (agreementOrderScanDTO != null)
+        //            {
+        //                if (agreementOrderScanDTO.Scan == null && agreementOrderScanDTO.Id > 0)
+        //                {
+        //                    contractorsService.AgreementOrderScanDelete(agreementOrderScanDTO.Id);
+        //                    ((AgreementOrderDTO)Item).AgreementOrderScanId = null;
+        //                }
+        //                else if (agreementOrderScanDTO.Scan != null && agreementOrderScanDTO.Id == 0)
+        //                {
+        //                    ((AgreementOrderDTO)Item).AgreementOrderScanId = contractorsService.AgreementOrderScanCreate(agreementOrderScanDTO);
+        //                }
+        //                else
+        //                {
+        //                    contractorsService.AgreementsOrderScanUpdate(agreementOrderScanDTO);
+        //                }
+        //            }
+
+        //            contractorsService.AgreementsOrderUpdate((AgreementOrderDTO)Item);
+        //            break;
+
+        //        default:
+        //            break;
+        //    }
+        //    return true;
+        //}
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("При збереженні виникла помилка. " + ex.Message, "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //        return false;
+        //    }
+
+
+
+
+
+
+
+
+
+
+}
 
 
 
@@ -248,11 +336,11 @@ namespace TechnicalProcessControl.Drawings
 
                 switch (typeFile)
                 {
-                    case ".pdf":
-                        fileNameTbox.EditValue = fileName;
-                        pictureEdit.Image = imageCollection.Images[1];
-                        pictureEdit.Properties.SizeMode = PictureSizeMode.Clip;
-                        break;
+                    //case ".pdf":
+                    //    fileNameTbox.EditValue = fileName;
+                    //    pictureEdit.Image = imageCollection.Images[1];
+                    //    pictureEdit.Properties.SizeMode = PictureSizeMode.Clip;
+                    //    break;
                     default:
                         fileNameTbox.EditValue = fileName;
                         pictureEdit.Image = imageCollection.Images[0];

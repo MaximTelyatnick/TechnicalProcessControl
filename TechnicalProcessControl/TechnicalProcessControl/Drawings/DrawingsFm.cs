@@ -108,7 +108,15 @@ namespace TechnicalProcessControl
 
         private void drawingTreeListGrid_CustomUnboundColumnData(object sender, DevExpress.XtraTreeList.TreeListCustomColumnDataEventArgs e)
         {
-            
+            var item = (DrawingsDTO)drawingTreeListGrid.GetDataRecordByNode(e.Node);
+
+            if (item == null)
+                return;
+
+            if (item.ScanId != null)
+                e.Value = imageCollection.Images[0];
+            else
+                e.Value = imageCollection.Images[1];
         }
 
         private void drawingTreeListGrid_GetStateImage(object sender, DevExpress.XtraTreeList.GetStateImageEventArgs e)
@@ -119,6 +127,57 @@ namespace TechnicalProcessControl
                 return;
         
             e.Node.StateImageIndex = (item.ScanId == null) ? 0 : 1;
+
+            //if (agreementOrdersBS.Count > 1)
+            //{
+            //    AgreementOrderJournalDTO item = (AgreementOrderJournalDTO)agreementOrdersBS[e.ListSourceRowIndex];
+
+            //    if (e.Column == scanCol && e.IsGetData)
+            //    {
+            //        if (item.AgreementOrderScanId != null)
+            //            e.Value = imageCollection.Images[0];
+            //        else
+            //            e.Value = imageCollection.Images[1];
+            //    }
+            //}
+
+        }
+
+        private void drawingTreeListGrid_DoubleClick(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void repositoryItemPictureEdit1_DoubleClick(object sender, System.EventArgs e)
+        {
+            if (((DrawingsDTO)drawingsBS.Current).ScanId != null)
+            {
+                DrawingScanDTO model = drawingService.GetDrawingScanById(((DrawingsDTO)drawingsBS.Current).Id);
+
+                string path = Utils.HomePath + @"\Temp";
+
+                System.IO.File.WriteAllBytes(path + model.FileName, model.Scan);
+
+                System.Diagnostics.Process.Start(path + model.FileName);
+            }
+        }
+
+        private void addTechProcess001Btn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if(((DrawingsDTO)drawingsBS.Current).TechProcess001Id == null)
+            {
+                TechProcess001DTO techProcess001DTO = new TechProcess001DTO();
+                techProcess001DTO.TechProcessName = drawingService.GetLastTechProcess001();
+
+
+
+
+            }
+            else
+            {
+                //Open file if file exist
+                //System.Diagnostics.Process.Start(((AgreementDocumentsDTO)Item).URL);
+            }
         }
     }
 }
