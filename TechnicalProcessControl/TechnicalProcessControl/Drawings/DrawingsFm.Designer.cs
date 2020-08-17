@@ -102,6 +102,7 @@
             this.treeListBand6 = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.treeListBand7 = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.techProcessOneTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.techProcess001Repository = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.techProcessOneTTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListBand8 = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.techProcessTwooTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
@@ -134,12 +135,21 @@
             this.treeListBand15 = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.consumptionPaintTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.consumptionPaintTotalTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.techProcess002Repository = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.techProcess003Repository = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.techProcess004Repository = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.techProcess005Repository = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.contractorsRibonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawingGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawingBandedGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawingTreeListGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.techProcess001Repository)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.techProcess002Repository)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.techProcess003Repository)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.techProcess004Repository)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.techProcess005Repository)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).BeginInit();
             this.SuspendLayout();
             // 
@@ -234,6 +244,7 @@
             this.addTechProcess002Btn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addTechProcess002Btn.ImageOptions.Image")));
             this.addTechProcess002Btn.Name = "addTechProcess002Btn";
             this.addTechProcess002Btn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.addTechProcess002Btn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addTechProcess002Btn_ItemClick);
             // 
             // addTechProcess003Btn
             // 
@@ -903,7 +914,12 @@
             this.drawingTreeListGrid.OptionsView.ShowSummaryFooter = true;
             this.drawingTreeListGrid.OptionsView.WaitAnimationOptions = DevExpress.XtraEditors.WaitAnimationOptions.Panel;
             this.drawingTreeListGrid.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemPictureEdit1});
+            this.repositoryItemPictureEdit1,
+            this.techProcess001Repository,
+            this.techProcess002Repository,
+            this.techProcess003Repository,
+            this.techProcess004Repository,
+            this.techProcess005Repository});
             this.drawingTreeListGrid.Size = new System.Drawing.Size(1718, 641);
             this.drawingTreeListGrid.TabIndex = 3;
             this.drawingTreeListGrid.TreeLevelWidth = 12;
@@ -1046,11 +1062,18 @@
             this.techProcessOneTreeCol.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.techProcessOneTreeCol.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.techProcessOneTreeCol.Caption = "Заготовительное производство";
+            this.techProcessOneTreeCol.ColumnEdit = this.techProcess001Repository;
             this.techProcessOneTreeCol.FieldName = "TechProcess001Name";
             this.techProcessOneTreeCol.Name = "techProcessOneTreeCol";
             this.techProcessOneTreeCol.Visible = true;
             this.techProcessOneTreeCol.VisibleIndex = 5;
             this.techProcessOneTreeCol.Width = 97;
+            // 
+            // techProcess001Repository
+            // 
+            this.techProcess001Repository.AutoHeight = false;
+            this.techProcess001Repository.Name = "techProcess001Repository";
+            this.techProcess001Repository.DoubleClick += new System.EventHandler(this.techProcess001Repository_DoubleClick);
             // 
             // techProcessOneTTreeCol
             // 
@@ -1495,6 +1518,30 @@
             this.consumptionPaintTotalTreeCol.VisibleIndex = 22;
             this.consumptionPaintTotalTreeCol.Width = 65;
             // 
+            // techProcess002Repository
+            // 
+            this.techProcess002Repository.AutoHeight = false;
+            this.techProcess002Repository.Name = "techProcess002Repository";
+            this.techProcess002Repository.DoubleClick += new System.EventHandler(this.techProcess002Repository_DoubleClick);
+            // 
+            // techProcess003Repository
+            // 
+            this.techProcess003Repository.AutoHeight = false;
+            this.techProcess003Repository.Name = "techProcess003Repository";
+            this.techProcess003Repository.DoubleClick += new System.EventHandler(this.techProcess003Repository_DoubleClick);
+            // 
+            // techProcess004Repository
+            // 
+            this.techProcess004Repository.AutoHeight = false;
+            this.techProcess004Repository.Name = "techProcess004Repository";
+            this.techProcess004Repository.DoubleClick += new System.EventHandler(this.techProcess004Repository_DoubleClick);
+            // 
+            // techProcess005Repository
+            // 
+            this.techProcess005Repository.AutoHeight = false;
+            this.techProcess005Repository.Name = "techProcess005Repository";
+            this.techProcess005Repository.DoubleClick += new System.EventHandler(this.techProcess005Repository_DoubleClick);
+            // 
             // imageCollection
             // 
             this.imageCollection.ImageSize = new System.Drawing.Size(16, 16);
@@ -1520,6 +1567,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.drawingBandedGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawingTreeListGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.techProcess001Repository)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.techProcess002Repository)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.techProcess003Repository)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.techProcess004Repository)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.techProcess005Repository)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1631,5 +1683,10 @@
         private DevExpress.XtraTreeList.Columns.TreeListBand treeListBand16;
         private DevExpress.XtraTreeList.Columns.TreeListBand treeListBand15;
         private DevExpress.Utils.ImageCollection imageCollection;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit techProcess001Repository;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit techProcess002Repository;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit techProcess003Repository;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit techProcess004Repository;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit techProcess005Repository;
     }
 }

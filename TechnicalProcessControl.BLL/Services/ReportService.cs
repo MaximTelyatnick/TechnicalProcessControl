@@ -2,6 +2,7 @@
 using SpreadsheetGear;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,8 @@ namespace TechnicalProcessControl.BLL.Services
 {
     public class ReportService: IReportService
     {
-        private string GeneratedReportsDir = Utils.HomePath + @"\Temp\";
+        private string GeneratedReportsDir = Utils.HomePath + @"\Templates\";
+        private string DbExelDir = @"C:\TechProcess\";
 
 
         private IUnitOfWork Database { get; set; }
@@ -75,6 +77,258 @@ namespace TechnicalProcessControl.BLL.Services
 
             mapper = config.CreateMapper();
         }
+
+        public bool CreateTemplateTechProcess001(DrawingsDTO drawingsDTO)
+        {
+            try
+            {
+                Factory.GetWorkbook(GeneratedReportsDir + @"\template001.xlsx");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("не найдено шаблон документа!\n" + ex.Message, "Увага", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            var Workbook = Factory.GetWorkbook(GeneratedReportsDir + @"\template001.xlsx");
+            var Worksheet = Workbook.Worksheets[0];
+            var Сells = Worksheet.Cells;
+            IRange cells = Worksheet.Cells;
+            Сells["A" + 39].Value = drawingsDTO.ParentName;
+            Сells["A" + 39].HorizontalAlignment = HAlign.Center;
+            Сells["W" + 48].Value = drawingsDTO.DetailWeight;
+            Сells["W" + 48].HorizontalAlignment = HAlign.Center;
+            Сells["BI" + 48].Value = drawingsDTO.TH.ToString() + "х" + drawingsDTO.W.ToString() + "х" + drawingsDTO.L.ToString();
+            Сells["BI" + 48].HorizontalAlignment = HAlign.Center;
+            Сells["CD" + 48].Value = drawingsDTO.Quantity;
+            Сells["CD" + 48].HorizontalAlignment = HAlign.Center;
+            Сells["BB" + 7].Value = drawingsDTO.Number;
+            Сells["BB" + 7].HorizontalAlignment = HAlign.Center;
+            Сells["BB" + 41].Value = drawingsDTO.Number;
+            Сells["BB" + 41].HorizontalAlignment = HAlign.Center;
+            Сells["BS" + 75].Value = drawingsDTO.Number;
+            Сells["BS" + 75].HorizontalAlignment = HAlign.Center;
+            Сells["BS" + 106].Value = drawingsDTO.Number;
+            Сells["BS" + 106].HorizontalAlignment = HAlign.Center;
+            Сells["CO" + 07].Value = TechProcesNameToStr(drawingsDTO.TechProcess001Name);
+            Сells["CO" + 07].HorizontalAlignment = HAlign.Center;
+            Сells["CO" + 41].Value = TechProcesNameToStr(drawingsDTO.TechProcess001Name);
+            Сells["CO" + 41].HorizontalAlignment = HAlign.Center;
+            Сells["CO" + 75].Value = TechProcesNameToStr(drawingsDTO.TechProcess001Name);
+            Сells["CO" + 75].HorizontalAlignment = HAlign.Center;
+            Сells["CO" + 106].Value = TechProcesNameToStr(drawingsDTO.TechProcess001Name);
+            Сells["CO" + 106].HorizontalAlignment = HAlign.Center;
+
+
+            try
+            {
+                string fileName = String.Format("Зведена обігово-сальдова по рахунку 313 за період");
+                //string fileName = String.Format("Зведена обігово-сальдова по рахунку 313 за період з {0} по {1}", startDate.ToShortDateString(), endDate.ToShortDateString());
+                //Workbook.SaveAs(DbExelDir + techProcess001DTO.TechProcessName.ToString() + ".xls", FileFormat.Excel8);
+                Workbook.SaveAs(drawingsDTO.TechProcess001Path, FileFormat.Excel8);
+                Process process = new Process();
+                process.StartInfo.Arguments = "\"" + drawingsDTO.TechProcess001Path + "\"";
+                process.StartInfo.FileName = "Excel.exe";
+                process.Start();
+
+            }
+
+            catch (System.IO.IOException) { MessageBox.Show("Документ уже открыто!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+            catch (System.ComponentModel.Win32Exception) { MessageBox.Show("На рабочей станции отсутсутствует пакет программ Microsoft Oficce!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+
+            return true;
+        }
+
+        public bool UpdateTemplateTechProcess001(DrawingsDTO drawingsDTO)
+        {
+
+            var Workbook = Factory.GetWorkbook(drawingsDTO.TechProcess001Path);
+            var Worksheet = Workbook.Worksheets[0];
+            var Сells = Worksheet.Cells;
+            IRange cells = Worksheet.Cells;
+            Сells["A" + 39].Value = drawingsDTO.ParentName;
+            Сells["A" + 39].HorizontalAlignment = HAlign.Center;
+            Сells["W" + 48].Value = drawingsDTO.DetailWeight;
+            Сells["W" + 48].HorizontalAlignment = HAlign.Center;
+            Сells["BI" + 48].Value = drawingsDTO.TH.ToString() + "х" + drawingsDTO.W.ToString() + "х" + drawingsDTO.L.ToString();
+            Сells["BI" + 48].HorizontalAlignment = HAlign.Center;
+            Сells["CD" + 48].Value = drawingsDTO.Quantity;
+            Сells["CD" + 48].HorizontalAlignment = HAlign.Center;
+            Сells["BB" + 7].Value = drawingsDTO.Number;
+            Сells["BB" + 7].HorizontalAlignment = HAlign.Center;
+            Сells["BB" + 41].Value = drawingsDTO.Number;
+            Сells["BB" + 41].HorizontalAlignment = HAlign.Center;
+            Сells["BS" + 75].Value = drawingsDTO.Number;
+            Сells["BS" + 75].HorizontalAlignment = HAlign.Center;
+            Сells["BS" + 106].Value = drawingsDTO.Number;
+            Сells["BS" + 106].HorizontalAlignment = HAlign.Center;
+            Сells["CO" + 07].Value = TechProcesNameToStr(drawingsDTO.TechProcess001Name);
+            Сells["CO" + 07].HorizontalAlignment = HAlign.Center;
+            Сells["CO" + 41].Value = TechProcesNameToStr(drawingsDTO.TechProcess001Name);
+            Сells["CO" + 41].HorizontalAlignment = HAlign.Center;
+            Сells["CO" + 75].Value = TechProcesNameToStr(drawingsDTO.TechProcess001Name);
+            Сells["CO" + 75].HorizontalAlignment = HAlign.Center;
+            Сells["CO" + 106].Value = TechProcesNameToStr(drawingsDTO.TechProcess001Name);
+            Сells["CO" + 106].HorizontalAlignment = HAlign.Center;
+            //BB7, BB41 = Назв чертежа
+            //BS75 = Назва чертежа (цыкл)
+            //CO7,CO41 = Номер техпроцесса(цыкл +45)
+            //W48 = вес
+            //BI48 = размеры
+            //A39 = размеры
+
+            try
+            {
+                //string fileName = String.Format("Зведена обігово-сальдова по рахунку 313 за період");
+                //string fileName = String.Format("Зведена обігово-сальдова по рахунку 313 за період з {0} по {1}", startDate.ToShortDateString(), endDate.ToShortDateString());
+                //Workbook.SaveAs(DbExelDir + techProcess001DTO.TechProcessName.ToString() + ".xls", FileFormat.Excel8);
+                Workbook.Save();
+                //Workbook.SaveAs(techProcess001DTO.TechProcessPath, FileFormat.Excel8);
+                //Process process = new Process();
+                //process.StartInfo.Arguments = "\"" + techProcess001DTO.TechProcessPath + "\"";
+                //process.StartInfo.FileName = "Excel.exe";
+                //process.Start();
+
+            }
+
+            catch (System.IO.IOException) { MessageBox.Show("Документ уже открыто!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+            catch (System.ComponentModel.Win32Exception) { MessageBox.Show("На рабочей станции отсутсутствует пакет программ Microsoft Oficce!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+
+            return true;
+        }
+
+        public bool CreateTemplateTechProcess002(DrawingsDTO drawingsDTO)
+        {
+            try
+            {
+                Factory.GetWorkbook(GeneratedReportsDir + @"\template001.xlsx");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("не найдено шаблон документа!\n" + ex.Message, "Увага", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            var Workbook = Factory.GetWorkbook(GeneratedReportsDir + @"\template001.xlsx");
+            var Worksheet = Workbook.Worksheets[0];
+            var Сells = Worksheet.Cells;
+            IRange cells = Worksheet.Cells;
+            Сells["A" + 39].Value = drawingsDTO.ParentName;
+            Сells["A" + 39].HorizontalAlignment = HAlign.Center;
+            Сells["W" + 48].Value = drawingsDTO.DetailWeight;
+            Сells["W" + 48].HorizontalAlignment = HAlign.Center;
+            Сells["BI" + 48].Value = drawingsDTO.TH.ToString() + "х" + drawingsDTO.W.ToString() + "х" + drawingsDTO.L.ToString();
+            Сells["BI" + 48].HorizontalAlignment = HAlign.Center;
+            Сells["CD" + 48].Value = drawingsDTO.Quantity;
+            Сells["CD" + 48].HorizontalAlignment = HAlign.Center;
+            Сells["BB" + 7].Value = drawingsDTO.Number;
+            Сells["BB" + 7].HorizontalAlignment = HAlign.Center;
+            Сells["BB" + 41].Value = drawingsDTO.Number;
+            Сells["BB" + 41].HorizontalAlignment = HAlign.Center;
+            Сells["BS" + 75].Value = drawingsDTO.Number;
+            Сells["BS" + 75].HorizontalAlignment = HAlign.Center;
+            Сells["BS" + 106].Value = drawingsDTO.Number;
+            Сells["BS" + 106].HorizontalAlignment = HAlign.Center;
+            Сells["CO" + 07].Value = TechProcesNameToStr(drawingsDTO.TechProcess001Name);
+            Сells["CO" + 07].HorizontalAlignment = HAlign.Center;
+            Сells["CO" + 41].Value = TechProcesNameToStr(drawingsDTO.TechProcess001Name);
+            Сells["CO" + 41].HorizontalAlignment = HAlign.Center;
+            Сells["CO" + 75].Value = TechProcesNameToStr(drawingsDTO.TechProcess001Name);
+            Сells["CO" + 75].HorizontalAlignment = HAlign.Center;
+            Сells["CO" + 106].Value = TechProcesNameToStr(drawingsDTO.TechProcess001Name);
+            Сells["CO" + 106].HorizontalAlignment = HAlign.Center;
+
+
+            try
+            {
+                string fileName = String.Format("Зведена обігово-сальдова по рахунку 313 за період");
+                //string fileName = String.Format("Зведена обігово-сальдова по рахунку 313 за період з {0} по {1}", startDate.ToShortDateString(), endDate.ToShortDateString());
+                //Workbook.SaveAs(DbExelDir + techProcess001DTO.TechProcessName.ToString() + ".xls", FileFormat.Excel8);
+                Workbook.SaveAs(drawingsDTO.TechProcess002Path, FileFormat.Excel8);
+                Process process = new Process();
+                process.StartInfo.Arguments = "\"" + drawingsDTO.TechProcess001Path + "\"";
+                process.StartInfo.FileName = "Excel.exe";
+                process.Start();
+
+            }
+
+            catch (System.IO.IOException) { MessageBox.Show("Документ уже открыто!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+            catch (System.ComponentModel.Win32Exception) { MessageBox.Show("На рабочей станции отсутсутствует пакет программ Microsoft Oficce!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+
+            return true;
+        }
+
+        public bool UpdateTemplateTechProcess002(DrawingsDTO drawingsDTO)
+        {
+
+            var Workbook = Factory.GetWorkbook(drawingsDTO.TechProcess002Path);
+            var Worksheet = Workbook.Worksheets[0];
+            var Сells = Worksheet.Cells;
+            IRange cells = Worksheet.Cells;
+            Сells["A" + 39].Value = drawingsDTO.ParentName;
+            Сells["A" + 39].HorizontalAlignment = HAlign.Center;
+            Сells["W" + 48].Value = drawingsDTO.DetailWeight;
+            Сells["W" + 48].HorizontalAlignment = HAlign.Center;
+            Сells["BI" + 48].Value = drawingsDTO.TH.ToString() + "х" + drawingsDTO.W.ToString() + "х" + drawingsDTO.L.ToString();
+            Сells["BI" + 48].HorizontalAlignment = HAlign.Center;
+            Сells["CD" + 48].Value = drawingsDTO.Quantity;
+            Сells["CD" + 48].HorizontalAlignment = HAlign.Center;
+            Сells["BB" + 7].Value = drawingsDTO.Number;
+            Сells["BB" + 7].HorizontalAlignment = HAlign.Center;
+            Сells["BB" + 41].Value = drawingsDTO.Number;
+            Сells["BB" + 41].HorizontalAlignment = HAlign.Center;
+            Сells["BS" + 75].Value = drawingsDTO.Number;
+            Сells["BS" + 75].HorizontalAlignment = HAlign.Center;
+            Сells["BS" + 106].Value = drawingsDTO.Number;
+            Сells["BS" + 106].HorizontalAlignment = HAlign.Center;
+            Сells["CO" + 07].Value = TechProcesNameToStr(drawingsDTO.TechProcess002Name);
+            Сells["CO" + 07].HorizontalAlignment = HAlign.Center;
+            Сells["CO" + 41].Value = TechProcesNameToStr(drawingsDTO.TechProcess002Name);
+            Сells["CO" + 41].HorizontalAlignment = HAlign.Center;
+            Сells["CO" + 75].Value = TechProcesNameToStr(drawingsDTO.TechProcess002Name);
+            Сells["CO" + 75].HorizontalAlignment = HAlign.Center;
+            Сells["CO" + 106].Value = TechProcesNameToStr(drawingsDTO.TechProcess002Name);
+            Сells["CO" + 106].HorizontalAlignment = HAlign.Center;
+            //BB7, BB41 = Назв чертежа
+            //BS75 = Назва чертежа (цыкл)
+            //CO7,CO41 = Номер техпроцесса(цыкл +45)
+            //W48 = вес
+            //BI48 = размеры
+            //A39 = размеры
+
+            try
+            {
+                //string fileName = String.Format("Зведена обігово-сальдова по рахунку 313 за період");
+                //string fileName = String.Format("Зведена обігово-сальдова по рахунку 313 за період з {0} по {1}", startDate.ToShortDateString(), endDate.ToShortDateString());
+                //Workbook.SaveAs(DbExelDir + techProcess001DTO.TechProcessName.ToString() + ".xls", FileFormat.Excel8);
+                Workbook.Save();
+                //Workbook.SaveAs(techProcess001DTO.TechProcessPath, FileFormat.Excel8);
+                //Process process = new Process();
+                //process.StartInfo.Arguments = "\"" + techProcess001DTO.TechProcessPath + "\"";
+                //process.StartInfo.FileName = "Excel.exe";
+                //process.Start();
+
+            }
+
+            catch (System.IO.IOException) { MessageBox.Show("Документ уже открыто!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+            catch (System.ComponentModel.Win32Exception) { MessageBox.Show("На рабочей станции отсутсутствует пакет программ Microsoft Oficce!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+
+            return true;
+        }
+
+
+        public string TechProcesNameToStr(long? techProcessName)
+        {
+            string techProcessNameStr = techProcessName.ToString();
+            string dot = ".";
+            techProcessNameStr = techProcessNameStr.Insert(2, dot);
+            techProcessNameStr = techProcessNameStr.Insert(6, dot);
+
+
+            return techProcessNameStr;
+        }
+
+
 
         //public bool CreateTemplateTechProcess001(DrawingsDTO source)
         //{

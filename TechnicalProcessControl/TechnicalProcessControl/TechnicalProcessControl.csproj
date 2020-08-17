@@ -190,6 +190,12 @@
     <Compile Include="Drawings\DrawingsFm.Designer.cs">
       <DependentUpon>DrawingsFm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Drawings\DrawingsScanFm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Drawings\DrawingsScanFm.Designer.cs">
+      <DependentUpon>DrawingsScanFm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainMenuFm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -280,6 +286,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Drawings\DrawingsFm.resx">
       <DependentUpon>DrawingsFm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Drawings\DrawingsScanFm.resx">
+      <DependentUpon>DrawingsScanFm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainMenuFm.resx">
       <DependentUpon>MainMenuFm.cs</DependentUpon>

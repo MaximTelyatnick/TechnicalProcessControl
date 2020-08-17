@@ -3,16 +3,27 @@ using TechnicalProcessControl.BLL.Interfaces;
 using Ninject;
 using TechnicalProcessControl.BLL.ModelsDTO;
 using TechnicalProcessControl.Drawings;
+using TechnicalProcessControl.BLL.Infrastructure;
+using System.Diagnostics;
 
 namespace TechnicalProcessControl
 {
     public partial class DrawingsFm : DevExpress.XtraEditors.XtraForm
     {
         public static IDrawingService drawingService;
+        public static IReportService reportService;
 
         public BindingSource drawingsBS = new BindingSource();
 
-        
+        private ObjectBase Item
+        {
+            get { return drawingsBS.Current as ObjectBase; }
+            set
+            {
+                drawingsBS.DataSource = value;
+                value.BeginEdit();
+            }
+        }
 
         public DrawingsFm()
         {
@@ -28,6 +39,7 @@ namespace TechnicalProcessControl
         public void LoadData()
         {
             drawingService = Program.kernel.Get<IDrawingService>();
+            reportService = Program.kernel.Get<IReportService>();
 
             splashScreenManager.ShowWaitForm();
 
@@ -168,15 +180,128 @@ namespace TechnicalProcessControl
             {
                 TechProcess001DTO techProcess001DTO = new TechProcess001DTO();
                 techProcess001DTO.TechProcessName = drawingService.GetLastTechProcess001();
+                techProcess001DTO.TechProcessPath = @"C:\TechProcess\" + techProcess001DTO.TechProcessName.ToString() + ".xls";
 
+                var createTechProcess = drawingService.TechProcess001Create(techProcess001DTO);
+
+                if (createTechProcess>0)
+                {
+                    ((DrawingsDTO)Item).TechProcess001Id = createTechProcess;
+                    ((DrawingsDTO)Item).TechProcess001Path = techProcess001DTO.TechProcessPath;
+                    ((DrawingsDTO)Item).TechProcess001Name = techProcess001DTO.TechProcessName;
+
+                    drawingService.DrawingUpdate(((DrawingsDTO)Item));
+                    reportService.CreateTemplateTechProcess001(((DrawingsDTO)Item));
+                    LoadData();
+                    
+                }
+                else
+                {
+                    MessageBox.Show("При формировании щаблона техпроцесса возникла ошибка", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
 
 
             }
             else
             {
-                //Open file if file exist
-                //System.Diagnostics.Process.Start(((AgreementDocumentsDTO)Item).URL);
+                Process process = new Process();
+                process.StartInfo.Arguments = "\"" + ((DrawingsDTO)drawingsBS.Current).TechProcess001Path + "\"";
+                process.StartInfo.FileName = "Excel.exe";
+                process.Start();
+            }
+        }
+
+        private void techProcess001Repository_DoubleClick(object sender, System.EventArgs e)
+        {
+            if (((DrawingsDTO)drawingsBS.Current).TechProcess001Id != null)
+            {
+                Process process = new Process();
+                process.StartInfo.Arguments = "\"" + ((DrawingsDTO)drawingsBS.Current).TechProcess001Path + "\"";
+                process.StartInfo.FileName = "Excel.exe";
+                process.Start();
+            }
+        }
+
+        private void techProcess002Repository_DoubleClick(object sender, System.EventArgs e)
+        {
+            if (((DrawingsDTO)drawingsBS.Current).TechProcess002Id != null)
+            {
+                Process process = new Process();
+                process.StartInfo.Arguments = "\"" + ((DrawingsDTO)drawingsBS.Current).TechProcess002Path + "\"";
+                process.StartInfo.FileName = "Excel.exe";
+                process.Start();
+            }
+        }
+
+        private void techProcess003Repository_DoubleClick(object sender, System.EventArgs e)
+        {
+            if (((DrawingsDTO)drawingsBS.Current).TechProcess003Id != null)
+            {
+                Process process = new Process();
+                process.StartInfo.Arguments = "\"" + ((DrawingsDTO)drawingsBS.Current).TechProcess003Path + "\"";
+                process.StartInfo.FileName = "Excel.exe";
+                process.Start();
+            }
+        }
+
+        private void techProcess004Repository_DoubleClick(object sender, System.EventArgs e)
+        {
+            if (((DrawingsDTO)drawingsBS.Current).TechProcess004Id != null)
+            {
+                Process process = new Process();
+                process.StartInfo.Arguments = "\"" + ((DrawingsDTO)drawingsBS.Current).TechProcess004Path + "\"";
+                process.StartInfo.FileName = "Excel.exe";
+                process.Start();
+            }
+        }
+
+        private void techProcess005Repository_DoubleClick(object sender, System.EventArgs e)
+        {
+            if (((DrawingsDTO)drawingsBS.Current).TechProcess005Id != null)
+            {
+                Process process = new Process();
+                process.StartInfo.Arguments = "\"" + ((DrawingsDTO)drawingsBS.Current).TechProcess005Path + "\"";
+                process.StartInfo.FileName = "Excel.exe";
+                process.Start();
+            }
+        }
+
+        private void addTechProcess002Btn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (((DrawingsDTO)drawingsBS.Current).TechProcess002Id == null)
+            {
+                TechProcess002DTO techProcess002DTO = new TechProcess002DTO();
+                techProcess002DTO.TechProcessName = drawingService.GetLastTechProcess002();
+                techProcess002DTO.TechProcessPath = @"C:\TechProcess\" + techProcess002DTO.TechProcessName.ToString() + ".xls";
+
+                var createTechProcess = drawingService.TechProcess002Create(techProcess002DTO);
+
+                if (createTechProcess > 0)
+                {
+                    ((DrawingsDTO)Item).TechProcess002Id = createTechProcess;
+                    ((DrawingsDTO)Item).TechProcess002Path = techProcess002DTO.TechProcessPath;
+                    ((DrawingsDTO)Item).TechProcess002Name = techProcess002DTO.TechProcessName;
+
+                    drawingService.DrawingUpdate(((DrawingsDTO)Item));
+                    reportService.CreateTemplateTechProcess002(((DrawingsDTO)Item));
+                    LoadData();
+
+                }
+                else
+                {
+                    MessageBox.Show("При формировании щаблона техпроцесса возникла ошибка", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+
+
+            }
+            else
+            {
+                Process process = new Process();
+                process.StartInfo.Arguments = "\"" + ((DrawingsDTO)drawingsBS.Current).TechProcess002Path + "\"";
+                process.StartInfo.FileName = "Excel.exe";
+                process.Start();
             }
         }
     }

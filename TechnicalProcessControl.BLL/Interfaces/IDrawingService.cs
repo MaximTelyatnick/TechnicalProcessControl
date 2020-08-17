@@ -19,8 +19,10 @@ namespace TechnicalProcessControl.BLL.Interfaces
         IEnumerable<DetailsDTO> GetDetails();
 
         DrawingScanDTO GetDrawingScanById(int DrawingId);
+        string GetParentName(int parentId);
 
         long GetLastTechProcess001();
+        long GetLastTechProcess002();
 
         #region TechProcess001 CRUD method's
 
@@ -28,6 +30,13 @@ namespace TechnicalProcessControl.BLL.Interfaces
         void TechProcess001Update(TechProcess001DTO techProcess001DTO);
         bool TechProcess001Delete(int id);
 
+        #endregion
+
+        #region TechProcess002 CRUD method's
+
+        int TechProcess002Create(TechProcess002DTO techProcess002DTO);
+        void TechProcess002Update(TechProcess002DTO techProcess002DTO);
+        bool TechProcess002Delete(int id);
 
         #endregion
 

@@ -16,6 +16,7 @@ namespace TechnicalProcessControl.BLL.Services
         private IUnitOfWork Database { get; set; }
 
         private IRepository<Drawings> drawings;
+        private IRepository<Drawings> parentDrawings;
         private IRepository<DrawingScan> drawingScan;
         private IRepository<Details> details;
         private IRepository<DAL.Models.Type> type;
@@ -32,6 +33,7 @@ namespace TechnicalProcessControl.BLL.Services
             Database = uow;
 
             drawings = Database.GetRepository<Drawings>();
+            parentDrawings = Database.GetRepository<Drawings>();
             drawingScan = Database.GetRepository<DrawingScan>();
             details = Database.GetRepository<Details>();
             type = Database.GetRepository<DAL.Models.Type>();
@@ -89,6 +91,8 @@ namespace TechnicalProcessControl.BLL.Services
                           from tcp005 in tcpp005.DefaultIfEmpty()
                           join drws in drawingScan.GetAll() on drw.Id equals drws.DrawingId into drwss
                           from drws in drwss.DefaultIfEmpty()
+                          join pdrw in parentDrawings.GetAll() on drw.ParentId equals pdrw.Id into pdrww
+                          from pdrw in pdrww.DefaultIfEmpty()
                           where drws.Status == null
                           select new DrawingsDTO
                           {
@@ -125,7 +129,13 @@ namespace TechnicalProcessControl.BLL.Services
                               TechProcess003Name = tcp003.TechProcessName,
                               TechProcess004Name = tcp004.TechProcessName,
                               TechProcess005Name = tcp005.TechProcessName,
-                               ScanId = drws.Id
+                              TechProcess001Path = tcp001.TechProcessPath,
+                              TechProcess002Path = tcp002.TechProcessPath,
+                              TechProcess003Path = tcp003.TechProcessPath,
+                              TechProcess004Path = tcp004.TechProcessPath,
+                              TechProcess005Path = tcp005.TechProcessPath,
+                              ScanId = drws.Id,
+                              ParentName = pdrw.Number != "" ? pdrw.Number : drw.Number
 
                           }).ToList();
             return result;
@@ -158,6 +168,18 @@ namespace TechnicalProcessControl.BLL.Services
             return maxValue;
         }
 
+        public long GetLastTechProcess002()
+        {
+            long maxValue = techProcess002.GetAll().Select(bdsm => bdsm.TechProcessName).Max();
+            ++maxValue;
+            return maxValue;
+        }
+
+        public string GetParentName(int parentId)
+        {
+            return drawings.GetAll().First(bdsm => bdsm.Id == parentId).Number;
+        }
+
         #region TechProcess001 CRUD method's
 
         public int TechProcess001Create(TechProcess001DTO techProcess001DTO)
@@ -177,6 +199,35 @@ namespace TechnicalProcessControl.BLL.Services
             try
             {
                 techProcess001.Delete(techProcess001.GetAll().FirstOrDefault(c => c.Id == id));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        #endregion
+
+        #region TechProcess002 CRUD method's
+
+        public int TechProcess002Create(TechProcess002DTO techProcess002DTO)
+        {
+            var createTechProcess002 = techProcess002.Create(mapper.Map<TechProcess002>(techProcess002DTO));
+            return (int)createTechProcess002.Id;
+        }
+
+        public void TechProcess002Update(TechProcess002DTO techProcess002DTO)
+        {
+            var techProcess002Update = techProcess002.GetAll().SingleOrDefault(c => c.Id == techProcess002DTO.Id);
+            techProcess002.Update((mapper.Map<TechProcess002DTO, TechProcess002>(techProcess002DTO, techProcess002Update)));
+        }
+
+        public bool TechProcess002Delete(int id)
+        {
+            try
+            {
+                techProcess002.Delete(techProcess002.GetAll().FirstOrDefault(c => c.Id == id));
                 return true;
             }
             catch (Exception ex)

@@ -35,6 +35,9 @@
             DevExpress.XtraEditors.TileItemElement tileItemElement3 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement4 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement5 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement6 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement7 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement8 = new DevExpress.XtraEditors.TileItemElement();
             this.tileNavPane = new DevExpress.XtraBars.Navigation.TileNavPane();
             this.contractorBtn = new DevExpress.XtraBars.Navigation.NavButton();
             this.tileNavCategory3 = new DevExpress.XtraBars.Navigation.TileNavCategory();
@@ -43,10 +46,13 @@
             this.tileNavItem3 = new DevExpress.XtraBars.Navigation.TileNavItem();
             this.tileNavItem4 = new DevExpress.XtraBars.Navigation.TileNavItem();
             this.tileNavItem5 = new DevExpress.XtraBars.Navigation.TileNavItem();
+            this.tileNavCategory4 = new DevExpress.XtraBars.Navigation.TileNavCategory();
             this.documentManager = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
             this.tabbedView1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
             this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
-            this.tileNavCategory4 = new DevExpress.XtraBars.Navigation.TileNavCategory();
+            this.materialItem = new DevExpress.XtraBars.Navigation.TileNavItem();
+            this.tileNavItem6 = new DevExpress.XtraBars.Navigation.TileNavItem();
+            this.tileNavItem7 = new DevExpress.XtraBars.Navigation.TileNavItem();
             ((System.ComponentModel.ISupportInitialize)(this.tileNavPane)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView1)).BeginInit();
@@ -208,6 +214,27 @@
             this.tileNavItem5.Tile.Elements.Add(tileItemElement5);
             this.tileNavItem5.Tile.Name = "tileBarItem5";
             // 
+            // tileNavCategory4
+            // 
+            this.tileNavCategory4.Alignment = DevExpress.XtraBars.Navigation.NavButtonAlignment.Left;
+            this.tileNavCategory4.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
+            this.tileNavCategory4.AppearanceHovered.BackColor = System.Drawing.Color.LightGreen;
+            this.tileNavCategory4.AppearanceHovered.Options.UseBackColor = true;
+            this.tileNavCategory4.AppearanceSelected.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.tileNavCategory4.AppearanceSelected.Options.UseBackColor = true;
+            this.tileNavCategory4.Caption = "Справочники";
+            this.tileNavCategory4.Glyph = ((System.Drawing.Image)(resources.GetObject("tileNavCategory4.Glyph")));
+            this.tileNavCategory4.Items.AddRange(new DevExpress.XtraBars.Navigation.TileNavItem[] {
+            this.materialItem,
+            this.tileNavItem6,
+            this.tileNavItem7});
+            this.tileNavCategory4.Name = "tileNavCategory4";
+            this.tileNavCategory4.OwnerCollection = null;
+            // 
+            // 
+            // 
+            this.tileNavCategory4.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            // 
             // documentManager
             // 
             this.documentManager.ContainerControl = this;
@@ -222,22 +249,67 @@
             this.imageCollection.Images.SetKeyName(0, "mail.png");
             this.imageCollection.Images.SetKeyName(1, "openmessages.png");
             // 
-            // tileNavCategory4
+            // materialItem
             // 
-            this.tileNavCategory4.Alignment = DevExpress.XtraBars.Navigation.NavButtonAlignment.Left;
-            this.tileNavCategory4.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
-            this.tileNavCategory4.AppearanceHovered.BackColor = System.Drawing.Color.LightGreen;
-            this.tileNavCategory4.AppearanceHovered.Options.UseBackColor = true;
-            this.tileNavCategory4.AppearanceSelected.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.tileNavCategory4.AppearanceSelected.Options.UseBackColor = true;
-            this.tileNavCategory4.Caption = "Справочники";
-            this.tileNavCategory4.Glyph = ((System.Drawing.Image)(resources.GetObject("tileNavCategory4.Glyph")));
-            this.tileNavCategory4.Name = "tileNavCategory4";
-            this.tileNavCategory4.OwnerCollection = null;
+            this.materialItem.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
+            this.materialItem.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.materialItem.Appearance.Options.UseFont = true;
+            this.materialItem.Caption = "Материалы";
+            this.materialItem.Name = "materialItem";
+            this.materialItem.OwnerCollection = this.tileNavCategory4.Items;
             // 
+            // tileBarItem1
             // 
+            this.materialItem.Tile.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+            this.materialItem.Tile.AppearanceItem.Normal.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.materialItem.Tile.AppearanceItem.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.materialItem.Tile.AppearanceItem.Normal.ForeColor = System.Drawing.Color.White;
+            this.materialItem.Tile.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.materialItem.Tile.AppearanceItem.Normal.Options.UseFont = true;
+            this.materialItem.Tile.AppearanceItem.Normal.Options.UseForeColor = true;
+            this.materialItem.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            tileItemElement6.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
+            tileItemElement6.Text = "Материалы";
+            this.materialItem.Tile.Elements.Add(tileItemElement6);
+            this.materialItem.Tile.Name = "tileBarItem1";
             // 
-            this.tileNavCategory4.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            // tileNavItem6
+            // 
+            this.tileNavItem6.Caption = "Сканы чертежей";
+            this.tileNavItem6.Name = "tileNavItem6";
+            this.tileNavItem6.OwnerCollection = this.tileNavCategory4.Items;
+            // 
+            // tileBarItem2
+            // 
+            this.tileNavItem6.Tile.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+            this.tileNavItem6.Tile.AppearanceItem.Normal.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.tileNavItem6.Tile.AppearanceItem.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tileNavItem6.Tile.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.tileNavItem6.Tile.AppearanceItem.Normal.Options.UseFont = true;
+            this.tileNavItem6.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            tileItemElement7.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            tileItemElement7.Text = "Сканы чертежей";
+            this.tileNavItem6.Tile.Elements.Add(tileItemElement7);
+            this.tileNavItem6.Tile.Name = "tileBarItem2";
+            // 
+            // tileNavItem7
+            // 
+            this.tileNavItem7.Caption = "Детали";
+            this.tileNavItem7.Name = "tileNavItem7";
+            this.tileNavItem7.OwnerCollection = this.tileNavCategory4.Items;
+            // 
+            // tileBarItem3
+            // 
+            this.tileNavItem7.Tile.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+            this.tileNavItem7.Tile.AppearanceItem.Normal.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.tileNavItem7.Tile.AppearanceItem.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tileNavItem7.Tile.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.tileNavItem7.Tile.AppearanceItem.Normal.Options.UseFont = true;
+            this.tileNavItem7.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            tileItemElement8.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
+            tileItemElement8.Text = "Детали";
+            this.tileNavItem7.Tile.Elements.Add(tileItemElement8);
+            this.tileNavItem7.Tile.Name = "tileBarItem3";
             // 
             // MainMenuFm
             // 
@@ -272,5 +344,8 @@
         private DevExpress.XtraBars.Navigation.TileNavItem tileNavItem4;
         private DevExpress.XtraBars.Navigation.TileNavItem tileNavItem5;
         private DevExpress.XtraBars.Navigation.TileNavCategory tileNavCategory4;
+        private DevExpress.XtraBars.Navigation.TileNavItem materialItem;
+        private DevExpress.XtraBars.Navigation.TileNavItem tileNavItem6;
+        private DevExpress.XtraBars.Navigation.TileNavItem tileNavItem7;
     }
 }

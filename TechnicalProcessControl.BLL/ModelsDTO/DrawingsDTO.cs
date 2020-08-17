@@ -37,13 +37,22 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public decimal? LaborIntensity004Total { get; set; }
         public decimal? LaborIntensity005Total { get; set; }
 
+
+
         public long? TechProcess001Name { get; set; }
         public long? TechProcess002Name { get; set; }
         public long? TechProcess003Name { get; set; }
         public long? TechProcess004Name { get; set; }
         public long? TechProcess005Name { get; set; }
 
+        public string TechProcess001Path { get; set; }
+        public string TechProcess002Path { get; set; }
+        public string TechProcess003Path { get; set; }
+        public string TechProcess004Path { get; set; }
+        public string TechProcess005Path { get; set; }
+
         public string DetailName { get; set; }
         public string TypeName { get; set; }
+        public string ParentName { get; set; }
     }
 }

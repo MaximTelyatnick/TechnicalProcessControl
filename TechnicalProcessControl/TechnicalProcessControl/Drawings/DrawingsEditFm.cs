@@ -19,6 +19,7 @@ namespace TechnicalProcessControl.Drawings
     public partial class DrawingsEditFm : DevExpress.XtraEditors.XtraForm
     {
         private IDrawingService drawingService;
+        private IReportService reportService;
 
         private Utils.Operation operation;
 
@@ -120,12 +121,40 @@ namespace TechnicalProcessControl.Drawings
                             //    pictureEdit.Properties.SizeMode = PictureSizeMode.Clip;
                             //    break;
                             default:
-                                pictureEdit.Image = imageCollection.Images[0];
-                                pictureEdit.Properties.SizeMode = PictureSizeMode.Clip;
+                                //Bitmap bitmap = new Bitmap(drawingScanDTO.Scan);
+                                ImageConverter ic = new ImageConverter();
+
+                                Image img = (Image)ic.ConvertFrom(drawingScanDTO.Scan);
+
+                                Bitmap bitmap1 = new Bitmap(img);
+
+                                pictureEdit.Properties.SizeMode = PictureSizeMode.Zoom;
+                                pictureEdit.EditValue = bitmap1;
+                                fileNameTbox.EditValue = drawingScanDTO.FileName;
+
+                                //pictureEdit.Image = Image.FromStream(drawingScanDTO.Scan);
+                                //pictureEdit.Properties.SizeMode = PictureSizeMode.Clip;
                                 break;
                         }
 
-                        fileNameTbox.EditValue = drawingScanDTO.FileName;
+                    //    fileNameTbox.EditValue = drawingScanDTO.FileName;
+
+                    //    byte[] scan = System.IO.File.ReadAllBytes(@filePath);
+
+                    //    drawingScanDTO.Scan = scan;
+                    //    drawingScanDTO.FileName = fileName;
+                    //}
+                    //else
+                    //    return;
+
+                    //try
+                    //{
+                    //    Bitmap bitmap = new Bitmap(filePath);
+                    //    pictureEdit.Properties.SizeMode = PictureSizeMode.Zoom;
+                    //    pictureEdit.EditValue = bitmap;
+                    //    fileNameTbox.EditValue = fileName;
+                    //}
+
                     }
                     break;
 
@@ -146,6 +175,7 @@ namespace TechnicalProcessControl.Drawings
             try
             {
                 drawingService = Program.kernel.Get<IDrawingService>();
+                reportService = Program.kernel.Get<IReportService>();
 
 
                 if (operation == Utils.Operation.Add)
@@ -180,6 +210,24 @@ namespace TechnicalProcessControl.Drawings
                             drawingService.DrawingScanUpdate(drawingScanDTO);
                         }
                     }
+
+                    String updateTemplate = "";
+
+                    if (((DrawingsDTO)Item).TechProcess001Id != null)
+                        if (!reportService.UpdateTemplateTechProcess001((DrawingsDTO)Item))
+                            updateTemplate += "При оновленні шаблону " + ((DrawingsDTO)Item).TechProcess001Name + " виникла помилка!\n";
+                    if (((DrawingsDTO)Item).TechProcess002Id != null)
+                        if (!reportService.UpdateTemplateTechProcess002((DrawingsDTO)Item))
+                            updateTemplate += "При оновленні шаблону " + ((DrawingsDTO)Item).TechProcess002Name + " виникла помилка!\n"; ;
+                    //if (((DrawingsDTO)Item).TechProcess003Id != null)
+                    //    if (!reportService.UpdateTemplateTechProcess003((DrawingsDTO)Item))
+                    //        updateTemplate = false;
+                    //if (((DrawingsDTO)Item).TechProcess004Id != null)
+                    //    if (!reportService.UpdateTemplateTechProcess004((DrawingsDTO)Item))
+                    //        updateTemplate = false;
+                    //if (((DrawingsDTO)Item).TechProcess005Id != null)
+                    //    if (!reportService.UpdateTemplateTechProcess005((DrawingsDTO)Item))
+                    //        updateTemplate = false;
 
 
                     return true;
