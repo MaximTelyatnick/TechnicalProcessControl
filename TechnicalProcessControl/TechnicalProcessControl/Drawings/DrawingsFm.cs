@@ -164,13 +164,13 @@ namespace TechnicalProcessControl
         {
             if (((DrawingsDTO)drawingsBS.Current).ScanId != null)
             {
-                DrawingScanDTO model = drawingService.GetDrawingScanById(((DrawingsDTO)drawingsBS.Current).Id);
+                //DrawingScanDTO model = drawingService.GetDravingScanById(((DrawingsDTO)drawingsBS.Current).Id);
 
-                string path = Utils.HomePath + @"\Temp";
+                //string path = Utils.HomePath + @"\Temp";
 
-                System.IO.File.WriteAllBytes(path + model.FileName, model.Scan);
+                //System.IO.File.WriteAllBytes(path + model.FileName, model.Scan);
 
-                System.Diagnostics.Process.Start(path + model.FileName);
+                //System.Diagnostics.Process.Start(path + model.FileName);
             }
         }
 
