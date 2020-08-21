@@ -79,6 +79,7 @@
     <Compile Include="Models\Details.cs" />
     <Compile Include="Models\Drawings.cs" />
     <Compile Include="Models\DrawingScan.cs" />
+    <Compile Include="Models\Materials.cs" />
     <Compile Include="Models\Messages.cs" />
     <Compile Include="Models\Orders.cs" />
     <Compile Include="Models\Production.cs" />

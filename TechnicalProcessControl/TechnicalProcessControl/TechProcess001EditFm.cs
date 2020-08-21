@@ -30,7 +30,7 @@ namespace TechnicalProcessControl
             this.techProcess001DTO = techProcess001DTO;
 
             techProcess001DTO.TechProcessName = drawingService.GetLastTechProcess001();
-            techProcess001DTO.TechProcessFullName = drawingsDTO.Number + "_" + techProcess001DTO.TechProcessName.ToString() + techProcess001DTO.Article;
+            techProcess001DTO.TechProcessFullName = drawingsDTO.Number + "_TP" + techProcess001DTO.TechProcessName.ToString();
 
 
 
@@ -47,11 +47,8 @@ namespace TechnicalProcessControl
                 MessageBox.Show("Техпроцесс с таким номером уже существует", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-
-
-            //techProcess001DTO.TechProcessName = drawingService.GetLastTechProcess001();
-            //techProcess001DTO.TechProcessPath = @"C:\TechProcess\" + techProcess001DTO.TechProcessName.ToString() + ".xls";
+            techProcess001DTO.TechProcessFullName = drawingsDTO.Number + "_TP" + techProcess001DTO.TechProcessName.ToString();
+            techProcess001DTO.TechProcessPath = @"C:\TechProcess\TechProcess001\" + techProcess001DTO.TechProcessFullName + ".xls";
 
             //var createTechProcess = drawingService.TechProcess001Create(techProcess001DTO);
 

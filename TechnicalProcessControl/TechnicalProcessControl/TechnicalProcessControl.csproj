@@ -82,6 +82,7 @@
     <Reference Include="DevExpress.XtraEditors.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraNavBar.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraPrinting.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -196,6 +197,12 @@
     <Compile Include="Drawings\DrawingsScanFm.Designer.cs">
       <DependentUpon>DrawingsScanFm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Journals\MaterialFm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Journals\MaterialFm.Designer.cs">
+      <DependentUpon>MaterialFm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainMenuFm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -295,6 +302,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Drawings\DrawingsScanFm.resx">
       <DependentUpon>DrawingsScanFm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Journals\MaterialFm.resx">
+      <DependentUpon>MaterialFm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainMenuFm.resx">
       <DependentUpon>MainMenuFm.cs</DependentUpon>

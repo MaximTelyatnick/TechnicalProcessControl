@@ -62,6 +62,7 @@
     <Compile Include="Interfaces\IBotService.cs" />
     <Compile Include="Interfaces\IControlPanelService.cs" />
     <Compile Include="Interfaces\IDrawingService.cs" />
+    <Compile Include="Interfaces\IJournalService.cs" />
     <Compile Include="Interfaces\IMySqlService.cs" />
     <Compile Include="Interfaces\IReportService.cs" />
     <Compile Include="ModelsDTO\CityDTO.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="ModelsDTO\DetailsDTO.cs" />
     <Compile Include="ModelsDTO\DrawingScanDTO.cs" />
     <Compile Include="ModelsDTO\DrawingsDTO.cs" />
+    <Compile Include="ModelsDTO\MaterialsDTO.cs" />
     <Compile Include="ModelsDTO\MessagesDTO.cs" />
     <Compile Include="ModelsDTO\OrdersDTO.cs" />
     <Compile Include="ModelsDTO\ProductionDTO.cs" />
@@ -86,6 +88,7 @@
     <Compile Include="Services\BotService.cs" />
     <Compile Include="Services\ControlPanelService.cs" />
     <Compile Include="Services\DrawingService.cs" />
+    <Compile Include="Services\JournalService.cs" />
     <Compile Include="Services\MySqlService.cs" />
     <Compile Include="ModelsDTO\TechProcess003DTO.cs" />
     <Compile Include="Services\ReportService.cs" />

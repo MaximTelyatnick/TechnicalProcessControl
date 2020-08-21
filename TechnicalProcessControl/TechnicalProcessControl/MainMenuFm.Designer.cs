@@ -47,12 +47,12 @@
             this.tileNavItem4 = new DevExpress.XtraBars.Navigation.TileNavItem();
             this.tileNavItem5 = new DevExpress.XtraBars.Navigation.TileNavItem();
             this.tileNavCategory4 = new DevExpress.XtraBars.Navigation.TileNavCategory();
-            this.documentManager = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
-            this.tabbedView1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
-            this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
             this.materialItem = new DevExpress.XtraBars.Navigation.TileNavItem();
             this.tileNavItem6 = new DevExpress.XtraBars.Navigation.TileNavItem();
             this.tileNavItem7 = new DevExpress.XtraBars.Navigation.TileNavItem();
+            this.documentManager = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
+            this.tabbedView1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
+            this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.tileNavPane)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView1)).BeginInit();
@@ -235,20 +235,6 @@
             // 
             this.tileNavCategory4.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
             // 
-            // documentManager
-            // 
-            this.documentManager.ContainerControl = this;
-            this.documentManager.View = this.tabbedView1;
-            this.documentManager.ViewCollection.AddRange(new DevExpress.XtraBars.Docking2010.Views.BaseView[] {
-            this.tabbedView1});
-            // 
-            // imageCollection
-            // 
-            this.imageCollection.ImageSize = new System.Drawing.Size(32, 32);
-            this.imageCollection.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollection.ImageStream")));
-            this.imageCollection.Images.SetKeyName(0, "mail.png");
-            this.imageCollection.Images.SetKeyName(1, "openmessages.png");
-            // 
             // materialItem
             // 
             this.materialItem.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
@@ -258,7 +244,7 @@
             this.materialItem.Name = "materialItem";
             this.materialItem.OwnerCollection = this.tileNavCategory4.Items;
             // 
-            // tileBarItem1
+            // 
             // 
             this.materialItem.Tile.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
             this.materialItem.Tile.AppearanceItem.Normal.BackColor = System.Drawing.Color.DarkSlateGray;
@@ -279,7 +265,7 @@
             this.tileNavItem6.Name = "tileNavItem6";
             this.tileNavItem6.OwnerCollection = this.tileNavCategory4.Items;
             // 
-            // tileBarItem2
+            // 
             // 
             this.tileNavItem6.Tile.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
             this.tileNavItem6.Tile.AppearanceItem.Normal.BackColor = System.Drawing.Color.DarkSlateGray;
@@ -298,7 +284,7 @@
             this.tileNavItem7.Name = "tileNavItem7";
             this.tileNavItem7.OwnerCollection = this.tileNavCategory4.Items;
             // 
-            // tileBarItem3
+            // 
             // 
             this.tileNavItem7.Tile.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
             this.tileNavItem7.Tile.AppearanceItem.Normal.BackColor = System.Drawing.Color.DarkSlateGray;
@@ -310,6 +296,20 @@
             tileItemElement8.Text = "Детали";
             this.tileNavItem7.Tile.Elements.Add(tileItemElement8);
             this.tileNavItem7.Tile.Name = "tileBarItem3";
+            // 
+            // documentManager
+            // 
+            this.documentManager.ContainerControl = this;
+            this.documentManager.View = this.tabbedView1;
+            this.documentManager.ViewCollection.AddRange(new DevExpress.XtraBars.Docking2010.Views.BaseView[] {
+            this.tabbedView1});
+            // 
+            // imageCollection
+            // 
+            this.imageCollection.ImageSize = new System.Drawing.Size(32, 32);
+            this.imageCollection.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollection.ImageStream")));
+            this.imageCollection.Images.SetKeyName(0, "mail.png");
+            this.imageCollection.Images.SetKeyName(1, "openmessages.png");
             // 
             // MainMenuFm
             // 

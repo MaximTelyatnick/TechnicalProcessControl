@@ -39,7 +39,7 @@
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(13, 9);
+            this.labelControl2.Location = new System.Drawing.Point(13, 74);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(204, 18);
@@ -48,14 +48,14 @@
             // 
             // techProcess001Edit
             // 
-            this.techProcess001Edit.Location = new System.Drawing.Point(12, 33);
+            this.techProcess001Edit.Location = new System.Drawing.Point(12, 98);
             this.techProcess001Edit.Name = "techProcess001Edit";
             this.techProcess001Edit.Size = new System.Drawing.Size(546, 20);
             this.techProcess001Edit.TabIndex = 24;
             // 
             // cancelBtn
             // 
-            this.cancelBtn.Location = new System.Drawing.Point(483, 62);
+            this.cancelBtn.Location = new System.Drawing.Point(483, 127);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(75, 23);
             this.cancelBtn.TabIndex = 23;
@@ -63,7 +63,7 @@
             // 
             // saveBtn
             // 
-            this.saveBtn.Location = new System.Drawing.Point(402, 62);
+            this.saveBtn.Location = new System.Drawing.Point(402, 127);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(75, 23);
             this.saveBtn.TabIndex = 22;
@@ -74,7 +74,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(567, 94);
+            this.ClientSize = new System.Drawing.Size(567, 160);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.techProcess001Edit);
             this.Controls.Add(this.cancelBtn);

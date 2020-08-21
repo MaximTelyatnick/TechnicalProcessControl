@@ -79,7 +79,7 @@ namespace TechnicalProcessControl.BLL.Services
                           from tp in tpp.DefaultIfEmpty()
                           join det in details.GetAll() on drw.DetailId equals det.Id into dett
                           from det in dett.DefaultIfEmpty()
-                          join tcp001 in techProcess001.GetAll() on drw.TechProcess001Id equals tcp001.Id into tcpp001
+                          join tcp001 in techProcess001.GetAll() on drw.Id equals tcp001.DrawingId into tcpp001
                           from tcp001 in tcpp001.DefaultIfEmpty()
                           join tcp002 in techProcess001.GetAll() on drw.TechProcess002Id equals tcp002.Id into tcpp002
                           from tcp002 in tcpp002.DefaultIfEmpty()
@@ -93,6 +93,7 @@ namespace TechnicalProcessControl.BLL.Services
                           from drws in drwss.DefaultIfEmpty()
                           join pdrw in parentDrawings.GetAll() on drw.ParentId equals pdrw.Id into pdrww
                           from pdrw in pdrww.DefaultIfEmpty()
+                          where (tcp001.Status == 1)
                           
 
                             select new DrawingsDTO
@@ -120,7 +121,7 @@ namespace TechnicalProcessControl.BLL.Services
                               LaborIntensity004Total = drw.LaborIntensity004Total,
                               LaborIntensity005Total = drw.LaborIntensity005Total,
                               LaborIntensityTotal = drw.LaborIntensityTotal,
-                              TechProcess001Id = drw.TechProcess001Id,
+                              TechProcess001Id = tcp001.Id,
                               TechProcess002Id = drw.TechProcess002Id,
                               TechProcess003Id = drw.TechProcess003Id,
                               TechProcess004Id = drw.TechProcess004Id,
