@@ -253,6 +253,12 @@
     <Compile Include="ShipmentRoadFm.Designer.cs">
       <DependentUpon>ShipmentRoadFm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TechProcess001EditFm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TechProcess001EditFm.Designer.cs">
+      <DependentUpon>TechProcess001EditFm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TestFm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -327,6 +333,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ShipmentRoadFm.resx">
       <DependentUpon>ShipmentRoadFm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TechProcess001EditFm.resx">
+      <DependentUpon>TechProcess001EditFm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TestFm.resx">
       <DependentUpon>TestFm.cs</DependentUpon>

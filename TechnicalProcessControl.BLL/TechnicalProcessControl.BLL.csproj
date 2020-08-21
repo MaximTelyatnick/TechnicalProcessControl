@@ -38,8 +38,9 @@
       <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SpreadsheetGear">
-      <HintPath>C:\Users\BigBro\Desktop\SpreadsheetGear.dll</HintPath>
+    <Reference Include="SpreadsheetGear, Version=6.0.3.151, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\SpreadsheetGear.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

@@ -125,7 +125,7 @@ namespace TechnicalProcessControl
             if (item == null)
                 return;
 
-            if (item.ScanId != null)
+            if (item.ScanId != 0)
                 e.Value = imageCollection.Images[0];
             else
                 e.Value = imageCollection.Images[1];

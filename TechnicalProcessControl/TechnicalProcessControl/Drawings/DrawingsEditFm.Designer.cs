@@ -75,6 +75,66 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject34 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject35 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject36 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions22 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject85 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject86 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject87 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject88 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions23 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject89 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject90 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject91 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject92 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions24 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject93 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject94 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject95 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject96 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions19 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject73 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject74 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject75 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject76 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions20 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject77 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject78 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject79 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject80 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions21 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject81 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject82 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject83 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject84 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions16 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject61 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject62 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject63 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject64 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions17 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject65 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject66 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject67 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject68 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions18 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject69 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject70 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject71 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject72 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions13 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject49 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject50 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject51 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject52 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions14 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject53 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject54 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject55 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject56 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions15 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject57 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject58 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject59 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject60 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions10 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject37 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject38 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -120,43 +180,23 @@
             this.saveBtn = new DevExpress.XtraEditors.SimpleButton();
             this.validateLbl = new DevExpress.XtraEditors.LabelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.drawingScanEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.clearBtn = new DevExpress.XtraEditors.SimpleButton();
-            this.fileNameTbox = new DevExpress.XtraEditors.TextEdit();
             this.showBtn = new DevExpress.XtraEditors.SimpleButton();
             this.pictureEdit = new DevExpress.XtraEditors.PictureEdit();
             this.openFileBtn = new DevExpress.XtraEditors.SimpleButton();
             this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
-            this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
-            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
-            this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
-            this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
-            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
-            this.simpleButton5 = new DevExpress.XtraEditors.SimpleButton();
-            this.pictureEdit2 = new DevExpress.XtraEditors.PictureEdit();
-            this.simpleButton6 = new DevExpress.XtraEditors.SimpleButton();
-            this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
-            this.simpleButton7 = new DevExpress.XtraEditors.SimpleButton();
-            this.textEdit3 = new DevExpress.XtraEditors.TextEdit();
-            this.simpleButton8 = new DevExpress.XtraEditors.SimpleButton();
-            this.pictureEdit3 = new DevExpress.XtraEditors.PictureEdit();
-            this.simpleButton9 = new DevExpress.XtraEditors.SimpleButton();
-            this.panelControl5 = new DevExpress.XtraEditors.PanelControl();
-            this.simpleButton10 = new DevExpress.XtraEditors.SimpleButton();
-            this.textEdit4 = new DevExpress.XtraEditors.TextEdit();
-            this.simpleButton11 = new DevExpress.XtraEditors.SimpleButton();
-            this.pictureEdit4 = new DevExpress.XtraEditors.PictureEdit();
-            this.simpleButton12 = new DevExpress.XtraEditors.SimpleButton();
-            this.panelControl6 = new DevExpress.XtraEditors.PanelControl();
-            this.simpleButton13 = new DevExpress.XtraEditors.SimpleButton();
-            this.textEdit5 = new DevExpress.XtraEditors.TextEdit();
-            this.simpleButton14 = new DevExpress.XtraEditors.SimpleButton();
-            this.pictureEdit5 = new DevExpress.XtraEditors.PictureEdit();
-            this.simpleButton15 = new DevExpress.XtraEditors.SimpleButton();
-            this.drawingScanEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
+            this.techProcess001Edit = new DevExpress.XtraEditors.LookUpEdit();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.techProcess002Edit = new DevExpress.XtraEditors.LookUpEdit();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.techProcess003Edit = new DevExpress.XtraEditors.LookUpEdit();
+            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.techProcess004Edit = new DevExpress.XtraEditors.LookUpEdit();
+            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
+            this.techProcess005Edit = new DevExpress.XtraEditors.LookUpEdit();
+            this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
@@ -175,30 +215,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.thEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fileNameTbox.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.drawingScanEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
-            this.panelControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
-            this.panelControl4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).BeginInit();
-            this.panelControl5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit4.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl6)).BeginInit();
-            this.panelControl6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit5.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.drawingScanEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
+            this.groupControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.techProcess001Edit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.techProcess002Edit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.techProcess003Edit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.techProcess004Edit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.techProcess005Edit.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -507,7 +533,7 @@
             // 
             // cancelBtn
             // 
-            this.cancelBtn.Location = new System.Drawing.Point(1096, 635);
+            this.cancelBtn.Location = new System.Drawing.Point(1096, 608);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(75, 23);
             this.cancelBtn.TabIndex = 30;
@@ -516,7 +542,7 @@
             // 
             // saveBtn
             // 
-            this.saveBtn.Location = new System.Drawing.Point(1015, 635);
+            this.saveBtn.Location = new System.Drawing.Point(1015, 611);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(75, 23);
             this.saveBtn.TabIndex = 29;
@@ -539,43 +565,46 @@
             // 
             this.panelControl2.Controls.Add(this.drawingScanEdit);
             this.panelControl2.Controls.Add(this.clearBtn);
-            this.panelControl2.Controls.Add(this.fileNameTbox);
             this.panelControl2.Controls.Add(this.showBtn);
             this.panelControl2.Controls.Add(this.pictureEdit);
             this.panelControl2.Controls.Add(this.openFileBtn);
             this.panelControl2.Location = new System.Drawing.Point(723, 12);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(448, 617);
+            this.panelControl2.Size = new System.Drawing.Size(448, 590);
             this.panelControl2.TabIndex = 102;
+            // 
+            // drawingScanEdit
+            // 
+            this.drawingScanEdit.Location = new System.Drawing.Point(10, 537);
+            this.drawingScanEdit.Name = "drawingScanEdit";
+            this.drawingScanEdit.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.drawingScanEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.drawingScanEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("FileName", "Имя файла")});
+            this.drawingScanEdit.Size = new System.Drawing.Size(433, 18);
+            this.drawingScanEdit.TabIndex = 25;
+            this.drawingScanEdit.EditValueChanged += new System.EventHandler(this.drawingScanEdit_EditValueChanged);
+            this.drawingScanEdit.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.drawingScanEdit_EditValueChanging);
             // 
             // clearBtn
             // 
             this.clearBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("clearBtn.ImageOptions.Image")));
-            this.clearBtn.Location = new System.Drawing.Point(378, 589);
+            this.clearBtn.Location = new System.Drawing.Point(379, 561);
             this.clearBtn.Name = "clearBtn";
             this.clearBtn.Size = new System.Drawing.Size(29, 23);
             this.clearBtn.TabIndex = 24;
-            this.clearBtn.ToolTip = "Очистити";
+            this.clearBtn.ToolTip = "Выберите файл для удаления";
             this.clearBtn.Click += new System.EventHandler(this.clearBtn_Click);
-            // 
-            // fileNameTbox
-            // 
-            this.fileNameTbox.Enabled = false;
-            this.fileNameTbox.Location = new System.Drawing.Point(10, 537);
-            this.fileNameTbox.Name = "fileNameTbox";
-            this.fileNameTbox.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
-            this.fileNameTbox.Properties.AppearanceDisabled.Options.UseForeColor = true;
-            this.fileNameTbox.Size = new System.Drawing.Size(433, 20);
-            this.fileNameTbox.TabIndex = 21;
             // 
             // showBtn
             // 
             this.showBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("showBtn.ImageOptions.Image")));
-            this.showBtn.Location = new System.Drawing.Point(413, 589);
+            this.showBtn.Location = new System.Drawing.Point(414, 561);
             this.showBtn.Name = "showBtn";
             this.showBtn.Size = new System.Drawing.Size(30, 23);
             this.showBtn.TabIndex = 23;
-            this.showBtn.ToolTip = "Переглянути файл";
+            this.showBtn.ToolTip = "Открыть файл в обозревателе";
             this.showBtn.Click += new System.EventHandler(this.showBtn_Click);
             // 
             // pictureEdit
@@ -594,11 +623,11 @@
             // 
             this.openFileBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("openFileBtn.ImageOptions.Image")));
             this.openFileBtn.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.openFileBtn.Location = new System.Drawing.Point(343, 589);
+            this.openFileBtn.Location = new System.Drawing.Point(344, 561);
             this.openFileBtn.Name = "openFileBtn";
             this.openFileBtn.Size = new System.Drawing.Size(29, 23);
             this.openFileBtn.TabIndex = 4;
-            this.openFileBtn.ToolTip = "Вибрати файл";
+            this.openFileBtn.ToolTip = "Вибрати файл для добавления";
             this.openFileBtn.Click += new System.EventHandler(this.openFileBtn_Click);
             // 
             // imageCollection
@@ -612,321 +641,170 @@
             this.imageCollection.InsertGalleryImage("picturebox_16x16.png", "images/toolbox%20items/picturebox_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/toolbox%20items/picturebox_16x16.png"), 2);
             this.imageCollection.Images.SetKeyName(2, "picturebox_16x16.png");
             // 
-            // panelControl1
+            // groupControl3
             // 
-            this.panelControl1.Controls.Add(this.simpleButton1);
-            this.panelControl1.Controls.Add(this.textEdit1);
-            this.panelControl1.Controls.Add(this.simpleButton2);
-            this.panelControl1.Controls.Add(this.pictureEdit1);
-            this.panelControl1.Controls.Add(this.simpleButton3);
-            this.panelControl1.Location = new System.Drawing.Point(12, 326);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(141, 230);
-            this.panelControl1.TabIndex = 103;
+            this.groupControl3.Controls.Add(this.techProcess005Edit);
+            this.groupControl3.Controls.Add(this.labelControl17);
+            this.groupControl3.Controls.Add(this.techProcess004Edit);
+            this.groupControl3.Controls.Add(this.labelControl8);
+            this.groupControl3.Controls.Add(this.techProcess003Edit);
+            this.groupControl3.Controls.Add(this.labelControl7);
+            this.groupControl3.Controls.Add(this.techProcess002Edit);
+            this.groupControl3.Controls.Add(this.labelControl6);
+            this.groupControl3.Controls.Add(this.techProcess001Edit);
+            this.groupControl3.Controls.Add(this.labelControl5);
+            this.groupControl3.Location = new System.Drawing.Point(12, 326);
+            this.groupControl3.Name = "groupControl3";
+            this.groupControl3.Size = new System.Drawing.Size(389, 276);
+            this.groupControl3.TabIndex = 103;
+            this.groupControl3.Text = "Техпроцессы";
             // 
-            // simpleButton1
+            // techProcess001Edit
             // 
-            this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.simpleButton1.Location = new System.Drawing.Point(66, 192);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(29, 23);
-            this.simpleButton1.TabIndex = 24;
-            this.simpleButton1.ToolTip = "Очистити";
+            this.techProcess001Edit.Location = new System.Drawing.Point(6, 43);
+            this.techProcess001Edit.Name = "techProcess001Edit";
+            this.techProcess001Edit.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            editorButtonImageOptions22.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions22.Image")));
+            serializableAppearanceObject85.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject85.Image")));
+            serializableAppearanceObject85.Options.UseImage = true;
+            editorButtonImageOptions23.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions23.Image")));
+            serializableAppearanceObject89.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject89.Image")));
+            serializableAppearanceObject89.Options.UseImage = true;
+            editorButtonImageOptions24.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions24.Image")));
+            serializableAppearanceObject93.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject93.Image")));
+            serializableAppearanceObject93.Options.UseImage = true;
+            this.techProcess001Edit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions22, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject85, serializableAppearanceObject86, serializableAppearanceObject87, serializableAppearanceObject88, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions23, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject89, serializableAppearanceObject90, serializableAppearanceObject91, serializableAppearanceObject92, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions24, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject93, serializableAppearanceObject94, serializableAppearanceObject95, serializableAppearanceObject96, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.techProcess001Edit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CurrentLevelMenu", "Узел")});
+            this.techProcess001Edit.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.techProcess001Edit.Size = new System.Drawing.Size(365, 20);
+            this.techProcess001Edit.TabIndex = 37;
+            this.techProcess001Edit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.techProcess001Edit_ButtonClick);
             // 
-            // textEdit1
+            // labelControl5
             // 
-            this.textEdit1.Enabled = false;
-            this.textEdit1.Location = new System.Drawing.Point(6, 171);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
-            this.textEdit1.Properties.AppearanceDisabled.Options.UseForeColor = true;
-            this.textEdit1.Size = new System.Drawing.Size(125, 20);
-            this.textEdit1.TabIndex = 21;
+            this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelControl5.Appearance.Options.UseFont = true;
+            this.labelControl5.Location = new System.Drawing.Point(6, 23);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(101, 14);
+            this.labelControl5.TabIndex = 36;
+            this.labelControl5.Text = "Техпроцесс 001";
             // 
-            // simpleButton2
+            // techProcess002Edit
             // 
-            this.simpleButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
-            this.simpleButton2.Location = new System.Drawing.Point(101, 193);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(30, 23);
-            this.simpleButton2.TabIndex = 23;
-            this.simpleButton2.ToolTip = "Переглянути файл";
+            this.techProcess002Edit.Location = new System.Drawing.Point(6, 89);
+            this.techProcess002Edit.Name = "techProcess002Edit";
+            this.techProcess002Edit.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            editorButtonImageOptions19.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions19.Image")));
+            serializableAppearanceObject73.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject73.Image")));
+            serializableAppearanceObject73.Options.UseImage = true;
+            editorButtonImageOptions20.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions20.Image")));
+            serializableAppearanceObject77.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject77.Image")));
+            serializableAppearanceObject77.Options.UseImage = true;
+            editorButtonImageOptions21.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions21.Image")));
+            serializableAppearanceObject81.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject81.Image")));
+            serializableAppearanceObject81.Options.UseImage = true;
+            this.techProcess002Edit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions19, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject73, serializableAppearanceObject74, serializableAppearanceObject75, serializableAppearanceObject76, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions20, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject77, serializableAppearanceObject78, serializableAppearanceObject79, serializableAppearanceObject80, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions21, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject81, serializableAppearanceObject82, serializableAppearanceObject83, serializableAppearanceObject84, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.techProcess002Edit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CurrentLevelMenu", "Узел")});
+            this.techProcess002Edit.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.techProcess002Edit.Size = new System.Drawing.Size(365, 20);
+            this.techProcess002Edit.TabIndex = 39;
             // 
-            // pictureEdit1
+            // labelControl6
             // 
-            this.pictureEdit1.Location = new System.Drawing.Point(5, 11);
-            this.pictureEdit1.Name = "pictureEdit1";
-            this.pictureEdit1.Properties.AccessibleDescription = "";
-            this.pictureEdit1.Properties.AllowDisposeImage = true;
-            this.pictureEdit1.Properties.NullText = "Не додано скан ";
-            this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
-            this.pictureEdit1.Size = new System.Drawing.Size(126, 154);
-            this.pictureEdit1.TabIndex = 22;
+            this.labelControl6.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelControl6.Appearance.Options.UseFont = true;
+            this.labelControl6.Location = new System.Drawing.Point(6, 69);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(101, 14);
+            this.labelControl6.TabIndex = 38;
+            this.labelControl6.Text = "Техпроцесс 002";
             // 
-            // simpleButton3
+            // techProcess003Edit
             // 
-            this.simpleButton3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.ImageOptions.Image")));
-            this.simpleButton3.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.simpleButton3.Location = new System.Drawing.Point(31, 192);
-            this.simpleButton3.Name = "simpleButton3";
-            this.simpleButton3.Size = new System.Drawing.Size(29, 23);
-            this.simpleButton3.TabIndex = 4;
-            this.simpleButton3.ToolTip = "Вибрати файл";
+            this.techProcess003Edit.Location = new System.Drawing.Point(5, 135);
+            this.techProcess003Edit.Name = "techProcess003Edit";
+            this.techProcess003Edit.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            editorButtonImageOptions16.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions16.Image")));
+            serializableAppearanceObject61.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject61.Image")));
+            serializableAppearanceObject61.Options.UseImage = true;
+            editorButtonImageOptions17.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions17.Image")));
+            serializableAppearanceObject65.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject65.Image")));
+            serializableAppearanceObject65.Options.UseImage = true;
+            editorButtonImageOptions18.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions18.Image")));
+            serializableAppearanceObject69.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject69.Image")));
+            serializableAppearanceObject69.Options.UseImage = true;
+            this.techProcess003Edit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions16, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject61, serializableAppearanceObject62, serializableAppearanceObject63, serializableAppearanceObject64, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions17, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject65, serializableAppearanceObject66, serializableAppearanceObject67, serializableAppearanceObject68, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions18, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject69, serializableAppearanceObject70, serializableAppearanceObject71, serializableAppearanceObject72, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.techProcess003Edit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CurrentLevelMenu", "Узел")});
+            this.techProcess003Edit.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.techProcess003Edit.Size = new System.Drawing.Size(365, 20);
+            this.techProcess003Edit.TabIndex = 41;
             // 
-            // panelControl3
+            // labelControl7
             // 
-            this.panelControl3.Controls.Add(this.simpleButton4);
-            this.panelControl3.Controls.Add(this.textEdit2);
-            this.panelControl3.Controls.Add(this.simpleButton5);
-            this.panelControl3.Controls.Add(this.pictureEdit2);
-            this.panelControl3.Controls.Add(this.simpleButton6);
-            this.panelControl3.Location = new System.Drawing.Point(159, 326);
-            this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(135, 230);
-            this.panelControl3.TabIndex = 104;
+            this.labelControl7.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelControl7.Appearance.Options.UseFont = true;
+            this.labelControl7.Location = new System.Drawing.Point(5, 115);
+            this.labelControl7.Name = "labelControl7";
+            this.labelControl7.Size = new System.Drawing.Size(101, 14);
+            this.labelControl7.TabIndex = 40;
+            this.labelControl7.Text = "Техпроцесс 003";
             // 
-            // simpleButton4
+            // techProcess004Edit
             // 
-            this.simpleButton4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton4.ImageOptions.Image")));
-            this.simpleButton4.Location = new System.Drawing.Point(61, 197);
-            this.simpleButton4.Name = "simpleButton4";
-            this.simpleButton4.Size = new System.Drawing.Size(29, 23);
-            this.simpleButton4.TabIndex = 24;
-            this.simpleButton4.ToolTip = "Очистити";
+            this.techProcess004Edit.Location = new System.Drawing.Point(5, 181);
+            this.techProcess004Edit.Name = "techProcess004Edit";
+            this.techProcess004Edit.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            editorButtonImageOptions13.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions13.Image")));
+            serializableAppearanceObject49.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject49.Image")));
+            serializableAppearanceObject49.Options.UseImage = true;
+            editorButtonImageOptions14.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions14.Image")));
+            serializableAppearanceObject53.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject53.Image")));
+            serializableAppearanceObject53.Options.UseImage = true;
+            editorButtonImageOptions15.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions15.Image")));
+            serializableAppearanceObject57.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject57.Image")));
+            serializableAppearanceObject57.Options.UseImage = true;
+            this.techProcess004Edit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions13, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject49, serializableAppearanceObject50, serializableAppearanceObject51, serializableAppearanceObject52, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions14, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject53, serializableAppearanceObject54, serializableAppearanceObject55, serializableAppearanceObject56, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions15, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject57, serializableAppearanceObject58, serializableAppearanceObject59, serializableAppearanceObject60, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.techProcess004Edit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CurrentLevelMenu", "Узел")});
+            this.techProcess004Edit.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.techProcess004Edit.Size = new System.Drawing.Size(365, 20);
+            this.techProcess004Edit.TabIndex = 43;
             // 
-            // textEdit2
+            // labelControl8
             // 
-            this.textEdit2.Enabled = false;
-            this.textEdit2.Location = new System.Drawing.Point(6, 171);
-            this.textEdit2.Name = "textEdit2";
-            this.textEdit2.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
-            this.textEdit2.Properties.AppearanceDisabled.Options.UseForeColor = true;
-            this.textEdit2.Size = new System.Drawing.Size(120, 20);
-            this.textEdit2.TabIndex = 21;
+            this.labelControl8.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelControl8.Appearance.Options.UseFont = true;
+            this.labelControl8.Location = new System.Drawing.Point(5, 161);
+            this.labelControl8.Name = "labelControl8";
+            this.labelControl8.Size = new System.Drawing.Size(101, 14);
+            this.labelControl8.TabIndex = 42;
+            this.labelControl8.Text = "Техпроцесс 004";
             // 
-            // simpleButton5
+            // techProcess005Edit
             // 
-            this.simpleButton5.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton5.ImageOptions.Image")));
-            this.simpleButton5.Location = new System.Drawing.Point(96, 197);
-            this.simpleButton5.Name = "simpleButton5";
-            this.simpleButton5.Size = new System.Drawing.Size(30, 23);
-            this.simpleButton5.TabIndex = 23;
-            this.simpleButton5.ToolTip = "Переглянути файл";
-            // 
-            // pictureEdit2
-            // 
-            this.pictureEdit2.Location = new System.Drawing.Point(5, 11);
-            this.pictureEdit2.Name = "pictureEdit2";
-            this.pictureEdit2.Properties.AccessibleDescription = "";
-            this.pictureEdit2.Properties.AllowDisposeImage = true;
-            this.pictureEdit2.Properties.NullText = "Не додано скан ";
-            this.pictureEdit2.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit2.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
-            this.pictureEdit2.Size = new System.Drawing.Size(121, 154);
-            this.pictureEdit2.TabIndex = 22;
-            // 
-            // simpleButton6
-            // 
-            this.simpleButton6.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton6.ImageOptions.Image")));
-            this.simpleButton6.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.simpleButton6.Location = new System.Drawing.Point(26, 197);
-            this.simpleButton6.Name = "simpleButton6";
-            this.simpleButton6.Size = new System.Drawing.Size(29, 23);
-            this.simpleButton6.TabIndex = 4;
-            this.simpleButton6.ToolTip = "Вибрати файл";
-            // 
-            // panelControl4
-            // 
-            this.panelControl4.Controls.Add(this.simpleButton7);
-            this.panelControl4.Controls.Add(this.textEdit3);
-            this.panelControl4.Controls.Add(this.simpleButton8);
-            this.panelControl4.Controls.Add(this.pictureEdit3);
-            this.panelControl4.Controls.Add(this.simpleButton9);
-            this.panelControl4.Location = new System.Drawing.Point(300, 326);
-            this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(131, 230);
-            this.panelControl4.TabIndex = 105;
-            // 
-            // simpleButton7
-            // 
-            this.simpleButton7.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton7.ImageOptions.Image")));
-            this.simpleButton7.Location = new System.Drawing.Point(61, 198);
-            this.simpleButton7.Name = "simpleButton7";
-            this.simpleButton7.Size = new System.Drawing.Size(29, 23);
-            this.simpleButton7.TabIndex = 24;
-            this.simpleButton7.ToolTip = "Очистити";
-            // 
-            // textEdit3
-            // 
-            this.textEdit3.Enabled = false;
-            this.textEdit3.Location = new System.Drawing.Point(4, 171);
-            this.textEdit3.Name = "textEdit3";
-            this.textEdit3.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
-            this.textEdit3.Properties.AppearanceDisabled.Options.UseForeColor = true;
-            this.textEdit3.Size = new System.Drawing.Size(122, 20);
-            this.textEdit3.TabIndex = 21;
-            // 
-            // simpleButton8
-            // 
-            this.simpleButton8.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton8.ImageOptions.Image")));
-            this.simpleButton8.Location = new System.Drawing.Point(96, 198);
-            this.simpleButton8.Name = "simpleButton8";
-            this.simpleButton8.Size = new System.Drawing.Size(30, 23);
-            this.simpleButton8.TabIndex = 23;
-            this.simpleButton8.ToolTip = "Переглянути файл";
-            // 
-            // pictureEdit3
-            // 
-            this.pictureEdit3.Location = new System.Drawing.Point(5, 11);
-            this.pictureEdit3.Name = "pictureEdit3";
-            this.pictureEdit3.Properties.AccessibleDescription = "";
-            this.pictureEdit3.Properties.AllowDisposeImage = true;
-            this.pictureEdit3.Properties.NullText = "Не додано скан ";
-            this.pictureEdit3.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit3.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
-            this.pictureEdit3.Size = new System.Drawing.Size(121, 154);
-            this.pictureEdit3.TabIndex = 22;
-            // 
-            // simpleButton9
-            // 
-            this.simpleButton9.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton9.ImageOptions.Image")));
-            this.simpleButton9.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.simpleButton9.Location = new System.Drawing.Point(26, 198);
-            this.simpleButton9.Name = "simpleButton9";
-            this.simpleButton9.Size = new System.Drawing.Size(29, 23);
-            this.simpleButton9.TabIndex = 4;
-            this.simpleButton9.ToolTip = "Вибрати файл";
-            // 
-            // panelControl5
-            // 
-            this.panelControl5.Controls.Add(this.simpleButton10);
-            this.panelControl5.Controls.Add(this.textEdit4);
-            this.panelControl5.Controls.Add(this.simpleButton11);
-            this.panelControl5.Controls.Add(this.pictureEdit4);
-            this.panelControl5.Controls.Add(this.simpleButton12);
-            this.panelControl5.Location = new System.Drawing.Point(437, 326);
-            this.panelControl5.Name = "panelControl5";
-            this.panelControl5.Size = new System.Drawing.Size(138, 230);
-            this.panelControl5.TabIndex = 106;
-            // 
-            // simpleButton10
-            // 
-            this.simpleButton10.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton10.ImageOptions.Image")));
-            this.simpleButton10.Location = new System.Drawing.Point(61, 198);
-            this.simpleButton10.Name = "simpleButton10";
-            this.simpleButton10.Size = new System.Drawing.Size(29, 23);
-            this.simpleButton10.TabIndex = 24;
-            this.simpleButton10.ToolTip = "Очистити";
-            // 
-            // textEdit4
-            // 
-            this.textEdit4.Enabled = false;
-            this.textEdit4.Location = new System.Drawing.Point(5, 171);
-            this.textEdit4.Name = "textEdit4";
-            this.textEdit4.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
-            this.textEdit4.Properties.AppearanceDisabled.Options.UseForeColor = true;
-            this.textEdit4.Size = new System.Drawing.Size(121, 20);
-            this.textEdit4.TabIndex = 21;
-            // 
-            // simpleButton11
-            // 
-            this.simpleButton11.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton11.ImageOptions.Image")));
-            this.simpleButton11.Location = new System.Drawing.Point(96, 198);
-            this.simpleButton11.Name = "simpleButton11";
-            this.simpleButton11.Size = new System.Drawing.Size(30, 23);
-            this.simpleButton11.TabIndex = 23;
-            this.simpleButton11.ToolTip = "Переглянути файл";
-            // 
-            // pictureEdit4
-            // 
-            this.pictureEdit4.Location = new System.Drawing.Point(5, 11);
-            this.pictureEdit4.Name = "pictureEdit4";
-            this.pictureEdit4.Properties.AccessibleDescription = "";
-            this.pictureEdit4.Properties.AllowDisposeImage = true;
-            this.pictureEdit4.Properties.NullText = "Не додано скан ";
-            this.pictureEdit4.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit4.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
-            this.pictureEdit4.Size = new System.Drawing.Size(121, 154);
-            this.pictureEdit4.TabIndex = 22;
-            // 
-            // simpleButton12
-            // 
-            this.simpleButton12.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton12.ImageOptions.Image")));
-            this.simpleButton12.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.simpleButton12.Location = new System.Drawing.Point(26, 198);
-            this.simpleButton12.Name = "simpleButton12";
-            this.simpleButton12.Size = new System.Drawing.Size(29, 23);
-            this.simpleButton12.TabIndex = 4;
-            this.simpleButton12.ToolTip = "Вибрати файл";
-            // 
-            // panelControl6
-            // 
-            this.panelControl6.Controls.Add(this.simpleButton13);
-            this.panelControl6.Controls.Add(this.textEdit5);
-            this.panelControl6.Controls.Add(this.simpleButton14);
-            this.panelControl6.Controls.Add(this.pictureEdit5);
-            this.panelControl6.Controls.Add(this.simpleButton15);
-            this.panelControl6.Location = new System.Drawing.Point(581, 326);
-            this.panelControl6.Name = "panelControl6";
-            this.panelControl6.Size = new System.Drawing.Size(136, 230);
-            this.panelControl6.TabIndex = 107;
-            // 
-            // simpleButton13
-            // 
-            this.simpleButton13.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton13.ImageOptions.Image")));
-            this.simpleButton13.Location = new System.Drawing.Point(61, 198);
-            this.simpleButton13.Name = "simpleButton13";
-            this.simpleButton13.Size = new System.Drawing.Size(29, 23);
-            this.simpleButton13.TabIndex = 24;
-            this.simpleButton13.ToolTip = "Очистити";
-            // 
-            // textEdit5
-            // 
-            this.textEdit5.Enabled = false;
-            this.textEdit5.Location = new System.Drawing.Point(5, 171);
-            this.textEdit5.Name = "textEdit5";
-            this.textEdit5.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black;
-            this.textEdit5.Properties.AppearanceDisabled.Options.UseForeColor = true;
-            this.textEdit5.Size = new System.Drawing.Size(121, 20);
-            this.textEdit5.TabIndex = 21;
-            // 
-            // simpleButton14
-            // 
-            this.simpleButton14.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton14.ImageOptions.Image")));
-            this.simpleButton14.Location = new System.Drawing.Point(96, 198);
-            this.simpleButton14.Name = "simpleButton14";
-            this.simpleButton14.Size = new System.Drawing.Size(30, 23);
-            this.simpleButton14.TabIndex = 23;
-            this.simpleButton14.ToolTip = "Переглянути файл";
-            // 
-            // pictureEdit5
-            // 
-            this.pictureEdit5.Location = new System.Drawing.Point(6, 11);
-            this.pictureEdit5.Name = "pictureEdit5";
-            this.pictureEdit5.Properties.AccessibleDescription = "";
-            this.pictureEdit5.Properties.AllowDisposeImage = true;
-            this.pictureEdit5.Properties.NullText = "Не додано скан ";
-            this.pictureEdit5.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit5.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
-            this.pictureEdit5.Size = new System.Drawing.Size(120, 154);
-            this.pictureEdit5.TabIndex = 22;
-            // 
-            // simpleButton15
-            // 
-            this.simpleButton15.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton15.ImageOptions.Image")));
-            this.simpleButton15.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.simpleButton15.Location = new System.Drawing.Point(26, 198);
-            this.simpleButton15.Name = "simpleButton15";
-            this.simpleButton15.Size = new System.Drawing.Size(29, 23);
-            this.simpleButton15.TabIndex = 4;
-            this.simpleButton15.ToolTip = "Вибрати файл";
-            // 
-            // drawingScanEdit
-            // 
-            this.drawingScanEdit.Location = new System.Drawing.Point(10, 563);
-            this.drawingScanEdit.Name = "drawingScanEdit";
-            this.drawingScanEdit.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.techProcess005Edit.Location = new System.Drawing.Point(5, 223);
+            this.techProcess005Edit.Name = "techProcess005Edit";
+            this.techProcess005Edit.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             editorButtonImageOptions10.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions10.Image")));
             serializableAppearanceObject37.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject37.Image")));
             serializableAppearanceObject37.Options.UseImage = true;
@@ -936,27 +814,33 @@
             editorButtonImageOptions12.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions12.Image")));
             serializableAppearanceObject45.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject45.Image")));
             serializableAppearanceObject45.Options.UseImage = true;
-            this.drawingScanEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.techProcess005Edit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions10, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject37, serializableAppearanceObject38, serializableAppearanceObject39, serializableAppearanceObject40, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions11, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject41, serializableAppearanceObject42, serializableAppearanceObject43, serializableAppearanceObject44, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions12, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject45, serializableAppearanceObject46, serializableAppearanceObject47, serializableAppearanceObject48, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.drawingScanEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("FileName", "Имя файла")});
-            this.drawingScanEdit.Size = new System.Drawing.Size(433, 20);
-            this.drawingScanEdit.TabIndex = 25;
-            this.drawingScanEdit.EditValueChanged += new System.EventHandler(this.drawingScanEdit_EditValueChanged);
+            this.techProcess005Edit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CurrentLevelMenu", "Узел")});
+            this.techProcess005Edit.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.techProcess005Edit.Size = new System.Drawing.Size(365, 20);
+            this.techProcess005Edit.TabIndex = 45;
+            // 
+            // labelControl17
+            // 
+            this.labelControl17.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelControl17.Appearance.Options.UseFont = true;
+            this.labelControl17.Location = new System.Drawing.Point(5, 203);
+            this.labelControl17.Name = "labelControl17";
+            this.labelControl17.Size = new System.Drawing.Size(101, 14);
+            this.labelControl17.TabIndex = 44;
+            this.labelControl17.Text = "Техпроцесс 005";
             // 
             // DrawingsEditFm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1424, 665);
-            this.Controls.Add(this.panelControl6);
-            this.Controls.Add(this.panelControl5);
-            this.Controls.Add(this.panelControl4);
-            this.Controls.Add(this.panelControl3);
-            this.Controls.Add(this.panelControl1);
+            this.ClientSize = new System.Drawing.Size(1179, 665);
+            this.Controls.Add(this.groupControl3);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.saveBtn);
@@ -966,6 +850,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DrawingsEditFm";
             this.Text = "Редактирование чертежа";
+            this.Load += new System.EventHandler(this.DrawingsEditFm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
@@ -986,30 +871,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.thEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.fileNameTbox.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.drawingScanEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
-            this.panelControl3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
-            this.panelControl4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).EndInit();
-            this.panelControl5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit4.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl6)).EndInit();
-            this.panelControl6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit5.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.drawingScanEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
+            this.groupControl3.ResumeLayout(false);
+            this.groupControl3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.techProcess001Edit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.techProcess002Edit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.techProcess003Edit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.techProcess004Edit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.techProcess005Edit.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1046,43 +918,23 @@
         private DevExpress.XtraEditors.TextEdit lEdit;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraEditors.SimpleButton clearBtn;
-        private DevExpress.XtraEditors.TextEdit fileNameTbox;
         private DevExpress.XtraEditors.SimpleButton showBtn;
         private DevExpress.XtraEditors.PictureEdit pictureEdit;
         private DevExpress.XtraEditors.SimpleButton openFileBtn;
         private DevExpress.Utils.ImageCollection imageCollection;
-        private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
-        private DevExpress.XtraEditors.PictureEdit pictureEdit1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton3;
-        private DevExpress.XtraEditors.PanelControl panelControl3;
-        private DevExpress.XtraEditors.SimpleButton simpleButton4;
-        private DevExpress.XtraEditors.TextEdit textEdit2;
-        private DevExpress.XtraEditors.SimpleButton simpleButton5;
-        private DevExpress.XtraEditors.PictureEdit pictureEdit2;
-        private DevExpress.XtraEditors.SimpleButton simpleButton6;
-        private DevExpress.XtraEditors.PanelControl panelControl4;
-        private DevExpress.XtraEditors.SimpleButton simpleButton7;
-        private DevExpress.XtraEditors.TextEdit textEdit3;
-        private DevExpress.XtraEditors.SimpleButton simpleButton8;
-        private DevExpress.XtraEditors.PictureEdit pictureEdit3;
-        private DevExpress.XtraEditors.SimpleButton simpleButton9;
-        private DevExpress.XtraEditors.PanelControl panelControl5;
-        private DevExpress.XtraEditors.SimpleButton simpleButton10;
-        private DevExpress.XtraEditors.TextEdit textEdit4;
-        private DevExpress.XtraEditors.SimpleButton simpleButton11;
-        private DevExpress.XtraEditors.PictureEdit pictureEdit4;
-        private DevExpress.XtraEditors.SimpleButton simpleButton12;
-        private DevExpress.XtraEditors.PanelControl panelControl6;
-        private DevExpress.XtraEditors.SimpleButton simpleButton13;
-        private DevExpress.XtraEditors.TextEdit textEdit5;
-        private DevExpress.XtraEditors.SimpleButton simpleButton14;
-        private DevExpress.XtraEditors.PictureEdit pictureEdit5;
-        private DevExpress.XtraEditors.SimpleButton simpleButton15;
         private DevExpress.XtraEditors.LookUpEdit lookUpEdit1;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.LookUpEdit drawingScanEdit;
+        private DevExpress.XtraEditors.GroupControl groupControl3;
+        private DevExpress.XtraEditors.LookUpEdit techProcess005Edit;
+        private DevExpress.XtraEditors.LabelControl labelControl17;
+        private DevExpress.XtraEditors.LookUpEdit techProcess004Edit;
+        private DevExpress.XtraEditors.LabelControl labelControl8;
+        private DevExpress.XtraEditors.LookUpEdit techProcess003Edit;
+        private DevExpress.XtraEditors.LabelControl labelControl7;
+        private DevExpress.XtraEditors.LookUpEdit techProcess002Edit;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.LookUpEdit techProcess001Edit;
+        private DevExpress.XtraEditors.LabelControl labelControl5;
     }
 }

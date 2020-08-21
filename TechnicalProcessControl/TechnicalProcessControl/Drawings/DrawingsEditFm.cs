@@ -28,7 +28,7 @@ namespace TechnicalProcessControl.Drawings
         private BindingSource drawingsBS = new BindingSource();
         private BindingSource drawingsScanBS = new BindingSource();
 
-        private DrawingScanDTO drawingScanDTO = new DrawingScanDTO();
+        private List<DrawingScanDTO> drawingScanList = new List<DrawingScanDTO>();
 
         private BindingSource parentCurrentLevelMenuEditBS = new BindingSource();
         private BindingSource typeBS = new BindingSource();
@@ -107,62 +107,66 @@ namespace TechnicalProcessControl.Drawings
 
                 case Utils.Operation.Update:
                     parentCurrentLevelMenuEdit.DataBindings.Add("EditValue", drawingsBS, "Id", true, DataSourceUpdateMode.OnPropertyChanged);
-                    
-                    drawingsScanBS.DataSource = drawingService.GetDravingScanById(((DrawingsDTO)Item).Id);
+
+                    drawingScanList = drawingService.GetDravingScanById(((DrawingsDTO)Item).Id).ToList();
+                    drawingsScanBS.DataSource = drawingScanList;
                     drawingScanEdit.Properties.DataSource = drawingsScanBS;
                     drawingScanEdit.Properties.ValueMember = "Id";
                     drawingScanEdit.Properties.DisplayMember = "FileName";
                     drawingScanEdit.Properties.NullText = "Немає данних";
 
-                    drawingScanDTO = ((DrawingScanDTO)(drawingsScanBS.Current));
+                    //if (drawingScanList.Count > 0)
+                    //    drawingScanEdit.EditValue = drawingScanList[0].Id;
 
-                    if (drawingScanDTO != null)
-                    {
-                        int stratIndex = drawingScanDTO.FileName.IndexOf('.');
-                        string typeFile = drawingScanDTO.FileName.Substring(stratIndex);
 
-                        switch (typeFile)
-                        {
-                            //case ".pdf":
-                            //    pictureEdit.Image = imageCollection.Images[1];
-                            //    pictureEdit.Properties.SizeMode = PictureSizeMode.Clip;
-                            //    break;
-                            default:
-                                //Bitmap bitmap = new Bitmap(drawingScanDTO.Scan);
-                                ImageConverter ic = new ImageConverter();
 
-                                Image img = (Image)ic.ConvertFrom(drawingScanDTO.Scan);
-
-                                Bitmap bitmap1 = new Bitmap(img);
-
-                                pictureEdit.Properties.SizeMode = PictureSizeMode.Zoom;
-                                pictureEdit.EditValue = bitmap1;
-                                fileNameTbox.EditValue = drawingScanDTO.FileName;
-
-                                //pictureEdit.Image = Image.FromStream(drawingScanDTO.Scan);
-                                //pictureEdit.Properties.SizeMode = PictureSizeMode.Clip;
-                                break;
-                        }
-
-                    //    fileNameTbox.EditValue = drawingScanDTO.FileName;
-
-                    //    byte[] scan = System.IO.File.ReadAllBytes(@filePath);
-
-                    //    drawingScanDTO.Scan = scan;
-                    //    drawingScanDTO.FileName = fileName;
-                    //}
-                    //else
-                    //    return;
-
-                    //try
+                    //if (drawingScanDTO != null)
                     //{
-                    //    Bitmap bitmap = new Bitmap(filePath);
-                    //    pictureEdit.Properties.SizeMode = PictureSizeMode.Zoom;
-                    //    pictureEdit.EditValue = bitmap;
-                    //    fileNameTbox.EditValue = fileName;
-                    //}
+                    //    int stratIndex = drawingScanDTO.FileName.IndexOf('.');
+                    //    string typeFile = drawingScanDTO.FileName.Substring(stratIndex);
 
-                    }
+                        //    switch (typeFile)
+                        //    {
+                        //        //case ".pdf":
+                        //        //    pictureEdit.Image = imageCollection.Images[1];
+                        //        //    pictureEdit.Properties.SizeMode = PictureSizeMode.Clip;
+                        //        //    break;
+                        //        default:
+                        //            //Bitmap bitmap = new Bitmap(drawingScanDTO.Scan);
+                        //            ImageConverter ic = new ImageConverter();
+
+                        //            Image img = (Image)ic.ConvertFrom(drawingScanDTO.Scan);
+
+                        //            Bitmap bitmap1 = new Bitmap(img);
+
+                        //            pictureEdit.Properties.SizeMode = PictureSizeMode.Zoom;
+                        //            pictureEdit.EditValue = bitmap1;
+                        //            fileNameTbox.EditValue = drawingScanDTO.FileName;
+
+                        //            //pictureEdit.Image = Image.FromStream(drawingScanDTO.Scan);
+                        //            //pictureEdit.Properties.SizeMode = PictureSizeMode.Clip;
+                        //            break;
+                        //    }
+
+                        //    fileNameTbox.EditValue = drawingScanDTO.FileName;
+
+                        //    byte[] scan = System.IO.File.ReadAllBytes(@filePath);
+
+                        //    drawingScanDTO.Scan = scan;
+                        //    drawingScanDTO.FileName = fileName;
+                        //}
+                        //else
+                        //    return;
+
+                        //try
+                        //{
+                        //    Bitmap bitmap = new Bitmap(filePath);
+                        //    pictureEdit.Properties.SizeMode = PictureSizeMode.Zoom;
+                        //    pictureEdit.EditValue = bitmap;
+                        //    fileNameTbox.EditValue = fileName;
+                        //}
+
+                        //}
                     break;
 
                 default:
@@ -189,34 +193,34 @@ namespace TechnicalProcessControl.Drawings
                 {
                     ((DrawingsDTO)Item).Id = drawingService.DrawingCreate((DrawingsDTO)Item);
                     return true;
-                    if (drawingScanDTO.Scan != null)
-                    {
-                        drawingScanDTO.DrawingId = ((DrawingsDTO)Item).Id;
-                        ((DrawingsDTO)Item).ScanId = drawingService.DrawingScanCreate(drawingScanDTO);
+                    //if (drawingScanDTO.Scan != null)
+                    //{
+                    //    drawingScanDTO.DrawingId = ((DrawingsDTO)Item).Id;
+                    //    ((DrawingsDTO)Item).ScanId = drawingService.DrawingScanCreate(drawingScanDTO);
 
-                    }
+                    //}
                 }
                 else
                 {
 
                     drawingService.DrawingUpdate((DrawingsDTO)Item);
-                    if (drawingScanDTO != null)
-                    {
-                        if (drawingScanDTO.Scan == null && drawingScanDTO.Id > 0)
-                        {
-                            drawingService.DrawingScanDelete(drawingScanDTO.Id);
-                            ((DrawingsDTO)Item).ScanId = null;
-                        }
-                        else if (drawingScanDTO.Scan != null && drawingScanDTO.Id == 0)
-                        {
-                            drawingScanDTO.DrawingId = ((DrawingsDTO)Item).Id;
-                            ((DrawingsDTO)Item).ScanId = drawingService.DrawingScanCreate(drawingScanDTO);
-                        }
-                        else
-                        {
-                            drawingService.DrawingScanUpdate(drawingScanDTO);
-                        }
-                    }
+                    //if (drawingScanDTO != null)
+                    //{
+                    //    if (drawingScanDTO.Scan == null && drawingScanDTO.Id > 0)
+                    //    {
+                    //        drawingService.DrawingScanDelete(drawingScanDTO.Id);
+                    //        ((DrawingsDTO)Item).ScanId = null;
+                    //    }
+                    //    else if (drawingScanDTO.Scan != null && drawingScanDTO.Id == 0)
+                    //    {
+                    //        drawingScanDTO.DrawingId = ((DrawingsDTO)Item).Id;
+                    //        ((DrawingsDTO)Item).ScanId = drawingService.DrawingScanCreate(drawingScanDTO);
+                    //    }
+                    //    else
+                    //    {
+                    //        drawingService.DrawingScanUpdate(drawingScanDTO);
+                    //    }
+                    //}
 
                     String updateTemplate = "";
 
@@ -355,8 +359,7 @@ namespace TechnicalProcessControl.Drawings
 
         private void openFileBtn_Click(object sender, EventArgs e)
         {
-            if (drawingScanDTO == null)
-                drawingScanDTO = new DrawingScanDTO();
+            DrawingScanDTO drawingScanDTO = new DrawingScanDTO();
 
             string filePath = "";
             string fileName = "";
@@ -373,65 +376,71 @@ namespace TechnicalProcessControl.Drawings
                 drawingScanDTO.DrawingId = ((DrawingsDTO)Item).Id;
                 drawingScanDTO.Scan = scan;
                 drawingScanDTO.FileName = fileName;
+
+                try
+                {
+                    int drawingScanId = drawingService.DrawingScanCreate(drawingScanDTO);
+                    drawingScanList.Add(drawingScanDTO);
+                    drawingScanEdit.EditValue = drawingScanId;
+                    drawingScanEdit.Text = drawingScanDTO.FileName;
+
+                    Bitmap bitmap = new Bitmap(filePath);
+                    pictureEdit.Properties.SizeMode = PictureSizeMode.Zoom;
+                    pictureEdit.EditValue = bitmap;
+                    //fileNameTbox.EditValue = fileName;
+                }
+                catch (Exception  ex)
+                {
+                    MessageBox.Show("При добавлении скана возникла ошибка. " + ex.Message, "Сохранение чертежа", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
             }
             else
                 return;
 
-            try
-            {
-                Bitmap bitmap = new Bitmap(filePath);
-                pictureEdit.Properties.SizeMode = PictureSizeMode.Zoom;
-                pictureEdit.EditValue = bitmap;
-                fileNameTbox.EditValue = fileName;
-            }
-            catch (Exception)
-            {
-                int stratIndex = filePath.IndexOf('.');
-                string typeFile = filePath.Substring(stratIndex);
-
-                switch (typeFile)
-                {
-                    //case ".pdf":
-                    //    fileNameTbox.EditValue = fileName;
-                    //    pictureEdit.Image = imageCollection.Images[1];
-                    //    pictureEdit.Properties.SizeMode = PictureSizeMode.Clip;
-                    //    break;
-                    default:
-                        fileNameTbox.EditValue = fileName;
-                        pictureEdit.Image = imageCollection.Images[0];
-                        pictureEdit.Properties.SizeMode = PictureSizeMode.Clip;
-                        break;
-                }
-            }
+            
         }
 
         private void clearBtn_Click(object sender, EventArgs e)
         {
-            drawingScanDTO.Scan = null;
-            drawingScanDTO.FileName = null;
-            pictureEdit.EditValue = null;
-            fileNameTbox.EditValue = null;
+            DrawingScanDTO drawingScanDTO = (DrawingScanDTO)drawingScanEdit.GetSelectedDataRow();
+            try
+            {
+                drawingService.DrawingScanDelete(drawingScanDTO.Id);
+                drawingScanList = drawingService.GetDravingScanById(((DrawingsDTO)Item).Id).ToList();
+                drawingsScanBS.DataSource = drawingScanList;
+                if (drawingScanList.Count > 0)
+                {
+                    drawingScanEdit.EditValue = drawingScanList[0].Id;
+                }
+                else
+                {
+                    drawingScanEdit.EditValue = null;
+                    pictureEdit.EditValue = null;
+                    //fileNameTbox.EditValue = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("При добавлении скана возникла ошибка. " + ex.Message, "Сохранение чертежа", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void showBtn_Click(object sender, EventArgs e)
         {
-            string fileName = (string)fileNameTbox.EditValue;
-            byte[] scan = drawingScanDTO.Scan;
-            if (fileName != null)
+            DrawingScanDTO drawingScanDTO = (DrawingScanDTO)drawingScanEdit.GetSelectedDataRow();
+            if (drawingScanDTO != null)
             {
                 string puth = Utils.HomePath + @"\Temp";
-
-                System.IO.File.WriteAllBytes(puth + fileName, scan);
-
-                System.Diagnostics.Process.Start(puth + fileName);
+                System.IO.File.WriteAllBytes(puth + drawingScanDTO.FileName, drawingScanDTO.Scan);
+                System.Diagnostics.Process.Start(puth + drawingScanDTO.FileName);
             }
         }
 
         private void drawingScanEdit_EditValueChanged(object sender, EventArgs e)
         {
 
-            drawingScanDTO = (DrawingScanDTO)drawingScanEdit.GetSelectedDataRow();
-            //drawingScanDTO = ((DrawingScanDTO)(drawingsScanBS.Current));
+            DrawingScanDTO drawingScanDTO = (DrawingScanDTO)drawingScanEdit.GetSelectedDataRow();
 
             if (drawingScanDTO != null)
             {
@@ -440,10 +449,6 @@ namespace TechnicalProcessControl.Drawings
 
                 switch (typeFile)
                 {
-                    //case ".pdf":
-                    //    pictureEdit.Image = imageCollection.Images[1];
-                    //    pictureEdit.Properties.SizeMode = PictureSizeMode.Clip;
-                    //    break;
                     default:
                         //Bitmap bitmap = new Bitmap(drawingScanDTO.Scan);
                         ImageConverter ic = new ImageConverter();
@@ -454,13 +459,82 @@ namespace TechnicalProcessControl.Drawings
 
                         pictureEdit.Properties.SizeMode = PictureSizeMode.Zoom;
                         pictureEdit.EditValue = bitmap1;
-                        fileNameTbox.EditValue = drawingScanDTO.FileName;
-
-                        //pictureEdit.Image = Image.FromStream(drawingScanDTO.Scan);
-                        //pictureEdit.Properties.SizeMode = PictureSizeMode.Clip;
+                        //fileNameTbox.EditValue = drawingScanDTO.FileName;
                         break;
                 }
             }
+        }
+
+        private void drawingScanEdit_EditValueChanging(object sender, ChangingEventArgs e)
+        {
+
+        }
+
+        private void DrawingsEditFm_Load(object sender, EventArgs e)
+        {
+            if (drawingScanList.Count > 0)
+                drawingScanEdit.EditValue = drawingScanList[0].Id;
+        }
+
+        private void techProcess001Edit_ButtonClick(object sender, ButtonPressedEventArgs e)
+        {
+            //botService = Program.kernel.Get<IBotService>();
+            //switch (e.Button.Index)
+            //{
+            //    case 1: //Додати
+            //        {
+            //            using (OrganisationEditFm organisationEditFm = new OrganisationEditFm(Utils.Operation.Add, new ContractorsDTO()))
+            //            {
+            //                if (organisationEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            //                {
+            //                    int return_Id = organisationEditFm.Return();
+            //                    botService = Program.kernel.Get<IBotService>();
+            //                    organisationBS.DataSource = botService.GetAllContractors();
+            //                    organisationEdit.EditValue = return_Id;
+            //                }
+            //            }
+            //            break;
+            //        }
+            //    case 2://Редагувати
+            //        {
+            //            if (organisationEdit.EditValue == DBNull.Value)
+            //                return;
+
+            //            using (OrganisationEditFm organisationEditFm = new OrganisationEditFm(Utils.Operation.Update, (ContractorsDTO)organisationEdit.GetSelectedDataRow()))
+            //            {
+            //                if (organisationEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            //                {
+            //                    int return_Id = organisationEditFm.Return();
+            //                    botService = Program.kernel.Get<IBotService>();
+            //                    organisationBS.DataSource = botService.GetAllContractors();
+            //                    organisationEdit.EditValue = return_Id;
+            //                }
+            //            }
+            //            break;
+            //        }
+            //    case 3://Видалити
+            //        {
+            //            if (organisationEdit.EditValue == DBNull.Value)
+            //                return;
+
+            //            if (MessageBox.Show("Удалить?", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            //            {
+            //                botService.ContractorDelete(((ContractorsDTO)organisationEdit.GetSelectedDataRow()).Id);
+            //                botService = Program.kernel.Get<IBotService>();
+            //                organisationEdit.Properties.DataSource = botService.GetAllContractors();
+            //                organisationEdit.EditValue = null;
+            //                organisationEdit.Properties.NullText = "Немає данних";
+            //            }
+
+            //            break;
+            //        }
+            //    case 4://Очистити
+            //        {
+            //            organisationEdit.EditValue = null;
+            //            organisationEdit.Properties.NullText = "Немає данних";
+            //            break;
+            //        }
+            //}
         }
     }
 }

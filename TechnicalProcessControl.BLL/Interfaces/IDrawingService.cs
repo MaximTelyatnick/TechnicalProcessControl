@@ -22,7 +22,7 @@ namespace TechnicalProcessControl.BLL.Interfaces
         string GetParentName(int parentId);
 
         IEnumerable<DrawingScanDTO> GetDravingScanById(int drawingId);
-
+        bool CheckTechProcess001(string techProcesName);
         long GetLastTechProcess001();
         long GetLastTechProcess002();
 

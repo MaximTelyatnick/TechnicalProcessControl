@@ -89,12 +89,13 @@ namespace TechnicalProcessControl.BLL.Services
                           from tcp004 in tcpp004.DefaultIfEmpty()
                           join tcp005 in techProcess005.GetAll() on drw.TechProcess005Id equals tcp005.Id into tcpp005
                           from tcp005 in tcpp005.DefaultIfEmpty()
-                          /*join drws in drawingScan.GetAll() on drw.Id equals drws.DrawingId into drwss
-                          from drws in drwss.DefaultIfEmpty()*/
+                          join drws in drawingScan.GetAll() on drw.Id equals drws.DrawingId into drwss
+                          from drws in drwss.DefaultIfEmpty()
                           join pdrw in parentDrawings.GetAll() on drw.ParentId equals pdrw.Id into pdrww
                           from pdrw in pdrww.DefaultIfEmpty()
-                          //where drws.Status == null
-                          select new DrawingsDTO
+                          
+
+                            select new DrawingsDTO
                           {
                               Id = drw.Id,
                               ParentId = drw.ParentId,
@@ -134,11 +135,18 @@ namespace TechnicalProcessControl.BLL.Services
                               TechProcess003Path = tcp003.TechProcessPath,
                               TechProcess004Path = tcp004.TechProcessPath,
                               TechProcess005Path = tcp005.TechProcessPath,
-                              /*ScanId = drws.Id,*/
+                              ScanId = drws.Id>0 ? 1 : 0,
                               ParentName = pdrw.Number != "" ? pdrw.Number : drw.Number
 
-                          }).ToList();
-            return result;
+                          }
+                            ).ToList();
+
+       
+
+            //result.GroupBy(x => x.Id).Select(y => y.First());
+
+
+            return result.GroupBy(x => x.Id).Select(y => y.First()).ToList();
         }
 
         public IEnumerable<DrawingsDTO> GetShortDrawing()
@@ -161,9 +169,14 @@ namespace TechnicalProcessControl.BLL.Services
             return mapper.Map<DrawingScan, DrawingScanDTO>(drawingScan.GetAll().FirstOrDefault(s => s.DrawingId == DrawingId && s.Status == null));
         }*/
 
+        public bool CheckTechProcess001(string techProcesName)
+        {      
+            return techProcess001.GetAll().Any(chk => chk.TechProcessFullName == techProcesName);
+        }
+
         public long GetLastTechProcess001()
         {
-            long maxValue = techProcess001.GetAll().Select(bdsm => bdsm.TechProcessName).Max();
+            long maxValue = techProcess001.GetAll().Where(srt => srt.TechProcessName < 200000000).Select(bdsm => bdsm.TechProcessName).Max();
             ++maxValue;
             return maxValue;
         }
