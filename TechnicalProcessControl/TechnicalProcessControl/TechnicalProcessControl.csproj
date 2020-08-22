@@ -197,6 +197,24 @@
     <Compile Include="Drawings\DrawingsScanFm.Designer.cs">
       <DependentUpon>DrawingsScanFm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Journals\DetailFm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Journals\DetailFm.Designer.cs">
+      <DependentUpon>DetailFm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Journals\DetailsEditFm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Journals\DetailsEditFm.Designer.cs">
+      <DependentUpon>DetailsEditFm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Journals\MaterialEditFm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Journals\MaterialEditFm.Designer.cs">
+      <DependentUpon>MaterialEditFm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Journals\MaterialFm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -302,6 +320,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Drawings\DrawingsScanFm.resx">
       <DependentUpon>DrawingsScanFm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Journals\DetailFm.resx">
+      <DependentUpon>DetailFm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Journals\DetailsEditFm.resx">
+      <DependentUpon>DetailsEditFm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Journals\MaterialEditFm.resx">
+      <DependentUpon>MaterialEditFm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Journals\MaterialFm.resx">
       <DependentUpon>MaterialFm.cs</DependentUpon>

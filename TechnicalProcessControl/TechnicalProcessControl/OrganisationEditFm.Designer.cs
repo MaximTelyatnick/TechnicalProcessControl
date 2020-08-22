@@ -59,6 +59,7 @@
             this.contractorEdit.Name = "contractorEdit";
             this.contractorEdit.Size = new System.Drawing.Size(546, 20);
             this.contractorEdit.TabIndex = 20;
+            this.contractorEdit.EditValueChanged += new System.EventHandler(this.contractorEdit_EditValueChanged);
             // 
             // labelControl2
             // 
@@ -70,6 +71,7 @@
             this.labelControl2.Size = new System.Drawing.Size(82, 18);
             this.labelControl2.TabIndex = 21;
             this.labelControl2.Text = "Организация";
+            this.labelControl2.Click += new System.EventHandler(this.labelControl2_Click);
             // 
             // OrganisationEditFm
             // 

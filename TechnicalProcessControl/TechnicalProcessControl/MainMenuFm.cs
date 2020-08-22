@@ -121,5 +121,10 @@ namespace TechnicalProcessControl
 
 
         }
+
+        private void tileNavCategory4_TileClick(object sender, DevExpress.XtraBars.Navigation.NavElementEventArgs e)
+        {
+
+        }
     }
 }

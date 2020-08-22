@@ -16,7 +16,7 @@ namespace TechnicalProcessControl.BLL.Interfaces
 
         IEnumerable<TypeDTO> GetType();
 
-        IEnumerable<DetailsDTO> GetDetails();
+        //IEnumerable<DetailsDTO> GetDetails();
 
         //DrawingScanDTO GetDrawingScanById(int DrawingId);
         string GetParentName(int parentId);
@@ -73,16 +73,7 @@ namespace TechnicalProcessControl.BLL.Interfaces
 
         #endregion
 
-        #region Detail's CRUD method's
 
-        int DetailCreate(DetailsDTO detailsDTO);
-
-        void DetailsUpdate(DetailsDTO detailsDTO);
-
-        bool DetailDelete(int id);
-
-
-        #endregion
 
     }
 }

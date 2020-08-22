@@ -20,6 +20,7 @@ namespace TechnicalProcessControl.Drawings
     {
         private IDrawingService drawingService;
         private IReportService reportService;
+        private IJournalService journalService;
 
         private Utils.Operation operation;
 
@@ -65,7 +66,7 @@ namespace TechnicalProcessControl.Drawings
             currentLevelMenuEdit.DataBindings.Add("EditValue", drawingsBS, "CurrentLevelMenu", true, DataSourceUpdateMode.OnPropertyChanged);
             detailEdit.DataBindings.Add("EditValue", drawingsBS, "DetailId", true, DataSourceUpdateMode.OnPropertyChanged);
 
-            detailsBS.DataSource = drawingService.GetDetails();
+            detailsBS.DataSource = journalService.GetDetails();
             detailEdit.Properties.DataSource = detailsBS;
             detailEdit.Properties.ValueMember = "Id";
             detailEdit.Properties.DisplayMember = "DetailName";

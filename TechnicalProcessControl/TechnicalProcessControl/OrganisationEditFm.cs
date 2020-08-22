@@ -98,5 +98,15 @@ namespace TechnicalProcessControl
             DialogResult = DialogResult.Cancel;
             this.Close();
         }
+
+        private void contractorEdit_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelControl2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

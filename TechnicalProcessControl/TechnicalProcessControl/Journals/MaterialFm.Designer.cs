@@ -31,16 +31,18 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MaterialFm));
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.bar2 = new DevExpress.XtraBars.Bar();
+            this.addMaterialBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.editMaterialBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.deleteMaterialBtn = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.bar2 = new DevExpress.XtraBars.Bar();
             this.materialGrid = new DevExpress.XtraGrid.GridControl();
             this.materialGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.addMaterialBtn = new DevExpress.XtraBars.BarButtonItem();
-            this.editMaterialBtn = new DevExpress.XtraBars.BarButtonItem();
-            this.deleteMaterialBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.materialCol = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.splashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::TechnicalProcessControl.WaitFm), true, true);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.materialGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.materialGridView)).BeginInit();
@@ -60,6 +62,46 @@
             this.editMaterialBtn,
             this.deleteMaterialBtn});
             this.barManager1.MaxItemId = 3;
+            // 
+            // bar2
+            // 
+            this.bar2.BarName = "Tools";
+            this.bar2.DockCol = 0;
+            this.bar2.DockRow = 0;
+            this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.addMaterialBtn),
+            new DevExpress.XtraBars.LinkPersistInfo(this.editMaterialBtn),
+            new DevExpress.XtraBars.LinkPersistInfo(this.deleteMaterialBtn)});
+            this.bar2.OptionsBar.DrawBorder = false;
+            this.bar2.Text = "Tools";
+            // 
+            // addMaterialBtn
+            // 
+            this.addMaterialBtn.Caption = "Добавить";
+            this.addMaterialBtn.Id = 0;
+            this.addMaterialBtn.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+            this.addMaterialBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addMaterialBtn.ImageOptions.Image")));
+            this.addMaterialBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("addMaterialBtn.ImageOptions.LargeImage")));
+            this.addMaterialBtn.Name = "addMaterialBtn";
+            this.addMaterialBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // editMaterialBtn
+            // 
+            this.editMaterialBtn.Caption = "Изменить";
+            this.editMaterialBtn.Id = 1;
+            this.editMaterialBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("editMaterialBtn.ImageOptions.Image")));
+            this.editMaterialBtn.Name = "editMaterialBtn";
+            this.editMaterialBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // deleteMaterialBtn
+            // 
+            this.deleteMaterialBtn.Caption = "Удалить";
+            this.deleteMaterialBtn.Id = 2;
+            this.deleteMaterialBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("deleteMaterialBtn.ImageOptions.Image")));
+            this.deleteMaterialBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("deleteMaterialBtn.ImageOptions.LargeImage")));
+            this.deleteMaterialBtn.Name = "deleteMaterialBtn";
+            this.deleteMaterialBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // barDockControlTop
             // 
@@ -93,19 +135,6 @@
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Size = new System.Drawing.Size(0, 398);
             // 
-            // bar2
-            // 
-            this.bar2.BarName = "Tools";
-            this.bar2.DockCol = 0;
-            this.bar2.DockRow = 1;
-            this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-            this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.addMaterialBtn),
-            new DevExpress.XtraBars.LinkPersistInfo(this.editMaterialBtn),
-            new DevExpress.XtraBars.LinkPersistInfo(this.deleteMaterialBtn)});
-            this.bar2.OptionsBar.DrawBorder = false;
-            this.bar2.Text = "Tools";
-            // 
             // materialGrid
             // 
             this.materialGrid.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -119,35 +148,24 @@
             // 
             // materialGridView
             // 
+            this.materialGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.materialCol});
             this.materialGridView.GridControl = this.materialGrid;
             this.materialGridView.Name = "materialGridView";
             // 
-            // addMaterialBtn
+            // materialCol
             // 
-            this.addMaterialBtn.Caption = "Добавить";
-            this.addMaterialBtn.Id = 0;
-            this.addMaterialBtn.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
-            this.addMaterialBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
-            this.addMaterialBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
-            this.addMaterialBtn.Name = "addMaterialBtn";
-            this.addMaterialBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.materialCol.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.materialCol.AppearanceHeader.Options.UseFont = true;
+            this.materialCol.Caption = "Материал";
+            this.materialCol.FieldName = "MaterialName";
+            this.materialCol.Name = "materialCol";
+            this.materialCol.Visible = true;
+            this.materialCol.VisibleIndex = 0;
             // 
-            // editMaterialBtn
+            // splashScreenManager
             // 
-            this.editMaterialBtn.Caption = "Изменить";
-            this.editMaterialBtn.Id = 1;
-            this.editMaterialBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.Image")));
-            this.editMaterialBtn.Name = "editMaterialBtn";
-            this.editMaterialBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            // 
-            // deleteMaterialBtn
-            // 
-            this.deleteMaterialBtn.Caption = "Удалить";
-            this.deleteMaterialBtn.Id = 2;
-            this.deleteMaterialBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.Image")));
-            this.deleteMaterialBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.LargeImage")));
-            this.deleteMaterialBtn.Name = "deleteMaterialBtn";
-            this.deleteMaterialBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.splashScreenManager.ClosingDelay = 500;
             // 
             // MaterialFm
             // 
@@ -183,5 +201,7 @@
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraGrid.GridControl materialGrid;
         private DevExpress.XtraGrid.Views.Grid.GridView materialGridView;
+        private DevExpress.XtraGrid.Columns.GridColumn materialCol;
+        private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager;
     }
 }

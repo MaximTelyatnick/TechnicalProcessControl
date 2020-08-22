@@ -160,10 +160,7 @@ namespace TechnicalProcessControl.BLL.Services
             return mapper.Map<IEnumerable<DAL.Models.Type>, List<TypeDTO>>(type.GetAll());
         }
 
-        public IEnumerable<DetailsDTO> GetDetails()
-        {
-            return mapper.Map<IEnumerable<Details>, List<DetailsDTO>>(details.GetAll());
-        }
+        
 
         /*public DrawingScanDTO GetDrawingScanById(int DrawingId)
         {
@@ -344,34 +341,7 @@ namespace TechnicalProcessControl.BLL.Services
 
         #endregion
 
-        #region Detail's CRUD method's
-
-        public int DetailCreate(DetailsDTO detailsDTO)
-        {
-            var createDetail = details.Create(mapper.Map<Details>(detailsDTO));
-            return (int)createDetail.Id;
-        }
-
-        public void DetailsUpdate(DetailsDTO detailsDTO)
-        {
-            var updateDetail = details.GetAll().SingleOrDefault(c => c.Id == detailsDTO.Id);
-            details.Update((mapper.Map<DetailsDTO, Details>(detailsDTO, updateDetail)));
-        }
-
-        public bool DetailDelete(int id)
-        {
-            try
-            {
-                details.Delete(details.GetAll().FirstOrDefault(c => c.Id == id));
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-
-        #endregion
+       
 
 
     }

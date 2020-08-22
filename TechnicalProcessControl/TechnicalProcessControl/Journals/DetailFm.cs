@@ -7,17 +7,18 @@ using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.XtraEditors;
 using TechnicalProcessControl.BLL.Interfaces;
 using Ninject;
 
 namespace TechnicalProcessControl.Journals
 {
-    public partial class MaterialFm : DevExpress.XtraEditors.XtraForm
+    public partial class DetailFm : DevExpress.XtraEditors.XtraForm
     {
         public IJournalService journalService;
-        public BindingSource materialsBS = new BindingSource();
+        public BindingSource detailsBS = new BindingSource();
 
-        public MaterialFm()
+        public DetailFm()
         {
             InitializeComponent();
 
@@ -32,10 +33,8 @@ namespace TechnicalProcessControl.Journals
         {
             journalService = Program.kernel.Get<IJournalService>();
             var productions = journalService.GetMaterials();
-            materialsBS.DataSource = productions;
-            materialGrid.DataSource = materialsBS;
+            detailsBS.DataSource = productions;
+            detailsGrid.DataSource = detailsBS;
         }
-
-
     }
 }
