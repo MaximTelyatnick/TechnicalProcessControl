@@ -5,6 +5,7 @@ using Ninject;
 using DevExpress.XtraBars.Docking2010.Views.Tabbed;
 using System.Timers;
 using TechnicalProcessControl.BLL.Interfaces;
+using TechnicalProcessControl.Journals;
 
 namespace TechnicalProcessControl
 {
@@ -26,11 +27,11 @@ namespace TechnicalProcessControl
         {
             InitializeComponent();
 
-            messageWorker = new BackgroundWorker();
+            //messageWorker = new BackgroundWorker();
 
-            messageWorker.DoWork += messageWorker_DoWork;
+            //messageWorker.DoWork += messageWorker_DoWork;
 
-            controlPanelService = Program.kernel.Get<IControlPanelService>();
+            //controlPanelService = Program.kernel.Get<IControlPanelService>();
             documentManager.MdiParent = this;
             documentManager.View = new TabbedView();
 
@@ -38,7 +39,7 @@ namespace TechnicalProcessControl
             //telegram user auth
 
 
-            CreateTimer(1000);
+            //CreateTimer(1000);
         }
 
         public void CreateTimer(int seconds)
@@ -63,7 +64,7 @@ namespace TechnicalProcessControl
 
         //    try
         //    {
-                
+
         //        if (controlPanelService.CheckMessages())
         //            msgBtn.Glyph = imageCollection.Images[1];
         //        else
@@ -111,8 +112,8 @@ namespace TechnicalProcessControl
 
         private void msgBtn_ElementClick(object sender, DevExpress.XtraBars.Navigation.NavElementEventArgs e)
         {
-            
-           
+
+
         }
 
         private void MainMenuFm_Load(object sender, EventArgs e)
@@ -122,9 +123,26 @@ namespace TechnicalProcessControl
 
         }
 
-        private void tileNavCategory4_TileClick(object sender, DevExpress.XtraBars.Navigation.NavElementEventArgs e)
+        private void menuNavPane_TileClick(object sender, DevExpress.XtraBars.Navigation.NavElementEventArgs e)
         {
+        
+            string path = Utils.HomePath;
 
+            switch (e.Element.Name)
+            {
+                case "materialItem":
+                    MaterialFm materialFm = new MaterialFm();
+                    materialFm.Text = "Материалы";
+                    materialFm.MdiParent = this;
+                    materialFm.Show();
+                    break;
+                case "detailItem":
+                    DetailFm detailFm = new DetailFm();
+                    detailFm.Text = "Детали";
+                    detailFm.MdiParent = this;
+                    detailFm.Show();
+                    break;
+            }
         }
     }
 }

@@ -36,6 +36,9 @@ namespace TechnicalProcessControl.Journals
             materialGrid.DataSource = materialsBS;
         }
 
+        private void addMaterialBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
 
+        }
     }
 }

@@ -85,6 +85,7 @@
             this.addMaterialBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("addMaterialBtn.ImageOptions.LargeImage")));
             this.addMaterialBtn.Name = "addMaterialBtn";
             this.addMaterialBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.addMaterialBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addMaterialBtn_ItemClick);
             // 
             // editMaterialBtn
             // 

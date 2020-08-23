@@ -31,16 +31,16 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DetailFm));
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.bar2 = new DevExpress.XtraBars.Bar();
+            this.addDetailBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.editDetailbtn = new DevExpress.XtraBars.BarButtonItem();
+            this.deleteDetailBtn = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.bar2 = new DevExpress.XtraBars.Bar();
             this.detailsGrid = new DevExpress.XtraGrid.GridControl();
             this.detailsGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.addDetailBtn = new DevExpress.XtraBars.BarButtonItem();
-            this.editDetailbtn = new DevExpress.XtraBars.BarButtonItem();
-            this.deleteDetailBtn = new DevExpress.XtraBars.BarButtonItem();
             this.detailCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.splashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::TechnicalProcessControl.WaitFm), true, true);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -62,6 +62,48 @@
             this.editDetailbtn,
             this.deleteDetailBtn});
             this.barManager1.MaxItemId = 3;
+            // 
+            // bar2
+            // 
+            this.bar2.BarName = "Tools";
+            this.bar2.DockCol = 0;
+            this.bar2.DockRow = 0;
+            this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.bar2.FloatLocation = new System.Drawing.Point(243, 132);
+            this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.addDetailBtn),
+            new DevExpress.XtraBars.LinkPersistInfo(this.editDetailbtn),
+            new DevExpress.XtraBars.LinkPersistInfo(this.deleteDetailBtn)});
+            this.bar2.Offset = 1;
+            this.bar2.OptionsBar.DrawBorder = false;
+            this.bar2.Text = "Tools";
+            // 
+            // addDetailBtn
+            // 
+            this.addDetailBtn.Caption = "Добавить";
+            this.addDetailBtn.Id = 0;
+            this.addDetailBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addDetailBtn.ImageOptions.Image")));
+            this.addDetailBtn.Name = "addDetailBtn";
+            this.addDetailBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.addDetailBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addDetailBtn_ItemClick);
+            // 
+            // editDetailbtn
+            // 
+            this.editDetailbtn.Caption = "Редактировать";
+            this.editDetailbtn.Id = 1;
+            this.editDetailbtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("editDetailbtn.ImageOptions.Image")));
+            this.editDetailbtn.Name = "editDetailbtn";
+            this.editDetailbtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.editDetailbtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.editDetailbtn_ItemClick);
+            // 
+            // deleteDetailBtn
+            // 
+            this.deleteDetailBtn.Caption = "Удалить";
+            this.deleteDetailBtn.Id = 2;
+            this.deleteDetailBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("deleteDetailBtn.ImageOptions.Image")));
+            this.deleteDetailBtn.Name = "deleteDetailBtn";
+            this.deleteDetailBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.deleteDetailBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.deleteDetailBtn_ItemClick);
             // 
             // barDockControlTop
             // 
@@ -95,21 +137,6 @@
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Size = new System.Drawing.Size(0, 337);
             // 
-            // bar2
-            // 
-            this.bar2.BarName = "Tools";
-            this.bar2.DockCol = 0;
-            this.bar2.DockRow = 0;
-            this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-            this.bar2.FloatLocation = new System.Drawing.Point(243, 132);
-            this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.addDetailBtn),
-            new DevExpress.XtraBars.LinkPersistInfo(this.editDetailbtn),
-            new DevExpress.XtraBars.LinkPersistInfo(this.deleteDetailBtn)});
-            this.bar2.Offset = 1;
-            this.bar2.OptionsBar.DrawBorder = false;
-            this.bar2.Text = "Tools";
-            // 
             // detailsGrid
             // 
             this.detailsGrid.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -128,35 +155,12 @@
             this.detailsGridView.GridControl = this.detailsGrid;
             this.detailsGridView.Name = "detailsGridView";
             // 
-            // addDetailBtn
-            // 
-            this.addDetailBtn.Caption = "Добавить";
-            this.addDetailBtn.Id = 0;
-            this.addDetailBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addDetailBtn.ImageOptions.Image")));
-            this.addDetailBtn.Name = "addDetailBtn";
-            this.addDetailBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            // 
-            // editDetailbtn
-            // 
-            this.editDetailbtn.Caption = "Редактировать";
-            this.editDetailbtn.Id = 1;
-            this.editDetailbtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.Image")));
-            this.editDetailbtn.Name = "editDetailbtn";
-            this.editDetailbtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            // 
-            // deleteDetailBtn
-            // 
-            this.deleteDetailBtn.Caption = "Удалить";
-            this.deleteDetailBtn.Id = 2;
-            this.deleteDetailBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.Image")));
-            this.deleteDetailBtn.Name = "deleteDetailBtn";
-            this.deleteDetailBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            // 
             // detailCol
             // 
             this.detailCol.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.detailCol.AppearanceHeader.Options.UseFont = true;
             this.detailCol.Caption = "Наименование детали";
+            this.detailCol.FieldName = "DetailName";
             this.detailCol.Name = "detailCol";
             this.detailCol.Visible = true;
             this.detailCol.VisibleIndex = 0;
