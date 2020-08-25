@@ -221,6 +221,12 @@
     <Compile Include="Journals\MaterialFm.Designer.cs">
       <DependentUpon>MaterialFm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Journals\ScanFm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Journals\ScanFm.Designer.cs">
+      <DependentUpon>ScanFm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainMenuFm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -332,6 +338,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Journals\MaterialFm.resx">
       <DependentUpon>MaterialFm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Journals\ScanFm.resx">
+      <DependentUpon>ScanFm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainMenuFm.resx">
       <DependentUpon>MainMenuFm.cs</DependentUpon>

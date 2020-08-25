@@ -26,13 +26,15 @@ namespace TechnicalProcessControl
         {
             InitializeComponent();
 
+            drawingService = Program.kernel.Get<IDrawingService>();
+
             this.drawingsDTO = drawingsDTO;
             this.techProcess001DTO = techProcess001DTO;
 
             techProcess001DTO.TechProcessName = drawingService.GetLastTechProcess001();
             techProcess001DTO.TechProcessFullName = drawingsDTO.Number + "_TP" + techProcess001DTO.TechProcessName.ToString();
 
-
+            techProcess001Edit.Text = techProcess001DTO.TechProcessFullName;
 
         }
 
@@ -49,24 +51,17 @@ namespace TechnicalProcessControl
             }
             techProcess001DTO.TechProcessFullName = drawingsDTO.Number + "_TP" + techProcess001DTO.TechProcessName.ToString();
             techProcess001DTO.TechProcessPath = @"C:\TechProcess\TechProcess001\" + techProcess001DTO.TechProcessFullName + ".xls";
+            techProcess001DTO.DrawingId = drawingsDTO.Id;
+            techProcess001DTO.Status = 1;
 
-            //var createTechProcess = drawingService.TechProcess001Create(techProcess001DTO);
 
-            //if (createTechProcess > 0)
-            //{
-            //    ((DrawingsDTO)Item).TechProcess001Id = createTechProcess;
-            //    ((DrawingsDTO)Item).TechProcess001Path = techProcess001DTO.TechProcessPath;
-            //    ((DrawingsDTO)Item).TechProcess001Name = techProcess001DTO.TechProcessName;
+            var createTechProcess = drawingService.TechProcess001Create(techProcess001DTO);
 
-            //    drawingService.DrawingUpdate(((DrawingsDTO)Item));
-            //    reportService.CreateTemplateTechProcess001(((DrawingsDTO)Item));
-            //    LoadData();
+        }
 
-            //}
-            //else
-            //{
-            //    MessageBox.Show("При формировании щаблона техпроцесса возникла ошибка", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+        public TechProcess001DTO Return()
+        {
+            return techProcess001DTO;
         }
     }
 }

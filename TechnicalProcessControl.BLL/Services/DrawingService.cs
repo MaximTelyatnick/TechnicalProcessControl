@@ -81,21 +81,19 @@ namespace TechnicalProcessControl.BLL.Services
                           from det in dett.DefaultIfEmpty()
                           join tcp001 in techProcess001.GetAll() on drw.Id equals tcp001.DrawingId into tcpp001
                           from tcp001 in tcpp001.DefaultIfEmpty()
-                          join tcp002 in techProcess001.GetAll() on drw.TechProcess002Id equals tcp002.Id into tcpp002
+                          join tcp002 in techProcess002.GetAll() on drw.Id equals tcp002.DrawingId into tcpp002
                           from tcp002 in tcpp002.DefaultIfEmpty()
-                          join tcp003 in techProcess003.GetAll() on drw.TechProcess003Id equals tcp003.Id into tcpp003
+                          join tcp003 in techProcess003.GetAll() on drw.Id equals tcp003.DrawingId into tcpp003
                           from tcp003 in tcpp003.DefaultIfEmpty()
-                          join tcp004 in techProcess004.GetAll() on drw.TechProcess004Id equals tcp004.Id into tcpp004
+                          join tcp004 in techProcess004.GetAll() on drw.Id equals tcp004.DrawingId into tcpp004
                           from tcp004 in tcpp004.DefaultIfEmpty()
-                          join tcp005 in techProcess005.GetAll() on drw.TechProcess005Id equals tcp005.Id into tcpp005
+                          join tcp005 in techProcess005.GetAll() on drw.Id equals tcp005.DrawingId into tcpp005
                           from tcp005 in tcpp005.DefaultIfEmpty()
                           join drws in drawingScan.GetAll() on drw.Id equals drws.DrawingId into drwss
                           from drws in drwss.DefaultIfEmpty()
                           join pdrw in parentDrawings.GetAll() on drw.ParentId equals pdrw.Id into pdrww
                           from pdrw in pdrww.DefaultIfEmpty()
-                          where (tcp001.Status == 1)
                           
-
                             select new DrawingsDTO
                           {
                               Id = drw.Id,
@@ -122,10 +120,10 @@ namespace TechnicalProcessControl.BLL.Services
                               LaborIntensity005Total = drw.LaborIntensity005Total,
                               LaborIntensityTotal = drw.LaborIntensityTotal,
                               TechProcess001Id = tcp001.Id,
-                              TechProcess002Id = drw.TechProcess002Id,
-                              TechProcess003Id = drw.TechProcess003Id,
-                              TechProcess004Id = drw.TechProcess004Id,
-                              TechProcess005Id = drw.TechProcess005Id,
+                              TechProcess002Id = tcp002.Id,
+                              TechProcess003Id = tcp003.Id,
+                              TechProcess004Id = tcp004.Id,
+                              TechProcess005Id = tcp005.Id,
                               TechProcess001Name = tcp001.TechProcessName,
                               TechProcess002Name = tcp002.TechProcessName,
                               TechProcess003Name = tcp003.TechProcessName,
@@ -189,6 +187,31 @@ namespace TechnicalProcessControl.BLL.Services
         public IEnumerable<DrawingScanDTO> GetDravingScanById(int drawingId)
         {
             return mapper.Map<IEnumerable<DrawingScan>, List<DrawingScanDTO>>(drawingScan.GetAll().Where(bdsm => bdsm.DrawingId == drawingId));
+        }
+
+        public IEnumerable<TechProcess001DTO> GetAllTechProcess001()
+        {
+            return mapper.Map<IEnumerable<TechProcess001>, List<TechProcess001DTO>>(techProcess001.GetAll());
+        }
+
+        public IEnumerable<TechProcess002DTO> GetAllTechProcess002()
+        {
+            return mapper.Map<IEnumerable<TechProcess002>, List<TechProcess002DTO>>(techProcess002.GetAll());
+        }
+
+        public IEnumerable<TechProcess003DTO> GetAllTechProcess003()
+        {
+            return mapper.Map<IEnumerable<TechProcess003>, List<TechProcess003DTO>>(techProcess003.GetAll());
+        }
+
+        public IEnumerable<TechProcess004DTO> GetAllTechProcess004()
+        {
+            return mapper.Map<IEnumerable<TechProcess004>, List<TechProcess004DTO>>(techProcess004.GetAll());
+        }
+
+        public IEnumerable<TechProcess005DTO> GetAllTechProcess005()
+        {
+            return mapper.Map<IEnumerable<TechProcess005>, List<TechProcess005DTO>>(techProcess005.GetAll());
         }
 
         public string GetParentName(int parentId)

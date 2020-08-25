@@ -26,6 +26,13 @@ namespace TechnicalProcessControl.BLL.Interfaces
         long GetLastTechProcess001();
         long GetLastTechProcess002();
 
+        IEnumerable<TechProcess001DTO> GetAllTechProcess001();
+        IEnumerable<TechProcess002DTO> GetAllTechProcess002();
+        IEnumerable<TechProcess003DTO> GetAllTechProcess003();
+        IEnumerable<TechProcess004DTO> GetAllTechProcess004();
+        IEnumerable<TechProcess005DTO> GetAllTechProcess005();
+
+
         #region TechProcess001 CRUD method's
 
         int TechProcess001Create(TechProcess001DTO techProcess001DTO);

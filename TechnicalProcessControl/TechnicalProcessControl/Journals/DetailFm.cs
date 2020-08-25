@@ -57,7 +57,7 @@ namespace TechnicalProcessControl.Journals
 
         private void addDetailBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            EditDetail(Utils.Operation.Update, new DetailsDTO());
+            EditDetail(Utils.Operation.Add, new DetailsDTO());
         }
 
         private void editDetailbtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

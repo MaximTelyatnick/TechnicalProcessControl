@@ -86,6 +86,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MaterialEditFm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Редактирование материала";
             ((System.ComponentModel.ISupportInitialize)(this.materialEdit.Properties)).EndInit();
             this.ResumeLayout(false);

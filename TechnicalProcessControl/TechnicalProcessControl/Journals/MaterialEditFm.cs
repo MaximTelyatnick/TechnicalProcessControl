@@ -71,7 +71,7 @@ namespace TechnicalProcessControl.Journals
 
             if (operation == Utils.Operation.Add)
             {
-                ((ContractorsDTO)Item).Id = journalService.MaterialsCreate((MaterialsDTO)Item);
+                ((MaterialsDTO)Item).Id = journalService.MaterialsCreate((MaterialsDTO)Item);
                 return true;
             }
             else
@@ -82,9 +82,9 @@ namespace TechnicalProcessControl.Journals
             }
         }
 
-        public int Return()
+        public MaterialsDTO Return()
         {
-            return ((MaterialsDTO)Item).Id;
+            return ((MaterialsDTO)Item);
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)

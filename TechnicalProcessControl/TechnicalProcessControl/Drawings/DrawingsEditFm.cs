@@ -24,13 +24,17 @@ namespace TechnicalProcessControl.Drawings
 
         private Utils.Operation operation;
 
+        private List<DrawingScanDTO> drawingScanList = new List<DrawingScanDTO>();
+
         private UsersTelegramDTO models;
 
         private BindingSource drawingsBS = new BindingSource();
         private BindingSource drawingsScanBS = new BindingSource();
-
-        private List<DrawingScanDTO> drawingScanList = new List<DrawingScanDTO>();
-
+        private BindingSource techProcess001BS = new BindingSource();
+        private BindingSource techProcess002BS = new BindingSource();
+        private BindingSource techProcess003BS = new BindingSource();
+        private BindingSource techProcess004BS = new BindingSource();
+        private BindingSource techProcess005BS = new BindingSource();
         private BindingSource parentCurrentLevelMenuEditBS = new BindingSource();
         private BindingSource typeBS = new BindingSource();
         private BindingSource detailsBS = new BindingSource();
@@ -51,11 +55,13 @@ namespace TechnicalProcessControl.Drawings
             InitializeComponent();
 
             drawingService = Program.kernel.Get<IDrawingService>();
+            journalService = Program.kernel.Get<IJournalService>();
 
             this.operation = operation;
 
             drawingsBS.DataSource = Item = model;
 
+            //materialEdit
             wEdit.DataBindings.Add("EditValue", drawingsBS, "W", true, DataSourceUpdateMode.OnPropertyChanged);
             w2Edit.DataBindings.Add("EditValue", drawingsBS, "W2", true, DataSourceUpdateMode.OnPropertyChanged);
             lEdit.DataBindings.Add("EditValue", drawingsBS, "L", true, DataSourceUpdateMode.OnPropertyChanged);
@@ -65,6 +71,11 @@ namespace TechnicalProcessControl.Drawings
             quantityEdit.DataBindings.Add("EditValue", drawingsBS, "Quantity", true, DataSourceUpdateMode.OnPropertyChanged);
             currentLevelMenuEdit.DataBindings.Add("EditValue", drawingsBS, "CurrentLevelMenu", true, DataSourceUpdateMode.OnPropertyChanged);
             detailEdit.DataBindings.Add("EditValue", drawingsBS, "DetailId", true, DataSourceUpdateMode.OnPropertyChanged);
+            techProcess001Edit.DataBindings.Add("EditValue", drawingsBS, "TechProcess001Id", true, DataSourceUpdateMode.OnPropertyChanged);
+            techProcess002Edit.DataBindings.Add("EditValue", drawingsBS, "TechProcess002Id", true, DataSourceUpdateMode.OnPropertyChanged);
+            techProcess003Edit.DataBindings.Add("EditValue", drawingsBS, "TechProcess003Id", true, DataSourceUpdateMode.OnPropertyChanged);
+            techProcess004Edit.DataBindings.Add("EditValue", drawingsBS, "TechProcess004Id", true, DataSourceUpdateMode.OnPropertyChanged);
+            techProcess005Edit.DataBindings.Add("EditValue", drawingsBS, "TechProcess005Id", true, DataSourceUpdateMode.OnPropertyChanged);
 
             detailsBS.DataSource = journalService.GetDetails();
             detailEdit.Properties.DataSource = detailsBS;
@@ -83,6 +94,39 @@ namespace TechnicalProcessControl.Drawings
             parentCurrentLevelMenuEdit.Properties.ValueMember = "Id";
             parentCurrentLevelMenuEdit.Properties.DisplayMember = "CurrentLevelMenu";
             parentCurrentLevelMenuEdit.Properties.NullText = "Немає данних";
+
+            techProcess001BS.DataSource = drawingService.GetAllTechProcess001();
+            techProcess001Edit.Properties.DataSource = techProcess001BS;
+            techProcess001Edit.Properties.ValueMember = "Id";
+            techProcess001Edit.Properties.DisplayMember = "TechProcessFullName";
+            techProcess001Edit.Properties.NullText = "Немає данних";
+
+            techProcess002BS.DataSource = drawingService.GetAllTechProcess002();
+            techProcess002Edit.Properties.DataSource = techProcess002BS;
+            techProcess002Edit.Properties.ValueMember = "Id";
+            techProcess002Edit.Properties.DisplayMember = "TechProcessFullName";
+            techProcess002Edit.Properties.NullText = "Немає данних";
+
+            techProcess003BS.DataSource = drawingService.GetAllTechProcess003();
+            techProcess003Edit.Properties.DataSource = techProcess003BS;
+            techProcess003Edit.Properties.ValueMember = "Id";
+            techProcess003Edit.Properties.DisplayMember = "TechProcessFullName";
+            techProcess003Edit.Properties.NullText = "Немає данних";
+
+            techProcess004BS.DataSource = drawingService.GetAllTechProcess004();
+            techProcess004Edit.Properties.DataSource = techProcess004BS;
+            techProcess004Edit.Properties.ValueMember = "Id";
+            techProcess004Edit.Properties.DisplayMember = "TechProcessFullName";
+            techProcess004Edit.Properties.NullText = "Немає данних";
+
+            techProcess005BS.DataSource = drawingService.GetAllTechProcess005();
+            techProcess005Edit.Properties.DataSource = techProcess005BS;
+            techProcess005Edit.Properties.ValueMember = "Id";
+            techProcess005Edit.Properties.DisplayMember = "TechProcessFullName";
+            techProcess005Edit.Properties.NullText = "Немає данних";
+
+
+
 
 
             if (operation == Utils.Operation.Add)
@@ -479,63 +523,71 @@ namespace TechnicalProcessControl.Drawings
 
         private void techProcess001Edit_ButtonClick(object sender, ButtonPressedEventArgs e)
         {
-            //botService = Program.kernel.Get<IBotService>();
-            //switch (e.Button.Index)
-            //{
-            //    case 1: //Додати
-            //        {
-            //            using (OrganisationEditFm organisationEditFm = new OrganisationEditFm(Utils.Operation.Add, new ContractorsDTO()))
-            //            {
-            //                if (organisationEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            //                {
-            //                    int return_Id = organisationEditFm.Return();
-            //                    botService = Program.kernel.Get<IBotService>();
-            //                    organisationBS.DataSource = botService.GetAllContractors();
-            //                    organisationEdit.EditValue = return_Id;
-            //                }
-            //            }
-            //            break;
-            //        }
-            //    case 2://Редагувати
-            //        {
-            //            if (organisationEdit.EditValue == DBNull.Value)
-            //                return;
+            drawingService = Program.kernel.Get<IDrawingService>();
+            switch (e.Button.Index)
+            {
+                case 1: //Додати
+                    {
+                        using (TechProcess001EditFm techProcess001EditFm = new TechProcess001EditFm(new TechProcess001DTO(), (DrawingsDTO)Item))
+                        {
+                            if (techProcess001EditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                            {
+                                //detailsBS.DataSource = journalService.GetDetails();
+                                techProcess001Edit.Properties.DataSource = drawingService.GetAllTechProcess001();
+                                techProcess001Edit.Properties.ValueMember = "Id";
+                                techProcess001Edit.Properties.DisplayMember = "TechProcessFullName";
+                                techProcess001Edit.Properties.NullText = "Немає данних";
 
-            //            using (OrganisationEditFm organisationEditFm = new OrganisationEditFm(Utils.Operation.Update, (ContractorsDTO)organisationEdit.GetSelectedDataRow()))
-            //            {
-            //                if (organisationEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            //                {
-            //                    int return_Id = organisationEditFm.Return();
-            //                    botService = Program.kernel.Get<IBotService>();
-            //                    organisationBS.DataSource = botService.GetAllContractors();
-            //                    organisationEdit.EditValue = return_Id;
-            //                }
-            //            }
-            //            break;
-            //        }
-            //    case 3://Видалити
-            //        {
-            //            if (organisationEdit.EditValue == DBNull.Value)
-            //                return;
 
-            //            if (MessageBox.Show("Удалить?", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            //            {
-            //                botService.ContractorDelete(((ContractorsDTO)organisationEdit.GetSelectedDataRow()).Id);
-            //                botService = Program.kernel.Get<IBotService>();
-            //                organisationEdit.Properties.DataSource = botService.GetAllContractors();
-            //                organisationEdit.EditValue = null;
-            //                organisationEdit.Properties.NullText = "Немає данних";
-            //            }
+                                int return_Id = techProcess001EditFm.Return().Id;
+                                techProcess001Edit.EditValue = return_Id;
 
-            //            break;
-            //        }
-            //    case 4://Очистити
-            //        {
-            //            organisationEdit.EditValue = null;
-            //            organisationEdit.Properties.NullText = "Немає данних";
-            //            break;
-            //        }
-            //}
+
+                               
+                            }
+                        }
+                        break;
+                    }
+                //case 2://Редагувати
+                //    {
+                //        if (organisationEdit.EditValue == DBNull.Value)
+                //            return;
+
+                //        using (OrganisationEditFm organisationEditFm = new OrganisationEditFm(Utils.Operation.Update, (ContractorsDTO)organisationEdit.GetSelectedDataRow()))
+                //        {
+                //            if (organisationEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                //            {
+                //                int return_Id = organisationEditFm.Return();
+                //                botService = Program.kernel.Get<IBotService>();
+                //                organisationBS.DataSource = botService.GetAllContractors();
+                //                organisationEdit.EditValue = return_Id;
+                //            }
+                //        }
+                //        break;
+                //    }
+                //case 3://Видалити
+                //    {
+                //        if (organisationEdit.EditValue == DBNull.Value)
+                //            return;
+
+                //        if (MessageBox.Show("Удалить?", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                //        {
+                //            botService.ContractorDelete(((ContractorsDTO)organisationEdit.GetSelectedDataRow()).Id);
+                //            botService = Program.kernel.Get<IBotService>();
+                //            organisationEdit.Properties.DataSource = botService.GetAllContractors();
+                //            organisationEdit.EditValue = null;
+                //            organisationEdit.Properties.NullText = "Немає данних";
+                //        }
+
+                //        break;
+                //    }
+                //case 4://Очистити
+                //    {
+                //        organisationEdit.EditValue = null;
+                //        organisationEdit.Properties.NullText = "Немає данних";
+                //        break;
+                //    }
+            }
         }
     }
 }

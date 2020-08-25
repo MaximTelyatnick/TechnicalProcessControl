@@ -94,6 +94,7 @@
             this.editMaterialBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("editMaterialBtn.ImageOptions.Image")));
             this.editMaterialBtn.Name = "editMaterialBtn";
             this.editMaterialBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.editMaterialBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.editMaterialBtn_ItemClick);
             // 
             // deleteMaterialBtn
             // 
@@ -103,6 +104,7 @@
             this.deleteMaterialBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("deleteMaterialBtn.ImageOptions.LargeImage")));
             this.deleteMaterialBtn.Name = "deleteMaterialBtn";
             this.deleteMaterialBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.deleteMaterialBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.deleteMaterialBtn_ItemClick);
             // 
             // barDockControlTop
             // 

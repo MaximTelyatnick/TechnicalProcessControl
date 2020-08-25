@@ -28,12 +28,7 @@ namespace TechnicalProcessControl
         public DrawingsFm()
         {
             InitializeComponent();
-
-           
-
-            LoadData();
-
-            
+            LoadData(); 
         }
 
         public void LoadData()
@@ -199,9 +194,6 @@ namespace TechnicalProcessControl
                 {
                     MessageBox.Show("При формировании щаблона техпроцесса возникла ошибка", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
-
-
             }
             else
             {
