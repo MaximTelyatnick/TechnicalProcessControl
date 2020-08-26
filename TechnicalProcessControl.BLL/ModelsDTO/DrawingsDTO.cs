@@ -15,6 +15,7 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public string CurrentLevelMenu { get; set; }
         public string Number { get; set; }
         public int? DetailId { get; set; }
+        public int? MaterialId { get; set; }
         public int? ScanId { get; set; }
         public int? TechProcess001Id { get; set; }
         public int? TechProcess002Id { get; set; }

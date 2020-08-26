@@ -274,6 +274,7 @@
             this.materialEdit.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.materialEdit.Size = new System.Drawing.Size(365, 20);
             this.materialEdit.TabIndex = 35;
+            this.materialEdit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.materialEdit_ButtonClick);
             // 
             // labelControl4
             // 
@@ -374,6 +375,7 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DetailName", "Наименование детали")});
             this.detailEdit.Size = new System.Drawing.Size(365, 20);
             this.detailEdit.TabIndex = 14;
+            this.detailEdit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.detailEdit_ButtonClick);
             // 
             // typeEdit
             // 

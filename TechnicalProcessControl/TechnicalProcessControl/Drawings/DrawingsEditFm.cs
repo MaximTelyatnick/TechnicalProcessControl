@@ -13,6 +13,7 @@ using TechnicalProcessControl.BLL.Infrastructure;
 using TechnicalProcessControl.BLL.Interfaces;
 using Ninject;
 using DevExpress.XtraEditors.Controls;
+using TechnicalProcessControl.Journals;
 
 namespace TechnicalProcessControl.Drawings
 {
@@ -38,6 +39,7 @@ namespace TechnicalProcessControl.Drawings
         private BindingSource parentCurrentLevelMenuEditBS = new BindingSource();
         private BindingSource typeBS = new BindingSource();
         private BindingSource detailsBS = new BindingSource();
+        private BindingSource materialsBS = new BindingSource();
         private BindingSource curentLevelMenuBS = new BindingSource();
 
         private ObjectBase Item
@@ -61,7 +63,7 @@ namespace TechnicalProcessControl.Drawings
 
             drawingsBS.DataSource = Item = model;
 
-            //materialEdit
+            materialEdit.DataBindings.Add("EditValue", drawingsBS, "MaterialId", true, DataSourceUpdateMode.OnPropertyChanged);
             wEdit.DataBindings.Add("EditValue", drawingsBS, "W", true, DataSourceUpdateMode.OnPropertyChanged);
             w2Edit.DataBindings.Add("EditValue", drawingsBS, "W2", true, DataSourceUpdateMode.OnPropertyChanged);
             lEdit.DataBindings.Add("EditValue", drawingsBS, "L", true, DataSourceUpdateMode.OnPropertyChanged);
@@ -125,8 +127,11 @@ namespace TechnicalProcessControl.Drawings
             techProcess005Edit.Properties.DisplayMember = "TechProcessFullName";
             techProcess005Edit.Properties.NullText = "Немає данних";
 
-
-
+            materialsBS.DataSource = journalService.GetMaterials();
+            materialEdit.Properties.DataSource = materialsBS;
+            materialEdit.Properties.ValueMember = "Id";
+            materialEdit.Properties.DisplayMember = "MaterialName";
+            materialEdit.Properties.NullText = "Немає данних";
 
 
             if (operation == Utils.Operation.Add)
@@ -587,6 +592,122 @@ namespace TechnicalProcessControl.Drawings
                 //        organisationEdit.Properties.NullText = "Немає данних";
                 //        break;
                 //    }
+            }
+        }
+
+        private void detailEdit_ButtonClick(object sender, ButtonPressedEventArgs e)
+        {
+            journalService = Program.kernel.Get<IJournalService>();
+            switch (e.Button.Index)
+            {
+                case 1: //Додати
+                    {
+                        using (DetailsEditFm detailsEditFm = new DetailsEditFm(Utils.Operation.Add, new DetailsDTO()))
+                        {
+                            if (detailsEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                            {
+                                DetailsDTO return_Id =detailsEditFm.Return();
+                                detailsBS.DataSource = journalService.GetMaterials(); ;
+                                detailEdit.EditValue = return_Id.Id;
+                            }
+                        }
+                        break;
+                    }
+                case 2://Редагувати
+                    {
+                        if (detailEdit.EditValue == DBNull.Value)
+                            return;
+
+                        using (DetailsEditFm detailsEditFm = new DetailsEditFm(Utils.Operation.Update, (DetailsDTO)detailEdit.GetSelectedDataRow()))
+                        {
+                            if (detailsEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                            {
+                                DetailsDTO return_Id = detailsEditFm.Return();
+                                detailsBS.DataSource = journalService.GetDetails();
+                                detailEdit.EditValue = return_Id.Id;
+                            }
+                        }
+                        break;
+                    }
+                case 3://Видалити
+                    {
+                        if (detailEdit.EditValue == DBNull.Value)
+                            return;
+
+                        if (MessageBox.Show("Удалить?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            journalService.DetailDelete(((DetailsDTO)detailEdit.GetSelectedDataRow()).Id);
+                            detailEdit.Properties.DataSource = journalService.GetDetails();
+                            detailEdit.EditValue = null;
+                            detailEdit.Properties.NullText = "Немає данних";
+                        }
+
+                        break;
+                    }
+                case 4://Очистити
+                    {
+                        detailEdit.EditValue = null;
+                        detailEdit.Properties.NullText = "Немає данних";
+                        break;
+                    }
+            }
+        }
+
+        private void materialEdit_ButtonClick(object sender, ButtonPressedEventArgs e)
+        {
+            journalService = Program.kernel.Get<IJournalService>();
+            switch (e.Button.Index)
+            {
+                case 1: //Додати
+                    {
+                        using (MaterialEditFm materialEditFm = new MaterialEditFm(Utils.Operation.Add ,new MaterialsDTO()))
+                        {
+                            if (materialEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                            {
+                                MaterialsDTO return_Id = materialEditFm.Return();
+                                materialsBS.DataSource = journalService.GetMaterials();
+                                materialEdit.EditValue = return_Id.Id;
+                            }
+                        }
+                        break;
+                    }
+                case 2://Редагувати
+                    {
+                        if (materialEdit.EditValue == DBNull.Value)
+                            return;
+
+                        using (MaterialEditFm materialEditFm = new MaterialEditFm(Utils.Operation.Update, (MaterialsDTO)materialEdit.GetSelectedDataRow()))
+                        {
+                            if (materialEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                            {
+                                MaterialsDTO return_Id = materialEditFm.Return();
+                                materialsBS.DataSource = journalService.GetMaterials();
+                                materialEdit.EditValue = return_Id.Id;
+                            }
+                        }
+                        break;
+                    }
+                case 3://Видалити
+                    {
+                        if (materialEdit.EditValue == DBNull.Value)
+                            return;
+
+                        if (MessageBox.Show("Удалить?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            journalService.MaterialsDelete(((MaterialsDTO)materialEdit.GetSelectedDataRow()).Id);
+                            materialEdit.Properties.DataSource = journalService.GetDetails();
+                            materialEdit.EditValue = null;
+                            materialEdit.Properties.NullText = "Немає данних";
+                        }
+
+                        break;
+                    }
+                case 4://Очистити
+                    {
+                        materialEdit.EditValue = null;
+                        materialEdit.Properties.NullText = "Немає данних";
+                        break;
+                    }
             }
         }
     }

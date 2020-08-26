@@ -19,6 +19,7 @@ namespace TechnicalProcessControl.BLL.Services
         private IRepository<Drawings> parentDrawings;
         private IRepository<DrawingScan> drawingScan;
         private IRepository<Details> details;
+        private IRepository<Materials> materials;
         private IRepository<DAL.Models.Type> type;
         private IRepository<TechProcess001> techProcess001;
         private IRepository<TechProcess002> techProcess002;
@@ -36,12 +37,14 @@ namespace TechnicalProcessControl.BLL.Services
             parentDrawings = Database.GetRepository<Drawings>();
             drawingScan = Database.GetRepository<DrawingScan>();
             details = Database.GetRepository<Details>();
+            materials = Database.GetRepository<Materials>();
             type = Database.GetRepository<DAL.Models.Type>();
             techProcess001 = Database.GetRepository<TechProcess001>();
             techProcess002 = Database.GetRepository<TechProcess002>();
             techProcess003 = Database.GetRepository<TechProcess003>();
             techProcess004 = Database.GetRepository<TechProcess004>();
             techProcess005 = Database.GetRepository<TechProcess005>();
+            
 
 
             var config = new MapperConfiguration(cfg =>
@@ -66,6 +69,8 @@ namespace TechnicalProcessControl.BLL.Services
                 cfg.CreateMap<TechProcess004DTO, TechProcess004>();
                 cfg.CreateMap<TechProcess005, TechProcess005DTO>();
                 cfg.CreateMap<TechProcess005DTO, TechProcess005>();
+                cfg.CreateMap<Materials, MaterialsDTO>();
+                cfg.CreateMap<MaterialsDTO, Materials>();
 
             });
 
@@ -79,6 +84,8 @@ namespace TechnicalProcessControl.BLL.Services
                           from tp in tpp.DefaultIfEmpty()
                           join det in details.GetAll() on drw.DetailId equals det.Id into dett
                           from det in dett.DefaultIfEmpty()
+                          join mat in materials.GetAll() on drw.MaterialId equals mat.Id into matt
+                          from mat in matt.DefaultIfEmpty()
                           join tcp001 in techProcess001.GetAll() on drw.Id equals tcp001.DrawingId into tcpp001
                           from tcp001 in tcpp001.DefaultIfEmpty()
                           join tcp002 in techProcess002.GetAll() on drw.Id equals tcp002.DrawingId into tcpp002
@@ -102,6 +109,7 @@ namespace TechnicalProcessControl.BLL.Services
                               TypeName = tp.TypeName,
                               CurrentLevelMenu = drw.CurrentLevelMenu,
                               DetailId = det.Id,
+                              MaterialId = mat.Id,
                               DetailName = det.DetailName,
                               Quantity = drw.Quantity,
                               Number = drw.Number,

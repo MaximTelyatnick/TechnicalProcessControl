@@ -19,12 +19,7 @@ namespace TechnicalProcessControl.DAL.Models
         public string Number { get; set; }
 
         public int? DetailId { get; set; }
-
-        public int? TechProcess001Id { get; set; }
-        public int? TechProcess002Id { get; set; }
-        public int? TechProcess003Id { get; set; }
-        public int? TechProcess004Id { get; set; }
-        public int? TechProcess005Id { get; set; }
+        public int? MaterialId { get; set; }
 
         public decimal? DetailWeight { get; set; }
         public decimal? TH { get; set; }
