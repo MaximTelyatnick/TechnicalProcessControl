@@ -17,7 +17,7 @@ using TechnicalProcessControl.Journals;
 
 namespace TechnicalProcessControl.Drawings
 {
-    public partial class DrawingsEditFm : DevExpress.XtraEditors.XtraForm
+    public partial class StructuraEditFm : DevExpress.XtraEditors.XtraForm
     {
         private IDrawingService drawingService;
         private IReportService reportService;
@@ -52,7 +52,7 @@ namespace TechnicalProcessControl.Drawings
             }
         }
 
-        public DrawingsEditFm(DrawingsDTO model, Utils.Operation operation)
+        public StructuraEditFm(DrawingsDTO model, Utils.Operation operation)
         {
             InitializeComponent();
 
@@ -241,7 +241,7 @@ namespace TechnicalProcessControl.Drawings
 
                 if (operation == Utils.Operation.Add)
                 {
-                    ((DrawingsDTO)Item).Id = drawingService.DrawingCreate((DrawingsDTO)Item);
+                    ((DrawingsDTO)Item).Id = drawingService.DrawingsCreate((DrawingsDTO)Item);
                     return true;
                     //if (drawingScanDTO.Scan != null)
                     //{
@@ -253,7 +253,7 @@ namespace TechnicalProcessControl.Drawings
                 else
                 {
 
-                    drawingService.DrawingUpdate((DrawingsDTO)Item);
+                    drawingService.DrawingsUpdate((DrawingsDTO)Item);
                     //if (drawingScanDTO != null)
                     //{
                     //    if (drawingScanDTO.Scan == null && drawingScanDTO.Id > 0)

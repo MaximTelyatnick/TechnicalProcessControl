@@ -1,6 +1,6 @@
 ﻿namespace TechnicalProcessControl
 {
-    partial class DrawingsFm
+    partial class StructuraFm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DrawingsFm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StructuraFm));
             DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule treeListFormatRule1 = new DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule();
             this.contractorsRibonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
@@ -1552,7 +1552,7 @@
             this.imageCollection.InsertGalleryImage("removepivotfield_16x16.png", "images/spreadsheet/removepivotfield_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/spreadsheet/removepivotfield_16x16.png"), 1);
             this.imageCollection.Images.SetKeyName(1, "removepivotfield_16x16.png");
             // 
-            // DrawingsFm
+            // StructuraFm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1560,7 +1560,7 @@
             this.Controls.Add(this.drawingTreeListGrid);
             this.Controls.Add(this.drawingGrid);
             this.Controls.Add(this.contractorsRibonControl);
-            this.Name = "DrawingsFm";
+            this.Name = "StructuraFm";
             this.Text = "Чертежи";
             ((System.ComponentModel.ISupportInitialize)(this.contractorsRibonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawingGrid)).EndInit();

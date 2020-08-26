@@ -35,6 +35,7 @@ namespace TechnicalProcessControl.DAL.EF
         public DbSet<TechProcess005> TechProcess005 { get; set; }
         public DbSet<DrawingScan> DrawingScan { get; set; }
         public DbSet<Materials> Materials { get; set; }
+        public DbSet<Drawing> Drawing { get; set; }
 
         #endregion
 

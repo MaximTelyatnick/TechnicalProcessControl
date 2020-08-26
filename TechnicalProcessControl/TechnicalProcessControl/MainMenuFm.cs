@@ -6,6 +6,7 @@ using DevExpress.XtraBars.Docking2010.Views.Tabbed;
 using System.Timers;
 using TechnicalProcessControl.BLL.Interfaces;
 using TechnicalProcessControl.Journals;
+using TechnicalProcessControl.Drawings;
 
 namespace TechnicalProcessControl
 {
@@ -83,7 +84,7 @@ namespace TechnicalProcessControl
 
         private void contractorBtn_ElementClick(object sender, DevExpress.XtraBars.Navigation.NavElementEventArgs e)
         {
-            DrawingsFm contractorsFm = new DrawingsFm();
+            StructuraFm contractorsFm = new StructuraFm();
             contractorsFm.Text = "Продукция";
             contractorsFm.MdiParent = this;
             contractorsFm.Show();
@@ -142,6 +143,15 @@ namespace TechnicalProcessControl
                     detailFm.MdiParent = this;
                     detailFm.Show();
                     break;
+                case "drawingItem":
+                    DrawingFm drawingFm = new DrawingFm();
+                    drawingFm.Text = "Чертежи";
+                    drawingFm.MdiParent = this;
+                    drawingFm.Show();
+                    break;
+
+
+                    
             }
         }
     }

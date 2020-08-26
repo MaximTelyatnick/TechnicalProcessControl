@@ -179,17 +179,23 @@
     <Compile Include="ContractorsEditFm.Designer.cs">
       <DependentUpon>ContractorsEditFm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Drawings\DrawingsEditFm.cs">
+    <Compile Include="Drawings\DrawingFm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Drawings\DrawingsEditFm.Designer.cs">
-      <DependentUpon>DrawingsEditFm.cs</DependentUpon>
+    <Compile Include="Drawings\DrawingFm.Designer.cs">
+      <DependentUpon>DrawingFm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Drawings\DrawingsFm.cs">
+    <Compile Include="Drawings\StructuraEditFm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Drawings\DrawingsFm.Designer.cs">
-      <DependentUpon>DrawingsFm.cs</DependentUpon>
+    <Compile Include="Drawings\StructuraEditFm.Designer.cs">
+      <DependentUpon>StructuraEditFm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Drawings\StructuraFm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Drawings\StructuraFm.Designer.cs">
+      <DependentUpon>StructuraFm.cs</DependentUpon>
     </Compile>
     <Compile Include="Drawings\DrawingsScanFm.cs">
       <SubType>Form</SubType>
@@ -318,11 +324,14 @@
     <EmbeddedResource Include="ContractorsEditFm.resx">
       <DependentUpon>ContractorsEditFm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Drawings\DrawingsEditFm.resx">
-      <DependentUpon>DrawingsEditFm.cs</DependentUpon>
+    <EmbeddedResource Include="Drawings\DrawingFm.resx">
+      <DependentUpon>DrawingFm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Drawings\DrawingsFm.resx">
-      <DependentUpon>DrawingsFm.cs</DependentUpon>
+    <EmbeddedResource Include="Drawings\StructuraEditFm.resx">
+      <DependentUpon>StructuraEditFm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Drawings\StructuraFm.resx">
+      <DependentUpon>StructuraFm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Drawings\DrawingsScanFm.resx">
       <DependentUpon>DrawingsScanFm.cs</DependentUpon>

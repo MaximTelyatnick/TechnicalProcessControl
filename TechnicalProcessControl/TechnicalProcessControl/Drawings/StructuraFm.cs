@@ -8,7 +8,7 @@ using System.Diagnostics;
 
 namespace TechnicalProcessControl
 {
-    public partial class DrawingsFm : DevExpress.XtraEditors.XtraForm
+    public partial class StructuraFm : DevExpress.XtraEditors.XtraForm
     {
         public static IDrawingService drawingService;
         public static IReportService reportService;
@@ -25,7 +25,7 @@ namespace TechnicalProcessControl
             }
         }
 
-        public DrawingsFm()
+        public StructuraFm()
         {
             InitializeComponent();
             LoadData(); 
@@ -55,7 +55,7 @@ namespace TechnicalProcessControl
 
         public void EditDrawing(Utils.Operation operation, DrawingsDTO userTelegramDTO)
         {
-            using (DrawingsEditFm drawingsEditFm = new DrawingsEditFm(userTelegramDTO, operation))
+            using (StructuraEditFm drawingsEditFm = new StructuraEditFm(userTelegramDTO, operation))
             {
                 if (drawingsEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
@@ -185,7 +185,7 @@ namespace TechnicalProcessControl
                     ((DrawingsDTO)Item).TechProcess001Path = techProcess001DTO.TechProcessPath;
                     ((DrawingsDTO)Item).TechProcess001Name = techProcess001DTO.TechProcessName;
 
-                    drawingService.DrawingUpdate(((DrawingsDTO)Item));
+                    drawingService.DrawingsUpdate(((DrawingsDTO)Item));
                     reportService.CreateTemplateTechProcess001(((DrawingsDTO)Item));
                     LoadData();
                     
@@ -275,7 +275,7 @@ namespace TechnicalProcessControl
                     ((DrawingsDTO)Item).TechProcess002Path = techProcess002DTO.TechProcessPath;
                     ((DrawingsDTO)Item).TechProcess002Name = techProcess002DTO.TechProcessName;
 
-                    drawingService.DrawingUpdate(((DrawingsDTO)Item));
+                    drawingService.DrawingsUpdate(((DrawingsDTO)Item));
                     reportService.CreateTemplateTechProcess002(((DrawingsDTO)Item));
                     LoadData();
 

@@ -32,6 +32,7 @@ namespace TechnicalProcessControl.BLL.Interfaces
         IEnumerable<TechProcess004DTO> GetAllTechProcess004();
         IEnumerable<TechProcess005DTO> GetAllTechProcess005();
 
+        IEnumerable<DrawingDTO> GetAllDrawing();
 
         #region TechProcess001 CRUD method's
 
@@ -61,9 +62,9 @@ namespace TechnicalProcessControl.BLL.Interfaces
 
         #region Drawing's CRUD method's
 
-        int DrawingCreate(DrawingsDTO drawingsDTO);
+        int DrawingsCreate(DrawingsDTO drawingsDTO);
 
-        void DrawingUpdate(DrawingsDTO drawingsDTO);
+        void DrawingsUpdate(DrawingsDTO drawingsDTO);
 
         bool RouteDelete(int id);
 
@@ -79,6 +80,16 @@ namespace TechnicalProcessControl.BLL.Interfaces
 
 
         #endregion
+
+        #region Drawing CRUD method's
+
+        int DrawingCreate(DrawingDTO drawingDTO);
+        void DrawingUpdate(DrawingDTO drawingDTO);
+        bool DrawingDelete(int id);
+
+        #endregion
+
+
 
 
 

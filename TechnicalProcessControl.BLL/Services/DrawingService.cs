@@ -26,6 +26,7 @@ namespace TechnicalProcessControl.BLL.Services
         private IRepository<TechProcess003> techProcess003;
         private IRepository<TechProcess004> techProcess004;
         private IRepository<TechProcess005> techProcess005;
+        private IRepository<Drawing> drawing;
 
         private IMapper mapper;
 
@@ -44,6 +45,7 @@ namespace TechnicalProcessControl.BLL.Services
             techProcess003 = Database.GetRepository<TechProcess003>();
             techProcess004 = Database.GetRepository<TechProcess004>();
             techProcess005 = Database.GetRepository<TechProcess005>();
+            drawing = Database.GetRepository<Drawing>();
             
 
 
@@ -71,7 +73,8 @@ namespace TechnicalProcessControl.BLL.Services
                 cfg.CreateMap<TechProcess005DTO, TechProcess005>();
                 cfg.CreateMap<Materials, MaterialsDTO>();
                 cfg.CreateMap<MaterialsDTO, Materials>();
-
+                cfg.CreateMap<Drawing, DrawingDTO>();
+                cfg.CreateMap<DrawingDTO, Drawing>();
             });
 
             mapper = config.CreateMapper();
@@ -155,6 +158,41 @@ namespace TechnicalProcessControl.BLL.Services
 
             return result.GroupBy(x => x.Id).Select(y => y.First()).ToList();
         }
+
+        public IEnumerable<DrawingDTO> GetAllDrawing()
+        {
+            var result = (from drw in drawing.GetAll()
+                          join tp in type.GetAll() on drw.TypeId equals tp.Id into tpp
+                          from tp in tpp.DefaultIfEmpty()
+                          join det in details.GetAll() on drw.DetailId equals det.Id into dett
+                          from det in dett.DefaultIfEmpty()
+                          join mat in materials.GetAll() on drw.MaterialId equals mat.Id into matt
+                          from mat in matt.DefaultIfEmpty()
+
+                          select new DrawingDTO
+                          {
+                              Id = drw.Id,
+                              Number = drw.Number,
+                              TypeId = tp.Id,
+                              TypeName = tp.TypeName,
+                              DetailId = det.Id,
+                              DetailName = det.DetailName,
+                              MaterialId = mat.Id,
+                              MaterialName = mat.MaterialName,
+                              Quantity = drw.Quantity,
+                              QuantityL = drw.QuantityL,
+                              QuantityR = drw.QuantityR,
+                              TH = drw.TH,
+                              L = drw.L,
+                              W = drw.W,
+                              W2 = drw.W2,
+                              DetailWeight = drw.DetailWeight,
+                          }
+                          ).ToList();
+
+            return result;
+        }
+
 
         public IEnumerable<DrawingsDTO> GetShortDrawing()
         {
@@ -316,13 +354,13 @@ namespace TechnicalProcessControl.BLL.Services
 
         #region Drawing's CRUD method's
 
-        public int DrawingCreate(DrawingsDTO drawingsDTO)
+        public int DrawingsCreate(DrawingsDTO drawingsDTO)
         {
             var createDrawings = drawings.Create(mapper.Map<Drawings>(drawingsDTO));
             return (int)createDrawings.Id;
         }
 
-        public void DrawingUpdate(DrawingsDTO drawingsDTO)
+        public void DrawingsUpdate(DrawingsDTO drawingsDTO)
         {
             var updateDrawings = drawings.GetAll().SingleOrDefault(c => c.Id == drawingsDTO.Id);
             drawings.Update((mapper.Map<DrawingsDTO, Drawings>(drawingsDTO, updateDrawings)));
@@ -372,7 +410,34 @@ namespace TechnicalProcessControl.BLL.Services
 
         #endregion
 
-       
+        #region Drawing CRUD method's
+
+        public int DrawingCreate(DrawingDTO drawingDTO)
+        {
+            var createDrawing = drawing.Create(mapper.Map<Drawing>(drawingDTO));
+            return (int)createDrawing.Id;
+        }
+
+        public void DrawingUpdate(DrawingDTO drawingDTO)
+        {
+            var updateDrawing = drawing.GetAll().SingleOrDefault(c => c.Id == drawingDTO.Id);
+            drawing.Update((mapper.Map<DrawingDTO, Drawing>(drawingDTO, updateDrawing)));
+        }
+
+        public bool DrawingDelete(int id)
+        {
+            try
+            {
+                drawing.Delete(drawing.GetAll().FirstOrDefault(c => c.Id == id));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        #endregion
 
 
     }

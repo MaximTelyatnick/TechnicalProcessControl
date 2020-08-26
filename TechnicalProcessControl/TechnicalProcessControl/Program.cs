@@ -16,18 +16,7 @@ namespace TechnicalProcessControl
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Main());
-
-
-
-
-
-
-            //Application.Run(new TestFm());
-
             Application.Run(new MainMenuFm());
-
-            //Application.Run(new AuthTelegramUserFm());
         }
     }
 }

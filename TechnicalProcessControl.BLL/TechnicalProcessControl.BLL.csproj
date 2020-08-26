@@ -68,6 +68,7 @@
     <Compile Include="ModelsDTO\CityDTO.cs" />
     <Compile Include="ModelsDTO\ContractorsDTO.cs" />
     <Compile Include="ModelsDTO\DetailsDTO.cs" />
+    <Compile Include="ModelsDTO\DrawingDTO.cs" />
     <Compile Include="ModelsDTO\DrawingScanDTO.cs" />
     <Compile Include="ModelsDTO\DrawingsDTO.cs" />
     <Compile Include="ModelsDTO\MaterialsDTO.cs" />

@@ -1,6 +1,6 @@
 ﻿namespace TechnicalProcessControl.Drawings
 {
-    partial class DrawingsEditFm
+    partial class StructuraEditFm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DrawingsEditFm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StructuraEditFm));
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -837,7 +837,7 @@
             this.labelControl5.TabIndex = 36;
             this.labelControl5.Text = "Техпроцесс 001";
             // 
-            // DrawingsEditFm
+            // StructuraEditFm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -850,7 +850,7 @@
             this.Controls.Add(this.groupControl2);
             this.Controls.Add(this.groupControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "DrawingsEditFm";
+            this.Name = "StructuraEditFm";
             this.Text = "Редактирование чертежа";
             this.Load += new System.EventHandler(this.DrawingsEditFm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
