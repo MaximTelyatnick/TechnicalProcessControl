@@ -179,6 +179,12 @@
     <Compile Include="ContractorsEditFm.Designer.cs">
       <DependentUpon>ContractorsEditFm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Drawings\DrawingEditFm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Drawings\DrawingEditFm.Designer.cs">
+      <DependentUpon>DrawingEditFm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Drawings\DrawingFm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -323,6 +329,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ContractorsEditFm.resx">
       <DependentUpon>ContractorsEditFm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Drawings\DrawingEditFm.resx">
+      <DependentUpon>DrawingEditFm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Drawings\DrawingFm.resx">
       <DependentUpon>DrawingFm.cs</DependentUpon>

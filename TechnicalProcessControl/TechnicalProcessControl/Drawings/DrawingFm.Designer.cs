@@ -30,14 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DrawingFm));
             this.drawingRibon = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.drawingGrid = new DevExpress.XtraGrid.GridControl();
-            this.drawingGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.addBtn = new DevExpress.XtraBars.BarButtonItem();
             this.editBtn = new DevExpress.XtraBars.BarButtonItem();
             this.deleteBtn = new DevExpress.XtraBars.BarButtonItem();
             this.updateBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.drawingGrid = new DevExpress.XtraGrid.GridControl();
+            this.drawingGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.typeNameCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.numberCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.detailCol = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -75,6 +75,53 @@
             this.drawingRibon.Size = new System.Drawing.Size(1181, 95);
             this.drawingRibon.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             // 
+            // addBtn
+            // 
+            this.addBtn.Caption = "Добавить";
+            this.addBtn.Id = 1;
+            this.addBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addBtn.ImageOptions.Image")));
+            this.addBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("addBtn.ImageOptions.LargeImage")));
+            this.addBtn.Name = "addBtn";
+            this.addBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.addBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addBtn_ItemClick);
+            // 
+            // editBtn
+            // 
+            this.editBtn.Caption = "Изменить";
+            this.editBtn.Id = 2;
+            this.editBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("editBtn.ImageOptions.Image")));
+            this.editBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("editBtn.ImageOptions.LargeImage")));
+            this.editBtn.Name = "editBtn";
+            this.editBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.editBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.editBtn_ItemClick);
+            // 
+            // deleteBtn
+            // 
+            this.deleteBtn.Caption = "Удалить";
+            this.deleteBtn.Id = 3;
+            this.deleteBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("deleteBtn.ImageOptions.Image")));
+            this.deleteBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("deleteBtn.ImageOptions.LargeImage")));
+            this.deleteBtn.Name = "deleteBtn";
+            this.deleteBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.deleteBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.deleteBtn_ItemClick);
+            // 
+            // updateBtn
+            // 
+            this.updateBtn.Caption = "Обновить";
+            this.updateBtn.Id = 4;
+            this.updateBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("updateBtn.ImageOptions.Image")));
+            this.updateBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("updateBtn.ImageOptions.LargeImage")));
+            this.updateBtn.Name = "updateBtn";
+            this.updateBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.updateBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.updateBtn_ItemClick);
+            // 
+            // ribbonPage1
+            // 
+            this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup1});
+            this.ribbonPage1.Name = "ribbonPage1";
+            this.ribbonPage1.Text = "ribbonPage1";
+            // 
             // ribbonPageGroup1
             // 
             this.ribbonPageGroup1.ItemLinks.Add(this.addBtn);
@@ -83,13 +130,6 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.updateBtn);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "Операции над чертежом";
-            // 
-            // ribbonPage1
-            // 
-            this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup1});
-            this.ribbonPage1.Name = "ribbonPage1";
-            this.ribbonPage1.Text = "ribbonPage1";
             // 
             // drawingGrid
             // 
@@ -119,42 +159,6 @@
             this.rCol});
             this.drawingGridView.GridControl = this.drawingGrid;
             this.drawingGridView.Name = "drawingGridView";
-            // 
-            // addBtn
-            // 
-            this.addBtn.Caption = "Добавить";
-            this.addBtn.Id = 1;
-            this.addBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
-            this.addBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
-            this.addBtn.Name = "addBtn";
-            this.addBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            // 
-            // editBtn
-            // 
-            this.editBtn.Caption = "Изменить";
-            this.editBtn.Id = 2;
-            this.editBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.Image")));
-            this.editBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.LargeImage")));
-            this.editBtn.Name = "editBtn";
-            this.editBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            // 
-            // deleteBtn
-            // 
-            this.deleteBtn.Caption = "Удалить";
-            this.deleteBtn.Id = 3;
-            this.deleteBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.Image")));
-            this.deleteBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.LargeImage")));
-            this.deleteBtn.Name = "deleteBtn";
-            this.deleteBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            // 
-            // updateBtn
-            // 
-            this.updateBtn.Caption = "Обновить";
-            this.updateBtn.Id = 4;
-            this.updateBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("updateBtn.ImageOptions.Image")));
-            this.updateBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("updateBtn.ImageOptions.LargeImage")));
-            this.updateBtn.Name = "updateBtn";
-            this.updateBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             // 
             // typeNameCol
             // 

@@ -93,5 +93,25 @@ namespace TechnicalProcessControl.Journals
             DialogResult = DialogResult.Cancel;
             this.Close();
         }
+
+        private void saveBtn_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Сохранить изменения?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                try
+                {
+                    if (SaveItem())
+                    {
+                        DialogResult = DialogResult.OK;
+                        this.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("При сохранении возникла ошибка. " + ex.Message, "Сохранение контрагента", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+        }
     }
 }

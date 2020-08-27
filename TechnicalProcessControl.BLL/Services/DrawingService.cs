@@ -331,6 +331,8 @@ namespace TechnicalProcessControl.BLL.Services
             return (int)createDrawingScan.Id;
         }
 
+        
+
         public void DrawingScanUpdate(DrawingScanDTO drawingScanDTO)
         {
             var updateDrawingScan = drawingScan.GetAll().SingleOrDefault(c => c.Id == drawingScanDTO.Id);

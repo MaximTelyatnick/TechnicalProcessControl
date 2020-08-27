@@ -710,5 +710,27 @@ namespace TechnicalProcessControl.Drawings
                     }
             }
         }
+
+        private void pictureEdit_Click(object sender, EventArgs e)
+        {
+            DrawingScanDTO drawingScanDTO = (DrawingScanDTO)drawingScanEdit.GetSelectedDataRow();
+            if (drawingScanDTO != null)
+            {
+                string puth = Utils.HomePath + @"\Temp";
+                System.IO.File.WriteAllBytes(puth + drawingScanDTO.FileName, drawingScanDTO.Scan);
+                System.Diagnostics.Process.Start(puth + drawingScanDTO.FileName);
+            }
+        }
+
+        private void pictureEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            DrawingScanDTO drawingScanDTO = (DrawingScanDTO)drawingScanEdit.GetSelectedDataRow();
+            if (drawingScanDTO != null)
+            {
+                string puth = Utils.HomePath + @"\Temp";
+                System.IO.File.WriteAllBytes(puth + drawingScanDTO.FileName, drawingScanDTO.Scan);
+                System.Diagnostics.Process.Start(puth + drawingScanDTO.FileName);
+            }
+        }
     }
 }
