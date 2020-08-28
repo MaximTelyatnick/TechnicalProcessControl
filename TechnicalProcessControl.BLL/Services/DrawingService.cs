@@ -83,11 +83,13 @@ namespace TechnicalProcessControl.BLL.Services
         public IEnumerable<DrawingsDTO> GetAllDrawings()
         {
             var result = (from drw in drawings.GetAll()
-                          join tp in type.GetAll() on drw.TypeId equals tp.Id into tpp
+                          join dr in drawing.GetAll() on drw.DrawingId equals dr.Id into drr
+                          from dr in drr.DefaultIfEmpty()
+                          join tp in type.GetAll() on dr.TypeId equals tp.Id into tpp
                           from tp in tpp.DefaultIfEmpty()
-                          join det in details.GetAll() on drw.DetailId equals det.Id into dett
+                          join det in details.GetAll() on dr.DetailId equals det.Id into dett
                           from det in dett.DefaultIfEmpty()
-                          join mat in materials.GetAll() on drw.MaterialId equals mat.Id into matt
+                          join mat in materials.GetAll() on dr.MaterialId equals mat.Id into matt
                           from mat in matt.DefaultIfEmpty()
                           join tcp001 in techProcess001.GetAll() on drw.Id equals tcp001.DrawingId into tcpp001
                           from tcp001 in tcpp001.DefaultIfEmpty()
@@ -99,37 +101,40 @@ namespace TechnicalProcessControl.BLL.Services
                           from tcp004 in tcpp004.DefaultIfEmpty()
                           join tcp005 in techProcess005.GetAll() on drw.Id equals tcp005.DrawingId into tcpp005
                           from tcp005 in tcpp005.DefaultIfEmpty()
-                          join drws in drawingScan.GetAll() on drw.Id equals drws.DrawingId into drwss
+                          join drws in drawingScan.GetAll() on dr.Id equals drws.DrawingId into drwss
                           from drws in drwss.DefaultIfEmpty()
                           join pdrw in parentDrawings.GetAll() on drw.ParentId equals pdrw.Id into pdrww
                           from pdrw in pdrww.DefaultIfEmpty()
-                          
-                            select new DrawingsDTO
+                          join drp in drawing.GetAll() on pdrw.DrawingId equals drp.Id into drpp
+                          from drp in drpp.DefaultIfEmpty()
+
+                          select new DrawingsDTO
                           {
                               Id = drw.Id,
                               ParentId = drw.ParentId,
-                              TypeId = tp.Id,
                               TypeName = tp.TypeName,
                               CurrentLevelMenu = drw.CurrentLevelMenu,
-                              DetailId = det.Id,
-                              MaterialId = mat.Id,
                               DetailName = det.DetailName,
                               Quantity = drw.Quantity,
-                              Number = drw.Number,
-                              TH = drw.TH,
-                              L = drw.L,
-                              W = drw.W,
-                              W2 = drw.W2,
-                              DetailWeight = drw.DetailWeight,
-                              GasConsumption = drw.GasConsumption,
-                              PaintConsumption = drw.PaintConsumption,
-                              WireConsumption = drw.WireConsumption,
-                              LaborIntensity001Total = drw.LaborIntensity001Total,
-                              LaborIntensity002Total = drw.LaborIntensity002Total,
-                              LaborIntensity003Total = drw.LaborIntensity003Total,
-                              LaborIntensity004Total = drw.LaborIntensity004Total,
-                              LaborIntensity005Total = drw.LaborIntensity005Total,
-                              LaborIntensityTotal = drw.LaborIntensityTotal,
+                               QuantityL = drw.QuantityL,
+                                QuantityR = drw.QuantityL,
+                              Number = dr.Number,
+                              TH = dr.TH,
+                              L = dr.L,
+                              W = dr.W,
+                              W2 = dr.W2,
+                              DetailWeight = dr.DetailWeight,
+                               MaterialName = mat.MaterialName,
+                                DrawingId = dr.Id,
+                              //GasConsumption = drw.GasConsumption,
+                              //PaintConsumption = drw.PaintConsumption,
+                              //WireConsumption = drw.WireConsumption,
+                              //LaborIntensity001Total = drw.LaborIntensity001Total,
+                              //LaborIntensity002Total = drw.LaborIntensity002Total,
+                              //LaborIntensity003Total = drw.LaborIntensity003Total,
+                              //LaborIntensity004Total = drw.LaborIntensity004Total,
+                              //LaborIntensity005Total = drw.LaborIntensity005Total,
+                              //LaborIntensityTotal = drw.LaborIntensityTotal,
                               TechProcess001Id = tcp001.Id,
                               TechProcess002Id = tcp002.Id,
                               TechProcess003Id = tcp003.Id,
@@ -146,7 +151,7 @@ namespace TechnicalProcessControl.BLL.Services
                               TechProcess004Path = tcp004.TechProcessPath,
                               TechProcess005Path = tcp005.TechProcessPath,
                               ScanId = drws.Id>0 ? 1 : 0,
-                              ParentName = pdrw.Number != "" ? pdrw.Number : drw.Number
+                              ParentName = drp.Number != "" ? drp.Number : dr.Number
 
                           }
                             ).ToList();
@@ -262,7 +267,9 @@ namespace TechnicalProcessControl.BLL.Services
 
         public string GetParentName(int parentId)
         {
-            return drawings.GetAll().First(bdsm => bdsm.Id == parentId).Number;
+            var parentDravingId = drawings.GetAll().First(bdsm => bdsm.Id == parentId).DrawingId;
+
+            return drawing.GetAll().First(bdsm => bdsm.Id == parentDravingId).Number;
         }
 
         #region TechProcess001 CRUD method's

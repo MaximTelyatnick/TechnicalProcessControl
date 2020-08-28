@@ -29,6 +29,7 @@ namespace TechnicalProcessControl.Drawings
 
         private UsersTelegramDTO models;
 
+        private BindingSource drawingBS = new BindingSource();
         private BindingSource drawingsBS = new BindingSource();
         private BindingSource drawingsScanBS = new BindingSource();
         private BindingSource techProcess001BS = new BindingSource();
@@ -63,33 +64,44 @@ namespace TechnicalProcessControl.Drawings
 
             drawingsBS.DataSource = Item = model;
 
-            materialEdit.DataBindings.Add("EditValue", drawingsBS, "MaterialId", true, DataSourceUpdateMode.OnPropertyChanged);
-            wEdit.DataBindings.Add("EditValue", drawingsBS, "W", true, DataSourceUpdateMode.OnPropertyChanged);
-            w2Edit.DataBindings.Add("EditValue", drawingsBS, "W2", true, DataSourceUpdateMode.OnPropertyChanged);
-            lEdit.DataBindings.Add("EditValue", drawingsBS, "L", true, DataSourceUpdateMode.OnPropertyChanged);
-            thEdit.DataBindings.Add("EditValue", drawingsBS, "TH", true, DataSourceUpdateMode.OnPropertyChanged);
-            weightEdit.DataBindings.Add("EditValue", drawingsBS, "DetailWeight", true, DataSourceUpdateMode.OnPropertyChanged);
-            numberEdit.DataBindings.Add("EditValue", drawingsBS, "Number", true, DataSourceUpdateMode.OnPropertyChanged);
-            quantityEdit.DataBindings.Add("EditValue", drawingsBS, "Quantity", true, DataSourceUpdateMode.OnPropertyChanged);
+            
+
             currentLevelMenuEdit.DataBindings.Add("EditValue", drawingsBS, "CurrentLevelMenu", true, DataSourceUpdateMode.OnPropertyChanged);
-            detailEdit.DataBindings.Add("EditValue", drawingsBS, "DetailId", true, DataSourceUpdateMode.OnPropertyChanged);
+            quantityEdit.DataBindings.Add("Text", drawingsBS, "Quantity", true, DataSourceUpdateMode.OnPropertyChanged);
+            quantityLEdit.DataBindings.Add("Text", drawingsBS, "QuantityL", true, DataSourceUpdateMode.OnPropertyChanged);
+            quantityREdit.DataBindings.Add("Text", drawingsBS, "QuantityR", true, DataSourceUpdateMode.OnPropertyChanged);
+
+            
+            //materialEdit.DataBindings.Add("Text", drawingsBS, "MaterialName", true, DataSourceUpdateMode.OnPropertyChanged);
+            //detailEdit.DataBindings.Add("Text", drawingsBS, "DetailName", true, DataSourceUpdateMode.OnPropertyChanged);
+            //wEdit.DataBindings.Add("Text", drawingsBS, "W", true, DataSourceUpdateMode.OnPropertyChanged);
+            //w2Edit.DataBindings.Add("Text", drawingsBS, "W2", true, DataSourceUpdateMode.OnPropertyChanged);
+            //lEdit.DataBindings.Add("Text", drawingsBS, "L", true, DataSourceUpdateMode.OnPropertyChanged);
+            //thEdit.DataBindings.Add("Text", drawingsBS, "TH", true, DataSourceUpdateMode.OnPropertyChanged);
+            //weightEdit.DataBindings.Add("Text", drawingsBS, "DetailWeight", true, DataSourceUpdateMode.OnPropertyChanged);
+            
+
+
+            
+            
+            //quantityEdit.DataBindings.Add("EditValue", drawingsBS, "Quantity", true, DataSourceUpdateMode.OnPropertyChanged);
+            
+            
             techProcess001Edit.DataBindings.Add("EditValue", drawingsBS, "TechProcess001Id", true, DataSourceUpdateMode.OnPropertyChanged);
             techProcess002Edit.DataBindings.Add("EditValue", drawingsBS, "TechProcess002Id", true, DataSourceUpdateMode.OnPropertyChanged);
             techProcess003Edit.DataBindings.Add("EditValue", drawingsBS, "TechProcess003Id", true, DataSourceUpdateMode.OnPropertyChanged);
             techProcess004Edit.DataBindings.Add("EditValue", drawingsBS, "TechProcess004Id", true, DataSourceUpdateMode.OnPropertyChanged);
             techProcess005Edit.DataBindings.Add("EditValue", drawingsBS, "TechProcess005Id", true, DataSourceUpdateMode.OnPropertyChanged);
 
-            detailsBS.DataSource = journalService.GetDetails();
-            detailEdit.Properties.DataSource = detailsBS;
-            detailEdit.Properties.ValueMember = "Id";
-            detailEdit.Properties.DisplayMember = "DetailName";
-            detailEdit.Properties.NullText = "Немає данних";
+            numberEdit.DataBindings.Add("EditValue", drawingsBS, "DrawingId", true, DataSourceUpdateMode.OnPropertyChanged);
+            drawingBS.DataSource = drawingService.GetAllDrawing();
+            numberEdit.Properties.DataSource = drawingBS;
+            numberEdit.Properties.ValueMember = "Id";
+            numberEdit.Properties.DisplayMember = "Number";
+            numberEdit.Properties.NullText = "Немає данних";
 
-            typeBS.DataSource = drawingService.GetType();
-            typeEdit.Properties.DataSource = typeBS;
-            typeEdit.Properties.ValueMember = "Id";
-            typeEdit.Properties.DisplayMember = "TypeName";
-            typeEdit.Properties.NullText = "Немає данних";
+
+
 
             parentCurrentLevelMenuEditBS.DataSource = drawingService.GetShortDrawing();
             parentCurrentLevelMenuEdit.Properties.DataSource = parentCurrentLevelMenuEditBS;
@@ -127,11 +139,7 @@ namespace TechnicalProcessControl.Drawings
             techProcess005Edit.Properties.DisplayMember = "TechProcessFullName";
             techProcess005Edit.Properties.NullText = "Немає данних";
 
-            materialsBS.DataSource = journalService.GetMaterials();
-            materialEdit.Properties.DataSource = materialsBS;
-            materialEdit.Properties.ValueMember = "Id";
-            materialEdit.Properties.DisplayMember = "MaterialName";
-            materialEdit.Properties.NullText = "Немає данних";
+
 
 
             if (operation == Utils.Operation.Add)
@@ -151,19 +159,19 @@ namespace TechnicalProcessControl.Drawings
             {
                 case Utils.Operation.Add:
 
-                    parentCurrentLevelMenuEdit.DataBindings.Add("EditValue", drawingsBS, "ParentId", true, DataSourceUpdateMode.OnPropertyChanged);
-                    //drawingScanDTO = new DrawingScanDTO();
+                    //parentCurrentLevelMenuEdit.DataBindings.Add("EditValue", drawingsBS, "ParentId", true, DataSourceUpdateMode.OnPropertyChanged);
+                    ////drawingScanDTO = new DrawingScanDTO();
                     break;
 
                 case Utils.Operation.Update:
-                    parentCurrentLevelMenuEdit.DataBindings.Add("EditValue", drawingsBS, "Id", true, DataSourceUpdateMode.OnPropertyChanged);
+                    //parentCurrentLevelMenuEdit.DataBindings.Add("EditValue", drawingsBS, "Id", true, DataSourceUpdateMode.OnPropertyChanged);
 
-                    drawingScanList = drawingService.GetDravingScanById(((DrawingsDTO)Item).Id).ToList();
-                    drawingsScanBS.DataSource = drawingScanList;
-                    drawingScanEdit.Properties.DataSource = drawingsScanBS;
-                    drawingScanEdit.Properties.ValueMember = "Id";
-                    drawingScanEdit.Properties.DisplayMember = "FileName";
-                    drawingScanEdit.Properties.NullText = "Немає данних";
+                    //drawingScanList = drawingService.GetDravingScanById(((DrawingsDTO)Item).Id).ToList();
+                    //drawingsScanBS.DataSource = drawingScanList;
+                    //drawingScanEdit.Properties.DataSource = drawingsScanBS;
+                    //drawingScanEdit.Properties.ValueMember = "Id";
+                    //drawingScanEdit.Properties.DisplayMember = "FileName";
+                    //drawingScanEdit.Properties.NullText = "Немає данних";
 
                     //if (drawingScanList.Count > 0)
                     //    drawingScanEdit.EditValue = drawingScanList[0].Id;
@@ -731,6 +739,31 @@ namespace TechnicalProcessControl.Drawings
                 System.IO.File.WriteAllBytes(puth + drawingScanDTO.FileName, drawingScanDTO.Scan);
                 System.Diagnostics.Process.Start(puth + drawingScanDTO.FileName);
             }
+        }
+
+        private void numberEdit_EditValueChanged(object sender, EventArgs e)
+        {
+
+            object key = numberEdit.EditValue;
+            var selectedIndex = numberEdit.Properties.GetIndexByKeyValue(key);
+            materialEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).MaterialName;
+            detailEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).DetailName;
+            wEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).W;
+            w2Edit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).W2;
+            lEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).L;
+            thEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).TH;
+            weightEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).DetailWeight;
+            //drawingTBox.EditValue = ((MtsAssembliesInfoDTO)assemblyEdit.GetSelectedDataRow()).Drawing;
+            //assemblyGeneralNameTBox.EditValue = ((MtsAssembliesInfoDTO)assemblyEdit.GetSelectedDataRow()).Name;
+
+
+            //materialEdit.DataBindings.Add("Text", drawingsBS, "MaterialName", true, DataSourceUpdateMode.OnPropertyChanged);
+            //detailEdit.DataBindings.Add("Text", drawingsBS, "DetailName", true, DataSourceUpdateMode.OnPropertyChanged);
+            //wEdit.DataBindings.Add("Text", drawingsBS, "W", true, DataSourceUpdateMode.OnPropertyChanged);
+            //w2Edit.DataBindings.Add("Text", drawingsBS, "W2", true, DataSourceUpdateMode.OnPropertyChanged);
+            //lEdit.DataBindings.Add("Text", drawingsBS, "L", true, DataSourceUpdateMode.OnPropertyChanged);
+            //thEdit.DataBindings.Add("Text", drawingsBS, "TH", true, DataSourceUpdateMode.OnPropertyChanged);
+            //weightEdit.DataBindings.Add("Text", drawingsBS, "DetailWeight", true, DataSourceUpdateMode.OnPropertyChanged);
         }
     }
 }
