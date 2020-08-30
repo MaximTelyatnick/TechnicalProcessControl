@@ -26,10 +26,13 @@ namespace TechnicalProcessControl.Drawings
         private Utils.Operation operation;
 
         private List<DrawingScanDTO> drawingScanList = new List<DrawingScanDTO>();
+        private List<DrawingDTO> drawingList = new List<DrawingDTO>();
 
         private UsersTelegramDTO models;
 
         private BindingSource drawingBS = new BindingSource();
+        private BindingSource replaceDrawingBS = new BindingSource();
+        private BindingSource firstUseDrawingBS = new BindingSource();
         private BindingSource drawingsBS = new BindingSource();
         private BindingSource drawingsScanBS = new BindingSource();
         private BindingSource techProcess001BS = new BindingSource();
@@ -62,45 +65,49 @@ namespace TechnicalProcessControl.Drawings
 
             this.operation = operation;
 
+            splashScreenManager.ShowWaitForm();
+
             drawingsBS.DataSource = Item = model;
 
             
 
-            currentLevelMenuEdit.DataBindings.Add("EditValue", drawingsBS, "CurrentLevelMenu", true, DataSourceUpdateMode.OnPropertyChanged);
-            quantityEdit.DataBindings.Add("Text", drawingsBS, "Quantity", true, DataSourceUpdateMode.OnPropertyChanged);
-            quantityLEdit.DataBindings.Add("Text", drawingsBS, "QuantityL", true, DataSourceUpdateMode.OnPropertyChanged);
-            quantityREdit.DataBindings.Add("Text", drawingsBS, "QuantityR", true, DataSourceUpdateMode.OnPropertyChanged);
+            //currentLevelMenuEdit.DataBindings.Add("EditValue", drawingsBS, "CurrentLevelMenu", true, DataSourceUpdateMode.OnPropertyChanged);
+            quantityEdit.DataBindings.Add("EditValue", drawingsBS, "Quantity", true, DataSourceUpdateMode.OnPropertyChanged);
+            quantityLEdit.DataBindings.Add("EditValue", drawingsBS, "QuantityL", true, DataSourceUpdateMode.OnPropertyChanged);
+            quantityREdit.DataBindings.Add("EditValue", drawingsBS, "QuantityR", true, DataSourceUpdateMode.OnPropertyChanged);
+            replaceDrawingEdit.DataBindings.Add("EditValue", drawingsBS, "ReplaceDrawingId", true, DataSourceUpdateMode.OnPropertyChanged);
+            firstUseDrawingEdit.DataBindings.Add("EditValue", drawingsBS, "OccurrenceId", true, DataSourceUpdateMode.OnPropertyChanged);
+            
+            currentLevelMenuEdit.DataBindings.Add("EditValue", drawingsBS, "currentLevelMenu", true, DataSourceUpdateMode.OnPropertyChanged);
 
-            
-            //materialEdit.DataBindings.Add("Text", drawingsBS, "MaterialName", true, DataSourceUpdateMode.OnPropertyChanged);
-            //detailEdit.DataBindings.Add("Text", drawingsBS, "DetailName", true, DataSourceUpdateMode.OnPropertyChanged);
-            //wEdit.DataBindings.Add("Text", drawingsBS, "W", true, DataSourceUpdateMode.OnPropertyChanged);
-            //w2Edit.DataBindings.Add("Text", drawingsBS, "W2", true, DataSourceUpdateMode.OnPropertyChanged);
-            //lEdit.DataBindings.Add("Text", drawingsBS, "L", true, DataSourceUpdateMode.OnPropertyChanged);
-            //thEdit.DataBindings.Add("Text", drawingsBS, "TH", true, DataSourceUpdateMode.OnPropertyChanged);
-            //weightEdit.DataBindings.Add("Text", drawingsBS, "DetailWeight", true, DataSourceUpdateMode.OnPropertyChanged);
-            
-
-
-            
-            
-            //quantityEdit.DataBindings.Add("EditValue", drawingsBS, "Quantity", true, DataSourceUpdateMode.OnPropertyChanged);
-            
-            
             techProcess001Edit.DataBindings.Add("EditValue", drawingsBS, "TechProcess001Id", true, DataSourceUpdateMode.OnPropertyChanged);
             techProcess002Edit.DataBindings.Add("EditValue", drawingsBS, "TechProcess002Id", true, DataSourceUpdateMode.OnPropertyChanged);
             techProcess003Edit.DataBindings.Add("EditValue", drawingsBS, "TechProcess003Id", true, DataSourceUpdateMode.OnPropertyChanged);
             techProcess004Edit.DataBindings.Add("EditValue", drawingsBS, "TechProcess004Id", true, DataSourceUpdateMode.OnPropertyChanged);
             techProcess005Edit.DataBindings.Add("EditValue", drawingsBS, "TechProcess005Id", true, DataSourceUpdateMode.OnPropertyChanged);
 
+            drawingList = drawingService.GetAllDrawing().ToList();
+
             numberEdit.DataBindings.Add("EditValue", drawingsBS, "DrawingId", true, DataSourceUpdateMode.OnPropertyChanged);
-            drawingBS.DataSource = drawingService.GetAllDrawing();
+            drawingBS.DataSource = drawingList;
             numberEdit.Properties.DataSource = drawingBS;
             numberEdit.Properties.ValueMember = "Id";
             numberEdit.Properties.DisplayMember = "Number";
             numberEdit.Properties.NullText = "Немає данних";
 
 
+            replaceDrawingBS.DataSource = drawingList;
+            replaceDrawingEdit.Properties.DataSource = replaceDrawingBS;
+            replaceDrawingEdit.Properties.ValueMember = "Id";
+            replaceDrawingEdit.Properties.DisplayMember = "Number";
+            replaceDrawingEdit.Properties.NullText = "Немає данних";
+
+            
+            firstUseDrawingBS.DataSource = drawingList;
+            firstUseDrawingEdit.Properties.DataSource = firstUseDrawingBS;
+            firstUseDrawingEdit.Properties.ValueMember = "Id";
+            firstUseDrawingEdit.Properties.DisplayMember = "Number";
+            firstUseDrawingEdit.Properties.NullText = "Немає данних";
 
 
             parentCurrentLevelMenuEditBS.DataSource = drawingService.GetShortDrawing();
@@ -139,92 +146,28 @@ namespace TechnicalProcessControl.Drawings
             techProcess005Edit.Properties.DisplayMember = "TechProcessFullName";
             techProcess005Edit.Properties.NullText = "Немає данних";
 
+            drawingScanList = drawingService.GetDravingScanById(((DrawingsDTO)Item).DrawingId).ToList();
+            drawingsScanBS.DataSource = drawingScanList;
+            drawingScanEdit.Properties.DataSource = drawingsScanBS;
+            drawingScanEdit.Properties.ValueMember = "Id";
+            drawingScanEdit.Properties.DisplayMember = "FileName";
+            drawingScanEdit.Properties.NullText = "Немає данних";
 
-
-
-            if (operation == Utils.Operation.Add)
-            {
-                //parentCurrentLevelMenuEdit.DataBindings.Add("EditValue", drawingsBS, "ParentId", true, DataSourceUpdateMode.OnPropertyChanged);
-                //((UsersTelegramDTO)Item).RegistrationDate = DateTime.Now;
-                //((UsersTelegramDTO)Item).UserTelegramId = 0;
-                //((UsersTelegramDTO)Item).CurrentLevelMenu = 0;
-                //((UsersTelegramDTO)Item).Rules = 2;
-            }
-            else
-            {
-                //parentCurrentLevelMenuEdit.DataBindings.Add("EditValue", drawingsBS, "Id", true, DataSourceUpdateMode.OnPropertyChanged);
-            }
 
             switch (operation)
             {
                 case Utils.Operation.Add:
 
                     //parentCurrentLevelMenuEdit.DataBindings.Add("EditValue", drawingsBS, "ParentId", true, DataSourceUpdateMode.OnPropertyChanged);
-                    ////drawingScanDTO = new DrawingScanDTO();
+
                     break;
 
                 case Utils.Operation.Update:
-                    //parentCurrentLevelMenuEdit.DataBindings.Add("EditValue", drawingsBS, "Id", true, DataSourceUpdateMode.OnPropertyChanged);
+                    parentCurrentLevelMenuEdit.DataBindings.Add("EditValue", drawingsBS, "Id", true, DataSourceUpdateMode.OnPropertyChanged);
 
-                    //drawingScanList = drawingService.GetDravingScanById(((DrawingsDTO)Item).Id).ToList();
-                    //drawingsScanBS.DataSource = drawingScanList;
-                    //drawingScanEdit.Properties.DataSource = drawingsScanBS;
-                    //drawingScanEdit.Properties.ValueMember = "Id";
-                    //drawingScanEdit.Properties.DisplayMember = "FileName";
-                    //drawingScanEdit.Properties.NullText = "Немає данних";
+                    parentCurrentLevelMenuEdit.ReadOnly = true;
+                    currentLevelMenuEdit.ReadOnly = true;
 
-                    //if (drawingScanList.Count > 0)
-                    //    drawingScanEdit.EditValue = drawingScanList[0].Id;
-
-
-
-                    //if (drawingScanDTO != null)
-                    //{
-                    //    int stratIndex = drawingScanDTO.FileName.IndexOf('.');
-                    //    string typeFile = drawingScanDTO.FileName.Substring(stratIndex);
-
-                        //    switch (typeFile)
-                        //    {
-                        //        //case ".pdf":
-                        //        //    pictureEdit.Image = imageCollection.Images[1];
-                        //        //    pictureEdit.Properties.SizeMode = PictureSizeMode.Clip;
-                        //        //    break;
-                        //        default:
-                        //            //Bitmap bitmap = new Bitmap(drawingScanDTO.Scan);
-                        //            ImageConverter ic = new ImageConverter();
-
-                        //            Image img = (Image)ic.ConvertFrom(drawingScanDTO.Scan);
-
-                        //            Bitmap bitmap1 = new Bitmap(img);
-
-                        //            pictureEdit.Properties.SizeMode = PictureSizeMode.Zoom;
-                        //            pictureEdit.EditValue = bitmap1;
-                        //            fileNameTbox.EditValue = drawingScanDTO.FileName;
-
-                        //            //pictureEdit.Image = Image.FromStream(drawingScanDTO.Scan);
-                        //            //pictureEdit.Properties.SizeMode = PictureSizeMode.Clip;
-                        //            break;
-                        //    }
-
-                        //    fileNameTbox.EditValue = drawingScanDTO.FileName;
-
-                        //    byte[] scan = System.IO.File.ReadAllBytes(@filePath);
-
-                        //    drawingScanDTO.Scan = scan;
-                        //    drawingScanDTO.FileName = fileName;
-                        //}
-                        //else
-                        //    return;
-
-                        //try
-                        //{
-                        //    Bitmap bitmap = new Bitmap(filePath);
-                        //    pictureEdit.Properties.SizeMode = PictureSizeMode.Zoom;
-                        //    pictureEdit.EditValue = bitmap;
-                        //    fileNameTbox.EditValue = fileName;
-                        //}
-
-                        //}
                     break;
 
                 default:
@@ -235,7 +178,7 @@ namespace TechnicalProcessControl.Drawings
 
 
             //ControlValidation();
-            //splashScreenManager.CloseWaitForm();
+            splashScreenManager.CloseWaitForm();
         }
 
         private bool SaveItem()
@@ -249,17 +192,25 @@ namespace TechnicalProcessControl.Drawings
 
                 if (operation == Utils.Operation.Add)
                 {
+
+                    if (drawingService.CheckStructuraName((DrawingsDTO)Item))
+                    {
+                        MessageBox.Show("Структура з таким номером вже існує!", "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return false;
+                    }
+
+                    ((DrawingsDTO)Item).ParentId = (int?)parentCurrentLevelMenuEdit.EditValue;
                     ((DrawingsDTO)Item).Id = drawingService.DrawingsCreate((DrawingsDTO)Item);
                     return true;
-                    //if (drawingScanDTO.Scan != null)
-                    //{
-                    //    drawingScanDTO.DrawingId = ((DrawingsDTO)Item).Id;
-                    //    ((DrawingsDTO)Item).ScanId = drawingService.DrawingScanCreate(drawingScanDTO);
-
-                    //}
                 }
                 else
                 {
+
+                    if (drawingService.CheckStructuraName((DrawingsDTO)Item))
+                    {
+                        MessageBox.Show("Структура з таким номером вже існує!", "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return false;
+                    }
 
                     drawingService.DrawingsUpdate((DrawingsDTO)Item);
                     //if (drawingScanDTO != null)
@@ -280,14 +231,14 @@ namespace TechnicalProcessControl.Drawings
                     //    }
                     //}
 
-                    String updateTemplate = "";
+                    //String updateTemplate = "";
 
-                    if (((DrawingsDTO)Item).TechProcess001Id != null)
-                        if (!reportService.UpdateTemplateTechProcess001((DrawingsDTO)Item))
-                            updateTemplate += "При оновленні шаблону " + ((DrawingsDTO)Item).TechProcess001Name + " виникла помилка!\n";
-                    if (((DrawingsDTO)Item).TechProcess002Id != null)
-                        if (!reportService.UpdateTemplateTechProcess002((DrawingsDTO)Item))
-                            updateTemplate += "При оновленні шаблону " + ((DrawingsDTO)Item).TechProcess002Name + " виникла помилка!\n"; ;
+                    //if (((DrawingsDTO)Item).TechProcess001Id != null)
+                    //    if (!reportService.UpdateTemplateTechProcess001((DrawingsDTO)Item))
+                    //        updateTemplate += "При оновленні шаблону " + ((DrawingsDTO)Item).TechProcess001Name + " виникла помилка!\n";
+                    //if (((DrawingsDTO)Item).TechProcess002Id != null)
+                    //    if (!reportService.UpdateTemplateTechProcess002((DrawingsDTO)Item))
+                    //        updateTemplate += "При оновленні шаблону " + ((DrawingsDTO)Item).TechProcess002Name + " виникла помилка!\n"; ;
                     //if (((DrawingsDTO)Item).TechProcess003Id != null)
                     //    if (!reportService.UpdateTemplateTechProcess003((DrawingsDTO)Item))
                     //        updateTemplate = false;
@@ -521,6 +472,8 @@ namespace TechnicalProcessControl.Drawings
                         break;
                 }
             }
+            else
+                pictureEdit.EditValue = null;
         }
 
         private void drawingScanEdit_EditValueChanging(object sender, ChangingEventArgs e)
@@ -603,121 +556,9 @@ namespace TechnicalProcessControl.Drawings
             }
         }
 
-        private void detailEdit_ButtonClick(object sender, ButtonPressedEventArgs e)
-        {
-            journalService = Program.kernel.Get<IJournalService>();
-            switch (e.Button.Index)
-            {
-                case 1: //Додати
-                    {
-                        using (DetailsEditFm detailsEditFm = new DetailsEditFm(Utils.Operation.Add, new DetailsDTO()))
-                        {
-                            if (detailsEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                            {
-                                DetailsDTO return_Id =detailsEditFm.Return();
-                                detailsBS.DataSource = journalService.GetMaterials(); ;
-                                detailEdit.EditValue = return_Id.Id;
-                            }
-                        }
-                        break;
-                    }
-                case 2://Редагувати
-                    {
-                        if (detailEdit.EditValue == DBNull.Value)
-                            return;
+        
 
-                        using (DetailsEditFm detailsEditFm = new DetailsEditFm(Utils.Operation.Update, (DetailsDTO)detailEdit.GetSelectedDataRow()))
-                        {
-                            if (detailsEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                            {
-                                DetailsDTO return_Id = detailsEditFm.Return();
-                                detailsBS.DataSource = journalService.GetDetails();
-                                detailEdit.EditValue = return_Id.Id;
-                            }
-                        }
-                        break;
-                    }
-                case 3://Видалити
-                    {
-                        if (detailEdit.EditValue == DBNull.Value)
-                            return;
-
-                        if (MessageBox.Show("Удалить?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                        {
-                            journalService.DetailDelete(((DetailsDTO)detailEdit.GetSelectedDataRow()).Id);
-                            detailEdit.Properties.DataSource = journalService.GetDetails();
-                            detailEdit.EditValue = null;
-                            detailEdit.Properties.NullText = "Немає данних";
-                        }
-
-                        break;
-                    }
-                case 4://Очистити
-                    {
-                        detailEdit.EditValue = null;
-                        detailEdit.Properties.NullText = "Немає данних";
-                        break;
-                    }
-            }
-        }
-
-        private void materialEdit_ButtonClick(object sender, ButtonPressedEventArgs e)
-        {
-            journalService = Program.kernel.Get<IJournalService>();
-            switch (e.Button.Index)
-            {
-                case 1: //Додати
-                    {
-                        using (MaterialEditFm materialEditFm = new MaterialEditFm(Utils.Operation.Add ,new MaterialsDTO()))
-                        {
-                            if (materialEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                            {
-                                MaterialsDTO return_Id = materialEditFm.Return();
-                                materialsBS.DataSource = journalService.GetMaterials();
-                                materialEdit.EditValue = return_Id.Id;
-                            }
-                        }
-                        break;
-                    }
-                case 2://Редагувати
-                    {
-                        if (materialEdit.EditValue == DBNull.Value)
-                            return;
-
-                        using (MaterialEditFm materialEditFm = new MaterialEditFm(Utils.Operation.Update, (MaterialsDTO)materialEdit.GetSelectedDataRow()))
-                        {
-                            if (materialEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                            {
-                                MaterialsDTO return_Id = materialEditFm.Return();
-                                materialsBS.DataSource = journalService.GetMaterials();
-                                materialEdit.EditValue = return_Id.Id;
-                            }
-                        }
-                        break;
-                    }
-                case 3://Видалити
-                    {
-                        if (materialEdit.EditValue == DBNull.Value)
-                            return;
-
-                        if (MessageBox.Show("Удалить?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                        {
-                            journalService.MaterialsDelete(((MaterialsDTO)materialEdit.GetSelectedDataRow()).Id);
-                            materialEdit.Properties.DataSource = journalService.GetDetails();
-                            materialEdit.EditValue = null;
-                            materialEdit.Properties.NullText = "Немає данних";
-                        }
-
-                        break;
-                    }
-                case 4://Очистити
-                    {
-                        materialEdit.EditValue = null;
-                        materialEdit.Properties.NullText = "Немає данних";
-                        break;
-                    }
-            }
-        }
+        
 
         private void pictureEdit_Click(object sender, EventArgs e)
         {
@@ -743,27 +584,217 @@ namespace TechnicalProcessControl.Drawings
 
         private void numberEdit_EditValueChanged(object sender, EventArgs e)
         {
+            if (numberEdit.EditValue != DBNull.Value && numberEdit.EditValue != null)
+            {
+                object key = numberEdit.EditValue;
+                var selectedIndex = numberEdit.Properties.GetIndexByKeyValue(key);
+                materialEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).MaterialName;
+                detailEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).DetailName;
+                wEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).W;
+                w2Edit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).W2;
+                lEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).L;
+                thEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).TH;
+                weightEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).DetailWeight;
+                typeEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).TypeName;
 
-            object key = numberEdit.EditValue;
-            var selectedIndex = numberEdit.Properties.GetIndexByKeyValue(key);
-            materialEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).MaterialName;
-            detailEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).DetailName;
-            wEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).W;
-            w2Edit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).W2;
-            lEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).L;
-            thEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).TH;
-            weightEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).DetailWeight;
-            //drawingTBox.EditValue = ((MtsAssembliesInfoDTO)assemblyEdit.GetSelectedDataRow()).Drawing;
-            //assemblyGeneralNameTBox.EditValue = ((MtsAssembliesInfoDTO)assemblyEdit.GetSelectedDataRow()).Name;
+                drawingScanList = drawingService.GetDravingScanById(((DrawingDTO)numberEdit.GetSelectedDataRow()).Id).ToList();
+                drawingsScanBS.DataSource = drawingScanList;
+                drawingScanEdit.Properties.DataSource = drawingsScanBS;
 
+                if (drawingsScanBS.Count > 0)
+                    drawingScanEdit.EditValue = drawingScanList[0].Id;
+                else
+                    drawingScanEdit.EditValue = null;
+            }
 
-            //materialEdit.DataBindings.Add("Text", drawingsBS, "MaterialName", true, DataSourceUpdateMode.OnPropertyChanged);
-            //detailEdit.DataBindings.Add("Text", drawingsBS, "DetailName", true, DataSourceUpdateMode.OnPropertyChanged);
-            //wEdit.DataBindings.Add("Text", drawingsBS, "W", true, DataSourceUpdateMode.OnPropertyChanged);
-            //w2Edit.DataBindings.Add("Text", drawingsBS, "W2", true, DataSourceUpdateMode.OnPropertyChanged);
-            //lEdit.DataBindings.Add("Text", drawingsBS, "L", true, DataSourceUpdateMode.OnPropertyChanged);
-            //thEdit.DataBindings.Add("Text", drawingsBS, "TH", true, DataSourceUpdateMode.OnPropertyChanged);
-            //weightEdit.DataBindings.Add("Text", drawingsBS, "DetailWeight", true, DataSourceUpdateMode.OnPropertyChanged);
+            
+        }
+
+        private void numberEdit_ButtonClick(object sender, ButtonPressedEventArgs e)
+        {
+            journalService = Program.kernel.Get<IJournalService>();
+            switch (e.Button.Index)
+            {
+                case 1: //Додати
+                    {
+                        using (DrawingEditFm drawingEditFm = new DrawingEditFm(new DrawingDTO(), Utils.Operation.Add))
+                        {
+                            if (drawingEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                            {
+                                DrawingDTO return_Id = drawingEditFm.Return();
+                                drawingBS.DataSource = drawingService.GetAllDrawing();
+                                numberEdit.EditValue = return_Id.Id;
+                            }
+                        }
+                        break;
+                    }
+                case 2://Редагувати
+                    {
+                        if (numberEdit.EditValue == DBNull.Value)
+                            return;
+
+                        using (DrawingEditFm drawingEditFm = new DrawingEditFm((DrawingDTO)numberEdit.GetSelectedDataRow(), Utils.Operation.Update))
+                        {
+                            if (drawingEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                            {
+                                DrawingDTO return_Id = drawingEditFm.Return();
+                                drawingBS.DataSource = drawingService.GetAllDrawing();
+                                numberEdit.EditValue = return_Id.Id;
+                            }
+                        }
+                        break;
+                    }
+                case 3://Видалити
+                    {
+                        if (numberEdit.EditValue == DBNull.Value)
+                            return;
+
+                        if (MessageBox.Show("Удалить?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            drawingService.DrawingDelete(((DrawingDTO)numberEdit.GetSelectedDataRow()).Id);
+                            numberEdit.Properties.DataSource = drawingService.GetAllDrawing();
+                            numberEdit.EditValue = null;
+                            numberEdit.Properties.NullText = "Немає данних";
+                        }
+
+                        break;
+                    }
+                case 4://Очистити
+                    {
+                        numberEdit.EditValue = null;
+                        numberEdit.Properties.NullText = "Немає данних";
+                        break;
+                    }
+            }
+        }
+
+        private void firstUseDrawingEdit_ButtonClick(object sender, ButtonPressedEventArgs e)
+        {
+            journalService = Program.kernel.Get<IJournalService>();
+            switch (e.Button.Index)
+            {
+                case 1: //Додати
+                    {
+                        using (DrawingEditFm drawingEditFm = new DrawingEditFm(new DrawingDTO(), Utils.Operation.Add))
+                        {
+                            if (drawingEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                            {
+                                DrawingDTO return_Id = drawingEditFm.Return();
+                                firstUseDrawingBS.DataSource = drawingService.GetAllDrawing();
+                                firstUseDrawingEdit.EditValue = return_Id.Id;
+                            }
+                        }
+                        break;
+                    }
+                case 2://Редагувати
+                    {
+                        if (numberEdit.EditValue == DBNull.Value)
+                            return;
+
+                        using (DrawingEditFm drawingEditFm = new DrawingEditFm((DrawingDTO)firstUseDrawingEdit.GetSelectedDataRow(), Utils.Operation.Update))
+                        {
+                            if (drawingEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                            {
+                                DrawingDTO return_Id = drawingEditFm.Return();
+                                firstUseDrawingBS.DataSource = drawingService.GetAllDrawing();
+                                firstUseDrawingEdit.EditValue = return_Id.Id;
+                            }
+                        }
+                        break;
+                    }
+                case 3://Видалити
+                    {
+                        if (numberEdit.EditValue == DBNull.Value)
+                            return;
+
+                        if (MessageBox.Show("Удалить?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            drawingService.DrawingDelete(((DrawingDTO)firstUseDrawingEdit.GetSelectedDataRow()).Id);
+                            firstUseDrawingEdit.Properties.DataSource = drawingService.GetAllDrawing();
+                            firstUseDrawingEdit.EditValue = null;
+                            firstUseDrawingEdit.Properties.NullText = "Немає данних";
+                        }
+
+                        break;
+                    }
+                case 4://Очистити
+                    {
+                        firstUseDrawingEdit.EditValue = null;
+                        firstUseDrawingEdit.Properties.NullText = "Немає данних";
+                        break;
+                    }
+            }
+        }
+
+        private void replaceDrawingEdit_ButtonClick(object sender, ButtonPressedEventArgs e)
+        {
+            journalService = Program.kernel.Get<IJournalService>();
+            switch (e.Button.Index)
+            {
+                case 1: //Додати
+                    {
+                        using (DrawingEditFm drawingEditFm = new DrawingEditFm(new DrawingDTO(), Utils.Operation.Add))
+                        {
+                            if (drawingEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                            {
+                                DrawingDTO return_Id = drawingEditFm.Return();
+                                replaceDrawingBS.DataSource = drawingService.GetAllDrawing();
+                                replaceDrawingEdit.EditValue = return_Id.Id;
+                            }
+                        }
+                        break;
+                    }
+                case 2://Редагувати
+                    {
+                        if (numberEdit.EditValue == DBNull.Value)
+                            return;
+
+                        using (DrawingEditFm drawingEditFm = new DrawingEditFm((DrawingDTO)replaceDrawingEdit.GetSelectedDataRow(), Utils.Operation.Update))
+                        {
+                            if (drawingEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                            {
+                                DrawingDTO return_Id = drawingEditFm.Return();
+                                replaceDrawingBS.DataSource = drawingService.GetAllDrawing();
+                                replaceDrawingEdit.EditValue = return_Id.Id;
+                            }
+                        }
+                        break;
+                    }
+                case 3://Видалити
+                    {
+                        if (numberEdit.EditValue == DBNull.Value)
+                            return;
+
+                        if (MessageBox.Show("Удалить?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            drawingService.DrawingDelete(((DrawingDTO)replaceDrawingEdit.GetSelectedDataRow()).Id);
+                            replaceDrawingEdit.Properties.DataSource = drawingService.GetAllDrawing();
+                            replaceDrawingEdit.EditValue = null;
+                            replaceDrawingEdit.Properties.NullText = "Немає данних";
+                        }
+
+                        break;
+                    }
+                case 4://Очистити
+                    {
+                        replaceDrawingEdit.EditValue = null;
+                        replaceDrawingEdit.Properties.NullText = "Немає данних";
+                        break;
+                    }
+            }
+        }
+
+        private void parentCurrentLevelMenuEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            drawingService = Program.kernel.Get<IDrawingService>();
+
+            if (parentCurrentLevelMenuEdit.EditValue == DBNull.Value || (DrawingsDTO)parentCurrentLevelMenuEdit.GetSelectedDataRow() == null)
+                return;
+
+            //((DrawingsDTO)Item).CurrentLevelMenu = drawingService.GetMaxStructuraNumber((DrawingsDTO)parentCurrentLevelMenuEdit.GetSelectedDataRow());
+            currentLevelMenuEdit.Text = drawingService.GetMaxStructuraNumber((DrawingsDTO)parentCurrentLevelMenuEdit.GetSelectedDataRow());
+            //parentCurrentLevelMenuEdit.Text = ((DrawingsDTO)parentCurrentLevelMenuEdit.GetSelectedDataRow()).CurrentLevelMenu;
+            //GetMaxStructuraNumber
         }
     }
 }

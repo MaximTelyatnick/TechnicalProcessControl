@@ -35,23 +35,28 @@
             // 
             // progressPanel1
             // 
-            this.progressPanel1.AnimationAcceleration = 5F;
+            this.progressPanel1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.progressPanel1.AnimationAcceleration = 10F;
+            this.progressPanel1.AnimationToTextDistance = 20;
             this.progressPanel1.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.progressPanel1.Appearance.ForeColor = System.Drawing.Color.Indigo;
+            this.progressPanel1.Appearance.ForeColor = System.Drawing.Color.Green;
             this.progressPanel1.Appearance.Options.UseBackColor = true;
             this.progressPanel1.Appearance.Options.UseForeColor = true;
             this.progressPanel1.AppearanceCaption.Font = new System.Drawing.Font("Britannic Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.progressPanel1.AppearanceCaption.ForeColor = System.Drawing.Color.Indigo;
+            this.progressPanel1.AppearanceCaption.ForeColor = System.Drawing.Color.DimGray;
             this.progressPanel1.AppearanceCaption.Options.UseFont = true;
             this.progressPanel1.AppearanceCaption.Options.UseForeColor = true;
             this.progressPanel1.AppearanceDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.progressPanel1.AppearanceDescription.Options.UseFont = true;
-            this.progressPanel1.BarAnimationElementThickness = 4;
-            this.progressPanel1.Caption = "   Подождите";
+            this.progressPanel1.BarAnimationElementLength = 200;
+            this.progressPanel1.BarAnimationElementThickness = 20;
+            this.progressPanel1.BarAnimationMotionType = DevExpress.Utils.Animation.MotionType.WithAcceleration;
+            this.progressPanel1.Caption = "Подождите";
             this.progressPanel1.Description = "       идет загрузка ...";
             this.progressPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.progressPanel1.ImageHorzOffset = 20;
             this.progressPanel1.Location = new System.Drawing.Point(0, 17);
+            this.progressPanel1.LookAndFeel.SkinName = "DevExpress Dark Style";
             this.progressPanel1.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.progressPanel1.Name = "progressPanel1";
             this.progressPanel1.Size = new System.Drawing.Size(317, 88);

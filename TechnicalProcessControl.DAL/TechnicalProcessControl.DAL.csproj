@@ -84,6 +84,7 @@
     <Compile Include="Models\Messages.cs" />
     <Compile Include="Models\Orders.cs" />
     <Compile Include="Models\Production.cs" />
+    <Compile Include="Models\Revisions.cs" />
     <Compile Include="Models\Routes.cs" />
     <Compile Include="Models\Rules.cs" />
     <Compile Include="Models\TechProcess001.cs" />

@@ -51,10 +51,10 @@
             this.materialItem = new DevExpress.XtraBars.Navigation.TileNavItem();
             this.tileNavItem6 = new DevExpress.XtraBars.Navigation.TileNavItem();
             this.detailItem = new DevExpress.XtraBars.Navigation.TileNavItem();
+            this.drawingItem = new DevExpress.XtraBars.Navigation.TileNavItem();
             this.documentManager = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
             this.tabbedView1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
             this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
-            this.drawingItem = new DevExpress.XtraBars.Navigation.TileNavItem();
             ((System.ComponentModel.ISupportInitialize)(this.tileNavPane)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView1)).BeginInit();
@@ -98,7 +98,7 @@
             this.contractorBtn.AppearanceSelected.ForeColor = System.Drawing.Color.White;
             this.contractorBtn.AppearanceSelected.Options.UseBackColor = true;
             this.contractorBtn.AppearanceSelected.Options.UseForeColor = true;
-            this.contractorBtn.Caption = "Чертежи";
+            this.contractorBtn.Caption = "Структура";
             this.contractorBtn.Glyph = ((System.Drawing.Image)(resources.GetObject("contractorBtn.Glyph")));
             this.contractorBtn.GlyphAlignment = DevExpress.XtraBars.Navigation.NavButtonAlignment.Left;
             this.contractorBtn.Name = "contractorBtn";
@@ -302,6 +302,27 @@
             this.detailItem.Tile.Elements.Add(tileItemElement8);
             this.detailItem.Tile.Name = "tileBarItem3";
             // 
+            // drawingItem
+            // 
+            this.drawingItem.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.drawingItem.Appearance.Options.UseFont = true;
+            this.drawingItem.Caption = "Чертежи";
+            this.drawingItem.Name = "drawingItem";
+            this.drawingItem.OwnerCollection = this.tileNavCategory4.Items;
+            // 
+            // 
+            // 
+            this.drawingItem.Tile.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+            this.drawingItem.Tile.AppearanceItem.Normal.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.drawingItem.Tile.AppearanceItem.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.drawingItem.Tile.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.drawingItem.Tile.AppearanceItem.Normal.Options.UseFont = true;
+            this.drawingItem.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            tileItemElement9.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image3")));
+            tileItemElement9.Text = "Чертежи";
+            this.drawingItem.Tile.Elements.Add(tileItemElement9);
+            this.drawingItem.Tile.Name = "tileBarItem1";
+            // 
             // documentManager
             // 
             this.documentManager.ContainerControl = this;
@@ -315,27 +336,6 @@
             this.imageCollection.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollection.ImageStream")));
             this.imageCollection.Images.SetKeyName(0, "mail.png");
             this.imageCollection.Images.SetKeyName(1, "openmessages.png");
-            // 
-            // drawingItem
-            // 
-            this.drawingItem.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.drawingItem.Appearance.Options.UseFont = true;
-            this.drawingItem.Caption = "Чертежи";
-            this.drawingItem.Name = "drawingItem";
-            this.drawingItem.OwnerCollection = this.tileNavCategory4.Items;
-            // 
-            // tileBarItem1
-            // 
-            this.drawingItem.Tile.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
-            this.drawingItem.Tile.AppearanceItem.Normal.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.drawingItem.Tile.AppearanceItem.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.drawingItem.Tile.AppearanceItem.Normal.Options.UseBackColor = true;
-            this.drawingItem.Tile.AppearanceItem.Normal.Options.UseFont = true;
-            this.drawingItem.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement9.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image3")));
-            tileItemElement9.Text = "Чертежи";
-            this.drawingItem.Tile.Elements.Add(tileItemElement9);
-            this.drawingItem.Tile.Name = "tileBarItem1";
             // 
             // MainMenuFm
             // 

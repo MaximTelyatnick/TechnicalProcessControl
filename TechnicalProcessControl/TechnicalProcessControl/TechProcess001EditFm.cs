@@ -22,7 +22,7 @@ namespace TechnicalProcessControl
         public DrawingsDTO drawingsDTO;
         public TechProcess001DTO techProcess001DTO;
 
-        public TechProcess001EditFm(TechProcess001DTO techProcess001DTO, DrawingsDTO drawingsDTO)
+        public TechProcess001EditFm(TechProcess001DTO techProcess001DTO, DrawingsDTO drawingsDTO, Utils.Operation operation)
         {
             InitializeComponent();
 
@@ -34,7 +34,7 @@ namespace TechnicalProcessControl
             techProcess001DTO.TechProcessName = drawingService.GetLastTechProcess001();
             techProcess001DTO.TechProcessFullName = drawingsDTO.Number + "_TP" + techProcess001DTO.TechProcessName.ToString();
 
-            techProcess001Edit.Text = techProcess001DTO.TechProcessFullName;
+            techProcessNumber001Edit.Text = techProcess001DTO.TechProcessFullName;
 
         }
 
@@ -42,7 +42,7 @@ namespace TechnicalProcessControl
         {
             drawingService = Program.kernel.Get<IDrawingService>();
 
-            string techProcessName = techProcess001Edit.Text;
+            string techProcessName = techProcessNumber001Edit.Text;
         
             if(drawingService.CheckTechProcess001(techProcessName))
             {
@@ -62,6 +62,16 @@ namespace TechnicalProcessControl
         public TechProcess001DTO Return()
         {
             return techProcess001DTO;
+        }
+
+        private void labelControl5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TechProcess001EditFm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

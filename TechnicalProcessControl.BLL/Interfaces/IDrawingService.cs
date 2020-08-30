@@ -21,7 +21,14 @@ namespace TechnicalProcessControl.BLL.Interfaces
         //DrawingScanDTO GetDrawingScanById(int DrawingId);
         string GetParentName(int parentId);
 
-        IEnumerable<DrawingScanDTO> GetDravingScanById(int drawingId);
+        bool CheckStructuraName(DrawingsDTO drawingsDTO);
+
+        IEnumerable<DrawingScanDTO> GetDravingScanById(int? drawingId);
+
+        string GetMaxStructuraNumber(DrawingsDTO fatherStructuraId);
+
+        IEnumerable<RevisionsDTO> GetRevisions();
+
         bool CheckTechProcess001(string techProcesName);
         long GetLastTechProcess001();
         long GetLastTechProcess002();

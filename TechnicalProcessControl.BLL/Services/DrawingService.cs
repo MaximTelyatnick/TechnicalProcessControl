@@ -27,6 +27,9 @@ namespace TechnicalProcessControl.BLL.Services
         private IRepository<TechProcess004> techProcess004;
         private IRepository<TechProcess005> techProcess005;
         private IRepository<Drawing> drawing;
+        private IRepository<Drawing> replacementDrawing;
+        private IRepository<Drawing> firstUseDrawing;
+        private IRepository<Revisions> revisions;
 
         private IMapper mapper;
 
@@ -46,6 +49,9 @@ namespace TechnicalProcessControl.BLL.Services
             techProcess004 = Database.GetRepository<TechProcess004>();
             techProcess005 = Database.GetRepository<TechProcess005>();
             drawing = Database.GetRepository<Drawing>();
+            replacementDrawing = Database.GetRepository<Drawing>();
+            firstUseDrawing = Database.GetRepository<Drawing>();
+            revisions = Database.GetRepository<Revisions>();
             
 
 
@@ -75,6 +81,8 @@ namespace TechnicalProcessControl.BLL.Services
                 cfg.CreateMap<MaterialsDTO, Materials>();
                 cfg.CreateMap<Drawing, DrawingDTO>();
                 cfg.CreateMap<DrawingDTO, Drawing>();
+                cfg.CreateMap<Revisions, RevisionsDTO>();
+                cfg.CreateMap<RevisionsDTO, Revisions>();
             });
 
             mapper = config.CreateMapper();
@@ -85,6 +93,10 @@ namespace TechnicalProcessControl.BLL.Services
             var result = (from drw in drawings.GetAll()
                           join dr in drawing.GetAll() on drw.DrawingId equals dr.Id into drr
                           from dr in drr.DefaultIfEmpty()
+                          join rdr in replacementDrawing.GetAll() on drw.ReplaceDrawingId equals rdr.Id into rdrr
+                          from rdr in rdrr.DefaultIfEmpty()
+                          join fudr in firstUseDrawing.GetAll() on drw.OccurrenceId equals fudr.Id into fudrr
+                          from fudr in fudrr.DefaultIfEmpty()
                           join tp in type.GetAll() on dr.TypeId equals tp.Id into tpp
                           from tp in tpp.DefaultIfEmpty()
                           join det in details.GetAll() on dr.DetailId equals det.Id into dett
@@ -126,6 +138,8 @@ namespace TechnicalProcessControl.BLL.Services
                               DetailWeight = dr.DetailWeight,
                                MaterialName = mat.MaterialName,
                                 DrawingId = dr.Id,
+                                 OccurrenceId =drw.OccurrenceId,
+                                  ReplaceDrawingId = drw.ReplaceDrawingId,
                               //GasConsumption = drw.GasConsumption,
                               //PaintConsumption = drw.PaintConsumption,
                               //WireConsumption = drw.WireConsumption,
@@ -150,7 +164,7 @@ namespace TechnicalProcessControl.BLL.Services
                               TechProcess003Path = tcp003.TechProcessPath,
                               TechProcess004Path = tcp004.TechProcessPath,
                               TechProcess005Path = tcp005.TechProcessPath,
-                              ScanId = drws.Id>0 ? 1 : 0,
+                              ScanId = drws.DrawingId>0 ? 1 : 0,
                               ParentName = drp.Number != "" ? drp.Number : dr.Number
 
                           }
@@ -209,7 +223,35 @@ namespace TechnicalProcessControl.BLL.Services
             return mapper.Map<IEnumerable<DAL.Models.Type>, List<TypeDTO>>(type.GetAll());
         }
 
-        
+        public IEnumerable<RevisionsDTO> GetRevisions()
+        {
+            return mapper.Map<IEnumerable<Revisions>, List<RevisionsDTO>>(revisions.GetAll());
+        }
+
+        public string GetMaxStructuraNumber(DrawingsDTO fatherStructura)
+        {
+            var childStructuraList = drawings.GetAll().Where(bdsm => bdsm.ParentId == fatherStructura.Id);
+            if(childStructuraList==null || childStructuraList.Count() == 0)
+            {
+                return fatherStructura.CurrentLevelMenu + ".1";
+            }
+            string maxChildStructura = childStructuraList.OrderByDescending(x => x.CurrentLevelMenu).First().CurrentLevelMenu;
+            string[] maxChildStructuraSplit = maxChildStructura.Split('.');
+
+            try
+            {
+                int partOfMaxChildStructuraSplit = Int32.Parse(maxChildStructuraSplit.Last());
+                ++partOfMaxChildStructuraSplit;
+                maxChildStructuraSplit[maxChildStructuraSplit.Length - 1] = partOfMaxChildStructuraSplit.ToString();
+                return string.Join(".", maxChildStructuraSplit);
+            }
+            catch (FormatException e)
+            {
+                return "";
+            }
+        }
+
+
 
         /*public DrawingScanDTO GetDrawingScanById(int DrawingId)
         {
@@ -235,7 +277,7 @@ namespace TechnicalProcessControl.BLL.Services
             return maxValue;
         }
 
-        public IEnumerable<DrawingScanDTO> GetDravingScanById(int drawingId)
+        public IEnumerable<DrawingScanDTO> GetDravingScanById(int? drawingId)
         {
             return mapper.Map<IEnumerable<DrawingScan>, List<DrawingScanDTO>>(drawingScan.GetAll().Where(bdsm => bdsm.DrawingId == drawingId));
         }
@@ -271,6 +313,12 @@ namespace TechnicalProcessControl.BLL.Services
 
             return drawing.GetAll().First(bdsm => bdsm.Id == parentDravingId).Number;
         }
+
+        public bool CheckStructuraName(DrawingsDTO drawingsDTO)
+        {
+            return drawings.GetAll().Any(srt => srt.CurrentLevelMenu == drawingsDTO.CurrentLevelMenu && srt.Id != drawingsDTO.Id);
+        }
+
 
         #region TechProcess001 CRUD method's
 
