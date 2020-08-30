@@ -119,6 +119,7 @@ namespace TechnicalProcessControl.BLL.Services
                           from pdrw in pdrww.DefaultIfEmpty()
                           join drp in drawing.GetAll() on pdrw.DrawingId equals drp.Id into drpp
                           from drp in drpp.DefaultIfEmpty()
+                          /*where tcp001.DrawingId!= null || tcp002.DrawingId != null || tcp003.DrawingId != null || tcp004.DrawingId != null || tcp005.DrawingId != null*/
 
                           select new DrawingsDTO
                           {
@@ -177,6 +178,7 @@ namespace TechnicalProcessControl.BLL.Services
 
             return result.GroupBy(x => x.Id).Select(y => y.First()).ToList();
         }
+
 
         public DrawingsDTO GetDrawingsByStructuraId(int structuraId)
         {
@@ -509,7 +511,7 @@ namespace TechnicalProcessControl.BLL.Services
             drawings.Update((mapper.Map<DrawingsDTO, Drawings>(drawingsDTO, updateDrawings)));
         }
 
-        public bool RouteDelete(int id)
+        public bool DrawingsDelete(int id)
         {
             try
             {

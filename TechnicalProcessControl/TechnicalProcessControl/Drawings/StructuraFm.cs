@@ -82,8 +82,19 @@ namespace TechnicalProcessControl
 
         private void deleteBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (MessageBox.Show("Удалить пользователя", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Удалить элемент структури?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
+                drawingService = Program.kernel.Get<IDrawingService>();
+
+                drawingTreeListGrid.BeginUpdate();
+
+                if (drawingService.DrawingsDelete(((DrawingsDTO)drawingsBS.Current).Id))
+                {
+                    LoadData();
+                }
+
+                drawingTreeListGrid.EndUpdate();
+
                 //botService = Program.kernel.Get<IBotService>();
 
                 //contractorsGridView.BeginUpdate();

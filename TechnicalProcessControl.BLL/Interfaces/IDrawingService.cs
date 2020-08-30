@@ -75,7 +75,7 @@ namespace TechnicalProcessControl.BLL.Interfaces
 
         void DrawingsUpdate(DrawingsDTO drawingsDTO);
 
-        bool RouteDelete(int id);
+        bool DrawingsDelete(int id);
 
         #endregion
 

@@ -508,14 +508,14 @@ namespace TechnicalProcessControl.Drawings
                             if (techProcess001EditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                             {
                                 ////detailsBS.DataSource = journalService.GetDetails();
-                                //techProcess001Edit.Properties.DataSource = drawingService.GetAllTechProcess001();
-                                //techProcess001Edit.Properties.ValueMember = "Id";
-                                //techProcess001Edit.Properties.DisplayMember = "TechProcessFullName";
-                                //techProcess001Edit.Properties.NullText = "Немає данних";
+                                techProcess001Edit.Properties.DataSource = drawingService.GetAllTechProcess001();
+                                techProcess001Edit.Properties.ValueMember = "Id";
+                                techProcess001Edit.Properties.DisplayMember = "TechProcessFullName";
+                                techProcess001Edit.Properties.NullText = "Нету записей";
 
 
-                                //int return_Id = techProcess001EditFm.Return().Id;
-                                //techProcess001Edit.EditValue = return_Id;
+                                int return_Id = techProcess001EditFm.Return().Id;
+                                techProcess001Edit.EditValue = return_Id;
 
 
 

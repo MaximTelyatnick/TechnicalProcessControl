@@ -1163,10 +1163,12 @@ namespace TechnicalProcessControl.Drawings
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.saveBtn);
             this.Controls.Add(this.groupControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "StructuraEditFm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Редактирование структуры";
             this.Load += new System.EventHandler(this.DrawingsEditFm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();

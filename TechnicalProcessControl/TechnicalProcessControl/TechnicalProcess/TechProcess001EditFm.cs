@@ -92,8 +92,23 @@ namespace TechnicalProcessControl
 
         }
 
-        private void saveBtn_Click(object sender, EventArgs e)
+        private bool SaveTechProces()
         {
+            this.Item.EndEdit();
+
+            //if (FindDublicate((BusinessTripsDecreeDTO)this.Item))
+            //{
+            //    MessageBox.Show("Наказ з таким номером вже існує!", "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    return false;
+            //}
+
+            //if (businessTripsBS.Count == 0)
+            //{
+            //    MessageBox.Show("Необхідно додати посвідчення до наказу!", "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    return false;
+            //}
+
+
             drawingService = Program.kernel.Get<IDrawingService>();
             reportService = Program.kernel.Get<IReportService>();
             string techProcessName = techProcessNumber001Edit.Text;
@@ -101,72 +116,102 @@ namespace TechnicalProcessControl
             if (drawingService.CheckTechProcess001(techProcessName))
             {
                 MessageBox.Show("Техпроцесс с таким номером уже существует", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                return false;
             }
 
-
-            ((TechProcess001DTO)Item).TechProcessPath = @"C:\TechProcess\" + ((TechProcess001DTO)Item).TechProcessFullName + ".xls";
-            var createTechProcess = drawingService.TechProcess001Create(((TechProcess001DTO)Item));
-
-            drawingsDTO.TechProcess001Name = ((TechProcess001DTO)Item).TechProcessName;
-            drawingsDTO.TechProcess001Path = ((TechProcess001DTO)Item).TechProcessPath;
-
-            if (createTechProcess > 0)
+            try
             {
 
+                ((TechProcess001DTO)Item).TechProcessPath = @"C:\TechProcess\" + ((TechProcess001DTO)Item).TechProcessFullName + ".xls";
+                ((TechProcess001DTO)Item).Id = drawingService.TechProcess001Create(((TechProcess001DTO)Item));
 
-                //DrawingsDTO drawingsDTO = drawingService.GetDrawingsByStructuraId((int)((TechProcess001DTO)Item).DrawingsId);
-                reportService.CreateTemplateTechProcess001(drawingsDTO);
+                drawingsDTO.TechProcess001Name = ((TechProcess001DTO)Item).TechProcessName;
+                drawingsDTO.TechProcess001Path = ((TechProcess001DTO)Item).TechProcessPath;
+
+                if (((TechProcess001DTO)Item).Id > 0)
+                    reportService.CreateTemplateTechProcess001(drawingsDTO);
+
+                return true;
+
+
+
+                //if (operation == Utils.Operation.Add)
+                //{
+                //    drawingService = Program.kernel.Get<IDrawingService>();
+
+                //    ((DrawingDTO)Item).Id = drawingService.DrawingCreate((DrawingDTO)Item);
+
+                //    var createList = drawingScanList.Select(s => new DrawingScanDTO()
+                //    {
+                //        Id = 0,
+                //        DrawingId = ((DrawingDTO)Item).Id,
+                //        FileName = s.FileName,
+                //        Scan = s.Scan,
+                //        Status = 1
+                //    }).ToList();
+
+                //    foreach (var item in createList)
+                //    {
+                //        drawingService.DrawingScanCreate(item);
+                //    }
+
+                //    return true;
+                //}
+                //else
+                //{
+                //    drawingService = Program.kernel.Get<IDrawingService>();
+                //    drawingService.DrawingUpdate((DrawingDTO)Item);
+
+                //    var createList = drawingScanList.Where(bdsm => bdsm.Id == 0).Select(s => new DrawingScanDTO()
+                //    {
+
+                //        DrawingId = ((DrawingDTO)Item).Id,
+                //        FileName = s.FileName,
+                //        Scan = s.Scan,
+                //        Status = 1
+                //    }).ToList();
+
+                //    foreach (var item in createList)
+                //    {
+                //        drawingService.DrawingScanCreate(item);
+                //    }
+
+                //    return true;
+                //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("При сохранении техпроцесса возникла ошибка. " + ex.Message, "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
 
+        }
 
 
-            //techProcess001DTO.TechProcessFullName = drawingsDTO.Number + "_TP" + techProcess001DTO.TechProcessName.ToString();
-            //techProcess001DTO.TechProcessPath = @"C:\TechProcess\TechProcess001\" + techProcess001DTO.TechProcessFullName + ".xls";
-            //techProcess001DTO.DrawingId = drawingsDTO.Id;
-            //techProcess001DTO.Status = 1;
 
+        private void saveBtn_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Сохранить?", "подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                try
+                {
+                    if (SaveTechProces())
+                    {
+                        DialogResult = DialogResult.OK;
+                        this.Close();
+                    }
 
-            //var createTechProcess = drawingService.TechProcess001Create(techProcess001DTO);
-
-
-            //if (((DrawingsDTO)drawingsBS.Current).TechProcess001Id == null)
-            //{
-            //    TechProcess001DTO techProcess001DTO = new TechProcess001DTO();
-            //    techProcess001DTO.TechProcessName = drawingService.GetLastTechProcess001();
-            //    techProcess001DTO.TechProcessPath = @"C:\TechProcess\" + techProcess001DTO.TechProcessName.ToString() + ".xls";
-
-            //    var createTechProcess = drawingService.TechProcess001Create(techProcess001DTO);
-
-            //    if (createTechProcess > 0)
-            //    {
-            //        ((DrawingsDTO)Item).TechProcess001Id = createTechProcess;
-            //        ((DrawingsDTO)Item).TechProcess001Path = techProcess001DTO.TechProcessPath;
-            //        ((DrawingsDTO)Item).TechProcess001Name = techProcess001DTO.TechProcessName;
-
-            //        drawingService.DrawingsUpdate(((DrawingsDTO)Item));
-            //        reportService.CreateTemplateTechProcess001(((DrawingsDTO)Item));
-            //        LoadData();
-
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("При формировании щаблона техпроцесса возникла ошибка", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    }
-            //}
-            //else
-            //{
-            //    Process process = new Process();
-            //    process.StartInfo.Arguments = "\"" + ((DrawingsDTO)drawingsBS.Current).TechProcess001Path + "\"";
-            //    process.StartInfo.FileName = "Excel.exe";
-            //    process.Start();
-            //}
-
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("При сохранение возникла ошибка. " + ex.Message, "Сохранение пользователя", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         public TechProcess001DTO Return()
         {
-            return techProcess001DTO;
+            return ((TechProcess001DTO)Item);
         }
 
         private void labelControl5_Click(object sender, EventArgs e)
