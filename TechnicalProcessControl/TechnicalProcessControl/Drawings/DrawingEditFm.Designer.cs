@@ -174,7 +174,7 @@
             // 
             // quantityEdit
             // 
-            this.quantityEdit.Location = new System.Drawing.Point(197, 81);
+            this.quantityEdit.Location = new System.Drawing.Point(850, 81);
             this.quantityEdit.Name = "quantityEdit";
             this.quantityEdit.Size = new System.Drawing.Size(81, 20);
             this.quantityEdit.TabIndex = 42;
@@ -183,7 +183,7 @@
             // 
             this.labelControl10.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelControl10.Appearance.Options.UseFont = true;
-            this.labelControl10.Location = new System.Drawing.Point(197, 60);
+            this.labelControl10.Location = new System.Drawing.Point(850, 60);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(73, 14);
             this.labelControl10.TabIndex = 41;
@@ -222,7 +222,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.typeEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TypeName", "Уровень доступа")});
-            this.typeEdit.Size = new System.Drawing.Size(179, 20);
+            this.typeEdit.Size = new System.Drawing.Size(366, 20);
             this.typeEdit.TabIndex = 39;
             // 
             // labelControl9
@@ -258,7 +258,7 @@
             // 
             // quantityREdit
             // 
-            this.quantityREdit.Location = new System.Drawing.Point(284, 81);
+            this.quantityREdit.Location = new System.Drawing.Point(937, 81);
             this.quantityREdit.Name = "quantityREdit";
             this.quantityREdit.Size = new System.Drawing.Size(41, 20);
             this.quantityREdit.TabIndex = 47;
@@ -267,7 +267,7 @@
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(284, 60);
+            this.labelControl1.Location = new System.Drawing.Point(937, 60);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(10, 14);
             this.labelControl1.TabIndex = 46;
@@ -275,7 +275,7 @@
             // 
             // quantityLEdit
             // 
-            this.quantityLEdit.Location = new System.Drawing.Point(331, 81);
+            this.quantityLEdit.Location = new System.Drawing.Point(984, 81);
             this.quantityLEdit.Name = "quantityLEdit";
             this.quantityLEdit.Size = new System.Drawing.Size(47, 20);
             this.quantityLEdit.TabIndex = 49;
@@ -284,7 +284,7 @@
             // 
             this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelControl5.Appearance.Options.UseFont = true;
-            this.labelControl5.Location = new System.Drawing.Point(331, 59);
+            this.labelControl5.Location = new System.Drawing.Point(984, 59);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(7, 14);
             this.labelControl5.TabIndex = 48;
@@ -531,7 +531,7 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(829, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(833, 0);
             // 
             // barDockControlBottom
             // 
@@ -539,7 +539,7 @@
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 474);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(829, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(833, 0);
             // 
             // barDockControlLeft
             // 
@@ -553,7 +553,7 @@
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(829, 0);
+            this.barDockControlRight.Location = new System.Drawing.Point(833, 0);
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Size = new System.Drawing.Size(0, 474);
             // 
@@ -600,7 +600,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(829, 474);
+            this.ClientSize = new System.Drawing.Size(833, 474);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.cancelBtn);

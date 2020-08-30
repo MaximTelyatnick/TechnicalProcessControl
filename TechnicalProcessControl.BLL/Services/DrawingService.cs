@@ -103,15 +103,15 @@ namespace TechnicalProcessControl.BLL.Services
                           from det in dett.DefaultIfEmpty()
                           join mat in materials.GetAll() on dr.MaterialId equals mat.Id into matt
                           from mat in matt.DefaultIfEmpty()
-                          join tcp001 in techProcess001.GetAll() on drw.Id equals tcp001.DrawingId into tcpp001
+                          join tcp001 in techProcess001.GetAll() on dr.Id equals tcp001.DrawingId into tcpp001
                           from tcp001 in tcpp001.DefaultIfEmpty()
-                          join tcp002 in techProcess002.GetAll() on drw.Id equals tcp002.DrawingId into tcpp002
+                          join tcp002 in techProcess002.GetAll() on dr.Id equals tcp002.DrawingId into tcpp002
                           from tcp002 in tcpp002.DefaultIfEmpty()
-                          join tcp003 in techProcess003.GetAll() on drw.Id equals tcp003.DrawingId into tcpp003
+                          join tcp003 in techProcess003.GetAll() on dr.Id equals tcp003.DrawingId into tcpp003
                           from tcp003 in tcpp003.DefaultIfEmpty()
-                          join tcp004 in techProcess004.GetAll() on drw.Id equals tcp004.DrawingId into tcpp004
+                          join tcp004 in techProcess004.GetAll() on dr.Id equals tcp004.DrawingId into tcpp004
                           from tcp004 in tcpp004.DefaultIfEmpty()
-                          join tcp005 in techProcess005.GetAll() on drw.Id equals tcp005.DrawingId into tcpp005
+                          join tcp005 in techProcess005.GetAll() on dr.Id equals tcp005.DrawingId into tcpp005
                           from tcp005 in tcpp005.DefaultIfEmpty()
                           join drws in drawingScan.GetAll() on dr.Id equals drws.DrawingId into drwss
                           from drws in drwss.DefaultIfEmpty()
@@ -177,6 +177,92 @@ namespace TechnicalProcessControl.BLL.Services
 
             return result.GroupBy(x => x.Id).Select(y => y.First()).ToList();
         }
+
+        public DrawingsDTO GetDrawingsByStructuraId(int structuraId)
+        {
+            var result = (from drw in drawings.GetAll()
+                          join dr in drawing.GetAll() on drw.DrawingId equals dr.Id into drr
+                          from dr in drr.DefaultIfEmpty()
+                          join rdr in replacementDrawing.GetAll() on drw.ReplaceDrawingId equals rdr.Id into rdrr
+                          from rdr in rdrr.DefaultIfEmpty()
+                          join fudr in firstUseDrawing.GetAll() on drw.OccurrenceId equals fudr.Id into fudrr
+                          from fudr in fudrr.DefaultIfEmpty()
+                          join tp in type.GetAll() on dr.TypeId equals tp.Id into tpp
+                          from tp in tpp.DefaultIfEmpty()
+                          join det in details.GetAll() on dr.DetailId equals det.Id into dett
+                          from det in dett.DefaultIfEmpty()
+                          join mat in materials.GetAll() on dr.MaterialId equals mat.Id into matt
+                          from mat in matt.DefaultIfEmpty()
+                          join tcp001 in techProcess001.GetAll() on drw.Id equals tcp001.DrawingId into tcpp001
+                          from tcp001 in tcpp001.DefaultIfEmpty()
+                          join tcp002 in techProcess002.GetAll() on drw.Id equals tcp002.DrawingId into tcpp002
+                          from tcp002 in tcpp002.DefaultIfEmpty()
+                          join tcp003 in techProcess003.GetAll() on drw.Id equals tcp003.DrawingId into tcpp003
+                          from tcp003 in tcpp003.DefaultIfEmpty()
+                          join tcp004 in techProcess004.GetAll() on drw.Id equals tcp004.DrawingId into tcpp004
+                          from tcp004 in tcpp004.DefaultIfEmpty()
+                          join tcp005 in techProcess005.GetAll() on drw.Id equals tcp005.DrawingId into tcpp005
+                          from tcp005 in tcpp005.DefaultIfEmpty()
+                          join drws in drawingScan.GetAll() on dr.Id equals drws.DrawingId into drwss
+                          from drws in drwss.DefaultIfEmpty()
+                          join pdrw in parentDrawings.GetAll() on drw.ParentId equals pdrw.Id into pdrww
+                          from pdrw in pdrww.DefaultIfEmpty()
+                          join drp in drawing.GetAll() on pdrw.DrawingId equals drp.Id into drpp
+                          from drp in drpp.DefaultIfEmpty()
+                          where drw.Id == structuraId
+                          select new DrawingsDTO
+                          {
+                              Id = drw.Id,
+                              ParentId = drw.ParentId,
+                              TypeName = tp.TypeName,
+                              CurrentLevelMenu = drw.CurrentLevelMenu,
+                              DetailName = det.DetailName,
+                              Quantity = drw.Quantity,
+                              QuantityL = drw.QuantityL,
+                              QuantityR = drw.QuantityL,
+                              Number = dr.Number,
+                              TH = dr.TH,
+                              L = dr.L,
+                              W = dr.W,
+                              W2 = dr.W2,
+                              DetailWeight = dr.DetailWeight,
+                              MaterialName = mat.MaterialName,
+                              DrawingId = dr.Id,
+                              OccurrenceId = drw.OccurrenceId,
+                              ReplaceDrawingId = drw.ReplaceDrawingId,
+                              //GasConsumption = drw.GasConsumption,
+                              //PaintConsumption = drw.PaintConsumption,
+                              //WireConsumption = drw.WireConsumption,
+                              //LaborIntensity001Total = drw.LaborIntensity001Total,
+                              //LaborIntensity002Total = drw.LaborIntensity002Total,
+                              //LaborIntensity003Total = drw.LaborIntensity003Total,
+                              //LaborIntensity004Total = drw.LaborIntensity004Total,
+                              //LaborIntensity005Total = drw.LaborIntensity005Total,
+                              //LaborIntensityTotal = drw.LaborIntensityTotal,
+                              TechProcess001Id = tcp001.Id,
+                              TechProcess002Id = tcp002.Id,
+                              TechProcess003Id = tcp003.Id,
+                              TechProcess004Id = tcp004.Id,
+                              TechProcess005Id = tcp005.Id,
+                              TechProcess001Name = tcp001.TechProcessName,
+                              TechProcess002Name = tcp002.TechProcessName,
+                              TechProcess003Name = tcp003.TechProcessName,
+                              TechProcess004Name = tcp004.TechProcessName,
+                              TechProcess005Name = tcp005.TechProcessName,
+                              TechProcess001Path = tcp001.TechProcessPath,
+                              TechProcess002Path = tcp002.TechProcessPath,
+                              TechProcess003Path = tcp003.TechProcessPath,
+                              TechProcess004Path = tcp004.TechProcessPath,
+                              TechProcess005Path = tcp005.TechProcessPath,
+                              ScanId = drws.DrawingId > 0 ? 1 : 0,
+                              ParentName = drp.Number != "" ? drp.Number : dr.Number
+
+                          }
+                            );
+
+            return (DrawingsDTO)result;
+        }
+
 
         public IEnumerable<DrawingDTO> GetAllDrawing()
         {

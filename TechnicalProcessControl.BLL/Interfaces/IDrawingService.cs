@@ -29,6 +29,8 @@ namespace TechnicalProcessControl.BLL.Interfaces
 
         IEnumerable<RevisionsDTO> GetRevisions();
 
+        DrawingsDTO GetDrawingsByStructuraId(int structuraId);
+
         bool CheckTechProcess001(string techProcesName);
         long GetLastTechProcess001();
         long GetLastTechProcess002();

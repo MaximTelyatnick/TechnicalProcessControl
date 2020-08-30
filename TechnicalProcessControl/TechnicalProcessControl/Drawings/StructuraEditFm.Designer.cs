@@ -188,11 +188,10 @@ namespace TechnicalProcessControl.Drawings
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.cancelBtn = new DevExpress.XtraEditors.SimpleButton();
             this.saveBtn = new DevExpress.XtraEditors.SimpleButton();
-            this.validateLbl = new DevExpress.XtraEditors.LabelControl();
             this.drawingScanEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.pictureEdit = new DevExpress.XtraEditors.PictureEdit();
             this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
-            this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
+            this.techProcessPanel = new DevExpress.XtraEditors.GroupControl();
             this.techProcess005Edit = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
             this.techProcess004Edit = new DevExpress.XtraEditors.LookUpEdit();
@@ -250,8 +249,8 @@ namespace TechnicalProcessControl.Drawings
             ((System.ComponentModel.ISupportInitialize)(this.drawingScanEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
-            this.groupControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.techProcessPanel)).BeginInit();
+            this.techProcessPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.techProcess005Edit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.techProcess004Edit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.techProcess003Edit.Properties)).BeginInit();
@@ -636,18 +635,6 @@ namespace TechnicalProcessControl.Drawings
             this.saveBtn.Text = "Сохранить";
             this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
             // 
-            // validateLbl
-            // 
-            this.validateLbl.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.validateLbl.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.validateLbl.Appearance.Options.UseFont = true;
-            this.validateLbl.Appearance.Options.UseForeColor = true;
-            this.validateLbl.Location = new System.Drawing.Point(12, 567);
-            this.validateLbl.Name = "validateLbl";
-            this.validateLbl.Size = new System.Drawing.Size(135, 14);
-            this.validateLbl.TabIndex = 28;
-            this.validateLbl.Text = "Не все поля заполнены";
-            // 
             // drawingScanEdit
             // 
             this.drawingScanEdit.Location = new System.Drawing.Point(5, 522);
@@ -687,23 +674,24 @@ namespace TechnicalProcessControl.Drawings
             this.imageCollection.InsertGalleryImage("picturebox_16x16.png", "images/toolbox%20items/picturebox_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/toolbox%20items/picturebox_16x16.png"), 2);
             this.imageCollection.Images.SetKeyName(2, "picturebox_16x16.png");
             // 
-            // groupControl3
+            // techProcessPanel
             // 
-            this.groupControl3.Controls.Add(this.techProcess005Edit);
-            this.groupControl3.Controls.Add(this.labelControl17);
-            this.groupControl3.Controls.Add(this.techProcess004Edit);
-            this.groupControl3.Controls.Add(this.labelControl8);
-            this.groupControl3.Controls.Add(this.techProcess003Edit);
-            this.groupControl3.Controls.Add(this.labelControl7);
-            this.groupControl3.Controls.Add(this.techProcess002Edit);
-            this.groupControl3.Controls.Add(this.labelControl6);
-            this.groupControl3.Controls.Add(this.techProcess001Edit);
-            this.groupControl3.Controls.Add(this.labelControl5);
-            this.groupControl3.Location = new System.Drawing.Point(12, 295);
-            this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(804, 262);
-            this.groupControl3.TabIndex = 103;
-            this.groupControl3.Text = "Техпроцессы";
+            this.techProcessPanel.Controls.Add(this.techProcess005Edit);
+            this.techProcessPanel.Controls.Add(this.labelControl17);
+            this.techProcessPanel.Controls.Add(this.techProcess004Edit);
+            this.techProcessPanel.Controls.Add(this.labelControl8);
+            this.techProcessPanel.Controls.Add(this.techProcess003Edit);
+            this.techProcessPanel.Controls.Add(this.labelControl7);
+            this.techProcessPanel.Controls.Add(this.techProcess002Edit);
+            this.techProcessPanel.Controls.Add(this.labelControl6);
+            this.techProcessPanel.Controls.Add(this.techProcess001Edit);
+            this.techProcessPanel.Controls.Add(this.labelControl5);
+            this.techProcessPanel.Enabled = false;
+            this.techProcessPanel.Location = new System.Drawing.Point(12, 295);
+            this.techProcessPanel.Name = "techProcessPanel";
+            this.techProcessPanel.Size = new System.Drawing.Size(804, 262);
+            this.techProcessPanel.TabIndex = 103;
+            this.techProcessPanel.Text = "Техпроцессы";
             // 
             // techProcess005Edit
             // 
@@ -720,7 +708,6 @@ namespace TechnicalProcessControl.Drawings
             serializableAppearanceObject21.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject21.Image")));
             serializableAppearanceObject21.Options.UseImage = true;
             this.techProcess005Edit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions4, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions5, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject17, serializableAppearanceObject18, serializableAppearanceObject19, serializableAppearanceObject20, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions6, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject21, serializableAppearanceObject22, serializableAppearanceObject23, serializableAppearanceObject24, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
@@ -736,9 +723,9 @@ namespace TechnicalProcessControl.Drawings
             this.labelControl17.Appearance.Options.UseFont = true;
             this.labelControl17.Location = new System.Drawing.Point(5, 203);
             this.labelControl17.Name = "labelControl17";
-            this.labelControl17.Size = new System.Drawing.Size(101, 14);
+            this.labelControl17.Size = new System.Drawing.Size(341, 14);
             this.labelControl17.TabIndex = 44;
-            this.labelControl17.Text = "Техпроцесс 005";
+            this.labelControl17.Text = "Техпроцесс 005 (Подготовка поверхности и окраска)";
             // 
             // techProcess004Edit
             // 
@@ -755,7 +742,6 @@ namespace TechnicalProcessControl.Drawings
             serializableAppearanceObject33.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject33.Image")));
             serializableAppearanceObject33.Options.UseImage = true;
             this.techProcess004Edit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions7, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject25, serializableAppearanceObject26, serializableAppearanceObject27, serializableAppearanceObject28, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions8, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject29, serializableAppearanceObject30, serializableAppearanceObject31, serializableAppearanceObject32, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions9, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject33, serializableAppearanceObject34, serializableAppearanceObject35, serializableAppearanceObject36, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
@@ -771,9 +757,9 @@ namespace TechnicalProcessControl.Drawings
             this.labelControl8.Appearance.Options.UseFont = true;
             this.labelControl8.Location = new System.Drawing.Point(5, 161);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(101, 14);
+            this.labelControl8.Size = new System.Drawing.Size(206, 14);
             this.labelControl8.TabIndex = 42;
-            this.labelControl8.Text = "Техпроцесс 004";
+            this.labelControl8.Text = "Техпроцесс 004 (Общая сборка)";
             // 
             // techProcess003Edit
             // 
@@ -790,7 +776,6 @@ namespace TechnicalProcessControl.Drawings
             serializableAppearanceObject45.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject45.Image")));
             serializableAppearanceObject45.Options.UseImage = true;
             this.techProcess003Edit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions10, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject37, serializableAppearanceObject38, serializableAppearanceObject39, serializableAppearanceObject40, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions11, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject41, serializableAppearanceObject42, serializableAppearanceObject43, serializableAppearanceObject44, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions12, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject45, serializableAppearanceObject46, serializableAppearanceObject47, serializableAppearanceObject48, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
@@ -806,9 +791,9 @@ namespace TechnicalProcessControl.Drawings
             this.labelControl7.Appearance.Options.UseFont = true;
             this.labelControl7.Location = new System.Drawing.Point(5, 115);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(101, 14);
+            this.labelControl7.Size = new System.Drawing.Size(324, 14);
             this.labelControl7.TabIndex = 40;
-            this.labelControl7.Text = "Техпроцесс 003";
+            this.labelControl7.Text = "Техпроцесс 003 (Сборка с использованием сварки)";
             // 
             // techProcess002Edit
             // 
@@ -825,7 +810,6 @@ namespace TechnicalProcessControl.Drawings
             serializableAppearanceObject57.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject57.Image")));
             serializableAppearanceObject57.Options.UseImage = true;
             this.techProcess002Edit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions13, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject49, serializableAppearanceObject50, serializableAppearanceObject51, serializableAppearanceObject52, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions14, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject53, serializableAppearanceObject54, serializableAppearanceObject55, serializableAppearanceObject56, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions15, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject57, serializableAppearanceObject58, serializableAppearanceObject59, serializableAppearanceObject60, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
@@ -841,9 +825,9 @@ namespace TechnicalProcessControl.Drawings
             this.labelControl6.Appearance.Options.UseFont = true;
             this.labelControl6.Location = new System.Drawing.Point(6, 69);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(101, 14);
+            this.labelControl6.Size = new System.Drawing.Size(275, 14);
             this.labelControl6.TabIndex = 38;
-            this.labelControl6.Text = "Техпроцесс 002";
+            this.labelControl6.Text = "Техпроцесс 002 (Механическая обработка)";
             // 
             // techProcess001Edit
             // 
@@ -860,7 +844,6 @@ namespace TechnicalProcessControl.Drawings
             serializableAppearanceObject69.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject69.Image")));
             serializableAppearanceObject69.Options.UseImage = true;
             this.techProcess001Edit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions16, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject61, serializableAppearanceObject62, serializableAppearanceObject63, serializableAppearanceObject64, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions17, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject65, serializableAppearanceObject66, serializableAppearanceObject67, serializableAppearanceObject68, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions18, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject69, serializableAppearanceObject70, serializableAppearanceObject71, serializableAppearanceObject72, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
@@ -877,9 +860,9 @@ namespace TechnicalProcessControl.Drawings
             this.labelControl5.Appearance.Options.UseFont = true;
             this.labelControl5.Location = new System.Drawing.Point(6, 23);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(101, 14);
+            this.labelControl5.Size = new System.Drawing.Size(318, 14);
             this.labelControl5.TabIndex = 36;
-            this.labelControl5.Text = "Техпроцесс 001";
+            this.labelControl5.Text = "Техпроцесс 001 (Заготовительное производство)";
             // 
             // groupControl2
             // 
@@ -1176,16 +1159,15 @@ namespace TechnicalProcessControl.Drawings
             this.ClientSize = new System.Drawing.Size(1279, 595);
             this.Controls.Add(this.groupControl4);
             this.Controls.Add(this.groupControl2);
-            this.Controls.Add(this.groupControl3);
+            this.Controls.Add(this.techProcessPanel);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.saveBtn);
-            this.Controls.Add(this.validateLbl);
             this.Controls.Add(this.groupControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "StructuraEditFm";
-            this.Text = "Редактирование чертежа";
+            this.Text = "Редактирование структуры";
             this.Load += new System.EventHandler(this.DrawingsEditFm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
@@ -1206,9 +1188,9 @@ namespace TechnicalProcessControl.Drawings
             ((System.ComponentModel.ISupportInitialize)(this.drawingScanEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
-            this.groupControl3.ResumeLayout(false);
-            this.groupControl3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.techProcessPanel)).EndInit();
+            this.techProcessPanel.ResumeLayout(false);
+            this.techProcessPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.techProcess005Edit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.techProcess004Edit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.techProcess003Edit.Properties)).EndInit();
@@ -1226,7 +1208,6 @@ namespace TechnicalProcessControl.Drawings
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
             this.groupControl4.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -1239,7 +1220,6 @@ namespace TechnicalProcessControl.Drawings
         private DevExpress.XtraEditors.LabelControl labelControl9;
         private DevExpress.XtraEditors.SimpleButton cancelBtn;
         private DevExpress.XtraEditors.SimpleButton saveBtn;
-        private DevExpress.XtraEditors.LabelControl validateLbl;
         private DevExpress.XtraEditors.TextEdit currentLevelMenuEdit;
         private DevExpress.XtraEditors.LookUpEdit parentCurrentLevelMenuEdit;
         private DevExpress.XtraEditors.LabelControl labelControl11;
@@ -1259,7 +1239,7 @@ namespace TechnicalProcessControl.Drawings
         private DevExpress.Utils.ImageCollection imageCollection;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.LookUpEdit drawingScanEdit;
-        private DevExpress.XtraEditors.GroupControl groupControl3;
+        private DevExpress.XtraEditors.GroupControl techProcessPanel;
         private DevExpress.XtraEditors.LookUpEdit techProcess005Edit;
         private DevExpress.XtraEditors.LabelControl labelControl17;
         private DevExpress.XtraEditors.LookUpEdit techProcess004Edit;

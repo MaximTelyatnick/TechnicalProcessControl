@@ -44,19 +44,27 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions4 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject13 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.techProcessNumber001Edit = new DevExpress.XtraEditors.TextEdit();
             this.cancelBtn = new DevExpress.XtraEditors.SimpleButton();
             this.saveBtn = new DevExpress.XtraEditors.SimpleButton();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
+            this.drawingNumberEdit = new DevExpress.XtraEditors.TextEdit();
+            this.techProcessFullName = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
-            this.numberEdit = new DevExpress.XtraEditors.GridLookUpEdit();
+            this.revisionEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.drawingEdit = new DevExpress.XtraEditors.GridLookUpEdit();
             this.gridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.numberCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.detailCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.materialNameCol = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -65,12 +73,11 @@
             this.wCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.w2Col = new DevExpress.XtraGrid.Columns.GridColumn();
             this.detailWeightCol = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             ((System.ComponentModel.ISupportInitialize)(this.techProcessNumber001Edit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numberEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.drawingNumberEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.techProcessFullName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.revisionEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.drawingEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -89,41 +96,44 @@
             // 
             // techProcessNumber001Edit
             // 
-            this.techProcessNumber001Edit.Location = new System.Drawing.Point(174, 29);
+            this.techProcessNumber001Edit.Location = new System.Drawing.Point(219, 29);
             this.techProcessNumber001Edit.Name = "techProcessNumber001Edit";
-            this.techProcessNumber001Edit.Size = new System.Drawing.Size(205, 20);
+            this.techProcessNumber001Edit.Size = new System.Drawing.Size(160, 20);
             this.techProcessNumber001Edit.TabIndex = 24;
+            this.techProcessNumber001Edit.TextChanged += new System.EventHandler(this.techProcessNumber001Edit_TextChanged);
             // 
             // cancelBtn
             // 
-            this.cancelBtn.Location = new System.Drawing.Point(437, 209);
+            this.cancelBtn.Location = new System.Drawing.Point(437, 189);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(75, 23);
             this.cancelBtn.TabIndex = 23;
             this.cancelBtn.Text = "Отменить";
+            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
             // saveBtn
             // 
-            this.saveBtn.Location = new System.Drawing.Point(356, 209);
+            this.saveBtn.Location = new System.Drawing.Point(356, 189);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(75, 23);
             this.saveBtn.TabIndex = 22;
             this.saveBtn.Text = "Сохранить";
             this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
             // 
-            // textEdit1
+            // drawingNumberEdit
             // 
-            this.textEdit1.Location = new System.Drawing.Point(3, 29);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Size = new System.Drawing.Size(165, 20);
-            this.textEdit1.TabIndex = 26;
+            this.drawingNumberEdit.Location = new System.Drawing.Point(3, 29);
+            this.drawingNumberEdit.Name = "drawingNumberEdit";
+            this.drawingNumberEdit.Size = new System.Drawing.Size(181, 20);
+            this.drawingNumberEdit.TabIndex = 26;
+            this.drawingNumberEdit.TextChanged += new System.EventHandler(this.drawingNumberEdit_TextChanged);
             // 
-            // textEdit2
+            // techProcessFullName
             // 
-            this.textEdit2.Location = new System.Drawing.Point(3, 55);
-            this.textEdit2.Name = "textEdit2";
-            this.textEdit2.Size = new System.Drawing.Size(495, 20);
-            this.textEdit2.TabIndex = 27;
+            this.techProcessFullName.Location = new System.Drawing.Point(3, 55);
+            this.techProcessFullName.Name = "techProcessFullName";
+            this.techProcessFullName.Size = new System.Drawing.Size(495, 20);
+            this.techProcessFullName.TabIndex = 27;
             // 
             // labelControl1
             // 
@@ -150,7 +160,7 @@
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(178, 5);
+            this.labelControl4.Location = new System.Drawing.Point(219, 5);
             this.labelControl4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(44, 18);
@@ -161,7 +171,7 @@
             // 
             this.labelControl5.Appearance.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelControl5.Appearance.Options.UseFont = true;
-            this.labelControl5.Location = new System.Drawing.Point(385, 5);
+            this.labelControl5.Location = new System.Drawing.Point(400, 6);
             this.labelControl5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(52, 18);
@@ -169,36 +179,43 @@
             this.labelControl5.Text = "Ревизия";
             this.labelControl5.Click += new System.EventHandler(this.labelControl5_Click);
             // 
-            // lookUpEdit1
+            // revisionEdit
             // 
-            this.lookUpEdit1.Location = new System.Drawing.Point(385, 30);
-            this.lookUpEdit1.Name = "lookUpEdit1";
-            this.lookUpEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.lookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpEdit1.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CurrentLevelMenu", "Узел")});
-            this.lookUpEdit1.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
-            this.lookUpEdit1.Size = new System.Drawing.Size(113, 18);
-            this.lookUpEdit1.TabIndex = 33;
-            // 
-            // numberEdit
-            // 
-            this.numberEdit.Location = new System.Drawing.Point(9, 28);
-            this.numberEdit.Name = "numberEdit";
+            this.revisionEdit.Location = new System.Drawing.Point(400, 30);
+            this.revisionEdit.Name = "revisionEdit";
+            this.revisionEdit.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
+            serializableAppearanceObject1.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject1.Image")));
+            serializableAppearanceObject1.Options.UseImage = true;
+            this.revisionEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.revisionEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Symbol", "Ревизия")});
+            this.revisionEdit.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.revisionEdit.Size = new System.Drawing.Size(98, 20);
+            this.revisionEdit.TabIndex = 33;
+            this.revisionEdit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.revisionEdit_ButtonClick);
+            this.revisionEdit.EditValueChanged += new System.EventHandler(this.revisionEdit_EditValueChanged);
+            this.revisionEdit.TextChanged += new System.EventHandler(this.revisionEdit_TextChanged);
+            // 
+            // drawingEdit
+            // 
+            this.drawingEdit.Location = new System.Drawing.Point(9, 28);
+            this.drawingEdit.Name = "drawingEdit";
             editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
             editorButtonImageOptions3.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions3.Image")));
-            this.numberEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            editorButtonImageOptions4.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions4.Image")));
+            this.drawingEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.numberEdit.Properties.PopupFormMinSize = new System.Drawing.Size(700, 0);
-            this.numberEdit.Properties.PopupFormSize = new System.Drawing.Size(700, 0);
-            this.numberEdit.Properties.PopupView = this.gridLookUpEdit1View;
-            this.numberEdit.Size = new System.Drawing.Size(503, 22);
-            this.numberEdit.TabIndex = 106;
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions4, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.drawingEdit.Properties.PopupFormMinSize = new System.Drawing.Size(700, 0);
+            this.drawingEdit.Properties.PopupFormSize = new System.Drawing.Size(700, 0);
+            this.drawingEdit.Properties.PopupView = this.gridLookUpEdit1View;
+            this.drawingEdit.Size = new System.Drawing.Size(503, 22);
+            this.drawingEdit.TabIndex = 106;
             // 
             // gridLookUpEdit1View
             // 
@@ -216,6 +233,42 @@
             this.gridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridLookUpEdit1View.OptionsView.ShowAutoFilterRow = true;
             this.gridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.Controls.Add(this.labelControl7);
+            this.panelControl1.Controls.Add(this.labelControl6);
+            this.panelControl1.Controls.Add(this.techProcessFullName);
+            this.panelControl1.Controls.Add(this.techProcessNumber001Edit);
+            this.panelControl1.Controls.Add(this.revisionEdit);
+            this.panelControl1.Controls.Add(this.drawingNumberEdit);
+            this.panelControl1.Controls.Add(this.labelControl5);
+            this.panelControl1.Controls.Add(this.labelControl3);
+            this.panelControl1.Controls.Add(this.labelControl4);
+            this.panelControl1.Location = new System.Drawing.Point(9, 96);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(503, 87);
+            this.panelControl1.TabIndex = 107;
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelControl6.Appearance.Options.UseFont = true;
+            this.labelControl6.Location = new System.Drawing.Point(190, 31);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(23, 14);
+            this.labelControl6.TabIndex = 108;
+            this.labelControl6.Text = "_TP";
+            // 
+            // labelControl7
+            // 
+            this.labelControl7.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelControl7.Appearance.Options.UseFont = true;
+            this.labelControl7.Location = new System.Drawing.Point(387, 31);
+            this.labelControl7.Name = "labelControl7";
+            this.labelControl7.Size = new System.Drawing.Size(7, 14);
+            this.labelControl7.TabIndex = 109;
+            this.labelControl7.Text = "/";
             // 
             // numberCol
             // 
@@ -289,43 +342,30 @@
             this.detailWeightCol.VisibleIndex = 7;
             this.detailWeightCol.Width = 32;
             // 
-            // panelControl1
-            // 
-            this.panelControl1.Controls.Add(this.textEdit2);
-            this.panelControl1.Controls.Add(this.techProcessNumber001Edit);
-            this.panelControl1.Controls.Add(this.lookUpEdit1);
-            this.panelControl1.Controls.Add(this.textEdit1);
-            this.panelControl1.Controls.Add(this.labelControl5);
-            this.panelControl1.Controls.Add(this.labelControl3);
-            this.panelControl1.Controls.Add(this.labelControl4);
-            this.panelControl1.Location = new System.Drawing.Point(9, 96);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(503, 90);
-            this.panelControl1.TabIndex = 107;
-            // 
             // TechProcess001EditFm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(517, 239);
+            this.ClientSize = new System.Drawing.Size(517, 222);
             this.Controls.Add(this.panelControl1);
-            this.Controls.Add(this.numberEdit);
+            this.Controls.Add(this.drawingEdit);
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.saveBtn);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TechProcess001EditFm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Редактирование техпроцесса 001";
+            this.Text = "Редактирование техпроцесса 001 (Заготовительное производство)";
             this.Load += new System.EventHandler(this.TechProcess001EditFm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.techProcessNumber001Edit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numberEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.drawingNumberEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.techProcessFullName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.revisionEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.drawingEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
@@ -341,14 +381,14 @@
         private DevExpress.XtraEditors.TextEdit techProcessNumber001Edit;
         private DevExpress.XtraEditors.SimpleButton cancelBtn;
         private DevExpress.XtraEditors.SimpleButton saveBtn;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
-        private DevExpress.XtraEditors.TextEdit textEdit2;
+        private DevExpress.XtraEditors.TextEdit drawingNumberEdit;
+        private DevExpress.XtraEditors.TextEdit techProcessFullName;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.LabelControl labelControl5;
-        private DevExpress.XtraEditors.LookUpEdit lookUpEdit1;
-        private DevExpress.XtraEditors.GridLookUpEdit numberEdit;
+        private DevExpress.XtraEditors.LookUpEdit revisionEdit;
+        private DevExpress.XtraEditors.GridLookUpEdit drawingEdit;
         private DevExpress.XtraGrid.Views.Grid.GridView gridLookUpEdit1View;
         private DevExpress.XtraGrid.Columns.GridColumn numberCol;
         private DevExpress.XtraGrid.Columns.GridColumn detailCol;
@@ -359,5 +399,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn w2Col;
         private DevExpress.XtraGrid.Columns.GridColumn detailWeightCol;
         private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.LabelControl labelControl7;
     }
 }

@@ -159,12 +159,13 @@ namespace TechnicalProcessControl.Drawings
                 case Utils.Operation.Add:
 
                     //parentCurrentLevelMenuEdit.DataBindings.Add("EditValue", drawingsBS, "ParentId", true, DataSourceUpdateMode.OnPropertyChanged);
-
+                    techProcessPanel.Enabled = false;
                     break;
 
                 case Utils.Operation.Update:
                     parentCurrentLevelMenuEdit.DataBindings.Add("EditValue", drawingsBS, "Id", true, DataSourceUpdateMode.OnPropertyChanged);
 
+                    techProcessPanel.Enabled = true;
                     parentCurrentLevelMenuEdit.ReadOnly = true;
                     currentLevelMenuEdit.ReadOnly = true;
 
@@ -199,6 +200,8 @@ namespace TechnicalProcessControl.Drawings
                         return false;
                     }
 
+                    
+
                     ((DrawingsDTO)Item).ParentId = (int?)parentCurrentLevelMenuEdit.EditValue;
                     ((DrawingsDTO)Item).Id = drawingService.DrawingsCreate((DrawingsDTO)Item);
                     return true;
@@ -212,6 +215,7 @@ namespace TechnicalProcessControl.Drawings
                         return false;
                     }
 
+                    
                     drawingService.DrawingsUpdate((DrawingsDTO)Item);
                     //if (drawingScanDTO != null)
                     //{
@@ -494,22 +498,27 @@ namespace TechnicalProcessControl.Drawings
             {
                 case 1: //Додати
                     {
-                        using (TechProcess001EditFm techProcess001EditFm = new TechProcess001EditFm(new TechProcess001DTO(), (DrawingsDTO)Item))
+                        TechProcess001DTO addTechProcessDTO = new TechProcess001DTO();
+                        addTechProcessDTO.DrawingsId = ((DrawingsDTO)Item).Id;
+                        addTechProcessDTO.DrawingNumber = ((DrawingsDTO)Item).Number;
+                        addTechProcessDTO.DrawingId = ((DrawingsDTO)Item).DrawingId;
+
+                        using (TechProcess001EditFm techProcess001EditFm = new TechProcess001EditFm(Utils.Operation.Add, addTechProcessDTO, ((DrawingsDTO)Item)))
                         {
                             if (techProcess001EditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                             {
-                                //detailsBS.DataSource = journalService.GetDetails();
-                                techProcess001Edit.Properties.DataSource = drawingService.GetAllTechProcess001();
-                                techProcess001Edit.Properties.ValueMember = "Id";
-                                techProcess001Edit.Properties.DisplayMember = "TechProcessFullName";
-                                techProcess001Edit.Properties.NullText = "Немає данних";
+                                ////detailsBS.DataSource = journalService.GetDetails();
+                                //techProcess001Edit.Properties.DataSource = drawingService.GetAllTechProcess001();
+                                //techProcess001Edit.Properties.ValueMember = "Id";
+                                //techProcess001Edit.Properties.DisplayMember = "TechProcessFullName";
+                                //techProcess001Edit.Properties.NullText = "Немає данних";
 
 
-                                int return_Id = techProcess001EditFm.Return().Id;
-                                techProcess001Edit.EditValue = return_Id;
+                                //int return_Id = techProcess001EditFm.Return().Id;
+                                //techProcess001Edit.EditValue = return_Id;
 
 
-                               
+
                             }
                         }
                         break;
