@@ -94,6 +94,14 @@ namespace TechnicalProcessControl.BLL.Services
             var Worksheet = Workbook.Worksheets[0];
             var Сells = Worksheet.Cells;
             IRange cells = Worksheet.Cells;
+            Сells["AQ" + 10].Value = drawingsDTO.DetailName;
+            Сells["AQ" + 10].HorizontalAlignment = HAlign.Center;
+            Сells["AL" + 44].Value = drawingsDTO.DetailName;
+            Сells["AL" + 44].HorizontalAlignment = HAlign.Center;
+
+            Сells["F" + 46].Value = drawingsDTO.MaterialName;
+            Сells["F" + 46].HorizontalAlignment = HAlign.Left;
+
             Сells["A" + 39].Value = drawingsDTO.ParentName;
             Сells["A" + 39].HorizontalAlignment = HAlign.Center;
             Сells["W" + 48].Value = drawingsDTO.DetailWeight;

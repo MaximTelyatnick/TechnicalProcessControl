@@ -496,7 +496,7 @@ namespace TechnicalProcessControl.Drawings
             drawingService = Program.kernel.Get<IDrawingService>();
             switch (e.Button.Index)
             {
-                case 1: //Додати
+                case 0: //Додати
                     {
                         TechProcess001DTO addTechProcessDTO = new TechProcess001DTO();
                         addTechProcessDTO.DrawingsId = ((DrawingsDTO)Item).Id;
@@ -571,13 +571,13 @@ namespace TechnicalProcessControl.Drawings
 
         private void pictureEdit_Click(object sender, EventArgs e)
         {
-            DrawingScanDTO drawingScanDTO = (DrawingScanDTO)drawingScanEdit.GetSelectedDataRow();
-            if (drawingScanDTO != null)
-            {
-                string puth = Utils.HomePath + @"\Temp";
-                System.IO.File.WriteAllBytes(puth + drawingScanDTO.FileName, drawingScanDTO.Scan);
-                System.Diagnostics.Process.Start(puth + drawingScanDTO.FileName);
-            }
+            //DrawingScanDTO drawingScanDTO = (DrawingScanDTO)drawingScanEdit.GetSelectedDataRow();
+            //if (drawingScanDTO != null)
+            //{
+            //    string puth = Utils.HomePath + @"\Temp";
+            //    System.IO.File.WriteAllBytes(puth + drawingScanDTO.FileName, drawingScanDTO.Scan);
+            //    System.Diagnostics.Process.Start(puth + drawingScanDTO.FileName);
+            //}
         }
 
         private void pictureEdit_EditValueChanged(object sender, EventArgs e)
@@ -804,6 +804,17 @@ namespace TechnicalProcessControl.Drawings
             currentLevelMenuEdit.Text = drawingService.GetMaxStructuraNumber((DrawingsDTO)parentCurrentLevelMenuEdit.GetSelectedDataRow());
             //parentCurrentLevelMenuEdit.Text = ((DrawingsDTO)parentCurrentLevelMenuEdit.GetSelectedDataRow()).CurrentLevelMenu;
             //GetMaxStructuraNumber
+        }
+
+        private void pictureEdit_DoubleClick(object sender, EventArgs e)
+        {
+            DrawingScanDTO drawingScanDTO = (DrawingScanDTO)drawingScanEdit.GetSelectedDataRow();
+            if (drawingScanDTO != null)
+            {
+                string puth = Utils.HomePath + @"\Temp";
+                System.IO.File.WriteAllBytes(puth + drawingScanDTO.FileName, drawingScanDTO.Scan);
+                System.Diagnostics.Process.Start(puth + drawingScanDTO.FileName);
+            }
         }
     }
 }

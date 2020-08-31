@@ -370,7 +370,7 @@ namespace TechnicalProcessControl.Drawings
                             if (detailsEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                             {
                                 DetailsDTO return_Id = detailsEditFm.Return();
-                                detailsBS.DataSource = journalService.GetMaterials(); ;
+                                detailsBS.DataSource = journalService.GetDetails();
                                 detailEdit.EditValue = return_Id.Id;
                             }
                         }
@@ -458,7 +458,7 @@ namespace TechnicalProcessControl.Drawings
                         if (MessageBox.Show("Удалить?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             journalService.MaterialsDelete(((MaterialsDTO)materialEdit.GetSelectedDataRow()).Id);
-                            materialEdit.Properties.DataSource = journalService.GetDetails();
+                            materialEdit.Properties.DataSource = journalService.GetMaterials();
                             materialEdit.EditValue = null;
                             materialEdit.Properties.NullText = "Немає данних";
                         }

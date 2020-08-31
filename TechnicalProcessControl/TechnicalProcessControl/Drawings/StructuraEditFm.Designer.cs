@@ -662,6 +662,7 @@ namespace TechnicalProcessControl.Drawings
             this.pictureEdit.TabIndex = 22;
             this.pictureEdit.EditValueChanged += new System.EventHandler(this.pictureEdit_EditValueChanged);
             this.pictureEdit.Click += new System.EventHandler(this.pictureEdit_Click);
+            this.pictureEdit.DoubleClick += new System.EventHandler(this.pictureEdit_DoubleClick);
             // 
             // imageCollection
             // 
