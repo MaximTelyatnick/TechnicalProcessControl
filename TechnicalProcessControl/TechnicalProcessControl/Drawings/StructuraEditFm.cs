@@ -523,45 +523,45 @@ namespace TechnicalProcessControl.Drawings
                         }
                         break;
                     }
-                //case 2://Редагувати
-                //    {
-                //        if (organisationEdit.EditValue == DBNull.Value)
-                //            return;
+                case 1://Редагувати
+                    {
+                        //if (organisationEdit.EditValue == DBNull.Value)
+                        //    return;
 
-                //        using (OrganisationEditFm organisationEditFm = new OrganisationEditFm(Utils.Operation.Update, (ContractorsDTO)organisationEdit.GetSelectedDataRow()))
-                //        {
-                //            if (organisationEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                //            {
-                //                int return_Id = organisationEditFm.Return();
-                //                botService = Program.kernel.Get<IBotService>();
-                //                organisationBS.DataSource = botService.GetAllContractors();
-                //                organisationEdit.EditValue = return_Id;
-                //            }
-                //        }
-                //        break;
-                //    }
-                //case 3://Видалити
-                //    {
-                //        if (organisationEdit.EditValue == DBNull.Value)
-                //            return;
+                        //using (OrganisationEditFm organisationEditFm = new OrganisationEditFm(Utils.Operation.Update, (ContractorsDTO)organisationEdit.GetSelectedDataRow()))
+                        //{
+                        //    if (organisationEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                        //    {
+                        //        int return_Id = organisationEditFm.Return();
+                        //        botService = Program.kernel.Get<IBotService>();
+                        //        organisationBS.DataSource = botService.GetAllContractors();
+                        //        organisationEdit.EditValue = return_Id;
+                        //    }
+                        //}
+                        break;
+                    }
+                case 2://Видалити
+                    {
+                        if (techProcess001Edit.EditValue == DBNull.Value)
+                            return;
 
-                //        if (MessageBox.Show("Удалить?", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                //        {
-                //            botService.ContractorDelete(((ContractorsDTO)organisationEdit.GetSelectedDataRow()).Id);
-                //            botService = Program.kernel.Get<IBotService>();
-                //            organisationEdit.Properties.DataSource = botService.GetAllContractors();
-                //            organisationEdit.EditValue = null;
-                //            organisationEdit.Properties.NullText = "Немає данних";
-                //        }
+                        if (MessageBox.Show("Удалить?", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            botService.ContractorDelete(((ContractorsDTO)organisationEdit.GetSelectedDataRow()).Id);
+                            botService = Program.kernel.Get<IBotService>();
+                            organisationEdit.Properties.DataSource = botService.GetAllContractors();
+                            organisationEdit.EditValue = null;
+                            organisationEdit.Properties.NullText = "Немає данних";
+                        }
 
-                //        break;
-                //    }
-                //case 4://Очистити
-                //    {
-                //        organisationEdit.EditValue = null;
-                //        organisationEdit.Properties.NullText = "Немає данних";
-                //        break;
-                //    }
+                        break;
+                    }
+                    //case 4://Очистити
+                    //    {
+                    //        organisationEdit.EditValue = null;
+                    //        organisationEdit.Properties.NullText = "Немає данних";
+                    //        break;
+                    //    }
             }
         }
 
@@ -571,17 +571,6 @@ namespace TechnicalProcessControl.Drawings
 
         private void pictureEdit_Click(object sender, EventArgs e)
         {
-            //DrawingScanDTO drawingScanDTO = (DrawingScanDTO)drawingScanEdit.GetSelectedDataRow();
-            //if (drawingScanDTO != null)
-            //{
-            //    string puth = Utils.HomePath + @"\Temp";
-            //    System.IO.File.WriteAllBytes(puth + drawingScanDTO.FileName, drawingScanDTO.Scan);
-            //    System.Diagnostics.Process.Start(puth + drawingScanDTO.FileName);
-            //}
-        }
-
-        private void pictureEdit_EditValueChanged(object sender, EventArgs e)
-        {
             DrawingScanDTO drawingScanDTO = (DrawingScanDTO)drawingScanEdit.GetSelectedDataRow();
             if (drawingScanDTO != null)
             {
@@ -589,6 +578,17 @@ namespace TechnicalProcessControl.Drawings
                 System.IO.File.WriteAllBytes(puth + drawingScanDTO.FileName, drawingScanDTO.Scan);
                 System.Diagnostics.Process.Start(puth + drawingScanDTO.FileName);
             }
+        }
+
+        private void pictureEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            //DrawingScanDTO drawingScanDTO = (DrawingScanDTO)drawingScanEdit.GetSelectedDataRow();
+            //if (drawingScanDTO != null)
+            //{
+            //    string puth = Utils.HomePath + @"\Temp";
+            //    System.IO.File.WriteAllBytes(puth + drawingScanDTO.FileName, drawingScanDTO.Scan);
+            //    System.Diagnostics.Process.Start(puth + drawingScanDTO.FileName);
+            //}
         }
 
         private void numberEdit_EditValueChanged(object sender, EventArgs e)
@@ -617,6 +617,29 @@ namespace TechnicalProcessControl.Drawings
             }
 
             
+        }
+
+        private void numberEditPatheticCrutch()
+        {
+            object key = numberEdit.EditValue;
+            var selectedIndex = numberEdit.Properties.GetIndexByKeyValue(key);
+            materialEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).MaterialName;
+            detailEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).DetailName;
+            wEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).W;
+            w2Edit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).W2;
+            lEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).L;
+            thEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).TH;
+            weightEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).DetailWeight;
+            typeEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).TypeName;
+
+            drawingScanList = drawingService.GetDravingScanById(((DrawingDTO)numberEdit.GetSelectedDataRow()).Id).ToList();
+            drawingsScanBS.DataSource = drawingScanList;
+            drawingScanEdit.Properties.DataSource = drawingsScanBS;
+
+            if (drawingsScanBS.Count > 0)
+                drawingScanEdit.EditValue = drawingScanList[0].Id;
+            else
+                drawingScanEdit.EditValue = null;
         }
 
         private void numberEdit_ButtonClick(object sender, ButtonPressedEventArgs e)
@@ -649,6 +672,9 @@ namespace TechnicalProcessControl.Drawings
                                 DrawingDTO return_Id = drawingEditFm.Return();
                                 drawingBS.DataSource = drawingService.GetAllDrawing();
                                 numberEdit.EditValue = return_Id.Id;
+                                numberEditPatheticCrutch();
+                                //numberEdit.RefreshEditValue();
+
                             }
                         }
                         break;
@@ -808,13 +834,13 @@ namespace TechnicalProcessControl.Drawings
 
         private void pictureEdit_DoubleClick(object sender, EventArgs e)
         {
-            DrawingScanDTO drawingScanDTO = (DrawingScanDTO)drawingScanEdit.GetSelectedDataRow();
-            if (drawingScanDTO != null)
-            {
-                string puth = Utils.HomePath + @"\Temp";
-                System.IO.File.WriteAllBytes(puth + drawingScanDTO.FileName, drawingScanDTO.Scan);
-                System.Diagnostics.Process.Start(puth + drawingScanDTO.FileName);
-            }
+            //DrawingScanDTO drawingScanDTO = (DrawingScanDTO)drawingScanEdit.GetSelectedDataRow();
+            //if (drawingScanDTO != null)
+            //{
+            //    string puth = Utils.HomePath + @"\Temp";
+            //    System.IO.File.WriteAllBytes(puth + drawingScanDTO.FileName, drawingScanDTO.Scan);
+            //    System.Diagnostics.Process.Start(puth + drawingScanDTO.FileName);
+            //}
         }
     }
 }

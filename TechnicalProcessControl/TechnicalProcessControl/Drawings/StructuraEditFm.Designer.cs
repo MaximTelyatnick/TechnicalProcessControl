@@ -231,6 +231,7 @@ namespace TechnicalProcessControl.Drawings
             this.labelControl18 = new DevExpress.XtraEditors.LabelControl();
             this.splashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::TechnicalProcessControl.WaitFm), true, true);
             this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
+            this.dxValidationProvider = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.detailEdit.Properties)).BeginInit();
@@ -266,6 +267,7 @@ namespace TechnicalProcessControl.Drawings
             ((System.ComponentModel.ISupportInitialize)(this.quantityLEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
             this.groupControl4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -1210,6 +1212,7 @@ namespace TechnicalProcessControl.Drawings
             ((System.ComponentModel.ISupportInitialize)(this.quantityLEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
             this.groupControl4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1295,5 +1298,6 @@ namespace TechnicalProcessControl.Drawings
         private LabelControl labelControl20;
         private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager;
         private GroupControl groupControl4;
+        private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider dxValidationProvider;
     }
 }
