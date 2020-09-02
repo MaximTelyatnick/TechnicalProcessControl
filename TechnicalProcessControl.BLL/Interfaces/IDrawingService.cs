@@ -43,6 +43,10 @@ namespace TechnicalProcessControl.BLL.Interfaces
 
         IEnumerable<DrawingDTO> GetAllDrawing();
 
+        bool CheckDrivingChild(int drivingId);
+
+        bool FileDelete(string URI);
+
         #region TechProcess001 CRUD method's
 
         int TechProcess001Create(TechProcess001DTO techProcess001DTO);

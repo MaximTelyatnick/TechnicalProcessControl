@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -316,6 +317,14 @@ namespace TechnicalProcessControl.BLL.Services
             return mapper.Map<IEnumerable<Revisions>, List<RevisionsDTO>>(revisions.GetAll());
         }
 
+        public bool CheckDrivingChild(int drivingId)
+        {
+            var allStructure = mapper.Map<IEnumerable<Drawings>, List<DrawingsDTO>>(drawings.GetAll());
+            var structureDrawingId = allStructure.First(bdsm => bdsm.DrawingId == drivingId).Id;
+
+            return allStructure.Any(bdsm => bdsm.ParentId == structureDrawingId);
+        }
+
         public string GetMaxStructuraNumber(DrawingsDTO fatherStructura)
         {
             var childStructuraList = drawings.GetAll().Where(bdsm => bdsm.ParentId == fatherStructura.Id);
@@ -407,6 +416,25 @@ namespace TechnicalProcessControl.BLL.Services
             return drawings.GetAll().Any(srt => srt.CurrentLevelMenu == drawingsDTO.CurrentLevelMenu && srt.Id != drawingsDTO.Id);
         }
 
+        public bool FileDelete(string URI)
+        {
+            if (File.Exists(URI))
+            {
+                try
+                {
+                    File.Delete(URI);
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         #region TechProcess001 CRUD method's
 
