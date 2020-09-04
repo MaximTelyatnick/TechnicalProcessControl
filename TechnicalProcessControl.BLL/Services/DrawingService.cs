@@ -301,6 +301,34 @@ namespace TechnicalProcessControl.BLL.Services
             return result;
         }
 
+        public IEnumerable<DrawingsDTO> GetChildDrawings(DrawingsDTO drawingsDTO)
+        {
+            var result = (from drw in drawings.GetAll()
+                          join dr in drawing.GetAll() on drw.DrawingId equals dr.Id into drr
+                          from dr in drr.DefaultIfEmpty()
+                          join det in details.GetAll() on dr.DetailId equals det.Id into dett
+                          from det in dett.DefaultIfEmpty()
+                          join mat in materials.GetAll() on dr.MaterialId equals mat.Id into matt
+                          from mat in matt.DefaultIfEmpty()
+                          where drw.ParentId == drawingsDTO.Id
+
+                          select new DrawingsDTO
+                          {
+                              Id = drw.Id,
+                              Number = dr.Number,
+                              DrawingId = dr.Id,
+                              DetailName = det.DetailName,
+                              MaterialName = mat.MaterialName,
+                              Quantity = drw.Quantity,
+                              QuantityL = drw.QuantityL,
+                              QuantityR = drw.QuantityR,
+                              DetailWeight = dr.DetailWeight,
+                          }
+                          ).ToList();
+
+            return result;
+        }
+
 
         public IEnumerable<DrawingsDTO> GetShortDrawing()
         {
@@ -360,6 +388,16 @@ namespace TechnicalProcessControl.BLL.Services
             return techProcess001.GetAll().Any(chk => chk.TechProcessFullName == techProcesName);
         }
 
+        public bool CheckTechProcess002(string techProcesName)
+        {
+            return techProcess002.GetAll().Any(chk => chk.TechProcessFullName == techProcesName);
+        }
+
+        public bool CheckTechProcess003(string techProcesName)
+        {
+            return techProcess003.GetAll().Any(chk => chk.TechProcessFullName == techProcesName);
+        }
+
         public long GetLastTechProcess001()
         {
             long maxValue = techProcess001.GetAll().Where(srt => srt.TechProcessName < 200000000).Select(bdsm => bdsm.TechProcessName).Max();
@@ -370,6 +408,13 @@ namespace TechnicalProcessControl.BLL.Services
         public long GetLastTechProcess002()
         {
             long maxValue = techProcess002.GetAll().Select(bdsm => bdsm.TechProcessName).Max();
+            ++maxValue;
+            return maxValue;
+        }
+
+        public long GetLastTechProcess003()
+        {
+            long maxValue = techProcess003.GetAll().Select(bdsm => bdsm.TechProcessName).Max();
             ++maxValue;
             return maxValue;
         }
@@ -484,6 +529,35 @@ namespace TechnicalProcessControl.BLL.Services
             try
             {
                 techProcess002.Delete(techProcess002.GetAll().FirstOrDefault(c => c.Id == id));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        #endregion
+
+        #region TechProcess003 CRUD method's
+
+        public int TechProcess003Create(TechProcess003DTO techProcess003DTO)
+        {
+            var createTechProcess003 = techProcess003.Create(mapper.Map<TechProcess003>(techProcess003DTO));
+            return (int)createTechProcess003.Id;
+        }
+
+        public void TechProcess003Update(TechProcess003DTO techProcess003DTO)
+        {
+            var techProcess003Update = techProcess003.GetAll().SingleOrDefault(c => c.Id == techProcess003DTO.Id);
+            techProcess003.Update((mapper.Map<TechProcess003DTO, TechProcess003>(techProcess003DTO, techProcess003Update)));
+        }
+
+        public bool TechProcess003Delete(int id)
+        {
+            try
+            {
+                techProcess003.Delete(techProcess003.GetAll().FirstOrDefault(c => c.Id == id));
                 return true;
             }
             catch (Exception ex)

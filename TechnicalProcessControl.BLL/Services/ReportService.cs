@@ -15,7 +15,7 @@ using TechnicalProcessControl.DAL.Models;
 
 namespace TechnicalProcessControl.BLL.Services
 {
-    public class ReportService: IReportService
+    public class ReportService : IReportService
     {
         private string GeneratedReportsDir = Utils.HomePath + @"\Templates\";
         private string DbExelDir = @"C:\TechProcess\";
@@ -24,8 +24,13 @@ namespace TechnicalProcessControl.BLL.Services
         private IUnitOfWork Database { get; set; }
 
         private IRepository<Drawings> drawings;
-        private IRepository<DrawingScan> drawingScan;
+        private IRepository<Drawing> drawing;
         private IRepository<Details> details;
+        private IRepository<DrawingScan> drawingScan;
+        private IRepository<Materials> materials;
+
+
+
         private IRepository<DAL.Models.Type> type;
         private IRepository<TechProcess001> techProcess001;
         private IRepository<TechProcess002> techProcess002;
@@ -43,6 +48,7 @@ namespace TechnicalProcessControl.BLL.Services
             drawingScan = Database.GetRepository<DrawingScan>();
             details = Database.GetRepository<Details>();
             type = Database.GetRepository<DAL.Models.Type>();
+            materials = Database.GetRepository<Materials>();
             techProcess001 = Database.GetRepository<TechProcess001>();
             techProcess002 = Database.GetRepository<TechProcess002>();
             techProcess003 = Database.GetRepository<TechProcess003>();
@@ -54,6 +60,8 @@ namespace TechnicalProcessControl.BLL.Services
             {
                 cfg.CreateMap<Drawings, DrawingsDTO>();
                 cfg.CreateMap<DrawingsDTO, Drawings>();
+                cfg.CreateMap<Materials, MaterialsDTO>();
+                
                 cfg.CreateMap<DrawingScan, DrawingScanDTO>();
                 cfg.CreateMap<DrawingScanDTO, DrawingScan>();
                 cfg.CreateMap<Details, DetailsDTO>();
@@ -77,6 +85,9 @@ namespace TechnicalProcessControl.BLL.Services
 
             mapper = config.CreateMapper();
         }
+
+
+
 
         public bool CreateTemplateTechProcess001(DrawingsDTO drawingsDTO)
         {
@@ -237,13 +248,13 @@ namespace TechnicalProcessControl.BLL.Services
             Сells["BS" + 75].HorizontalAlignment = HAlign.Center;
             Сells["BS" + 106].Value = drawingsDTO.Number;
             Сells["BS" + 106].HorizontalAlignment = HAlign.Center;
-            Сells["CO" + 07].Value = TechProcesNameToStr(drawingsDTO.TechProcess001Name);
+            Сells["CO" + 07].Value = TechProcesNameToStr(drawingsDTO.TechProcess002Name);
             Сells["CO" + 07].HorizontalAlignment = HAlign.Center;
-            Сells["CO" + 41].Value = TechProcesNameToStr(drawingsDTO.TechProcess001Name);
+            Сells["CO" + 41].Value = TechProcesNameToStr(drawingsDTO.TechProcess002Name);
             Сells["CO" + 41].HorizontalAlignment = HAlign.Center;
-            Сells["CO" + 75].Value = TechProcesNameToStr(drawingsDTO.TechProcess001Name);
+            Сells["CO" + 75].Value = TechProcesNameToStr(drawingsDTO.TechProcess002Name);
             Сells["CO" + 75].HorizontalAlignment = HAlign.Center;
-            Сells["CO" + 106].Value = TechProcesNameToStr(drawingsDTO.TechProcess001Name);
+            Сells["CO" + 106].Value = TechProcesNameToStr(drawingsDTO.TechProcess002Name);
             Сells["CO" + 106].HorizontalAlignment = HAlign.Center;
 
 
@@ -254,7 +265,7 @@ namespace TechnicalProcessControl.BLL.Services
                 //Workbook.SaveAs(DbExelDir + techProcess001DTO.TechProcessName.ToString() + ".xls", FileFormat.Excel8);
                 Workbook.SaveAs(drawingsDTO.TechProcess002Path, FileFormat.Excel8);
                 Process process = new Process();
-                process.StartInfo.Arguments = "\"" + drawingsDTO.TechProcess001Path + "\"";
+                process.StartInfo.Arguments = "\"" + drawingsDTO.TechProcess002Path + "\"";
                 process.StartInfo.FileName = "Excel.exe";
                 process.Start();
 
@@ -324,6 +335,70 @@ namespace TechnicalProcessControl.BLL.Services
             return true;
         }
 
+        public bool CreateTemplateTechProcess003(DrawingsDTO drawingsDTO)
+        {
+            try
+            {
+                Factory.GetWorkbook(GeneratedReportsDir + @"\template001.xlsx");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("не найдено шаблон документа!\n" + ex.Message, "Увага", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+
+
+
+
+            var Workbook = Factory.GetWorkbook(GeneratedReportsDir + @"\template001.xlsx");
+            var Worksheet = Workbook.Worksheets[0];
+            var Сells = Worksheet.Cells;
+            IRange cells = Worksheet.Cells;
+            Сells["A" + 39].Value = drawingsDTO.ParentName;
+            Сells["A" + 39].HorizontalAlignment = HAlign.Center;
+            Сells["W" + 48].Value = drawingsDTO.DetailWeight;
+            Сells["W" + 48].HorizontalAlignment = HAlign.Center;
+            Сells["BI" + 48].Value = drawingsDTO.TH.ToString() + "х" + drawingsDTO.W.ToString() + "х" + drawingsDTO.L.ToString();
+            Сells["BI" + 48].HorizontalAlignment = HAlign.Center;
+            Сells["CD" + 48].Value = drawingsDTO.Quantity;
+            Сells["CD" + 48].HorizontalAlignment = HAlign.Center;
+            Сells["BB" + 7].Value = drawingsDTO.Number;
+            Сells["BB" + 7].HorizontalAlignment = HAlign.Center;
+            Сells["BB" + 41].Value = drawingsDTO.Number;
+            Сells["BB" + 41].HorizontalAlignment = HAlign.Center;
+            Сells["BS" + 75].Value = drawingsDTO.Number;
+            Сells["BS" + 75].HorizontalAlignment = HAlign.Center;
+            Сells["BS" + 106].Value = drawingsDTO.Number;
+            Сells["BS" + 106].HorizontalAlignment = HAlign.Center;
+            Сells["CO" + 07].Value = TechProcesNameToStr(drawingsDTO.TechProcess002Name);
+            Сells["CO" + 07].HorizontalAlignment = HAlign.Center;
+            Сells["CO" + 41].Value = TechProcesNameToStr(drawingsDTO.TechProcess002Name);
+            Сells["CO" + 41].HorizontalAlignment = HAlign.Center;
+            Сells["CO" + 75].Value = TechProcesNameToStr(drawingsDTO.TechProcess002Name);
+            Сells["CO" + 75].HorizontalAlignment = HAlign.Center;
+            Сells["CO" + 106].Value = TechProcesNameToStr(drawingsDTO.TechProcess002Name);
+            Сells["CO" + 106].HorizontalAlignment = HAlign.Center;
+
+
+            try
+            {
+                string fileName = String.Format("Зведена обігово-сальдова по рахунку 313 за період");
+                //string fileName = String.Format("Зведена обігово-сальдова по рахунку 313 за період з {0} по {1}", startDate.ToShortDateString(), endDate.ToShortDateString());
+                //Workbook.SaveAs(DbExelDir + techProcess001DTO.TechProcessName.ToString() + ".xls", FileFormat.Excel8);
+                Workbook.SaveAs(drawingsDTO.TechProcess002Path, FileFormat.Excel8);
+                Process process = new Process();
+                process.StartInfo.Arguments = "\"" + drawingsDTO.TechProcess002Path + "\"";
+                process.StartInfo.FileName = "Excel.exe";
+                process.Start();
+
+            }
+
+            catch (System.IO.IOException) { MessageBox.Show("Документ уже открыто!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+            catch (System.ComponentModel.Win32Exception) { MessageBox.Show("На рабочей станции отсутсутствует пакет программ Microsoft Oficce!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+
+            return true;
+        }
 
         public string TechProcesNameToStr(long? techProcessName)
         {
@@ -336,7 +411,36 @@ namespace TechnicalProcessControl.BLL.Services
             return techProcessNameStr;
         }
 
+        
 
+
+        public IEnumerable<DrawingsDTO> GetChildDrawings(DrawingsDTO drawingsDTO)
+        {
+            var result = (from drw in drawings.GetAll()
+                          join dr in drawing.GetAll() on drw.DrawingId equals dr.Id into drr
+                          from dr in drr.DefaultIfEmpty()
+                          join det in details.GetAll() on dr.DetailId equals det.Id into dett
+                          from det in dett.DefaultIfEmpty()
+                          join mat in materials.GetAll() on dr.MaterialId equals mat.Id into matt
+                          from mat in matt.DefaultIfEmpty()
+                          where drw.ParentId == drawingsDTO.Id
+
+                          select new DrawingsDTO
+                          {
+                              Id = drw.Id,
+                              Number = dr.Number,
+                               DrawingId = dr.Id,
+                              DetailName = det.DetailName,
+                              MaterialName = mat.MaterialName,
+                              Quantity = drw.Quantity,
+                              QuantityL = drw.QuantityL,
+                              QuantityR = drw.QuantityR,
+                              DetailWeight = dr.DetailWeight,
+                          }
+                          ).ToList();
+
+            return result;
+        }
 
         //public bool CreateTemplateTechProcess001(DrawingsDTO source)
         //{

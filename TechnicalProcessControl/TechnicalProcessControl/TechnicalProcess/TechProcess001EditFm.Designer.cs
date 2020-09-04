@@ -63,8 +63,8 @@
             this.drawingEdit = new DevExpress.XtraEditors.GridLookUpEdit();
             this.gridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.numberCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.detailCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.materialNameCol = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -93,6 +93,7 @@
             this.labelControl2.Size = new System.Drawing.Size(204, 18);
             this.labelControl2.TabIndex = 25;
             this.labelControl2.Text = "Наименование техпроцесса 001";
+            this.labelControl2.Click += new System.EventHandler(this.labelControl2_Click);
             // 
             // techProcessNumber001Edit
             // 
@@ -144,6 +145,7 @@
             this.labelControl1.Size = new System.Drawing.Size(49, 14);
             this.labelControl1.TabIndex = 28;
             this.labelControl1.Text = "Чертеж";
+            this.labelControl1.Click += new System.EventHandler(this.labelControl1_Click);
             // 
             // labelControl3
             // 
@@ -216,6 +218,7 @@
             this.drawingEdit.Properties.PopupView = this.gridLookUpEdit1View;
             this.drawingEdit.Size = new System.Drawing.Size(503, 22);
             this.drawingEdit.TabIndex = 106;
+            this.drawingEdit.EditValueChanged += new System.EventHandler(this.drawingEdit_EditValueChanged);
             // 
             // gridLookUpEdit1View
             // 
@@ -249,16 +252,7 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(503, 87);
             this.panelControl1.TabIndex = 107;
-            // 
-            // labelControl6
-            // 
-            this.labelControl6.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelControl6.Appearance.Options.UseFont = true;
-            this.labelControl6.Location = new System.Drawing.Point(190, 31);
-            this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(23, 14);
-            this.labelControl6.TabIndex = 108;
-            this.labelControl6.Text = "_TP";
+            this.panelControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl1_Paint);
             // 
             // labelControl7
             // 
@@ -269,6 +263,16 @@
             this.labelControl7.Size = new System.Drawing.Size(7, 14);
             this.labelControl7.TabIndex = 109;
             this.labelControl7.Text = "/";
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelControl6.Appearance.Options.UseFont = true;
+            this.labelControl6.Location = new System.Drawing.Point(190, 31);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(23, 14);
+            this.labelControl6.TabIndex = 108;
+            this.labelControl6.Text = "_TP";
             // 
             // numberCol
             // 

@@ -14,6 +14,7 @@ using TechnicalProcessControl.BLL.Interfaces;
 using Ninject;
 using DevExpress.XtraEditors.Controls;
 using TechnicalProcessControl.Journals;
+using TechnicalProcessControl.TechnicalProcess;
 
 namespace TechnicalProcessControl.Drawings
 {
@@ -842,6 +843,80 @@ namespace TechnicalProcessControl.Drawings
 
                         break;
                     }
+            }
+        }
+
+        private void techProcess002Edit_ButtonClick(object sender, ButtonPressedEventArgs e)
+        {
+            drawingService = Program.kernel.Get<IDrawingService>();
+            switch (e.Button.Index)
+            {
+                case 0: //Додати
+                    {
+
+                        if (drawingService.CheckDrivingChild((int)((DrawingsDTO)Item).DrawingId))
+                        {
+                            MessageBox.Show("Сборка содержит узлы, не возможно добавить этот вид техпроцесса", "Инфо", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+
+                        TechProcess002DTO addTechProcessDTO = new TechProcess002DTO();
+                        addTechProcessDTO.DrawingsId = ((DrawingsDTO)Item).Id;
+                        addTechProcessDTO.DrawingNumber = ((DrawingsDTO)Item).Number;
+                        addTechProcessDTO.DrawingId = ((DrawingsDTO)Item).DrawingId;
+
+                        using (TechProcess002EditFm techProcess002EditFm = new TechProcess002EditFm(Utils.Operation.Add, addTechProcessDTO, ((DrawingsDTO)Item)))
+                        {
+                            if (techProcess002EditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                            {
+                                ////detailsBS.DataSource = journalService.GetDetails();
+                                techProcess002Edit.Properties.DataSource = drawingService.GetAllTechProcess002();
+                                techProcess002Edit.Properties.ValueMember = "Id";
+                                techProcess002Edit.Properties.DisplayMember = "TechProcessFullName";
+                                techProcess002Edit.Properties.NullText = "Нету записей";
+
+                                int return_Id = techProcess002EditFm.Return().Id;
+                                techProcess002Edit.EditValue = return_Id;
+
+
+
+                            }
+                        }
+                        break;
+                    }
+                case 1://Редагувати
+                    {
+                        //if (organisationEdit.EditValue == DBNull.Value)
+                        //    return;
+
+                        //using (OrganisationEditFm organisationEditFm = new OrganisationEditFm(Utils.Operation.Update, (ContractorsDTO)organisationEdit.GetSelectedDataRow()))
+                        //{
+                        //    if (organisationEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                        //    {
+                        //        int return_Id = organisationEditFm.Return();
+                        //        botService = Program.kernel.Get<IBotService>();
+                        //        organisationBS.DataSource = botService.GetAllContractors();
+                        //        organisationEdit.EditValue = return_Id;
+                        //    }
+                        //}
+                        break;
+                    }
+                case 2://Видалити
+                    {
+                        if (techProcess002Edit.EditValue == DBNull.Value)
+                            return;
+
+                        if (MessageBox.Show("Удалить?", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            drawingService = Program.kernel.Get<IDrawingService>();
+                            if (drawingService.TechProcess002Delete((int)((DrawingsDTO)Item).TechProcess002Id))
+                                drawingService.FileDelete(((DrawingsDTO)Item).TechProcess002Path);
+                            techProcess002Edit.EditValue = null;
+                            techProcess002Edit.Properties.NullText = "Не добавлен техпроцесс";
+                        }
+
+                        break;
+                    }
                     //case 4://Очистити
                     //    {
                     //        organisationEdit.EditValue = null;
@@ -851,9 +926,85 @@ namespace TechnicalProcessControl.Drawings
             }
         }
 
-        private void techProcess002Edit_ButtonClick(object sender, ButtonPressedEventArgs e)
+        private void techProcess003Edit_ButtonClick(object sender, ButtonPressedEventArgs e)
         {
+            drawingService = Program.kernel.Get<IDrawingService>();
+            switch (e.Button.Index)
+            {
+                case 0: //Додати
+                    {
+                        var lst = drawingService.GetChildDrawings(((DrawingsDTO)Item));
 
+                        if (drawingService.GetChildDrawings(((DrawingsDTO)Item)).Count() == 0)
+                        {
+                            MessageBox.Show("Сборка не содержит узлы, не возможно добавить этот вид техпроцесса", "Инфо", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+
+                        TechProcess002DTO addTechProcessDTO = new TechProcess002DTO();
+                        addTechProcessDTO.DrawingsId = ((DrawingsDTO)Item).Id;
+                        addTechProcessDTO.DrawingNumber = ((DrawingsDTO)Item).Number;
+                        addTechProcessDTO.DrawingId = ((DrawingsDTO)Item).DrawingId;
+
+                        using (TechProcess002EditFm techProcess002EditFm = new TechProcess002EditFm(Utils.Operation.Add, addTechProcessDTO, ((DrawingsDTO)Item)))
+                        {
+                            if (techProcess002EditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                            {
+                                ////detailsBS.DataSource = journalService.GetDetails();
+                                techProcess002Edit.Properties.DataSource = drawingService.GetAllTechProcess002();
+                                techProcess002Edit.Properties.ValueMember = "Id";
+                                techProcess002Edit.Properties.DisplayMember = "TechProcessFullName";
+                                techProcess002Edit.Properties.NullText = "Нету записей";
+
+                                int return_Id = techProcess002EditFm.Return().Id;
+                                techProcess002Edit.EditValue = return_Id;
+
+
+
+                            }
+                        }
+                        break;
+                    }
+                case 1://Редагувати
+                    {
+                        //if (organisationEdit.EditValue == DBNull.Value)
+                        //    return;
+
+                        //using (OrganisationEditFm organisationEditFm = new OrganisationEditFm(Utils.Operation.Update, (ContractorsDTO)organisationEdit.GetSelectedDataRow()))
+                        //{
+                        //    if (organisationEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                        //    {
+                        //        int return_Id = organisationEditFm.Return();
+                        //        botService = Program.kernel.Get<IBotService>();
+                        //        organisationBS.DataSource = botService.GetAllContractors();
+                        //        organisationEdit.EditValue = return_Id;
+                        //    }
+                        //}
+                        break;
+                    }
+                case 2://Видалити
+                    {
+                        if (techProcess002Edit.EditValue == DBNull.Value)
+                            return;
+
+                        if (MessageBox.Show("Удалить?", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            drawingService = Program.kernel.Get<IDrawingService>();
+                            if (drawingService.TechProcess002Delete((int)((DrawingsDTO)Item).TechProcess002Id))
+                                drawingService.FileDelete(((DrawingsDTO)Item).TechProcess002Path);
+                            techProcess002Edit.EditValue = null;
+                            techProcess002Edit.Properties.NullText = "Не добавлен техпроцесс";
+                        }
+
+                        break;
+                    }
+                    //case 4://Очистити
+                    //    {
+                    //        organisationEdit.EditValue = null;
+                    //        organisationEdit.Properties.NullText = "Немає данних";
+                    //        break;
+                    //    }
+            }
         }
     }
 }

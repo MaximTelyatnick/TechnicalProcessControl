@@ -312,6 +312,18 @@
     <Compile Include="TechnicalProcess\TechProcess001Fm.Designer.cs">
       <DependentUpon>TechProcess001Fm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TechnicalProcess\TechProcess002EditFm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TechnicalProcess\TechProcess002EditFm.Designer.cs">
+      <DependentUpon>TechProcess002EditFm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TechnicalProcess\TechProcess003EditFm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TechnicalProcess\TechProcess003EditFm.Designer.cs">
+      <DependentUpon>TechProcess003EditFm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TestFm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -413,6 +425,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TechnicalProcess\TechProcess001Fm.resx">
       <DependentUpon>TechProcess001Fm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TechnicalProcess\TechProcess002EditFm.resx">
+      <DependentUpon>TechProcess002EditFm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TechnicalProcess\TechProcess003EditFm.resx">
+      <DependentUpon>TechProcess003EditFm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TestFm.resx">
       <DependentUpon>TestFm.cs</DependentUpon>

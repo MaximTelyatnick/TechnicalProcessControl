@@ -24,6 +24,7 @@ namespace TechnicalProcessControl.BLL.Interfaces
         bool CheckStructuraName(DrawingsDTO drawingsDTO);
 
         IEnumerable<DrawingScanDTO> GetDravingScanById(int? drawingId);
+        IEnumerable<DrawingsDTO> GetChildDrawings(DrawingsDTO drawingsDTO);
 
         string GetMaxStructuraNumber(DrawingsDTO fatherStructuraId);
 
@@ -32,8 +33,11 @@ namespace TechnicalProcessControl.BLL.Interfaces
         DrawingsDTO GetDrawingsByStructuraId(int structuraId);
 
         bool CheckTechProcess001(string techProcesName);
+        bool CheckTechProcess002(string techProcesName);
+        bool CheckTechProcess003(string techProcesName);
         long GetLastTechProcess001();
         long GetLastTechProcess002();
+        long GetLastTechProcess003();
 
         IEnumerable<TechProcess001DTO> GetAllTechProcess001();
         IEnumerable<TechProcess002DTO> GetAllTechProcess002();
@@ -61,6 +65,14 @@ namespace TechnicalProcessControl.BLL.Interfaces
         void TechProcess002Update(TechProcess002DTO techProcess002DTO);
         bool TechProcess002Delete(int id);
 
+        #endregion
+
+        #region TechProcess003 CRUD method's
+        int TechProcess003Create(TechProcess003DTO techProcess003DTO);
+
+        void TechProcess003Update(TechProcess003DTO techProcess003DTO);
+
+        bool TechProcess003Delete(int id);
         #endregion
 
         #region DrawingScan CRUD method's
