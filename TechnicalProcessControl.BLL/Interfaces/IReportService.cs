@@ -15,6 +15,9 @@ namespace TechnicalProcessControl.BLL.Interfaces
         bool CreateTemplateTechProcess002(DrawingsDTO drawingsDTO);
         bool UpdateTemplateTechProcess002(DrawingsDTO drawingsDTO);
 
+        bool CreateTemplateTechProcess003(DrawingsDTO drawingsDTO, List<DrawingsDTO> drawingsListDTO);
+
+
         string TechProcesNameToStr(long? techProcessName);
 
     }

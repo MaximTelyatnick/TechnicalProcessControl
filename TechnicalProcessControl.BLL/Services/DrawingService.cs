@@ -120,7 +120,7 @@ namespace TechnicalProcessControl.BLL.Services
                           from pdrw in pdrww.DefaultIfEmpty()
                           join drp in drawing.GetAll() on pdrw.DrawingId equals drp.Id into drpp
                           from drp in drpp.DefaultIfEmpty()
-                          /*where tcp001.DrawingId!= null || tcp002.DrawingId != null || tcp003.DrawingId != null || tcp004.DrawingId != null || tcp005.DrawingId != null*/
+                              /*where tcp001.DrawingId!= null || tcp002.DrawingId != null || tcp003.DrawingId != null || tcp004.DrawingId != null || tcp005.DrawingId != null*/
 
                           select new DrawingsDTO
                           {
@@ -130,18 +130,18 @@ namespace TechnicalProcessControl.BLL.Services
                               CurrentLevelMenu = drw.CurrentLevelMenu,
                               DetailName = det.DetailName,
                               Quantity = drw.Quantity,
-                               QuantityL = drw.QuantityL,
-                                QuantityR = drw.QuantityL,
+                              QuantityL = drw.QuantityL,
+                              QuantityR = drw.QuantityL,
                               Number = dr.Number,
                               TH = dr.TH,
                               L = dr.L,
                               W = dr.W,
                               W2 = dr.W2,
                               DetailWeight = dr.DetailWeight,
-                               MaterialName = mat.MaterialName,
-                                DrawingId = dr.Id,
-                                 OccurrenceId =drw.OccurrenceId,
-                                  ReplaceDrawingId = drw.ReplaceDrawingId,
+                              MaterialName = mat.MaterialName,
+                              DrawingId = dr.Id,
+                              OccurrenceId = drw.OccurrenceId,
+                              ReplaceDrawingId = drw.ReplaceDrawingId,
                               //GasConsumption = drw.GasConsumption,
                               //PaintConsumption = drw.PaintConsumption,
                               //WireConsumption = drw.WireConsumption,
@@ -166,8 +166,9 @@ namespace TechnicalProcessControl.BLL.Services
                               TechProcess003Path = tcp003.TechProcessPath,
                               TechProcess004Path = tcp004.TechProcessPath,
                               TechProcess005Path = tcp005.TechProcessPath,
-                              ScanId = drws.DrawingId>0 ? 1 : 0,
-                              ParentName = drp.Number != "" ? drp.Number : dr.Number
+                              ScanId = drws.DrawingId > 0 ? 1 : 0,
+                              ParentName = drp.Number != "" ? drp.Number : dr.Number,
+                              TotalWeight = drw.Quantity > 0 ? drw.Quantity * dr.DetailWeight : 0
 
                           }
                             ).ToList();

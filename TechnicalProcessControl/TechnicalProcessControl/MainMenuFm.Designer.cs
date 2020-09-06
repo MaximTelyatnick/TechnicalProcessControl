@@ -39,7 +39,11 @@
             DevExpress.XtraEditors.TileItemElement tileItemElement7 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement8 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement9 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement10 = new DevExpress.XtraEditors.TileItemElement();
             this.tileNavPane = new DevExpress.XtraBars.Navigation.TileNavPane();
+            this.documentManager = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
+            this.tabbedView1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
+            this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
             this.contractorBtn = new DevExpress.XtraBars.Navigation.NavButton();
             this.tileNavCategory3 = new DevExpress.XtraBars.Navigation.TileNavCategory();
             this.TechProcess001Item = new DevExpress.XtraBars.Navigation.TileNavItem();
@@ -52,9 +56,8 @@
             this.tileNavItem6 = new DevExpress.XtraBars.Navigation.TileNavItem();
             this.detailItem = new DevExpress.XtraBars.Navigation.TileNavItem();
             this.drawingItem = new DevExpress.XtraBars.Navigation.TileNavItem();
-            this.documentManager = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
-            this.tabbedView1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
-            this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
+            this.navButton2 = new DevExpress.XtraBars.Navigation.NavButton();
+            this.testItem = new DevExpress.XtraBars.Navigation.TileNavItem();
             ((System.ComponentModel.ISupportInitialize)(this.tileNavPane)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView1)).BeginInit();
@@ -72,6 +75,7 @@
             this.tileNavPane.Buttons.Add(this.contractorBtn);
             this.tileNavPane.Buttons.Add(this.tileNavCategory3);
             this.tileNavPane.Buttons.Add(this.tileNavCategory4);
+            this.tileNavPane.Buttons.Add(this.navButton2);
             // 
             // tileNavCategory1
             // 
@@ -87,6 +91,20 @@
             this.tileNavPane.Size = new System.Drawing.Size(1193, 70);
             this.tileNavPane.TabIndex = 0;
             this.tileNavPane.TileClick += new DevExpress.XtraBars.Navigation.NavElementClickEventHandler(this.menuNavPane_TileClick);
+            // 
+            // documentManager
+            // 
+            this.documentManager.ContainerControl = this;
+            this.documentManager.View = this.tabbedView1;
+            this.documentManager.ViewCollection.AddRange(new DevExpress.XtraBars.Docking2010.Views.BaseView[] {
+            this.tabbedView1});
+            // 
+            // imageCollection
+            // 
+            this.imageCollection.ImageSize = new System.Drawing.Size(32, 32);
+            this.imageCollection.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollection.ImageStream")));
+            this.imageCollection.Images.SetKeyName(0, "mail.png");
+            this.imageCollection.Images.SetKeyName(1, "openmessages.png");
             // 
             // contractorBtn
             // 
@@ -231,7 +249,8 @@
             this.materialItem,
             this.tileNavItem6,
             this.detailItem,
-            this.drawingItem});
+            this.drawingItem,
+            this.testItem});
             this.tileNavCategory4.Name = "tileNavCategory4";
             this.tileNavCategory4.OwnerCollection = null;
             // 
@@ -323,19 +342,25 @@
             this.drawingItem.Tile.Elements.Add(tileItemElement9);
             this.drawingItem.Tile.Name = "tileBarItem1";
             // 
-            // documentManager
+            // navButton2
             // 
-            this.documentManager.ContainerControl = this;
-            this.documentManager.View = this.tabbedView1;
-            this.documentManager.ViewCollection.AddRange(new DevExpress.XtraBars.Docking2010.Views.BaseView[] {
-            this.tabbedView1});
+            this.navButton2.Alignment = DevExpress.XtraBars.Navigation.NavButtonAlignment.Right;
+            this.navButton2.Caption = "Test";
+            this.navButton2.Name = "navButton2";
+            this.navButton2.ElementClick += new DevExpress.XtraBars.Navigation.NavElementClickEventHandler(this.navButton2_ElementClick);
             // 
-            // imageCollection
+            // testItem
             // 
-            this.imageCollection.ImageSize = new System.Drawing.Size(32, 32);
-            this.imageCollection.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollection.ImageStream")));
-            this.imageCollection.Images.SetKeyName(0, "mail.png");
-            this.imageCollection.Images.SetKeyName(1, "openmessages.png");
+            this.testItem.Caption = "тест";
+            this.testItem.Name = "testItem";
+            this.testItem.OwnerCollection = this.tileNavCategory4.Items;
+            // 
+            // tileBarItem1
+            // 
+            this.testItem.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            tileItemElement10.Text = "тест";
+            this.testItem.Tile.Elements.Add(tileItemElement10);
+            this.testItem.Tile.Name = "tileBarItem1";
             // 
             // MainMenuFm
             // 
@@ -374,5 +399,7 @@
         private DevExpress.XtraBars.Navigation.TileNavItem tileNavItem6;
         private DevExpress.XtraBars.Navigation.TileNavItem detailItem;
         private DevExpress.XtraBars.Navigation.TileNavItem drawingItem;
+        private DevExpress.XtraBars.Navigation.NavButton navButton2;
+        private DevExpress.XtraBars.Navigation.TileNavItem testItem;
     }
 }

@@ -43,7 +43,6 @@
             this.addTechProcess003Btn = new DevExpress.XtraBars.BarButtonItem();
             this.addTechProcess004Btn = new DevExpress.XtraBars.BarButtonItem();
             this.addTechProcess005Btn = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.replaceDrawingBtn = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -111,12 +110,15 @@
             this.treeListBand9 = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.techProcessThreeTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.techProcessThreeTTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.techProcess003Repository = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.treeListBand10 = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.techProcessFourTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.techProcessFourTTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.techProcess004Repository = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.treeListBand11 = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.techProcessFiveTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.techProcessFiveTTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.techProcess005Repository = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.treeListBand12 = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.ltreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.wTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
@@ -137,9 +139,6 @@
             this.consumptionPaintTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.consumptionPaintTotalTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.techProcess002Repository = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.techProcess003Repository = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.techProcess004Repository = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.techProcess005Repository = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.contractorsRibonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawingGrid)).BeginInit();
@@ -147,10 +146,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.drawingTreeListGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.techProcess001Repository)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.techProcess002Repository)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.techProcess003Repository)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.techProcess004Repository)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.techProcess005Repository)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.techProcess002Repository)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).BeginInit();
             this.SuspendLayout();
             // 
@@ -169,7 +168,6 @@
             this.addTechProcess003Btn,
             this.addTechProcess004Btn,
             this.addTechProcess005Btn,
-            this.barButtonItem1,
             this.replaceDrawingBtn});
             this.contractorsRibonControl.Location = new System.Drawing.Point(0, 0);
             this.contractorsRibonControl.MaxItemId = 13;
@@ -275,15 +273,6 @@
             this.addTechProcess005Btn.Name = "addTechProcess005Btn";
             this.addTechProcess005Btn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             // 
-            // barButtonItem1
-            // 
-            this.barButtonItem1.Caption = "Расчитать трудоемкость";
-            this.barButtonItem1.Id = 11;
-            this.barButtonItem1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
-            this.barButtonItem1.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
-            this.barButtonItem1.Name = "barButtonItem1";
-            this.barButtonItem1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            // 
             // replaceDrawingBtn
             // 
             this.replaceDrawingBtn.Caption = "Заменить чертеж";
@@ -323,7 +312,6 @@
             // 
             // ribbonPageGroup3
             // 
-            this.ribbonPageGroup3.ItemLinks.Add(this.barButtonItem1);
             this.ribbonPageGroup3.ItemLinks.Add(this.replaceDrawingBtn);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "Функции";
@@ -1122,6 +1110,7 @@
             this.techProcessTwooTreeCol.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.techProcessTwooTreeCol.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.techProcessTwooTreeCol.Caption = "Механическая обработка";
+            this.techProcessTwooTreeCol.ColumnEdit = this.techProcess002Repository;
             this.techProcessTwooTreeCol.FieldName = "TechProcess002Name";
             this.techProcessTwooTreeCol.Name = "techProcessTwooTreeCol";
             this.techProcessTwooTreeCol.Visible = true;
@@ -1163,6 +1152,7 @@
             this.techProcessThreeTreeCol.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.techProcessThreeTreeCol.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.techProcessThreeTreeCol.Caption = "Сборка с использованием сварки";
+            this.techProcessThreeTreeCol.ColumnEdit = this.techProcess003Repository;
             this.techProcessThreeTreeCol.FieldName = "TechProcess003Name";
             this.techProcessThreeTreeCol.Name = "techProcessThreeTreeCol";
             this.techProcessThreeTreeCol.Visible = true;
@@ -1177,11 +1167,18 @@
             this.techProcessThreeTTreeCol.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.techProcessThreeTTreeCol.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.techProcessThreeTTreeCol.Caption = "T 003";
+            this.techProcessThreeTTreeCol.ColumnEdit = this.techProcess003Repository;
             this.techProcessThreeTTreeCol.FieldName = "T 003";
             this.techProcessThreeTTreeCol.Name = "techProcessThreeTTreeCol";
             this.techProcessThreeTTreeCol.OptionsColumn.AllowEdit = false;
             this.techProcessThreeTTreeCol.OptionsColumn.AllowFocus = false;
             this.techProcessThreeTTreeCol.Width = 29;
+            // 
+            // techProcess003Repository
+            // 
+            this.techProcess003Repository.AutoHeight = false;
+            this.techProcess003Repository.Name = "techProcess003Repository";
+            this.techProcess003Repository.DoubleClick += new System.EventHandler(this.techProcess003Repository_DoubleClick);
             // 
             // treeListBand10
             // 
@@ -1204,6 +1201,7 @@
             this.techProcessFourTreeCol.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.techProcessFourTreeCol.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.techProcessFourTreeCol.Caption = "Общая сборка";
+            this.techProcessFourTreeCol.ColumnEdit = this.techProcess004Repository;
             this.techProcessFourTreeCol.FieldName = "TechProcess004Name";
             this.techProcessFourTreeCol.Name = "techProcessFourTreeCol";
             this.techProcessFourTreeCol.Visible = true;
@@ -1218,11 +1216,18 @@
             this.techProcessFourTTreeCol.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.techProcessFourTTreeCol.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.techProcessFourTTreeCol.Caption = "T 004";
+            this.techProcessFourTTreeCol.ColumnEdit = this.techProcess004Repository;
             this.techProcessFourTTreeCol.FieldName = "T 004";
             this.techProcessFourTTreeCol.Name = "techProcessFourTTreeCol";
             this.techProcessFourTTreeCol.OptionsColumn.AllowEdit = false;
             this.techProcessFourTTreeCol.OptionsColumn.AllowFocus = false;
             this.techProcessFourTTreeCol.Width = 29;
+            // 
+            // techProcess004Repository
+            // 
+            this.techProcess004Repository.AutoHeight = false;
+            this.techProcess004Repository.Name = "techProcess004Repository";
+            this.techProcess004Repository.DoubleClick += new System.EventHandler(this.techProcess004Repository_DoubleClick);
             // 
             // treeListBand11
             // 
@@ -1245,6 +1250,7 @@
             this.techProcessFiveTreeCol.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.techProcessFiveTreeCol.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.techProcessFiveTreeCol.Caption = "Подготовка поверхности и окраска";
+            this.techProcessFiveTreeCol.ColumnEdit = this.techProcess005Repository;
             this.techProcessFiveTreeCol.FieldName = "TechProcess005Name";
             this.techProcessFiveTreeCol.Name = "techProcessFiveTreeCol";
             this.techProcessFiveTreeCol.Visible = true;
@@ -1259,11 +1265,18 @@
             this.techProcessFiveTTreeCol.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.techProcessFiveTTreeCol.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.techProcessFiveTTreeCol.Caption = "T 005";
+            this.techProcessFiveTTreeCol.ColumnEdit = this.techProcess005Repository;
             this.techProcessFiveTTreeCol.FieldName = "T 005";
             this.techProcessFiveTTreeCol.Name = "techProcessFiveTTreeCol";
             this.techProcessFiveTTreeCol.OptionsColumn.AllowEdit = false;
             this.techProcessFiveTTreeCol.OptionsColumn.AllowFocus = false;
             this.techProcessFiveTTreeCol.Width = 35;
+            // 
+            // techProcess005Repository
+            // 
+            this.techProcess005Repository.AutoHeight = false;
+            this.techProcess005Repository.Name = "techProcess005Repository";
+            this.techProcess005Repository.DoubleClick += new System.EventHandler(this.techProcess005Repository_DoubleClick);
             // 
             // treeListBand12
             // 
@@ -1384,7 +1397,7 @@
             this.weightTotalTreeCol.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.weightTotalTreeCol.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.weightTotalTreeCol.Caption = "Всего";
-            this.weightTotalTreeCol.FieldName = "Всего";
+            this.weightTotalTreeCol.FieldName = "TotalWeight";
             this.weightTotalTreeCol.Name = "weightTotalTreeCol";
             this.weightTotalTreeCol.OptionsColumn.AllowEdit = false;
             this.weightTotalTreeCol.OptionsColumn.AllowFocus = false;
@@ -1538,24 +1551,6 @@
             this.techProcess002Repository.Name = "techProcess002Repository";
             this.techProcess002Repository.DoubleClick += new System.EventHandler(this.techProcess002Repository_DoubleClick);
             // 
-            // techProcess003Repository
-            // 
-            this.techProcess003Repository.AutoHeight = false;
-            this.techProcess003Repository.Name = "techProcess003Repository";
-            this.techProcess003Repository.DoubleClick += new System.EventHandler(this.techProcess003Repository_DoubleClick);
-            // 
-            // techProcess004Repository
-            // 
-            this.techProcess004Repository.AutoHeight = false;
-            this.techProcess004Repository.Name = "techProcess004Repository";
-            this.techProcess004Repository.DoubleClick += new System.EventHandler(this.techProcess004Repository_DoubleClick);
-            // 
-            // techProcess005Repository
-            // 
-            this.techProcess005Repository.AutoHeight = false;
-            this.techProcess005Repository.Name = "techProcess005Repository";
-            this.techProcess005Repository.DoubleClick += new System.EventHandler(this.techProcess005Repository_DoubleClick);
-            // 
             // imageCollection
             // 
             this.imageCollection.ImageSize = new System.Drawing.Size(16, 16);
@@ -1582,10 +1577,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.drawingTreeListGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.techProcess001Repository)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.techProcess002Repository)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.techProcess003Repository)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.techProcess004Repository)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.techProcess005Repository)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.techProcess002Repository)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1679,7 +1674,6 @@
         private DevExpress.XtraBars.BarButtonItem addTechProcess004Btn;
         private DevExpress.XtraBars.BarButtonItem addTechProcess005Btn;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
         private DevExpress.XtraTreeList.Columns.TreeListColumn drawingScanCol;
         private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit1;

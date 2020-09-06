@@ -23,6 +23,7 @@ namespace TechnicalProcessControl.BLL.Interfaces
 
         bool CheckStructuraName(DrawingsDTO drawingsDTO);
 
+
         IEnumerable<DrawingScanDTO> GetDravingScanById(int? drawingId);
         IEnumerable<DrawingsDTO> GetChildDrawings(DrawingsDTO drawingsDTO);
 

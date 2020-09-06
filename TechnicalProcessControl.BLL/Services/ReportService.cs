@@ -335,60 +335,188 @@ namespace TechnicalProcessControl.BLL.Services
             return true;
         }
 
-        public bool CreateTemplateTechProcess003(DrawingsDTO drawingsDTO)
+        public bool CreateTemplateTechProcess003(DrawingsDTO drawingsDTO, List<DrawingsDTO> drawingsListDTO)
         {
             try
             {
-                Factory.GetWorkbook(GeneratedReportsDir + @"\template001.xlsx");
+                Factory.GetWorkbook(GeneratedReportsDir + @"\template002.xls");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("не найдено шаблон документа!\n" + ex.Message, "Увага", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Не найдено шаблон документа!\n" + ex.Message, "Увага", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
 
+            //A34 ->DF63
 
 
-
-            var Workbook = Factory.GetWorkbook(GeneratedReportsDir + @"\template001.xlsx");
+            var Workbook = Factory.GetWorkbook(GeneratedReportsDir + @"\template002.xls");
             var Worksheet = Workbook.Worksheets[0];
             var Сells = Worksheet.Cells;
             IRange cells = Worksheet.Cells;
-            Сells["A" + 39].Value = drawingsDTO.ParentName;
-            Сells["A" + 39].HorizontalAlignment = HAlign.Center;
-            Сells["W" + 48].Value = drawingsDTO.DetailWeight;
-            Сells["W" + 48].HorizontalAlignment = HAlign.Center;
-            Сells["BI" + 48].Value = drawingsDTO.TH.ToString() + "х" + drawingsDTO.W.ToString() + "х" + drawingsDTO.L.ToString();
-            Сells["BI" + 48].HorizontalAlignment = HAlign.Center;
-            Сells["CD" + 48].Value = drawingsDTO.Quantity;
-            Сells["CD" + 48].HorizontalAlignment = HAlign.Center;
-            Сells["BB" + 7].Value = drawingsDTO.Number;
-            Сells["BB" + 7].HorizontalAlignment = HAlign.Center;
-            Сells["BB" + 41].Value = drawingsDTO.Number;
-            Сells["BB" + 41].HorizontalAlignment = HAlign.Center;
-            Сells["BS" + 75].Value = drawingsDTO.Number;
-            Сells["BS" + 75].HorizontalAlignment = HAlign.Center;
-            Сells["BS" + 106].Value = drawingsDTO.Number;
-            Сells["BS" + 106].HorizontalAlignment = HAlign.Center;
-            Сells["CO" + 07].Value = TechProcesNameToStr(drawingsDTO.TechProcess002Name);
-            Сells["CO" + 07].HorizontalAlignment = HAlign.Center;
-            Сells["CO" + 41].Value = TechProcesNameToStr(drawingsDTO.TechProcess002Name);
-            Сells["CO" + 41].HorizontalAlignment = HAlign.Center;
-            Сells["CO" + 75].Value = TechProcesNameToStr(drawingsDTO.TechProcess002Name);
-            Сells["CO" + 75].HorizontalAlignment = HAlign.Center;
-            Сells["CO" + 106].Value = TechProcesNameToStr(drawingsDTO.TechProcess002Name);
-            Сells["CO" + 106].HorizontalAlignment = HAlign.Center;
+            //cells["34:63"].Insert();
+
+            if (drawingsListDTO.Count() > 15)
+            {
+                cells["A34: DF63"].Copy(cells["A64:DF93"], PasteType.All, PasteOperation.None, false, false);
+                cells["A94: A96"].EntireRow.Delete();
+
+                //////float listSpecificationNumber = drawingsListDTO.Count()/15;
+                //////int roundListSpecificationNumber = (int)Math.Round(listSpecificationNumber, 2, MidpointRounding.AwayFromZero);
+
+                ////#region Header
+
+                ////Сells["X" + 4].Value = drawingsDTO.ParentName;
+                ////Сells["A" + 38].Value = drawingsDTO.ParentName;
+
+                ////Сells["BB" + 6].Value = drawingsDTO.Number;
+                ////Сells["AV" + 40].Value = drawingsDTO.Number;
+
+                ////Сells["CO" + 6].Value = TechProcesNameToStr(drawingsDTO.TechProcess003Name);
+                ////Сells["CL" + 40].Value = TechProcesNameToStr(drawingsDTO.TechProcess003Name);
+
+                ////Сells["AQ" + 9].Value = drawingsDTO.DetailName;
+                ////Сells["AJ" + 24].Value = drawingsDTO.DetailName;
+                ////Сells["AN" + 43].Value = drawingsDTO.DetailName;
+
+                ////#endregion
+
+                ////#region Specification lists
+
+                ////int roundListSpecificationNumber = (int)Math.Ceiling((double)drawingsListDTO.Count() / 15.0);
+
+                ////int startRow = 34;
+                ////int endRow = 63;
+                ////int moveRow = 30;
+
+                ////for (int i = 1; i < roundListSpecificationNumber; i++)
+                ////{
+                ////    cells["A" + startRow + ":" + "DF" + endRow].Copy(cells["A" + (startRow + (moveRow * i)) + ":" + "DF" + (endRow + (moveRow * i))], PasteType.All, PasteOperation.None, false, false);
+                ////    cells["A" + (startRow + (moveRow * (i + 1))) + ":" + "A" + ((startRow + 2) + (moveRow * (i + 1)))].EntireRow.Delete();
+                ////    //cells["A34: DF63"].Copy(cells["A64:DF93"], PasteType.All, PasteOperation.None, false, false);
+                ////    //cells["A94: A96"].EntireRow.Delete();
+                ////}
+                ////decimal totalWeight = 0;
+                ////int specRow = 48;
+                ////int mover = 1;
+                ////int j = 0;
+
+                ////for (int i = 0; i < drawingsListDTO.Count; i++)
+                ////{
+                ////    Сells["W" + (specRow + j)].Value = i + 1;
+                ////    Сells["AA" + (specRow + j)].Value = drawingsListDTO[i].DetailName;
+                ////    Сells["BD" + (specRow + j)].Value = drawingsListDTO[i].Number;
+                ////    Сells["BD" + (specRow + j)].Value = "kg";
+                ////    Сells["CL" + (specRow + j)].Value = drawingsListDTO[i].DetailWeight;
+                ////    Сells["CQ" + (specRow + j)].Value = drawingsListDTO[i].Quantity;
+                ////    ++j;
+
+                ////    totalWeight += ((decimal)drawingsListDTO[i].DetailWeight * (decimal)drawingsListDTO[i].Quantity);
+
+                ////    if ((i % 14) == 0 && i != 0)
+                ////    {
+                ////        specRow = 48 + (moveRow * mover);
+                ////        ++mover;
+                ////        j = 0;
+                ////    }
+
+                ////}
+
+                ////#endregion
 
 
+                ////#region Footer
+
+                ////Сells["B" + 69+(30*(roundListSpecificationNumber-1))].Value = drawingsDTO.ParentName;
+                //////Сells["A" + 38].Value = drawingsDTO.ParentName;
+
+                ////Сells["AZ" + (71 + (30 * (roundListSpecificationNumber - 1)))].Value = drawingsDTO.Number;
+                ////Сells["BQ" + (104 + (30 * (roundListSpecificationNumber - 1)))].Value = drawingsDTO.Number;
+                ////Сells["BQ" + (135 + (30 * (roundListSpecificationNumber - 1)))].Value = drawingsDTO.Number;
+                ////Сells["BQ" + (166 + (30 * (roundListSpecificationNumber - 1)))].Value = drawingsDTO.Number;
+                //////Сells["AV" + 40].Value = drawingsDTO.Number;
+
+                ////Сells["CM" + (71 + (30 * (roundListSpecificationNumber - 1)))].Value = TechProcesNameToStr(drawingsDTO.TechProcess003Name);
+                ////Сells["CM" + (104 + (30 * (roundListSpecificationNumber - 1)))].Value = TechProcesNameToStr(drawingsDTO.TechProcess003Name);
+                ////Сells["CM" + (135 + (30 * (roundListSpecificationNumber - 1)))].Value = TechProcesNameToStr(drawingsDTO.TechProcess003Name);
+                ////Сells["CM" + (166 + (30 * (roundListSpecificationNumber - 1)))].Value = TechProcesNameToStr(drawingsDTO.TechProcess003Name);
+                //////Сells["CL" + 40].Value = drawingsDTO.TechProcess003Name;
+
+                ////Сells["AO" + (74 + (30 * (roundListSpecificationNumber - 1)))].Value = drawingsDTO.DetailName;
+
+                ////Сells["X" + (78 + (30 * (roundListSpecificationNumber - 1)))].Value = totalWeight;
+                ////#endregion
+
+
+            }
+            else
+            {
+                #region Header
+
+                Сells["X" + 4].Value = drawingsDTO.ParentName;
+                Сells["A" + 38].Value = drawingsDTO.ParentName;
+
+                Сells["BB" + 6].Value = drawingsDTO.Number;
+                Сells["AV" + 40].Value = drawingsDTO.Number;
+
+                Сells["CO" + 6].Value = TechProcesNameToStr(drawingsDTO.TechProcess003Name);
+                Сells["CL" + 40].Value = TechProcesNameToStr(drawingsDTO.TechProcess003Name);
+
+                Сells["AQ" + 9].Value = drawingsDTO.DetailName;
+                Сells["AJ" + 24].Value = drawingsDTO.DetailName;
+                Сells["AN" + 43].Value = drawingsDTO.DetailName;
+
+                #endregion
+
+                #region Specification List
+
+                decimal totalWeight = 0;
+
+                for (int i = 0; i < drawingsListDTO.Count; i++)
+                {
+                    Сells["W" + (48 + i)].Value = i+1;
+                    Сells["AA" + (48 + i)].Value = drawingsListDTO[i].DetailName;
+                    Сells["BD" + (48 + i)].Value = drawingsListDTO[i].Number;
+                    Сells["BD" + (48 + i)].Value = "kg";
+                    Сells["CL" + (48 + i)].Value = drawingsListDTO[i].DetailWeight;
+                    Сells["CQ" + (48 + i)].Value = drawingsListDTO[i].Quantity;
+
+                    totalWeight += ((decimal)drawingsListDTO[i].DetailWeight * (decimal)drawingsListDTO[i].Quantity);
+                }
+
+                #endregion
+
+                #region Footer
+
+                Сells["B" + 69].Value = drawingsDTO.ParentName;
+                //Сells["A" + 38].Value = drawingsDTO.ParentName;
+
+                Сells["AZ" + 71].Value = drawingsDTO.Number;
+                Сells["BQ" + 104].Value = drawingsDTO.Number;
+                Сells["BQ" + 135].Value = drawingsDTO.Number;
+                Сells["BQ" + 166].Value = drawingsDTO.Number;
+                //Сells["AV" + 40].Value = drawingsDTO.Number;
+
+                Сells["CM" + 71].Value = TechProcesNameToStr(drawingsDTO.TechProcess003Name);
+                Сells["CM" + 104].Value = TechProcesNameToStr(drawingsDTO.TechProcess003Name);
+                Сells["CM" + 135].Value = TechProcesNameToStr(drawingsDTO.TechProcess003Name);
+                Сells["CM" + 166].Value = TechProcesNameToStr(drawingsDTO.TechProcess003Name);
+                //Сells["CL" + 40].Value = drawingsDTO.TechProcess003Name;
+
+                Сells["AO" + 74].Value = drawingsDTO.DetailName;
+
+                Сells["X" + 78].Value = totalWeight;
+                #endregion
+
+            }
             try
             {
-                string fileName = String.Format("Зведена обігово-сальдова по рахунку 313 за період");
                 //string fileName = String.Format("Зведена обігово-сальдова по рахунку 313 за період з {0} по {1}", startDate.ToShortDateString(), endDate.ToShortDateString());
                 //Workbook.SaveAs(DbExelDir + techProcess001DTO.TechProcessName.ToString() + ".xls", FileFormat.Excel8);
-                Workbook.SaveAs(drawingsDTO.TechProcess002Path, FileFormat.Excel8);
+                Workbook.SaveAs(drawingsDTO.TechProcess003Path, FileFormat.Excel8);
                 Process process = new Process();
-                process.StartInfo.Arguments = "\"" + drawingsDTO.TechProcess002Path + "\"";
+                process.StartInfo.Arguments = "\"" + drawingsDTO.TechProcess003Path + "\"";
                 process.StartInfo.FileName = "Excel.exe";
                 process.Start();
 

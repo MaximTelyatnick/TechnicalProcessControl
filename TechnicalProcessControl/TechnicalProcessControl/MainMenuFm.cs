@@ -85,7 +85,7 @@ namespace TechnicalProcessControl
         private void contractorBtn_ElementClick(object sender, DevExpress.XtraBars.Navigation.NavElementEventArgs e)
         {
             StructuraFm contractorsFm = new StructuraFm();
-            contractorsFm.Text = "Продукция";
+            contractorsFm.Text = "Структура";
             contractorsFm.MdiParent = this;
             contractorsFm.Show();
         }
@@ -96,6 +96,14 @@ namespace TechnicalProcessControl
             productionFm.Text = "Продукция";
             productionFm.MdiParent = this;
             productionFm.Show();
+        }
+
+        private void navButton2_ElementClick(object sender, DevExpress.XtraBars.Navigation.NavElementEventArgs e)
+        {
+            TestFm testFm = new TestFm();
+            testFm.Text = "Тестовая форма";
+            testFm.MdiParent = this;
+            testFm.Show();
         }
 
         void messageWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -149,10 +157,18 @@ namespace TechnicalProcessControl
                     drawingFm.MdiParent = this;
                     drawingFm.Show();
                     break;
+                case "testItem":
+                    TestFm testFm = new TestFm();
+                    testFm.Text = "тест";
+                    testFm.MdiParent = this;
+                    testFm.Show();
+                    break;
 
 
-                    
+
             }
         }
+
+        
     }
 }

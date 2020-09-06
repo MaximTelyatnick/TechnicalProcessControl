@@ -15,6 +15,7 @@ using Ninject;
 using DevExpress.XtraEditors.Controls;
 using TechnicalProcessControl.Journals;
 using TechnicalProcessControl.TechnicalProcess;
+using TechnicalProcessControl.BLL;
 
 namespace TechnicalProcessControl.Drawings
 {
@@ -941,22 +942,22 @@ namespace TechnicalProcessControl.Drawings
                             return;
                         }
 
-                        TechProcess002DTO addTechProcessDTO = new TechProcess002DTO();
+                        TechProcess003DTO addTechProcessDTO = new TechProcess003DTO();
                         addTechProcessDTO.DrawingsId = ((DrawingsDTO)Item).Id;
                         addTechProcessDTO.DrawingNumber = ((DrawingsDTO)Item).Number;
                         addTechProcessDTO.DrawingId = ((DrawingsDTO)Item).DrawingId;
 
-                        using (TechProcess002EditFm techProcess002EditFm = new TechProcess002EditFm(Utils.Operation.Add, addTechProcessDTO, ((DrawingsDTO)Item)))
+                        using (TechProcess003EditFm techProcess003EditFm = new TechProcess003EditFm(Utils.Operation.Add, addTechProcessDTO, ((DrawingsDTO)Item)))
                         {
-                            if (techProcess002EditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                            if (techProcess003EditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                             {
                                 ////detailsBS.DataSource = journalService.GetDetails();
-                                techProcess002Edit.Properties.DataSource = drawingService.GetAllTechProcess002();
-                                techProcess002Edit.Properties.ValueMember = "Id";
-                                techProcess002Edit.Properties.DisplayMember = "TechProcessFullName";
+                                techProcess003Edit.Properties.DataSource = drawingService.GetAllTechProcess002();
+                                techProcess003Edit.Properties.ValueMember = "Id";
+                                techProcess003Edit.Properties.DisplayMember = "TechProcessFullName";
                                 techProcess002Edit.Properties.NullText = "Нету записей";
 
-                                int return_Id = techProcess002EditFm.Return().Id;
+                                int return_Id = techProcess003EditFm.Return().Id;
                                 techProcess002Edit.EditValue = return_Id;
 
 
@@ -984,16 +985,16 @@ namespace TechnicalProcessControl.Drawings
                     }
                 case 2://Видалити
                     {
-                        if (techProcess002Edit.EditValue == DBNull.Value)
+                        if (techProcess003Edit.EditValue == DBNull.Value)
                             return;
 
                         if (MessageBox.Show("Удалить?", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             drawingService = Program.kernel.Get<IDrawingService>();
-                            if (drawingService.TechProcess002Delete((int)((DrawingsDTO)Item).TechProcess002Id))
-                                drawingService.FileDelete(((DrawingsDTO)Item).TechProcess002Path);
-                            techProcess002Edit.EditValue = null;
-                            techProcess002Edit.Properties.NullText = "Не добавлен техпроцесс";
+                            if (drawingService.TechProcess003Delete((int)((DrawingsDTO)Item).TechProcess003Id))
+                                drawingService.FileDelete(((DrawingsDTO)Item).TechProcess003Path);
+                            techProcess003Edit.EditValue = null;
+                            techProcess003Edit.Properties.NullText = "Не добавлен техпроцесс";
                         }
 
                         break;
