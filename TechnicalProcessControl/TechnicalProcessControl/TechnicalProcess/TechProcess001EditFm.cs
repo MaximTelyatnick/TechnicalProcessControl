@@ -129,7 +129,29 @@ namespace TechnicalProcessControl
                 drawingsDTO.TechProcess001Path = ((TechProcess001DTO)Item).TechProcessPath;
 
                 if (((TechProcess001DTO)Item).Id > 0)
-                    reportService.CreateTemplateTechProcess001(drawingsDTO);
+                {
+                    string path = reportService.CreateTemplateTechProcess001(drawingsDTO);
+                    if (path != "")
+                    {
+                        using (TestFm testFm = new TestFm(path))
+                        {
+                            if (testFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                            {
+                                //////detailsBS.DataSource = journalService.GetDetails();
+                                //techProcess001Edit.Properties.DataSource = drawingService.GetAllTechProcess001();
+                                //techProcess001Edit.Properties.ValueMember = "Id";
+                                //techProcess001Edit.Properties.DisplayMember = "TechProcessFullName";
+                                //techProcess001Edit.Properties.NullText = "Нету записей";
+
+                                //int return_Id = techProcess001EditFm.Return().Id;
+                                //techProcess001Edit.EditValue = return_Id;
+
+
+
+                            }
+                        }
+                    }
+                }
 
                 return true;
 

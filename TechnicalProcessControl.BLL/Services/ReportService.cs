@@ -89,7 +89,7 @@ namespace TechnicalProcessControl.BLL.Services
 
 
 
-        public bool CreateTemplateTechProcess001(DrawingsDTO drawingsDTO)
+        public string CreateTemplateTechProcess001(DrawingsDTO drawingsDTO)
         {
             try
             {
@@ -98,7 +98,7 @@ namespace TechnicalProcessControl.BLL.Services
             catch (Exception ex)
             {
                 MessageBox.Show("не найдено шаблон документа!\n" + ex.Message, "Увага", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                return "";
             }
 
             var Workbook = Factory.GetWorkbook(GeneratedReportsDir + @"\template001.xlsx");
@@ -141,21 +141,18 @@ namespace TechnicalProcessControl.BLL.Services
 
             try
             {
-                string fileName = String.Format("Зведена обігово-сальдова по рахунку 313 за період");
-                //string fileName = String.Format("Зведена обігово-сальдова по рахунку 313 за період з {0} по {1}", startDate.ToShortDateString(), endDate.ToShortDateString());
-                //Workbook.SaveAs(DbExelDir + techProcess001DTO.TechProcessName.ToString() + ".xls", FileFormat.Excel8);
                 Workbook.SaveAs(drawingsDTO.TechProcess001Path, FileFormat.Excel8);
                 Process process = new Process();
-                process.StartInfo.Arguments = "\"" + drawingsDTO.TechProcess001Path + "\"";
-                process.StartInfo.FileName = "Excel.exe";
-                process.Start();
+                //process.StartInfo.Arguments = "\"" + drawingsDTO.TechProcess001Path + "\"";
+                //process.StartInfo.FileName = "Excel.exe";
+                //process.Start();
 
             }
 
             catch (System.IO.IOException) { MessageBox.Show("Документ уже открыто!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
             catch (System.ComponentModel.Win32Exception) { MessageBox.Show("На рабочей станции отсутсутствует пакет программ Microsoft Oficce!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
 
-            return true;
+            return drawingsDTO.TechProcess001Path;
         }
 
         public bool UpdateTemplateTechProcess001(DrawingsDTO drawingsDTO)

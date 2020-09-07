@@ -100,10 +100,10 @@ namespace TechnicalProcessControl
 
         private void navButton2_ElementClick(object sender, DevExpress.XtraBars.Navigation.NavElementEventArgs e)
         {
-            TestFm testFm = new TestFm();
-            testFm.Text = "Тестовая форма";
-            testFm.MdiParent = this;
-            testFm.Show();
+            //TestFm testFm = new TestFm();
+            //testFm.Text = "Тестовая форма";
+            //testFm.MdiParent = this;
+            //testFm.Show();
         }
 
         void messageWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -158,7 +158,7 @@ namespace TechnicalProcessControl
                     drawingFm.Show();
                     break;
                 case "testItem":
-                    TestFm testFm = new TestFm();
+                    TestFm testFm = new TestFm("C:\\TechProcess\\тест10_TP100010014.xlsx");
                     testFm.Text = "тест";
                     testFm.MdiParent = this;
                     testFm.Show();

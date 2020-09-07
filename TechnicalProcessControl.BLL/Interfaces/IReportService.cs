@@ -9,7 +9,7 @@ namespace TechnicalProcessControl.BLL.Interfaces
 {
     public interface IReportService
     {
-        bool CreateTemplateTechProcess001(DrawingsDTO drawingsDTO);
+        string CreateTemplateTechProcess001(DrawingsDTO drawingsDTO);
         bool UpdateTemplateTechProcess001(DrawingsDTO drawingsDTO);
 
         bool CreateTemplateTechProcess002(DrawingsDTO drawingsDTO);

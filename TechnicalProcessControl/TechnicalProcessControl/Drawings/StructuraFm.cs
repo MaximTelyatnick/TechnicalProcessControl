@@ -219,10 +219,28 @@ namespace TechnicalProcessControl
         {
             if (((DrawingsDTO)drawingsBS.Current).TechProcess001Id != null)
             {
-                Process process = new Process();
-                process.StartInfo.Arguments = "\"" + ((DrawingsDTO)drawingsBS.Current).TechProcess001Path + "\"";
-                process.StartInfo.FileName = "Excel.exe";
-                process.Start();
+                using (TestFm testFm = new TestFm(((DrawingsDTO)drawingsBS.Current).TechProcess001Path))
+                {
+                    if (testFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        //////detailsBS.DataSource = journalService.GetDetails();
+                        //techProcess001Edit.Properties.DataSource = drawingService.GetAllTechProcess001();
+                        //techProcess001Edit.Properties.ValueMember = "Id";
+                        //techProcess001Edit.Properties.DisplayMember = "TechProcessFullName";
+                        //techProcess001Edit.Properties.NullText = "Нету записей";
+
+                        //int return_Id = techProcess001EditFm.Return().Id;
+                        //techProcess001Edit.EditValue = return_Id;
+
+
+
+                    }
+                }
+
+                //Process process = new Process();
+                //process.StartInfo.Arguments = "\"" + ((DrawingsDTO)drawingsBS.Current).TechProcess001Path + "\"";
+                //process.StartInfo.FileName = "Excel.exe";
+                //process.Start();
             }
         }
 
