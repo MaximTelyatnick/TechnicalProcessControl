@@ -157,11 +157,11 @@ namespace TechnicalProcessControl
                     drawingFm.MdiParent = this;
                     drawingFm.Show();
                     break;
-                case "testItem":
-                    TestFm testFm = new TestFm("C:\\TechProcess\\тест10_TP100010014.xlsx");
-                    testFm.Text = "тест";
-                    testFm.MdiParent = this;
-                    testFm.Show();
+                case "operationNameItem":
+                    OperationNameFm operationNameFm = new OperationNameFm();
+                    operationNameFm.Text = "Наименование операций";
+                    operationNameFm.MdiParent = this;
+                    operationNameFm.Show();
                     break;
 
 

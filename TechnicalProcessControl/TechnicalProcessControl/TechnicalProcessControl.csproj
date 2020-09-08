@@ -246,6 +246,18 @@
     <Compile Include="Journals\MaterialFm.Designer.cs">
       <DependentUpon>MaterialFm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Journals\OperationNameEditFm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Journals\OperationNameEditFm.Designer.cs">
+      <DependentUpon>OperationNameEditFm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Journals\OperationNameFm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Journals\OperationNameFm.Designer.cs">
+      <DependentUpon>OperationNameFm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Journals\ScanFm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -387,6 +399,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Journals\MaterialFm.resx">
       <DependentUpon>MaterialFm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Journals\OperationNameEditFm.resx">
+      <DependentUpon>OperationNameEditFm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Journals\OperationNameFm.resx">
+      <DependentUpon>OperationNameFm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Journals\ScanFm.resx">
       <DependentUpon>ScanFm.cs</DependentUpon>

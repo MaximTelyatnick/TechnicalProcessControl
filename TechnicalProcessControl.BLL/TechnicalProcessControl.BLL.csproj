@@ -73,6 +73,9 @@
     <Compile Include="ModelsDTO\DrawingsDTO.cs" />
     <Compile Include="ModelsDTO\MaterialsDTO.cs" />
     <Compile Include="ModelsDTO\MessagesDTO.cs" />
+    <Compile Include="ModelsDTO\OperationNameDTO.cs" />
+    <Compile Include="ModelsDTO\OperationNumberDTO.cs" />
+    <Compile Include="ModelsDTO\OperationPaintMaterialDTO.cs" />
     <Compile Include="ModelsDTO\OrdersDTO.cs" />
     <Compile Include="ModelsDTO\ProductionDTO.cs" />
     <Compile Include="ModelsDTO\RevisionsDTO.cs" />

@@ -37,7 +37,7 @@ namespace TechnicalProcessControl.DAL.EF
         public DbSet<Materials> Materials { get; set; }
         public DbSet<Drawing> Drawing { get; set; }
         public DbSet<Revisions> Revisions { get; set; }
-
+        public DbSet<OperationName> OperationName { get; set; }
         #endregion
 
 
