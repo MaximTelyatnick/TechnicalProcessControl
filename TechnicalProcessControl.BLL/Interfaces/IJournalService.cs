@@ -19,6 +19,7 @@ namespace TechnicalProcessControl.BLL.Interfaces
         bool CheckOperationName(OperationNameDTO operationNameDTO);
 
         IEnumerable<OperationNumberDTO> GetOperationNumber();
+        IEnumerable<OperationPaintMaterialDTO> GetOperationPaintMaterial();
 
         int MaterialsCreate(MaterialsDTO materialsDTO);
         void MaterialsUpdate(MaterialsDTO materialsDTO);

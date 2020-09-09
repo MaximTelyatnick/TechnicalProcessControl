@@ -26,9 +26,9 @@ namespace TechnicalProcessControl
 
         private IWorkbook workbook;
 
-        private BindingSource materialsBS = new BindingSource();
-        private BindingSource detailsBS = new BindingSource();
-
+        private BindingSource operationBS = new BindingSource();
+        private BindingSource operationNumberBS = new BindingSource();
+        private BindingSource operationPaintMaterialBS = new BindingSource();
 
         //Обработка закрытия по крестику
         public bool ClosedByXButtonOrAltF4 { get; private set; }
@@ -89,37 +89,30 @@ namespace TechnicalProcessControl
             drawingService = Program.kernel.Get<IDrawingService>();
             journalService = Program.kernel.Get<IJournalService>();
 
-            detailsBS.DataSource = journalService.GetDetails();
-            //detailEdit.Properties.DataSource = detailsBS;
-            //detailEdit.Properties.ValueMember = "Id";
-            //detailEdit.Properties.DisplayMember = "DetailName";
-            //detailEdit.Properties.NullText = "Немає данних";
+            operationBS.DataSource = journalService.GetOperationName();
+            operatioRepositoryEdit.DataSource = operationBS;
+            operatioRepositoryEdit.ValueMember = "Id";
+            operatioRepositoryEdit.DisplayMember = "NameRus";
+            operatioRepositoryEdit.NullText = "";
+
+            operationNumberBS.DataSource = journalService.GetOperationNumber();
+            operationNumberRepositoryEdit.DataSource = operationNumberBS;
+            operationNumberRepositoryEdit.ValueMember = "Id";
+            operationNumberRepositoryEdit.DisplayMember = "OperationNumber";
+            operationNumberRepositoryEdit.NullText = "";
+
+            operationPaintMaterialBS.DataSource = journalService.GetOperationPaintMaterial();
+            operationPaintRepositoryEdit.DataSource = operationPaintMaterialBS;
+            operationPaintRepositoryEdit.ValueMember = "Id";
+            operationPaintRepositoryEdit.DisplayMember = "NameEng";
+            operationPaintRepositoryEdit.NullText = "";
 
             workbook = spreadsheetControl.Document;
-            //materialsBS.DataSource = journalService.GetMaterials();
-            //materialEdit. = materialsBS;
-            //materialEdit.Properties.ValueMember = "Id";
-            //materialEdit.Properties.DisplayMember = "MaterialName";
-            //materialEdit.Properties.NullText = "Немає данних";
-            materialsBS.DataSource = journalService.GetMaterials();
-            //repositoryItemLookUpEditMaterial.DataSource = materialsBS;
-            //repositoryItemLookUpEditMaterial.ValueMember = "Id";
-            //repositoryItemLookUpEditMaterial.DisplayMember = "MaterialName";
-            //repositoryItemLookUpEditMaterial.NullText = "Немає данних";
             workbook.BeginUpdate();
-
-            //workbook = spreadsheetControl.Document;
 
             workbook.LoadDocument(pathToFile, DocumentFormat.Xls);
             
-
             workbook.EndUpdate();
-            //spreadsheetControl. = 
-
-            //using (FileStream stream = new FileStream(pathToFile, FileMode.Open))
-            //{
-            //    spreadsheetControl.LoadDocument(stream, DocumentFormat.Xlsx);
-            //}
 
         }
 
@@ -179,6 +172,19 @@ namespace TechnicalProcessControl
                     DialogResult = DialogResult.Cancel;
                     this.Close();
                 }
+            }
+        }
+
+        private void addOperationBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (operationEdit.EditValue != null)
+            {
+                workbook.BeginUpdate();
+
+                Clipboard.SetText(((OperationNameDTO)(operatioRepositoryEdit.GetRowByKeyValue(operationEdit.EditValue))).NameRus);
+
+                spreadsheetControl.SelectedCell.Value = Clipboard.GetText();
+                workbook.EndUpdate();
             }
         }
     }

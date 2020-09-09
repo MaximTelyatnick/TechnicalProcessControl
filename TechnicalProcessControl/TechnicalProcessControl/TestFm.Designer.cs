@@ -696,19 +696,30 @@
             this.saveExcelBtn = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
-            this.operationEdit = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemGridLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
-            this.repositoryItemGridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.tableIdCol = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.codeCol = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.nameRusCol = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.nameEngCol = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.nameArCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.operationNumberEdit = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemGridLookUpEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
+            this.operationNumberRepositoryEdit = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
             this.repositoryItemGridLookUpEdit2View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
+            this.idCol = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.TableId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.operationNumberCol = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.addOperationBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.addOperationNumberBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.operationPaintEdit = new DevExpress.XtraBars.BarEditItem();
+            this.operationPaintRepositoryEdit = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
+            this.repositoryItemGridLookUpEdit3View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.codePaintCol = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.namePaintMaterialRusCol = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.namePaintMaterialEngCol = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.typeCol = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.addOperationPaintBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.operationEdit = new DevExpress.XtraBars.BarEditItem();
+            this.operatioRepositoryEdit = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.homeRibbonPage1 = new DevExpress.XtraSpreadsheet.UI.HomeRibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.clipboardRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.ClipboardRibbonPageGroup();
@@ -718,6 +729,13 @@
             this.cellsRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.CellsRibbonPageGroup();
             this.editingRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.EditingRibbonPageGroup();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.operationRepositoryEdit = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
+            this.repositoryItemGridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.tableIdCol = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.codeCol = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.nameRusCol = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.nameEngCol = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.nameArCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.commandBarGalleryDropDown26 = new DevExpress.XtraBars.Commands.CommandBarGalleryDropDown(this.components);
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -775,12 +793,6 @@
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.splashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::TechnicalProcessControl.WaitFm), true, true);
             this.spreadsheetBarController1 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetBarController();
-            this.paintOperationEdit = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemGridLookUpEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
-            this.repositoryItemGridLookUpEdit3View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.idCol = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.TableId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.operationNumberCol = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarGalleryDropDown50)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemFontEdit1)).BeginInit();
@@ -790,10 +802,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.commandBarGalleryDropDown51)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarGalleryDropDown52)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarGalleryDropDown53)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.operationNumberRepositoryEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit2View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.operationPaintRepositoryEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit3View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.operatioRepositoryEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.operationRepositoryEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarGalleryDropDown26)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarGalleryDropDown25)).BeginInit();
@@ -847,8 +863,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spreadsheetBarController1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit3View)).BeginInit();
             this.SuspendLayout();
             // 
             // stylesRibbonPageGroup1
@@ -1219,13 +1233,14 @@
             this.saveExcelBtn,
             this.barButtonItem1,
             this.barButtonItem2,
-            this.operationEdit,
             this.operationNumberEdit,
-            this.barButtonItem3,
-            this.barButtonItem4,
-            this.paintOperationEdit});
+            this.addOperationBtn,
+            this.addOperationNumberBtn,
+            this.operationPaintEdit,
+            this.addOperationPaintBtn,
+            this.operationEdit});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 85;
+            this.ribbonControl1.MaxItemId = 100;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.homeRibbonPage1});
@@ -1233,9 +1248,10 @@
             this.repositoryItemFontEdit1,
             this.repositoryItemSpreadsheetFontSizeEdit1,
             this.repositoryItemPopupGalleryEdit1,
-            this.repositoryItemGridLookUpEdit1,
-            this.repositoryItemGridLookUpEdit2,
-            this.repositoryItemGridLookUpEdit3});
+            this.operationRepositoryEdit,
+            this.operationNumberRepositoryEdit,
+            this.operationPaintRepositoryEdit,
+            this.operatioRepositoryEdit});
             this.ribbonControl1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2007;
             this.ribbonControl1.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.True;
             this.ribbonControl1.ShowExpandCollapseButton = DevExpress.Utils.DefaultBoolean.True;
@@ -2588,103 +2604,21 @@
             this.barButtonItem2.Name = "barButtonItem2";
             this.barButtonItem2.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             // 
-            // operationEdit
-            // 
-            this.operationEdit.Caption = "Операция          ";
-            this.operationEdit.Edit = this.repositoryItemGridLookUpEdit1;
-            this.operationEdit.EditWidth = 200;
-            this.operationEdit.Id = 1;
-            this.operationEdit.Name = "operationEdit";
-            // 
-            // repositoryItemGridLookUpEdit1
-            // 
-            this.repositoryItemGridLookUpEdit1.AutoHeight = false;
-            this.repositoryItemGridLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemGridLookUpEdit1.Name = "repositoryItemGridLookUpEdit1";
-            this.repositoryItemGridLookUpEdit1.PopupFormMinSize = new System.Drawing.Size(1000, 0);
-            this.repositoryItemGridLookUpEdit1.PopupFormSize = new System.Drawing.Size(1000, 0);
-            this.repositoryItemGridLookUpEdit1.PopupView = this.repositoryItemGridLookUpEdit1View;
-            // 
-            // repositoryItemGridLookUpEdit1View
-            // 
-            this.repositoryItemGridLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.tableIdCol,
-            this.codeCol,
-            this.nameRusCol,
-            this.nameEngCol,
-            this.nameArCol});
-            this.repositoryItemGridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.repositoryItemGridLookUpEdit1View.IndicatorWidth = 1000;
-            this.repositoryItemGridLookUpEdit1View.Name = "repositoryItemGridLookUpEdit1View";
-            this.repositoryItemGridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.repositoryItemGridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
-            // 
-            // tableIdCol
-            // 
-            this.tableIdCol.Caption = "Id";
-            this.tableIdCol.FieldName = "tableId";
-            this.tableIdCol.MinWidth = 100;
-            this.tableIdCol.Name = "tableIdCol";
-            this.tableIdCol.Visible = true;
-            this.tableIdCol.VisibleIndex = 0;
-            this.tableIdCol.Width = 100;
-            // 
-            // codeCol
-            // 
-            this.codeCol.Caption = "Код";
-            this.codeCol.FieldName = "Code";
-            this.codeCol.MinWidth = 100;
-            this.codeCol.Name = "codeCol";
-            this.codeCol.Visible = true;
-            this.codeCol.VisibleIndex = 1;
-            this.codeCol.Width = 100;
-            // 
-            // nameRusCol
-            // 
-            this.nameRusCol.Caption = "Операция (рус)";
-            this.nameRusCol.FieldName = "NameRus";
-            this.nameRusCol.MinWidth = 280;
-            this.nameRusCol.Name = "nameRusCol";
-            this.nameRusCol.Visible = true;
-            this.nameRusCol.VisibleIndex = 2;
-            this.nameRusCol.Width = 280;
-            // 
-            // nameEngCol
-            // 
-            this.nameEngCol.Caption = "Операция (eng)";
-            this.nameEngCol.FieldName = "NameEng";
-            this.nameEngCol.MinWidth = 280;
-            this.nameEngCol.Name = "nameEngCol";
-            this.nameEngCol.Visible = true;
-            this.nameEngCol.VisibleIndex = 3;
-            this.nameEngCol.Width = 280;
-            // 
-            // nameArCol
-            // 
-            this.nameArCol.Caption = "Операция (ar)";
-            this.nameArCol.FieldName = "NameAr";
-            this.nameArCol.MinWidth = 280;
-            this.nameArCol.Name = "nameArCol";
-            this.nameArCol.Visible = true;
-            this.nameArCol.VisibleIndex = 4;
-            this.nameArCol.Width = 280;
-            // 
             // operationNumberEdit
             // 
             this.operationNumberEdit.Caption = "Номер операции";
-            this.operationNumberEdit.Edit = this.repositoryItemGridLookUpEdit2;
+            this.operationNumberEdit.Edit = this.operationNumberRepositoryEdit;
             this.operationNumberEdit.EditWidth = 200;
             this.operationNumberEdit.Id = 2;
             this.operationNumberEdit.Name = "operationNumberEdit";
             // 
-            // repositoryItemGridLookUpEdit2
+            // operationNumberRepositoryEdit
             // 
-            this.repositoryItemGridLookUpEdit2.AutoHeight = false;
-            this.repositoryItemGridLookUpEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.operationNumberRepositoryEdit.AutoHeight = false;
+            this.operationNumberRepositoryEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemGridLookUpEdit2.Name = "repositoryItemGridLookUpEdit2";
-            this.repositoryItemGridLookUpEdit2.PopupView = this.repositoryItemGridLookUpEdit2View;
+            this.operationNumberRepositoryEdit.Name = "operationNumberRepositoryEdit";
+            this.operationNumberRepositoryEdit.PopupView = this.repositoryItemGridLookUpEdit2View;
             // 
             // repositoryItemGridLookUpEdit2View
             // 
@@ -2697,23 +2631,193 @@
             this.repositoryItemGridLookUpEdit2View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.repositoryItemGridLookUpEdit2View.OptionsView.ShowGroupPanel = false;
             // 
-            // barButtonItem3
+            // idCol
             // 
-            this.barButtonItem3.Caption = "barButtonItem3";
-            this.barButtonItem3.Id = 3;
-            this.barButtonItem3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.Image")));
-            this.barButtonItem3.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.LargeImage")));
-            this.barButtonItem3.Name = "barButtonItem3";
-            this.barButtonItem3.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText;
+            this.idCol.Caption = "№ п/п";
+            this.idCol.FieldName = "Id";
+            this.idCol.Name = "idCol";
+            this.idCol.Visible = true;
+            this.idCol.VisibleIndex = 0;
             // 
-            // barButtonItem4
+            // TableId
             // 
-            this.barButtonItem4.Caption = "barButtonItem4";
-            this.barButtonItem4.Id = 4;
-            this.barButtonItem4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem4.ImageOptions.Image")));
-            this.barButtonItem4.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem4.ImageOptions.LargeImage")));
-            this.barButtonItem4.Name = "barButtonItem4";
-            this.barButtonItem4.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText;
+            this.TableId.Caption = "ID";
+            this.TableId.FieldName = "TableId";
+            this.TableId.Name = "TableId";
+            this.TableId.Visible = true;
+            this.TableId.VisibleIndex = 1;
+            // 
+            // operationNumberCol
+            // 
+            this.operationNumberCol.Caption = "Номер операции";
+            this.operationNumberCol.FieldName = "OperationNumber";
+            this.operationNumberCol.Name = "operationNumberCol";
+            this.operationNumberCol.Visible = true;
+            this.operationNumberCol.VisibleIndex = 2;
+            // 
+            // addOperationBtn
+            // 
+            this.addOperationBtn.Caption = "barButtonItem3";
+            this.addOperationBtn.Id = 3;
+            this.addOperationBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addOperationBtn.ImageOptions.Image")));
+            this.addOperationBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("addOperationBtn.ImageOptions.LargeImage")));
+            this.addOperationBtn.Name = "addOperationBtn";
+            this.addOperationBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText;
+            this.addOperationBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addOperationBtn_ItemClick);
+            // 
+            // addOperationNumberBtn
+            // 
+            this.addOperationNumberBtn.Caption = "barButtonItem4";
+            this.addOperationNumberBtn.Id = 4;
+            this.addOperationNumberBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addOperationNumberBtn.ImageOptions.Image")));
+            this.addOperationNumberBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("addOperationNumberBtn.ImageOptions.LargeImage")));
+            this.addOperationNumberBtn.Name = "addOperationNumberBtn";
+            this.addOperationNumberBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText;
+            // 
+            // operationPaintEdit
+            // 
+            this.operationPaintEdit.Caption = "Окраска             ";
+            this.operationPaintEdit.Edit = this.operationPaintRepositoryEdit;
+            this.operationPaintEdit.EditWidth = 200;
+            this.operationPaintEdit.Id = 84;
+            this.operationPaintEdit.Name = "operationPaintEdit";
+            // 
+            // operationPaintRepositoryEdit
+            // 
+            this.operationPaintRepositoryEdit.AutoHeight = false;
+            this.operationPaintRepositoryEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.operationPaintRepositoryEdit.Name = "operationPaintRepositoryEdit";
+            this.operationPaintRepositoryEdit.PopupFormMinSize = new System.Drawing.Size(1000, 0);
+            this.operationPaintRepositoryEdit.PopupView = this.repositoryItemGridLookUpEdit3View;
+            // 
+            // repositoryItemGridLookUpEdit3View
+            // 
+            this.repositoryItemGridLookUpEdit3View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.codePaintCol,
+            this.namePaintMaterialRusCol,
+            this.namePaintMaterialEngCol,
+            this.typeCol});
+            this.repositoryItemGridLookUpEdit3View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.repositoryItemGridLookUpEdit3View.Name = "repositoryItemGridLookUpEdit3View";
+            this.repositoryItemGridLookUpEdit3View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.repositoryItemGridLookUpEdit3View.OptionsView.ShowGroupPanel = false;
+            // 
+            // codePaintCol
+            // 
+            this.codePaintCol.Caption = "Код";
+            this.codePaintCol.FieldName = "Code";
+            this.codePaintCol.Name = "codePaintCol";
+            this.codePaintCol.Visible = true;
+            this.codePaintCol.VisibleIndex = 0;
+            // 
+            // namePaintMaterialRusCol
+            // 
+            this.namePaintMaterialRusCol.Caption = "Наименование (рус.)";
+            this.namePaintMaterialRusCol.FieldName = "NameRus";
+            this.namePaintMaterialRusCol.Name = "namePaintMaterialRusCol";
+            this.namePaintMaterialRusCol.Visible = true;
+            this.namePaintMaterialRusCol.VisibleIndex = 1;
+            // 
+            // namePaintMaterialEngCol
+            // 
+            this.namePaintMaterialEngCol.Caption = "Наименование (Eng)";
+            this.namePaintMaterialEngCol.FieldName = "NameEng";
+            this.namePaintMaterialEngCol.Name = "namePaintMaterialEngCol";
+            this.namePaintMaterialEngCol.Visible = true;
+            this.namePaintMaterialEngCol.VisibleIndex = 2;
+            // 
+            // typeCol
+            // 
+            this.typeCol.Caption = "Тип";
+            this.typeCol.FieldName = "Type";
+            this.typeCol.Name = "typeCol";
+            this.typeCol.Visible = true;
+            this.typeCol.VisibleIndex = 3;
+            // 
+            // addOperationPaintBtn
+            // 
+            this.addOperationPaintBtn.Caption = "barButtonItem5";
+            this.addOperationPaintBtn.Id = 87;
+            this.addOperationPaintBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addOperationPaintBtn.ImageOptions.Image")));
+            this.addOperationPaintBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("addOperationPaintBtn.ImageOptions.LargeImage")));
+            this.addOperationPaintBtn.Name = "addOperationPaintBtn";
+            this.addOperationPaintBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText;
+            // 
+            // operationEdit
+            // 
+            this.operationEdit.Caption = "Операция          ";
+            this.operationEdit.Edit = this.operatioRepositoryEdit;
+            this.operationEdit.EditWidth = 200;
+            this.operationEdit.Id = 89;
+            this.operationEdit.Name = "operationEdit";
+            // 
+            // operatioRepositoryEdit
+            // 
+            this.operatioRepositoryEdit.AutoHeight = false;
+            this.operatioRepositoryEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.operatioRepositoryEdit.Name = "operatioRepositoryEdit";
+            this.operatioRepositoryEdit.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Simple;
+            this.operatioRepositoryEdit.PopupFormMinSize = new System.Drawing.Size(1000, 0);
+            this.operatioRepositoryEdit.PopupFormSize = new System.Drawing.Size(1000, 0);
+            this.operatioRepositoryEdit.PopupView = this.gridView1;
+            this.operatioRepositoryEdit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.operatioRepositoryEdit.UseReadOnlyAppearance = false;
+            this.operatioRepositoryEdit.ViewType = DevExpress.XtraEditors.Repository.GridLookUpViewType.GridView;
+            // 
+            // gridView1
+            // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
+            this.gridColumn2,
+            this.gridColumn3,
+            this.gridColumn4,
+            this.gridColumn5});
+            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.AllowGroupExpandAnimation = DevExpress.Utils.DefaultBoolean.True;
+            this.gridView1.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.EditForm;
+            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
+            this.gridView1.OptionsView.AnimationType = DevExpress.XtraGrid.Views.Base.GridAnimationType.AnimateAllContent;
+            this.gridView1.OptionsView.ShowAutoFilterRow = true;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "gridColumn1";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 0;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "gridColumn2";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 1;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "gridColumn3";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 2;
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "gridColumn4";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 3;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "gridColumn5";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 4;
             // 
             // homeRibbonPage1
             // 
@@ -2739,9 +2843,10 @@
             // 
             this.ribbonPageGroup2.ItemLinks.Add(this.operationEdit);
             this.ribbonPageGroup2.ItemLinks.Add(this.operationNumberEdit);
-            this.ribbonPageGroup2.ItemLinks.Add(this.paintOperationEdit);
-            this.ribbonPageGroup2.ItemLinks.Add(this.barButtonItem3, true);
-            this.ribbonPageGroup2.ItemLinks.Add(this.barButtonItem4);
+            this.ribbonPageGroup2.ItemLinks.Add(this.operationPaintEdit);
+            this.ribbonPageGroup2.ItemLinks.Add(this.addOperationBtn, true);
+            this.ribbonPageGroup2.ItemLinks.Add(this.addOperationNumberBtn);
+            this.ribbonPageGroup2.ItemLinks.Add(this.addOperationPaintBtn);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             this.ribbonPageGroup2.Text = "Словари";
             // 
@@ -2798,6 +2903,80 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.saveBtn);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "ribbonPageGroup1";
+            // 
+            // operationRepositoryEdit
+            // 
+            this.operationRepositoryEdit.AutoHeight = false;
+            this.operationRepositoryEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.operationRepositoryEdit.Name = "operationRepositoryEdit";
+            this.operationRepositoryEdit.PopupFormMinSize = new System.Drawing.Size(1000, 0);
+            this.operationRepositoryEdit.PopupFormSize = new System.Drawing.Size(1000, 0);
+            this.operationRepositoryEdit.PopupView = this.repositoryItemGridLookUpEdit1View;
+            // 
+            // repositoryItemGridLookUpEdit1View
+            // 
+            this.repositoryItemGridLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.tableIdCol,
+            this.codeCol,
+            this.nameRusCol,
+            this.nameEngCol,
+            this.nameArCol});
+            this.repositoryItemGridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.repositoryItemGridLookUpEdit1View.IndicatorWidth = 1000;
+            this.repositoryItemGridLookUpEdit1View.Name = "repositoryItemGridLookUpEdit1View";
+            this.repositoryItemGridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.repositoryItemGridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            // 
+            // tableIdCol
+            // 
+            this.tableIdCol.Caption = "Id";
+            this.tableIdCol.FieldName = "tableId";
+            this.tableIdCol.MinWidth = 10;
+            this.tableIdCol.Name = "tableIdCol";
+            this.tableIdCol.Visible = true;
+            this.tableIdCol.VisibleIndex = 0;
+            this.tableIdCol.Width = 100;
+            // 
+            // codeCol
+            // 
+            this.codeCol.Caption = "Код";
+            this.codeCol.FieldName = "Code";
+            this.codeCol.MinWidth = 10;
+            this.codeCol.Name = "codeCol";
+            this.codeCol.Visible = true;
+            this.codeCol.VisibleIndex = 1;
+            this.codeCol.Width = 100;
+            // 
+            // nameRusCol
+            // 
+            this.nameRusCol.Caption = "Операция (рус)";
+            this.nameRusCol.FieldName = "NameRus";
+            this.nameRusCol.MinWidth = 10;
+            this.nameRusCol.Name = "nameRusCol";
+            this.nameRusCol.Visible = true;
+            this.nameRusCol.VisibleIndex = 2;
+            this.nameRusCol.Width = 280;
+            // 
+            // nameEngCol
+            // 
+            this.nameEngCol.Caption = "Операция (eng)";
+            this.nameEngCol.FieldName = "NameEng";
+            this.nameEngCol.MinWidth = 10;
+            this.nameEngCol.Name = "nameEngCol";
+            this.nameEngCol.Visible = true;
+            this.nameEngCol.VisibleIndex = 3;
+            this.nameEngCol.Width = 280;
+            // 
+            // nameArCol
+            // 
+            this.nameArCol.Caption = "Операция (ar)";
+            this.nameArCol.FieldName = "NameAr";
+            this.nameArCol.MinWidth = 10;
+            this.nameArCol.Name = "nameArCol";
+            this.nameArCol.Visible = true;
+            this.nameArCol.VisibleIndex = 4;
+            this.nameArCol.Width = 280;
             // 
             // commandBarGalleryDropDown26
             // 
@@ -6409,53 +6588,6 @@
             this.spreadsheetBarController1.BarItems.Add(this.spreadsheetCommandBarButtonItem104);
             this.spreadsheetBarController1.Control = this.spreadsheetControl;
             // 
-            // paintOperationEdit
-            // 
-            this.paintOperationEdit.Caption = "Окраска             ";
-            this.paintOperationEdit.Edit = this.repositoryItemGridLookUpEdit3;
-            this.paintOperationEdit.EditWidth = 200;
-            this.paintOperationEdit.Id = 84;
-            this.paintOperationEdit.Name = "paintOperationEdit";
-            // 
-            // repositoryItemGridLookUpEdit3
-            // 
-            this.repositoryItemGridLookUpEdit3.AutoHeight = false;
-            this.repositoryItemGridLookUpEdit3.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemGridLookUpEdit3.Name = "repositoryItemGridLookUpEdit3";
-            this.repositoryItemGridLookUpEdit3.PopupView = this.repositoryItemGridLookUpEdit3View;
-            // 
-            // repositoryItemGridLookUpEdit3View
-            // 
-            this.repositoryItemGridLookUpEdit3View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.repositoryItemGridLookUpEdit3View.Name = "repositoryItemGridLookUpEdit3View";
-            this.repositoryItemGridLookUpEdit3View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.repositoryItemGridLookUpEdit3View.OptionsView.ShowGroupPanel = false;
-            // 
-            // idCol
-            // 
-            this.idCol.Caption = "№ п/п";
-            this.idCol.FieldName = "Id";
-            this.idCol.Name = "idCol";
-            this.idCol.Visible = true;
-            this.idCol.VisibleIndex = 0;
-            // 
-            // TableId
-            // 
-            this.TableId.Caption = "ID";
-            this.TableId.FieldName = "TableId";
-            this.TableId.Name = "TableId";
-            this.TableId.Visible = true;
-            this.TableId.VisibleIndex = 1;
-            // 
-            // operationNumberCol
-            // 
-            this.operationNumberCol.Caption = "Номер операции";
-            this.operationNumberCol.FieldName = "OperationNumber";
-            this.operationNumberCol.Name = "operationNumberCol";
-            this.operationNumberCol.Visible = true;
-            this.operationNumberCol.VisibleIndex = 2;
-            // 
             // TestFm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -6480,10 +6612,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.commandBarGalleryDropDown51)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarGalleryDropDown52)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarGalleryDropDown53)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.operationNumberRepositoryEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit2View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.operationPaintRepositoryEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit3View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.operatioRepositoryEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.operationRepositoryEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarGalleryDropDown26)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarGalleryDropDown25)).EndInit();
@@ -6537,8 +6673,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spreadsheetBarController1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit3View)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -6781,14 +6915,13 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
-        private DevExpress.XtraBars.BarEditItem operationEdit;
-        private DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit repositoryItemGridLookUpEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit operationRepositoryEdit;
         private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemGridLookUpEdit1View;
         private DevExpress.XtraBars.BarEditItem operationNumberEdit;
-        private DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit repositoryItemGridLookUpEdit2;
+        private DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit operationNumberRepositoryEdit;
         private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemGridLookUpEdit2View;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem3;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem4;
+        private DevExpress.XtraBars.BarButtonItem addOperationBtn;
+        private DevExpress.XtraBars.BarButtonItem addOperationNumberBtn;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
         public DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl1;
         private DevExpress.XtraGrid.Columns.GridColumn tableIdCol;
@@ -6796,11 +6929,24 @@
         private DevExpress.XtraGrid.Columns.GridColumn nameRusCol;
         private DevExpress.XtraGrid.Columns.GridColumn nameEngCol;
         private DevExpress.XtraGrid.Columns.GridColumn nameArCol;
-        private DevExpress.XtraBars.BarEditItem paintOperationEdit;
-        private DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit repositoryItemGridLookUpEdit3;
+        private DevExpress.XtraBars.BarEditItem operationPaintEdit;
+        private DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit operationPaintRepositoryEdit;
         private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemGridLookUpEdit3View;
         private DevExpress.XtraGrid.Columns.GridColumn idCol;
         private DevExpress.XtraGrid.Columns.GridColumn TableId;
         private DevExpress.XtraGrid.Columns.GridColumn operationNumberCol;
+        private DevExpress.XtraGrid.Columns.GridColumn codePaintCol;
+        private DevExpress.XtraGrid.Columns.GridColumn namePaintMaterialRusCol;
+        private DevExpress.XtraGrid.Columns.GridColumn namePaintMaterialEngCol;
+        private DevExpress.XtraGrid.Columns.GridColumn typeCol;
+        private DevExpress.XtraBars.BarButtonItem addOperationPaintBtn;
+        private DevExpress.XtraBars.BarEditItem operationEdit;
+        private DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit operatioRepositoryEdit;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
     }
 }
