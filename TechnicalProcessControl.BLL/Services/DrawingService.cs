@@ -277,6 +277,8 @@ namespace TechnicalProcessControl.BLL.Services
                           from det in dett.DefaultIfEmpty()
                           join mat in materials.GetAll() on drw.MaterialId equals mat.Id into matt
                           from mat in matt.DefaultIfEmpty()
+                          join rev in revisions.GetAll() on drw.RevisionId equals rev.Id into revv
+                          from rev in revv.DefaultIfEmpty()
 
                           select new DrawingDTO
                           {
@@ -296,6 +298,11 @@ namespace TechnicalProcessControl.BLL.Services
                               W = drw.W,
                               W2 = drw.W2,
                               DetailWeight = drw.DetailWeight,
+                              RevisionId = drw.RevisionId,
+                              RevisionName = rev.Symbol,
+                              CreateDate = drw.CreateDate,
+                              ParentId = drw.ParentId,
+                              Note = drw.Note
                           }
                           ).ToList();
 

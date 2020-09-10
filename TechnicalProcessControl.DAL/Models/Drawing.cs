@@ -16,6 +16,7 @@ namespace TechnicalProcessControl.DAL.Models
         public int? DetailId { get; set; }
         public int? MaterialId { get; set; }
         public int? TypeId { get; set; }
+        public int? RevisionId { get; set; }
 
         public decimal? DetailWeight { get; set; }
         public decimal? TH { get; set; }
@@ -26,5 +27,8 @@ namespace TechnicalProcessControl.DAL.Models
         public short? QuantityR { get; set; }
         public short? QuantityL { get; set; }
 
+        public DateTime? CreateDate { get; set; }
+        public short? ParentId { get; set; }
+        public string Note { get; set; }
     }
 }

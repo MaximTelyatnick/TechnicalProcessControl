@@ -29,6 +29,7 @@ namespace TechnicalProcessControl.Drawings
         private BindingSource detailsBS = new BindingSource();
         private BindingSource materialsBS = new BindingSource();
         private BindingSource drawingScanBS = new BindingSource();
+        private BindingSource revisionBS = new BindingSource();
 
         private List<DrawingScanDTO> drawingScanList = new List<DrawingScanDTO>();
         private List<DrawingScanDTO> drawingScanDeleteList = new List<DrawingScanDTO>();
@@ -68,6 +69,9 @@ namespace TechnicalProcessControl.Drawings
             quantityREdit.DataBindings.Add("EditValue", drawingBS, "QuantityR", true, DataSourceUpdateMode.OnPropertyChanged);
             quantityLEdit.DataBindings.Add("EditValue", drawingBS, "QuantityL", true, DataSourceUpdateMode.OnPropertyChanged);
             weightEdit.DataBindings.Add("EditValue", drawingBS, "DetailWeight", true, DataSourceUpdateMode.OnPropertyChanged);
+            revisionEdit.DataBindings.Add("EditValue", drawingBS, "RevisionId", true, DataSourceUpdateMode.OnPropertyChanged);
+            dateEdit.DataBindings.Add("EditValue", drawingBS, "CreateDate", true, DataSourceUpdateMode.OnPropertyChanged);
+            noteEdit.DataBindings.Add("EditValue", drawingBS, "Note", true, DataSourceUpdateMode.OnPropertyChanged);
 
             detailEdit.DataBindings.Add("EditValue", drawingBS, "DetailId", true, DataSourceUpdateMode.OnPropertyChanged);
 
@@ -89,15 +93,23 @@ namespace TechnicalProcessControl.Drawings
             materialEdit.Properties.DisplayMember = "MaterialName";
             materialEdit.Properties.NullText = "Немає данних";
 
+            revisionBS.DataSource = drawingService.GetRevisions();
+            revisionEdit.Properties.DataSource = revisionBS;
+            revisionEdit.Properties.ValueMember = "Id";
+            revisionEdit.Properties.DisplayMember = "Symbol";
+            revisionEdit.Properties.NullText = "";
+
 
             if (operation == Utils.Operation.Add)
             {
-
+                dateEdit.EditValue = DateTime.Now;
             }
             else
             {
                 LoadScanDrawing();
             }
+
+            ControlValidation();
 
         }
 
@@ -475,8 +487,82 @@ namespace TechnicalProcessControl.Drawings
 
         }
 
+        private void deletBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            drawingScanGridView.PostEditor();
+            drawingScanGridView.BeginDataUpdate();
 
+            if (((DrawingScanDTO)drawingScanGridView.GetFocusedRow()).Id != 0)
+                drawingScanDeleteList.Add((DrawingScanDTO)drawingScanGridView.GetFocusedRow());
+            drawingScanList.Remove((DrawingScanDTO)drawingScanGridView.GetFocusedRow());
 
-        
+            drawingScanBS.DataSource = drawingScanList;
+            drawingScanGrid.DataSource = drawingScanBS;
+
+            drawingScanGridView.EndDataUpdate();
+        }
+
+        private void dxValidationProvider_ValidationFailed(object sender, DevExpress.XtraEditors.DXErrorProvider.ValidationFailedEventArgs e)
+        {
+            this.saveBtn.Enabled = false;
+            this.validateLbl.Visible = true;
+        }
+
+        private void dxValidationProvider_ValidationSucceeded(object sender, DevExpress.XtraEditors.DXErrorProvider.ValidationSucceededEventArgs e)
+        {
+            bool isValidate = (dxValidationProvider.GetInvalidControls().Count == 0);
+            this.saveBtn.Enabled = isValidate;
+            this.validateLbl.Visible = !isValidate;
+        }
+
+        private bool ControlValidation()
+        {
+            return dxValidationProvider.Validate();
+        }
+
+        private void numberEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            dxValidationProvider.Validate((Control)sender);
+        }
+
+        private void dateEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            dxValidationProvider.Validate((Control)sender);
+        }
+
+        private void detailEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            dxValidationProvider.Validate((Control)sender);
+        }
+
+        private void materialEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            dxValidationProvider.Validate((Control)sender);
+        }
+
+        private void wEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            dxValidationProvider.Validate((Control)sender);
+        }
+
+        private void w2Edit_EditValueChanged(object sender, EventArgs e)
+        {
+            dxValidationProvider.Validate((Control)sender);
+        }
+
+        private void thEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            dxValidationProvider.Validate((Control)sender);
+        }
+
+        private void lEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            dxValidationProvider.Validate((Control)sender);
+        }
+
+        private void weightEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            dxValidationProvider.Validate((Control)sender);
+        }
     }
 }

@@ -153,6 +153,7 @@ namespace TechnicalProcessControl.Drawings
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject95 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject96 = new DevExpress.Utils.SerializableAppearanceObject();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.labelControl22 = new DevExpress.XtraEditors.LabelControl();
             this.detailEdit = new DevExpress.XtraEditors.TextEdit();
             this.materialEdit = new DevExpress.XtraEditors.TextEdit();
             this.typeEdit = new DevExpress.XtraEditors.TextEdit();
@@ -232,6 +233,7 @@ namespace TechnicalProcessControl.Drawings
             this.splashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::TechnicalProcessControl.WaitFm), true, true);
             this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
             this.dxValidationProvider = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
+            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.detailEdit.Properties)).BeginInit();
@@ -268,10 +270,13 @@ namespace TechnicalProcessControl.Drawings
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
             this.groupControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.textEdit1);
+            this.groupControl1.Controls.Add(this.labelControl22);
             this.groupControl1.Controls.Add(this.detailEdit);
             this.groupControl1.Controls.Add(this.materialEdit);
             this.groupControl1.Controls.Add(this.typeEdit);
@@ -292,10 +297,20 @@ namespace TechnicalProcessControl.Drawings
             this.groupControl1.Controls.Add(this.labelControl2);
             this.groupControl1.Location = new System.Drawing.Point(428, 12);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(388, 277);
+            this.groupControl1.Size = new System.Drawing.Size(388, 339);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Чертёж";
             this.groupControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControl1_Paint);
+            // 
+            // labelControl22
+            // 
+            this.labelControl22.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelControl22.Appearance.Options.UseFont = true;
+            this.labelControl22.Location = new System.Drawing.Point(194, 220);
+            this.labelControl22.Name = "labelControl22";
+            this.labelControl22.Size = new System.Drawing.Size(89, 14);
+            this.labelControl22.TabIndex = 110;
+            this.labelControl22.Text = "Дата чертежа";
             // 
             // detailEdit
             // 
@@ -435,7 +450,7 @@ namespace TechnicalProcessControl.Drawings
             this.weightEdit.Location = new System.Drawing.Point(13, 241);
             this.weightEdit.Name = "weightEdit";
             this.weightEdit.Properties.ReadOnly = true;
-            this.weightEdit.Size = new System.Drawing.Size(84, 20);
+            this.weightEdit.Size = new System.Drawing.Size(175, 20);
             this.weightEdit.TabIndex = 33;
             // 
             // lEdit
@@ -621,7 +636,7 @@ namespace TechnicalProcessControl.Drawings
             // 
             // cancelBtn
             // 
-            this.cancelBtn.Location = new System.Drawing.Point(1195, 563);
+            this.cancelBtn.Location = new System.Drawing.Point(1285, 625);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(75, 23);
             this.cancelBtn.TabIndex = 30;
@@ -630,7 +645,7 @@ namespace TechnicalProcessControl.Drawings
             // 
             // saveBtn
             // 
-            this.saveBtn.Location = new System.Drawing.Point(1114, 563);
+            this.saveBtn.Location = new System.Drawing.Point(1204, 625);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(75, 23);
             this.saveBtn.TabIndex = 29;
@@ -639,14 +654,14 @@ namespace TechnicalProcessControl.Drawings
             // 
             // drawingScanEdit
             // 
-            this.drawingScanEdit.Location = new System.Drawing.Point(5, 522);
+            this.drawingScanEdit.Location = new System.Drawing.Point(7, 584);
             this.drawingScanEdit.Name = "drawingScanEdit";
             this.drawingScanEdit.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.drawingScanEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.drawingScanEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("FileName", "Имя файла")});
-            this.drawingScanEdit.Size = new System.Drawing.Size(438, 18);
+            this.drawingScanEdit.Size = new System.Drawing.Size(526, 18);
             this.drawingScanEdit.TabIndex = 25;
             this.drawingScanEdit.EditValueChanged += new System.EventHandler(this.drawingScanEdit_EditValueChanged);
             this.drawingScanEdit.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.drawingScanEdit_EditValueChanging);
@@ -660,7 +675,7 @@ namespace TechnicalProcessControl.Drawings
             this.pictureEdit.Properties.NullText = "Не додано скан ";
             this.pictureEdit.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
-            this.pictureEdit.Size = new System.Drawing.Size(438, 492);
+            this.pictureEdit.Size = new System.Drawing.Size(528, 554);
             this.pictureEdit.TabIndex = 22;
             this.pictureEdit.EditValueChanged += new System.EventHandler(this.pictureEdit_EditValueChanged);
             this.pictureEdit.Click += new System.EventHandler(this.pictureEdit_Click);
@@ -689,7 +704,7 @@ namespace TechnicalProcessControl.Drawings
             this.techProcessPanel.Controls.Add(this.techProcess001Edit);
             this.techProcessPanel.Controls.Add(this.labelControl5);
             this.techProcessPanel.Enabled = false;
-            this.techProcessPanel.Location = new System.Drawing.Point(12, 295);
+            this.techProcessPanel.Location = new System.Drawing.Point(12, 357);
             this.techProcessPanel.Name = "techProcessPanel";
             this.techProcessPanel.Size = new System.Drawing.Size(804, 262);
             this.techProcessPanel.TabIndex = 103;
@@ -886,7 +901,7 @@ namespace TechnicalProcessControl.Drawings
             this.groupControl2.Controls.Add(this.labelControl10);
             this.groupControl2.Location = new System.Drawing.Point(12, 12);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(410, 277);
+            this.groupControl2.Size = new System.Drawing.Size(410, 339);
             this.groupControl2.TabIndex = 104;
             this.groupControl2.Text = "Структура";
             // 
@@ -1152,15 +1167,23 @@ namespace TechnicalProcessControl.Drawings
             this.groupControl4.Controls.Add(this.pictureEdit);
             this.groupControl4.Location = new System.Drawing.Point(822, 12);
             this.groupControl4.Name = "groupControl4";
-            this.groupControl4.Size = new System.Drawing.Size(448, 545);
+            this.groupControl4.Size = new System.Drawing.Size(538, 607);
             this.groupControl4.TabIndex = 105;
             this.groupControl4.Text = "Сканы чертежей";
+            // 
+            // textEdit1
+            // 
+            this.textEdit1.Location = new System.Drawing.Point(194, 240);
+            this.textEdit1.Name = "textEdit1";
+            this.textEdit1.Properties.ReadOnly = true;
+            this.textEdit1.Size = new System.Drawing.Size(184, 20);
+            this.textEdit1.TabIndex = 111;
             // 
             // StructuraEditFm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1279, 595);
+            this.ClientSize = new System.Drawing.Size(1372, 660);
             this.Controls.Add(this.groupControl4);
             this.Controls.Add(this.groupControl2);
             this.Controls.Add(this.techProcessPanel);
@@ -1214,6 +1237,7 @@ namespace TechnicalProcessControl.Drawings
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
             this.groupControl4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1300,5 +1324,7 @@ namespace TechnicalProcessControl.Drawings
         private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager;
         private GroupControl groupControl4;
         private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider dxValidationProvider;
+        private LabelControl labelControl22;
+        private TextEdit textEdit1;
     }
 }

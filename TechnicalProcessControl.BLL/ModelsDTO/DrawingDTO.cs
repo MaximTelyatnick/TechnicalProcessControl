@@ -18,6 +18,8 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public string MaterialName { get; set; }
         public int? TypeId { get; set; }
         public string TypeName { get; set; }
+        public int? RevisionId { get; set; }
+        public string RevisionName { get; set; }
 
         public decimal? DetailWeight { get; set; }
         public decimal? TH { get; set; }
@@ -27,5 +29,9 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public short? Quantity { get; set; }
         public short? QuantityR { get; set; }
         public short? QuantityL { get; set; }
+
+        public DateTime? CreateDate { get; set; }
+        public short? ParentId { get; set; }
+        public string Note { get; set; }
     }
 }

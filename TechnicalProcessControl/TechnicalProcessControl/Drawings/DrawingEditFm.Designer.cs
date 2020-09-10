@@ -45,6 +45,8 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions4 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject13 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -60,6 +62,18 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject22 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject23 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject24 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule4 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule5 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule6 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule7 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule8 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions7 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject25 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject26 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject27 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject28 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule9 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.materialEdit = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.numberEdit = new DevExpress.XtraEditors.TextEdit();
@@ -97,15 +111,24 @@
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.addBtn = new DevExpress.XtraBars.BarButtonItem();
-            this.deleteBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.deletBtn = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.deleteBtn = new DevExpress.XtraBars.BarButtonItem();
             this.drawingScanGrid = new DevExpress.XtraGrid.GridControl();
             this.drawingScanGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.fileNameCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.bar2 = new DevExpress.XtraBars.Bar();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.noteEdit = new DevExpress.XtraEditors.MemoEdit();
+            this.revisionEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.dateEdit = new DevExpress.XtraEditors.DateEdit();
+            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
+            this.dxValidationProvider = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
+            this.validateLbl = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.materialEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numberEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quantityEdit.Properties)).BeginInit();
@@ -127,6 +150,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawingScanGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawingScanGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.noteEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.revisionEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // materialEdit
@@ -151,9 +179,14 @@
             this.materialEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MaterialName", "Материал")});
             this.materialEdit.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
-            this.materialEdit.Size = new System.Drawing.Size(365, 20);
+            this.materialEdit.Size = new System.Drawing.Size(392, 20);
             this.materialEdit.TabIndex = 45;
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "Не указан материал";
+            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider.SetValidationRule(this.materialEdit, conditionValidationRule1);
             this.materialEdit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.materialEdit_ButtonClick);
+            this.materialEdit.EditValueChanged += new System.EventHandler(this.materialEdit_EditValueChanged);
             // 
             // labelControl4
             // 
@@ -169,8 +202,13 @@
             // 
             this.numberEdit.Location = new System.Drawing.Point(12, 37);
             this.numberEdit.Name = "numberEdit";
-            this.numberEdit.Size = new System.Drawing.Size(366, 20);
+            this.numberEdit.Size = new System.Drawing.Size(393, 20);
             this.numberEdit.TabIndex = 43;
+            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule2.ErrorText = "Не указан номер чертежа";
+            conditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider.SetValidationRule(this.numberEdit, conditionValidationRule2);
+            this.numberEdit.EditValueChanged += new System.EventHandler(this.numberEdit_EditValueChanged);
             // 
             // quantityEdit
             // 
@@ -210,26 +248,31 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions6, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject21, serializableAppearanceObject22, serializableAppearanceObject23, serializableAppearanceObject24, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.detailEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DetailName", "Наименование детали")});
-            this.detailEdit.Size = new System.Drawing.Size(365, 20);
+            this.detailEdit.Size = new System.Drawing.Size(392, 20);
             this.detailEdit.TabIndex = 40;
+            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule3.ErrorText = "Не указана деталь";
+            conditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider.SetValidationRule(this.detailEdit, conditionValidationRule3);
             this.detailEdit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.detailEdit_ButtonClick);
+            this.detailEdit.EditValueChanged += new System.EventHandler(this.detailEdit_EditValueChanged);
             // 
             // typeEdit
             // 
-            this.typeEdit.Location = new System.Drawing.Point(12, 81);
+            this.typeEdit.Location = new System.Drawing.Point(184, 81);
             this.typeEdit.Name = "typeEdit";
             this.typeEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.typeEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TypeName", "Уровень доступа")});
-            this.typeEdit.Size = new System.Drawing.Size(366, 20);
+            this.typeEdit.Size = new System.Drawing.Size(102, 20);
             this.typeEdit.TabIndex = 39;
             // 
             // labelControl9
             // 
             this.labelControl9.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelControl9.Appearance.Options.UseFont = true;
-            this.labelControl9.Location = new System.Drawing.Point(13, 58);
+            this.labelControl9.Location = new System.Drawing.Point(184, 59);
             this.labelControl9.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(22, 16);
@@ -294,8 +337,13 @@
             // 
             this.weightEdit.Location = new System.Drawing.Point(304, 221);
             this.weightEdit.Name = "weightEdit";
-            this.weightEdit.Size = new System.Drawing.Size(74, 20);
+            this.weightEdit.Size = new System.Drawing.Size(101, 20);
             this.weightEdit.TabIndex = 59;
+            conditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule4.ErrorText = "Не указано вес";
+            conditionValidationRule4.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider.SetValidationRule(this.weightEdit, conditionValidationRule4);
+            this.weightEdit.EditValueChanged += new System.EventHandler(this.weightEdit_EditValueChanged);
             // 
             // lEdit
             // 
@@ -303,6 +351,11 @@
             this.lEdit.Name = "lEdit";
             this.lEdit.Size = new System.Drawing.Size(67, 20);
             this.lEdit.TabIndex = 58;
+            conditionValidationRule5.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule5.ErrorText = "Не указан параметр";
+            conditionValidationRule5.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider.SetValidationRule(this.lEdit, conditionValidationRule5);
+            this.lEdit.EditValueChanged += new System.EventHandler(this.lEdit_EditValueChanged);
             // 
             // w2Edit
             // 
@@ -310,6 +363,11 @@
             this.w2Edit.Name = "w2Edit";
             this.w2Edit.Size = new System.Drawing.Size(67, 20);
             this.w2Edit.TabIndex = 57;
+            conditionValidationRule6.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule6.ErrorText = "Не указан параметр";
+            conditionValidationRule6.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider.SetValidationRule(this.w2Edit, conditionValidationRule6);
+            this.w2Edit.EditValueChanged += new System.EventHandler(this.w2Edit_EditValueChanged);
             // 
             // wEdit
             // 
@@ -317,6 +375,11 @@
             this.wEdit.Name = "wEdit";
             this.wEdit.Size = new System.Drawing.Size(67, 20);
             this.wEdit.TabIndex = 56;
+            conditionValidationRule7.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule7.ErrorText = "Не указан параметр";
+            conditionValidationRule7.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider.SetValidationRule(this.wEdit, conditionValidationRule7);
+            this.wEdit.EditValueChanged += new System.EventHandler(this.wEdit_EditValueChanged);
             // 
             // labelControl16
             // 
@@ -374,10 +437,15 @@
             this.thEdit.Name = "thEdit";
             this.thEdit.Size = new System.Drawing.Size(66, 20);
             this.thEdit.TabIndex = 50;
+            conditionValidationRule8.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule8.ErrorText = "Не указан параметр";
+            conditionValidationRule8.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider.SetValidationRule(this.thEdit, conditionValidationRule8);
+            this.thEdit.EditValueChanged += new System.EventHandler(this.thEdit_EditValueChanged);
             // 
             // cancelBtn
             // 
-            this.cancelBtn.Location = new System.Drawing.Point(749, 446);
+            this.cancelBtn.Location = new System.Drawing.Point(749, 520);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(75, 23);
             this.cancelBtn.TabIndex = 61;
@@ -386,7 +454,7 @@
             // 
             // saveBtn
             // 
-            this.saveBtn.Location = new System.Drawing.Point(668, 446);
+            this.saveBtn.Location = new System.Drawing.Point(668, 520);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(75, 23);
             this.saveBtn.TabIndex = 60;
@@ -402,7 +470,7 @@
             this.panelControl2.Controls.Add(this.openFileBtn);
             this.panelControl2.Location = new System.Drawing.Point(414, 12);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(410, 428);
+            this.panelControl2.Size = new System.Drawing.Size(410, 502);
             this.panelControl2.TabIndex = 103;
             // 
             // drawingScanEdit
@@ -444,7 +512,7 @@
             this.pictureEdit.Properties.NullText = "Не додано скан ";
             this.pictureEdit.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
-            this.pictureEdit.Size = new System.Drawing.Size(397, 418);
+            this.pictureEdit.Size = new System.Drawing.Size(400, 492);
             this.pictureEdit.TabIndex = 22;
             this.pictureEdit.Click += new System.EventHandler(this.pictureEdit_Click);
             // 
@@ -462,9 +530,9 @@
             // 
             this.groupControl1.Controls.Add(this.standaloneBarDockControl1);
             this.groupControl1.Controls.Add(this.drawingScanGrid);
-            this.groupControl1.Location = new System.Drawing.Point(12, 247);
+            this.groupControl1.Location = new System.Drawing.Point(12, 343);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(401, 193);
+            this.groupControl1.Size = new System.Drawing.Size(393, 171);
             this.groupControl1.TabIndex = 104;
             this.groupControl1.Text = "Сканы чертежей";
             // 
@@ -474,7 +542,7 @@
             this.standaloneBarDockControl1.Location = new System.Drawing.Point(1, 23);
             this.standaloneBarDockControl1.Manager = this.barManager1;
             this.standaloneBarDockControl1.Name = "standaloneBarDockControl1";
-            this.standaloneBarDockControl1.Size = new System.Drawing.Size(395, 23);
+            this.standaloneBarDockControl1.Size = new System.Drawing.Size(387, 23);
             this.standaloneBarDockControl1.Text = "standaloneBarDockControl1";
             // 
             // barManager1
@@ -489,8 +557,9 @@
             this.barManager1.Form = this;
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.addBtn,
-            this.deleteBtn});
-            this.barManager1.MaxItemId = 2;
+            this.deleteBtn,
+            this.deletBtn});
+            this.barManager1.MaxItemId = 3;
             // 
             // bar1
             // 
@@ -501,7 +570,7 @@
             this.bar1.FloatLocation = new System.Drawing.Point(285, 428);
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.addBtn),
-            new DevExpress.XtraBars.LinkPersistInfo(this.deleteBtn)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.deletBtn)});
             this.bar1.Offset = 5;
             this.bar1.OptionsBar.DrawBorder = false;
             this.bar1.StandaloneBarDockControl = this.standaloneBarDockControl1;
@@ -516,14 +585,14 @@
             this.addBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.addBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addBtn_ItemClick);
             // 
-            // deleteBtn
+            // deletBtn
             // 
-            this.deleteBtn.Caption = "Удалить";
-            this.deleteBtn.Id = 1;
-            this.deleteBtn.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("deleteBtn.ImageOptions.SvgImage")));
-            this.deleteBtn.Name = "deleteBtn";
-            this.deleteBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.deleteBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.deleteBtn_ItemClick);
+            this.deletBtn.Caption = "Удалить";
+            this.deletBtn.Id = 2;
+            this.deletBtn.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("deletBtn.ImageOptions.SvgImage")));
+            this.deletBtn.Name = "deletBtn";
+            this.deletBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.deletBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.deletBtn_ItemClick);
             // 
             // barDockControlTop
             // 
@@ -537,7 +606,7 @@
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 474);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 552);
             this.barDockControlBottom.Manager = this.barManager1;
             this.barDockControlBottom.Size = new System.Drawing.Size(833, 0);
             // 
@@ -547,7 +616,7 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 474);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 552);
             // 
             // barDockControlRight
             // 
@@ -555,14 +624,23 @@
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(833, 0);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 474);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 552);
+            // 
+            // deleteBtn
+            // 
+            this.deleteBtn.Caption = "Удалить";
+            this.deleteBtn.Id = 1;
+            this.deleteBtn.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("deleteBtn.ImageOptions.SvgImage")));
+            this.deleteBtn.Name = "deleteBtn";
+            this.deleteBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.deleteBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.deleteBtn_ItemClick);
             // 
             // drawingScanGrid
             // 
-            this.drawingScanGrid.Location = new System.Drawing.Point(3, 52);
+            this.drawingScanGrid.Location = new System.Drawing.Point(5, 52);
             this.drawingScanGrid.MainView = this.drawingScanGridView;
             this.drawingScanGrid.Name = "drawingScanGrid";
-            this.drawingScanGrid.Size = new System.Drawing.Size(398, 136);
+            this.drawingScanGrid.Size = new System.Drawing.Size(383, 114);
             this.drawingScanGrid.TabIndex = 0;
             this.drawingScanGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.drawingScanGridView});
@@ -596,11 +674,108 @@
             this.bar2.StandaloneBarDockControl = this.standaloneBarDockControl1;
             this.bar2.Text = "Main menu";
             // 
+            // labelControl6
+            // 
+            this.labelControl6.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelControl6.Appearance.Options.UseFont = true;
+            this.labelControl6.Location = new System.Drawing.Point(15, 247);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(61, 14);
+            this.labelControl6.TabIndex = 109;
+            this.labelControl6.Text = "Приметка";
+            // 
+            // noteEdit
+            // 
+            this.noteEdit.Location = new System.Drawing.Point(12, 267);
+            this.noteEdit.Name = "noteEdit";
+            this.noteEdit.Size = new System.Drawing.Size(393, 70);
+            this.noteEdit.TabIndex = 110;
+            // 
+            // revisionEdit
+            // 
+            this.revisionEdit.Location = new System.Drawing.Point(12, 81);
+            this.revisionEdit.Name = "revisionEdit";
+            this.revisionEdit.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            editorButtonImageOptions7.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions7.Image")));
+            serializableAppearanceObject25.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject25.Image")));
+            serializableAppearanceObject25.Options.UseImage = true;
+            this.revisionEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions7, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject25, serializableAppearanceObject26, serializableAppearanceObject27, serializableAppearanceObject28, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.revisionEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Symbol", "Ревизия")});
+            this.revisionEdit.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.revisionEdit.Size = new System.Drawing.Size(166, 20);
+            this.revisionEdit.TabIndex = 112;
+            // 
+            // labelControl7
+            // 
+            this.labelControl7.Appearance.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelControl7.Appearance.Options.UseFont = true;
+            this.labelControl7.Location = new System.Drawing.Point(13, 59);
+            this.labelControl7.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.labelControl7.Name = "labelControl7";
+            this.labelControl7.Size = new System.Drawing.Size(52, 18);
+            this.labelControl7.TabIndex = 111;
+            this.labelControl7.Text = "Ревизия";
+            // 
+            // dateEdit
+            // 
+            this.dateEdit.EditValue = null;
+            this.dateEdit.Location = new System.Drawing.Point(292, 81);
+            this.dateEdit.MenuManager = this.barManager1;
+            this.dateEdit.Name = "dateEdit";
+            this.dateEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEdit.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEdit.Size = new System.Drawing.Size(113, 20);
+            this.dateEdit.TabIndex = 113;
+            conditionValidationRule9.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule9.ErrorText = "Не указана дата";
+            conditionValidationRule9.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider.SetValidationRule(this.dateEdit, conditionValidationRule9);
+            this.dateEdit.EditValueChanged += new System.EventHandler(this.dateEdit_EditValueChanged);
+            // 
+            // labelControl8
+            // 
+            this.labelControl8.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelControl8.Appearance.Options.UseFont = true;
+            this.labelControl8.Location = new System.Drawing.Point(292, 59);
+            this.labelControl8.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.labelControl8.Name = "labelControl8";
+            this.labelControl8.Size = new System.Drawing.Size(33, 16);
+            this.labelControl8.TabIndex = 114;
+            this.labelControl8.Text = "Дата";
+            // 
+            // dxValidationProvider
+            // 
+            this.dxValidationProvider.ValidationFailed += new DevExpress.XtraEditors.DXErrorProvider.ValidationFailedEventHandler(this.dxValidationProvider_ValidationFailed);
+            this.dxValidationProvider.ValidationSucceeded += new DevExpress.XtraEditors.DXErrorProvider.ValidationSucceededEventHandler(this.dxValidationProvider_ValidationSucceeded);
+            // 
+            // validateLbl
+            // 
+            this.validateLbl.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.validateLbl.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.validateLbl.Appearance.Options.UseFont = true;
+            this.validateLbl.Appearance.Options.UseForeColor = true;
+            this.validateLbl.Location = new System.Drawing.Point(15, 524);
+            this.validateLbl.Name = "validateLbl";
+            this.validateLbl.Size = new System.Drawing.Size(357, 14);
+            this.validateLbl.TabIndex = 119;
+            this.validateLbl.Text = "Невозможно сохранить чертеж, не все поля заполнены";
+            // 
             // DrawingEditFm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(833, 474);
+            this.ClientSize = new System.Drawing.Size(833, 552);
+            this.Controls.Add(this.validateLbl);
+            this.Controls.Add(this.labelControl8);
+            this.Controls.Add(this.dateEdit);
+            this.Controls.Add(this.revisionEdit);
+            this.Controls.Add(this.labelControl7);
+            this.Controls.Add(this.labelControl6);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.cancelBtn);
@@ -629,6 +804,7 @@
             this.Controls.Add(this.labelControl9);
             this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.labelControl2);
+            this.Controls.Add(this.noteEdit);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
@@ -661,6 +837,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawingScanGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawingScanGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.noteEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.revisionEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -714,5 +895,14 @@
         private DevExpress.XtraGrid.Views.Grid.GridView drawingScanGridView;
         private DevExpress.XtraBars.Bar bar2;
         private DevExpress.XtraGrid.Columns.GridColumn fileNameCol;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.MemoEdit noteEdit;
+        private DevExpress.XtraBars.BarButtonItem deletBtn;
+        private DevExpress.XtraEditors.LookUpEdit revisionEdit;
+        private DevExpress.XtraEditors.LabelControl labelControl7;
+        private DevExpress.XtraEditors.LabelControl labelControl8;
+        private DevExpress.XtraEditors.DateEdit dateEdit;
+        private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider dxValidationProvider;
+        private DevExpress.XtraEditors.LabelControl validateLbl;
     }
 }
