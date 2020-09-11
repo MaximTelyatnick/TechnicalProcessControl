@@ -707,6 +707,7 @@
             this.revisionEdit.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.revisionEdit.Size = new System.Drawing.Size(166, 20);
             this.revisionEdit.TabIndex = 112;
+            this.revisionEdit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.revisionEdit_ButtonClick);
             // 
             // labelControl7
             // 

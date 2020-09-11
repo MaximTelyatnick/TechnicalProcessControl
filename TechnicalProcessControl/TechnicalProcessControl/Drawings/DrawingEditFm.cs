@@ -31,6 +31,7 @@ namespace TechnicalProcessControl.Drawings
         private BindingSource drawingScanBS = new BindingSource();
         private BindingSource revisionBS = new BindingSource();
 
+        private DrawingDTO drawingRevisionDTO = new DrawingDTO();
         private List<DrawingScanDTO> drawingScanList = new List<DrawingScanDTO>();
         private List<DrawingScanDTO> drawingScanDeleteList = new List<DrawingScanDTO>();
 
@@ -104,8 +105,27 @@ namespace TechnicalProcessControl.Drawings
             {
                 dateEdit.EditValue = DateTime.Now;
             }
-            else
+            else if(operation == Utils.Operation.Update)
             {
+                LoadScanDrawing();
+            }
+            else if (operation == Utils.Operation.Custom)
+            {
+                this.drawingRevisionDTO = (DrawingDTO)Item;
+
+                Item.BeginEdit();
+
+                ((DrawingDTO)Item).Id = 0;
+                ((DrawingDTO)Item).ParentId = null;
+                ((DrawingDTO)Item).Note = "";
+
+                if (((DrawingDTO)Item).RevisionId != null)
+                    ((DrawingDTO)Item).RevisionId++;
+                else
+                    ((DrawingDTO)Item).RevisionId = 1;
+
+                Item.EndEdit();
+
                 LoadScanDrawing();
             }
 
@@ -340,7 +360,7 @@ namespace TechnicalProcessControl.Drawings
 
                     return true;
                 }
-                else
+                else if (operation == Utils.Operation.Update)
                 {
                     drawingService = Program.kernel.Get<IDrawingService>();
                     drawingService.DrawingUpdate((DrawingDTO)Item);
@@ -361,6 +381,43 @@ namespace TechnicalProcessControl.Drawings
 
                     return true;
                 }
+                else if(operation == Utils.Operation.Custom)
+                {
+                    drawingService = Program.kernel.Get<IDrawingService>();
+
+                    ((DrawingDTO)Item).Id = drawingService.DrawingCreate((DrawingDTO)Item);
+
+                    if (((DrawingDTO)Item).Id > 0)
+                    {
+
+                        var createList = drawingScanList.Where(bdsm => bdsm.Id == 0).Select(s => new DrawingScanDTO()
+                        {
+
+                            DrawingId = ((DrawingDTO)Item).Id,
+                            FileName = s.FileName,
+                            Scan = s.Scan,
+                            Status = 1
+                        }).ToList();
+
+                        foreach (var item in createList)
+                        {
+                            drawingService.DrawingScanCreate(item);
+                        }
+
+                        drawingRevisionDTO.ParentId = ((DrawingDTO)Item).Id;
+
+                        if(drawingService.DrawingUpdate((DrawingDTO)Item))
+                        {
+                            drawingService.ReplaceDrawingIdInStructura(drawingRevisionDTO.Id,((DrawingDTO)Item).Id);
+                        }
+
+
+                    }
+
+                    return true;
+                }
+                return true;
+
             }
             catch (Exception ex)
             {
@@ -372,6 +429,7 @@ namespace TechnicalProcessControl.Drawings
 
         private void detailEdit_ButtonClick(object sender, ButtonPressedEventArgs e)
         {
+
             journalService = Program.kernel.Get<IJournalService>();
             switch (e.Button.Index)
             {
@@ -564,5 +622,22 @@ namespace TechnicalProcessControl.Drawings
         {
             dxValidationProvider.Validate((Control)sender);
         }
+
+        private void revisionEdit_ButtonClick(object sender, ButtonPressedEventArgs e)
+        {
+            switch (e.Button.Index)
+            {   
+                case 1://Очистити
+                    {
+                        revisionEdit.EditValue = null;
+                        revisionEdit.Properties.NullText = "";
+                        break;
+                    }
+            }
+        }
+
+        //purposeEdit.EditValue = null;
+        //                purposeEdit.Properties.NullText = "Немає данних";
+        //                break;
     }
 }

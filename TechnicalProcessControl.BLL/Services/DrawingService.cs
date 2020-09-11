@@ -94,6 +94,8 @@ namespace TechnicalProcessControl.BLL.Services
             var result = (from drw in drawings.GetAll()
                           join dr in drawing.GetAll() on drw.DrawingId equals dr.Id into drr
                           from dr in drr.DefaultIfEmpty()
+                          join rev in revisions.GetAll() on dr.RevisionId equals rev.Id into revv
+                          from rev in revv.DefaultIfEmpty()
                           join rdr in replacementDrawing.GetAll() on drw.ReplaceDrawingId equals rdr.Id into rdrr
                           from rdr in rdrr.DefaultIfEmpty()
                           join fudr in firstUseDrawing.GetAll() on drw.OccurrenceId equals fudr.Id into fudrr
@@ -132,7 +134,7 @@ namespace TechnicalProcessControl.BLL.Services
                               Quantity = drw.Quantity,
                               QuantityL = drw.QuantityL,
                               QuantityR = drw.QuantityL,
-                              Number = dr.Number,
+                              Number = dr.RevisionId == null ? dr.Number : dr.Number + "/" + rev.Symbol,
                               TH = dr.TH,
                               L = dr.L,
                               W = dr.W,
@@ -167,8 +169,8 @@ namespace TechnicalProcessControl.BLL.Services
                               TechProcess004Path = tcp004.TechProcessPath,
                               TechProcess005Path = tcp005.TechProcessPath,
                               ScanId = drws.DrawingId > 0 ? 1 : 0,
-                              ParentName = drp.Number != "" ? drp.Number : dr.Number,
-                              TotalWeight = drw.Quantity > 0 ? drw.Quantity * dr.DetailWeight : 0
+                              ParentName = drp.Number != "" ? drp.Number : dr.Number
+                              //TotalWeight = drw.Quantity > 0 ? drw.Quantity * dr.DetailWeight : 0
 
                           }
                             ).ToList();
@@ -234,6 +236,8 @@ namespace TechnicalProcessControl.BLL.Services
                               DrawingId = dr.Id,
                               OccurrenceId = drw.OccurrenceId,
                               ReplaceDrawingId = drw.ReplaceDrawingId,
+                               CreateDate = dr.CreateDate,
+                                NoteName = dr.Note,
                               //GasConsumption = drw.GasConsumption,
                               //PaintConsumption = drw.PaintConsumption,
                               //WireConsumption = drw.WireConsumption,
@@ -283,7 +287,8 @@ namespace TechnicalProcessControl.BLL.Services
                           select new DrawingDTO
                           {
                               Id = drw.Id,
-                              Number = drw.Number,
+                              //Number = rev.Symbol== null ? drw.Number : (drw.Number+ "/" + rev.Symbol),
+                              Number =drw.Number,
                               TypeId = tp.Id,
                               TypeName = tp.TypeName,
                               DetailId = det.Id,
@@ -303,6 +308,7 @@ namespace TechnicalProcessControl.BLL.Services
                               CreateDate = drw.CreateDate,
                               ParentId = drw.ParentId,
                               Note = drw.Note
+                              
                           }
                           ).ToList();
 
@@ -360,6 +366,12 @@ namespace TechnicalProcessControl.BLL.Services
 
             return allStructure.Any(bdsm => bdsm.ParentId == structureDrawingId);
         }
+
+        public DrawingDTO GetDrawingById(int drawingId)
+        {
+            return mapper.Map<Drawing, DrawingDTO>(drawing.GetAll().First(srt => srt.Id == drawingId));
+        }
+
 
         public string GetMaxStructuraNumber(DrawingsDTO fatherStructura)
         {
@@ -468,6 +480,27 @@ namespace TechnicalProcessControl.BLL.Services
         {
             return drawings.GetAll().Any(srt => srt.CurrentLevelMenu == drawingsDTO.CurrentLevelMenu && srt.Id != drawingsDTO.Id);
         }
+
+        public bool ReplaceDrawingIdInStructura(int replaceDrawingId, int currentDrawingId)
+        {
+            var structura = mapper.Map < IEnumerable<Drawings>, List< DrawingsDTO >> (drawings.GetAll().Where(bdsm => bdsm.DrawingId == replaceDrawingId)).ToList();
+
+            foreach (var item in structura)
+            {
+                try
+                {
+                    item.DrawingId = currentDrawingId;
+                    DrawingsUpdate(item);
+                }
+                catch (Exception)
+                {
+                    return true;
+                }
+            }
+
+            return true;
+        }
+
 
         public bool FileDelete(string URI)
         {
@@ -673,10 +706,19 @@ namespace TechnicalProcessControl.BLL.Services
             return (int)createDrawing.Id;
         }
 
-        public void DrawingUpdate(DrawingDTO drawingDTO)
+        public bool DrawingUpdate(DrawingDTO drawingDTO)
         {
-            var updateDrawing = drawing.GetAll().SingleOrDefault(c => c.Id == drawingDTO.Id);
-            drawing.Update((mapper.Map<DrawingDTO, Drawing>(drawingDTO, updateDrawing)));
+            try
+            {
+                var updateDrawing = drawing.GetAll().SingleOrDefault(c => c.Id == drawingDTO.Id);
+                drawing.Update((mapper.Map<DrawingDTO, Drawing>(drawingDTO, updateDrawing)));
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            
         }
 
         public bool DrawingDelete(int id)

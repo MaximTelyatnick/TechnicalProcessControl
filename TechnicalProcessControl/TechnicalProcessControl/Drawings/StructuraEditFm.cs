@@ -79,7 +79,9 @@ namespace TechnicalProcessControl.Drawings
             quantityREdit.DataBindings.Add("EditValue", drawingsBS, "QuantityR", true, DataSourceUpdateMode.OnPropertyChanged);
             replaceDrawingEdit.DataBindings.Add("EditValue", drawingsBS, "ReplaceDrawingId", true, DataSourceUpdateMode.OnPropertyChanged);
             firstUseDrawingEdit.DataBindings.Add("EditValue", drawingsBS, "OccurrenceId", true, DataSourceUpdateMode.OnPropertyChanged);
-            
+            noteEdit.DataBindings.Add("EditValue", drawingsBS, "NoteName", true, DataSourceUpdateMode.OnPropertyChanged);
+            dateEdit.DataBindings.Add("EditValue", drawingsBS, "CreateDate", true, DataSourceUpdateMode.OnPropertyChanged);
+
             currentLevelMenuEdit.DataBindings.Add("EditValue", drawingsBS, "currentLevelMenu", true, DataSourceUpdateMode.OnPropertyChanged);
 
             techProcess001Edit.DataBindings.Add("EditValue", drawingsBS, "TechProcess001Id", true, DataSourceUpdateMode.OnPropertyChanged);
@@ -546,6 +548,8 @@ namespace TechnicalProcessControl.Drawings
                 thEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).TH;
                 weightEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).DetailWeight;
                 typeEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).TypeName;
+                //noteEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow());
+                //dateEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).CreateDate.Value.ToShortDateString();
 
                 drawingScanList = drawingService.GetDravingScanById(((DrawingDTO)numberEdit.GetSelectedDataRow()).Id).ToList();
                 drawingsScanBS.DataSource = drawingScanList;
@@ -572,6 +576,8 @@ namespace TechnicalProcessControl.Drawings
             thEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).TH;
             weightEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).DetailWeight;
             typeEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).TypeName;
+            noteEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).Note;
+            dateEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).CreateDate;
 
             drawingScanList = drawingService.GetDravingScanById(((DrawingDTO)numberEdit.GetSelectedDataRow()).Id).ToList();
             drawingsScanBS.DataSource = drawingScanList;
@@ -606,7 +612,9 @@ namespace TechnicalProcessControl.Drawings
                         if (numberEdit.EditValue == DBNull.Value)
                             return;
 
-                        using (DrawingEditFm drawingEditFm = new DrawingEditFm((DrawingDTO)numberEdit.GetSelectedDataRow(), Utils.Operation.Update))
+                        DrawingDTO updateDrawingDTO = drawingService.GetDrawingById((int)numberEdit.EditValue);
+
+                        using (DrawingEditFm drawingEditFm = new DrawingEditFm(updateDrawingDTO, Utils.Operation.Update))
                         {
                             if (drawingEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                             {
@@ -635,10 +643,31 @@ namespace TechnicalProcessControl.Drawings
 
                         break;
                     }
-                case 4://Очистити
+                //case 4://Очистити
+                //    {
+                //        numberEdit.EditValue = null;
+                //        numberEdit.Properties.NullText = "Немає данних";
+                //        break;
+                //    }
+                case 4://Создать ревизию
                     {
-                        numberEdit.EditValue = null;
-                        numberEdit.Properties.NullText = "Немає данних";
+                        if (numberEdit.EditValue == DBNull.Value)
+                            return;
+
+                        DrawingDTO updateDrawingDTO = drawingService.GetDrawingById((int)numberEdit.EditValue);
+
+                        using (DrawingEditFm drawingEditFm = new DrawingEditFm(updateDrawingDTO, Utils.Operation.Custom))
+                        {
+                            if (drawingEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                            {
+                                DrawingDTO return_Id = drawingEditFm.Return();
+                                drawingBS.DataSource = drawingService.GetAllDrawing();
+                                numberEdit.EditValue = return_Id.Id;
+                                numberEditPatheticCrutch();
+                                //numberEdit.RefreshEditValue();
+
+                            }
+                        }
                         break;
                     }
             }

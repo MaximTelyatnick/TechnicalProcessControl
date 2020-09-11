@@ -33,6 +33,10 @@ namespace TechnicalProcessControl.BLL.Interfaces
 
         DrawingsDTO GetDrawingsByStructuraId(int structuraId);
 
+        DrawingDTO GetDrawingById(int drawingId);
+
+        bool ReplaceDrawingIdInStructura(int replaceDrawingId, int currentDrawingId);
+
         bool CheckTechProcess001(string techProcesName);
         bool CheckTechProcess002(string techProcesName);
         bool CheckTechProcess003(string techProcesName);
@@ -110,7 +114,7 @@ namespace TechnicalProcessControl.BLL.Interfaces
         #region Drawing CRUD method's
 
         int DrawingCreate(DrawingDTO drawingDTO);
-        void DrawingUpdate(DrawingDTO drawingDTO);
+        bool DrawingUpdate(DrawingDTO drawingDTO);
         bool DrawingDelete(int id);
 
         #endregion

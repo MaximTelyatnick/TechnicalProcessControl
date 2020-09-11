@@ -31,7 +31,7 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public short? QuantityL { get; set; }
 
         public DateTime? CreateDate { get; set; }
-        public short? ParentId { get; set; }
+        public int? ParentId { get; set; }
         public string Note { get; set; }
     }
 }

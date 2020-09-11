@@ -19,7 +19,6 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public decimal? Quantity { get; set; }
         public decimal? QuantityR { get; set; }
         public decimal? QuantityL { get; set; }
-        public decimal? TotalWeight { get; set; }
 
 
 
@@ -33,6 +32,8 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public string TypeName { get; set; }
         public string ParentName { get; set; }
         public string MaterialName { get; set; }
+        public string NoteName { get; set; }
+        public DateTime? CreateDate { get; set; }
 
 
 
