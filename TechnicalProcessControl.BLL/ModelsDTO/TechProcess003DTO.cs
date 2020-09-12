@@ -24,5 +24,6 @@ namespace TechnicalProcessControl.BLL
         public int? RevisionId { get; set; }
         public string RivisionName { get; set; }
         public int? DrawingsId { get; set; }
+        public int? ParentId { get; set; }
     }
 }

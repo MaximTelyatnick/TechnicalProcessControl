@@ -50,6 +50,12 @@ namespace TechnicalProcessControl.BLL.Interfaces
         IEnumerable<TechProcess004DTO> GetAllTechProcess004();
         IEnumerable<TechProcess005DTO> GetAllTechProcess005();
 
+        TechProcess001DTO GetTechProcess001ById(int drawingId);
+        TechProcess002DTO GetTechProcess002ById(int drawingId);
+        TechProcess003DTO GetTechProcess003ById(int drawingId);
+        TechProcess004DTO GetTechProcess004ById(int drawingId);
+        TechProcess005DTO GetTechProcess005ById(int drawingId);
+
         IEnumerable<DrawingDTO> GetAllDrawing();
 
         bool CheckDrivingChild(int drivingId);

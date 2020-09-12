@@ -287,8 +287,8 @@ namespace TechnicalProcessControl.BLL.Services
                           select new DrawingDTO
                           {
                               Id = drw.Id,
-                              //Number = rev.Symbol== null ? drw.Number : (drw.Number+ "/" + rev.Symbol),
-                              Number =drw.Number,
+                              Number = rev.Symbol== null ? drw.Number : (drw.Number+ "/" + rev.Symbol),
+                              //Number =drw.Number,
                               TypeId = tp.Id,
                               TypeName = tp.TypeName,
                               DetailId = det.Id,
@@ -442,6 +442,29 @@ namespace TechnicalProcessControl.BLL.Services
         public IEnumerable<DrawingScanDTO> GetDravingScanById(int? drawingId)
         {
             return mapper.Map<IEnumerable<DrawingScan>, List<DrawingScanDTO>>(drawingScan.GetAll().Where(bdsm => bdsm.DrawingId == drawingId));
+        }
+
+        public TechProcess001DTO GetTechProcess001ById(int drawingId)
+        {
+            var techProcess = mapper.Map<TechProcess001, TechProcess001DTO>(techProcess001.GetAll().FirstOrDefault(bdsm => bdsm.DrawingId == drawingId && bdsm.ParentId == null));
+
+            return techProcess;
+        }
+        public TechProcess002DTO GetTechProcess002ById(int drawingId)
+        {
+            return mapper.Map<TechProcess002, TechProcess002DTO>(techProcess002.GetAll().FirstOrDefault(bdsm => bdsm.DrawingId == drawingId && bdsm.ParentId == null));
+        }
+        public TechProcess003DTO GetTechProcess003ById(int drawingId)
+        {
+            return mapper.Map<TechProcess003, TechProcess003DTO>(techProcess003.GetAll().FirstOrDefault(bdsm => bdsm.DrawingId == drawingId && bdsm.ParentId == null));
+        }
+        public TechProcess004DTO GetTechProcess004ById(int drawingId)
+        {
+            return mapper.Map<TechProcess004, TechProcess004DTO>(techProcess004.GetAll().FirstOrDefault(bdsm => bdsm.DrawingId == drawingId && bdsm.ParentId == null));
+        }
+        public TechProcess005DTO GetTechProcess005ById(int drawingId)
+        {
+            return mapper.Map<TechProcess005, TechProcess005DTO>(techProcess005.GetAll().FirstOrDefault(bdsm => bdsm.DrawingId == drawingId && bdsm.ParentId == null));
         }
 
         public IEnumerable<TechProcess001DTO> GetAllTechProcess001()

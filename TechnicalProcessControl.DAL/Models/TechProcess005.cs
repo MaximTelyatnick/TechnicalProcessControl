@@ -13,6 +13,7 @@ namespace TechnicalProcessControl.DAL.Models
         public int Id { get; set; }
         public int? DrawingId { get; set; }
         public int? RevisionId { get; set; }
+        public int? ParentId { get; set; }
         public long TechProcessName { get; set; }
         public string TechProcessPath { get; set; }
         public decimal? LaborIntensity001 { get; set; }

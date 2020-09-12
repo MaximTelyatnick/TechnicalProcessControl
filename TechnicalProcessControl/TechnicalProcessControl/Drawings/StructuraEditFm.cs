@@ -559,9 +559,65 @@ namespace TechnicalProcessControl.Drawings
                     drawingScanEdit.EditValue = drawingScanList[0].Id;
                 else
                     drawingScanEdit.EditValue = null;
-            }
 
-            
+                
+
+                var techProcess001 = drawingService.GetTechProcess001ById((int)key);
+                var techProcess002 = drawingService.GetTechProcess002ById((int)key);
+                var techProcess003 = drawingService.GetTechProcess003ById((int)key);
+                var techProcess004 = drawingService.GetTechProcess004ById((int)key);
+                var techProcess005 = drawingService.GetTechProcess005ById((int)key);
+
+                if (techProcess001 != null)
+                {
+                    techProcess001BS.DataSource = drawingService.GetAllTechProcess001();
+                    ((DrawingsDTO)Item).TechProcess001Id = ((TechProcess001DTO)techProcess001).Id;
+                }
+                else
+                {
+                    ((DrawingsDTO)Item).TechProcess001Id = null;
+                }
+                
+                if (techProcess002 != null)
+                {
+                    techProcess002BS.DataSource = drawingService.GetAllTechProcess002();
+                    ((DrawingsDTO)Item).TechProcess002Id = ((TechProcess002DTO)techProcess002).Id;
+                }
+                else
+                {
+                    ((DrawingsDTO)Item).TechProcess002Id = null;
+                }
+
+                if (techProcess003 != null)
+                {
+                    techProcess003BS.DataSource = drawingService.GetAllTechProcess003();
+                    ((DrawingsDTO)Item).TechProcess003Id = ((TechProcess003DTO)techProcess003).Id;
+                }
+                else
+                {
+                    ((DrawingsDTO)Item).TechProcess003Id = null;
+                }
+
+                if (techProcess004 != null)
+                {
+                    techProcess004BS.DataSource = drawingService.GetAllTechProcess004();
+                    ((DrawingsDTO)Item).TechProcess004Id = ((TechProcess004DTO)techProcess004).Id;
+                }
+                else
+                {
+                    ((DrawingsDTO)Item).TechProcess004Id = null;
+                }
+
+                if (techProcess005 != null)
+                {
+                    techProcess005BS.DataSource = drawingService.GetAllTechProcess005();
+                    ((DrawingsDTO)Item).TechProcess005Id = ((TechProcess005DTO)techProcess005).Id;
+                }
+                else
+                {
+                    ((DrawingsDTO)Item).TechProcess005Id = null;
+                }
+            }           
         }
 
         private void numberEditPatheticCrutch()

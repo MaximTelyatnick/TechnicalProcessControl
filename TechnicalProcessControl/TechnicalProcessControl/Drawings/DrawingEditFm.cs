@@ -111,7 +111,7 @@ namespace TechnicalProcessControl.Drawings
             }
             else if (operation == Utils.Operation.Custom)
             {
-                this.drawingRevisionDTO = (DrawingDTO)Item;
+                drawingRevisionDTO = (DrawingDTO)model.Clone();
 
                 Item.BeginEdit();
 
