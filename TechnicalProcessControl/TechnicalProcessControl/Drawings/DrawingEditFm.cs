@@ -406,10 +406,26 @@ namespace TechnicalProcessControl.Drawings
 
                         drawingRevisionDTO.ParentId = ((DrawingDTO)Item).Id;
 
-                        if(drawingService.DrawingUpdate((DrawingDTO)Item))
+                        if(drawingService.DrawingUpdate(drawingRevisionDTO))
                         {
-                            drawingService.ReplaceDrawingIdInStructura(drawingRevisionDTO.Id,((DrawingDTO)Item).Id);
+                            var updateStructurs = drawingService.ReplaceDrawingIdInStructura(drawingRevisionDTO.Id,((DrawingDTO)Item).Id);
+
+                            if(MessageBox.Show("Для чертежа с номером " + drawingRevisionDTO.Number+ " была добавлена ревизия "+ ((DrawingDTO)Item).Number +"/n"+
+                               "Ревизия чертежа была изменена в следующих узлах:" +string.Join(",", updateStructurs) + "/n" + 
+                               "Создать техпроцессы ревизии на основе старых?"
+                                , "подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            {
+
+
+                            }
+                            else
+                            {
+
+                            }
                         }
+
+                        
+
 
 
                     }

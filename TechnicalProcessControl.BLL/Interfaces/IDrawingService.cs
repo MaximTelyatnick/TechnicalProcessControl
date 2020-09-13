@@ -35,7 +35,7 @@ namespace TechnicalProcessControl.BLL.Interfaces
 
         DrawingDTO GetDrawingById(int drawingId);
 
-        bool ReplaceDrawingIdInStructura(int replaceDrawingId, int currentDrawingId);
+        IEnumerable<DrawingsDTO> ReplaceDrawingIdInStructura(int replaceDrawingId, int currentDrawingId);
 
         bool CheckTechProcess001(string techProcesName);
         bool CheckTechProcess002(string techProcesName);

@@ -504,7 +504,7 @@ namespace TechnicalProcessControl.BLL.Services
             return drawings.GetAll().Any(srt => srt.CurrentLevelMenu == drawingsDTO.CurrentLevelMenu && srt.Id != drawingsDTO.Id);
         }
 
-        public bool ReplaceDrawingIdInStructura(int replaceDrawingId, int currentDrawingId)
+        public IEnumerable<DrawingsDTO> ReplaceDrawingIdInStructura(int replaceDrawingId, int currentDrawingId)
         {
             var structura = mapper.Map < IEnumerable<Drawings>, List< DrawingsDTO >> (drawings.GetAll().Where(bdsm => bdsm.DrawingId == replaceDrawingId)).ToList();
 
@@ -517,11 +517,11 @@ namespace TechnicalProcessControl.BLL.Services
                 }
                 catch (Exception)
                 {
-                    return true;
+                    return null;
                 }
             }
 
-            return true;
+            return structura;
         }
 
 
