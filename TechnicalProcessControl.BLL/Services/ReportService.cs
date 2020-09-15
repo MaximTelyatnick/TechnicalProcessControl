@@ -102,7 +102,7 @@ namespace TechnicalProcessControl.BLL.Services
                 return "";
             }
 
-            var Workbook = Factory.GetWorkbook(GeneratedReportsDir + @"\template001.xls");
+            var Workbook = Factory.GetWorkbook(GeneratedReportsDir + @"\template001.xlsx");
             var Worksheet = Workbook.Worksheets[0];
             var Сells = Worksheet.Cells;
             IRange cells = Worksheet.Cells;

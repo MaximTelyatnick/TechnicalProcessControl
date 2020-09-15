@@ -410,11 +410,36 @@ namespace TechnicalProcessControl.Drawings
                         {
                             var updateStructurs = drawingService.ReplaceDrawingIdInStructura(drawingRevisionDTO.Id,((DrawingDTO)Item).Id);
 
-                            if(MessageBox.Show("Для чертежа с номером " + drawingRevisionDTO.Number+ " была добавлена ревизия "+ ((DrawingDTO)Item).Number +"/n"+
-                               "Ревизия чертежа была изменена в следующих узлах:" +string.Join(",", updateStructurs) + "/n" + 
+                            if(MessageBox.Show("Для чертежа с номером " + drawingRevisionDTO.Number + "\\" + drawingRevisionDTO.RevisionName + " была добавлена ревизия "+ ((DrawingDTO)Item).Number+"\\"+ ((DrawingDTO)Item).RevisionName + "\n"+
+                               //"Ревизия чертежа была изменена в следующих узлах:" +string.Join(",", ((DrawingsDTO)updateStructurs).CurrentLevelMenu) + "\n" + 
                                "Создать техпроцессы ревизии на основе старых?"
                                 , "подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
+                                if(drawingService.GetTechProcess001ById(drawingRevisionDTO.Id)!= null)
+                                {
+                                    MessageBox.Show("ЗаглушкаР", "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+
+                                if (drawingService.GetTechProcess002ById(drawingRevisionDTO.Id) != null)
+                                {
+                                    MessageBox.Show("Заглушка", "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+
+                                if (drawingService.GetTechProcess003ById(drawingRevisionDTO.Id) != null)
+                                {
+                                    MessageBox.Show("Заглушка", "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+
+                                if (drawingService.GetTechProcess004ById(drawingRevisionDTO.Id) != null)
+                                {
+                                    MessageBox.Show("Заглушка", "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+
+                                if (drawingService.GetTechProcess005ById(drawingRevisionDTO.Id) != null)
+                                {
+                                    MessageBox.Show("Заглушка", "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+
 
 
                             }

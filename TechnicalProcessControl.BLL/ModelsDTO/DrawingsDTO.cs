@@ -52,7 +52,12 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public string TechProcess003Path { get; set; }
         public string TechProcess004Path { get; set; }
         public string TechProcess005Path { get; set; }
+        public string TechProcess001PathOld { get; set; }
+        public string TechProcess002PathOld { get; set; }
+        public string TechProcess003PathOld { get; set; }
+        public string TechProcess004PathOld { get; set; }
+        public string TechProcess005PathOld { get; set; }
 
-        
+
     }
 }

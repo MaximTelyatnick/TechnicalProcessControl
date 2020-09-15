@@ -38,33 +38,5 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         {
             return this.MemberwiseClone();
         }
-
-        //public object Clone()
-        //{
-        //    return new DrawingDTO
-        //    {
-        //        //Id = this.Id,
-        //        //CreateDate = this.CreateDate,
-        //        //DetailId = this.DetailId,
-        //        //DetailName = this.DetailName,
-        //        //DetailWeight = this.DetailWeight,
-        //        //MaterialId = this.MaterialId,
-        //        //MaterialName = this.MaterialName,
-        //        //Note = this.Note,
-        //        //Number = this.Number,
-        //        //ParentId = this.ParentId,
-        //        //Quantity = this.Quantity,
-        //        //QuantityL = this.QuantityL,
-        //        //QuantityR = this.QuantityR,
-        //        //L = this.L,
-        //        //W = this.W,
-        //        //W2 = this.W2,
-        //        //RevisionId = this.RevisionId,
-        //        //RevisionName = this.RevisionName,
-        //        //TH = this.TH,
-        //        //TypeId = this.TypeId,
-        //        //TypeName = this.TypeName
-        //    };
-        //}
     }
 }
