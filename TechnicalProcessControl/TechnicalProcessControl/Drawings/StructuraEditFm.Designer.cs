@@ -174,6 +174,8 @@ namespace TechnicalProcessControl.Drawings
             this.wCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.w2Col = new DevExpress.XtraGrid.Columns.GridColumn();
             this.detailWeightCol = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.dateCol = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.noteCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.weightEdit = new DevExpress.XtraEditors.TextEdit();
             this.lEdit = new DevExpress.XtraEditors.TextEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
@@ -241,8 +243,6 @@ namespace TechnicalProcessControl.Drawings
             this.splashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::TechnicalProcessControl.WaitFm), true, true);
             this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
             this.dxValidationProvider = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
-            this.dateCol = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.noteCol = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit.Properties)).BeginInit();
@@ -478,6 +478,22 @@ namespace TechnicalProcessControl.Drawings
             this.detailWeightCol.Visible = true;
             this.detailWeightCol.VisibleIndex = 7;
             this.detailWeightCol.Width = 32;
+            // 
+            // dateCol
+            // 
+            this.dateCol.Caption = "Дата";
+            this.dateCol.FieldName = "CreateDate";
+            this.dateCol.Name = "dateCol";
+            this.dateCol.Visible = true;
+            this.dateCol.VisibleIndex = 8;
+            // 
+            // noteCol
+            // 
+            this.noteCol.Caption = "Приметка";
+            this.noteCol.FieldName = "NoteName";
+            this.noteCol.Name = "noteCol";
+            this.noteCol.Visible = true;
+            this.noteCol.VisibleIndex = 9;
             // 
             // weightEdit
             // 
@@ -914,6 +930,7 @@ namespace TechnicalProcessControl.Drawings
             this.techProcess001Edit.Size = new System.Drawing.Size(788, 20);
             this.techProcess001Edit.TabIndex = 37;
             this.techProcess001Edit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.techProcess001Edit_ButtonClick);
+            this.techProcess001Edit.EditValueChanged += new System.EventHandler(this.techProcess001Edit_EditValueChanged);
             // 
             // labelControl5
             // 
@@ -1212,22 +1229,6 @@ namespace TechnicalProcessControl.Drawings
             this.groupControl4.Size = new System.Drawing.Size(538, 607);
             this.groupControl4.TabIndex = 105;
             this.groupControl4.Text = "Сканы чертежей";
-            // 
-            // dateCol
-            // 
-            this.dateCol.Caption = "Дата";
-            this.dateCol.FieldName = "CreateDate";
-            this.dateCol.Name = "dateCol";
-            this.dateCol.Visible = true;
-            this.dateCol.VisibleIndex = 8;
-            // 
-            // noteCol
-            // 
-            this.noteCol.Caption = "Приметка";
-            this.noteCol.FieldName = "NoteName";
-            this.noteCol.Name = "noteCol";
-            this.noteCol.Visible = true;
-            this.noteCol.VisibleIndex = 9;
             // 
             // StructuraEditFm
             // 

@@ -25,6 +25,7 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public string RivisionName { get; set; }
         public int? DrawingsId { get; set; }
         public int? ParentId { get; set; }
+        public DateTime? CreateDate { get; set; }
 
         //public short? Status { get; set; }
     }

@@ -22,6 +22,7 @@ namespace TechnicalProcessControl.DAL.Models
         public decimal? LaborIntensity004 { get; set; }
         public decimal? LaborIntensity005 { get; set; }
         public string TechProcessFullName { get; set; }
+        public DateTime? CreateDate { get; set; }
         //public string Article { get; set; }
         //public short? Status { get; set; }
     }

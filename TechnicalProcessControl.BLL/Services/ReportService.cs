@@ -94,7 +94,7 @@ namespace TechnicalProcessControl.BLL.Services
         {
             try
             {
-                Factory.GetWorkbook(GeneratedReportsDir + @"\template001.xlsx");
+                Factory.GetWorkbook(GeneratedReportsDir + @"\template001.xls");
             }
             catch (Exception ex)
             {
@@ -102,7 +102,7 @@ namespace TechnicalProcessControl.BLL.Services
                 return "";
             }
 
-            var Workbook = Factory.GetWorkbook(GeneratedReportsDir + @"\template001.xlsx");
+            var Workbook = Factory.GetWorkbook(GeneratedReportsDir + @"\template001.xls");
             var Worksheet = Workbook.Worksheets[0];
             var Сells = Worksheet.Cells;
             IRange cells = Worksheet.Cells;

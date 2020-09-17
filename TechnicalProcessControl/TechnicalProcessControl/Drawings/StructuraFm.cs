@@ -236,11 +236,6 @@ namespace TechnicalProcessControl
 
                     }
                 }
-
-                //Process process = new Process();
-                //process.StartInfo.Arguments = "\"" + ((DrawingsDTO)drawingsBS.Current).TechProcess001Path + "\"";
-                //process.StartInfo.FileName = "Excel.exe";
-                //process.Start();
             }
         }
 

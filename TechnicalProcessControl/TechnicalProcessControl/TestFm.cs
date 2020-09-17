@@ -111,6 +111,8 @@ namespace TechnicalProcessControl
             workbook.BeginUpdate();
 
             workbook.LoadDocument(pathToFile, DocumentFormat.Xls);
+
+
             
             workbook.EndUpdate();
 
@@ -187,5 +189,10 @@ namespace TechnicalProcessControl
                 workbook.EndUpdate();
             }
         }
+
+        public string Return()
+        {
+            return pathToFile;
+        } 
     }
 }

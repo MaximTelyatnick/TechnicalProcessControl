@@ -9,8 +9,10 @@ namespace TechnicalProcessControl.BLL.Interfaces
 {
     public interface IDrawingService
     {
+        bool FindDublicateDrawing(DrawingDTO drawingDTO);
 
         IEnumerable<DrawingsDTO> GetAllDrawings();
+        IEnumerable<DrawingsDTO> GetAllDrawingsByDrawingId(int drawingId);
 
         IEnumerable<DrawingsDTO> GetShortDrawing();
 

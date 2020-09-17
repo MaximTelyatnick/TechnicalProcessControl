@@ -885,7 +885,7 @@ namespace TechnicalProcessControl.Drawings
                                 techProcess001Edit.Properties.DataSource = drawingService.GetAllTechProcess001();
                                 techProcess001Edit.Properties.ValueMember = "Id";
                                 techProcess001Edit.Properties.DisplayMember = "TechProcessFullName";
-                                techProcess001Edit.Properties.NullText = "Нету записей";
+                                techProcess001Edit.Properties.NullText = "Не добавлен техпроцесс";
 
                                 int return_Id = techProcess001EditFm.Return().Id;
                                 techProcess001Edit.EditValue = return_Id;
@@ -1091,6 +1091,11 @@ namespace TechnicalProcessControl.Drawings
                     //        break;
                     //    }
             }
+        }
+
+        private void techProcess001Edit_EditValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

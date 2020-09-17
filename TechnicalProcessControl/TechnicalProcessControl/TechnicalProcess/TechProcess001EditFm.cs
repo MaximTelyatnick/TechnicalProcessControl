@@ -27,6 +27,7 @@ namespace TechnicalProcessControl
 
         public DrawingsDTO drawingsDTO;
         public TechProcess001DTO techProcess001DTO;
+        public TechProcess001DTO techProcess001OldDTO;
 
         private ObjectBase Item
         {
@@ -39,7 +40,7 @@ namespace TechnicalProcessControl
         }
 
 
-        public TechProcess001EditFm(Utils.Operation operation, TechProcess001DTO model, DrawingsDTO drawingsDTO)
+        public TechProcess001EditFm(Utils.Operation operation, TechProcess001DTO model, DrawingsDTO drawingsDTO, TechProcess001DTO Oldmodel = null)
         {
             InitializeComponent();
 
@@ -50,6 +51,7 @@ namespace TechnicalProcessControl
 
 
             this.techProcess001DTO = techProcess001DTO;
+            this.techProcess001OldDTO = techProcess001OldDTO;
 
 
             //techProcess001DTO.TechProcessFullName = drawingsDTO.Number + "_TP" + techProcess001DTO.TechProcessName.ToString();
@@ -63,6 +65,7 @@ namespace TechnicalProcessControl
             revisionEdit.DataBindings.Add("EditValue", techProcessBS, "RevisionId", true, DataSourceUpdateMode.OnPropertyChanged);
             drawingEdit.DataBindings.Add("EditValue", techProcessBS, "DrawingId", true, DataSourceUpdateMode.OnPropertyChanged);
             techProcessFullName.DataBindings.Add("EditValue", techProcessBS, "techProcessFullName", true, DataSourceUpdateMode.OnPropertyChanged);
+            createDateEdit.DataBindings.Add("EditValue", techProcessBS, "CreateDate", true, DataSourceUpdateMode.OnPropertyChanged);
 
 
             drawingBS.DataSource = drawingService.GetAllDrawing();
@@ -83,9 +86,23 @@ namespace TechnicalProcessControl
             {
                 ((TechProcess001DTO)Item).TechProcessName = drawingService.GetLastTechProcess001();
             }
-            else
+            else if(operation == Utils.Operation.Update)
             {
 
+            }
+            else if (operation == Utils.Operation.Custom)
+            {
+                Item.BeginEdit();
+
+                ((TechProcess001DTO)Item).ParentId = null;
+                ((TechProcess001DTO)Item).CreateDate = DateTime.Now;
+
+                if (((TechProcess001DTO)Item).RevisionId != null)
+                    ((TechProcess001DTO)Item).RevisionId++;
+                else
+                    ((TechProcess001DTO)Item).RevisionId = 1;
+
+                Item.EndEdit();
             }
 
 
@@ -111,6 +128,8 @@ namespace TechnicalProcessControl
 
             drawingService = Program.kernel.Get<IDrawingService>();
             reportService = Program.kernel.Get<IReportService>();
+
+
             string techProcessName = techProcessNumber001Edit.Text;
 
             if (drawingService.CheckTechProcess001(techProcessName))
@@ -122,7 +141,7 @@ namespace TechnicalProcessControl
             try
             {
 
-                ((TechProcess001DTO)Item).TechProcessPath = @"C:\TechProcess\" + ((TechProcess001DTO)Item).TechProcessFullName + ".xls";
+                ((TechProcess001DTO)Item).TechProcessPath = @"C:\TechProcess\" + ((TechProcess001DTO)Item).TechProcessFullName + ".xlsx";
                 ((TechProcess001DTO)Item).Id = drawingService.TechProcess001Create(((TechProcess001DTO)Item));
 
                 drawingsDTO.TechProcess001Name = ((TechProcess001DTO)Item).TechProcessName;
@@ -137,14 +156,8 @@ namespace TechnicalProcessControl
                         {
                             if (testFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                             {
-                                //////detailsBS.DataSource = journalService.GetDetails();
-                                //techProcess001Edit.Properties.DataSource = drawingService.GetAllTechProcess001();
-                                //techProcess001Edit.Properties.ValueMember = "Id";
-                                //techProcess001Edit.Properties.DisplayMember = "TechProcessFullName";
-                                //techProcess001Edit.Properties.NullText = "Нету записей";
-
-                                //int return_Id = techProcess001EditFm.Return().Id;
-                                //techProcess001Edit.EditValue = return_Id;
+                                string return_Id = testFm.Return();
+                                ((TechProcess001DTO)Item).TechProcessFullName = return_Id;
 
 
 
@@ -249,7 +262,7 @@ namespace TechnicalProcessControl
         private void drawingNumberEdit_TextChanged(object sender, EventArgs e)
         {
             if (revisionEdit.Text != "")
-                techProcessFullName.EditValue = ((TechProcess001DTO)Item).DrawingNumber + "_TP" + ((TechProcess001DTO)Item).TechProcessName + "/" + revisionEdit.Text;
+                techProcessFullName.EditValue = ((TechProcess001DTO)Item).DrawingNumber + "_TP" + ((TechProcess001DTO)Item).TechProcessName + "_" + revisionEdit.Text;
             else
                 techProcessFullName.EditValue = ((TechProcess001DTO)Item).DrawingNumber + "_TP" + ((TechProcess001DTO)Item).TechProcessName;
         }
@@ -257,7 +270,7 @@ namespace TechnicalProcessControl
         private void techProcessNumber001Edit_TextChanged(object sender, EventArgs e)
         {
             if (revisionEdit.Text != "")
-                techProcessFullName.EditValue = ((TechProcess001DTO)Item).DrawingNumber + "_TP" + ((TechProcess001DTO)Item).TechProcessName + "/" + revisionEdit.Text;
+                techProcessFullName.EditValue = ((TechProcess001DTO)Item).DrawingNumber + "_TP" + ((TechProcess001DTO)Item).TechProcessName + "_" + revisionEdit.Text;
             else
                 techProcessFullName.EditValue = ((TechProcess001DTO)Item).DrawingNumber + "_TP" + ((TechProcess001DTO)Item).TechProcessName;
         }
@@ -270,7 +283,7 @@ namespace TechnicalProcessControl
         private void revisionEdit_TextChanged(object sender, EventArgs e)
         {
             if (revisionEdit.Text != "")
-                techProcessFullName.EditValue = ((TechProcess001DTO)Item).DrawingNumber + "_TP" + ((TechProcess001DTO)Item).TechProcessName + "/" + revisionEdit.Text;
+                techProcessFullName.EditValue = ((TechProcess001DTO)Item).DrawingNumber + "_TP" + ((TechProcess001DTO)Item).TechProcessName + "_" + revisionEdit.Text;
             else
                 techProcessFullName.EditValue = ((TechProcess001DTO)Item).DrawingNumber + "_TP" + ((TechProcess001DTO)Item).TechProcessName;
         }

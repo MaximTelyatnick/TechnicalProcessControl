@@ -118,6 +118,7 @@ namespace TechnicalProcessControl.Drawings
                 ((DrawingDTO)Item).Id = 0;
                 ((DrawingDTO)Item).ParentId = null;
                 ((DrawingDTO)Item).Note = "";
+                ((DrawingDTO)Item).CreateDate = DateTime.Now;
 
                 if (((DrawingDTO)Item).RevisionId != null)
                     ((DrawingDTO)Item).RevisionId++;
@@ -314,15 +315,9 @@ namespace TechnicalProcessControl.Drawings
         {
             this.Item.EndEdit();
 
-            //if (FindDublicate((BusinessTripsDecreeDTO)this.Item))
+            //if (drawingService.FindDublicateDrawing((DrawingDTO)Item))
             //{
-            //    MessageBox.Show("Наказ з таким номером вже існує!", "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //    return false;
-            //}
-
-            //if (businessTripsBS.Count == 0)
-            //{
-            //    MessageBox.Show("Необхідно додати посвідчення до наказу!", "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    MessageBox.Show("Чертеж з таким номером уже существует!", "Сохранение", MessageBoxButtons.OK, MessageBoxIcon.Information);
             //    return false;
             //}
 
@@ -410,14 +405,67 @@ namespace TechnicalProcessControl.Drawings
                         {
                             var updateStructurs = drawingService.ReplaceDrawingIdInStructura(drawingRevisionDTO.Id,((DrawingDTO)Item).Id);
 
-                            if(MessageBox.Show("Для чертежа с номером " + drawingRevisionDTO.Number + "\\" + drawingRevisionDTO.RevisionName + " была добавлена ревизия "+ ((DrawingDTO)Item).Number+"\\"+ ((DrawingDTO)Item).RevisionName + "\n"+
-                               //"Ревизия чертежа была изменена в следующих узлах:" +string.Join(",", ((DrawingsDTO)updateStructurs).CurrentLevelMenu) + "\n" + 
-                               "Создать техпроцессы ревизии на основе старых?"
-                                , "подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                            {
-                                if(drawingService.GetTechProcess001ById(drawingRevisionDTO.Id)!= null)
+                            //if(MessageBox.Show("Для чертежа с номером " + drawingRevisionDTO.Number + "\\" + drawingRevisionDTO.RevisionName + " была добавлена ревизия "+ ((DrawingDTO)Item).Number+"\\"+ ((DrawingDTO)Item).RevisionName + "\n"+
+                            //   //"Ревизия чертежа была изменена в следующих узлах:" +string.Join(",", ((DrawingsDTO)updateStructurs).CurrentLevelMenu) + "\n" + 
+                            //   "Создать техпроцессы ревизии на основе старых?"
+                            //    , "подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            //{
+
+                            var techProcess001 = drawingService.GetTechProcess001ById(drawingRevisionDTO.Id);
+
+                                if (techProcess001 != null)
                                 {
-                                    MessageBox.Show("ЗаглушкаР", "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                if (MessageBox.Show("Для чертежа с номером " + drawingRevisionDTO.Number + "\\" + drawingRevisionDTO.RevisionName + " была добавлена ревизия " + ((DrawingDTO)Item).Number + "\\" + ((DrawingDTO)Item).RevisionName + "\n" +
+                                    //   //"Ревизия чертежа была изменена в следующих узлах:" +string.Join(",", ((DrawingsDTO)updateStructurs).CurrentLevelMenu) + "\n" + 
+                                       "Создать техпроцессы ревизии на основе старых?"
+                                        , "подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                {
+
+                                    // Получаем структуру
+                                    DrawingsDTO drawingsDTO = new DrawingsDTO();
+                                    var drawingList = drawingService.GetAllDrawingsByDrawingId(((DrawingDTO)Item).Id);
+                                    drawingsDTO = drawingList.First();
+
+                                    TechProcess001DTO addTechProcessRevisionDTO = new TechProcess001DTO();
+                                    
+                                    addTechProcessRevisionDTO.DrawingId = ((DrawingDTO)Item).Id;
+                                    addTechProcessRevisionDTO.RevisionId= techProcess001.RevisionId;
+                                    addTechProcessRevisionDTO.TechProcessName = techProcess001.TechProcessName;
+                                    if(((DrawingDTO)Item).RevisionId!=null)
+                                        addTechProcessRevisionDTO.DrawingNumber = ((DrawingDTO)Item).Number+ "_"+ revisionEdit.Text;
+                                    else
+                                        addTechProcessRevisionDTO.DrawingNumber = ((DrawingDTO)Item).Number;
+
+                                    using (TechProcess001EditFm techProcess001EditFm = new TechProcess001EditFm(Utils.Operation.Custom, addTechProcessRevisionDTO, drawingsDTO, techProcess001))
+                                    {
+                                        if (techProcess001EditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                                        {
+                                            ////detailsBS.DataSource = journalService.GetDetails();
+                                            //techProcess001Edit.Properties.DataSource = drawingService.GetAllTechProcess001();
+                                            //techProcess001Edit.Properties.ValueMember = "Id";
+                                            //techProcess001Edit.Properties.DisplayMember = "TechProcessFullName";
+                                            //techProcess001Edit.Properties.NullText = "Нету записей";
+
+                                            //int return_Id = techProcess001EditFm.Return().Id;
+                                            //techProcess001Edit.EditValue = return_Id;
+
+
+
+                                        }
+                                    }
+
+                                    //drawingsDTO = 
+
+
+
+                                }
+                                else
+                                {
+
+                                }
+
+
+                                    
                                 }
 
                                 if (drawingService.GetTechProcess002ById(drawingRevisionDTO.Id) != null)
@@ -442,11 +490,11 @@ namespace TechnicalProcessControl.Drawings
 
 
 
-                            }
-                            else
-                            {
+                            //}
+                            //else
+                            //{
 
-                            }
+                            //}
                         }
 
                         

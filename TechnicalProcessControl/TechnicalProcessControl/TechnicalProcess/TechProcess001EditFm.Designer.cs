@@ -73,6 +73,7 @@
             this.wCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.w2Col = new DevExpress.XtraGrid.Columns.GridColumn();
             this.detailWeightCol = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.createDateEdit = new DevExpress.XtraEditors.DateEdit();
             ((System.ComponentModel.ISupportInitialize)(this.techProcessNumber001Edit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawingNumberEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.techProcessFullName.Properties)).BeginInit();
@@ -81,6 +82,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.createDateEdit.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.createDateEdit.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl2
@@ -216,7 +219,7 @@
             this.drawingEdit.Properties.PopupFormMinSize = new System.Drawing.Size(700, 0);
             this.drawingEdit.Properties.PopupFormSize = new System.Drawing.Size(700, 0);
             this.drawingEdit.Properties.PopupView = this.gridLookUpEdit1View;
-            this.drawingEdit.Size = new System.Drawing.Size(503, 22);
+            this.drawingEdit.Size = new System.Drawing.Size(379, 22);
             this.drawingEdit.TabIndex = 106;
             this.drawingEdit.EditValueChanged += new System.EventHandler(this.drawingEdit_EditValueChanged);
             // 
@@ -260,9 +263,9 @@
             this.labelControl7.Appearance.Options.UseFont = true;
             this.labelControl7.Location = new System.Drawing.Point(387, 31);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(7, 14);
+            this.labelControl7.Size = new System.Drawing.Size(9, 14);
             this.labelControl7.TabIndex = 109;
-            this.labelControl7.Text = "/";
+            this.labelControl7.Text = "_";
             // 
             // labelControl6
             // 
@@ -346,11 +349,24 @@
             this.detailWeightCol.VisibleIndex = 7;
             this.detailWeightCol.Width = 32;
             // 
+            // createDateEdit
+            // 
+            this.createDateEdit.EditValue = null;
+            this.createDateEdit.Location = new System.Drawing.Point(409, 29);
+            this.createDateEdit.Name = "createDateEdit";
+            this.createDateEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.createDateEdit.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.createDateEdit.Size = new System.Drawing.Size(100, 20);
+            this.createDateEdit.TabIndex = 108;
+            // 
             // TechProcess001EditFm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(517, 222);
+            this.ClientSize = new System.Drawing.Size(517, 219);
+            this.Controls.Add(this.createDateEdit);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.drawingEdit);
             this.Controls.Add(this.labelControl1);
@@ -374,6 +390,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.createDateEdit.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.createDateEdit.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -405,5 +423,6 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.LabelControl labelControl7;
+        private DevExpress.XtraEditors.DateEdit createDateEdit;
     }
 }
