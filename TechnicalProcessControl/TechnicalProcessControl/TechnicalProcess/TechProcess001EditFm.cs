@@ -28,6 +28,7 @@ namespace TechnicalProcessControl
         public DrawingsDTO drawingsDTO;
         public TechProcess001DTO techProcess001DTO;
         public TechProcess001DTO techProcess001OldDTO;
+        public Utils.Operation operation;
 
         private ObjectBase Item
         {
@@ -40,14 +41,15 @@ namespace TechnicalProcessControl
         }
 
 
-        public TechProcess001EditFm(Utils.Operation operation, TechProcess001DTO model, DrawingsDTO drawingsDTO, TechProcess001DTO Oldmodel = null)
+        public TechProcess001EditFm(Utils.Operation operation, TechProcess001DTO techProcess001DTO, DrawingsDTO drawingsDTO, TechProcess001DTO techProcess001OldDTO = null)
         {
             InitializeComponent();
 
             drawingService = Program.kernel.Get<IDrawingService>();
 
+            this.operation = operation;
             this.drawingsDTO = drawingsDTO;
-            techProcessBS.DataSource = Item = model;
+            techProcessBS.DataSource = Item = techProcess001DTO;
 
 
             this.techProcess001DTO = techProcess001DTO;
@@ -129,44 +131,97 @@ namespace TechnicalProcessControl
             drawingService = Program.kernel.Get<IDrawingService>();
             reportService = Program.kernel.Get<IReportService>();
 
-
-            string techProcessName = techProcessNumber001Edit.Text;
-
-            if (drawingService.CheckTechProcess001(techProcessName))
-            {
-                MessageBox.Show("Техпроцесс с таким номером уже существует", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            try
+            if (operation == Utils.Operation.Add)
             {
 
-                ((TechProcess001DTO)Item).TechProcessPath = @"C:\TechProcess\" + ((TechProcess001DTO)Item).TechProcessFullName + ".xlsx";
-                ((TechProcess001DTO)Item).Id = drawingService.TechProcess001Create(((TechProcess001DTO)Item));
+                string techProcessName = techProcessNumber001Edit.Text;
 
-                drawingsDTO.TechProcess001Name = ((TechProcess001DTO)Item).TechProcessName;
-                drawingsDTO.TechProcess001Path = ((TechProcess001DTO)Item).TechProcessPath;
-
-                if (((TechProcess001DTO)Item).Id > 0)
+                if (drawingService.CheckTechProcess001(techProcessName))
                 {
-                    string path = reportService.CreateTemplateTechProcess001(drawingsDTO);
-                    if (path != "")
+                    MessageBox.Show("Техпроцесс с таким номером уже существует", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+                try
+                {
+
+                    ((TechProcess001DTO)Item).TechProcessPath = @"C:\TechProcess\" + ((TechProcess001DTO)Item).TechProcessFullName + ".xls";
+                    ((TechProcess001DTO)Item).Id = drawingService.TechProcess001Create(((TechProcess001DTO)Item));
+
+                    drawingsDTO.TechProcess001Name = ((TechProcess001DTO)Item).TechProcessName;
+                    drawingsDTO.TechProcess001Path = ((TechProcess001DTO)Item).TechProcessPath;
+
+                    if (((TechProcess001DTO)Item).Id > 0)
                     {
-                        using (TestFm testFm = new TestFm(path))
+                        string path = reportService.CreateTemplateTechProcess001(drawingsDTO);
+                        if (path != "")
                         {
-                            if (testFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                            using (TestFm testFm = new TestFm(path))
                             {
-                                string return_Id = testFm.Return();
-                                ((TechProcess001DTO)Item).TechProcessFullName = return_Id;
+                                if (testFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                                {
+                                    string return_Id = testFm.Return();
+                                    ((TechProcess001DTO)Item).TechProcessFullName = return_Id;
 
 
 
+                                }
                             }
                         }
                     }
-                }
 
-                return true;
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("При сохранении техпроцесса возникла ошибка. " + ex.Message, "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+            else if (operation == Utils.Operation.Custom)
+            {
+               
+
+                try
+                {
+
+                    ((TechProcess001DTO)Item).TechProcessPath = @"C:\TechProcess\" + ((TechProcess001DTO)Item).TechProcessFullName + ".xls";
+                    ((TechProcess001DTO)Item).Id = drawingService.TechProcess001Create(((TechProcess001DTO)Item));
+
+                    drawingsDTO.TechProcess001Name = ((TechProcess001DTO)Item).TechProcessName;
+                    drawingsDTO.TechProcess001Path = ((TechProcess001DTO)Item).TechProcessPath;
+
+                    if (((TechProcess001DTO)Item).Id > 0)
+                    {
+                        techProcess001OldDTO.ParentId = ((TechProcess001DTO)Item).Id;
+                        drawingService.TechProcess001Update(techProcess001OldDTO);
+
+                        string path = reportService.CreateTemplateTechProcess001(drawingsDTO, techProcess001OldDTO);
+                        if (path != "")
+                        {
+                            using (TestFm testFm = new TestFm(path))
+                            {
+                                if (testFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                                {
+                                    string return_Id = testFm.Return();
+                                    ((TechProcess001DTO)Item).TechProcessFullName = return_Id;
+
+
+
+                                }
+                            }
+                        }
+                    }
+
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("При сохранении техпроцесса возникла ошибка. " + ex.Message, "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+            return false;
 
 
 
@@ -213,12 +268,8 @@ namespace TechnicalProcessControl
 
                 //    return true;
                 //}
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("При сохранении техпроцесса возникла ошибка. " + ex.Message, "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
+            
+            
 
         }
 

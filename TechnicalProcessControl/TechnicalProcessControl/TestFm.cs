@@ -140,7 +140,7 @@ namespace TechnicalProcessControl
 
         private void saveBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            workbook.SaveDocument(pathToFile);
+            workbook.SaveDocument(pathToFile, DocumentFormat.Xls);
             DialogResult = DialogResult.OK;
             this.Close();
         }

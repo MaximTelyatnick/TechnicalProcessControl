@@ -866,11 +866,11 @@ namespace TechnicalProcessControl.Drawings
                 case 0: //Додати
                     {
 
-                        if (drawingService.CheckDrivingChild((int)((DrawingsDTO)Item).DrawingId))
-                        {
-                            MessageBox.Show("Сборка содержит узлы, не возможно добавить этот вид техпроцесса", "Инфо", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            return;
-                        }
+                        //if (drawingService.CheckDrivingChild((int)((DrawingsDTO)Item).DrawingId))
+                        //{
+                        //    MessageBox.Show("Сборка содержит узлы, не возможно добавить этот вид техпроцесса", "Инфо", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        //    return;
+                        //}
 
                         TechProcess001DTO addTechProcessDTO = new TechProcess001DTO();
                         addTechProcessDTO.DrawingsId = ((DrawingsDTO)Item).Id;
@@ -889,9 +889,6 @@ namespace TechnicalProcessControl.Drawings
 
                                 int return_Id = techProcess001EditFm.Return().Id;
                                 techProcess001Edit.EditValue = return_Id;
-
-
-
                             }
                         }
                         break;
@@ -925,6 +922,43 @@ namespace TechnicalProcessControl.Drawings
                                 drawingService.FileDelete(((DrawingsDTO)Item).TechProcess001Path);
                             techProcess001Edit.EditValue = null;
                             techProcess001Edit.Properties.NullText = "Не добавлен техпроцесс";
+                        }
+
+                        break;
+                    }
+                case 3://Ревизия
+                    {
+                        if (techProcess001Edit.EditValue == DBNull.Value)
+                            return;
+
+                        drawingService = Program.kernel.Get<IDrawingService>();
+                        TechProcess001DTO techProcess001OldDTO = drawingService.GetTechProcess001ById((int)techProcess001Edit.EditValue);
+                        TechProcess001DTO addTechProcessRevisionDTO = new TechProcess001DTO();
+
+                        addTechProcessRevisionDTO.DrawingId = ((DrawingsDTO)Item).DrawingId;
+                        addTechProcessRevisionDTO.RevisionId = techProcess001OldDTO.RevisionId;
+                        addTechProcessRevisionDTO.TechProcessName = techProcess001OldDTO.TechProcessName;
+                        if (((DrawingsDTO)Item).RevisionName != null)
+                            addTechProcessRevisionDTO.DrawingNumber = ((DrawingsDTO)Item).Number + "_" + ((DrawingsDTO)Item).RevisionName;
+                        else
+                            addTechProcessRevisionDTO.DrawingNumber = ((DrawingsDTO)Item).Number;
+
+                        using (TechProcess001EditFm techProcess001EditFm = new TechProcess001EditFm(Utils.Operation.Custom, addTechProcessRevisionDTO, ((DrawingsDTO)Item), techProcess001OldDTO))
+                        {
+                            if (techProcess001EditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                            {
+                                ////detailsBS.DataSource = journalService.GetDetails();
+                                //techProcess001Edit.Properties.DataSource = drawingService.GetAllTechProcess001();
+                                //techProcess001Edit.Properties.ValueMember = "Id";
+                                //techProcess001Edit.Properties.DisplayMember = "TechProcessFullName";
+                                //techProcess001Edit.Properties.NullText = "Нету записей";
+
+                                //int return_Id = techProcess001EditFm.Return().Id;
+                                //techProcess001Edit.EditValue = return_Id;
+
+
+
+                            }
                         }
 
                         break;

@@ -90,11 +90,14 @@ namespace TechnicalProcessControl.BLL.Services
 
 
 
-        public string CreateTemplateTechProcess001(DrawingsDTO drawingsDTO)
+        public string CreateTemplateTechProcess001(DrawingsDTO drawingsDTO, TechProcess001DTO techProcess001OldDTO = null)
         {
             try
             {
-                Factory.GetWorkbook(GeneratedReportsDir + @"\template001.xls");
+                if(techProcess001OldDTO == null)
+                    Factory.GetWorkbook(GeneratedReportsDir + @"\template001.xls");
+                else
+                    Factory.GetWorkbook(techProcess001OldDTO.TechProcessPath);
             }
             catch (Exception ex)
             {
@@ -102,8 +105,13 @@ namespace TechnicalProcessControl.BLL.Services
                 return "";
             }
 
-            var Workbook = Factory.GetWorkbook(GeneratedReportsDir + @"\template001.xls");
-            var Worksheet = Workbook.Worksheets[0];
+            IWorkbook workbook = null;
+
+            if (techProcess001OldDTO == null)
+                workbook = Factory.GetWorkbook(GeneratedReportsDir + @"\template001.xls");
+            else
+                workbook = Factory.GetWorkbook(techProcess001OldDTO.TechProcessPath);
+            var Worksheet = workbook.Worksheets[0];
             var Сells = Worksheet.Cells;
             IRange cells = Worksheet.Cells;
             Сells["AQ" + 10].Value = drawingsDTO.DetailName;
@@ -142,7 +150,7 @@ namespace TechnicalProcessControl.BLL.Services
 
             try
             {
-                Workbook.SaveAs(drawingsDTO.TechProcess001Path, FileFormat.Excel8);
+                workbook.SaveAs(drawingsDTO.TechProcess001Path, FileFormat.XLS97);
 
             }
 

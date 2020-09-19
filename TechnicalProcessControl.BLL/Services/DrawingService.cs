@@ -219,6 +219,7 @@ namespace TechnicalProcessControl.BLL.Services
                               QuantityL = drw.QuantityL,
                               QuantityR = drw.QuantityL,
                               Number = dr.RevisionId == null ? dr.Number : dr.Number + "_" + rev.Symbol,
+                               RevisionName = rev.Symbol,
                               TH = dr.TH,
                               L = dr.L,
                               W = dr.W,
@@ -528,7 +529,7 @@ namespace TechnicalProcessControl.BLL.Services
 
         public TechProcess001DTO GetTechProcess001ById(int drawingId)
         {
-            var techProcess = mapper.Map<TechProcess001, TechProcess001DTO>(techProcess001.GetAll().FirstOrDefault(bdsm => bdsm.DrawingId == drawingId && bdsm.ParentId == null));
+            var techProcess = mapper.Map<TechProcess001, TechProcess001DTO>(techProcess001.GetAll().FirstOrDefault(bdsm => bdsm.Id == drawingId && bdsm.ParentId == null));
 
             return techProcess;
         }
