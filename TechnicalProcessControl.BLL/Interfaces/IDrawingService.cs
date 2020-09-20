@@ -52,11 +52,11 @@ namespace TechnicalProcessControl.BLL.Interfaces
         IEnumerable<TechProcess004DTO> GetAllTechProcess004();
         IEnumerable<TechProcess005DTO> GetAllTechProcess005();
 
-        TechProcess001DTO GetTechProcess001ById(int drawingId);
-        TechProcess002DTO GetTechProcess002ById(int drawingId);
-        TechProcess003DTO GetTechProcess003ById(int drawingId);
-        TechProcess004DTO GetTechProcess004ById(int drawingId);
-        TechProcess005DTO GetTechProcess005ById(int drawingId);
+        TechProcess001DTO GetTechProcess001ByDrawingId(int drawingId);
+        TechProcess002DTO GetTechProcess002ByDrawingId(int drawingId);
+        TechProcess003DTO GetTechProcess003ByDrawingId(int drawingId);
+        TechProcess004DTO GetTechProcess004ByDrawingId(int drawingId);
+        TechProcess005DTO GetTechProcess005ByDrawingId(int drawingId);
 
         IEnumerable<DrawingDTO> GetAllDrawing();
 

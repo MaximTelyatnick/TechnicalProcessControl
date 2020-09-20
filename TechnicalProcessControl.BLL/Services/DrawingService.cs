@@ -31,6 +31,11 @@ namespace TechnicalProcessControl.BLL.Services
         private IRepository<Drawing> replacementDrawing;
         private IRepository<Drawing> firstUseDrawing;
         private IRepository<Revisions> revisions;
+        private IRepository<Revisions> revisionsTechProcess001;
+        private IRepository<Revisions> revisionsTechProcess002;
+        private IRepository<Revisions> revisionsTechProcess003;
+        private IRepository<Revisions> revisionsTechProcess004;
+        private IRepository<Revisions> revisionsTechProcess005;
 
         private IMapper mapper;
 
@@ -53,7 +58,12 @@ namespace TechnicalProcessControl.BLL.Services
             replacementDrawing = Database.GetRepository<Drawing>();
             firstUseDrawing = Database.GetRepository<Drawing>();
             revisions = Database.GetRepository<Revisions>();
-            
+            revisionsTechProcess001 = Database.GetRepository<Revisions>();
+            revisionsTechProcess002 = Database.GetRepository<Revisions>();
+            revisionsTechProcess003 = Database.GetRepository<Revisions>();
+            revisionsTechProcess004 = Database.GetRepository<Revisions>();
+            revisionsTechProcess005 = Database.GetRepository<Revisions>();
+
 
 
             var config = new MapperConfiguration(cfg =>
@@ -91,7 +101,7 @@ namespace TechnicalProcessControl.BLL.Services
 
         public bool FindDublicateDrawing(DrawingDTO drawingDTO)
         {
-            return drawing.GetAll().Any(srt => srt.Number == drawingDTO.Number && srt.Id != drawingDTO.Id);
+            return drawing.GetAll().Any(srt => srt.Number == drawingDTO.Number && srt.Id != drawingDTO.Id && srt.RevisionId == drawingDTO.RevisionId);
         }
 
         public IEnumerable<DrawingsDTO> GetAllDrawingsByDrawingId(int drawingId)
@@ -192,21 +202,31 @@ namespace TechnicalProcessControl.BLL.Services
                           from mat in matt.DefaultIfEmpty()
                           join tcp001 in techProcess001.GetAll() on dr.Id equals tcp001.DrawingId into tcpp001
                           from tcp001 in tcpp001.DefaultIfEmpty()
+                          join rev001 in revisionsTechProcess001.GetAll() on tcp001.RevisionId equals rev001.Id into revv001
+                          from rev001 in revv001.DefaultIfEmpty()
                           join tcp002 in techProcess002.GetAll() on dr.Id equals tcp002.DrawingId into tcpp002
                           from tcp002 in tcpp002.DefaultIfEmpty()
+                          join rev002 in revisionsTechProcess002.GetAll() on tcp002.RevisionId equals rev002.Id into revv002
+                          from rev002 in revv002.DefaultIfEmpty()
                           join tcp003 in techProcess003.GetAll() on dr.Id equals tcp003.DrawingId into tcpp003
                           from tcp003 in tcpp003.DefaultIfEmpty()
+                          join rev003 in revisionsTechProcess003.GetAll() on tcp003.RevisionId equals rev003.Id into revv003
+                          from rev003 in revv003.DefaultIfEmpty()
                           join tcp004 in techProcess004.GetAll() on dr.Id equals tcp004.DrawingId into tcpp004
                           from tcp004 in tcpp004.DefaultIfEmpty()
+                          join rev004 in revisionsTechProcess004.GetAll() on tcp004.RevisionId equals rev004.Id into revv004
+                          from rev004 in revv004.DefaultIfEmpty()
                           join tcp005 in techProcess005.GetAll() on dr.Id equals tcp005.DrawingId into tcpp005
                           from tcp005 in tcpp005.DefaultIfEmpty()
+                          join rev005 in revisionsTechProcess005.GetAll() on tcp005.RevisionId equals rev005.Id into revv005
+                          from rev005 in revv005.DefaultIfEmpty()
                           join drws in drawingScan.GetAll() on dr.Id equals drws.DrawingId into drwss
                           from drws in drwss.DefaultIfEmpty()
                           join pdrw in parentDrawings.GetAll() on drw.ParentId equals pdrw.Id into pdrww
                           from pdrw in pdrww.DefaultIfEmpty()
                           join drp in drawing.GetAll() on pdrw.DrawingId equals drp.Id into drpp
                           from drp in drpp.DefaultIfEmpty()
-                              /*where tcp001.DrawingId!= null || tcp002.DrawingId != null || tcp003.DrawingId != null || tcp004.DrawingId != null || tcp005.DrawingId != null*/
+                          where tcp001.ParentId == null
 
                           select new DrawingsDTO
                           {
@@ -219,7 +239,7 @@ namespace TechnicalProcessControl.BLL.Services
                               QuantityL = drw.QuantityL,
                               QuantityR = drw.QuantityL,
                               Number = dr.RevisionId == null ? dr.Number : dr.Number + "_" + rev.Symbol,
-                               RevisionName = rev.Symbol,
+                              RevisionName = rev.Symbol,
                               TH = dr.TH,
                               L = dr.L,
                               W = dr.W,
@@ -229,15 +249,7 @@ namespace TechnicalProcessControl.BLL.Services
                               DrawingId = dr.Id,
                               OccurrenceId = drw.OccurrenceId,
                               ReplaceDrawingId = drw.ReplaceDrawingId,
-                              //GasConsumption = drw.GasConsumption,
-                              //PaintConsumption = drw.PaintConsumption,
-                              //WireConsumption = drw.WireConsumption,
-                              //LaborIntensity001Total = drw.LaborIntensity001Total,
-                              //LaborIntensity002Total = drw.LaborIntensity002Total,
-                              //LaborIntensity003Total = drw.LaborIntensity003Total,
-                              //LaborIntensity004Total = drw.LaborIntensity004Total,
-                              //LaborIntensity005Total = drw.LaborIntensity005Total,
-                              //LaborIntensityTotal = drw.LaborIntensityTotal,
+
                               TechProcess001Id = tcp001.Id,
                               TechProcess002Id = tcp002.Id,
                               TechProcess003Id = tcp003.Id,
@@ -253,6 +265,11 @@ namespace TechnicalProcessControl.BLL.Services
                               TechProcess003Path = tcp003.TechProcessPath,
                               TechProcess004Path = tcp004.TechProcessPath,
                               TechProcess005Path = tcp005.TechProcessPath,
+                              Revision001 = rev001.Symbol,
+                              Revision002 = rev002.Symbol,
+                              Revision003 = rev003.Symbol,
+                              Revision004 = rev004.Symbol,
+                              Revision005 = rev005.Symbol,
                               ScanId = drws.DrawingId > 0 ? 1 : 0,
                               ParentName = drp.Number != "" ? drp.Number : dr.Number
                               //TotalWeight = drw.Quantity > 0 ? drw.Quantity * dr.DetailWeight : 0
@@ -527,25 +544,25 @@ namespace TechnicalProcessControl.BLL.Services
             return mapper.Map<IEnumerable<DrawingScan>, List<DrawingScanDTO>>(drawingScan.GetAll().Where(bdsm => bdsm.DrawingId == drawingId));
         }
 
-        public TechProcess001DTO GetTechProcess001ById(int drawingId)
+        public TechProcess001DTO GetTechProcess001ByDrawingId(int drawingId)
         {
-            var techProcess = mapper.Map<TechProcess001, TechProcess001DTO>(techProcess001.GetAll().FirstOrDefault(bdsm => bdsm.Id == drawingId && bdsm.ParentId == null));
+            var techProcess = mapper.Map<TechProcess001, TechProcess001DTO>(techProcess001.GetAll().FirstOrDefault(bdsm => bdsm.DrawingId == drawingId && bdsm.ParentId == null));
 
             return techProcess;
         }
-        public TechProcess002DTO GetTechProcess002ById(int drawingId)
+        public TechProcess002DTO GetTechProcess002ByDrawingId(int drawingId)
         {
             return mapper.Map<TechProcess002, TechProcess002DTO>(techProcess002.GetAll().FirstOrDefault(bdsm => bdsm.DrawingId == drawingId && bdsm.ParentId == null));
         }
-        public TechProcess003DTO GetTechProcess003ById(int drawingId)
+        public TechProcess003DTO GetTechProcess003ByDrawingId(int drawingId)
         {
             return mapper.Map<TechProcess003, TechProcess003DTO>(techProcess003.GetAll().FirstOrDefault(bdsm => bdsm.DrawingId == drawingId && bdsm.ParentId == null));
         }
-        public TechProcess004DTO GetTechProcess004ById(int drawingId)
+        public TechProcess004DTO GetTechProcess004ByDrawingId(int drawingId)
         {
             return mapper.Map<TechProcess004, TechProcess004DTO>(techProcess004.GetAll().FirstOrDefault(bdsm => bdsm.DrawingId == drawingId && bdsm.ParentId == null));
         }
-        public TechProcess005DTO GetTechProcess005ById(int drawingId)
+        public TechProcess005DTO GetTechProcess005ByDrawingId(int drawingId)
         {
             return mapper.Map<TechProcess005, TechProcess005DTO>(techProcess005.GetAll().FirstOrDefault(bdsm => bdsm.DrawingId == drawingId && bdsm.ParentId == null));
         }

@@ -48,6 +48,11 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public long? TechProcess003Name { get; set; }
         public long? TechProcess004Name { get; set; }
         public long? TechProcess005Name { get; set; }
+        public string Revision001  { get; set; }
+        public string Revision002 { get; set; }
+        public string Revision003 { get; set; }
+        public string Revision004 { get; set; }
+        public string Revision005 { get; set; }
         public string TechProcess001Path { get; set; }
         public string TechProcess002Path { get; set; }
         public string TechProcess003Path { get; set; }

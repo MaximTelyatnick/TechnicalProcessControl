@@ -562,7 +562,7 @@ namespace TechnicalProcessControl.Drawings
 
                 
 
-                var techProcess001 = drawingService.GetTechProcess001ById((int)key);
+                var techProcess001 = drawingService.GetTechProcess001ByDrawingId((int)key);
                 var techProcess002 = drawingService.GetTechProcess002ById((int)key);
                 var techProcess003 = drawingService.GetTechProcess003ById((int)key);
                 var techProcess004 = drawingService.GetTechProcess004ById((int)key);
@@ -932,14 +932,14 @@ namespace TechnicalProcessControl.Drawings
                             return;
 
                         drawingService = Program.kernel.Get<IDrawingService>();
-                        TechProcess001DTO techProcess001OldDTO = drawingService.GetTechProcess001ById((int)techProcess001Edit.EditValue);
+                        TechProcess001DTO techProcess001OldDTO = drawingService.GetTechProcess001ByDrawingId((int)techProcess001Edit.EditValue);
                         TechProcess001DTO addTechProcessRevisionDTO = new TechProcess001DTO();
 
                         addTechProcessRevisionDTO.DrawingId = ((DrawingsDTO)Item).DrawingId;
                         addTechProcessRevisionDTO.RevisionId = techProcess001OldDTO.RevisionId;
                         addTechProcessRevisionDTO.TechProcessName = techProcess001OldDTO.TechProcessName;
                         if (((DrawingsDTO)Item).RevisionName != null)
-                            addTechProcessRevisionDTO.DrawingNumber = ((DrawingsDTO)Item).Number + "_" + ((DrawingsDTO)Item).RevisionName;
+                            addTechProcessRevisionDTO.DrawingNumber = ((DrawingsDTO)Item).Number;
                         else
                             addTechProcessRevisionDTO.DrawingNumber = ((DrawingsDTO)Item).Number;
 
@@ -948,13 +948,13 @@ namespace TechnicalProcessControl.Drawings
                             if (techProcess001EditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                             {
                                 ////detailsBS.DataSource = journalService.GetDetails();
-                                //techProcess001Edit.Properties.DataSource = drawingService.GetAllTechProcess001();
+                                techProcess001Edit.Properties.DataSource = drawingService.GetAllTechProcess001();
                                 //techProcess001Edit.Properties.ValueMember = "Id";
                                 //techProcess001Edit.Properties.DisplayMember = "TechProcessFullName";
                                 //techProcess001Edit.Properties.NullText = "Нету записей";
 
-                                //int return_Id = techProcess001EditFm.Return().Id;
-                                //techProcess001Edit.EditValue = return_Id;
+                                int return_Id = techProcess001EditFm.Return().Id;
+                                techProcess001Edit.EditValue = return_Id;
 
 
 

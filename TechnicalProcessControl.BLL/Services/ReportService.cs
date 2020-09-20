@@ -89,7 +89,11 @@ namespace TechnicalProcessControl.BLL.Services
 
 
 
-
+        /*
+         * 1 - структура
+         * 2 - необязательный, его передаем только тогда, когда вместо шаблона нужно использовать готовый техпроцесс 
+         * 
+         * */
         public string CreateTemplateTechProcess001(DrawingsDTO drawingsDTO, TechProcess001DTO techProcess001OldDTO = null)
         {
             try
@@ -200,16 +204,7 @@ namespace TechnicalProcessControl.BLL.Services
 
             try
             {
-                //string fileName = String.Format("Зведена обігово-сальдова по рахунку 313 за період");
-                //string fileName = String.Format("Зведена обігово-сальдова по рахунку 313 за період з {0} по {1}", startDate.ToShortDateString(), endDate.ToShortDateString());
-                //Workbook.SaveAs(DbExelDir + techProcess001DTO.TechProcessName.ToString() + ".xls", FileFormat.Excel8);
                 Workbook.Save();
-                //Workbook.SaveAs(techProcess001DTO.TechProcessPath, FileFormat.Excel8);
-                //Process process = new Process();
-                //process.StartInfo.Arguments = "\"" + techProcess001DTO.TechProcessPath + "\"";
-                //process.StartInfo.FileName = "Excel.exe";
-                //process.Start();
-
             }
 
             catch (System.IO.IOException) { MessageBox.Show("Документ уже открыто!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
