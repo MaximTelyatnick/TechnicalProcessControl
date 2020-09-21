@@ -11,6 +11,7 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
     {
         public int Id { get; set; }
         public string Number { get; set; }
+        public string FullName { get; set; }
 
         public int? DetailId { get; set; }
         public string DetailName { get; set; }

@@ -115,6 +115,7 @@ namespace TechnicalProcessControl.BLL.Services
                 workbook = Factory.GetWorkbook(GeneratedReportsDir + @"\template001.xls");
             else
                 workbook = Factory.GetWorkbook(techProcess001OldDTO.TechProcessPath);
+
             var Worksheet = workbook.Worksheets[0];
             var Сells = Worksheet.Cells;
             IRange cells = Worksheet.Cells;
@@ -164,7 +165,7 @@ namespace TechnicalProcessControl.BLL.Services
             return drawingsDTO.TechProcess001Path;
         }
 
-        public bool UpdateTemplateTechProcess001(DrawingsDTO drawingsDTO)
+        public string UpdateTemplateTechProcess001(DrawingsDTO drawingsDTO)
         {
 
             var Workbook = Factory.GetWorkbook(drawingsDTO.TechProcess001Path);
@@ -210,10 +211,10 @@ namespace TechnicalProcessControl.BLL.Services
             catch (System.IO.IOException) { MessageBox.Show("Документ уже открыто!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
             catch (System.ComponentModel.Win32Exception) { MessageBox.Show("На рабочей станции отсутсутствует пакет программ Microsoft Oficce!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
 
-            return true;
+            return drawingsDTO.TechProcess001Path;
         }
 
-        public bool CreateTemplateTechProcess002(DrawingsDTO drawingsDTO)
+        public string CreateTemplateTechProcess002(DrawingsDTO drawingsDTO)
         {
             try
             {
@@ -222,7 +223,7 @@ namespace TechnicalProcessControl.BLL.Services
             catch (Exception ex)
             {
                 MessageBox.Show("не найдено шаблон документа!\n" + ex.Message, "Увага", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                return "";
             }
 
             var Workbook = Factory.GetWorkbook(GeneratedReportsDir + @"\template001.xlsx");
@@ -271,10 +272,10 @@ namespace TechnicalProcessControl.BLL.Services
             catch (System.IO.IOException) { MessageBox.Show("Документ уже открыто!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
             catch (System.ComponentModel.Win32Exception) { MessageBox.Show("На рабочей станции отсутсутствует пакет программ Microsoft Oficce!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
 
-            return true;
+            return drawingsDTO.TechProcess001Path;
         }
 
-        public bool UpdateTemplateTechProcess002(DrawingsDTO drawingsDTO)
+        public string UpdateTemplateTechProcess002(DrawingsDTO drawingsDTO)
         {
 
             var Workbook = Factory.GetWorkbook(drawingsDTO.TechProcess002Path);
@@ -329,19 +330,22 @@ namespace TechnicalProcessControl.BLL.Services
             catch (System.IO.IOException) { MessageBox.Show("Документ уже открыто!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
             catch (System.ComponentModel.Win32Exception) { MessageBox.Show("На рабочей станции отсутсутствует пакет программ Microsoft Oficce!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
 
-            return true;
+            return drawingsDTO.TechProcess001Path;
         }
 
-        public bool CreateTemplateTechProcess003(DrawingsDTO drawingsDTO, List<DrawingsDTO> drawingsListDTO)
+        public string CreateTemplateTechProcess003(DrawingsDTO drawingsDTO, List<DrawingsDTO> drawingsListDTO, TechProcess003DTO techProcess003OldDTO = null)
         {
             try
             {
-                Factory.GetWorkbook(GeneratedReportsDir + @"\template002.xls");
+                if (techProcess003OldDTO == null)
+                    Factory.GetWorkbook(GeneratedReportsDir + @"\template002.xls");
+                else
+                    Factory.GetWorkbook(techProcess003OldDTO.TechProcessPath);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Не найдено шаблон документа!\n" + ex.Message, "Увага", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                return "";
             }
 
 
@@ -366,22 +370,24 @@ namespace TechnicalProcessControl.BLL.Services
 
             #endregion
 
-            #region Specification lists
-
-            #region Create specification list empty sheet
-
-            int roundListSpecificationNumber = (int)Math.Ceiling((double)drawingsListDTO.Count() / 15.0);
             int startSheetRow = 34;
             int endSheetRow = 63;
             int moveRow = 30;
+            int roundListSpecificationNumber = (int)Math.Ceiling((double)drawingsListDTO.Count() / 15.0);
 
-            for (int i = 1; i < roundListSpecificationNumber; i++)
+            #region Specification lists
+            if (techProcess003OldDTO == null)
             {
-                cells[startSheetRow + ":" + endSheetRow].Insert(InsertShiftDirection.Down);
-                cells[startSheetRow + ":" + endSheetRow].RowHeight = 21;
-                cells[startSheetRow + ":" + endSheetRow].HorizontalAlignment = HAlign.Left;
-                cells[startSheetRow + ":" + endSheetRow].Font.Bold = false;
-                cells["A" + (startSheetRow + moveRow) + ":" + "DF" + (endSheetRow + moveRow)].EntireMergeArea.Copy(cells["A" + startSheetRow + ":" + "DF" + endSheetRow], PasteType.All, PasteOperation.None, false, false);
+                #region Create specification list empty sheet
+
+                for (int i = 1; i < roundListSpecificationNumber; i++)
+                {
+                    cells[startSheetRow + ":" + endSheetRow].Insert(InsertShiftDirection.Down);
+                    cells[startSheetRow + ":" + endSheetRow].RowHeight = 21;
+                    cells[startSheetRow + ":" + endSheetRow].HorizontalAlignment = HAlign.Left;
+                    cells[startSheetRow + ":" + endSheetRow].Font.Bold = false;
+                    cells["A" + (startSheetRow + moveRow) + ":" + "DF" + (endSheetRow + moveRow)].EntireMergeArea.Copy(cells["A" + startSheetRow + ":" + "DF" + endSheetRow], PasteType.All, PasteOperation.None, false, false);
+                }
             }
             #endregion
 
@@ -448,7 +454,7 @@ namespace TechnicalProcessControl.BLL.Services
             catch (System.IO.IOException) { MessageBox.Show("Документ уже открыто!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
             catch (System.ComponentModel.Win32Exception) { MessageBox.Show("На рабочей станции отсутсутствует пакет программ Microsoft Oficce!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
 
-            return true;
+            return drawingsDTO.TechProcess003Path;
         }
 
         public string TechProcesNameToStr(long? techProcessName)

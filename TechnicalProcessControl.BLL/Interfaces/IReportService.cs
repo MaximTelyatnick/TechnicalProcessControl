@@ -10,12 +10,12 @@ namespace TechnicalProcessControl.BLL.Interfaces
     public interface IReportService
     {
         string CreateTemplateTechProcess001(DrawingsDTO drawingsDTO, TechProcess001DTO techProcess001OldDTO = null);
-        bool UpdateTemplateTechProcess001(DrawingsDTO drawingsDTO);
+        string UpdateTemplateTechProcess001(DrawingsDTO drawingsDTO);
 
-        bool CreateTemplateTechProcess002(DrawingsDTO drawingsDTO);
-        bool UpdateTemplateTechProcess002(DrawingsDTO drawingsDTO);
+        string CreateTemplateTechProcess002(DrawingsDTO drawingsDTO);
+        string UpdateTemplateTechProcess002(DrawingsDTO drawingsDTO);
 
-        bool CreateTemplateTechProcess003(DrawingsDTO drawingsDTO, List<DrawingsDTO> drawingsListDTO);
+        string CreateTemplateTechProcess003(DrawingsDTO drawingsDTO, List<DrawingsDTO> drawingsListDTO, TechProcess003DTO techProcess003OldDTO = null);
 
 
         string TechProcesNameToStr(long? techProcessName);

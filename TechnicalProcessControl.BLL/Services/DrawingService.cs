@@ -226,7 +226,7 @@ namespace TechnicalProcessControl.BLL.Services
                           from pdrw in pdrww.DefaultIfEmpty()
                           join drp in drawing.GetAll() on pdrw.DrawingId equals drp.Id into drpp
                           from drp in drpp.DefaultIfEmpty()
-                          where tcp001.ParentId == null
+                          where tcp001.ParentId == null && tcp002.ParentId == null && tcp003.ParentId == null && tcp004.ParentId == null && tcp005.ParentId == null
 
                           select new DrawingsDTO
                           {
@@ -238,7 +238,8 @@ namespace TechnicalProcessControl.BLL.Services
                               Quantity = drw.Quantity,
                               QuantityL = drw.QuantityL,
                               QuantityR = drw.QuantityL,
-                              Number = dr.RevisionId == null ? dr.Number : dr.Number + "_" + rev.Symbol,
+                               NumberWithRevisionName = dr.RevisionId == null ? dr.Number : dr.Number + "_" + rev.Symbol,
+                              Number = dr.Number,
                               RevisionName = rev.Symbol,
                               TH = dr.TH,
                               L = dr.L,
@@ -469,7 +470,19 @@ namespace TechnicalProcessControl.BLL.Services
 
         public DrawingDTO GetDrawingById(int drawingId)
         {
-            return mapper.Map<Drawing, DrawingDTO>(drawing.GetAll().First(srt => srt.Id == drawingId));
+            var drawingDTO = mapper.Map<Drawing, DrawingDTO>(drawing.GetAll().First(srt => srt.Id == drawingId));
+            if (drawingDTO != null)
+            {
+                if (drawingDTO.RevisionId != null)
+                {
+                    drawingDTO.RevisionName = mapper.Map<Revisions, RevisionsDTO>(revisions.GetAll().FirstOrDefault(bdsm => bdsm.Id == drawingDTO.RevisionId)).Symbol;
+                    if (drawingDTO.RevisionName != null)
+                        drawingDTO.FullName = drawingDTO.Number + "_" + drawingDTO.RevisionName;
+                    else
+                        drawingDTO.FullName = drawingDTO.Number;
+                }
+            }
+            return drawingDTO;
         }
 
 
@@ -547,7 +560,17 @@ namespace TechnicalProcessControl.BLL.Services
         public TechProcess001DTO GetTechProcess001ByDrawingId(int drawingId)
         {
             var techProcess = mapper.Map<TechProcess001, TechProcess001DTO>(techProcess001.GetAll().FirstOrDefault(bdsm => bdsm.DrawingId == drawingId && bdsm.ParentId == null));
-
+            if (techProcess != null)
+            {
+                if (techProcess.RevisionId != null)
+                {
+                    techProcess.RivisionName = mapper.Map<Revisions, RevisionsDTO>(revisions.GetAll().FirstOrDefault(bdsm => bdsm.Id == techProcess.RevisionId)).Symbol;
+                    if (techProcess.RivisionName != null)
+                        techProcess.TechProcessFullName = techProcess.TechProcessName.ToString() + "_" + techProcess.RivisionName;
+                    else
+                        techProcess.TechProcessFullName = techProcess.TechProcessName.ToString();
+                }
+            }
             return techProcess;
         }
         public TechProcess002DTO GetTechProcess002ByDrawingId(int drawingId)
@@ -556,7 +579,21 @@ namespace TechnicalProcessControl.BLL.Services
         }
         public TechProcess003DTO GetTechProcess003ByDrawingId(int drawingId)
         {
-            return mapper.Map<TechProcess003, TechProcess003DTO>(techProcess003.GetAll().FirstOrDefault(bdsm => bdsm.DrawingId == drawingId && bdsm.ParentId == null));
+            var techProcess = mapper.Map<TechProcess003, TechProcess003DTO>(techProcess003.GetAll().FirstOrDefault(bdsm => bdsm.DrawingId == drawingId && bdsm.ParentId == null));
+            if (techProcess != null)
+            {
+                if (techProcess.RevisionId != null)
+                {
+                    techProcess.RivisionName = mapper.Map<Revisions, RevisionsDTO>(revisions.GetAll().FirstOrDefault(bdsm => bdsm.Id == techProcess.RevisionId)).Symbol;
+                    if (techProcess.RivisionName != null)
+                        techProcess.TechProcessFullName = techProcess.TechProcessName.ToString() + "_" + techProcess.RivisionName;
+                    else
+                        techProcess.TechProcessFullName = techProcess.TechProcessName.ToString();
+                }
+            }
+            return techProcess;
+
+            //return mapper.Map<TechProcess003, TechProcess003DTO>(techProcess003.GetAll().FirstOrDefault(bdsm => bdsm.DrawingId == drawingId && bdsm.ParentId == null));
         }
         public TechProcess004DTO GetTechProcess004ByDrawingId(int drawingId)
         {

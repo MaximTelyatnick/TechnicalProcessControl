@@ -1005,7 +1005,7 @@
             this.drawingNumberTreeCol.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.drawingNumberTreeCol.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.drawingNumberTreeCol.Caption = "Номер чертежа";
-            this.drawingNumberTreeCol.FieldName = "Number";
+            this.drawingNumberTreeCol.FieldName = "NumberWithRevisionName";
             this.drawingNumberTreeCol.Name = "drawingNumberTreeCol";
             this.drawingNumberTreeCol.OptionsColumn.AllowEdit = false;
             this.drawingNumberTreeCol.OptionsColumn.AllowFocus = false;
@@ -1232,7 +1232,7 @@
             this.techProcessTwooTreeCol.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.techProcessTwooTreeCol.Caption = "Механическая обработка";
             this.techProcessTwooTreeCol.ColumnEdit = this.techProcess002Repository;
-            this.techProcessTwooTreeCol.FieldName = "TechProcess002FullName";
+            this.techProcessTwooTreeCol.FieldName = "TechProcess002Name";
             this.techProcessTwooTreeCol.Name = "techProcessTwooTreeCol";
             this.techProcessTwooTreeCol.Visible = true;
             this.techProcessTwooTreeCol.VisibleIndex = 13;
@@ -1290,7 +1290,7 @@
             this.techProcessThreeTreeCol.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.techProcessThreeTreeCol.Caption = "Сборка с использованием сварки";
             this.techProcessThreeTreeCol.ColumnEdit = this.techProcess003Repository;
-            this.techProcessThreeTreeCol.FieldName = "TechProcess003FullName";
+            this.techProcessThreeTreeCol.FieldName = "TechProcess003Name";
             this.techProcessThreeTreeCol.Name = "techProcessThreeTreeCol";
             this.techProcessThreeTreeCol.Visible = true;
             this.techProcessThreeTreeCol.VisibleIndex = 15;
@@ -1349,7 +1349,7 @@
             this.techProcessFourTreeCol.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.techProcessFourTreeCol.Caption = "Общая сборка";
             this.techProcessFourTreeCol.ColumnEdit = this.techProcess004Repository;
-            this.techProcessFourTreeCol.FieldName = "TechProcess004FullName";
+            this.techProcessFourTreeCol.FieldName = "TechProcess004Name";
             this.techProcessFourTreeCol.Name = "techProcessFourTreeCol";
             this.techProcessFourTreeCol.Visible = true;
             this.techProcessFourTreeCol.VisibleIndex = 17;
@@ -1408,7 +1408,7 @@
             this.techProcessFiveTreeCol.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.techProcessFiveTreeCol.Caption = "Подготовка поверхности и окраска";
             this.techProcessFiveTreeCol.ColumnEdit = this.techProcess005Repository;
-            this.techProcessFiveTreeCol.FieldName = "TechProcess005FullName";
+            this.techProcessFiveTreeCol.FieldName = "TechProcess005Name";
             this.techProcessFiveTreeCol.Name = "techProcessFiveTreeCol";
             this.techProcessFiveTreeCol.Visible = true;
             this.techProcessFiveTreeCol.VisibleIndex = 19;

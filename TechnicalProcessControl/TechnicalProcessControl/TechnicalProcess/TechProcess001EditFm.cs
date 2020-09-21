@@ -51,18 +51,10 @@ namespace TechnicalProcessControl
             this.drawingsDTO = drawingsDTO;
             techProcessBS.DataSource = Item = techProcess001DTO;
 
-
             this.techProcess001DTO = techProcess001DTO;
             this.techProcess001OldDTO = techProcess001OldDTO;
 
-
-            //techProcess001DTO.TechProcessFullName = drawingsDTO.Number + "_TP" + techProcess001DTO.TechProcessName.ToString();
-
-
-
-
-
-            drawingNumberEdit.DataBindings.Add("EditValue", techProcessBS, "DrawingNumber", true, DataSourceUpdateMode.OnPropertyChanged);
+            drawingNumberEdit.DataBindings.Add("EditValue", techProcessBS, "DrawingNumberWithRevision", true, DataSourceUpdateMode.OnPropertyChanged);
             techProcessNumber001Edit.DataBindings.Add("EditValue", techProcessBS, "TechProcessName", true, DataSourceUpdateMode.OnPropertyChanged);
             revisionEdit.DataBindings.Add("EditValue", techProcessBS, "RevisionId", true, DataSourceUpdateMode.OnPropertyChanged);
             drawingEdit.DataBindings.Add("EditValue", techProcessBS, "DrawingId", true, DataSourceUpdateMode.OnPropertyChanged);
@@ -86,7 +78,7 @@ namespace TechnicalProcessControl
 
             if (operation == Utils.Operation.Add)
             {
-                ((TechProcess001DTO)Item).TechProcessName = drawingService.GetLastTechProcess001();
+                ((TechProcess001DTO)Item).TechProcessName = drawingService.GetLastTechProcess003();
             }
             else if(operation == Utils.Operation.Update)
             {
@@ -162,9 +154,6 @@ namespace TechnicalProcessControl
                                 {
                                     string return_Id = testFm.Return();
                                     ((TechProcess001DTO)Item).TechProcessFullName = return_Id;
-
-
-
                                 }
                             }
                         }
@@ -180,11 +169,8 @@ namespace TechnicalProcessControl
             }
             else if (operation == Utils.Operation.Custom)
             {
-               
-
                 try
                 {
-
                     ((TechProcess001DTO)Item).TechProcessPath = @"C:\TechProcess\" + ((TechProcess001DTO)Item).TechProcessFullName + ".xls";
                     ((TechProcess001DTO)Item).Id = drawingService.TechProcess001Create(((TechProcess001DTO)Item));
 
@@ -222,55 +208,6 @@ namespace TechnicalProcessControl
                 }
             }
             return false;
-
-
-
-                //if (operation == Utils.Operation.Add)
-                //{
-                //    drawingService = Program.kernel.Get<IDrawingService>();
-
-                //    ((DrawingDTO)Item).Id = drawingService.DrawingCreate((DrawingDTO)Item);
-
-                //    var createList = drawingScanList.Select(s => new DrawingScanDTO()
-                //    {
-                //        Id = 0,
-                //        DrawingId = ((DrawingDTO)Item).Id,
-                //        FileName = s.FileName,
-                //        Scan = s.Scan,
-                //        Status = 1
-                //    }).ToList();
-
-                //    foreach (var item in createList)
-                //    {
-                //        drawingService.DrawingScanCreate(item);
-                //    }
-
-                //    return true;
-                //}
-                //else
-                //{
-                //    drawingService = Program.kernel.Get<IDrawingService>();
-                //    drawingService.DrawingUpdate((DrawingDTO)Item);
-
-                //    var createList = drawingScanList.Where(bdsm => bdsm.Id == 0).Select(s => new DrawingScanDTO()
-                //    {
-
-                //        DrawingId = ((DrawingDTO)Item).Id,
-                //        FileName = s.FileName,
-                //        Scan = s.Scan,
-                //        Status = 1
-                //    }).ToList();
-
-                //    foreach (var item in createList)
-                //    {
-                //        drawingService.DrawingScanCreate(item);
-                //    }
-
-                //    return true;
-                //}
-            
-            
-
         }
 
 
@@ -300,43 +237,28 @@ namespace TechnicalProcessControl
             return ((TechProcess001DTO)Item);
         }
 
-        private void labelControl5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TechProcess001EditFm_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void drawingNumberEdit_TextChanged(object sender, EventArgs e)
         {
             if (revisionEdit.Text != "")
-                techProcessFullName.EditValue = ((TechProcess001DTO)Item).DrawingNumber + "_TP" + ((TechProcess001DTO)Item).TechProcessName + "_" + revisionEdit.Text;
+                techProcessFullName.EditValue = ((TechProcess001DTO)Item).DrawingNumberWithRevision + "_TP" + ((TechProcess001DTO)Item).TechProcessName + "_" + revisionEdit.Text;
             else
-                techProcessFullName.EditValue = ((TechProcess001DTO)Item).DrawingNumber + "_TP" + ((TechProcess001DTO)Item).TechProcessName;
+                techProcessFullName.EditValue = ((TechProcess001DTO)Item).DrawingNumberWithRevision + "_TP" + ((TechProcess001DTO)Item).TechProcessName;
         }
 
         private void techProcessNumber001Edit_TextChanged(object sender, EventArgs e)
         {
             if (revisionEdit.Text != "")
-                techProcessFullName.EditValue = ((TechProcess001DTO)Item).DrawingNumber + "_TP" + ((TechProcess001DTO)Item).TechProcessName + "_" + revisionEdit.Text;
+                techProcessFullName.EditValue = ((TechProcess001DTO)Item).DrawingNumberWithRevision + "_TP" + ((TechProcess001DTO)Item).TechProcessName + "_" + revisionEdit.Text;
             else
-                techProcessFullName.EditValue = ((TechProcess001DTO)Item).DrawingNumber + "_TP" + ((TechProcess001DTO)Item).TechProcessName;
-        }
-
-        private void revisionEdit_EditValueChanged(object sender, EventArgs e)
-        {
-            
+                techProcessFullName.EditValue = ((TechProcess001DTO)Item).DrawingNumberWithRevision + "_TP" + ((TechProcess001DTO)Item).TechProcessName;
         }
 
         private void revisionEdit_TextChanged(object sender, EventArgs e)
         {
             if (revisionEdit.Text != "")
-                techProcessFullName.EditValue = ((TechProcess001DTO)Item).DrawingNumber + "_TP" + ((TechProcess001DTO)Item).TechProcessName + "_" + revisionEdit.Text;
+                techProcessFullName.EditValue = ((TechProcess001DTO)Item).DrawingNumberWithRevision + "_TP" + ((TechProcess001DTO)Item).TechProcessName + "_" + revisionEdit.Text;
             else
-                techProcessFullName.EditValue = ((TechProcess001DTO)Item).DrawingNumber + "_TP" + ((TechProcess001DTO)Item).TechProcessName;
+                techProcessFullName.EditValue = ((TechProcess001DTO)Item).DrawingNumberWithRevision + "_TP" + ((TechProcess001DTO)Item).TechProcessName;
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -350,50 +272,6 @@ namespace TechnicalProcessControl
         {
             switch (e.Button.Index)
             {
-                //case 1: //Додати
-                //    {
-                //        using (MaterialEditFm materialEditFm = new MaterialEditFm(Utils.Operation.Add, new MaterialsDTO()))
-                //        {
-                //            if (materialEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                //            {
-                //                MaterialsDTO return_Id = materialEditFm.Return();
-                //                materialsBS.DataSource = journalService.GetMaterials();
-                //                materialEdit.EditValue = return_Id.Id;
-                //            }
-                //        }
-                //        break;
-                //    }
-                //case 2://Редагувати
-                //    {
-                //        if (materialEdit.EditValue == DBNull.Value)
-                //            return;
-
-                //        using (MaterialEditFm materialEditFm = new MaterialEditFm(Utils.Operation.Update, (MaterialsDTO)materialEdit.GetSelectedDataRow()))
-                //        {
-                //            if (materialEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                //            {
-                //                MaterialsDTO return_Id = materialEditFm.Return();
-                //                materialsBS.DataSource = journalService.GetMaterials();
-                //                materialEdit.EditValue = return_Id.Id;
-                //            }
-                //        }
-                //        break;
-                //    }
-                //case 3://Видалити
-                //    {
-                //        if (materialEdit.EditValue == DBNull.Value)
-                //            return;
-
-                //        if (MessageBox.Show("Удалить?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                //        {
-                //            journalService.MaterialsDelete(((MaterialsDTO)materialEdit.GetSelectedDataRow()).Id);
-                //            materialEdit.Properties.DataSource = journalService.GetDetails();
-                //            materialEdit.EditValue = null;
-                //            materialEdit.Properties.NullText = "Немає данних";
-                //        }
-
-                //        break;
-                //    }
                 case 1://Очистити
                     {
                         revisionEdit.EditValue = null;
@@ -401,26 +279,6 @@ namespace TechnicalProcessControl
                         break;
                     }
             }
-        }
-
-        private void drawingEdit_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panelControl1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

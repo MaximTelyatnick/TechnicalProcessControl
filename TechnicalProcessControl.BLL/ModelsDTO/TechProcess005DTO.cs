@@ -12,6 +12,7 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public int Id { get; set; }
         public int? DrawingId { get; set; }
         public string DrawingNumber { get; set; }
+        public string DrawingNumberWithRevision { get; set; }
         public long TechProcessName { get; set; }
         public string TechProcessPath { get; set; }
         public decimal? LaborIntensity001 { get; set; }
