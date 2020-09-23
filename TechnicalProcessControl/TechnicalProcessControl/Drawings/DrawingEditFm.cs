@@ -33,6 +33,7 @@ namespace TechnicalProcessControl.Drawings
         private BindingSource drawingScanBS = new BindingSource();
         private BindingSource revisionBS = new BindingSource();
 
+        private UsersDTO usersDTO;
         private DrawingDTO drawingRevisionDTO = new DrawingDTO();
         private List<DrawingScanDTO> drawingScanList = new List<DrawingScanDTO>();
         private List<DrawingScanDTO> drawingScanDeleteList = new List<DrawingScanDTO>();
@@ -47,9 +48,11 @@ namespace TechnicalProcessControl.Drawings
             }
         }
 
-        public DrawingEditFm(DrawingDTO model, Utils.Operation operation)
+        public DrawingEditFm(UsersDTO usersDTo,DrawingDTO model, Utils.Operation operation)
         {
             InitializeComponent();
+
+            this.usersDTO = usersDTO;
 
             drawingService = Program.kernel.Get<IDrawingService>();
             journalService = Program.kernel.Get<IJournalService>();
@@ -109,6 +112,11 @@ namespace TechnicalProcessControl.Drawings
             }
             else if(operation == Utils.Operation.Update)
             {
+                if (((DrawingDTO)Item).ParentId != null)
+                    saveBtn.Enabled = false;
+                else
+                    saveBtn.Enabled = true;
+
                 LoadScanDrawing();
             }
             else if (operation == Utils.Operation.Custom)
@@ -410,12 +418,17 @@ namespace TechnicalProcessControl.Drawings
                                         addTechProcessRevisionDTO.RevisionId = techProcess001.RevisionId;
                                         addTechProcessRevisionDTO.TechProcessName = techProcess001.TechProcessName;
                                         if (((DrawingDTO)Item).RevisionId != null)
-                                            addTechProcessRevisionDTO.DrawingNumber = ((DrawingDTO)Item).Number + "_" + revisionEdit.Text;
-                                        else
+                                        {
+                                            addTechProcessRevisionDTO.DrawingNumberWithRevision = ((DrawingDTO)Item).Number + "_" + revisionEdit.Text;
                                             addTechProcessRevisionDTO.DrawingNumber = ((DrawingDTO)Item).Number;
+                                        }
+                                        else
+                                        {
+                                            addTechProcessRevisionDTO.DrawingNumber = ((DrawingDTO)Item).Number;
+                                        }
                                         
 
-                                        using (TechProcess001EditFm techProcess001EditFm = new TechProcess001EditFm(Utils.Operation.Custom, addTechProcessRevisionDTO, drawingsDTO, techProcess001))
+                                        using (TechProcess001EditFm techProcess001EditFm = new TechProcess001EditFm(usersDTO,Utils.Operation.Custom, addTechProcessRevisionDTO, drawingsDTO, techProcess001))
                                         {
                                             if (techProcess001EditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                                             {
@@ -463,9 +476,14 @@ namespace TechnicalProcessControl.Drawings
                                         addTechProcessRevisionDTO.RevisionId = techProcess003.RevisionId;
                                         addTechProcessRevisionDTO.TechProcessName = techProcess003.TechProcessName;
                                         if (((DrawingDTO)Item).RevisionId != null)
-                                            addTechProcessRevisionDTO.DrawingNumber = ((DrawingDTO)Item).Number + "_" + revisionEdit.Text;
-                                        else
+                                        {
+                                            addTechProcessRevisionDTO.DrawingNumberWithRevision = ((DrawingDTO)Item).Number + "_" + revisionEdit.Text;
                                             addTechProcessRevisionDTO.DrawingNumber = ((DrawingDTO)Item).Number;
+                                        }
+                                        else
+                                        {
+                                            addTechProcessRevisionDTO.DrawingNumber = ((DrawingDTO)Item).Number;
+                                        }
 
 
                                         using (TechProcess003EditFm techProcess003EditFm = new TechProcess003EditFm(Utils.Operation.Custom, addTechProcessRevisionDTO, drawingsDTO, techProcess003))
@@ -664,8 +682,11 @@ namespace TechnicalProcessControl.Drawings
         private void dxValidationProvider_ValidationSucceeded(object sender, DevExpress.XtraEditors.DXErrorProvider.ValidationSucceededEventArgs e)
         {
             bool isValidate = (dxValidationProvider.GetInvalidControls().Count == 0);
-            this.saveBtn.Enabled = isValidate;
-            this.validateLbl.Visible = !isValidate;
+            if (((DrawingDTO)Item).ParentId == null)
+            {
+                this.saveBtn.Enabled = isValidate;
+                this.validateLbl.Visible = !isValidate;
+            }
         }
 
         private bool ControlValidation()

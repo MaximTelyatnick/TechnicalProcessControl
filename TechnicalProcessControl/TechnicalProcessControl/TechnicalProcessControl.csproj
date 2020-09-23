@@ -153,7 +153,7 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="TechnicalProcessControl.BLL">
-      <HintPath>..\..\TechnicalProcessControl.BLL\bin\Debug\TechnicalProcessControl.BLL.dll</HintPath>
+      <HintPath>..\..\TechnicalProcessControl.BLL\obj\Debug\TechnicalProcessControl.BLL.dll</HintPath>
     </Reference>
     <Reference Include="TechnicalProcessControl.DAL">
       <HintPath>..\..\TechnicalProcessControl.DAL\bin\Debug\TechnicalProcessControl.DAL.dll</HintPath>
@@ -162,18 +162,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddUserTelegramIdFm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddUserTelegramIdFm.Designer.cs">
-      <DependentUpon>AddUserTelegramIdFm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AuthTelegramUserFm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AuthTelegramUserFm.Designer.cs">
-      <DependentUpon>AuthTelegramUserFm.cs</DependentUpon>
-    </Compile>
     <Compile Include="AuthUserCodeFm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -185,12 +173,6 @@
     </Compile>
     <Compile Include="AuthUserPhoneFm.Designer.cs">
       <DependentUpon>AuthUserPhoneFm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ContractorsEditFm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ContractorsEditFm.Designer.cs">
-      <DependentUpon>ContractorsEditFm.cs</DependentUpon>
     </Compile>
     <Compile Include="Drawings\DrawingEditFm.cs">
       <SubType>Form</SubType>
@@ -264,6 +246,18 @@
     <Compile Include="Journals\ScanFm.Designer.cs">
       <DependentUpon>ScanFm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TestExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestExcel.Designer.cs">
+      <DependentUpon>TestExcel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\LoginFm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\LoginFm.Designer.cs">
+      <DependentUpon>LoginFm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainMenuFm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -283,23 +277,11 @@
     <Compile Include="SendMessageFm.Designer.cs">
       <DependentUpon>SendMessageFm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MessagesFm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MessagesFm.Designer.cs">
-      <DependentUpon>MessagesFm.cs</DependentUpon>
-    </Compile>
     <Compile Include="OrderFm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="OrderFm.Designer.cs">
       <DependentUpon>OrderFm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="OrganisationEditFm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="OrganisationEditFm.Designer.cs">
-      <DependentUpon>OrganisationEditFm.cs</DependentUpon>
     </Compile>
     <Compile Include="ProductionFm.cs">
       <SubType>Form</SubType>
@@ -309,18 +291,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShipmentRoadEditFm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ShipmentRoadEditFm.Designer.cs">
-      <DependentUpon>ShipmentRoadEditFm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ShipmentRoadFm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ShipmentRoadFm.Designer.cs">
-      <DependentUpon>ShipmentRoadFm.cs</DependentUpon>
-    </Compile>
     <Compile Include="TechnicalProcess\TechProcess001EditFm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -358,20 +328,11 @@
     <Compile Include="WaitFm.Designer.cs">
       <DependentUpon>WaitFm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AddUserTelegramIdFm.resx">
-      <DependentUpon>AddUserTelegramIdFm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AuthTelegramUserFm.resx">
-      <DependentUpon>AuthTelegramUserFm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AuthUserCodeFm.resx">
       <DependentUpon>AuthUserCodeFm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AuthUserPhoneFm.resx">
       <DependentUpon>AuthUserPhoneFm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ContractorsEditFm.resx">
-      <DependentUpon>ContractorsEditFm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Drawings\DrawingEditFm.resx">
       <DependentUpon>DrawingEditFm.cs</DependentUpon>
@@ -409,6 +370,12 @@
     <EmbeddedResource Include="Journals\ScanFm.resx">
       <DependentUpon>ScanFm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TestExcel.resx">
+      <DependentUpon>TestExcel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\LoginFm.resx">
+      <DependentUpon>LoginFm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainMenuFm.resx">
       <DependentUpon>MainMenuFm.cs</DependentUpon>
     </EmbeddedResource>
@@ -419,14 +386,8 @@
     <EmbeddedResource Include="SendMessageFm.resx">
       <DependentUpon>SendMessageFm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MessagesFm.resx">
-      <DependentUpon>MessagesFm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="OrderFm.resx">
       <DependentUpon>OrderFm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OrganisationEditFm.resx">
-      <DependentUpon>OrganisationEditFm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProductionFm.resx">
       <DependentUpon>ProductionFm.cs</DependentUpon>
@@ -441,12 +402,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="ShipmentRoadEditFm.resx">
-      <DependentUpon>ShipmentRoadEditFm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ShipmentRoadFm.resx">
-      <DependentUpon>ShipmentRoadFm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="TechnicalProcess\TechProcess001EditFm.resx">
       <DependentUpon>TechProcess001EditFm.cs</DependentUpon>
     </EmbeddedResource>

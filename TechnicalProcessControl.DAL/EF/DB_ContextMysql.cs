@@ -25,7 +25,7 @@ namespace TechnicalProcessControl.DAL.EF
         //public DbSet<City> City { get; set; }
 
         //public DbSet<City> City { get; set; }
-        public DbSet<UsersTelegram> UsersTelegram { get; set; }
+        public DbSet<Users> UsersTelegram { get; set; }
         public DbSet<TelegramBot> TelegramBot { get; set; }
         public DbSet<TextTelegram> TextTelegram { get; set; }
         public DbSet<Production> Production { get; set; }
@@ -34,7 +34,7 @@ namespace TechnicalProcessControl.DAL.EF
         public DbSet<Contractors> Contractors { get; set; }
         public DbSet<City> City { get; set; }
 
-        public DbSet<Rules> Rules { get; set; }
+        public DbSet<UserRole> Rules { get; set; }
 
 
 

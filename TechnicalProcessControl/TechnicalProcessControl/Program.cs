@@ -16,7 +16,8 @@ namespace TechnicalProcessControl
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainMenuFm());
+            //Application.Run(new MainMenuFm());
+            Application.Run(new LoginFm());
         }
     }
 }

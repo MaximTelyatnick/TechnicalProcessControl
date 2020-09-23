@@ -34,6 +34,7 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public DateTime? CreateDate { get; set; }
         public int? ParentId { get; set; }
         public string Note { get; set; }
+        public int? ScanId { get; set; }
 
         public object Clone()
         {

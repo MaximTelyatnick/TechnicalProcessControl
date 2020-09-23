@@ -275,9 +275,9 @@
             this.labelControl9.Location = new System.Drawing.Point(184, 59);
             this.labelControl9.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(22, 16);
+            this.labelControl9.Size = new System.Drawing.Size(66, 16);
             this.labelControl9.TabIndex = 38;
-            this.labelControl9.Text = "Тип";
+            this.labelControl9.Text = "Комплект";
             // 
             // labelControl3
             // 
@@ -509,7 +509,7 @@
             this.pictureEdit.Name = "pictureEdit";
             this.pictureEdit.Properties.AccessibleDescription = "";
             this.pictureEdit.Properties.AllowDisposeImage = true;
-            this.pictureEdit.Properties.NullText = "Не додано скан ";
+            this.pictureEdit.Properties.NullText = "Не добавлено файл";
             this.pictureEdit.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
             this.pictureEdit.Size = new System.Drawing.Size(400, 492);
@@ -762,9 +762,9 @@
             this.validateLbl.Appearance.Options.UseForeColor = true;
             this.validateLbl.Location = new System.Drawing.Point(15, 524);
             this.validateLbl.Name = "validateLbl";
-            this.validateLbl.Size = new System.Drawing.Size(357, 14);
+            this.validateLbl.Size = new System.Drawing.Size(201, 14);
             this.validateLbl.TabIndex = 119;
-            this.validateLbl.Text = "Невозможно сохранить чертеж, не все поля заполнены";
+            this.validateLbl.Text = "Невозможно сохранить чертеж";
             // 
             // DrawingEditFm
             // 

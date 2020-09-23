@@ -7,24 +7,16 @@ using System.Timers;
 using TechnicalProcessControl.BLL.Interfaces;
 using TechnicalProcessControl.Journals;
 using TechnicalProcessControl.Drawings;
+using TechnicalProcessControl.BLL.ModelsDTO;
+using TechnicalProcessControl;
 
 namespace TechnicalProcessControl
 {
     public partial class MainMenuFm : DevExpress.XtraEditors.XtraForm
     {
-        private IControlPanelService controlPanelService;
-        private BackgroundWorker messageWorker = new BackgroundWorker();
+        private UsersDTO usersDTO;
 
-
-        private int telegramApiId = 1090023;
-        private string telegramApiHash = "3651d2c505bed6f082a7314219c848f6";
-        private string userPhone;
-        private string userCode;
-        private string hash;
-        bool isValidate;
-        private System.Timers.Timer messageCheckTimer;
-
-        public MainMenuFm()
+        public MainMenuFm(UsersDTO usersDTO)
         {
             InitializeComponent();
 
@@ -33,8 +25,10 @@ namespace TechnicalProcessControl
             //messageWorker.DoWork += messageWorker_DoWork;
 
             //controlPanelService = Program.kernel.Get<IControlPanelService>();
+            this.usersDTO = usersDTO;
             documentManager.MdiParent = this;
             documentManager.View = new TabbedView();
+            userBtn.Caption = usersDTO.Name;
 
 
             //telegram user auth
@@ -45,16 +39,7 @@ namespace TechnicalProcessControl
 
         public void CreateTimer(int seconds)
         {
-            if (messageCheckTimer == null)
-            {
-                messageCheckTimer = new System.Timers.Timer();
-                messageCheckTimer.AutoReset = false; // Чтобы операции удаления не перекрывались
-                messageCheckTimer.Interval = 1000;
-                //messageCheckTimer.Elapsed += OnTimedEvent;
-                messageCheckTimer.Enabled = true;
-
-                messageCheckTimer.Start();
-            }
+           
         }
 
         //public async void OnTimedEvent(Object source, ElapsedEventArgs e)
@@ -84,7 +69,7 @@ namespace TechnicalProcessControl
 
         private void contractorBtn_ElementClick(object sender, DevExpress.XtraBars.Navigation.NavElementEventArgs e)
         {
-            StructuraFm contractorsFm = new StructuraFm();
+            StructuraFm contractorsFm = new StructuraFm(usersDTO);
             contractorsFm.Text = "Структура";
             contractorsFm.MdiParent = this;
             contractorsFm.Show();
@@ -100,10 +85,10 @@ namespace TechnicalProcessControl
 
         private void navButton2_ElementClick(object sender, DevExpress.XtraBars.Navigation.NavElementEventArgs e)
         {
-            //TestFm testFm = new TestFm();
-            //testFm.Text = "Тестовая форма";
-            //testFm.MdiParent = this;
-            //testFm.Show();
+            TestExcel testFm = new TestExcel();
+            testFm.Text = "Тестовая форма";
+            testFm.MdiParent = this;
+            testFm.Show();
         }
 
         void messageWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -113,10 +98,6 @@ namespace TechnicalProcessControl
 
         private void shipmentRoadBtn_ElementClick(object sender, DevExpress.XtraBars.Navigation.NavElementEventArgs e)
         {
-            ShipmentRoadFm shipmentRoadFm = new ShipmentRoadFm();
-            shipmentRoadFm.Text = "Маршруты";
-            shipmentRoadFm.MdiParent = this;
-            shipmentRoadFm.Show();
         }
 
         private void msgBtn_ElementClick(object sender, DevExpress.XtraBars.Navigation.NavElementEventArgs e)
@@ -152,7 +133,7 @@ namespace TechnicalProcessControl
                     detailFm.Show();
                     break;
                 case "drawingItem":
-                    DrawingFm drawingFm = new DrawingFm();
+                    DrawingFm drawingFm = new DrawingFm(usersDTO);
                     drawingFm.Text = "Чертежи";
                     drawingFm.MdiParent = this;
                     drawingFm.Show();

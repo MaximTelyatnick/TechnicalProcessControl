@@ -24,6 +24,7 @@ namespace TechnicalProcessControl
         private BindingSource drawingBS = new BindingSource();
         private BindingSource revisionBS = new BindingSource();
         private BindingSource techProcessBS = new BindingSource();
+        public UsersDTO usersDTO;
 
         public DrawingsDTO drawingsDTO;
         public TechProcess001DTO techProcess001DTO;
@@ -41,7 +42,7 @@ namespace TechnicalProcessControl
         }
 
 
-        public TechProcess001EditFm(Utils.Operation operation, TechProcess001DTO techProcess001DTO, DrawingsDTO drawingsDTO, TechProcess001DTO techProcess001OldDTO = null)
+        public TechProcess001EditFm(UsersDTO usersDTO, Utils.Operation operation, TechProcess001DTO techProcess001DTO, DrawingsDTO drawingsDTO, TechProcess001DTO techProcess001OldDTO = null)
         {
             InitializeComponent();
 
@@ -49,6 +50,7 @@ namespace TechnicalProcessControl
 
             this.operation = operation;
             this.drawingsDTO = drawingsDTO;
+            this.usersDTO = usersDTO;
             techProcessBS.DataSource = Item = techProcess001DTO;
 
             this.techProcess001DTO = techProcess001DTO;
@@ -78,7 +80,7 @@ namespace TechnicalProcessControl
 
             if (operation == Utils.Operation.Add)
             {
-                ((TechProcess001DTO)Item).TechProcessName = drawingService.GetLastTechProcess003();
+                ((TechProcess001DTO)Item).TechProcessName = drawingService.GetLastTechProcess001();
             }
             else if(operation == Utils.Operation.Update)
             {
@@ -145,7 +147,7 @@ namespace TechnicalProcessControl
 
                     if (((TechProcess001DTO)Item).Id > 0)
                     {
-                        string path = reportService.CreateTemplateTechProcess001(drawingsDTO);
+                        string path = reportService.CreateTemplateTechProcess001(usersDTO,drawingsDTO);
                         if (path != "")
                         {
                             using (TestFm testFm = new TestFm(path))
@@ -182,7 +184,7 @@ namespace TechnicalProcessControl
                         techProcess001OldDTO.ParentId = ((TechProcess001DTO)Item).Id;
                         drawingService.TechProcess001Update(techProcess001OldDTO);
 
-                        string path = reportService.CreateTemplateTechProcess001(drawingsDTO, techProcess001OldDTO);
+                        string path = reportService.CreateTemplateTechProcess001(usersDTO,drawingsDTO, techProcess001OldDTO);
                         if (path != "")
                         {
                             using (TestFm testFm = new TestFm(path))

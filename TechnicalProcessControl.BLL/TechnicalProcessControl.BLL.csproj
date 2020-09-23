@@ -38,9 +38,8 @@
       <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SpreadsheetGear, Version=6.0.3.151, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\SpreadsheetGear.dll</HintPath>
+    <Reference Include="SpreadsheetGear">
+      <HintPath>..\TechnicalProcessControl\packages\SpreadsheetGear.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -60,12 +59,11 @@
     <Compile Include="Infrastructure\ObjectBase.cs" />
     <Compile Include="Infrastructure\ServiceModule.cs" />
     <Compile Include="Infrastructure\Utils.cs" />
-    <Compile Include="Interfaces\IBotService.cs" />
     <Compile Include="Interfaces\IControlPanelService.cs" />
     <Compile Include="Interfaces\IDrawingService.cs" />
     <Compile Include="Interfaces\IJournalService.cs" />
-    <Compile Include="Interfaces\IMySqlService.cs" />
     <Compile Include="Interfaces\IReportService.cs" />
+    <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="ModelsDTO\CityDTO.cs" />
     <Compile Include="ModelsDTO\ContractorsDTO.cs" />
     <Compile Include="ModelsDTO\DetailsDTO.cs" />
@@ -81,7 +79,7 @@
     <Compile Include="ModelsDTO\ProductionDTO.cs" />
     <Compile Include="ModelsDTO\RevisionsDTO.cs" />
     <Compile Include="ModelsDTO\RoutesDTO.cs" />
-    <Compile Include="ModelsDTO\RulesDTO.cs" />
+    <Compile Include="ModelsDTO\UserRoleDTO.cs" />
     <Compile Include="ModelsDTO\TechProcess001DTO.cs" />
     <Compile Include="ModelsDTO\TechProcess002DTO.cs" />
     <Compile Include="ModelsDTO\TechProcess004DTO.cs" />
@@ -89,15 +87,14 @@
     <Compile Include="ModelsDTO\TelegramBotDTO.cs" />
     <Compile Include="ModelsDTO\TextTelegramDTO.cs" />
     <Compile Include="ModelsDTO\TypeDTO.cs" />
-    <Compile Include="ModelsDTO\UsersTelegramDTO.cs" />
+    <Compile Include="ModelsDTO\UsersDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\BotService.cs" />
     <Compile Include="Services\ControlPanelService.cs" />
     <Compile Include="Services\DrawingService.cs" />
     <Compile Include="Services\JournalService.cs" />
-    <Compile Include="Services\MySqlService.cs" />
     <Compile Include="ModelsDTO\TechProcess003DTO.cs" />
     <Compile Include="Services\ReportService.cs" />
+    <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

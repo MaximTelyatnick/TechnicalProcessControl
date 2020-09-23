@@ -87,7 +87,7 @@
     <Compile Include="Models\Production.cs" />
     <Compile Include="Models\Revisions.cs" />
     <Compile Include="Models\Routes.cs" />
-    <Compile Include="Models\Rules.cs" />
+    <Compile Include="Models\UserRole.cs" />
     <Compile Include="Models\TechProcess001.cs" />
     <Compile Include="Models\TechProcess002.cs" />
     <Compile Include="Models\TechProcess003.cs" />
@@ -96,7 +96,7 @@
     <Compile Include="Models\TelegramBot.cs" />
     <Compile Include="Models\TextTelegram.cs" />
     <Compile Include="Models\Type.cs" />
-    <Compile Include="Models\UsersTelegram.cs" />
+    <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\RepositoryMySQL.cs" />

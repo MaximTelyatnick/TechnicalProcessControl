@@ -109,7 +109,10 @@ namespace TechnicalProcessControl
 
             workbook = spreadsheetControl.Document;
             workbook.BeginUpdate();
-
+            if(pathToFile == null)
+            {
+                MessageBox.Show("Файл не найден");
+            }
             workbook.LoadDocument(pathToFile, DocumentFormat.Xls);
 
 

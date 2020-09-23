@@ -220,7 +220,6 @@
             this.sendMessageBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("sendMessageBtn.ImageOptions.LargeImage")));
             this.sendMessageBtn.Name = "sendMessageBtn";
             this.sendMessageBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.sendMessageBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.sendMessageBtn_ItemClick);
             // 
             // updateBtn
             // 

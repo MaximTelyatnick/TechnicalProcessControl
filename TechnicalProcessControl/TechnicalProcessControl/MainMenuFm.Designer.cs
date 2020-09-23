@@ -54,7 +54,7 @@
             this.detailItem = new DevExpress.XtraBars.Navigation.TileNavItem();
             this.drawingItem = new DevExpress.XtraBars.Navigation.TileNavItem();
             this.operationNameItem = new DevExpress.XtraBars.Navigation.TileNavItem();
-            this.navButton2 = new DevExpress.XtraBars.Navigation.NavButton();
+            this.userBtn = new DevExpress.XtraBars.Navigation.NavButton();
             this.documentManager = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
             this.tabbedView1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
             this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
@@ -75,7 +75,7 @@
             this.tileNavPane.Buttons.Add(this.contractorBtn);
             this.tileNavPane.Buttons.Add(this.tileNavCategory3);
             this.tileNavPane.Buttons.Add(this.tileNavCategory4);
-            this.tileNavPane.Buttons.Add(this.navButton2);
+            this.tileNavPane.Buttons.Add(this.userBtn);
             // 
             // tileNavCategory1
             // 
@@ -347,12 +347,12 @@
             this.operationNameItem.Tile.Elements.Add(tileItemElement10);
             this.operationNameItem.Tile.Name = "tileBarItem1";
             // 
-            // navButton2
+            // userBtn
             // 
-            this.navButton2.Alignment = DevExpress.XtraBars.Navigation.NavButtonAlignment.Right;
-            this.navButton2.Caption = "Test";
-            this.navButton2.Name = "navButton2";
-            this.navButton2.ElementClick += new DevExpress.XtraBars.Navigation.NavElementClickEventHandler(this.navButton2_ElementClick);
+            this.userBtn.Alignment = DevExpress.XtraBars.Navigation.NavButtonAlignment.Right;
+            this.userBtn.Caption = "UserName";
+            this.userBtn.Name = "userBtn";
+            this.userBtn.ElementClick += new DevExpress.XtraBars.Navigation.NavElementClickEventHandler(this.navButton2_ElementClick);
             // 
             // documentManager
             // 
@@ -405,7 +405,7 @@
         private DevExpress.XtraBars.Navigation.TileNavItem tileNavItem6;
         private DevExpress.XtraBars.Navigation.TileNavItem detailItem;
         private DevExpress.XtraBars.Navigation.TileNavItem drawingItem;
-        private DevExpress.XtraBars.Navigation.NavButton navButton2;
+        private DevExpress.XtraBars.Navigation.NavButton userBtn;
         private DevExpress.XtraBars.Navigation.TileNavItem operationNameItem;
     }
 }

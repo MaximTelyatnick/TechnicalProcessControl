@@ -12,12 +12,11 @@ namespace TerminalMKTelegramBot.Infrastructure
         {
             Bind<IUnitOfWork>().To<UnitOfWork>();
             Bind<IUnitOfWorkMysql>().To<UnitOfWorkMysql>();
-            Bind<IBotService>().To<BotService>();
             Bind<IControlPanelService>().To<ControlPanelService>();
-            Bind<IMySqlService>().To<MySqlService>();
             Bind<IDrawingService>().To<DrawingService>();
             Bind<IReportService>().To<ReportService>();
             Bind<IJournalService>().To<JournalService>();
+            Bind<IUserService>().To<UserService>();
 
         }
     }

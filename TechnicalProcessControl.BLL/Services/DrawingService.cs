@@ -149,7 +149,8 @@ namespace TechnicalProcessControl.BLL.Services
                               Quantity = drw.Quantity,
                               QuantityL = drw.QuantityL,
                               QuantityR = drw.QuantityL,
-                              Number = dr.RevisionId == null ? dr.Number : dr.Number + "-" + rev.Symbol,
+                              Number =  dr.Number,
+                               NumberWithRevisionName = dr.RevisionId == null ? dr.Number : dr.Number + "_" + rev.Symbol,
                               TH = dr.TH,
                               L = dr.L,
                               W = dr.W,
@@ -250,7 +251,6 @@ namespace TechnicalProcessControl.BLL.Services
                               DrawingId = dr.Id,
                               OccurrenceId = drw.OccurrenceId,
                               ReplaceDrawingId = drw.ReplaceDrawingId,
-
                               TechProcess001Id = tcp001.Id,
                               TechProcess002Id = tcp002.Id,
                               TechProcess003Id = tcp003.Id,
@@ -365,6 +365,7 @@ namespace TechnicalProcessControl.BLL.Services
                               TechProcess004Path = tcp004.TechProcessPath,
                               TechProcess005Path = tcp005.TechProcessPath,
                               ScanId = drws.DrawingId > 0 ? 1 : 0,
+                              
                               ParentName = drp.Number != "" ? drp.Number : dr.Number
 
                           }
@@ -384,12 +385,13 @@ namespace TechnicalProcessControl.BLL.Services
                           from mat in matt.DefaultIfEmpty()
                           join rev in revisions.GetAll() on drw.RevisionId equals rev.Id into revv
                           from rev in revv.DefaultIfEmpty()
+                          join drws in drawingScan.GetAll() on drw.Id equals drws.DrawingId into drwss
+                          from drws in drwss.DefaultIfEmpty()
 
                           select new DrawingDTO
                           {
                               Id = drw.Id,
-                              Number = rev.Symbol== null ? drw.Number : (drw.Number+ "_" + rev.Symbol),
-                              //Number =drw.Number,
+                              Number = drw.Number,
                               TypeId = tp.Id,
                               TypeName = tp.TypeName,
                               DetailId = det.Id,
@@ -408,12 +410,13 @@ namespace TechnicalProcessControl.BLL.Services
                               RevisionName = rev.Symbol,
                               CreateDate = drw.CreateDate,
                               ParentId = drw.ParentId,
-                              Note = drw.Note
-                              
+                              Note = drw.Note,
+                              FullName = rev.Symbol == null ? drw.Number : (drw.Number + "_" + rev.Symbol),
+                              ScanId = drws.DrawingId > 0 ? 1 : 0
                           }
                           ).ToList();
 
-            return result;
+            return result.GroupBy(x => x.Id).Select(y => y.First()).ToList();
         }
 
         public IEnumerable<DrawingsDTO> GetChildDrawings(DrawingsDTO drawingsDTO)
@@ -627,6 +630,28 @@ namespace TechnicalProcessControl.BLL.Services
         public IEnumerable<TechProcess005DTO> GetAllTechProcess005()
         {
             return mapper.Map<IEnumerable<TechProcess005>, List<TechProcess005DTO>>(techProcess005.GetAll());
+        }
+
+
+        // проверяет прикреплен ли к чертежу хоть один техпроцесс
+        public bool CheckDrawingContainAnyTechProcess(int drawingId)
+        {
+            if (GetAllTechProcess001().Any(bdsm => bdsm.DrawingId == drawingId))
+                return true;
+
+            if (GetAllTechProcess002().Any(bdsm => bdsm.DrawingId == drawingId))
+                return true;
+
+            if (GetAllTechProcess003().Any(bdsm => bdsm.DrawingId == drawingId))
+                return true;
+
+            if (GetAllTechProcess004().Any(bdsm => bdsm.DrawingId == drawingId))
+                return true;
+
+            if (GetAllTechProcess005().Any(bdsm => bdsm.DrawingId == drawingId))
+                return true;
+
+            return false;
         }
 
         public string GetParentName(int parentId)

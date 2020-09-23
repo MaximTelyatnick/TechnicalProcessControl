@@ -30,7 +30,7 @@ namespace TechnicalProcessControl.Drawings
         private List<DrawingScanDTO> drawingScanList = new List<DrawingScanDTO>();
         private List<DrawingDTO> drawingList = new List<DrawingDTO>();
 
-        private UsersTelegramDTO models;
+        private UsersDTO usersDTO;
 
         private BindingSource drawingBS = new BindingSource();
         private BindingSource replaceDrawingBS = new BindingSource();
@@ -58,7 +58,7 @@ namespace TechnicalProcessControl.Drawings
             }
         }
 
-        public StructuraEditFm(DrawingsDTO model, Utils.Operation operation)
+        public StructuraEditFm(UsersDTO usersDTO, DrawingsDTO model, Utils.Operation operation)
         {
             InitializeComponent();
 
@@ -66,6 +66,7 @@ namespace TechnicalProcessControl.Drawings
             journalService = Program.kernel.Get<IJournalService>();
 
             this.operation = operation;
+            this.usersDTO = usersDTO;
 
             splashScreenManager.ShowWaitForm();
 
@@ -652,7 +653,7 @@ namespace TechnicalProcessControl.Drawings
             {
                 case 1: //Додати
                     {
-                        using (DrawingEditFm drawingEditFm = new DrawingEditFm(new DrawingDTO(), Utils.Operation.Add))
+                        using (DrawingEditFm drawingEditFm = new DrawingEditFm(usersDTO,new DrawingDTO(), Utils.Operation.Add))
                         {
                             if (drawingEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                             {
@@ -670,7 +671,7 @@ namespace TechnicalProcessControl.Drawings
 
                         DrawingDTO updateDrawingDTO = drawingService.GetDrawingById((int)numberEdit.EditValue);
 
-                        using (DrawingEditFm drawingEditFm = new DrawingEditFm(updateDrawingDTO, Utils.Operation.Update))
+                        using (DrawingEditFm drawingEditFm = new DrawingEditFm(usersDTO, updateDrawingDTO, Utils.Operation.Update))
                         {
                             if (drawingEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                             {
@@ -712,7 +713,7 @@ namespace TechnicalProcessControl.Drawings
 
                         DrawingDTO updateDrawingDTO = drawingService.GetDrawingById((int)numberEdit.EditValue);
 
-                        using (DrawingEditFm drawingEditFm = new DrawingEditFm(updateDrawingDTO, Utils.Operation.Custom))
+                        using (DrawingEditFm drawingEditFm = new DrawingEditFm(usersDTO,updateDrawingDTO, Utils.Operation.Custom))
                         {
                             if (drawingEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                             {
@@ -736,7 +737,7 @@ namespace TechnicalProcessControl.Drawings
             {
                 case 1: //Додати
                     {
-                        using (DrawingEditFm drawingEditFm = new DrawingEditFm(new DrawingDTO(), Utils.Operation.Add))
+                        using (DrawingEditFm drawingEditFm = new DrawingEditFm(usersDTO,new DrawingDTO(), Utils.Operation.Add))
                         {
                             if (drawingEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                             {
@@ -752,7 +753,7 @@ namespace TechnicalProcessControl.Drawings
                         if (numberEdit.EditValue == DBNull.Value)
                             return;
 
-                        using (DrawingEditFm drawingEditFm = new DrawingEditFm((DrawingDTO)firstUseDrawingEdit.GetSelectedDataRow(), Utils.Operation.Update))
+                        using (DrawingEditFm drawingEditFm = new DrawingEditFm(usersDTO,(DrawingDTO)firstUseDrawingEdit.GetSelectedDataRow(), Utils.Operation.Update))
                         {
                             if (drawingEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                             {
@@ -794,7 +795,7 @@ namespace TechnicalProcessControl.Drawings
             {
                 case 1: //Додати
                     {
-                        using (DrawingEditFm drawingEditFm = new DrawingEditFm(new DrawingDTO(), Utils.Operation.Add))
+                        using (DrawingEditFm drawingEditFm = new DrawingEditFm(usersDTO,new DrawingDTO(), Utils.Operation.Add))
                         {
                             if (drawingEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                             {
@@ -810,7 +811,7 @@ namespace TechnicalProcessControl.Drawings
                         if (numberEdit.EditValue == DBNull.Value)
                             return;
 
-                        using (DrawingEditFm drawingEditFm = new DrawingEditFm((DrawingDTO)replaceDrawingEdit.GetSelectedDataRow(), Utils.Operation.Update))
+                        using (DrawingEditFm drawingEditFm = new DrawingEditFm(usersDTO,(DrawingDTO)replaceDrawingEdit.GetSelectedDataRow(), Utils.Operation.Update))
                         {
                             if (drawingEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                             {
@@ -878,19 +879,10 @@ namespace TechnicalProcessControl.Drawings
                         addTechProcessDTO.DrawingNumberWithRevision = ((DrawingsDTO)Item).NumberWithRevisionName;
                         addTechProcessDTO.DrawingId = ((DrawingsDTO)Item).DrawingId;
 
-                        using (TechProcess001EditFm techProcess001EditFm = new TechProcess001EditFm(Utils.Operation.Add, addTechProcessDTO, ((DrawingsDTO)Item)))
+                        using (TechProcess001EditFm techProcess001EditFm = new TechProcess001EditFm(usersDTO,Utils.Operation.Add, addTechProcessDTO, ((DrawingsDTO)Item)))
                         {
                             if (techProcess001EditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                             {
-                                //////detailsBS.DataSource = journalService.GetDetails();
-                                //techProcess001Edit.Properties.DataSource = drawingService.GetAllTechProcess001();
-                                //techProcess001Edit.Properties.ValueMember = "Id";
-                                //techProcess001Edit.Properties.DisplayMember = "TechProcessFullName";
-                                //techProcess001Edit.Properties.NullText = "Не добавлен техпроцесс";
-
-                                //int return_Id = techProcess001EditFm.Return().Id;
-                                //techProcess001Edit.EditValue = return_Id;
-
                                 techProcess001Edit.Properties.DataSource = drawingService.GetAllTechProcess001();
                                 int return_Id = techProcess001EditFm.Return().Id;
                                 techProcess001Edit.EditValue = return_Id;
@@ -951,7 +943,7 @@ namespace TechnicalProcessControl.Drawings
                         //else
                         //    addTechProcessRevisionDTO.DrawingNumber = ((DrawingsDTO)Item).Number;
 
-                        using (TechProcess001EditFm techProcess001EditFm = new TechProcess001EditFm(Utils.Operation.Custom, addTechProcessRevisionDTO, ((DrawingsDTO)Item), techProcess001OldDTO))
+                        using (TechProcess001EditFm techProcess001EditFm = new TechProcess001EditFm(usersDTO,Utils.Operation.Custom, addTechProcessRevisionDTO, ((DrawingsDTO)Item), techProcess001OldDTO))
                         {
                             if (techProcess001EditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                             {

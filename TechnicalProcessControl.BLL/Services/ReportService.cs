@@ -94,7 +94,7 @@ namespace TechnicalProcessControl.BLL.Services
          * 2 - необязательный, его передаем только тогда, когда вместо шаблона нужно использовать готовый техпроцесс 
          * 
          * */
-        public string CreateTemplateTechProcess001(DrawingsDTO drawingsDTO, TechProcess001DTO techProcess001OldDTO = null)
+        public string CreateTemplateTechProcess001(UsersDTO usersDTO,DrawingsDTO drawingsDTO, TechProcess001DTO techProcess001OldDTO = null)
         {
             try
             {
@@ -119,6 +119,10 @@ namespace TechnicalProcessControl.BLL.Services
             var Worksheet = workbook.Worksheets[0];
             var Сells = Worksheet.Cells;
             IRange cells = Worksheet.Cells;
+            Сells["BY" + 28].Value = "Created by "+ usersDTO.Name;
+            cells["D" + 30].Value = "Date of issue "; 
+
+
             Сells["AQ" + 10].Value = drawingsDTO.DetailName;
             Сells["AQ" + 10].HorizontalAlignment = HAlign.Center;
             Сells["AL" + 44].Value = drawingsDTO.DetailName;
@@ -348,14 +352,20 @@ namespace TechnicalProcessControl.BLL.Services
                 return "";
             }
 
+            IWorkbook workbook = null;
 
-            var Workbook = Factory.GetWorkbook(GeneratedReportsDir + @"\template002.xls");
-            var Worksheet = Workbook.Worksheets[0];
+            if (techProcess003OldDTO == null)
+                workbook = Factory.GetWorkbook(GeneratedReportsDir + @"\template002.xls");
+            else
+                workbook = Factory.GetWorkbook(techProcess003OldDTO.TechProcessPath);
+
+            //var Workbook = Factory.GetWorkbook(GeneratedReportsDir + @"\template002.xls");
+            var Worksheet = workbook.Worksheets[0];
             var Сells = Worksheet.Cells;
             IRange cells = Worksheet.Cells;
 
             #region Header
-            Сells["BX" + 27].Value = "Created by Kachan T. 05 / 2020"; //создатель + дата
+            Сells["BX" + 27].Value = "Created by "; //создатель + дата
 
 
             Сells["BB" + 6].Value = drawingsDTO.Number;
@@ -443,7 +453,7 @@ namespace TechnicalProcessControl.BLL.Services
             {
                 //string fileName = String.Format("Зведена обігово-сальдова по рахунку 313 за період з {0} по {1}", startDate.ToShortDateString(), endDate.ToShortDateString());
                 //Workbook.SaveAs(DbExelDir + techProcess001DTO.TechProcessName.ToString() + ".xls", FileFormat.Excel8);
-                Workbook.SaveAs(drawingsDTO.TechProcess003Path, FileFormat.Excel8);
+                workbook.SaveAs(drawingsDTO.TechProcess003Path, FileFormat.Excel8);
                 //Process process = new Process();
                 //process.StartInfo.Arguments = "\"" + drawingsDTO.TechProcess003Path + "\"";
                 //process.StartInfo.FileName = "Excel.exe";

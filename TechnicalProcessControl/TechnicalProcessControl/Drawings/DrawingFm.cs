@@ -20,9 +20,14 @@ namespace TechnicalProcessControl.Drawings
         public IDrawingService drawingService;
         public BindingSource drawingBS = new BindingSource();
 
-        public DrawingFm()
+        private UsersDTO usersDTO;
+
+        public DrawingFm(UsersDTO usersDTO)
         {
             InitializeComponent();
+
+            this.usersDTO = usersDTO;
+
             splashScreenManager.ShowWaitForm();
             LoadData();
             splashScreenManager.CloseWaitForm();
@@ -32,16 +37,19 @@ namespace TechnicalProcessControl.Drawings
         {
             journalService = Program.kernel.Get<IJournalService>();
             drawingService = Program.kernel.Get<IDrawingService>();
-            var drawing = drawingService.GetAllDrawing();
-            drawingBS.DataSource = drawing;
-            drawingGrid.DataSource = drawingBS;
+
+            drawingBS.DataSource = drawingService.GetAllDrawing();
+            drawingTreeListGrid.DataSource = drawingBS;
+            drawingTreeListGrid.KeyFieldName = "Id";
+            drawingTreeListGrid.ParentFieldName = "ParentId";
+            drawingTreeListGrid.ExpandAll();
         }
 
         public void EditDrawing(Utils.Operation operation, DrawingDTO drawingDTO)
         {
             //List<DrawingScanDTO> drawingScanList = drawingService.GetDravingScanById(); 
 
-            using (DrawingEditFm drawingEditFm = new DrawingEditFm(drawingDTO, operation))
+            using (DrawingEditFm drawingEditFm = new DrawingEditFm(usersDTO,drawingDTO, operation))
             {
                 if (drawingEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
@@ -68,24 +76,51 @@ namespace TechnicalProcessControl.Drawings
 
         private void deleteBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (((DrawingDTO)drawingBS.Current).ParentId != null)
+            {
+                MessageBox.Show("Нельзя удалить старую версию чертежа", "Підтвердження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             if (MessageBox.Show("Удалить чертеж?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 drawingService = Program.kernel.Get<IDrawingService>();
 
+                splashScreenManager.ShowWaitForm();
+
+                drawingGridView.PostEditor();
                 drawingGridView.BeginUpdate();
 
                 if (drawingService.DrawingDelete(((DrawingDTO)drawingBS.Current).Id))
                 {
+                    
                     LoadData();
+                    
                 }
 
                 drawingGridView.EndUpdate();
+
+                splashScreenManager.CloseWaitForm();
             }
+            
+            
         }
 
         private void updateBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             LoadData();
+        }
+
+        private void drawingTreeListGrid_CustomUnboundColumnData(object sender, DevExpress.XtraTreeList.TreeListCustomColumnDataEventArgs e)
+        {
+            var item = (DrawingDTO)drawingTreeListGrid.GetDataRecordByNode(e.Node);
+
+            if (item == null)
+                return;
+
+            if (item.ScanId != 0)
+                e.Value = imageCollection.Images[0];
+            else
+                e.Value = imageCollection.Images[1];
         }
     }
 }

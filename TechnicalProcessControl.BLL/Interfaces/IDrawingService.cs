@@ -60,6 +60,8 @@ namespace TechnicalProcessControl.BLL.Interfaces
 
         IEnumerable<DrawingDTO> GetAllDrawing();
 
+        bool CheckDrawingContainAnyTechProcess(int drawingId);
+
         bool CheckDrivingChild(int drivingId);
 
         bool FileDelete(string URI);
