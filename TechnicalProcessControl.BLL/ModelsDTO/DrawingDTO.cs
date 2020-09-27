@@ -12,6 +12,8 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public int Id { get; set; }
         public string Number { get; set; }
         public string FullName { get; set; }
+        public bool Assembly { get; set; }
+        public string AssemblyName { get; set; }
 
         public int? DetailId { get; set; }
         public string DetailName { get; set; }

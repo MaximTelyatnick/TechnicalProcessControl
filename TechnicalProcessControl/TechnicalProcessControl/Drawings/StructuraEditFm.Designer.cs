@@ -52,6 +52,8 @@ namespace TechnicalProcessControl.Drawings
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions5 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject17 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject18 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -167,6 +169,21 @@ namespace TechnicalProcessControl.Drawings
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject106 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject107 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject108 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions28 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject109 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject110 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject111 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject112 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions29 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject113 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject114 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject115 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject116 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions30 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject117 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject118 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject119 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject120 = new DevExpress.Utils.SerializableAppearanceObject();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.labelControl23 = new DevExpress.XtraEditors.LabelControl();
             this.dateEdit = new DevExpress.XtraEditors.TextEdit();
@@ -177,6 +194,8 @@ namespace TechnicalProcessControl.Drawings
             this.numberEdit = new DevExpress.XtraEditors.GridLookUpEdit();
             this.gridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.numberCol = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.revisionDrawingCol = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.assemblyCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.detailCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.materialNameCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.thCol = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -253,6 +272,7 @@ namespace TechnicalProcessControl.Drawings
             this.splashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::TechnicalProcessControl.WaitFm), true, true);
             this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
             this.dxValidationProvider = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
+            this.validateLbl = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit.Properties)).BeginInit();
@@ -402,6 +422,8 @@ namespace TechnicalProcessControl.Drawings
             // 
             this.gridLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.numberCol,
+            this.revisionDrawingCol,
+            this.assemblyCol,
             this.detailCol,
             this.materialNameCol,
             this.thCol,
@@ -426,13 +448,29 @@ namespace TechnicalProcessControl.Drawings
             this.numberCol.VisibleIndex = 0;
             this.numberCol.Width = 150;
             // 
+            // revisionDrawingCol
+            // 
+            this.revisionDrawingCol.Caption = "Ревизия";
+            this.revisionDrawingCol.FieldName = "RevisionName";
+            this.revisionDrawingCol.Name = "revisionDrawingCol";
+            this.revisionDrawingCol.Visible = true;
+            this.revisionDrawingCol.VisibleIndex = 1;
+            // 
+            // assemblyCol
+            // 
+            this.assemblyCol.Caption = "Тип чертежа";
+            this.assemblyCol.FieldName = "AssemblyName";
+            this.assemblyCol.Name = "assemblyCol";
+            this.assemblyCol.Visible = true;
+            this.assemblyCol.VisibleIndex = 2;
+            // 
             // detailCol
             // 
             this.detailCol.Caption = "Деталь";
             this.detailCol.FieldName = "DetailName";
             this.detailCol.Name = "detailCol";
             this.detailCol.Visible = true;
-            this.detailCol.VisibleIndex = 1;
+            this.detailCol.VisibleIndex = 3;
             this.detailCol.Width = 60;
             // 
             // materialNameCol
@@ -441,7 +479,7 @@ namespace TechnicalProcessControl.Drawings
             this.materialNameCol.FieldName = "MaterialName";
             this.materialNameCol.Name = "materialNameCol";
             this.materialNameCol.Visible = true;
-            this.materialNameCol.VisibleIndex = 2;
+            this.materialNameCol.VisibleIndex = 4;
             this.materialNameCol.Width = 50;
             // 
             // thCol
@@ -450,7 +488,7 @@ namespace TechnicalProcessControl.Drawings
             this.thCol.FieldName = "TH";
             this.thCol.Name = "thCol";
             this.thCol.Visible = true;
-            this.thCol.VisibleIndex = 3;
+            this.thCol.VisibleIndex = 5;
             this.thCol.Width = 23;
             // 
             // lCol
@@ -459,7 +497,7 @@ namespace TechnicalProcessControl.Drawings
             this.lCol.FieldName = "L";
             this.lCol.Name = "lCol";
             this.lCol.Visible = true;
-            this.lCol.VisibleIndex = 4;
+            this.lCol.VisibleIndex = 6;
             this.lCol.Width = 23;
             // 
             // wCol
@@ -468,7 +506,7 @@ namespace TechnicalProcessControl.Drawings
             this.wCol.FieldName = "W";
             this.wCol.Name = "wCol";
             this.wCol.Visible = true;
-            this.wCol.VisibleIndex = 5;
+            this.wCol.VisibleIndex = 7;
             this.wCol.Width = 23;
             // 
             // w2Col
@@ -477,7 +515,7 @@ namespace TechnicalProcessControl.Drawings
             this.w2Col.FieldName = "W2";
             this.w2Col.Name = "w2Col";
             this.w2Col.Visible = true;
-            this.w2Col.VisibleIndex = 6;
+            this.w2Col.VisibleIndex = 8;
             this.w2Col.Width = 23;
             // 
             // detailWeightCol
@@ -486,7 +524,7 @@ namespace TechnicalProcessControl.Drawings
             this.detailWeightCol.FieldName = "DetailWeight";
             this.detailWeightCol.Name = "detailWeightCol";
             this.detailWeightCol.Visible = true;
-            this.detailWeightCol.VisibleIndex = 7;
+            this.detailWeightCol.VisibleIndex = 9;
             this.detailWeightCol.Width = 32;
             // 
             // dateCol
@@ -495,7 +533,7 @@ namespace TechnicalProcessControl.Drawings
             this.dateCol.FieldName = "CreateDate";
             this.dateCol.Name = "dateCol";
             this.dateCol.Visible = true;
-            this.dateCol.VisibleIndex = 8;
+            this.dateCol.VisibleIndex = 10;
             // 
             // noteCol
             // 
@@ -503,7 +541,7 @@ namespace TechnicalProcessControl.Drawings
             this.noteCol.FieldName = "NoteName";
             this.noteCol.Name = "noteCol";
             this.noteCol.Visible = true;
-            this.noteCol.VisibleIndex = 9;
+            this.noteCol.VisibleIndex = 11;
             // 
             // weightEdit
             // 
@@ -677,6 +715,11 @@ namespace TechnicalProcessControl.Drawings
             this.currentLevelMenuEdit.Name = "currentLevelMenuEdit";
             this.currentLevelMenuEdit.Size = new System.Drawing.Size(365, 20);
             this.currentLevelMenuEdit.TabIndex = 21;
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "Не указан условный номер";
+            conditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider.SetValidationRule(this.currentLevelMenuEdit, conditionValidationRule1);
+            this.currentLevelMenuEdit.EditValueChanged += new System.EventHandler(this.currentLevelMenuEdit_EditValueChanged);
             // 
             // parentCurrentLevelMenuEdit
             // 
@@ -690,6 +733,10 @@ namespace TechnicalProcessControl.Drawings
             this.parentCurrentLevelMenuEdit.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.parentCurrentLevelMenuEdit.Size = new System.Drawing.Size(365, 18);
             this.parentCurrentLevelMenuEdit.TabIndex = 15;
+            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule2.ErrorText = "Не указан номер";
+            conditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            this.dxValidationProvider.SetValidationRule(this.parentCurrentLevelMenuEdit, conditionValidationRule2);
             this.parentCurrentLevelMenuEdit.EditValueChanged += new System.EventHandler(this.parentCurrentLevelMenuEdit_EditValueChanged);
             // 
             // labelControl1
@@ -792,13 +839,16 @@ namespace TechnicalProcessControl.Drawings
             editorButtonImageOptions7.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions7.Image")));
             serializableAppearanceObject25.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject25.Image")));
             serializableAppearanceObject25.Options.UseImage = true;
+            editorButtonImageOptions8.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions8.Image")));
             this.techProcess005Edit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions5, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject17, serializableAppearanceObject18, serializableAppearanceObject19, serializableAppearanceObject20, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions6, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject21, serializableAppearanceObject22, serializableAppearanceObject23, serializableAppearanceObject24, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions7, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject25, serializableAppearanceObject26, serializableAppearanceObject27, serializableAppearanceObject28, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions7, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject25, serializableAppearanceObject26, serializableAppearanceObject27, serializableAppearanceObject28, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions8, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject29, serializableAppearanceObject30, serializableAppearanceObject31, serializableAppearanceObject32, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.techProcess005Edit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CurrentLevelMenu", "Узел")});
             this.techProcess005Edit.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.techProcess005Edit.Properties.ShowDropDown = DevExpress.XtraEditors.Controls.ShowDropDown.Never;
             this.techProcess005Edit.Size = new System.Drawing.Size(788, 20);
             this.techProcess005Edit.TabIndex = 45;
             // 
@@ -817,22 +867,25 @@ namespace TechnicalProcessControl.Drawings
             this.techProcess004Edit.Location = new System.Drawing.Point(5, 181);
             this.techProcess004Edit.Name = "techProcess004Edit";
             this.techProcess004Edit.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            editorButtonImageOptions8.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions8.Image")));
-            serializableAppearanceObject29.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject29.Image")));
-            serializableAppearanceObject29.Options.UseImage = true;
             editorButtonImageOptions9.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions9.Image")));
             serializableAppearanceObject33.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject33.Image")));
             serializableAppearanceObject33.Options.UseImage = true;
             editorButtonImageOptions10.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions10.Image")));
             serializableAppearanceObject37.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject37.Image")));
             serializableAppearanceObject37.Options.UseImage = true;
+            editorButtonImageOptions11.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions11.Image")));
+            serializableAppearanceObject41.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject41.Image")));
+            serializableAppearanceObject41.Options.UseImage = true;
+            editorButtonImageOptions12.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions12.Image")));
             this.techProcess004Edit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions8, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject29, serializableAppearanceObject30, serializableAppearanceObject31, serializableAppearanceObject32, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions9, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject33, serializableAppearanceObject34, serializableAppearanceObject35, serializableAppearanceObject36, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions10, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject37, serializableAppearanceObject38, serializableAppearanceObject39, serializableAppearanceObject40, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions10, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject37, serializableAppearanceObject38, serializableAppearanceObject39, serializableAppearanceObject40, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions11, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject41, serializableAppearanceObject42, serializableAppearanceObject43, serializableAppearanceObject44, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions12, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject45, serializableAppearanceObject46, serializableAppearanceObject47, serializableAppearanceObject48, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.techProcess004Edit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CurrentLevelMenu", "Узел")});
             this.techProcess004Edit.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.techProcess004Edit.Properties.ShowDropDown = DevExpress.XtraEditors.Controls.ShowDropDown.Never;
             this.techProcess004Edit.Size = new System.Drawing.Size(789, 20);
             this.techProcess004Edit.TabIndex = 43;
             // 
@@ -851,24 +904,25 @@ namespace TechnicalProcessControl.Drawings
             this.techProcess003Edit.Location = new System.Drawing.Point(5, 135);
             this.techProcess003Edit.Name = "techProcess003Edit";
             this.techProcess003Edit.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            editorButtonImageOptions11.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions11.Image")));
-            serializableAppearanceObject41.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject41.Image")));
-            serializableAppearanceObject41.Options.UseImage = true;
-            editorButtonImageOptions12.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions12.Image")));
-            serializableAppearanceObject45.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject45.Image")));
-            serializableAppearanceObject45.Options.UseImage = true;
             editorButtonImageOptions13.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions13.Image")));
             serializableAppearanceObject49.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject49.Image")));
             serializableAppearanceObject49.Options.UseImage = true;
             editorButtonImageOptions14.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions14.Image")));
+            serializableAppearanceObject53.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject53.Image")));
+            serializableAppearanceObject53.Options.UseImage = true;
+            editorButtonImageOptions15.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions15.Image")));
+            serializableAppearanceObject57.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject57.Image")));
+            serializableAppearanceObject57.Options.UseImage = true;
+            editorButtonImageOptions16.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions16.Image")));
             this.techProcess003Edit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions11, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject41, serializableAppearanceObject42, serializableAppearanceObject43, serializableAppearanceObject44, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions12, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject45, serializableAppearanceObject46, serializableAppearanceObject47, serializableAppearanceObject48, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions13, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject49, serializableAppearanceObject50, serializableAppearanceObject51, serializableAppearanceObject52, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions14, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject53, serializableAppearanceObject54, serializableAppearanceObject55, serializableAppearanceObject56, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions14, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject53, serializableAppearanceObject54, serializableAppearanceObject55, serializableAppearanceObject56, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions15, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject57, serializableAppearanceObject58, serializableAppearanceObject59, serializableAppearanceObject60, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions16, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject61, serializableAppearanceObject62, serializableAppearanceObject63, serializableAppearanceObject64, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.techProcess003Edit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CurrentLevelMenu", "Узел")});
             this.techProcess003Edit.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.techProcess003Edit.Properties.ShowDropDown = DevExpress.XtraEditors.Controls.ShowDropDown.Never;
             this.techProcess003Edit.Size = new System.Drawing.Size(789, 20);
             this.techProcess003Edit.TabIndex = 41;
             this.techProcess003Edit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.techProcess003Edit_ButtonClick);
@@ -888,22 +942,25 @@ namespace TechnicalProcessControl.Drawings
             this.techProcess002Edit.Location = new System.Drawing.Point(6, 89);
             this.techProcess002Edit.Name = "techProcess002Edit";
             this.techProcess002Edit.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            editorButtonImageOptions15.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions15.Image")));
-            serializableAppearanceObject57.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject57.Image")));
-            serializableAppearanceObject57.Options.UseImage = true;
-            editorButtonImageOptions16.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions16.Image")));
-            serializableAppearanceObject61.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject61.Image")));
-            serializableAppearanceObject61.Options.UseImage = true;
             editorButtonImageOptions17.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions17.Image")));
             serializableAppearanceObject65.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject65.Image")));
             serializableAppearanceObject65.Options.UseImage = true;
+            editorButtonImageOptions18.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions18.Image")));
+            serializableAppearanceObject69.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject69.Image")));
+            serializableAppearanceObject69.Options.UseImage = true;
+            editorButtonImageOptions19.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions19.Image")));
+            serializableAppearanceObject73.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject73.Image")));
+            serializableAppearanceObject73.Options.UseImage = true;
+            editorButtonImageOptions20.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions20.Image")));
             this.techProcess002Edit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions15, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject57, serializableAppearanceObject58, serializableAppearanceObject59, serializableAppearanceObject60, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions16, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject61, serializableAppearanceObject62, serializableAppearanceObject63, serializableAppearanceObject64, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions17, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject65, serializableAppearanceObject66, serializableAppearanceObject67, serializableAppearanceObject68, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions17, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject65, serializableAppearanceObject66, serializableAppearanceObject67, serializableAppearanceObject68, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions18, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject69, serializableAppearanceObject70, serializableAppearanceObject71, serializableAppearanceObject72, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions19, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject73, serializableAppearanceObject74, serializableAppearanceObject75, serializableAppearanceObject76, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions20, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject77, serializableAppearanceObject78, serializableAppearanceObject79, serializableAppearanceObject80, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.techProcess002Edit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CurrentLevelMenu", "Узел")});
             this.techProcess002Edit.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.techProcess002Edit.Properties.ShowDropDown = DevExpress.XtraEditors.Controls.ShowDropDown.Never;
             this.techProcess002Edit.Size = new System.Drawing.Size(788, 20);
             this.techProcess002Edit.TabIndex = 39;
             this.techProcess002Edit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.techProcess002Edit_ButtonClick);
@@ -923,26 +980,27 @@ namespace TechnicalProcessControl.Drawings
             this.techProcess001Edit.Location = new System.Drawing.Point(6, 43);
             this.techProcess001Edit.Name = "techProcess001Edit";
             this.techProcess001Edit.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            editorButtonImageOptions18.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions18.Image")));
-            serializableAppearanceObject69.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject69.Image")));
-            serializableAppearanceObject69.Options.UseImage = true;
-            editorButtonImageOptions19.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions19.Image")));
-            serializableAppearanceObject73.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject73.Image")));
-            serializableAppearanceObject73.Options.UseImage = true;
-            editorButtonImageOptions20.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions20.Image")));
-            serializableAppearanceObject77.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject77.Image")));
-            serializableAppearanceObject77.Options.UseImage = true;
             editorButtonImageOptions21.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions21.Image")));
             serializableAppearanceObject81.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject81.Image")));
             serializableAppearanceObject81.Options.UseImage = true;
+            editorButtonImageOptions22.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions22.Image")));
+            serializableAppearanceObject85.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject85.Image")));
+            serializableAppearanceObject85.Options.UseImage = true;
+            editorButtonImageOptions23.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions23.Image")));
+            serializableAppearanceObject89.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject89.Image")));
+            serializableAppearanceObject89.Options.UseImage = true;
+            editorButtonImageOptions24.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions24.Image")));
+            serializableAppearanceObject93.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject93.Image")));
+            serializableAppearanceObject93.Options.UseImage = true;
             this.techProcess001Edit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions18, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject69, serializableAppearanceObject70, serializableAppearanceObject71, serializableAppearanceObject72, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions19, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject73, serializableAppearanceObject74, serializableAppearanceObject75, serializableAppearanceObject76, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions20, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject77, serializableAppearanceObject78, serializableAppearanceObject79, serializableAppearanceObject80, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions21, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject81, serializableAppearanceObject82, serializableAppearanceObject83, serializableAppearanceObject84, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions21, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject81, serializableAppearanceObject82, serializableAppearanceObject83, serializableAppearanceObject84, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions22, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject85, serializableAppearanceObject86, serializableAppearanceObject87, serializableAppearanceObject88, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions23, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject89, serializableAppearanceObject90, serializableAppearanceObject91, serializableAppearanceObject92, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions24, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject93, serializableAppearanceObject94, serializableAppearanceObject95, serializableAppearanceObject96, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.techProcess001Edit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CurrentLevelMenu", "Узел")});
             this.techProcess001Edit.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.techProcess001Edit.Properties.ShowDropDown = DevExpress.XtraEditors.Controls.ShowDropDown.Never;
             this.techProcess001Edit.Size = new System.Drawing.Size(788, 20);
             this.techProcess001Edit.TabIndex = 37;
             this.techProcess001Edit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.techProcess001Edit_ButtonClick);
@@ -984,14 +1042,14 @@ namespace TechnicalProcessControl.Drawings
             // 
             this.replaceDrawingEdit.Location = new System.Drawing.Point(16, 193);
             this.replaceDrawingEdit.Name = "replaceDrawingEdit";
-            editorButtonImageOptions22.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions22.Image")));
-            editorButtonImageOptions23.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions23.Image")));
-            editorButtonImageOptions24.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions24.Image")));
+            editorButtonImageOptions25.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions25.Image")));
+            editorButtonImageOptions26.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions26.Image")));
+            editorButtonImageOptions27.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions27.Image")));
             this.replaceDrawingEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions22, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject85, serializableAppearanceObject86, serializableAppearanceObject87, serializableAppearanceObject88, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions23, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject89, serializableAppearanceObject90, serializableAppearanceObject91, serializableAppearanceObject92, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions24, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject93, serializableAppearanceObject94, serializableAppearanceObject95, serializableAppearanceObject96, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, false, true, false, editorButtonImageOptions25, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject97, serializableAppearanceObject98, serializableAppearanceObject99, serializableAppearanceObject100, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, false, true, false, editorButtonImageOptions26, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject101, serializableAppearanceObject102, serializableAppearanceObject103, serializableAppearanceObject104, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, false, true, false, editorButtonImageOptions27, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject105, serializableAppearanceObject106, serializableAppearanceObject107, serializableAppearanceObject108, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.replaceDrawingEdit.Properties.PopupFormMinSize = new System.Drawing.Size(700, 0);
             this.replaceDrawingEdit.Properties.PopupFormSize = new System.Drawing.Size(700, 0);
             this.replaceDrawingEdit.Properties.PopupView = this.gridView2;
@@ -1093,14 +1151,14 @@ namespace TechnicalProcessControl.Drawings
             // 
             this.firstUseDrawingEdit.Location = new System.Drawing.Point(16, 239);
             this.firstUseDrawingEdit.Name = "firstUseDrawingEdit";
-            editorButtonImageOptions25.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions25.Image")));
-            editorButtonImageOptions26.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions26.Image")));
-            editorButtonImageOptions27.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions27.Image")));
+            editorButtonImageOptions28.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions28.Image")));
+            editorButtonImageOptions29.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions29.Image")));
+            editorButtonImageOptions30.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions30.Image")));
             this.firstUseDrawingEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions25, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject97, serializableAppearanceObject98, serializableAppearanceObject99, serializableAppearanceObject100, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions26, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject101, serializableAppearanceObject102, serializableAppearanceObject103, serializableAppearanceObject104, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions27, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject105, serializableAppearanceObject106, serializableAppearanceObject107, serializableAppearanceObject108, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, false, true, false, editorButtonImageOptions28, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject109, serializableAppearanceObject110, serializableAppearanceObject111, serializableAppearanceObject112, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, false, true, false, editorButtonImageOptions29, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject113, serializableAppearanceObject114, serializableAppearanceObject115, serializableAppearanceObject116, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, false, true, false, editorButtonImageOptions30, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject117, serializableAppearanceObject118, serializableAppearanceObject119, serializableAppearanceObject120, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.firstUseDrawingEdit.Properties.PopupFormMinSize = new System.Drawing.Size(700, 0);
             this.firstUseDrawingEdit.Properties.PopupFormSize = new System.Drawing.Size(700, 0);
             this.firstUseDrawingEdit.Properties.PopupView = this.gridView1;
@@ -1246,11 +1304,29 @@ namespace TechnicalProcessControl.Drawings
             this.groupControl4.TabIndex = 105;
             this.groupControl4.Text = "Сканы чертежей";
             // 
+            // dxValidationProvider
+            // 
+            this.dxValidationProvider.ValidationFailed += new DevExpress.XtraEditors.DXErrorProvider.ValidationFailedEventHandler(this.dxValidationProvider_ValidationFailed);
+            this.dxValidationProvider.ValidationSucceeded += new DevExpress.XtraEditors.DXErrorProvider.ValidationSucceededEventHandler(this.dxValidationProvider_ValidationSucceeded);
+            // 
+            // validateLbl
+            // 
+            this.validateLbl.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.validateLbl.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.validateLbl.Appearance.Options.UseFont = true;
+            this.validateLbl.Appearance.Options.UseForeColor = true;
+            this.validateLbl.Location = new System.Drawing.Point(12, 634);
+            this.validateLbl.Name = "validateLbl";
+            this.validateLbl.Size = new System.Drawing.Size(218, 14);
+            this.validateLbl.TabIndex = 120;
+            this.validateLbl.Text = "Невозможно сохранить структуру";
+            // 
             // StructuraEditFm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1372, 660);
+            this.ClientSize = new System.Drawing.Size(1362, 660);
+            this.Controls.Add(this.validateLbl);
             this.Controls.Add(this.groupControl4);
             this.Controls.Add(this.groupControl2);
             this.Controls.Add(this.techProcessPanel);
@@ -1307,6 +1383,7 @@ namespace TechnicalProcessControl.Drawings
             this.groupControl4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1347,7 +1424,6 @@ namespace TechnicalProcessControl.Drawings
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.LookUpEdit techProcess002Edit;
         private DevExpress.XtraEditors.LabelControl labelControl6;
-        private DevExpress.XtraEditors.LookUpEdit techProcess001Edit;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private DevExpress.XtraEditors.TextEdit quantityREdit;
@@ -1398,5 +1474,9 @@ namespace TechnicalProcessControl.Drawings
         private MemoEdit noteEdit;
         private DevExpress.XtraGrid.Columns.GridColumn dateCol;
         private DevExpress.XtraGrid.Columns.GridColumn noteCol;
+        private LookUpEdit techProcess001Edit;
+        private DevExpress.XtraGrid.Columns.GridColumn assemblyCol;
+        private DevExpress.XtraGrid.Columns.GridColumn revisionDrawingCol;
+        private LabelControl validateLbl;
     }
 }

@@ -36,6 +36,7 @@
             this.editBtn = new DevExpress.XtraBars.BarButtonItem();
             this.deleteBtn = new DevExpress.XtraBars.BarButtonItem();
             this.updateBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.addRevisionBtn = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.drawingGrid = new DevExpress.XtraGrid.GridControl();
@@ -60,6 +61,7 @@
             this.partNameTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.drawingMaterialCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.statusTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.dateCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.ltreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.wTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.w2TreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
@@ -96,9 +98,10 @@
             this.addBtn,
             this.editBtn,
             this.deleteBtn,
-            this.updateBtn});
+            this.updateBtn,
+            this.addRevisionBtn});
             this.drawingRibon.Location = new System.Drawing.Point(0, 0);
-            this.drawingRibon.MaxItemId = 5;
+            this.drawingRibon.MaxItemId = 6;
             this.drawingRibon.Name = "drawingRibon";
             this.drawingRibon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -147,6 +150,16 @@
             this.updateBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.updateBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.updateBtn_ItemClick);
             // 
+            // addRevisionBtn
+            // 
+            this.addRevisionBtn.Caption = "Добавить ревизию";
+            this.addRevisionBtn.Id = 5;
+            this.addRevisionBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addRevisionBtn.ImageOptions.Image")));
+            this.addRevisionBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("addRevisionBtn.ImageOptions.LargeImage")));
+            this.addRevisionBtn.Name = "addRevisionBtn";
+            this.addRevisionBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.addRevisionBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addRevisionBtn_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -157,6 +170,7 @@
             // ribbonPageGroup1
             // 
             this.ribbonPageGroup1.ItemLinks.Add(this.addBtn);
+            this.ribbonPageGroup1.ItemLinks.Add(this.addRevisionBtn);
             this.ribbonPageGroup1.ItemLinks.Add(this.editBtn);
             this.ribbonPageGroup1.ItemLinks.Add(this.deleteBtn);
             this.ribbonPageGroup1.ItemLinks.Add(this.updateBtn);
@@ -358,7 +372,8 @@
             this.w2TreeCol,
             this.ltreeCol,
             this.weightTreeCol,
-            this.drawingScanCol});
+            this.drawingScanCol,
+            this.dateCol});
             this.drawingTreeListGrid.Cursor = System.Windows.Forms.Cursors.Hand;
             this.drawingTreeListGrid.DataSource = null;
             this.drawingTreeListGrid.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -400,6 +415,7 @@
             this.treeListBand12.Columns.Add(this.partNameTreeCol);
             this.treeListBand12.Columns.Add(this.drawingMaterialCol);
             this.treeListBand12.Columns.Add(this.statusTreeCol);
+            this.treeListBand12.Columns.Add(this.dateCol);
             this.treeListBand12.Columns.Add(this.ltreeCol);
             this.treeListBand12.Columns.Add(this.wTreeCol);
             this.treeListBand12.Columns.Add(this.w2TreeCol);
@@ -467,6 +483,14 @@
             this.statusTreeCol.VisibleIndex = 4;
             this.statusTreeCol.Width = 121;
             // 
+            // dateCol
+            // 
+            this.dateCol.Caption = "Дата";
+            this.dateCol.FieldName = "CreateDate";
+            this.dateCol.Name = "dateCol";
+            this.dateCol.Visible = true;
+            this.dateCol.VisibleIndex = 5;
+            // 
             // ltreeCol
             // 
             this.ltreeCol.AppearanceHeader.Options.UseTextOptions = true;
@@ -478,7 +502,7 @@
             this.ltreeCol.OptionsColumn.AllowEdit = false;
             this.ltreeCol.OptionsColumn.AllowFocus = false;
             this.ltreeCol.Visible = true;
-            this.ltreeCol.VisibleIndex = 5;
+            this.ltreeCol.VisibleIndex = 6;
             this.ltreeCol.Width = 130;
             // 
             // wTreeCol
@@ -492,7 +516,7 @@
             this.wTreeCol.OptionsColumn.AllowEdit = false;
             this.wTreeCol.OptionsColumn.AllowFocus = false;
             this.wTreeCol.Visible = true;
-            this.wTreeCol.VisibleIndex = 6;
+            this.wTreeCol.VisibleIndex = 7;
             this.wTreeCol.Width = 135;
             // 
             // w2TreeCol
@@ -506,7 +530,7 @@
             this.w2TreeCol.OptionsColumn.AllowEdit = false;
             this.w2TreeCol.OptionsColumn.AllowFocus = false;
             this.w2TreeCol.Visible = true;
-            this.w2TreeCol.VisibleIndex = 7;
+            this.w2TreeCol.VisibleIndex = 8;
             this.w2TreeCol.Width = 144;
             // 
             // thTreeCol
@@ -520,7 +544,7 @@
             this.thTreeCol.OptionsColumn.AllowEdit = false;
             this.thTreeCol.OptionsColumn.AllowFocus = false;
             this.thTreeCol.Visible = true;
-            this.thTreeCol.VisibleIndex = 8;
+            this.thTreeCol.VisibleIndex = 9;
             this.thTreeCol.Width = 127;
             // 
             // weightTreeCol
@@ -534,7 +558,7 @@
             this.weightTreeCol.OptionsColumn.AllowEdit = false;
             this.weightTreeCol.OptionsColumn.AllowFocus = false;
             this.weightTreeCol.Visible = true;
-            this.weightTreeCol.VisibleIndex = 9;
+            this.weightTreeCol.VisibleIndex = 10;
             this.weightTreeCol.Width = 162;
             // 
             // drawingScanCol
@@ -552,7 +576,7 @@
             this.drawingScanCol.Name = "drawingScanCol";
             this.drawingScanCol.UnboundType = DevExpress.XtraTreeList.Data.UnboundColumnType.Object;
             this.drawingScanCol.Visible = true;
-            this.drawingScanCol.VisibleIndex = 10;
+            this.drawingScanCol.VisibleIndex = 11;
             // 
             // repositoryItemPictureEdit1
             // 
@@ -689,9 +713,11 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn revisionCol;
         private DevExpress.XtraTreeList.Columns.TreeListColumn drawingMaterialCol;
         private DevExpress.Utils.ImageCollection imageCollection;
-        private DevExpress.XtraTreeList.Columns.TreeListBand treeListBand12;
         private DevExpress.XtraTreeList.Columns.TreeListColumn drawingScanCol;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn dateCol;
+        private DevExpress.XtraTreeList.Columns.TreeListBand treeListBand12;
         private DevExpress.XtraTreeList.Columns.TreeListBand treeListBand14;
         private DevExpress.XtraTreeList.Columns.TreeListBand treeListBand15;
+        private DevExpress.XtraBars.BarButtonItem addRevisionBtn;
     }
 }

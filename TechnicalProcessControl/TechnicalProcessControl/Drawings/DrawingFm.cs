@@ -61,17 +61,14 @@ namespace TechnicalProcessControl.Drawings
                     drawingGridView.FocusedRowHandle = rowHandle;
 
                 }
+                else
+                {
+                    drawingGridView.BeginUpdate();
+                    LoadData();
+                    drawingGridView.EndUpdate();
+
+                }
             }
-        }
-
-        private void addBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            EditDrawing(Utils.Operation.Add, new DrawingDTO());
-        }
-
-        private void editBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            EditDrawing(Utils.Operation.Update, (DrawingDTO)drawingBS.Current);
         }
 
         private void deleteBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -85,6 +82,13 @@ namespace TechnicalProcessControl.Drawings
             {
                 drawingService = Program.kernel.Get<IDrawingService>();
 
+                if (drawingService.CheckDrawingContainAnyTechProcess(((DrawingDTO)drawingBS.Current).Id))
+                {
+                    if (MessageBox.Show("Чертеж содержит техпроцессы, при удалении чертежа будут удалены и техпроцессы!", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                        return;
+                }
+                
+
                 splashScreenManager.ShowWaitForm();
 
                 drawingGridView.PostEditor();
@@ -92,17 +96,20 @@ namespace TechnicalProcessControl.Drawings
 
                 if (drawingService.DrawingDelete(((DrawingDTO)drawingBS.Current).Id))
                 {
-                    
+                    if (drawingService.GetDrawingChildByParentId(((DrawingDTO)drawingBS.Current).Id) != null)
+                    {
+                        DrawingDTO updateDrawing = drawingService.GetDrawingChildByParentId(((DrawingDTO)drawingBS.Current).Id);
+                        updateDrawing.ParentId = null;
+                        drawingService.DrawingUpdate(updateDrawing);
+                    }
                     LoadData();
-                    
                 }
 
                 drawingGridView.EndUpdate();
 
                 splashScreenManager.CloseWaitForm();
+
             }
-            
-            
         }
 
         private void updateBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -121,6 +128,21 @@ namespace TechnicalProcessControl.Drawings
                 e.Value = imageCollection.Images[0];
             else
                 e.Value = imageCollection.Images[1];
+        }
+
+        private void addBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            EditDrawing(Utils.Operation.Add, new DrawingDTO());
+        }
+
+        private void editBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            EditDrawing(Utils.Operation.Update, (DrawingDTO)drawingBS.Current);
+        }
+
+        private void addRevisionBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            EditDrawing(Utils.Operation.Custom, (DrawingDTO)drawingBS.Current);
         }
     }
 }

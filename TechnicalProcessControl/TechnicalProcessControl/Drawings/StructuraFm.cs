@@ -5,6 +5,9 @@ using TechnicalProcessControl.BLL.ModelsDTO;
 using TechnicalProcessControl.Drawings;
 using TechnicalProcessControl.BLL.Infrastructure;
 using System.Diagnostics;
+using System.Linq;
+using System;
+using System.Drawing;
 
 namespace TechnicalProcessControl
 {
@@ -27,6 +30,31 @@ namespace TechnicalProcessControl
             }
         }
 
+        private void UserAcces()
+        {
+            switch (usersDTO.RoleId)
+            {
+                case 1:
+                    //админ
+
+                    break;
+                case 2:
+                    //технолог
+
+
+                    break;
+                case 3:
+                    //конструктор
+
+                    break;
+                default:
+                    break;
+            }
+
+
+        }
+
+
         public StructuraFm(UsersDTO usersDTO)
         {
             InitializeComponent();
@@ -43,7 +71,7 @@ namespace TechnicalProcessControl
 
             splashScreenManager.ShowWaitForm();
 
-            drawingsBS.DataSource = drawingService.GetAllDrawings();
+            drawingsBS.DataSource = drawingService.GetAllDrawings().OrderBy(bdsm => Convert.ToInt32(bdsm.CurrentLevelMenu.Split('.').Last())).ToList();
 
             drawingGrid.DataSource = drawingsBS;
 
@@ -72,6 +100,12 @@ namespace TechnicalProcessControl
                     //contractorsGridView.FocusedRowHandle = rowHandle;
 
                 }
+                else
+                {
+                    drawingTreeListGrid.BeginUpdate();
+                    LoadData();
+                    drawingTreeListGrid.EndUpdate();
+                }
             }
         }
 
@@ -82,11 +116,17 @@ namespace TechnicalProcessControl
 
         private void editBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (!CheckStructura())
+                return;
+
             EditDrawing(Utils.Operation.Update, (DrawingsDTO)drawingsBS.Current);
         }
 
         private void deleteBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (!CheckStructura())
+                return;
+
             if (MessageBox.Show("Удалить элемент структури?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 drawingService = Program.kernel.Get<IDrawingService>();
@@ -99,17 +139,6 @@ namespace TechnicalProcessControl
                 }
 
                 drawingTreeListGrid.EndUpdate();
-
-                //botService = Program.kernel.Get<IBotService>();
-
-                //contractorsGridView.BeginUpdate();
-
-                //if (botService.TelegramUsersDelete(((UsersTelegramDTO)usersTelegramBS.Current).Id))
-                //{
-                //    LoadData();
-                //}
-
-                //contractorsGridView.EndUpdate();
             }
         }
 
@@ -137,6 +166,8 @@ namespace TechnicalProcessControl
                 e.Value = imageCollection.Images[0];
             else
                 e.Value = imageCollection.Images[1];
+
+
         }
 
         private void drawingTreeListGrid_GetStateImage(object sender, DevExpress.XtraTreeList.GetStateImageEventArgs e)
@@ -243,13 +274,7 @@ namespace TechnicalProcessControl
         {
             if (((DrawingsDTO)drawingsBS.Current).TechProcess001Id != null)
             {
-                using (TestFm testFm = new TestFm(((DrawingsDTO)drawingsBS.Current).TechProcess001Path))
-                {
-                    if (testFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                    {
-
-                    }
-                }
+                reportService.OpenExcelFile(((DrawingsDTO)drawingsBS.Current).TechProcess001Path);
             }
         }
 
@@ -335,6 +360,127 @@ namespace TechnicalProcessControl
                 process.StartInfo.Arguments = "\"" + ((DrawingsDTO)drawingsBS.Current).TechProcess002Path + "\"";
                 process.StartInfo.FileName = "Excel.exe";
                 process.Start();
+            }
+        }
+
+        private bool CheckStructura()
+        {
+            if (((DrawingsDTO)drawingsBS.Current).StructuraDisable)
+            {
+                MessageBox.Show("Структура искллючена из проекта!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private void replaceDrawingBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (!CheckStructura())
+                return;
+            if (((DrawingsDTO)drawingsBS.Current).DrawingId != null)
+            {
+                using (DrawingReplaceFm drawingReplaceFm = new DrawingReplaceFm((DrawingsDTO)drawingsBS.Current))
+                {
+                    if (drawingReplaceFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        drawingTreeListGrid.BeginUpdate();
+                        LoadData();
+                        drawingTreeListGrid.EndUpdate();
+                    }
+                    else
+                    {
+                        drawingTreeListGrid.BeginUpdate();
+                        LoadData();
+                        drawingTreeListGrid.EndUpdate();
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Структура не имеет прикрепленного чертежа!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void addCurrentStructuraBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (!CheckStructura())
+                return;
+            DrawingsDTO addDrawingsDTO = new DrawingsDTO()
+            {
+                ParentId = ((DrawingsDTO)drawingsBS.Current).Id
+            };
+
+            EditDrawing(Utils.Operation.Add, addDrawingsDTO);
+        }
+
+        private void drawingTreeListGrid_NodeCellStyle(object sender, DevExpress.XtraTreeList.GetCustomNodeCellStyleEventArgs e)
+        {
+            //TreeView view = (TreeView)sender;
+            //bool checkErledigt = Convert.ToBoolean(view.GetNodeAt(e.Node, "A"));
+            //if (checkErledigt)
+            //    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Strikeout);
+            //else
+            //    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Regular);
+
+            //if (e.Column.FieldName != "Budget") return;
+
+            var item = (DrawingsDTO)drawingTreeListGrid.GetDataRecordByNode(e.Node);
+
+            if (item == null)
+                return;
+
+
+            if (item.StructuraDisable)
+            {
+                e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Strikeout);
+                e.Appearance.BackColor = Color.Gainsboro;
+                //e.Appearance.ForeColor = Color.White;
+                e.Appearance.FontStyleDelta = FontStyle.Bold;
+            }
+            else
+            {
+                e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Regular);
+            }
+
+
+
+            //if (Convert.ToBoolean(e.Node.GetValue(e.Column.FieldName == "StructuraDisable")))
+            //{
+            //    e.Appearance.BackColor = Color.FromArgb(80, 255, 0, 255);
+            //    e.Appearance.ForeColor = Color.White;
+            //    e.Appearance.FontStyleDelta = FontStyle.Bold;
+            //}
+
+
+            //if ((bool)e.Node["StructuraDisable"])
+            //{
+            //    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Strikeout);
+            //}
+            //else
+            //{
+            //    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Regular);
+            //}
+
+        }
+
+        private void disableBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            drawingService = Program.kernel.Get<IDrawingService>();
+
+            if (((DrawingsDTO)Item).StructuraDisable)
+            {
+                ((DrawingsDTO)Item).StructuraDisable = false;
+                drawingService.DrawingsUpdate(((DrawingsDTO)Item));
+                LoadData();
+            }
+            else
+            {
+                ((DrawingsDTO)Item).StructuraDisable = true;
+                drawingService.DrawingsUpdate(((DrawingsDTO)Item));
+                LoadData();
             }
         }
     }

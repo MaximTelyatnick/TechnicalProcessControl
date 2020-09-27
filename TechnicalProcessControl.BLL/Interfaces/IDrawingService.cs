@@ -12,6 +12,7 @@ namespace TechnicalProcessControl.BLL.Interfaces
         bool FindDublicateDrawing(DrawingDTO drawingDTO);
 
         IEnumerable<DrawingsDTO> GetAllDrawings();
+        IEnumerable<DrawingDTO> GetAllDrawingActual();
         IEnumerable<DrawingsDTO> GetAllDrawingsByDrawingId(int drawingId);
 
         IEnumerable<DrawingsDTO> GetShortDrawing();
@@ -29,7 +30,9 @@ namespace TechnicalProcessControl.BLL.Interfaces
         IEnumerable<DrawingScanDTO> GetDravingScanById(int? drawingId);
         IEnumerable<DrawingsDTO> GetChildDrawings(DrawingsDTO drawingsDTO);
 
-        string GetMaxStructuraNumber(DrawingsDTO fatherStructuraId);
+        string GetMaxStructuraNumber(int fatherStructura);
+
+        DrawingDTO GetDrawingChildByParentId(int drawingId);
 
         IEnumerable<RevisionsDTO> GetRevisions();
 
@@ -47,10 +50,24 @@ namespace TechnicalProcessControl.BLL.Interfaces
         long GetLastTechProcess003();
 
         IEnumerable<TechProcess001DTO> GetAllTechProcess001();
+        IEnumerable<TechProcess001DTO> GetAllTechProcessActual001();
+
+
         IEnumerable<TechProcess002DTO> GetAllTechProcess002();
+        IEnumerable<TechProcess002DTO> GetAllTechProcessActual002();
+
+
         IEnumerable<TechProcess003DTO> GetAllTechProcess003();
+        IEnumerable<TechProcess003DTO> GetAllTechProcessActual003();
+
+
         IEnumerable<TechProcess004DTO> GetAllTechProcess004();
+        IEnumerable<TechProcess004DTO> GetAllTechProcessActual004();
+
+
         IEnumerable<TechProcess005DTO> GetAllTechProcess005();
+        IEnumerable<TechProcess005DTO> GetAllTechProcessActual005();
+
 
         TechProcess001DTO GetTechProcess001ByDrawingId(int drawingId);
         TechProcess002DTO GetTechProcess002ByDrawingId(int drawingId);
@@ -89,6 +106,24 @@ namespace TechnicalProcessControl.BLL.Interfaces
 
         bool TechProcess003Delete(int id);
         #endregion
+
+        #region TechProcess004 CRUD method's
+        int TechProcess004Create(TechProcess004DTO techProcess004DTO);
+
+        void TechProcess004Update(TechProcess004DTO techProcess004DTO);
+
+        bool TechProcess004Delete(int id);
+        #endregion
+
+        #region TechProcess005 CRUD method's
+        int TechProcess005Create(TechProcess005DTO techProcess005DTO);
+
+        void TechProcess005Update(TechProcess005DTO techProcess005DTO);
+
+        bool TechProcess005Delete(int id);
+        #endregion
+
+
 
         #region DrawingScan CRUD method's
 

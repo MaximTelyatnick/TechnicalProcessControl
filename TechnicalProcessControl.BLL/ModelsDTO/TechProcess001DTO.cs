@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechnicalProcessControl.BLL.Infrastructure;
 
 namespace TechnicalProcessControl.BLL.ModelsDTO
@@ -10,6 +6,8 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
     public class TechProcess001DTO : ObjectBase
     {
         public int Id { get; set; }
+        public int? ParentId { get; set; }
+        public DateTime? CreateDate { get; set; }
         public int? DrawingId { get; set; }
         public string DrawingNumber { get; set; }
         public string DrawingNumberWithRevision { get; set; }
@@ -21,11 +19,10 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public decimal? LaborIntensity004 { get; set; }
         public decimal? LaborIntensity005 { get; set; }
         public string TechProcessFullName { get; set; }
-
         public int? RevisionId { get; set; }
         public string RivisionName { get; set; }
-        public int? DrawingsId { get; set; }
-        public int? ParentId { get; set; }
-        public DateTime? CreateDate { get; set; }
+        public short? TypeId { get; set; }
+
+        public int? DrawingsId { get; set; }       
     }
 }

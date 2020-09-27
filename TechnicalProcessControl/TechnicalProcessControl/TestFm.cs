@@ -113,7 +113,16 @@ namespace TechnicalProcessControl
             {
                 MessageBox.Show("Файл не найден");
             }
-            workbook.LoadDocument(pathToFile, DocumentFormat.Xls);
+            try
+            {
+                workbook.LoadDocument(pathToFile, DocumentFormat.Xls);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("При сохранении возникла ошибка, файл не был создан, пересоздайте техпроцесс.");
+                throw;
+            }
+           
 
 
             

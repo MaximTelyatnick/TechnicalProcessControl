@@ -39,14 +39,13 @@
             this.sendMessageBtn = new DevExpress.XtraBars.BarButtonItem();
             this.updateBtn = new DevExpress.XtraBars.BarButtonItem();
             this.addTechProcess001Btn = new DevExpress.XtraBars.BarButtonItem();
-            this.addTechProcess002Btn = new DevExpress.XtraBars.BarButtonItem();
-            this.addTechProcess003Btn = new DevExpress.XtraBars.BarButtonItem();
-            this.addTechProcess004Btn = new DevExpress.XtraBars.BarButtonItem();
             this.addTechProcess005Btn = new DevExpress.XtraBars.BarButtonItem();
             this.replaceDrawingBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.copyStructuraRangeBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.addCurrentStructuraBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.disableBtn = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.splashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::TechnicalProcessControl.WaitFm), true, true);
             this.drawingGrid = new DevExpress.XtraGrid.GridControl();
@@ -168,13 +167,13 @@
             this.sendMessageBtn,
             this.updateBtn,
             this.addTechProcess001Btn,
-            this.addTechProcess002Btn,
-            this.addTechProcess003Btn,
-            this.addTechProcess004Btn,
             this.addTechProcess005Btn,
-            this.replaceDrawingBtn});
+            this.replaceDrawingBtn,
+            this.copyStructuraRangeBtn,
+            this.addCurrentStructuraBtn,
+            this.disableBtn});
             this.contractorsRibonControl.Location = new System.Drawing.Point(0, 0);
-            this.contractorsRibonControl.MaxItemId = 13;
+            this.contractorsRibonControl.MaxItemId = 16;
             this.contractorsRibonControl.Name = "contractorsRibonControl";
             this.contractorsRibonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -240,33 +239,6 @@
             this.addTechProcess001Btn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.addTechProcess001Btn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addTechProcess001Btn_ItemClick);
             // 
-            // addTechProcess002Btn
-            // 
-            this.addTechProcess002Btn.Caption = "Создать 002";
-            this.addTechProcess002Btn.Id = 7;
-            this.addTechProcess002Btn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addTechProcess002Btn.ImageOptions.Image")));
-            this.addTechProcess002Btn.Name = "addTechProcess002Btn";
-            this.addTechProcess002Btn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.addTechProcess002Btn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addTechProcess002Btn_ItemClick);
-            // 
-            // addTechProcess003Btn
-            // 
-            this.addTechProcess003Btn.Caption = "Создать 003";
-            this.addTechProcess003Btn.Id = 8;
-            this.addTechProcess003Btn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addTechProcess003Btn.ImageOptions.Image")));
-            this.addTechProcess003Btn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("addTechProcess003Btn.ImageOptions.LargeImage")));
-            this.addTechProcess003Btn.Name = "addTechProcess003Btn";
-            this.addTechProcess003Btn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            // 
-            // addTechProcess004Btn
-            // 
-            this.addTechProcess004Btn.Caption = "Создать 004";
-            this.addTechProcess004Btn.Id = 9;
-            this.addTechProcess004Btn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addTechProcess004Btn.ImageOptions.Image")));
-            this.addTechProcess004Btn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("addTechProcess004Btn.ImageOptions.LargeImage")));
-            this.addTechProcess004Btn.Name = "addTechProcess004Btn";
-            this.addTechProcess004Btn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            // 
             // addTechProcess005Btn
             // 
             this.addTechProcess005Btn.Caption = "Создать 005";
@@ -284,12 +256,41 @@
             this.replaceDrawingBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("replaceDrawingBtn.ImageOptions.LargeImage")));
             this.replaceDrawingBtn.Name = "replaceDrawingBtn";
             this.replaceDrawingBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.replaceDrawingBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.replaceDrawingBtn_ItemClick);
+            // 
+            // copyStructuraRangeBtn
+            // 
+            this.copyStructuraRangeBtn.Caption = "Копировать сборку";
+            this.copyStructuraRangeBtn.Id = 13;
+            this.copyStructuraRangeBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("copyStructuraRangeBtn.ImageOptions.Image")));
+            this.copyStructuraRangeBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("copyStructuraRangeBtn.ImageOptions.LargeImage")));
+            this.copyStructuraRangeBtn.Name = "copyStructuraRangeBtn";
+            this.copyStructuraRangeBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
+            // addCurrentStructuraBtn
+            // 
+            this.addCurrentStructuraBtn.Caption = "Добавить в выбраную структуру";
+            this.addCurrentStructuraBtn.Id = 14;
+            this.addCurrentStructuraBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addCurrentStructuraBtn.ImageOptions.Image")));
+            this.addCurrentStructuraBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("addCurrentStructuraBtn.ImageOptions.LargeImage")));
+            this.addCurrentStructuraBtn.Name = "addCurrentStructuraBtn";
+            this.addCurrentStructuraBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.addCurrentStructuraBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addCurrentStructuraBtn_ItemClick);
+            // 
+            // disableBtn
+            // 
+            this.disableBtn.Caption = "Исключить структуру";
+            this.disableBtn.Id = 15;
+            this.disableBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("disableBtn.ImageOptions.Image")));
+            this.disableBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("disableBtn.ImageOptions.LargeImage")));
+            this.disableBtn.Name = "disableBtn";
+            this.disableBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.disableBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.disableBtn_ItemClick);
             // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1,
-            this.ribbonPageGroup2,
             this.ribbonPageGroup3});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "ribbonPage1";
@@ -297,25 +298,18 @@
             // ribbonPageGroup1
             // 
             this.ribbonPageGroup1.ItemLinks.Add(this.addBtn);
+            this.ribbonPageGroup1.ItemLinks.Add(this.addCurrentStructuraBtn);
             this.ribbonPageGroup1.ItemLinks.Add(this.editBtn);
             this.ribbonPageGroup1.ItemLinks.Add(this.deleteBtn);
             this.ribbonPageGroup1.ItemLinks.Add(this.updateBtn);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
-            this.ribbonPageGroup1.Text = "Чертёж";
-            // 
-            // ribbonPageGroup2
-            // 
-            this.ribbonPageGroup2.ItemLinks.Add(this.addTechProcess001Btn);
-            this.ribbonPageGroup2.ItemLinks.Add(this.addTechProcess002Btn);
-            this.ribbonPageGroup2.ItemLinks.Add(this.addTechProcess003Btn);
-            this.ribbonPageGroup2.ItemLinks.Add(this.addTechProcess004Btn);
-            this.ribbonPageGroup2.ItemLinks.Add(this.addTechProcess005Btn);
-            this.ribbonPageGroup2.Name = "ribbonPageGroup2";
-            this.ribbonPageGroup2.Text = "Техпроцессы";
+            this.ribbonPageGroup1.Text = "Структура";
             // 
             // ribbonPageGroup3
             // 
             this.ribbonPageGroup3.ItemLinks.Add(this.replaceDrawingBtn);
+            this.ribbonPageGroup3.ItemLinks.Add(this.copyStructuraRangeBtn);
+            this.ribbonPageGroup3.ItemLinks.Add(this.disableBtn);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "Функции";
             // 
@@ -933,6 +927,7 @@
             this.drawingTreeListGrid.TreeLineStyle = DevExpress.XtraTreeList.LineStyle.None;
             this.drawingTreeListGrid.ViewStyle = DevExpress.XtraTreeList.TreeListViewStyle.TreeList;
             this.drawingTreeListGrid.GetStateImage += new DevExpress.XtraTreeList.GetStateImageEventHandler(this.drawingTreeListGrid_GetStateImage);
+            this.drawingTreeListGrid.NodeCellStyle += new DevExpress.XtraTreeList.GetCustomNodeCellStyleEventHandler(this.drawingTreeListGrid_NodeCellStyle);
             this.drawingTreeListGrid.CustomUnboundColumnData += new DevExpress.XtraTreeList.CustomColumnDataEventHandler(this.drawingTreeListGrid_CustomUnboundColumnData);
             this.drawingTreeListGrid.DoubleClick += new System.EventHandler(this.drawingTreeListGrid_DoubleClick);
             // 
@@ -948,7 +943,7 @@
             this.treeListBand1.Columns.Add(this.quantityTreeCol);
             this.treeListBand1.ImageOptions.Alignment = System.Drawing.StringAlignment.Center;
             this.treeListBand1.Name = "treeListBand1";
-            this.treeListBand1.Width = 349;
+            this.treeListBand1.Width = 278;
             // 
             // curentLevelMenuTreeCol
             // 
@@ -962,7 +957,7 @@
             this.curentLevelMenuTreeCol.OptionsColumn.AllowFocus = false;
             this.curentLevelMenuTreeCol.Visible = true;
             this.curentLevelMenuTreeCol.VisibleIndex = 0;
-            this.curentLevelMenuTreeCol.Width = 237;
+            this.curentLevelMenuTreeCol.Width = 206;
             // 
             // quantityTreeCol
             // 
@@ -976,7 +971,7 @@
             this.quantityTreeCol.OptionsColumn.AllowFocus = false;
             this.quantityTreeCol.Visible = true;
             this.quantityTreeCol.VisibleIndex = 1;
-            this.quantityTreeCol.Width = 112;
+            this.quantityTreeCol.Width = 70;
             // 
             // treeListBand12
             // 
@@ -996,7 +991,7 @@
             this.treeListBand12.Columns.Add(this.drawingScanCol);
             this.treeListBand12.Columns.Add(this.weightTreeCol);
             this.treeListBand12.Name = "treeListBand12";
-            this.treeListBand12.Width = 561;
+            this.treeListBand12.Width = 599;
             // 
             // drawingNumberTreeCol
             // 
@@ -1010,7 +1005,7 @@
             this.drawingNumberTreeCol.OptionsColumn.AllowFocus = false;
             this.drawingNumberTreeCol.Visible = true;
             this.drawingNumberTreeCol.VisibleIndex = 2;
-            this.drawingNumberTreeCol.Width = 79;
+            this.drawingNumberTreeCol.Width = 128;
             // 
             // partNameTreeCol
             // 
@@ -1024,7 +1019,7 @@
             this.partNameTreeCol.OptionsColumn.AllowFocus = false;
             this.partNameTreeCol.Visible = true;
             this.partNameTreeCol.VisibleIndex = 3;
-            this.partNameTreeCol.Width = 79;
+            this.partNameTreeCol.Width = 81;
             // 
             // statusTreeCol
             // 
@@ -1038,7 +1033,7 @@
             this.statusTreeCol.OptionsColumn.AllowFocus = false;
             this.statusTreeCol.Visible = true;
             this.statusTreeCol.VisibleIndex = 4;
-            this.statusTreeCol.Width = 61;
+            this.statusTreeCol.Width = 63;
             // 
             // ltreeCol
             // 
@@ -1052,7 +1047,7 @@
             this.ltreeCol.OptionsColumn.AllowFocus = false;
             this.ltreeCol.Visible = true;
             this.ltreeCol.VisibleIndex = 5;
-            this.ltreeCol.Width = 42;
+            this.ltreeCol.Width = 44;
             // 
             // wTreeCol
             // 
@@ -1066,7 +1061,7 @@
             this.wTreeCol.OptionsColumn.AllowFocus = false;
             this.wTreeCol.Visible = true;
             this.wTreeCol.VisibleIndex = 6;
-            this.wTreeCol.Width = 47;
+            this.wTreeCol.Width = 49;
             // 
             // w2TreeCol
             // 
@@ -1080,7 +1075,7 @@
             this.w2TreeCol.OptionsColumn.AllowFocus = false;
             this.w2TreeCol.Visible = true;
             this.w2TreeCol.VisibleIndex = 7;
-            this.w2TreeCol.Width = 56;
+            this.w2TreeCol.Width = 58;
             // 
             // thTreeCol
             // 
@@ -1131,7 +1126,6 @@
             this.weightTreeCol.OptionsColumn.AllowFocus = false;
             this.weightTreeCol.Visible = true;
             this.weightTreeCol.VisibleIndex = 10;
-            this.weightTreeCol.Width = 74;
             // 
             // treeListBand6
             // 
@@ -1148,7 +1142,7 @@
             this.treeListBand11});
             this.treeListBand6.Caption = "Техпроцесы";
             this.treeListBand6.Name = "treeListBand6";
-            this.treeListBand6.Width = 790;
+            this.treeListBand6.Width = 823;
             // 
             // treeListBand7
             // 
@@ -1162,7 +1156,7 @@
             this.treeListBand7.Columns.Add(this.revision001Col);
             this.treeListBand7.Columns.Add(this.techProcessOneTTreeCol);
             this.treeListBand7.Name = "treeListBand7";
-            this.treeListBand7.Width = 155;
+            this.treeListBand7.Width = 161;
             // 
             // techProcessOneTreeCol
             // 
@@ -1177,7 +1171,7 @@
             this.techProcessOneTreeCol.Name = "techProcessOneTreeCol";
             this.techProcessOneTreeCol.Visible = true;
             this.techProcessOneTreeCol.VisibleIndex = 11;
-            this.techProcessOneTreeCol.Width = 112;
+            this.techProcessOneTreeCol.Width = 113;
             // 
             // techProcess001Repository
             // 
@@ -1192,7 +1186,7 @@
             this.revision001Col.Name = "revision001Col";
             this.revision001Col.Visible = true;
             this.revision001Col.VisibleIndex = 12;
-            this.revision001Col.Width = 43;
+            this.revision001Col.Width = 44;
             // 
             // techProcessOneTTreeCol
             // 
@@ -1220,7 +1214,7 @@
             this.treeListBand8.Columns.Add(this.revision002Col);
             this.treeListBand8.Columns.Add(this.techProcessTwoTTreeCol);
             this.treeListBand8.Name = "treeListBand8";
-            this.treeListBand8.Width = 139;
+            this.treeListBand8.Width = 146;
             // 
             // techProcessTwooTreeCol
             // 
@@ -1235,7 +1229,7 @@
             this.techProcessTwooTreeCol.Name = "techProcessTwooTreeCol";
             this.techProcessTwooTreeCol.Visible = true;
             this.techProcessTwooTreeCol.VisibleIndex = 13;
-            this.techProcessTwooTreeCol.Width = 91;
+            this.techProcessTwooTreeCol.Width = 93;
             // 
             // techProcess002Repository
             // 
@@ -1250,7 +1244,7 @@
             this.revision002Col.Name = "revision002Col";
             this.revision002Col.Visible = true;
             this.revision002Col.VisibleIndex = 14;
-            this.revision002Col.Width = 48;
+            this.revision002Col.Width = 49;
             // 
             // techProcessTwoTTreeCol
             // 
@@ -1278,7 +1272,7 @@
             this.treeListBand9.Columns.Add(this.revision003Col);
             this.treeListBand9.Columns.Add(this.techProcessThreeTTreeCol);
             this.treeListBand9.Name = "treeListBand9";
-            this.treeListBand9.Width = 169;
+            this.treeListBand9.Width = 176;
             // 
             // techProcessThreeTreeCol
             // 
@@ -1293,7 +1287,7 @@
             this.techProcessThreeTreeCol.Name = "techProcessThreeTreeCol";
             this.techProcessThreeTreeCol.Visible = true;
             this.techProcessThreeTreeCol.VisibleIndex = 15;
-            this.techProcessThreeTreeCol.Width = 135;
+            this.techProcessThreeTreeCol.Width = 137;
             // 
             // techProcess003Repository
             // 
@@ -1308,7 +1302,7 @@
             this.revision003Col.Name = "revision003Col";
             this.revision003Col.Visible = true;
             this.revision003Col.VisibleIndex = 16;
-            this.revision003Col.Width = 34;
+            this.revision003Col.Width = 35;
             // 
             // techProcessThreeTTreeCol
             // 
@@ -1337,7 +1331,7 @@
             this.treeListBand10.Columns.Add(this.revision004Col);
             this.treeListBand10.Columns.Add(this.techProcessFourTTreeCol);
             this.treeListBand10.Name = "treeListBand10";
-            this.treeListBand10.Width = 184;
+            this.treeListBand10.Width = 189;
             // 
             // techProcessFourTreeCol
             // 
@@ -1367,7 +1361,7 @@
             this.revision004Col.Name = "revision004Col";
             this.revision004Col.Visible = true;
             this.revision004Col.VisibleIndex = 18;
-            this.revision004Col.Width = 32;
+            this.revision004Col.Width = 33;
             // 
             // techProcessFourTTreeCol
             // 
@@ -1396,7 +1390,7 @@
             this.treeListBand11.Columns.Add(this.revision005Col);
             this.treeListBand11.Columns.Add(this.techProcessFiveTTreeCol);
             this.treeListBand11.Name = "treeListBand11";
-            this.treeListBand11.Width = 143;
+            this.treeListBand11.Width = 151;
             // 
             // techProcessFiveTreeCol
             // 
@@ -1411,7 +1405,7 @@
             this.techProcessFiveTreeCol.Name = "techProcessFiveTreeCol";
             this.techProcessFiveTreeCol.Visible = true;
             this.techProcessFiveTreeCol.VisibleIndex = 19;
-            this.techProcessFiveTreeCol.Width = 111;
+            this.techProcessFiveTreeCol.Width = 113;
             // 
             // techProcess005Repository
             // 
@@ -1426,7 +1420,7 @@
             this.revision005Col.Name = "revision005Col";
             this.revision005Col.Visible = true;
             this.revision005Col.VisibleIndex = 20;
-            this.revision005Col.Width = 32;
+            this.revision005Col.Width = 34;
             // 
             // techProcessFiveTTreeCol
             // 
@@ -1715,11 +1709,7 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn techProcessFourTTreeCol;
         private DevExpress.XtraTreeList.Columns.TreeListColumn techProcessFiveTTreeCol;
         private DevExpress.XtraBars.BarButtonItem addTechProcess001Btn;
-        private DevExpress.XtraBars.BarButtonItem addTechProcess002Btn;
-        private DevExpress.XtraBars.BarButtonItem addTechProcess003Btn;
-        private DevExpress.XtraBars.BarButtonItem addTechProcess004Btn;
         private DevExpress.XtraBars.BarButtonItem addTechProcess005Btn;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
         private DevExpress.XtraTreeList.Columns.TreeListColumn drawingScanCol;
         private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit1;
@@ -1747,5 +1737,8 @@
         private DevExpress.XtraTreeList.Columns.TreeListBand treeListBand17;
         private DevExpress.XtraTreeList.Columns.TreeListBand treeListBand16;
         private DevExpress.XtraTreeList.Columns.TreeListBand treeListBand15;
+        private DevExpress.XtraBars.BarButtonItem copyStructuraRangeBtn;
+        private DevExpress.XtraBars.BarButtonItem addCurrentStructuraBtn;
+        private DevExpress.XtraBars.BarButtonItem disableBtn;
     }
 }

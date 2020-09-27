@@ -19,6 +19,7 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public decimal? Quantity { get; set; }
         public decimal? QuantityR { get; set; }
         public decimal? QuantityL { get; set; }
+        public bool StructuraDisable { get; set; }
 
 
 
@@ -36,6 +37,7 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public string MaterialName { get; set; }
         public string NoteName { get; set; }
         public DateTime? CreateDate { get; set; }
+
 
 
 

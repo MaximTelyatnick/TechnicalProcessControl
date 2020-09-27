@@ -23,6 +23,7 @@ namespace TechnicalProcessControl.DAL.Models
         public decimal? Quantity { get; set; }
         public decimal? QuantityR { get; set; }
         public decimal? QuantityL { get; set; }
+        public bool StructuraDisable { get; set; }
 
         //public string Number { get; set; }
 

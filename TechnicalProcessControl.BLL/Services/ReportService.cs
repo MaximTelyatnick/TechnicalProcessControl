@@ -163,8 +163,16 @@ namespace TechnicalProcessControl.BLL.Services
 
             }
 
-            catch (System.IO.IOException) { MessageBox.Show("Документ уже открыто!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
-            catch (System.ComponentModel.Win32Exception) { MessageBox.Show("На рабочей станции отсутсутствует пакет программ Microsoft Oficce!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+            catch (System.IO.IOException)
+            {
+                MessageBox.Show("Документ уже открыто!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return "";
+            }
+            catch (System.ComponentModel.Win32Exception)
+            {
+                MessageBox.Show("На рабочей станции отсутсутствует пакет программ Microsoft Oficce!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return "";
+            }
 
             return drawingsDTO.TechProcess001Path;
         }
@@ -212,8 +220,16 @@ namespace TechnicalProcessControl.BLL.Services
                 Workbook.Save();
             }
 
-            catch (System.IO.IOException) { MessageBox.Show("Документ уже открыто!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
-            catch (System.ComponentModel.Win32Exception) { MessageBox.Show("На рабочей станции отсутсутствует пакет программ Microsoft Oficce!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+            catch (System.IO.IOException)
+            {
+                MessageBox.Show("Документ уже открыто!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return "";
+            }
+            catch (System.ComponentModel.Win32Exception)
+            {
+                MessageBox.Show("На рабочей станции отсутсутствует пакет программ Microsoft Oficce!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return "";
+            }
 
             return drawingsDTO.TechProcess001Path;
         }
@@ -465,6 +481,14 @@ namespace TechnicalProcessControl.BLL.Services
             catch (System.ComponentModel.Win32Exception) { MessageBox.Show("На рабочей станции отсутсутствует пакет программ Microsoft Oficce!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
 
             return drawingsDTO.TechProcess003Path;
+        }
+
+        public void OpenExcelFile(string fullPath)
+        {
+            Process process = new Process();
+            process.StartInfo.Arguments = "\"" + fullPath + "\"";
+            process.StartInfo.FileName = "Excel.exe";
+            process.Start();
         }
 
         public string TechProcesNameToStr(long? techProcessName)

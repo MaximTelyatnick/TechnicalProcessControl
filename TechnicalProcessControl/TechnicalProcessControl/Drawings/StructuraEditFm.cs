@@ -25,10 +25,11 @@ namespace TechnicalProcessControl.Drawings
         private IReportService reportService;
         private IJournalService journalService;
 
-        private Utils.Operation operation;
+        public Utils.Operation operation;
 
         private List<DrawingScanDTO> drawingScanList = new List<DrawingScanDTO>();
         private List<DrawingDTO> drawingList = new List<DrawingDTO>();
+        private List<DrawingDTO> drawingAllList = new List<DrawingDTO>();
 
         private UsersDTO usersDTO;
 
@@ -74,16 +75,15 @@ namespace TechnicalProcessControl.Drawings
 
             
 
-            //currentLevelMenuEdit.DataBindings.Add("EditValue", drawingsBS, "CurrentLevelMenu", true, DataSourceUpdateMode.OnPropertyChanged);
+            currentLevelMenuEdit.DataBindings.Add("Text", drawingsBS, "CurrentLevelMenu", true, DataSourceUpdateMode.OnPropertyChanged);
             quantityEdit.DataBindings.Add("EditValue", drawingsBS, "Quantity", true, DataSourceUpdateMode.OnPropertyChanged);
             quantityLEdit.DataBindings.Add("EditValue", drawingsBS, "QuantityL", true, DataSourceUpdateMode.OnPropertyChanged);
             quantityREdit.DataBindings.Add("EditValue", drawingsBS, "QuantityR", true, DataSourceUpdateMode.OnPropertyChanged);
-            replaceDrawingEdit.DataBindings.Add("EditValue", drawingsBS, "ReplaceDrawingId", true, DataSourceUpdateMode.OnPropertyChanged);
-            firstUseDrawingEdit.DataBindings.Add("EditValue", drawingsBS, "OccurrenceId", true, DataSourceUpdateMode.OnPropertyChanged);
+           
             noteEdit.DataBindings.Add("EditValue", drawingsBS, "NoteName", true, DataSourceUpdateMode.OnPropertyChanged);
             dateEdit.DataBindings.Add("EditValue", drawingsBS, "CreateDate", true, DataSourceUpdateMode.OnPropertyChanged);
 
-            currentLevelMenuEdit.DataBindings.Add("EditValue", drawingsBS, "currentLevelMenu", true, DataSourceUpdateMode.OnPropertyChanged);
+            //currentLevelMenuEdit.DataBindings.Add("EditValue", drawingsBS, "currentLevelMenu", true, DataSourceUpdateMode.OnPropertyChanged);
 
             techProcess001Edit.DataBindings.Add("EditValue", drawingsBS, "TechProcess001Id", true, DataSourceUpdateMode.OnPropertyChanged);
             techProcess002Edit.DataBindings.Add("EditValue", drawingsBS, "TechProcess002Id", true, DataSourceUpdateMode.OnPropertyChanged);
@@ -91,24 +91,25 @@ namespace TechnicalProcessControl.Drawings
             techProcess004Edit.DataBindings.Add("EditValue", drawingsBS, "TechProcess004Id", true, DataSourceUpdateMode.OnPropertyChanged);
             techProcess005Edit.DataBindings.Add("EditValue", drawingsBS, "TechProcess005Id", true, DataSourceUpdateMode.OnPropertyChanged);
 
-            drawingList = drawingService.GetAllDrawing().ToList();
+            drawingList = drawingService.GetAllDrawingActual().ToList();
+            drawingAllList = drawingService.GetAllDrawing().ToList();
 
             numberEdit.DataBindings.Add("EditValue", drawingsBS, "DrawingId", true, DataSourceUpdateMode.OnPropertyChanged);
             drawingBS.DataSource = drawingList;
             numberEdit.Properties.DataSource = drawingBS;
             numberEdit.Properties.ValueMember = "Id";
-            numberEdit.Properties.DisplayMember = "Number";
+            numberEdit.Properties.DisplayMember = "FullName";
             numberEdit.Properties.NullText = "Немає данних";
 
-
-            replaceDrawingBS.DataSource = drawingList;
+            replaceDrawingEdit.DataBindings.Add("EditValue", drawingsBS, "ReplaceDrawingId", true, DataSourceUpdateMode.OnPropertyChanged);
+            replaceDrawingBS.DataSource = drawingAllList;
             replaceDrawingEdit.Properties.DataSource = replaceDrawingBS;
             replaceDrawingEdit.Properties.ValueMember = "Id";
             replaceDrawingEdit.Properties.DisplayMember = "Number";
             replaceDrawingEdit.Properties.NullText = "Немає данних";
 
-            
-            firstUseDrawingBS.DataSource = drawingList;
+            firstUseDrawingEdit.DataBindings.Add("EditValue", drawingsBS, "OccurrenceId", true, DataSourceUpdateMode.OnPropertyChanged);
+            firstUseDrawingBS.DataSource = drawingAllList;
             firstUseDrawingEdit.Properties.DataSource = firstUseDrawingBS;
             firstUseDrawingEdit.Properties.ValueMember = "Id";
             firstUseDrawingEdit.Properties.DisplayMember = "Number";
@@ -162,8 +163,7 @@ namespace TechnicalProcessControl.Drawings
             switch (operation)
             {
                 case Utils.Operation.Add:
-
-                    //parentCurrentLevelMenuEdit.DataBindings.Add("EditValue", drawingsBS, "ParentId", true, DataSourceUpdateMode.OnPropertyChanged);
+                    parentCurrentLevelMenuEdit.EditValue = ((DrawingsDTO)Item).ParentId != null ? ((DrawingsDTO)Item).ParentId : null;
                     techProcessPanel.Enabled = false;
                     break;
 
@@ -181,10 +181,103 @@ namespace TechnicalProcessControl.Drawings
                     break;
             }
 
-
-
+            UserAcces();
             //ControlValidation();
             splashScreenManager.CloseWaitForm();
+        }
+
+
+        private void UserAcces()
+        {
+            switch (usersDTO.RoleId)
+            {
+                case 1:
+                    break;
+                case 2:
+                    parentCurrentLevelMenuEdit.ReadOnly = true;
+                    currentLevelMenuEdit.ReadOnly = true;
+                    quantityEdit.ReadOnly = true;
+                    quantityLEdit.ReadOnly = true;
+                    quantityREdit.ReadOnly = true;
+                    replaceDrawingEdit.ReadOnly = true;
+                    firstUseDrawingEdit.ReadOnly = true;
+                    numberEdit.ReadOnly = true;
+                    numberEdit.Properties.Buttons[0].Enabled = false;
+                    numberEdit.Properties.Buttons[1].Enabled = false;
+                    numberEdit.Properties.Buttons[2].Enabled = false;
+                    numberEdit.Properties.Buttons[3].Enabled = false;
+
+                    switch (operation)
+                    {
+                        case Utils.Operation.Add:
+
+                            break;
+
+                        case Utils.Operation.Update:
+
+
+                            break;
+
+                        default:
+                           
+                            break;
+                    }
+                    break;
+                case 3:
+                    techProcess001Edit.ReadOnly = true;
+                    techProcess001Edit.Properties.Buttons[0].Enabled = false;
+                    techProcess001Edit.Properties.Buttons[1].Enabled = false;
+                    techProcess001Edit.Properties.Buttons[2].Enabled = false;
+                    techProcess001Edit.Properties.Buttons[3].Enabled = false;
+                    techProcess002Edit.ReadOnly = true;
+                    techProcess002Edit.Properties.Buttons[0].Enabled = false;
+                    techProcess002Edit.Properties.Buttons[1].Enabled = false;
+                    techProcess002Edit.Properties.Buttons[2].Enabled = false;
+                    techProcess002Edit.Properties.Buttons[3].Enabled = false;
+                    techProcess003Edit.ReadOnly = true;
+                    techProcess003Edit.Properties.Buttons[0].Enabled = false;
+                    techProcess003Edit.Properties.Buttons[1].Enabled = false;
+                    techProcess003Edit.Properties.Buttons[2].Enabled = false;
+                    techProcess003Edit.Properties.Buttons[3].Enabled = false;
+                    techProcess004Edit.ReadOnly = true;
+                    techProcess004Edit.Properties.Buttons[0].Enabled = false;
+                    techProcess004Edit.Properties.Buttons[1].Enabled = false;
+                    techProcess004Edit.Properties.Buttons[2].Enabled = false;
+                    techProcess004Edit.Properties.Buttons[3].Enabled = false;
+                    techProcess005Edit.ReadOnly = true;
+                    techProcess005Edit.Properties.Buttons[0].Enabled = false;
+                    techProcess005Edit.Properties.Buttons[1].Enabled = false;
+                    techProcess005Edit.Properties.Buttons[2].Enabled = false;
+                    techProcess005Edit.Properties.Buttons[3].Enabled = false;
+
+                    switch (operation)
+                    {
+                        case Utils.Operation.Add:
+                            
+                            break;
+
+                        case Utils.Operation.Update:
+                            firstUseDrawingEdit.Properties.ShowDropDown = ShowDropDown.Never;
+                            replaceDrawingEdit.Properties.ShowDropDown = ShowDropDown.Never;
+                            numberEdit.Properties.ShowDropDown = ShowDropDown.Never;
+
+                            numberEdit.Properties.Buttons[0].Enabled = false;
+                            numberEdit.Properties.Buttons[1].Enabled = false;
+                            numberEdit.Properties.Buttons[2].Enabled = false;
+                            numberEdit.Properties.Buttons[3].Enabled = false;
+
+                            break;
+
+                        default:
+
+                            break;
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+
         }
 
         private bool SaveItem()
@@ -205,7 +298,7 @@ namespace TechnicalProcessControl.Drawings
                         return false;
                     }
 
-                    
+
 
                     ((DrawingsDTO)Item).ParentId = (int?)parentCurrentLevelMenuEdit.EditValue;
                     ((DrawingsDTO)Item).Id = drawingService.DrawingsCreate((DrawingsDTO)Item);
@@ -220,7 +313,7 @@ namespace TechnicalProcessControl.Drawings
                         return false;
                     }
 
-                    
+
                     drawingService.DrawingsUpdate((DrawingsDTO)Item);
                     //if (drawingScanDTO != null)
                     //{
@@ -268,71 +361,7 @@ namespace TechnicalProcessControl.Drawings
                 MessageBox.Show("При сохранении возникла ошибка. " + ex.Message, "Сохранение", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-
-
-        //    switch (operation)
-        //    {
-        //        case Utils.Operation.Add:
-        //            if (contractorsService.CheckAgreementOrderNumber((DateTime)((AgreementOrderDTO)Item).AgreementOrderDate, ((AgreementOrderDTO)Item).AgreementOrderNumber))
-        //            {
-        //                MessageBox.Show("рахунок з номером " + ((AgreementOrderDTO)Item).AgreementOrderNumber + " вже існує!", "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //                agreemtnOrderNumberEdit.Text = contractorsService.GetAgreementOrderLastNumber((DateTime)((AgreementOrderDTO)Item).AgreementOrderDate).ToString();
-
-        //                //((AgreementOrderDTO)Item).AgreementOrderNumber = contractorsService.GetAgreementOrderLastNumber((DateTime)((AgreementOrderDTO)Item).AgreementOrderDate);
-        //                return false;
-        //            }
-
-        //            if (agreementOrderScanDTO.Scan != null)
-        //                ((AgreementOrderDTO)Item).AgreementOrderScanId = contractorsService.AgreementOrderScanCreate(agreementOrderScanDTO);
-
-        //            ((AgreementOrderDTO)Item).ResponsibleId = userTasksDTO.UserId;
-        //            ((AgreementOrderDTO)Item).Id = contractorsService.AgreementOrderCreate((AgreementOrderDTO)Item);
-
-        //            break;
-        //        case Utils.Operation.Update:
-        //            ((AgreementOrderDTO)Item).ResponsibleId = userTasksDTO.UserId;
-
-        //            if (agreementOrderScanDTO != null)
-        //            {
-        //                if (agreementOrderScanDTO.Scan == null && agreementOrderScanDTO.Id > 0)
-        //                {
-        //                    contractorsService.AgreementOrderScanDelete(agreementOrderScanDTO.Id);
-        //                    ((AgreementOrderDTO)Item).AgreementOrderScanId = null;
-        //                }
-        //                else if (agreementOrderScanDTO.Scan != null && agreementOrderScanDTO.Id == 0)
-        //                {
-        //                    ((AgreementOrderDTO)Item).AgreementOrderScanId = contractorsService.AgreementOrderScanCreate(agreementOrderScanDTO);
-        //                }
-        //                else
-        //                {
-        //                    contractorsService.AgreementsOrderScanUpdate(agreementOrderScanDTO);
-        //                }
-        //            }
-
-        //            contractorsService.AgreementsOrderUpdate((AgreementOrderDTO)Item);
-        //            break;
-
-        //        default:
-        //            break;
-        //    }
-        //    return true;
-        //}
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("При збереженні виникла помилка. " + ex.Message, "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        return false;
-        //    }
-
-
-
-
-
-
-
-
-
-
-}
+        }
 
 
 
@@ -850,11 +879,21 @@ namespace TechnicalProcessControl.Drawings
         {
             drawingService = Program.kernel.Get<IDrawingService>();
 
-            if (parentCurrentLevelMenuEdit.EditValue == DBNull.Value || (DrawingsDTO)parentCurrentLevelMenuEdit.GetSelectedDataRow() == null)
-                return;
+            if (operation == Utils.Operation.Add)
+            {
+                if (parentCurrentLevelMenuEdit.EditValue == DBNull.Value)
+                    return;
 
-            //((DrawingsDTO)Item).CurrentLevelMenu = drawingService.GetMaxStructuraNumber((DrawingsDTO)parentCurrentLevelMenuEdit.GetSelectedDataRow());
-            currentLevelMenuEdit.Text = drawingService.GetMaxStructuraNumber((DrawingsDTO)parentCurrentLevelMenuEdit.GetSelectedDataRow());
+
+                string getNumber = drawingService.GetMaxStructuraNumber((int)parentCurrentLevelMenuEdit.EditValue);
+                ((DrawingsDTO)drawingsBS.DataSource).CurrentLevelMenu = getNumber;
+                currentLevelMenuEdit.Text = getNumber;
+            }
+
+            dxValidationProvider.Validate((Control)sender);
+
+            //((DrawingsDTO)Item).CurrentLevelMenu = drawingService.GetMaxStructuraNumber((int)parentCurrentLevelMenuEdit.EditValue);
+
             //parentCurrentLevelMenuEdit.Text = ((DrawingsDTO)parentCurrentLevelMenuEdit.GetSelectedDataRow()).CurrentLevelMenu;
             //GetMaxStructuraNumber
         }
@@ -1156,6 +1195,26 @@ namespace TechnicalProcessControl.Drawings
         private void techProcess001Edit_EditValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void dxValidationProvider_ValidationFailed(object sender, DevExpress.XtraEditors.DXErrorProvider.ValidationFailedEventArgs e)
+        {
+            this.saveBtn.Enabled = false;
+            this.validateLbl.Visible = true;
+        }
+
+        private void dxValidationProvider_ValidationSucceeded(object sender, DevExpress.XtraEditors.DXErrorProvider.ValidationSucceededEventArgs e)
+        {
+            bool isValidate = (dxValidationProvider.GetInvalidControls().Count == 0);
+
+            this.saveBtn.Enabled = isValidate;
+            this.validateLbl.Visible = !isValidate;
+
+        }
+
+        private void currentLevelMenuEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            dxValidationProvider.Validate((Control)sender);
         }
     }
 }

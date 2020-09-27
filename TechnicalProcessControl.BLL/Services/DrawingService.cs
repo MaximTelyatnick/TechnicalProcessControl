@@ -149,8 +149,8 @@ namespace TechnicalProcessControl.BLL.Services
                               Quantity = drw.Quantity,
                               QuantityL = drw.QuantityL,
                               QuantityR = drw.QuantityL,
-                              Number =  dr.Number,
-                               NumberWithRevisionName = dr.RevisionId == null ? dr.Number : dr.Number + "_" + rev.Symbol,
+                              Number = dr.Number,
+                              NumberWithRevisionName = dr.RevisionId == null ? dr.Number : dr.Number + "_" + rev.Symbol,
                               TH = dr.TH,
                               L = dr.L,
                               W = dr.W,
@@ -228,6 +228,7 @@ namespace TechnicalProcessControl.BLL.Services
                           join drp in drawing.GetAll() on pdrw.DrawingId equals drp.Id into drpp
                           from drp in drpp.DefaultIfEmpty()
                           where tcp001.ParentId == null && tcp002.ParentId == null && tcp003.ParentId == null && tcp004.ParentId == null && tcp005.ParentId == null
+                          orderby drw.CurrentLevelMenu
 
                           select new DrawingsDTO
                           {
@@ -239,6 +240,7 @@ namespace TechnicalProcessControl.BLL.Services
                               Quantity = drw.Quantity,
                               QuantityL = drw.QuantityL,
                               QuantityR = drw.QuantityL,
+                               StructuraDisable = drw.StructuraDisable,
                                NumberWithRevisionName = dr.RevisionId == null ? dr.Number : dr.Number + "_" + rev.Symbol,
                               Number = dr.Number,
                               RevisionName = rev.Symbol,
@@ -256,11 +258,11 @@ namespace TechnicalProcessControl.BLL.Services
                               TechProcess003Id = tcp003.Id,
                               TechProcess004Id = tcp004.Id,
                               TechProcess005Id = tcp005.Id,
-                              TechProcess001Name = tcp001.TechProcessName,
-                              TechProcess002Name = tcp002.TechProcessName,
-                              TechProcess003Name = tcp003.TechProcessName,
-                              TechProcess004Name = tcp004.TechProcessName,
-                              TechProcess005Name = tcp005.TechProcessName,
+                              TechProcess001Name = tcp001.Id != 1 ? tcp001.TechProcessName : (long?)null,
+                              TechProcess002Name = tcp002.Id != 1 ? tcp002.TechProcessName : (long?)null,
+                              TechProcess003Name = tcp003.Id != 1 ? tcp003.TechProcessName : (long?)null,
+                              TechProcess004Name = tcp004.Id != 1 ? tcp004.TechProcessName : (long?)null,
+                              TechProcess005Name = tcp005.Id != 1 ? tcp005.TechProcessName : (long?)null,
                               TechProcess001Path = tcp001.TechProcessPath,
                               TechProcess002Path = tcp002.TechProcessPath,
                               TechProcess003Path = tcp003.TechProcessPath,
@@ -392,6 +394,56 @@ namespace TechnicalProcessControl.BLL.Services
                           {
                               Id = drw.Id,
                               Number = drw.Number,
+                              Assembly = drw.Assembly,
+                              AssemblyName = drw.Assembly == false ? "Не сборка" : "Сборка",
+                              TypeId = tp.Id,
+                              TypeName = tp.TypeName,
+                              DetailId = det.Id,
+                              DetailName = det.DetailName,
+                              MaterialId = mat.Id,
+                              MaterialName = mat.MaterialName,
+                              Quantity = drw.Quantity,
+                              QuantityL = drw.QuantityL,
+                              QuantityR = drw.QuantityR,
+                              TH = drw.TH,
+                              L = drw.L,
+                              W = drw.W,
+                              W2 = drw.W2,
+                              DetailWeight = drw.DetailWeight,
+                              RevisionId = drw.RevisionId,
+                              RevisionName = rev.Symbol,
+                              CreateDate = drw.CreateDate,
+                              ParentId = drw.ParentId,
+                              Note = drw.Note,
+                              FullName = rev.Symbol == null ? drw.Number : (drw.Number + "_" + rev.Symbol),
+                              ScanId = drws.DrawingId > 0 ? 1 : 0
+                          }
+                          ).ToList();
+
+            return result.GroupBy(x => x.Id).Select(y => y.First()).ToList();
+        }
+
+        public IEnumerable<DrawingDTO> GetAllDrawingActual()
+        {
+            var result = (from drw in drawing.GetAll()
+                          join tp in type.GetAll() on drw.TypeId equals tp.Id into tpp
+                          from tp in tpp.DefaultIfEmpty()
+                          join det in details.GetAll() on drw.DetailId equals det.Id into dett
+                          from det in dett.DefaultIfEmpty()
+                          join mat in materials.GetAll() on drw.MaterialId equals mat.Id into matt
+                          from mat in matt.DefaultIfEmpty()
+                          join rev in revisions.GetAll() on drw.RevisionId equals rev.Id into revv
+                          from rev in revv.DefaultIfEmpty()
+                          join drws in drawingScan.GetAll() on drw.Id equals drws.DrawingId into drwss
+                          from drws in drwss.DefaultIfEmpty()
+                          where drw.ParentId == null
+
+                          select new DrawingDTO
+                          {
+                              Id = drw.Id,
+                              Number = drw.Number,
+                              Assembly = drw.Assembly,
+                              AssemblyName = drw.Assembly == false ? "Не сборка" : "Сборка",
                               TypeId = tp.Id,
                               TypeName = tp.TypeName,
                               DetailId = det.Id,
@@ -473,30 +525,63 @@ namespace TechnicalProcessControl.BLL.Services
 
         public DrawingDTO GetDrawingById(int drawingId)
         {
-            var drawingDTO = mapper.Map<Drawing, DrawingDTO>(drawing.GetAll().First(srt => srt.Id == drawingId));
-            if (drawingDTO != null)
-            {
-                if (drawingDTO.RevisionId != null)
-                {
-                    drawingDTO.RevisionName = mapper.Map<Revisions, RevisionsDTO>(revisions.GetAll().FirstOrDefault(bdsm => bdsm.Id == drawingDTO.RevisionId)).Symbol;
-                    if (drawingDTO.RevisionName != null)
-                        drawingDTO.FullName = drawingDTO.Number + "_" + drawingDTO.RevisionName;
-                    else
-                        drawingDTO.FullName = drawingDTO.Number;
-                }
-            }
-            return drawingDTO;
+
+            var result = (from drw in drawing.GetAll()
+                          join tp in type.GetAll() on drw.TypeId equals tp.Id into tpp
+                          from tp in tpp.DefaultIfEmpty()
+                          join det in details.GetAll() on drw.DetailId equals det.Id into dett
+                          from det in dett.DefaultIfEmpty()
+                          join mat in materials.GetAll() on drw.MaterialId equals mat.Id into matt
+                          from mat in matt.DefaultIfEmpty()
+                          join rev in revisions.GetAll() on drw.RevisionId equals rev.Id into revv
+                          from rev in revv.DefaultIfEmpty()
+                          where drw.Id == drawingId
+
+                          select new DrawingDTO
+                          {
+                              Id = drw.Id,
+                              Number = drw.Number,
+                              TypeId = tp.Id,
+                              TypeName = tp.TypeName,
+                              DetailId = det.Id,
+                              DetailName = det.DetailName,
+                              MaterialId = mat.Id,
+                              MaterialName = mat.MaterialName,
+                              Quantity = drw.Quantity,
+                              QuantityL = drw.QuantityL,
+                              QuantityR = drw.QuantityR,
+                              TH = drw.TH,
+                              L = drw.L,
+                              W = drw.W,
+                              W2 = drw.W2,
+                              DetailWeight = drw.DetailWeight,
+                              RevisionId = drw.RevisionId,
+                              RevisionName = rev.Symbol,
+                              CreateDate = drw.CreateDate,
+                              ParentId = drw.ParentId,
+                              Note = drw.Note,
+                              FullName = rev.Symbol == null ? drw.Number : (drw.Number + "_" + rev.Symbol),
+                              ScanId = 0
+                          }
+                          ).ToList();
+
+            return result.FirstOrDefault();
+        }
+
+        public DrawingDTO GetDrawingChildByParentId(int drawingId)
+        {
+            return mapper.Map<Drawing, DrawingDTO>(drawing.GetAll().FirstOrDefault(srt => srt.ParentId == drawingId));
         }
 
 
-        public string GetMaxStructuraNumber(DrawingsDTO fatherStructura)
+        public string GetMaxStructuraNumber(int fatherStructura)
         {
-            var childStructuraList = drawings.GetAll().Where(bdsm => bdsm.ParentId == fatherStructura.Id);
-            if(childStructuraList==null || childStructuraList.Count() == 0)
+            var childStructuraList = drawings.GetAll().Where(bdsm => bdsm.ParentId == fatherStructura).ToList();
+            if (childStructuraList == null || childStructuraList.Count() == 0)
             {
-                return fatherStructura.CurrentLevelMenu + ".1";
+                return drawings.GetAll().FirstOrDefault(srt => srt.Id == fatherStructura).CurrentLevelMenu + ".1";
             }
-            string maxChildStructura = childStructuraList.OrderByDescending(x => x.CurrentLevelMenu).First().CurrentLevelMenu;
+            string maxChildStructura = childStructuraList.OrderBy(bdsm => Convert.ToInt32(bdsm.CurrentLevelMenu.Split('.').Last())).Last().CurrentLevelMenu;
             string[] maxChildStructuraSplit = maxChildStructura.Split('.');
 
             try
@@ -510,6 +595,26 @@ namespace TechnicalProcessControl.BLL.Services
             {
                 return "";
             }
+
+            ////var childStructuraList = drawings.GetAll().Where(bdsm => bdsm.ParentId == fatherStructura.Id);
+            ////if(childStructuraList==null || childStructuraList.Count() == 0)
+            ////{
+            ////    return fatherStructura.CurrentLevelMenu + ".1";
+            ////}
+            ////string maxChildStructura = childStructuraList.OrderByDescending(x => x.CurrentLevelMenu).First().CurrentLevelMenu;
+            ////string[] maxChildStructuraSplit = maxChildStructura.Split('.');
+
+            ////try
+            ////{
+            ////    int partOfMaxChildStructuraSplit = Int32.Parse(maxChildStructuraSplit.Last());
+            ////    ++partOfMaxChildStructuraSplit;
+            ////    maxChildStructuraSplit[maxChildStructuraSplit.Length - 1] = partOfMaxChildStructuraSplit.ToString();
+            ////    return string.Join(".", maxChildStructuraSplit);
+            ////}
+            ////catch (FormatException e)
+            ////{
+            ////    return "";
+            ////}
         }
 
 
@@ -562,19 +667,51 @@ namespace TechnicalProcessControl.BLL.Services
 
         public TechProcess001DTO GetTechProcess001ByDrawingId(int drawingId)
         {
-            var techProcess = mapper.Map<TechProcess001, TechProcess001DTO>(techProcess001.GetAll().FirstOrDefault(bdsm => bdsm.DrawingId == drawingId && bdsm.ParentId == null));
-            if (techProcess != null)
-            {
-                if (techProcess.RevisionId != null)
-                {
-                    techProcess.RivisionName = mapper.Map<Revisions, RevisionsDTO>(revisions.GetAll().FirstOrDefault(bdsm => bdsm.Id == techProcess.RevisionId)).Symbol;
-                    if (techProcess.RivisionName != null)
-                        techProcess.TechProcessFullName = techProcess.TechProcessName.ToString() + "_" + techProcess.RivisionName;
-                    else
-                        techProcess.TechProcessFullName = techProcess.TechProcessName.ToString();
-                }
-            }
-            return techProcess;
+            var result = (from tcp in techProcess001.GetAll()
+                          join rt in revisionsTechProcess001.GetAll() on tcp.RevisionId equals rt.Id into rtt
+                          from rt in rtt.DefaultIfEmpty()
+                          join dr in drawing.GetAll() on tcp.DrawingId equals dr.Id into drr
+                          from dr in drr.DefaultIfEmpty()
+                          join rd in revisions.GetAll() on dr.RevisionId equals rd.Id into rdd
+                          from rd in rdd.DefaultIfEmpty()
+                          where tcp.DrawingId == drawingId && tcp.ParentId == null
+                          select new TechProcess001DTO
+                          {
+                              Id = tcp.Id,
+                              CreateDate = tcp.CreateDate,
+                              ParentId = tcp.ParentId,
+                              RevisionId = tcp.RevisionId,
+                              LaborIntensity001 = tcp.LaborIntensity001,
+                              LaborIntensity002 = tcp.LaborIntensity002,
+                              LaborIntensity003 = tcp.LaborIntensity003,
+                              LaborIntensity004 = tcp.LaborIntensity004,
+                              LaborIntensity005 = tcp.LaborIntensity005,
+                              TechProcessName = tcp.TechProcessName,
+                              DrawingId = tcp.DrawingId,
+                              DrawingNumber = dr.Number,
+                              TechProcessFullName = tcp.TechProcessFullName,
+                              TechProcessPath = tcp.TechProcessPath,
+                              DrawingNumberWithRevision = rd.Symbol == null ? dr.Number : (dr.Number + "_" + rd.Symbol),
+                              RivisionName = rt.Symbol
+                          }
+                          ).ToList();
+
+            return result.FirstOrDefault();
+
+
+            //var techProcess = mapper.Map<TechProcess001, TechProcess001DTO>(techProcess001.GetAll().FirstOrDefault(bdsm => bdsm.DrawingId == drawingId && bdsm.ParentId == null));
+            //if (techProcess != null)
+            //{
+            //    if (techProcess.RevisionId != null)
+            //    {
+            //        techProcess.RivisionName = mapper.Map<Revisions, RevisionsDTO>(revisions.GetAll().FirstOrDefault(bdsm => bdsm.Id == techProcess.RevisionId)).Symbol;
+            //        if (techProcess.RivisionName != null)
+            //            techProcess.TechProcessFullName = techProcess.TechProcessName.ToString() + "_" + techProcess.RivisionName;
+            //        else
+            //            techProcess.TechProcessFullName = techProcess.TechProcessName.ToString();
+            //    }
+            //}
+            //return techProcess;
         }
         public TechProcess002DTO GetTechProcess002ByDrawingId(int drawingId)
         {
@@ -609,29 +746,337 @@ namespace TechnicalProcessControl.BLL.Services
 
         public IEnumerable<TechProcess001DTO> GetAllTechProcess001()
         {
-            return mapper.Map<IEnumerable<TechProcess001>, List<TechProcess001DTO>>(techProcess001.GetAll());
+            var result = (from tcp in techProcess001.GetAll()
+                          join rt in revisionsTechProcess001.GetAll() on tcp.RevisionId equals rt.Id into rtt
+                          from rt in rtt.DefaultIfEmpty()
+                          join dr in drawing.GetAll() on tcp.DrawingId equals dr.Id into drr
+                          from dr in drr.DefaultIfEmpty()
+                          join rd in revisions.GetAll() on dr.RevisionId equals rd.Id into rdd
+                          from rd in rdd.DefaultIfEmpty()
+                          select new TechProcess001DTO
+                          {
+                              Id = tcp.Id,
+                              CreateDate = tcp.CreateDate,
+                              ParentId = tcp.ParentId,
+                              RevisionId = tcp.RevisionId,
+                              LaborIntensity001 = tcp.LaborIntensity001,
+                              LaborIntensity002 = tcp.LaborIntensity002,
+                              LaborIntensity003 = tcp.LaborIntensity003,
+                              LaborIntensity004 = tcp.LaborIntensity004,
+                              LaborIntensity005 = tcp.LaborIntensity005,
+                              TechProcessName = tcp.TechProcessName,
+                              DrawingId = tcp.DrawingId,
+                              DrawingNumber = dr.Number,
+                              TechProcessFullName = tcp.TechProcessFullName,
+                              TechProcessPath = tcp.TechProcessPath,
+                              DrawingNumberWithRevision = rd.Symbol == null ? dr.Number : (dr.Number + "_" + rd.Symbol),
+                              RivisionName = rt.Symbol
+                          }
+                          ).ToList();
+
+            return result;
         }
+        public IEnumerable<TechProcess001DTO> GetAllTechProcessActual001()
+        {
+            var result = (from tcp in techProcess001.GetAll()
+                          join rt in revisionsTechProcess001.GetAll() on tcp.RevisionId equals rt.Id into rtt
+                          from rt in rtt.DefaultIfEmpty()
+                          join dr in drawing.GetAll() on tcp.DrawingId equals dr.Id into drr
+                          from dr in drr.DefaultIfEmpty()
+                          join rd in revisions.GetAll() on dr.RevisionId equals rd.Id into rdd
+                          from rd in rdd.DefaultIfEmpty()
+                          where tcp.ParentId == null 
+                          select new TechProcess001DTO
+                          {
+                              Id = tcp.Id,
+                              CreateDate = tcp.CreateDate,
+                              ParentId = tcp.ParentId,
+                              RevisionId = tcp.RevisionId,
+                              LaborIntensity001 = tcp.LaborIntensity001,
+                              LaborIntensity002 = tcp.LaborIntensity002,
+                              LaborIntensity003 = tcp.LaborIntensity003,
+                              LaborIntensity004 = tcp.LaborIntensity004,
+                              LaborIntensity005 = tcp.LaborIntensity005,
+                              TechProcessName = tcp.TechProcessName,
+                              DrawingId = tcp.DrawingId,
+                              DrawingNumber = dr.Number,
+                              TechProcessFullName = tcp.TechProcessFullName,
+                              TechProcessPath = tcp.TechProcessPath,
+                              DrawingNumberWithRevision = rd.Symbol == null ? dr.Number : (dr.Number + "_" + rd.Symbol),
+                              RivisionName = rt.Symbol
+                          }
+                          ).ToList();
+
+            return result;
+        }
+
 
         public IEnumerable<TechProcess002DTO> GetAllTechProcess002()
         {
-            return mapper.Map<IEnumerable<TechProcess002>, List<TechProcess002DTO>>(techProcess002.GetAll());
+            var result = (from tcp in techProcess002.GetAll()
+                          join rt in revisionsTechProcess002.GetAll() on tcp.RevisionId equals rt.Id into rtt
+                          from rt in rtt.DefaultIfEmpty()
+                          join dr in drawing.GetAll() on tcp.DrawingId equals dr.Id into drr
+                          from dr in drr.DefaultIfEmpty()
+                          join rd in revisions.GetAll() on dr.RevisionId equals rd.Id into rdd
+                          from rd in rdd.DefaultIfEmpty()
+                          select new TechProcess002DTO
+                          {
+                              Id = tcp.Id,
+                              CreateDate = tcp.CreateDate,
+                              ParentId = tcp.ParentId,
+                              RevisionId = tcp.RevisionId,
+                              LaborIntensity001 = tcp.LaborIntensity001,
+                              LaborIntensity002 = tcp.LaborIntensity002,
+                              LaborIntensity003 = tcp.LaborIntensity003,
+                              LaborIntensity004 = tcp.LaborIntensity004,
+                              LaborIntensity005 = tcp.LaborIntensity005,
+                              TechProcessName = tcp.TechProcessName,
+                              DrawingId = tcp.DrawingId,
+                              DrawingNumber = dr.Number,
+                              TechProcessFullName = tcp.TechProcessFullName,
+                              TechProcessPath = tcp.TechProcessPath,
+                              DrawingNumberWithRevision = rd.Symbol == null ? dr.Number : (dr.Number + "_" + rd.Symbol),
+                              RivisionName = rt.Symbol
+                          }
+                          ).ToList();
+
+            return result;
         }
+        public IEnumerable<TechProcess002DTO> GetAllTechProcessActual002()
+        {
+            var result = (from tcp in techProcess002.GetAll()
+                          join rt in revisionsTechProcess002.GetAll() on tcp.RevisionId equals rt.Id into rtt
+                          from rt in rtt.DefaultIfEmpty()
+                          join dr in drawing.GetAll() on tcp.DrawingId equals dr.Id into drr
+                          from dr in drr.DefaultIfEmpty()
+                          join rd in revisions.GetAll() on dr.RevisionId equals rd.Id into rdd
+                          from rd in rdd.DefaultIfEmpty()
+                          where tcp.ParentId == null
+                          select new TechProcess002DTO
+                          {
+                              Id = tcp.Id,
+                              CreateDate = tcp.CreateDate,
+                              ParentId = tcp.ParentId,
+                              RevisionId = tcp.RevisionId,
+                              LaborIntensity001 = tcp.LaborIntensity001,
+                              LaborIntensity002 = tcp.LaborIntensity002,
+                              LaborIntensity003 = tcp.LaborIntensity003,
+                              LaborIntensity004 = tcp.LaborIntensity004,
+                              LaborIntensity005 = tcp.LaborIntensity005,
+                              TechProcessName = tcp.TechProcessName,
+                              DrawingId = tcp.DrawingId,
+                              DrawingNumber = dr.Number,
+                              TechProcessFullName = tcp.TechProcessFullName,
+                              TechProcessPath = tcp.TechProcessPath,
+                              DrawingNumberWithRevision = rd.Symbol == null ? dr.Number : (dr.Number + "_" + rd.Symbol),
+                              RivisionName = rt.Symbol
+                          }
+                          ).ToList();
+
+            return result;
+        }
+
 
         public IEnumerable<TechProcess003DTO> GetAllTechProcess003()
         {
-            return mapper.Map<IEnumerable<TechProcess003>, List<TechProcess003DTO>>(techProcess003.GetAll());
+            var result = (from tcp in techProcess003.GetAll()
+                          join rt in revisionsTechProcess003.GetAll() on tcp.RevisionId equals rt.Id into rtt
+                          from rt in rtt.DefaultIfEmpty()
+                          join dr in drawing.GetAll() on tcp.DrawingId equals dr.Id into drr
+                          from dr in drr.DefaultIfEmpty()
+                          join rd in revisions.GetAll() on dr.RevisionId equals rd.Id into rdd
+                          from rd in rdd.DefaultIfEmpty()
+                          select new TechProcess003DTO
+                          {
+                              Id = tcp.Id,
+                              CreateDate = tcp.CreateDate,
+                              ParentId = tcp.ParentId,
+                              RevisionId = tcp.RevisionId,
+                              LaborIntensity001 = tcp.LaborIntensity001,
+                              LaborIntensity002 = tcp.LaborIntensity002,
+                              LaborIntensity003 = tcp.LaborIntensity003,
+                              LaborIntensity004 = tcp.LaborIntensity004,
+                              LaborIntensity005 = tcp.LaborIntensity005,
+                              TechProcessName = tcp.TechProcessName,
+                              DrawingId = tcp.DrawingId,
+                              DrawingNumber = dr.Number,
+                              TechProcessFullName = tcp.TechProcessFullName,
+                              TechProcessPath = tcp.TechProcessPath,
+                              DrawingNumberWithRevision = rd.Symbol == null ? dr.Number : (dr.Number + "_" + rd.Symbol),
+                              RivisionName = rt.Symbol
+                          }
+                          ).ToList();
+
+            return result;
         }
+        public IEnumerable<TechProcess003DTO> GetAllTechProcessActual003()
+        {
+            var result = (from tcp in techProcess003.GetAll()
+                          join rt in revisionsTechProcess003.GetAll() on tcp.RevisionId equals rt.Id into rtt
+                          from rt in rtt.DefaultIfEmpty()
+                          join dr in drawing.GetAll() on tcp.DrawingId equals dr.Id into drr
+                          from dr in drr.DefaultIfEmpty()
+                          join rd in revisions.GetAll() on dr.RevisionId equals rd.Id into rdd
+                          from rd in rdd.DefaultIfEmpty()
+                          where tcp.ParentId == null
+                          select new TechProcess003DTO
+                          {
+                              Id = tcp.Id,
+                              CreateDate = tcp.CreateDate,
+                              ParentId = tcp.ParentId,
+                              RevisionId = tcp.RevisionId,
+                              LaborIntensity001 = tcp.LaborIntensity001,
+                              LaborIntensity002 = tcp.LaborIntensity002,
+                              LaborIntensity003 = tcp.LaborIntensity003,
+                              LaborIntensity004 = tcp.LaborIntensity004,
+                              LaborIntensity005 = tcp.LaborIntensity005,
+                              TechProcessName = tcp.TechProcessName,
+                              DrawingId = tcp.DrawingId,
+                              DrawingNumber = dr.Number,
+                              TechProcessFullName = tcp.TechProcessFullName,
+                              TechProcessPath = tcp.TechProcessPath,
+                              DrawingNumberWithRevision = rd.Symbol == null ? dr.Number : (dr.Number + "_" + rd.Symbol),
+                              RivisionName = rt.Symbol
+                          }
+                          ).ToList();
+
+            return result;
+        }
+
 
         public IEnumerable<TechProcess004DTO> GetAllTechProcess004()
         {
-            return mapper.Map<IEnumerable<TechProcess004>, List<TechProcess004DTO>>(techProcess004.GetAll());
+            var result = (from tcp in techProcess004.GetAll()
+                          join rt in revisionsTechProcess004.GetAll() on tcp.RevisionId equals rt.Id into rtt
+                          from rt in rtt.DefaultIfEmpty()
+                          join dr in drawing.GetAll() on tcp.DrawingId equals dr.Id into drr
+                          from dr in drr.DefaultIfEmpty()
+                          join rd in revisions.GetAll() on dr.RevisionId equals rd.Id into rdd
+                          from rd in rdd.DefaultIfEmpty()
+                          select new TechProcess004DTO
+                          {
+                              Id = tcp.Id,
+                              CreateDate = tcp.CreateDate,
+                              ParentId = tcp.ParentId,
+                              RevisionId = tcp.RevisionId,
+                              LaborIntensity001 = tcp.LaborIntensity001,
+                              LaborIntensity002 = tcp.LaborIntensity002,
+                              LaborIntensity003 = tcp.LaborIntensity003,
+                              LaborIntensity004 = tcp.LaborIntensity004,
+                              LaborIntensity005 = tcp.LaborIntensity005,
+                              TechProcessName = tcp.TechProcessName,
+                              DrawingId = tcp.DrawingId,
+                              DrawingNumber = dr.Number,
+                              TechProcessFullName = tcp.TechProcessFullName,
+                              TechProcessPath = tcp.TechProcessPath,
+                              DrawingNumberWithRevision = rd.Symbol == null ? dr.Number : (dr.Number + "_" + rd.Symbol),
+                              RivisionName = rt.Symbol
+                          }
+                          ).ToList();
+
+            return result;
         }
+        public IEnumerable<TechProcess004DTO> GetAllTechProcessActual004()
+        {
+            var result = (from tcp in techProcess004.GetAll()
+                          join rt in revisionsTechProcess004.GetAll() on tcp.RevisionId equals rt.Id into rtt
+                          from rt in rtt.DefaultIfEmpty()
+                          join dr in drawing.GetAll() on tcp.DrawingId equals dr.Id into drr
+                          from dr in drr.DefaultIfEmpty()
+                          join rd in revisions.GetAll() on dr.RevisionId equals rd.Id into rdd
+                          from rd in rdd.DefaultIfEmpty()
+                          where tcp.ParentId == null
+                          select new TechProcess004DTO
+                          {
+                              Id = tcp.Id,
+                              CreateDate = tcp.CreateDate,
+                              ParentId = tcp.ParentId,
+                              RevisionId = tcp.RevisionId,
+                              LaborIntensity001 = tcp.LaborIntensity001,
+                              LaborIntensity002 = tcp.LaborIntensity002,
+                              LaborIntensity003 = tcp.LaborIntensity003,
+                              LaborIntensity004 = tcp.LaborIntensity004,
+                              LaborIntensity005 = tcp.LaborIntensity005,
+                              TechProcessName = tcp.TechProcessName,
+                              DrawingId = tcp.DrawingId,
+                              DrawingNumber = dr.Number,
+                              TechProcessFullName = tcp.TechProcessFullName,
+                              TechProcessPath = tcp.TechProcessPath,
+                              DrawingNumberWithRevision = rd.Symbol == null ? dr.Number : (dr.Number + "_" + rd.Symbol),
+                              RivisionName = rt.Symbol
+                          }
+                          ).ToList();
+
+            return result;
+        }
+
 
         public IEnumerable<TechProcess005DTO> GetAllTechProcess005()
         {
-            return mapper.Map<IEnumerable<TechProcess005>, List<TechProcess005DTO>>(techProcess005.GetAll());
-        }
+            var result = (from tcp in techProcess005.GetAll()
+                          join rt in revisionsTechProcess005.GetAll() on tcp.RevisionId equals rt.Id into rtt
+                          from rt in rtt.DefaultIfEmpty()
+                          join dr in drawing.GetAll() on tcp.DrawingId equals dr.Id into drr
+                          from dr in drr.DefaultIfEmpty()
+                          join rd in revisions.GetAll() on dr.RevisionId equals rd.Id into rdd
+                          from rd in rdd.DefaultIfEmpty()
+                          select new TechProcess005DTO
+                          {
+                              Id = tcp.Id,
+                              CreateDate = tcp.CreateDate,
+                              ParentId = tcp.ParentId,
+                              RevisionId = tcp.RevisionId,
+                              LaborIntensity001 = tcp.LaborIntensity001,
+                              LaborIntensity002 = tcp.LaborIntensity002,
+                              LaborIntensity003 = tcp.LaborIntensity003,
+                              LaborIntensity004 = tcp.LaborIntensity004,
+                              LaborIntensity005 = tcp.LaborIntensity005,
+                              TechProcessName = tcp.TechProcessName,
+                              DrawingId = tcp.DrawingId,
+                              DrawingNumber = dr.Number,
+                              TechProcessFullName = tcp.TechProcessFullName,
+                              TechProcessPath = tcp.TechProcessPath,
+                              DrawingNumberWithRevision = rd.Symbol == null ? dr.Number : (dr.Number + "_" + rd.Symbol),
+                              RivisionName = rt.Symbol
+                          }
+                          ).ToList();
 
+            return result;
+        }
+        public IEnumerable<TechProcess005DTO> GetAllTechProcessActual005()
+        {
+            var result = (from tcp in techProcess005.GetAll()
+                          join rt in revisionsTechProcess005.GetAll() on tcp.RevisionId equals rt.Id into rtt
+                          from rt in rtt.DefaultIfEmpty()
+                          join dr in drawing.GetAll() on tcp.DrawingId equals dr.Id into drr
+                          from dr in drr.DefaultIfEmpty()
+                          join rd in revisions.GetAll() on dr.RevisionId equals rd.Id into rdd
+                          from rd in rdd.DefaultIfEmpty()
+                          where tcp.ParentId == null
+                          select new TechProcess005DTO
+                          {
+                              Id = tcp.Id,
+                              CreateDate = tcp.CreateDate,
+                              ParentId = tcp.ParentId,
+                              RevisionId = tcp.RevisionId,
+                              LaborIntensity001 = tcp.LaborIntensity001,
+                              LaborIntensity002 = tcp.LaborIntensity002,
+                              LaborIntensity003 = tcp.LaborIntensity003,
+                              LaborIntensity004 = tcp.LaborIntensity004,
+                              LaborIntensity005 = tcp.LaborIntensity005,
+                              TechProcessName = tcp.TechProcessName,
+                              DrawingId = tcp.DrawingId,
+                              DrawingNumber = dr.Number,
+                              TechProcessFullName = tcp.TechProcessFullName,
+                              TechProcessPath = tcp.TechProcessPath,
+                              DrawingNumberWithRevision = rd.Symbol == null ? dr.Number : (dr.Number + "_" + rd.Symbol),
+                              RivisionName = rt.Symbol
+                          }
+                          ).ToList();
+
+            return result;
+        }
 
         // проверяет прикреплен ли к чертежу хоть один техпроцесс
         public bool CheckDrawingContainAnyTechProcess(int drawingId)
@@ -668,7 +1113,7 @@ namespace TechnicalProcessControl.BLL.Services
 
         public IEnumerable<DrawingsDTO> ReplaceDrawingIdInStructura(int replaceDrawingId, int currentDrawingId)
         {
-            var structura = mapper.Map < IEnumerable<Drawings>, List< DrawingsDTO >> (drawings.GetAll().Where(bdsm => bdsm.DrawingId == replaceDrawingId)).ToList();
+            var structura = mapper.Map < IEnumerable<Drawings>, List< DrawingsDTO >> (drawings.GetAll().Where(bdsm => bdsm.DrawingId == replaceDrawingId && bdsm.StructuraDisable == false)).ToList();
 
             foreach (var item in structura)
             {
@@ -784,6 +1229,64 @@ namespace TechnicalProcessControl.BLL.Services
             try
             {
                 techProcess003.Delete(techProcess003.GetAll().FirstOrDefault(c => c.Id == id));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        #endregion
+
+        #region TechProcess004 CRUD method's
+
+        public int TechProcess004Create(TechProcess004DTO techProcess004DTO)
+        {
+            var createTechProcess004 = techProcess004.Create(mapper.Map<TechProcess004>(techProcess004DTO));
+            return (int)createTechProcess004.Id;
+        }
+
+        public void TechProcess004Update(TechProcess004DTO techProcess004DTO)
+        {
+            var techProcess004Update = techProcess004.GetAll().SingleOrDefault(c => c.Id == techProcess004DTO.Id);
+            techProcess004.Update((mapper.Map<TechProcess004DTO, TechProcess004>(techProcess004DTO, techProcess004Update)));
+        }
+
+        public bool TechProcess004Delete(int id)
+        {
+            try
+            {
+                techProcess004.Delete(techProcess004.GetAll().FirstOrDefault(c => c.Id == id));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        #endregion
+
+        #region TechProcess005 CRUD method's
+
+        public int TechProcess005Create(TechProcess005DTO techProcess005DTO)
+        {
+            var createTechProcess005 = techProcess005.Create(mapper.Map<TechProcess005>(techProcess005DTO));
+            return (int)createTechProcess005.Id;
+        }
+
+        public void TechProcess005Update(TechProcess005DTO techProcess005DTO)
+        {
+            var techProcess005Update = techProcess005.GetAll().SingleOrDefault(c => c.Id == techProcess005DTO.Id);
+            techProcess005.Update((mapper.Map<TechProcess005DTO, TechProcess005>(techProcess005DTO, techProcess005Update)));
+        }
+
+        public bool TechProcess005Delete(int id)
+        {
+            try
+            {
+                techProcess005.Delete(techProcess005.GetAll().FirstOrDefault(c => c.Id == id));
                 return true;
             }
             catch (Exception ex)

@@ -30,16 +30,22 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TechProcess001Fm));
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.techProcess001Grid = new DevExpress.XtraGrid.GridControl();
-            this.techProcess001GridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.addBtn = new DevExpress.XtraBars.BarButtonItem();
             this.editBtn = new DevExpress.XtraBars.BarButtonItem();
             this.deleteBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.techProcessTreeListGrid = new DevExpress.XtraTreeList.TreeList();
+            this.numberCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.dateCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.techProcessCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.techProcessFullNameCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.drawingCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.fullPathCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.splashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::TechnicalProcessControl.WaitFm), true, true);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.techProcess001Grid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.techProcess001GridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.techProcessTreeListGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl1
@@ -59,37 +65,6 @@
             this.ribbonControl1.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
             this.ribbonControl1.Size = new System.Drawing.Size(1191, 95);
             this.ribbonControl1.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
-            // 
-            // ribbonPageGroup1
-            // 
-            this.ribbonPageGroup1.ItemLinks.Add(this.addBtn);
-            this.ribbonPageGroup1.ItemLinks.Add(this.editBtn);
-            this.ribbonPageGroup1.ItemLinks.Add(this.deleteBtn);
-            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
-            this.ribbonPageGroup1.Text = "Техпроцес";
-            // 
-            // ribbonPage1
-            // 
-            this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup1});
-            this.ribbonPage1.Name = "ribbonPage1";
-            this.ribbonPage1.Text = "ribbonPage1";
-            // 
-            // techProcess001Grid
-            // 
-            this.techProcess001Grid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.techProcess001Grid.Location = new System.Drawing.Point(0, 95);
-            this.techProcess001Grid.MainView = this.techProcess001GridView;
-            this.techProcess001Grid.Name = "techProcess001Grid";
-            this.techProcess001Grid.Size = new System.Drawing.Size(1191, 423);
-            this.techProcess001Grid.TabIndex = 1;
-            this.techProcess001Grid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.techProcess001GridView});
-            // 
-            // techProcess001GridView
-            // 
-            this.techProcess001GridView.GridControl = this.techProcess001Grid;
-            this.techProcess001GridView.Name = "techProcess001GridView";
             // 
             // addBtn
             // 
@@ -118,19 +93,110 @@
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             // 
+            // ribbonPage1
+            // 
+            this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup1});
+            this.ribbonPage1.Name = "ribbonPage1";
+            this.ribbonPage1.Text = "ribbonPage1";
+            // 
+            // ribbonPageGroup1
+            // 
+            this.ribbonPageGroup1.ItemLinks.Add(this.addBtn);
+            this.ribbonPageGroup1.ItemLinks.Add(this.editBtn);
+            this.ribbonPageGroup1.ItemLinks.Add(this.deleteBtn);
+            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
+            this.ribbonPageGroup1.Text = "Техпроцес";
+            // 
+            // techProcessTreeListGrid
+            // 
+            this.techProcessTreeListGrid.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
+            this.numberCol,
+            this.dateCol,
+            this.techProcessCol,
+            this.techProcessFullNameCol,
+            this.drawingCol,
+            this.fullPathCol,
+            this.treeListColumn1});
+            this.techProcessTreeListGrid.DataSource = null;
+            this.techProcessTreeListGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.techProcessTreeListGrid.Location = new System.Drawing.Point(0, 95);
+            this.techProcessTreeListGrid.Name = "techProcessTreeListGrid";
+            this.techProcessTreeListGrid.Size = new System.Drawing.Size(1191, 423);
+            this.techProcessTreeListGrid.TabIndex = 3;
+            // 
+            // numberCol
+            // 
+            this.numberCol.Caption = "Номер техпроцесса";
+            this.numberCol.FieldName = "TechProcessName";
+            this.numberCol.Name = "numberCol";
+            this.numberCol.Visible = true;
+            this.numberCol.VisibleIndex = 0;
+            // 
+            // dateCol
+            // 
+            this.dateCol.Caption = "Дата";
+            this.dateCol.FieldName = "CreateDate";
+            this.dateCol.Name = "dateCol";
+            this.dateCol.Visible = true;
+            this.dateCol.VisibleIndex = 1;
+            // 
+            // techProcessCol
+            // 
+            this.techProcessCol.Caption = "Номер техпроцесса";
+            this.techProcessCol.FieldName = "TechProcessName";
+            this.techProcessCol.Name = "techProcessCol";
+            this.techProcessCol.Visible = true;
+            this.techProcessCol.VisibleIndex = 2;
+            // 
+            // techProcessFullNameCol
+            // 
+            this.techProcessFullNameCol.Caption = "Название техпроцесса (полное)";
+            this.techProcessFullNameCol.FieldName = "TechProcessFullName";
+            this.techProcessFullNameCol.Name = "techProcessFullNameCol";
+            this.techProcessFullNameCol.Visible = true;
+            this.techProcessFullNameCol.VisibleIndex = 3;
+            // 
+            // drawingCol
+            // 
+            this.drawingCol.Caption = "Номер чертежа";
+            this.drawingCol.FieldName = "DrawingNumber";
+            this.drawingCol.Name = "drawingCol";
+            this.drawingCol.Visible = true;
+            this.drawingCol.VisibleIndex = 4;
+            // 
+            // fullPathCol
+            // 
+            this.fullPathCol.Caption = "Путь к файлу";
+            this.fullPathCol.FieldName = "TechProcessPath";
+            this.fullPathCol.Name = "fullPathCol";
+            this.fullPathCol.Visible = true;
+            this.fullPathCol.VisibleIndex = 5;
+            // 
+            // treeListColumn1
+            // 
+            this.treeListColumn1.Caption = "Номер чертежа с ревизией";
+            this.treeListColumn1.FieldName = "DrawingNumberWithRevision";
+            this.treeListColumn1.Name = "treeListColumn1";
+            this.treeListColumn1.Visible = true;
+            this.treeListColumn1.VisibleIndex = 6;
+            // 
+            // splashScreenManager
+            // 
+            this.splashScreenManager.ClosingDelay = 500;
+            // 
             // TechProcess001Fm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1191, 518);
-            this.Controls.Add(this.techProcess001Grid);
+            this.Controls.Add(this.techProcessTreeListGrid);
             this.Controls.Add(this.ribbonControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TechProcess001Fm";
             this.Text = "Заготовительное производство";
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.techProcess001Grid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.techProcess001GridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.techProcessTreeListGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -144,7 +210,14 @@
         private DevExpress.XtraBars.BarButtonItem deleteBtn;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
-        private DevExpress.XtraGrid.GridControl techProcess001Grid;
-        private DevExpress.XtraGrid.Views.Grid.GridView techProcess001GridView;
+        private DevExpress.XtraTreeList.TreeList techProcessTreeListGrid;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn numberCol;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn dateCol;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn techProcessCol;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn techProcessFullNameCol;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn drawingCol;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn fullPathCol;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
+        private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager;
     }
 }

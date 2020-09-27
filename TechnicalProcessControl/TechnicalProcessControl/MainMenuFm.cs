@@ -9,6 +9,7 @@ using TechnicalProcessControl.Journals;
 using TechnicalProcessControl.Drawings;
 using TechnicalProcessControl.BLL.ModelsDTO;
 using TechnicalProcessControl;
+using TechnicalProcessControl.TechnicalProcess;
 
 namespace TechnicalProcessControl
 {
@@ -144,6 +145,39 @@ namespace TechnicalProcessControl
                     operationNameFm.MdiParent = this;
                     operationNameFm.Show();
                     break;
+                case "TechProcess001Item":
+                    TechProcess001Fm techprocess001Fm = new TechProcess001Fm(usersDTO);
+                    techprocess001Fm.Text = "Техпроцессы ";
+                    techprocess001Fm.MdiParent = this;
+                    techprocess001Fm.Show();
+                    break;
+                //case "operationNameItem":
+                //    OperationNameFm operationNameFm = new OperationNameFm();
+                //    operationNameFm.Text = "Наименование операций";
+                //    operationNameFm.MdiParent = this;
+                //    operationNameFm.Show();
+                //    break;
+                //case "operationNameItem":
+                //    OperationNameFm operationNameFm = new OperationNameFm();
+                //    operationNameFm.Text = "Наименование операций";
+                //    operationNameFm.MdiParent = this;
+                //    operationNameFm.Show();
+                //    break;
+                //case "operationNameItem":
+                //    OperationNameFm operationNameFm = new OperationNameFm();
+                //    operationNameFm.Text = "Наименование операций";
+                //    operationNameFm.MdiParent = this;
+                //    operationNameFm.Show();
+                //    break;
+                //case "operationNameItem":
+                //    OperationNameFm operationNameFm = new OperationNameFm();
+                //    operationNameFm.Text = "Наименование операций";
+                //    operationNameFm.MdiParent = this;
+                //    operationNameFm.Show();
+                //    break;
+
+
+                    
 
 
 
