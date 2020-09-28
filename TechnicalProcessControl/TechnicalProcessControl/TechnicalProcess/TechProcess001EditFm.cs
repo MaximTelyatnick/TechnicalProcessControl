@@ -31,6 +31,9 @@ namespace TechnicalProcessControl
         public TechProcess001DTO techProcess001OldDTO;
         public Utils.Operation operation;
 
+        public string filePath = "";
+        public string fileName = "";
+
         private ObjectBase Item
         {
             get { return techProcessBS.Current as ObjectBase; }
@@ -62,6 +65,7 @@ namespace TechnicalProcessControl
             drawingEdit.DataBindings.Add("EditValue", techProcessBS, "DrawingId", true, DataSourceUpdateMode.OnPropertyChanged);
             techProcessFullName.DataBindings.Add("EditValue", techProcessBS, "techProcessFullName", true, DataSourceUpdateMode.OnPropertyChanged);
             createDateEdit.DataBindings.Add("EditValue", techProcessBS, "CreateDate", true, DataSourceUpdateMode.OnPropertyChanged);
+            useExistingWorkflowCheck.DataBindings.Add("Checked", techProcessBS, "OldTechProcess", true, DataSourceUpdateMode.OnPropertyChanged);
 
 
             drawingBS.DataSource = drawingService.GetAllDrawing();
@@ -91,6 +95,12 @@ namespace TechnicalProcessControl
             {
                 Item.BeginEdit();
 
+                useExistingWorkflowCheck.Enabled = false;
+                drawingNumberEdit.ReadOnly = true;
+                techProcessNumber001Edit.ReadOnly = true;
+                techProcessFullName.ReadOnly = true;
+                revisionEdit.ReadOnly = true;
+
                 ((TechProcess001DTO)Item).ParentId = null;
                 ((TechProcess001DTO)Item).CreateDate = DateTime.Now;
 
@@ -110,78 +120,75 @@ namespace TechnicalProcessControl
         {
             this.Item.EndEdit();
 
-            //if (FindDublicate((BusinessTripsDecreeDTO)this.Item))
-            //{
-            //    MessageBox.Show("Наказ з таким номером вже існує!", "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //    return false;
-            //}
-
-            //if (businessTripsBS.Count == 0)
-            //{
-            //    MessageBox.Show("Необхідно додати посвідчення до наказу!", "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //    return false;
-            //}
-
-
             drawingService = Program.kernel.Get<IDrawingService>();
             reportService = Program.kernel.Get<IReportService>();
 
             if (operation == Utils.Operation.Add)
             {
 
+                if (drawingService.CheckTechProcess001(((TechProcess001DTO)Item).TechProcessName))
+                {
+                    MessageBox.Show("Техпроцесс с таким именем уже существует!", "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return false;
+                }
+
                 string techProcessName = techProcessNumber001Edit.Text;
 
-                if (drawingService.CheckTechProcess001(techProcessName))
-                {
-                    MessageBox.Show("Техпроцесс с таким номером уже существует", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-
-                try
+                if (!useExistingWorkflowCheck.Checked)
                 {
 
-                    ((TechProcess001DTO)Item).TechProcessPath = @"C:\TechProcess\" + ((TechProcess001DTO)Item).TechProcessFullName + ".xls";
-                    
-
-                    drawingsDTO.TechProcess001Name = ((TechProcess001DTO)Item).TechProcessName;
-                    drawingsDTO.TechProcess001Path = ((TechProcess001DTO)Item).TechProcessPath;
-
-                    string path = reportService.CreateTemplateTechProcess001(usersDTO, drawingsDTO);
-                    if(path!= "")
+                    try
                     {
-                        ((TechProcess001DTO)Item).Id = drawingService.TechProcess001Create(((TechProcess001DTO)Item));
-                        if(((TechProcess001DTO)Item).Id>0)
+
+                        ((TechProcess001DTO)Item).TechProcessPath = @"C:\TechProcess\" + ((TechProcess001DTO)Item).TechProcessFullName + ".xls";
+
+
+                        drawingsDTO.TechProcess001Name = ((TechProcess001DTO)Item).TechProcessName;
+                        drawingsDTO.TechProcess001Path = ((TechProcess001DTO)Item).TechProcessPath;
+
+                        List<DrawingDTO> parentDrawings = drawingService.GetDrawingParentByDrawingChildId((int)((TechProcess001DTO)Item).DrawingId).ToList();
+
+                        string path = reportService.CreateTemplateTechProcess001(usersDTO, drawingsDTO, null, parentDrawings);
+                        if (path != "")
                         {
-                            reportService.OpenExcelFile(((TechProcess001DTO)Item).TechProcessPath);
+                            ((TechProcess001DTO)Item).Id = drawingService.TechProcess001Create(((TechProcess001DTO)Item));
+                            if (((TechProcess001DTO)Item).Id > 0)
+                            {
+                                reportService.OpenExcelFile(((TechProcess001DTO)Item).TechProcessPath);
+                            }
                         }
+                        else
+                        {
+                            throw new System.ArgumentException("Не получилось создать файл или сохранить в бд", "Ошибка");
+                        }
+
+                        //if (((TechProcess001DTO)Item).Id > 0)
+                        //{
+                        //    string path = reportService.CreateTemplateTechProcess001(usersDTO,drawingsDTO);
+                        //    if (path != "")
+                        //    {
+                        //        //using (TestFm testFm = new TestFm(path))
+                        //        //{
+                        //        //    if (testFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                        //        //    {
+                        //        //        string return_Id = testFm.Return();
+                        //        //        ((TechProcess001DTO)Item).TechProcessFullName = return_Id;
+                        //        //    }
+                        //        //}
+                        //    }
+                        //}
+
+                        return true;
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        throw new System.ArgumentException("Не получилось создать файл или сохранить в бд", "Ошибка");
+                        MessageBox.Show("При сохранении техпроцесса возникла ошибка. " + ex.Message, "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
                     }
-
-                    //if (((TechProcess001DTO)Item).Id > 0)
-                    //{
-                    //    string path = reportService.CreateTemplateTechProcess001(usersDTO,drawingsDTO);
-                    //    if (path != "")
-                    //    {
-                    //        //using (TestFm testFm = new TestFm(path))
-                    //        //{
-                    //        //    if (testFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                    //        //    {
-                    //        //        string return_Id = testFm.Return();
-                    //        //        ((TechProcess001DTO)Item).TechProcessFullName = return_Id;
-                    //        //    }
-                    //        //}
-                    //    }
-                    //}
-
-                    return true;
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("При сохранении техпроцесса возникла ошибка. " + ex.Message, "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
+
                 }
             }
             else if (operation == Utils.Operation.Custom)
@@ -321,13 +328,7 @@ namespace TechnicalProcessControl
                 filePath = ofd.FileName;
                 fileName = ofd.SafeFileName;
                 existingWorkflowPathEdit.Text = filePath;
-
-
-            }
-            if (filePath.Length > 0)
-            {
-                
-
+                existingWorkflowFileEdit.Text = fileName;
             }
             else
                 return;
@@ -338,6 +339,18 @@ namespace TechnicalProcessControl
         private void labelControl9_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void useExistingWorkflowCheck_EditValueChanged(object sender, EventArgs e)
+        {
+            if(useExistingWorkflowCheck.Checked)
+            {
+                checkPanelControl.Enabled = true;
+            }
+            else
+            {
+                checkPanelControl.Enabled = false;
+            }
         }
     }
 }

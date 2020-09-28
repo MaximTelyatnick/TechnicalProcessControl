@@ -94,7 +94,7 @@ namespace TechnicalProcessControl.BLL.Services
          * 2 - необязательный, его передаем только тогда, когда вместо шаблона нужно использовать готовый техпроцесс 
          * 
          * */
-        public string CreateTemplateTechProcess001(UsersDTO usersDTO,DrawingsDTO drawingsDTO, TechProcess001DTO techProcess001OldDTO = null)
+        public string CreateTemplateTechProcess001(UsersDTO usersDTO,DrawingsDTO drawingsDTO, TechProcess001DTO techProcess001OldDTO = null,List<DrawingDTO> listParentDrawings = null )
         {
             try
             {
@@ -119,6 +119,13 @@ namespace TechnicalProcessControl.BLL.Services
             var Worksheet = workbook.Worksheets[0];
             var Сells = Worksheet.Cells;
             IRange cells = Worksheet.Cells;
+
+            string parentDrawings="";
+
+            //получаем все чертежи-родители 
+            if(listParentDrawings!=null)
+                parentDrawings = String.Join(", ", listParentDrawings.Select(bdsm => bdsm.Number).ToArray());
+
             Сells["BY" + 28].Value = "Created by "+ usersDTO.Name;
             cells["D" + 30].Value = "Date of issue "; 
 
@@ -131,7 +138,7 @@ namespace TechnicalProcessControl.BLL.Services
             Сells["F" + 46].Value = drawingsDTO.MaterialName;
             Сells["F" + 46].HorizontalAlignment = HAlign.Left;
 
-            Сells["A" + 39].Value = drawingsDTO.ParentName;
+            Сells["A" + 39].Value = parentDrawings;
             Сells["A" + 39].HorizontalAlignment = HAlign.Center;
             Сells["W" + 48].Value = drawingsDTO.DetailWeight;
             Сells["W" + 48].HorizontalAlignment = HAlign.Center;

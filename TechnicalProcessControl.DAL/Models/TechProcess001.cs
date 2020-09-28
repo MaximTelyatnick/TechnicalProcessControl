@@ -24,5 +24,6 @@ namespace TechnicalProcessControl.DAL.Models
         public string TechProcessFullName { get; set; }
         public DateTime? CreateDate { get; set; }
         public short? TypeId { get; set; }
+        public short? OldTechProcess { get; set; }
     }
 }

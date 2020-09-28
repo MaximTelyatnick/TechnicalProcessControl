@@ -17,6 +17,7 @@ namespace TechnicalProcessControl.BLL.Services
         private IUnitOfWork Database { get; set; }
 
         private IRepository<Drawings> drawings;
+        private IRepository<Drawings> drawingsChild;
         private IRepository<Drawings> parentDrawings;
         private IRepository<DrawingScan> drawingScan;
         private IRepository<Details> details;
@@ -28,6 +29,7 @@ namespace TechnicalProcessControl.BLL.Services
         private IRepository<TechProcess004> techProcess004;
         private IRepository<TechProcess005> techProcess005;
         private IRepository<Drawing> drawing;
+        private IRepository<Drawing> drawingChild;
         private IRepository<Drawing> replacementDrawing;
         private IRepository<Drawing> firstUseDrawing;
         private IRepository<Revisions> revisions;
@@ -44,6 +46,7 @@ namespace TechnicalProcessControl.BLL.Services
             Database = uow;
 
             drawings = Database.GetRepository<Drawings>();
+            drawingsChild = Database.GetRepository<Drawings>();
             parentDrawings = Database.GetRepository<Drawings>();
             drawingScan = Database.GetRepository<DrawingScan>();
             details = Database.GetRepository<Details>();
@@ -55,6 +58,7 @@ namespace TechnicalProcessControl.BLL.Services
             techProcess004 = Database.GetRepository<TechProcess004>();
             techProcess005 = Database.GetRepository<TechProcess005>();
             drawing = Database.GetRepository<Drawing>();
+            drawingChild = Database.GetRepository<Drawing>();
             replacementDrawing = Database.GetRepository<Drawing>();
             firstUseDrawing = Database.GetRepository<Drawing>();
             revisions = Database.GetRepository<Revisions>();
@@ -499,6 +503,53 @@ namespace TechnicalProcessControl.BLL.Services
             return result;
         }
 
+        //по id чертежа получить все чертежи-сборки куда он входит
+        public IEnumerable<DrawingDTO> GetDrawingParentByDrawingChildId(int drawingId)
+        {
+            var result = (from drw in drawings.GetAll()
+                          join dr in drawing.GetAll() on drw.DrawingId equals dr.Id into drr
+                          from dr in drr.DefaultIfEmpty()
+                          join drwch in drawingsChild.GetAll() on drw.Id equals drwch.ParentId into drwchh
+                          from drwch in drwchh.DefaultIfEmpty()
+                          join drch in drawingChild.GetAll() on drwch.DrawingId equals drch.Id into drchh
+                          from drch in drchh.DefaultIfEmpty()
+
+                          join tp in type.GetAll() on dr.TypeId equals tp.Id into tpp
+                          from tp in tpp.DefaultIfEmpty()
+                          join det in details.GetAll() on dr.DetailId equals det.Id into dett
+                          from det in dett.DefaultIfEmpty()
+                          join mat in materials.GetAll() on dr.MaterialId equals mat.Id into matt
+                          from mat in matt.DefaultIfEmpty()
+                          join rev in revisions.GetAll() on dr.RevisionId equals rev.Id into revv
+                          from rev in revv.DefaultIfEmpty()
+                          where drch.Id == drawingId
+
+                          select new DrawingDTO
+                          {
+                              Id = dr.Id,
+                              Number = dr.Number,
+                              CreateDate = dr.CreateDate,
+                              DetailId = dr.DetailId,
+                              DetailName = det.DetailName,
+                              MaterialId = dr.MaterialId,
+                              Note = dr.Note,
+                              RevisionId = dr.RevisionId,
+                              RevisionName = rev.Symbol,
+                              TypeId = dr.TypeId,
+                              TypeName = tp.TypeName,
+                              FullName = rev.Symbol == null ? dr.Number : (dr.Number + "_" + rev.Symbol),
+                              L = dr.L,
+                              TH = dr.TH,
+                              W = dr.W,
+                              W2 = dr.W2,
+                              MaterialName = mat.MaterialName,
+                              DetailWeight = dr.DetailWeight,
+                          }
+                          ).ToList();
+
+            return result;
+        }
+
 
         public IEnumerable<DrawingsDTO> GetShortDrawing()
         {
@@ -624,10 +675,7 @@ namespace TechnicalProcessControl.BLL.Services
             return mapper.Map<DrawingScan, DrawingScanDTO>(drawingScan.GetAll().FirstOrDefault(s => s.DrawingId == DrawingId && s.Status == null));
         }*/
 
-        public bool CheckTechProcess001(string techProcesName)
-        {      
-            return techProcess001.GetAll().Any(chk => chk.TechProcessFullName == techProcesName);
-        }
+        
 
         public bool CheckTechProcess002(string techProcesName)
         {
@@ -692,7 +740,9 @@ namespace TechnicalProcessControl.BLL.Services
                               TechProcessFullName = tcp.TechProcessFullName,
                               TechProcessPath = tcp.TechProcessPath,
                               DrawingNumberWithRevision = rd.Symbol == null ? dr.Number : (dr.Number + "_" + rd.Symbol),
-                              RivisionName = rt.Symbol
+                              RivisionName = rt.Symbol,
+                               TypeId = tcp.TypeId,
+                                OldTechProcess = tcp.OldTechProcess
                           }
                           ).ToList();
 
@@ -808,6 +858,10 @@ namespace TechnicalProcessControl.BLL.Services
                           ).ToList();
 
             return result;
+        }
+        public bool CheckTechProcess001(long techProcesName)
+        {
+            return techProcess001.GetAll().Any(chk => chk.TechProcessName == techProcesName);
         }
 
 

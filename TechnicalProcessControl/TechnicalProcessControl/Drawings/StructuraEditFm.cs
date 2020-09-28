@@ -971,6 +971,8 @@ namespace TechnicalProcessControl.Drawings
                         TechProcess001DTO techProcess001OldDTO = drawingService.GetTechProcess001ByDrawingId((int)((DrawingsDTO)Item).DrawingId);
                         TechProcess001DTO addTechProcessRevisionDTO = new TechProcess001DTO();
 
+                        addTechProcessRevisionDTO = (TechProcess001DTO)techProcess001OldDTO.Clone();
+
                         addTechProcessRevisionDTO.DrawingId = ((DrawingsDTO)Item).DrawingId;
                         addTechProcessRevisionDTO.RevisionId = techProcess001OldDTO.RevisionId;
                         addTechProcessRevisionDTO.TechProcessName = techProcess001OldDTO.TechProcessName;

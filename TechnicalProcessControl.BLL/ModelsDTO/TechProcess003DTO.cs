@@ -3,7 +3,7 @@ using TechnicalProcessControl.BLL.Infrastructure;
 
 namespace TechnicalProcessControl.BLL
 {
-    public class TechProcess003DTO : ObjectBase
+    public class TechProcess003DTO : ObjectBase, Infrastructure.ICloneable
     {
         public int Id { get; set; }
         public int? ParentId { get; set; }
@@ -24,7 +24,12 @@ namespace TechnicalProcessControl.BLL
         public short? TypeId { get; set; }
 
         public int? DrawingsId { get; set; }
-        
-        
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
+
+
     }
 }
