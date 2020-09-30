@@ -272,6 +272,7 @@ namespace TechnicalProcessControl.BLL.Services
                               TechProcess003Path = tcp003.TechProcessPath,
                               TechProcess004Path = tcp004.TechProcessPath,
                               TechProcess005Path = tcp005.TechProcessPath,
+                               TechProcess001Old = tcp001.OldTechProcess,
                               Revision001 = rev001.Symbol,
                               Revision002 = rev002.Symbol,
                               Revision003 = rev003.Symbol,
@@ -513,7 +514,6 @@ namespace TechnicalProcessControl.BLL.Services
                           from drwch in drwchh.DefaultIfEmpty()
                           join drch in drawingChild.GetAll() on drwch.DrawingId equals drch.Id into drchh
                           from drch in drchh.DefaultIfEmpty()
-
                           join tp in type.GetAll() on dr.TypeId equals tp.Id into tpp
                           from tp in tpp.DefaultIfEmpty()
                           join det in details.GetAll() on dr.DetailId equals det.Id into dett
@@ -522,11 +522,11 @@ namespace TechnicalProcessControl.BLL.Services
                           from mat in matt.DefaultIfEmpty()
                           join rev in revisions.GetAll() on dr.RevisionId equals rev.Id into revv
                           from rev in revv.DefaultIfEmpty()
-                          where drch.Id == drawingId
+                          where drch.Id == drawingId && dr.Id!= null
 
                           select new DrawingDTO
                           {
-                              Id = dr.Id,
+                              Id = dr.Id == null ? -1:dr.Id,
                               Number = dr.Number,
                               CreateDate = dr.CreateDate,
                               DetailId = dr.DetailId,
@@ -547,7 +547,9 @@ namespace TechnicalProcessControl.BLL.Services
                           }
                           ).ToList();
 
-            return result;
+
+
+           return result.GroupBy(x => x.Id).Select(y => y.First()).ToList();
         }
 
 

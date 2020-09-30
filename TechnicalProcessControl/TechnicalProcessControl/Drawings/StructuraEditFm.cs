@@ -590,8 +590,6 @@ namespace TechnicalProcessControl.Drawings
                 else
                     drawingScanEdit.EditValue = null;
 
-                
-
                 var techProcess001 = drawingService.GetTechProcess001ByDrawingId((int)key);
                 var techProcess002 = drawingService.GetTechProcess002ByDrawingId((int)key);
                 var techProcess003 = drawingService.GetTechProcess003ByDrawingId((int)key);
@@ -602,10 +600,25 @@ namespace TechnicalProcessControl.Drawings
                 {
                     techProcess001BS.DataSource = drawingService.GetAllTechProcess001();
                     ((DrawingsDTO)Item).TechProcess001Id = ((TechProcess001DTO)techProcess001).Id;
+                    if ((bool)((TechProcess001DTO)techProcess001).OldTechProcess)
+                    {
+                        techProcess001Edit.Properties.Buttons[0].Enabled = false;
+                        techProcess001Edit.Properties.Buttons[1].Enabled = false;
+                        techProcess001Edit.Properties.Buttons[3].Enabled = false;
+                    }
+                    else
+                    {
+                        techProcess001Edit.Properties.Buttons[0].Enabled = true;
+                        techProcess001Edit.Properties.Buttons[1].Enabled = true;
+                        techProcess001Edit.Properties.Buttons[3].Enabled = true;
+                    }
                 }
                 else
                 {
                     ((DrawingsDTO)Item).TechProcess001Id = null;
+                    techProcess001Edit.Properties.Buttons[0].Enabled = true;
+                    techProcess001Edit.Properties.Buttons[1].Enabled = true;
+                    techProcess001Edit.Properties.Buttons[3].Enabled = true;
                 }
                 
                 if (techProcess002 != null)
@@ -925,6 +938,14 @@ namespace TechnicalProcessControl.Drawings
                                 techProcess001Edit.Properties.DataSource = drawingService.GetAllTechProcess001();
                                 int return_Id = techProcess001EditFm.Return().Id;
                                 techProcess001Edit.EditValue = return_Id;
+
+                                if ((bool)techProcess001EditFm.Return().OldTechProcess)
+                                {
+                                    numberEdit.Properties.Buttons[0].Enabled = false;
+                                    numberEdit.Properties.Buttons[1].Enabled = false;
+                                    numberEdit.Properties.Buttons[3].Enabled = false;
+                                }
+
                             }
                         }
                         break;

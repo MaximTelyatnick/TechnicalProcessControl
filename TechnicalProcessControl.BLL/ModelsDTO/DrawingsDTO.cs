@@ -66,6 +66,8 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public string TechProcess003PathOld { get; set; }
         public string TechProcess004PathOld { get; set; }
         public string TechProcess005PathOld { get; set; }
+        public bool? TechProcess001Old { get; set; }
+
 
 
     }

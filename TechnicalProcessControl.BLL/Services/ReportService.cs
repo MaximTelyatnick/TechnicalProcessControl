@@ -498,6 +498,40 @@ namespace TechnicalProcessControl.BLL.Services
             process.Start();
         }
 
+        public string ResaveFileTechProcess001(DrawingsDTO drawingsDTO, string fullPathExistingFile)
+        {
+            try
+            {
+                    Factory.GetWorkbook(fullPathExistingFile);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Не найдено файл!\n" + ex.Message, "Увага", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return "";
+            }
+
+            IWorkbook workbook = Factory.GetWorkbook(fullPathExistingFile); ;
+
+            try
+            {
+                workbook.SaveAs(drawingsDTO.TechProcess001Path, FileFormat.XLS97);
+
+            }
+
+            catch (System.IO.IOException)
+            {
+                MessageBox.Show("Документ уже открыто!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return "";
+            }
+            catch (System.ComponentModel.Win32Exception)
+            {
+                MessageBox.Show("На рабочей станции отсутсутствует пакет программ Microsoft Oficce!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return "";
+            }
+
+            return drawingsDTO.TechProcess001Path;
+        }
+
         public string TechProcesNameToStr(long? techProcessName)
         {
             string techProcessNameStr = techProcessName.ToString();

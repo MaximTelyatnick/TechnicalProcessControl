@@ -86,10 +86,16 @@ namespace TechnicalProcessControl
             {
                 ((TechProcess001DTO)Item).TechProcessName = drawingService.GetLastTechProcess001();
                 ((TechProcess001DTO)Item).CreateDate = DateTime.Now;
+                ((TechProcess001DTO)Item).OldTechProcess = false;
+                
             }
             else if(operation == Utils.Operation.Update)
             {
-
+                useExistingWorkflowCheck.Enabled = false;
+                drawingNumberEdit.ReadOnly = true;
+                techProcessNumber001Edit.ReadOnly = true;
+                techProcessFullName.ReadOnly = true;
+                revisionEdit.ReadOnly = true;
             }
             else if (operation == Utils.Operation.Custom)
             {
@@ -188,7 +194,35 @@ namespace TechnicalProcessControl
                 }
                 else
                 {
+                    try
+                    {
+                        ((TechProcess001DTO)Item).TechProcessPath = @"C:\TechProcess\" + ((TechProcess001DTO)Item).TechProcessFullName + ".xls";
 
+
+                        drawingsDTO.TechProcess001Name = ((TechProcess001DTO)Item).TechProcessName;
+                        drawingsDTO.TechProcess001Path = ((TechProcess001DTO)Item).TechProcessPath;
+
+                        string path = reportService.ResaveFileTechProcess001(drawingsDTO, existingWorkflowPathEdit.Text);
+                        if (path != "")
+                        {
+                            ((TechProcess001DTO)Item).Id = drawingService.TechProcess001Create(((TechProcess001DTO)Item));
+                            if (((TechProcess001DTO)Item).Id > 0)
+                            {
+                                reportService.OpenExcelFile(((TechProcess001DTO)Item).TechProcessPath);
+                            }
+                        }
+                        else
+                        {
+                            throw new System.ArgumentException("Не получилось создать файл или сохранить в бд", "Ошибка");
+                        }
+
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("При сохранении техпроцесса возникла ошибка. " + ex.Message, "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
                 }
             }
             else if (operation == Utils.Operation.Custom)
@@ -344,13 +378,17 @@ namespace TechnicalProcessControl
         private void useExistingWorkflowCheck_EditValueChanged(object sender, EventArgs e)
         {
             if(useExistingWorkflowCheck.Checked)
-            {
                 checkPanelControl.Enabled = true;
-            }
             else
-            {
                 checkPanelControl.Enabled = false;
-            }
+        }
+
+        private void TechProcess001EditFm_Load(object sender, EventArgs e)
+        {
+            if (useExistingWorkflowCheck.Checked)
+                checkPanelControl.Enabled = true;
+            else
+                checkPanelControl.Enabled = false;
         }
     }
 }

@@ -8,6 +8,9 @@ using System.Diagnostics;
 using System.Linq;
 using System;
 using System.Drawing;
+using DevExpress.XtraTreeList.Nodes;
+using DevExpress.XtraTreeList;
+using System.Collections.Generic;
 
 namespace TechnicalProcessControl
 {
@@ -17,6 +20,7 @@ namespace TechnicalProcessControl
         public static IReportService reportService;
 
         private UsersDTO usersDTO;
+        private List<DrawingsDTO> drawingsList = new List<DrawingsDTO>();
 
         public BindingSource drawingsBS = new BindingSource();
 
@@ -71,7 +75,9 @@ namespace TechnicalProcessControl
 
             splashScreenManager.ShowWaitForm();
 
-            drawingsBS.DataSource = drawingService.GetAllDrawings().OrderBy(bdsm => Convert.ToInt32(bdsm.CurrentLevelMenu.Split('.').Last())).ToList();
+            this.drawingsList = drawingService.GetAllDrawings().OrderBy(bdsm => Convert.ToInt32(bdsm.CurrentLevelMenu.Split('.').Last())).ToList();
+
+            drawingsBS.DataSource = drawingsList;
 
             drawingGrid.DataSource = drawingsBS;
 
@@ -468,20 +474,86 @@ namespace TechnicalProcessControl
 
         private void disableBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            drawingService = Program.kernel.Get<IDrawingService>();
+            //int rootIndex = drawingTreeListGrid.Nodes.IndexOf(drawingTreeListGrid.FocusedNode);
+            //foreach (TreeNode tn in drawingTreeListGrid.Nodes[rootIndex].Nodes)
+            //{
+            //    MessageBox.Show(tn.Index.ToString(), "Нода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
 
-            if (((DrawingsDTO)Item).StructuraDisable)
-            {
-                ((DrawingsDTO)Item).StructuraDisable = false;
-                drawingService.DrawingsUpdate(((DrawingsDTO)Item));
-                LoadData();
-            }
+            //foreach (TreeListNode node in e.Node.Nodes)
+            //{
+            //    node.CheckState = e.Node.CheckState;
+            //}
+            //foreach (TreeListNode node in drawingTreeListGrid..Node.Nodes)
+            //    node.CheckState = e.Node.CheckState;
+
+
+            allNodes(((DrawingsDTO)Item).Id);
+
+            //var childList = drawingTreeListGrid.Nodes.Where(p => p.ParentNode.Id == currentNode.Id).ToList();
+
+            //var childListt =  drawingTreeListGrid.Nodes.ParentNode.GetValue(drawingTreeListGrid.["Id"]);
+            //drawingService = Program.kernel.Get<IDrawingService>();
+
+            //if (((DrawingsDTO)Item).StructuraDisable)
+            //{
+            //    ((DrawingsDTO)Item).StructuraDisable = false;
+            //    drawingService.DrawingsUpdate(((DrawingsDTO)Item));
+            //    LoadData();
+            //}
+            //else
+            //{
+            //    ((DrawingsDTO)Item).StructuraDisable = true;
+            //    drawingService.DrawingsUpdate(((DrawingsDTO)Item));
+            //    LoadData();
+            //}
+        }
+
+
+        public List<DrawingsDTO> GetAllCheldrenByNode()
+        {
+            
+
+            return null;
+        }
+
+
+        public void allNodes(int id)
+        {
+
+            MessageBox.Show(id.ToString(), "айди", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            var parent = drawingsList.Where(bdsm => bdsm.ParentId == id);
+            foreach (var item in parent)
+                allNodes(item.Id);
+
+        }
+
+
+        public void CopyNodesOperation(TreeList destTreeList)
+        {
+            if (destTreeList == null)
+                throw new ArgumentNullException("destTreeList");
+            this.drawingTreeListGrid = destTreeList;
+        }
+
+        public void ExecuteNode(TreeListNode node)
+        {
+            CopyNode(node, drawingTreeListGrid);
+        }
+
+        public static void CopyNode(TreeListNode node, TreeList destTreeList)
+        {
+            object[] values = new object[node.TreeList.Columns.Count];
+
+            for (int i = 0; i < node.TreeList.Columns.Count; i++)
+                values[i] = node.GetValue(i);
+            TreeListNode newnode = null;
+            if (node.ParentNode != null)
+                newnode = destTreeList.AppendNode(values, node.ParentNode.Id);
             else
-            {
-                ((DrawingsDTO)Item).StructuraDisable = true;
-                drawingService.DrawingsUpdate(((DrawingsDTO)Item));
-                LoadData();
-            }
+                newnode = destTreeList.AppendNode(values, null);
+            newnode.Tag = node.Tag;
         }
     }
 }

@@ -1297,6 +1297,7 @@
             this.Name = "TechProcess001EditFm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Редактирование техпроцесса 001 (Заготовительное производство)";
+            this.Load += new System.EventHandler(this.TechProcess001EditFm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.techProcessNumber001Edit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawingNumberEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.techProcessFullName.Properties)).EndInit();

@@ -12,7 +12,7 @@ namespace TechnicalProcessControl.DAL.Models
         [Key]
         public int Id { get; set; }
         public string Number { get; set; }
-        public bool Assembly { get; set; }
+        public bool? Assembly { get; set; }
 
         public int? DetailId { get; set; }
         public int? MaterialId { get; set; }
