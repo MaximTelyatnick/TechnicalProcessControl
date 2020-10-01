@@ -69,6 +69,9 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public bool? TechProcess001Old { get; set; }
 
 
-
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

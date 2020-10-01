@@ -21,6 +21,7 @@ namespace TechnicalProcessControl
 
         private UsersDTO usersDTO;
         private List<DrawingsDTO> drawingsList = new List<DrawingsDTO>();
+        private List<DrawingsDTO> bifferdrawingsList = new List<DrawingsDTO>();
 
         public BindingSource drawingsBS = new BindingSource();
 
@@ -474,86 +475,107 @@ namespace TechnicalProcessControl
 
         private void disableBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //int rootIndex = drawingTreeListGrid.Nodes.IndexOf(drawingTreeListGrid.FocusedNode);
-            //foreach (TreeNode tn in drawingTreeListGrid.Nodes[rootIndex].Nodes)
-            //{
-            //    MessageBox.Show(tn.Index.ToString(), "Нода", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
 
-            //foreach (TreeListNode node in e.Node.Nodes)
-            //{
-            //    node.CheckState = e.Node.CheckState;
-            //}
-            //foreach (TreeListNode node in drawingTreeListGrid..Node.Nodes)
-            //    node.CheckState = e.Node.CheckState;
+            //allNodes(((DrawingsDTO)Item).Id);
 
+            drawingTreeListGrid.BeginUpdate();
 
-            allNodes(((DrawingsDTO)Item).Id);
-
-            //var childList = drawingTreeListGrid.Nodes.Where(p => p.ParentNode.Id == currentNode.Id).ToList();
-
-            //var childListt =  drawingTreeListGrid.Nodes.ParentNode.GetValue(drawingTreeListGrid.["Id"]);
-            //drawingService = Program.kernel.Get<IDrawingService>();
-
-            //if (((DrawingsDTO)Item).StructuraDisable)
-            //{
-            //    ((DrawingsDTO)Item).StructuraDisable = false;
-            //    drawingService.DrawingsUpdate(((DrawingsDTO)Item));
-            //    LoadData();
-            //}
-            //else
-            //{
-            //    ((DrawingsDTO)Item).StructuraDisable = true;
-            //    drawingService.DrawingsUpdate(((DrawingsDTO)Item));
-            //    LoadData();
-            //}
-        }
-
-
-        public List<DrawingsDTO> GetAllCheldrenByNode()
-        {
-            
-
-            return null;
-        }
-
-
-        public void allNodes(int id)
-        {
-
-            MessageBox.Show(id.ToString(), "айди", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            var parent = drawingsList.Where(bdsm => bdsm.ParentId == id);
-            foreach (var item in parent)
-                allNodes(item.Id);
-
-        }
-
-
-        public void CopyNodesOperation(TreeList destTreeList)
-        {
-            if (destTreeList == null)
-                throw new ArgumentNullException("destTreeList");
-            this.drawingTreeListGrid = destTreeList;
-        }
-
-        public void ExecuteNode(TreeListNode node)
-        {
-            CopyNode(node, drawingTreeListGrid);
-        }
-
-        public static void CopyNode(TreeListNode node, TreeList destTreeList)
-        {
-            object[] values = new object[node.TreeList.Columns.Count];
-
-            for (int i = 0; i < node.TreeList.Columns.Count; i++)
-                values[i] = node.GetValue(i);
-            TreeListNode newnode = null;
-            if (node.ParentNode != null)
-                newnode = destTreeList.AppendNode(values, node.ParentNode.Id);
+            if (((DrawingsDTO)Item).StructuraDisable)
+            {
+                bifferdrawingsList.Clear();
+                GetAllNodes(((DrawingsDTO)Item));
+                NodesDisableValueUpdate(bifferdrawingsList, false);
+                LoadData();
+            }
             else
-                newnode = destTreeList.AppendNode(values, null);
-            newnode.Tag = node.Tag;
+            {
+                bifferdrawingsList.Clear();
+                GetAllNodes(((DrawingsDTO)Item));
+                NodesDisableValueUpdate(bifferdrawingsList, true);
+                LoadData();
+            }
+
+            drawingTreeListGrid.EndUpdate();
+        }
+
+
+        public void GetAllNodes(DrawingsDTO drawings)
+        {
+            bifferdrawingsList.Add(drawings);
+            var parent = drawingsList.Where(bdsm => bdsm.ParentId == drawings.Id);
+            foreach (var item in parent)
+                GetAllNodes(item);
+        }
+
+        public void PasteAllNodes(DrawingsDTO targetDrawings,DrawingsDTO pasteDrawings, List<DrawingsDTO> parentPasteDrawingsList)
+        {
+
+            drawingService = Program.kernel.Get<IDrawingService>();
+            string rootLevelMenu = drawingService.GetMaxStructuraNumber(targetDrawings.Id);
+            pasteDrawings.CurrentLevelMenu = rootLevelMenu;
+            pasteDrawings.ParentId = targetDrawings.Id;
+            pasteDrawings.Id = drawingService.DrawingsCreate(pasteDrawings);
+
+            foreach (var item in parentPasteDrawingsList)
+            {
+                parentPasteDrawingsList = bifferdrawingsList.Where(bdsm => bdsm.ParentId == item.Id).ToList();
+                PasteAllNodes(pasteDrawings,item, parentPasteDrawingsList);
+            }
+        }
+
+        public void PasteNode(DrawingsDTO targetDrawings, DrawingsDTO pasteDrawings)
+        {
+            //drawingService = Program.kernel.Get<IDrawingService>();
+            //string rootLevelMenu = drawingService.GetMaxStructuraNumber(targetDrawings.Id);
+
+            //foreach (var item in pasteDrawingsList)
+            //{
+
+            //}
+        }
+
+
+        public void NodesDisableValueUpdate(List<DrawingsDTO> updateDrawings, bool disableValue)
+        {
+            drawingService = Program.kernel.Get<IDrawingService>();
+            splashScreenManager.ShowWaitForm();
+
+            foreach (var item in updateDrawings)
+            {
+                item.StructuraDisable = disableValue;
+                drawingService.DrawingsUpdate(item);
+
+            }
+
+            splashScreenManager.CloseWaitForm();
+        }
+
+
+        
+        private void copyMenuItem_Click(object sender, EventArgs e)
+        {
+            bifferdrawingsList.Clear();
+            GetAllNodes(((DrawingsDTO)Item));
+        }
+
+        private void pasteMenuItem_Click(object sender, EventArgs e)
+        {
+            if (bifferdrawingsList.Count() > 0)
+            {
+                splashScreenManager.ShowWaitForm();
+
+                drawingTreeListGrid.BeginUpdate();
+
+                DrawingsDTO pasteDrawings = bifferdrawingsList.First();
+                List<DrawingsDTO> parentPasteDrawingsList = bifferdrawingsList.Where(bdsm => bdsm.ParentId == pasteDrawings.Id).ToList();
+                PasteAllNodes(((DrawingsDTO)Item), pasteDrawings, parentPasteDrawingsList);
+
+                splashScreenManager.CloseWaitForm();
+
+                LoadData();
+
+                drawingTreeListGrid.EndUpdate();
+            }
         }
     }
 }

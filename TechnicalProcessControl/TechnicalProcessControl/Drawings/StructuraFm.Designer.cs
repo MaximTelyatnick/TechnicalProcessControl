@@ -142,6 +142,9 @@
             this.consumptionPaintTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.consumptionPaintTotalTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.weightTotalTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.copyPasteMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.contractorsRibonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawingGrid)).BeginInit();
@@ -153,6 +156,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.techProcess003Repository)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.techProcess004Repository)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.techProcess005Repository)).BeginInit();
+            this.copyPasteMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).BeginInit();
             this.SuspendLayout();
             // 
@@ -900,6 +904,7 @@
             this.revision003Col,
             this.revision004Col,
             this.revision005Col});
+            this.drawingTreeListGrid.ContextMenuStrip = this.copyPasteMenuStrip;
             this.drawingTreeListGrid.Cursor = System.Windows.Forms.Cursors.Hand;
             this.drawingTreeListGrid.DataSource = null;
             this.drawingTreeListGrid.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1591,6 +1596,28 @@
             this.weightTotalTreeCol.VisibleIndex = 11;
             this.weightTotalTreeCol.Width = 65;
             // 
+            // copyPasteMenuStrip
+            // 
+            this.copyPasteMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyMenuItem,
+            this.pasteMenuItem});
+            this.copyPasteMenuStrip.Name = "copyPasteMenuStrip";
+            this.copyPasteMenuStrip.Size = new System.Drawing.Size(153, 70);
+            // 
+            // copyMenuItem
+            // 
+            this.copyMenuItem.Name = "copyMenuItem";
+            this.copyMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.copyMenuItem.Text = "Копировать";
+            this.copyMenuItem.Click += new System.EventHandler(this.copyMenuItem_Click);
+            // 
+            // pasteMenuItem
+            // 
+            this.pasteMenuItem.Name = "pasteMenuItem";
+            this.pasteMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pasteMenuItem.Text = "Вставить";
+            this.pasteMenuItem.Click += new System.EventHandler(this.pasteMenuItem_Click);
+            // 
             // imageCollection
             // 
             this.imageCollection.ImageSize = new System.Drawing.Size(16, 16);
@@ -1621,6 +1648,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.techProcess003Repository)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.techProcess004Repository)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.techProcess005Repository)).EndInit();
+            this.copyPasteMenuStrip.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1740,5 +1768,8 @@
         private DevExpress.XtraBars.BarButtonItem copyStructuraRangeBtn;
         private DevExpress.XtraBars.BarButtonItem addCurrentStructuraBtn;
         private DevExpress.XtraBars.BarButtonItem disableBtn;
+        private System.Windows.Forms.ContextMenuStrip copyPasteMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem copyMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pasteMenuItem;
     }
 }
