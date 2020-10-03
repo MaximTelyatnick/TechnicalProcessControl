@@ -720,6 +720,7 @@
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.homeRibbonPage1 = new DevExpress.XtraSpreadsheet.UI.HomeRibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.clipboardRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.ClipboardRibbonPageGroup();
@@ -729,6 +730,7 @@
             this.cellsRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.CellsRibbonPageGroup();
             this.editingRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.EditingRibbonPageGroup();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.operationRepositoryEdit = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
             this.repositoryItemGridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.tableIdCol = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -793,6 +795,8 @@
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.splashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::TechnicalProcessControl.WaitFm), true, true);
             this.spreadsheetBarController1 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetBarController();
+            this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarGalleryDropDown50)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemFontEdit1)).BeginInit();
@@ -1238,9 +1242,12 @@
             this.addOperationNumberBtn,
             this.operationPaintEdit,
             this.addOperationPaintBtn,
-            this.operationEdit});
+            this.operationEdit,
+            this.barButtonItem3,
+            this.barButtonItem4,
+            this.barButtonItem5});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 100;
+            this.ribbonControl1.MaxItemId = 105;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.homeRibbonPage1});
@@ -2819,6 +2826,13 @@
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 4;
             // 
+            // barButtonItem3
+            // 
+            this.barButtonItem3.Caption = "Добавить";
+            this.barButtonItem3.Id = 101;
+            this.barButtonItem3.Name = "barButtonItem3";
+            this.barButtonItem3.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem3_ItemClick);
+            // 
             // homeRibbonPage1
             // 
             this.homeRibbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -2830,7 +2844,8 @@
             this.stylesRibbonPageGroup1,
             this.cellsRibbonPageGroup1,
             this.editingRibbonPageGroup1,
-            this.ribbonPageGroup1});
+            this.ribbonPageGroup1,
+            this.ribbonPageGroup3});
             this.homeRibbonPage1.Name = "homeRibbonPage1";
             reduceOperation1.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.UntilAvailable;
             reduceOperation1.Group = this.stylesRibbonPageGroup1;
@@ -2903,6 +2918,13 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.saveBtn);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "ribbonPageGroup1";
+            // 
+            // ribbonPageGroup3
+            // 
+            this.ribbonPageGroup3.ItemLinks.Add(this.barButtonItem3);
+            this.ribbonPageGroup3.ItemLinks.Add(this.barButtonItem5);
+            this.ribbonPageGroup3.Name = "ribbonPageGroup3";
+            this.ribbonPageGroup3.Text = "ribbonPageGroup3";
             // 
             // operationRepositoryEdit
             // 
@@ -6588,6 +6610,19 @@
             this.spreadsheetBarController1.BarItems.Add(this.spreadsheetCommandBarButtonItem104);
             this.spreadsheetBarController1.Control = this.spreadsheetControl;
             // 
+            // barButtonItem4
+            // 
+            this.barButtonItem4.Caption = "barButtonItem4";
+            this.barButtonItem4.Id = 103;
+            this.barButtonItem4.Name = "barButtonItem4";
+            // 
+            // barButtonItem5
+            // 
+            this.barButtonItem5.Caption = "Строка";
+            this.barButtonItem5.Id = 104;
+            this.barButtonItem5.Name = "barButtonItem5";
+            this.barButtonItem5.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem5_ItemClick);
+            // 
             // TestFm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -6948,5 +6983,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem3;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem4;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem5;
     }
 }

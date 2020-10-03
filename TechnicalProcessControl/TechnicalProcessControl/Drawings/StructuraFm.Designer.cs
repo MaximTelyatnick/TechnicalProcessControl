@@ -145,6 +145,7 @@
             this.copyPasteMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pasteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.удалитьСборкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.contractorsRibonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawingGrid)).BeginInit();
@@ -312,7 +313,6 @@
             // ribbonPageGroup3
             // 
             this.ribbonPageGroup3.ItemLinks.Add(this.replaceDrawingBtn);
-            this.ribbonPageGroup3.ItemLinks.Add(this.copyStructuraRangeBtn);
             this.ribbonPageGroup3.ItemLinks.Add(this.disableBtn);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "Функции";
@@ -1600,23 +1600,31 @@
             // 
             this.copyPasteMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copyMenuItem,
-            this.pasteMenuItem});
+            this.pasteMenuItem,
+            this.удалитьСборкуToolStripMenuItem});
             this.copyPasteMenuStrip.Name = "copyPasteMenuStrip";
-            this.copyPasteMenuStrip.Size = new System.Drawing.Size(153, 70);
+            this.copyPasteMenuStrip.Size = new System.Drawing.Size(182, 92);
             // 
             // copyMenuItem
             // 
             this.copyMenuItem.Name = "copyMenuItem";
-            this.copyMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.copyMenuItem.Text = "Копировать";
+            this.copyMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.copyMenuItem.Text = "Копировать сборку";
             this.copyMenuItem.Click += new System.EventHandler(this.copyMenuItem_Click);
             // 
             // pasteMenuItem
             // 
             this.pasteMenuItem.Name = "pasteMenuItem";
-            this.pasteMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.pasteMenuItem.Text = "Вставить";
+            this.pasteMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.pasteMenuItem.Text = "Вставить сборку";
             this.pasteMenuItem.Click += new System.EventHandler(this.pasteMenuItem_Click);
+            // 
+            // удалитьСборкуToolStripMenuItem
+            // 
+            this.удалитьСборкуToolStripMenuItem.Name = "удалитьСборкуToolStripMenuItem";
+            this.удалитьСборкуToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.удалитьСборкуToolStripMenuItem.Text = "Удалить сборку";
+            this.удалитьСборкуToolStripMenuItem.Click += new System.EventHandler(this.удалитьСборкуToolStripMenuItem_Click);
             // 
             // imageCollection
             // 
@@ -1771,5 +1779,6 @@
         private System.Windows.Forms.ContextMenuStrip copyPasteMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem copyMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pasteMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem удалитьСборкуToolStripMenuItem;
     }
 }

@@ -796,6 +796,10 @@ namespace TechnicalProcessControl.BLL.Services
             return mapper.Map<TechProcess005, TechProcess005DTO>(techProcess005.GetAll().FirstOrDefault(bdsm => bdsm.DrawingId == drawingId && bdsm.ParentId == null));
         }
 
+        public IEnumerable<TechProcess001DTO> GetAllTechProcess001Simple()
+        {
+            return mapper.Map<IEnumerable<TechProcess001>, List<TechProcess001DTO>>(techProcess001.GetAll());
+        }
         public IEnumerable<TechProcess001DTO> GetAllTechProcess001()
         {
             var result = (from tcp in techProcess001.GetAll()

@@ -567,12 +567,71 @@ namespace TechnicalProcessControl
                 drawingTreeListGrid.BeginUpdate();
 
                 DrawingsDTO pasteDrawings = bifferdrawingsList.First();
-                List<DrawingsDTO> parentPasteDrawingsList = bifferdrawingsList.Where(bdsm => bdsm.ParentId == pasteDrawings.Id).ToList();
-                PasteAllNodes(((DrawingsDTO)Item), pasteDrawings, parentPasteDrawingsList);
 
+                List<DrawingsDTO> parentPasteDrawingsList = bifferdrawingsList.Where(bdsm => bdsm.ParentId == pasteDrawings.Id).ToList();
+                try
+                {
+                    PasteAllNodes(((DrawingsDTO)Item), pasteDrawings, parentPasteDrawingsList);
+                    
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("При вставке сборки возникла ошибка, необходимо перепроверить данные!", "Ошибка вставки сборки", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    splashScreenManager.CloseWaitForm();
+                    LoadData();
+                    drawingTreeListGrid.EndUpdate();
+
+                    return;
+                }
+               
                 splashScreenManager.CloseWaitForm();
 
+                CheckHardTechProcess((DrawingsDTO)Item);
+                CheckEasyTechProcess(pasteDrawings);
+
                 LoadData();
+
+                drawingTreeListGrid.EndUpdate();
+            }
+            else
+            {
+                MessageBox.Show("Отсутствуют скопированные сборки!", "Ошибка вставки сборки", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void CheckHardTechProcess(DrawingsDTO drawingsDTO)
+        {
+            if(drawingsDTO.TechProcess003Id!=null)
+                MessageBox.Show("Необходимо изменение техпроцесса "+ drawingsDTO.TechProcess003Name + "!", "Предпреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (drawingsDTO.TechProcess004Id != null)
+                MessageBox.Show("Необходимо изменение техпроцесса " + drawingsDTO.TechProcess004Name + "!", "Предпреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private void CheckEasyTechProcess(DrawingsDTO drawingsDTO)
+        {
+            if (drawingsDTO.TechProcess001Id != null)
+                MessageBox.Show("Необходимо изменение техпроцесса " + drawingsDTO.TechProcess001Name + "!", "Предпреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (drawingsDTO.TechProcess002Id != null)
+                MessageBox.Show("Необходимо изменение техпроцесса " + drawingsDTO.TechProcess002Name + "!", "Предпреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (drawingsDTO.TechProcess005Id != null)
+                MessageBox.Show("Необходимо изменение техпроцесса " + drawingsDTO.TechProcess005Name + "!", "Предпреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private void удалитьСборкуToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!CheckStructura())
+                return;
+
+            if (MessageBox.Show("Удалить элемент структури?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                drawingService = Program.kernel.Get<IDrawingService>();
+
+                drawingTreeListGrid.BeginUpdate();
+
+                if (drawingService.DrawingsDelete(((DrawingsDTO)drawingsBS.Current).Id))
+                {
+                    LoadData();
+                }
 
                 drawingTreeListGrid.EndUpdate();
             }

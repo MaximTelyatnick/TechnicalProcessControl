@@ -126,7 +126,8 @@ namespace TechnicalProcessControl.BLL.Services
             if(listParentDrawings!=null)
                 parentDrawings = String.Join(", ", listParentDrawings.Select(bdsm => bdsm.Number).ToArray());
 
-            Сells["BY" + 28].Value = "Created by "+ usersDTO.Name;
+            cells["BY" + 28].Value = "Created by "+ usersDTO.Name;
+            cells["J" + 41].Value = usersDTO.Name;
             cells["D" + 30].Value = "Date of issue "; 
 
 

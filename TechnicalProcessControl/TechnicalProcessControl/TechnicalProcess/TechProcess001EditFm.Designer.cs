@@ -153,6 +153,17 @@
             this.groupControl6 = new DevExpress.XtraEditors.GroupControl();
             this.labelControl26 = new DevExpress.XtraEditors.LabelControl();
             this.textEdit19 = new DevExpress.XtraEditors.TextEdit();
+            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.textEdit16 = new DevExpress.XtraEditors.TextEdit();
+            this.textEdit18 = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl35 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl42 = new DevExpress.XtraEditors.LabelControl();
+            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
+            this.textEdit26 = new DevExpress.XtraEditors.TextEdit();
+            this.textEdit28 = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl23 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl25 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl33 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.techProcessNumber001Edit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawingNumberEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.techProcessFullName.Properties)).BeginInit();
@@ -222,6 +233,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl6)).BeginInit();
             this.groupControl6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit19.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
+            this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit16.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit18.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit26.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit28.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl2
@@ -245,7 +263,7 @@
             // 
             // cancelBtn
             // 
-            this.cancelBtn.Location = new System.Drawing.Point(453, 302);
+            this.cancelBtn.Location = new System.Drawing.Point(453, 352);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(75, 23);
             this.cancelBtn.TabIndex = 23;
@@ -254,7 +272,7 @@
             // 
             // saveBtn
             // 
-            this.saveBtn.Location = new System.Drawing.Point(372, 302);
+            this.saveBtn.Location = new System.Drawing.Point(372, 352);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(75, 23);
             this.saveBtn.TabIndex = 22;
@@ -540,7 +558,7 @@
             this.checkPanelControl.Controls.Add(this.existingWorkflowPathEdit);
             this.checkPanelControl.Controls.Add(this.existingWorkflowFileEdit);
             this.checkPanelControl.Controls.Add(this.addExistingWorkflowBtn);
-            this.checkPanelControl.Location = new System.Drawing.Point(11, 178);
+            this.checkPanelControl.Location = new System.Drawing.Point(11, 252);
             this.checkPanelControl.Name = "checkPanelControl";
             this.checkPanelControl.Size = new System.Drawing.Size(508, 64);
             this.checkPanelControl.TabIndex = 114;
@@ -550,7 +568,7 @@
             this.techProcess001Tab.Location = new System.Drawing.Point(0, -1);
             this.techProcess001Tab.Name = "techProcess001Tab";
             this.techProcess001Tab.SelectedTabPage = this.generalPage;
-            this.techProcess001Tab.Size = new System.Drawing.Size(533, 302);
+            this.techProcess001Tab.Size = new System.Drawing.Size(533, 347);
             this.techProcess001Tab.TabIndex = 115;
             this.techProcess001Tab.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.generalPage,
@@ -561,6 +579,7 @@
             // 
             // generalPage
             // 
+            this.generalPage.Controls.Add(this.panelControl2);
             this.generalPage.Controls.Add(this.drawingEdit);
             this.generalPage.Controls.Add(this.useExistingWorkflowCheck);
             this.generalPage.Controls.Add(this.checkPanelControl);
@@ -569,7 +588,7 @@
             this.generalPage.Controls.Add(this.panelControl1);
             this.generalPage.Controls.Add(this.labelControl1);
             this.generalPage.Name = "generalPage";
-            this.generalPage.Size = new System.Drawing.Size(527, 274);
+            this.generalPage.Size = new System.Drawing.Size(527, 319);
             this.generalPage.Text = "Техпроцесс";
             // 
             // weldingAndGasPage
@@ -577,7 +596,7 @@
             this.weldingAndGasPage.Controls.Add(this.groupControl2);
             this.weldingAndGasPage.Controls.Add(this.groupControl1);
             this.weldingAndGasPage.Name = "weldingAndGasPage";
-            this.weldingAndGasPage.Size = new System.Drawing.Size(527, 274);
+            this.weldingAndGasPage.Size = new System.Drawing.Size(527, 319);
             this.weldingAndGasPage.Text = "Сварка и газ";
             // 
             // groupControl2
@@ -594,7 +613,7 @@
             this.groupControl2.Controls.Add(this.textEdit14);
             this.groupControl2.Location = new System.Drawing.Point(3, 165);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(521, 106);
+            this.groupControl2.Size = new System.Drawing.Size(521, 151);
             this.groupControl2.TabIndex = 2;
             this.groupControl2.Text = "Расход технических газов";
             // 
@@ -861,7 +880,7 @@
             this.paintPage.Controls.Add(this.groupControl4);
             this.paintPage.Controls.Add(this.groupControl3);
             this.paintPage.Name = "paintPage";
-            this.paintPage.Size = new System.Drawing.Size(527, 274);
+            this.paintPage.Size = new System.Drawing.Size(527, 319);
             this.paintPage.Text = "Покраска";
             // 
             // groupControl5
@@ -878,7 +897,7 @@
             this.groupControl5.Controls.Add(this.textEdit17);
             this.groupControl5.Location = new System.Drawing.Point(3, 174);
             this.groupControl5.Name = "groupControl5";
-            this.groupControl5.Size = new System.Drawing.Size(521, 97);
+            this.groupControl5.Size = new System.Drawing.Size(521, 142);
             this.groupControl5.TabIndex = 4;
             this.groupControl5.Text = "Primer-enamel";
             // 
@@ -1102,7 +1121,7 @@
             this.xtraTabPage1.Controls.Add(this.groupControl10);
             this.xtraTabPage1.Controls.Add(this.groupControl11);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(527, 274);
+            this.xtraTabPage1.Size = new System.Drawing.Size(527, 319);
             this.xtraTabPage1.Text = "Покраска";
             // 
             // groupControl9
@@ -1117,7 +1136,7 @@
             this.groupControl9.Controls.Add(this.textEdit25);
             this.groupControl9.Location = new System.Drawing.Point(3, 129);
             this.groupControl9.Name = "groupControl9";
-            this.groupControl9.Size = new System.Drawing.Size(521, 142);
+            this.groupControl9.Size = new System.Drawing.Size(521, 187);
             this.groupControl9.TabIndex = 10;
             this.groupControl9.Text = "Putty";
             // 
@@ -1246,7 +1265,7 @@
             // 
             this.xtraTabPage2.Controls.Add(this.groupControl6);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(527, 274);
+            this.xtraTabPage2.Size = new System.Drawing.Size(527, 319);
             this.xtraTabPage2.Text = "Трудоёмкость";
             // 
             // groupControl6
@@ -1261,7 +1280,7 @@
             this.groupControl6.Controls.Add(this.textEdit19);
             this.groupControl6.Location = new System.Drawing.Point(3, 3);
             this.groupControl6.Name = "groupControl6";
-            this.groupControl6.Size = new System.Drawing.Size(521, 268);
+            this.groupControl6.Size = new System.Drawing.Size(521, 313);
             this.groupControl6.TabIndex = 9;
             this.groupControl6.Text = "Enamel";
             // 
@@ -1282,11 +1301,118 @@
             this.textEdit19.Size = new System.Drawing.Size(62, 20);
             this.textEdit19.TabIndex = 25;
             // 
+            // panelControl2
+            // 
+            this.panelControl2.Controls.Add(this.labelControl33);
+            this.panelControl2.Controls.Add(this.labelControl25);
+            this.panelControl2.Controls.Add(this.labelControl23);
+            this.panelControl2.Controls.Add(this.textEdit28);
+            this.panelControl2.Controls.Add(this.textEdit26);
+            this.panelControl2.Controls.Add(this.textEdit1);
+            this.panelControl2.Controls.Add(this.textEdit16);
+            this.panelControl2.Controls.Add(this.textEdit18);
+            this.panelControl2.Controls.Add(this.labelControl35);
+            this.panelControl2.Controls.Add(this.labelControl42);
+            this.panelControl2.Location = new System.Drawing.Point(10, 176);
+            this.panelControl2.Name = "panelControl2";
+            this.panelControl2.Size = new System.Drawing.Size(508, 70);
+            this.panelControl2.TabIndex = 115;
+            // 
+            // textEdit16
+            // 
+            this.textEdit16.Location = new System.Drawing.Point(79, 29);
+            this.textEdit16.Name = "textEdit16";
+            this.textEdit16.Size = new System.Drawing.Size(80, 20);
+            this.textEdit16.TabIndex = 24;
+            // 
+            // textEdit18
+            // 
+            this.textEdit18.Location = new System.Drawing.Point(3, 29);
+            this.textEdit18.Name = "textEdit18";
+            this.textEdit18.Size = new System.Drawing.Size(70, 20);
+            this.textEdit18.TabIndex = 26;
+            // 
+            // labelControl35
+            // 
+            this.labelControl35.Appearance.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelControl35.Appearance.Options.UseFont = true;
+            this.labelControl35.Location = new System.Drawing.Point(4, 5);
+            this.labelControl35.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.labelControl35.Name = "labelControl35";
+            this.labelControl35.Size = new System.Drawing.Size(16, 18);
+            this.labelControl35.TabIndex = 30;
+            this.labelControl35.Text = "TH";
+            // 
+            // labelControl42
+            // 
+            this.labelControl42.Appearance.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelControl42.Appearance.Options.UseFont = true;
+            this.labelControl42.Location = new System.Drawing.Point(79, 5);
+            this.labelControl42.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.labelControl42.Name = "labelControl42";
+            this.labelControl42.Size = new System.Drawing.Size(14, 18);
+            this.labelControl42.TabIndex = 31;
+            this.labelControl42.Text = "W";
+            // 
+            // textEdit1
+            // 
+            this.textEdit1.Location = new System.Drawing.Point(165, 29);
+            this.textEdit1.Name = "textEdit1";
+            this.textEdit1.Size = new System.Drawing.Size(80, 20);
+            this.textEdit1.TabIndex = 32;
+            // 
+            // textEdit26
+            // 
+            this.textEdit26.Location = new System.Drawing.Point(251, 29);
+            this.textEdit26.Name = "textEdit26";
+            this.textEdit26.Size = new System.Drawing.Size(80, 20);
+            this.textEdit26.TabIndex = 33;
+            // 
+            // textEdit28
+            // 
+            this.textEdit28.Location = new System.Drawing.Point(337, 29);
+            this.textEdit28.Name = "textEdit28";
+            this.textEdit28.Size = new System.Drawing.Size(166, 20);
+            this.textEdit28.TabIndex = 34;
+            // 
+            // labelControl23
+            // 
+            this.labelControl23.Appearance.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelControl23.Appearance.Options.UseFont = true;
+            this.labelControl23.Location = new System.Drawing.Point(165, 5);
+            this.labelControl23.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.labelControl23.Name = "labelControl23";
+            this.labelControl23.Size = new System.Drawing.Size(21, 18);
+            this.labelControl23.TabIndex = 35;
+            this.labelControl23.Text = "W2";
+            // 
+            // labelControl25
+            // 
+            this.labelControl25.Appearance.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelControl25.Appearance.Options.UseFont = true;
+            this.labelControl25.Location = new System.Drawing.Point(251, 5);
+            this.labelControl25.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.labelControl25.Name = "labelControl25";
+            this.labelControl25.Size = new System.Drawing.Size(7, 18);
+            this.labelControl25.TabIndex = 36;
+            this.labelControl25.Text = "L";
+            // 
+            // labelControl33
+            // 
+            this.labelControl33.Appearance.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelControl33.Appearance.Options.UseFont = true;
+            this.labelControl33.Location = new System.Drawing.Point(337, 5);
+            this.labelControl33.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.labelControl33.Name = "labelControl33";
+            this.labelControl33.Size = new System.Drawing.Size(98, 18);
+            this.labelControl33.TabIndex = 37;
+            this.labelControl33.Text = "Маса заготовки";
+            // 
             // TechProcess001EditFm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(531, 330);
+            this.ClientSize = new System.Drawing.Size(531, 387);
             this.Controls.Add(this.techProcess001Tab);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.saveBtn);
@@ -1379,6 +1505,14 @@
             this.groupControl6.ResumeLayout(false);
             this.groupControl6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit19.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
+            this.panelControl2.ResumeLayout(false);
+            this.panelControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit16.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit18.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit26.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit28.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1489,5 +1623,16 @@
         private DevExpress.XtraEditors.GroupControl groupControl6;
         private DevExpress.XtraEditors.LabelControl labelControl26;
         private DevExpress.XtraEditors.TextEdit textEdit19;
+        private DevExpress.XtraEditors.PanelControl panelControl2;
+        private DevExpress.XtraEditors.LabelControl labelControl33;
+        private DevExpress.XtraEditors.LabelControl labelControl25;
+        private DevExpress.XtraEditors.LabelControl labelControl23;
+        private DevExpress.XtraEditors.TextEdit textEdit28;
+        private DevExpress.XtraEditors.TextEdit textEdit26;
+        private DevExpress.XtraEditors.TextEdit textEdit1;
+        private DevExpress.XtraEditors.TextEdit textEdit16;
+        private DevExpress.XtraEditors.TextEdit textEdit18;
+        private DevExpress.XtraEditors.LabelControl labelControl35;
+        private DevExpress.XtraEditors.LabelControl labelControl42;
     }
 }

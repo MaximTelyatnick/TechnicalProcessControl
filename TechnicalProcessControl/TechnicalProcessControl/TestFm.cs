@@ -11,24 +11,40 @@ using DevExpress.XtraEditors;
 using TechnicalProcessControl.BLL.Interfaces;
 using Ninject;
 using TechnicalProcessControl.BLL.ModelsDTO;
-using DevExpress.ClipboardSource.SpreadsheetML;
+//using DevExpress.ClipboardSource.SpreadsheetML;
 using DevExpress.Spreadsheet;
 using System.IO;
+
 
 namespace TechnicalProcessControl
 {
     public partial class TestFm : DevExpress.XtraEditors.XtraForm
     {
+        /// <summary>
+        /// Параметры шаблона
+        /// 
+        /// </summary>
+        /// 
+        int defaultLastRow = 128;
+
+
+
         private IDrawingService drawingService;
         private IJournalService journalService;
 
         private Utils.Operation operation;
 
-        private IWorkbook workbook;
+        public int pageNumber = 4;
+
+        public IWorkbook workbook;
+        public Worksheet worksheet;
+        public Range copyRange;
 
         private BindingSource operationBS = new BindingSource();
         private BindingSource operationNumberBS = new BindingSource();
         private BindingSource operationPaintMaterialBS = new BindingSource();
+
+        
 
         //Обработка закрытия по крестику
         public bool ClosedByXButtonOrAltF4 { get; private set; }
@@ -108,6 +124,7 @@ namespace TechnicalProcessControl
             operationPaintRepositoryEdit.NullText = "";
 
             workbook = spreadsheetControl.Document;
+            worksheet = workbook.Worksheets[0];
             workbook.BeginUpdate();
             if(pathToFile == null)
             {
@@ -205,6 +222,81 @@ namespace TechnicalProcessControl
         public string Return()
         {
             return pathToFile;
-        } 
+        }
+
+        private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            workbook.BeginUpdate();
+            ++pageNumber;
+            worksheet = workbook.Worksheets[0];
+            copyRange = worksheet["A97:DG127"];
+            int lastRow = GetLastEmptyRow();
+            worksheet.Range["A" + (lastRow) + ":DG" + (lastRow+30)].CopyFrom(copyRange);
+
+            worksheet.Cells["A" + (lastRow + 14)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 15)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 16)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 17)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 18)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 19)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 20)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 21)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 22)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 23)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 24)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 25)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 26)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 27)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 28)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 29)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 30)].RowHeight = 97.7;
+            worksheet.Cells["DA" + (lastRow + 7)].Value = pageNumber;
+            UpdatePageCounter();
+            workbook.EndUpdate();
+
+
+        }
+
+        public void UpdatePageCounter()
+        {
+            //workbook.BeginUpdate();
+            worksheet.Cells["CS6"].Value = pageNumber;
+            //workbook.EndUpdate();
+        }
+
+
+        public int GetLastEmptyRow()
+        {
+            int currentLastRow = defaultLastRow;
+            workbook.BeginUpdate();
+            worksheet = workbook.Worksheets[0];
+            while (currentLastRow>0)
+            {
+                if (worksheet.Cells["A" + (currentLastRow)].Value.IsEmpty)
+                {
+                    if (worksheet.Cells["A" + (currentLastRow + 1)].Value.IsEmpty &&
+                        worksheet.Cells["A" + (currentLastRow + 2)].Value.IsEmpty &&
+                        worksheet.Cells["A" + (currentLastRow + 3)].Value.IsEmpty &&
+                        worksheet.Cells["A" + (currentLastRow + 4)].Value.IsEmpty &&
+                        worksheet.Cells["A" + (currentLastRow + 5)].Value.IsEmpty &&
+                        worksheet.Cells["A" + (currentLastRow + 6)].Value.IsEmpty)
+                    {
+                        workbook.EndUpdate();
+                        return currentLastRow;
+                    }
+                    else
+                        currentLastRow++;
+                }
+                else
+                    currentLastRow++;
+            }
+            workbook.EndUpdate();
+            return 0;
+        }
+
+        private void barButtonItem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            MessageBox.Show("Последняя строка: " + GetLastEmptyRow().ToString(), "Підтвердження", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+        }
     }
 }
