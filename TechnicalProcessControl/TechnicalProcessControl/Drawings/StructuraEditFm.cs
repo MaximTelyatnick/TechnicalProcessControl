@@ -1027,12 +1027,16 @@ namespace TechnicalProcessControl.Drawings
             {
                 case 0: //Додати
                     {
+                        //////////////////////////////////////////////////////////////////////
+                        //Под вопросом 
+                        //if (drawingService.CheckDrivingChild((int)((DrawingsDTO)Item).DrawingId))
+                        //{
+                        //    MessageBox.Show("Сборка содержит узлы, не возможно добавить этот вид техпроцесса", "Инфо", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        //    return;
+                        //}
+                        ///////////////////////////////////////////////////////////////////////
 
-                        if (drawingService.CheckDrivingChild((int)((DrawingsDTO)Item).DrawingId))
-                        {
-                            MessageBox.Show("Сборка содержит узлы, не возможно добавить этот вид техпроцесса", "Инфо", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            return;
-                        }
+
 
                         TechProcess002DTO addTechProcessDTO = new TechProcess002DTO();
                         addTechProcessDTO.DrawingsId = ((DrawingsDTO)Item).Id;
@@ -1043,7 +1047,6 @@ namespace TechnicalProcessControl.Drawings
                         {
                             if (techProcess002EditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                             {
-                                ////detailsBS.DataSource = journalService.GetDetails();
                                 techProcess002Edit.Properties.DataSource = drawingService.GetAllTechProcess002();
                                 techProcess002Edit.Properties.ValueMember = "Id";
                                 techProcess002Edit.Properties.DisplayMember = "TechProcessFullName";
@@ -1051,9 +1054,6 @@ namespace TechnicalProcessControl.Drawings
 
                                 int return_Id = techProcess002EditFm.Return().Id;
                                 techProcess002Edit.EditValue = return_Id;
-
-
-
                             }
                         }
                         break;

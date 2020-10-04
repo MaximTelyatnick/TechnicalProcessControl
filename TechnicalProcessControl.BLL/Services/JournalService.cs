@@ -19,6 +19,8 @@ namespace TechnicalProcessControl.BLL.Services
         private IRepository<Details> details;
         private IRepository<Materials> materials;
         private IRepository<OperationName> operationName;
+        private IRepository<OperationNumber> operationNumber;
+        private IRepository<OperationPaintMaterial> operationPaintMaterial;
 
         private IMapper mapper;
 
@@ -32,7 +34,8 @@ namespace TechnicalProcessControl.BLL.Services
             materials = Database.GetRepository<Materials>();
             details = Database.GetRepository<Details>();
             operationName = Database.GetRepository<OperationName>();
-
+            operationNumber = Database.GetRepository<OperationNumber>();
+            operationPaintMaterial = Database.GetRepository<OperationPaintMaterial>();
 
 
 
@@ -48,6 +51,10 @@ namespace TechnicalProcessControl.BLL.Services
                 cfg.CreateMap<MaterialsDTO, Materials>();
                 cfg.CreateMap<OperationName, OperationNameDTO>();
                 cfg.CreateMap<OperationNameDTO, OperationName>();
+                cfg.CreateMap<OperationNumber, OperationNumberDTO>();
+                cfg.CreateMap<OperationNumberDTO, OperationNumber>();
+                cfg.CreateMap<OperationPaintMaterial, OperationPaintMaterialDTO>();
+                cfg.CreateMap<OperationPaintMaterialDTO, OperationPaintMaterial>();
 
             });
 
@@ -66,31 +73,41 @@ namespace TechnicalProcessControl.BLL.Services
 
         public IEnumerable<OperationNumberDTO> GetOperationNumber()
         {
-            List<OperationNumberDTO> operationNumberList = new List<OperationNumberDTO>() {
-            new OperationNumberDTO() { Id = 1, TableId = "SNO1", OperationNumber = "005"},
-            new OperationNumberDTO() { Id = 2, TableId = "SNO2", OperationNumber = "010"},
-            new OperationNumberDTO() { Id = 3, TableId = "SNO3", OperationNumber = "015"},
-            new OperationNumberDTO() { Id = 4, TableId = "SNO4", OperationNumber = "020"},
-            new OperationNumberDTO() { Id = 5, TableId = "SNO5", OperationNumber = "025"},
-            new OperationNumberDTO() { Id = 6, TableId = "SNO6", OperationNumber = "030"},
-            new OperationNumberDTO() { Id = 7, TableId = "SNO7", OperationNumber = "035"},
-            new OperationNumberDTO() { Id = 8, TableId = "SNO8", OperationNumber = "040"},
-            new OperationNumberDTO() { Id = 9, TableId = "SNO9", OperationNumber = "045"},
-            new OperationNumberDTO() { Id = 10, TableId = "SNO10", OperationNumber = "050"},
-            new OperationNumberDTO() { Id = 11, TableId = "SNO11", OperationNumber = "055"},
-            new OperationNumberDTO() { Id = 12, TableId = "SNO12", OperationNumber = "060"},
-            new OperationNumberDTO() { Id = 13, TableId = "SNO13", OperationNumber = "065"},
-            new OperationNumberDTO() { Id = 14, TableId = "SNO14", OperationNumber = "070"},
-            new OperationNumberDTO() { Id = 15, TableId = "SNO15", OperationNumber = "075"},
-            new OperationNumberDTO() { Id = 16, TableId = "SNO16", OperationNumber = "080"},
-            new OperationNumberDTO() { Id = 17, TableId = "SNO17", OperationNumber = "085"},
-            new OperationNumberDTO() { Id = 18, TableId = "SNO18", OperationNumber = "090"},
-            new OperationNumberDTO() { Id = 19, TableId = "SNO19", OperationNumber = "095"},
-            };
-               
-
-            return operationNumberList;
+            return mapper.Map<IEnumerable<OperationNumber>, List<OperationNumberDTO>>(operationNumber.GetAll());
         }
+
+        public bool CheckMaterialName(MaterialsDTO materialsDTO)
+        {
+            return materials.GetAll().Any(srt => srt.MaterialName == materialsDTO.MaterialName && srt.Id != materialsDTO.Id);
+        }
+
+        //public IEnumerable<OperationNumberDTO> GetOperationNumber()
+        //{
+        //    List<OperationNumberDTO> operationNumberList = new List<OperationNumberDTO>() {
+        //    new OperationNumberDTO() { Id = 1, TableId = "SNO1", OperationNumber = "005"},
+        //    new OperationNumberDTO() { Id = 2, TableId = "SNO2", OperationNumber = "010"},
+        //    new OperationNumberDTO() { Id = 3, TableId = "SNO3", OperationNumber = "015"},
+        //    new OperationNumberDTO() { Id = 4, TableId = "SNO4", OperationNumber = "020"},
+        //    new OperationNumberDTO() { Id = 5, TableId = "SNO5", OperationNumber = "025"},
+        //    new OperationNumberDTO() { Id = 6, TableId = "SNO6", OperationNumber = "030"},
+        //    new OperationNumberDTO() { Id = 7, TableId = "SNO7", OperationNumber = "035"},
+        //    new OperationNumberDTO() { Id = 8, TableId = "SNO8", OperationNumber = "040"},
+        //    new OperationNumberDTO() { Id = 9, TableId = "SNO9", OperationNumber = "045"},
+        //    new OperationNumberDTO() { Id = 10, TableId = "SNO10", OperationNumber = "050"},
+        //    new OperationNumberDTO() { Id = 11, TableId = "SNO11", OperationNumber = "055"},
+        //    new OperationNumberDTO() { Id = 12, TableId = "SNO12", OperationNumber = "060"},
+        //    new OperationNumberDTO() { Id = 13, TableId = "SNO13", OperationNumber = "065"},
+        //    new OperationNumberDTO() { Id = 14, TableId = "SNO14", OperationNumber = "070"},
+        //    new OperationNumberDTO() { Id = 15, TableId = "SNO15", OperationNumber = "075"},
+        //    new OperationNumberDTO() { Id = 16, TableId = "SNO16", OperationNumber = "080"},
+        //    new OperationNumberDTO() { Id = 17, TableId = "SNO17", OperationNumber = "085"},
+        //    new OperationNumberDTO() { Id = 18, TableId = "SNO18", OperationNumber = "090"},
+        //    new OperationNumberDTO() { Id = 19, TableId = "SNO19", OperationNumber = "095"},
+        //    };
+
+
+        //    return operationNumberList;
+        //}
 
         public IEnumerable<OperationPaintMaterialDTO> GetOperationPaintMaterial()
         {
@@ -129,10 +146,7 @@ namespace TechnicalProcessControl.BLL.Services
         }
 
 
-        public bool CheckMaterialName(MaterialsDTO materialsDTO)
-        {
-            return materials.GetAll().Any(srt => srt.MaterialName == materialsDTO.MaterialName && srt.Id != materialsDTO.Id);
-        }
+        
 
         public IEnumerable<OperationNameDTO> GetOperationName()
         {
@@ -142,6 +156,11 @@ namespace TechnicalProcessControl.BLL.Services
         public bool CheckOperationName(OperationNameDTO operationNameDTO)
         {
             return operationName.GetAll().Any(srt => srt.NameRus == operationNameDTO.NameRus && srt.Id != operationNameDTO.Id);
+        }
+
+        public bool CheckOperationNumber(OperationNumberDTO operationNumberDTO)
+        {
+            return operationNumber.GetAll().Any(srt => srt.TableId == operationNumberDTO.TableId && srt.Id != operationNumberDTO.Id);
         }
 
         #region Materials CRUD method's
@@ -221,6 +240,64 @@ namespace TechnicalProcessControl.BLL.Services
             try
             {
                 operationName.Delete(operationName.GetAll().FirstOrDefault(c => c.Id == id));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        #endregion
+
+        #region OperationNumber's CRUD method's
+
+        public int OperationNumberCreate(OperationNumberDTO operationNumberDTO)
+        {
+            var createOperationNumber = operationNumber.Create(mapper.Map<OperationNumber>(operationNumberDTO));
+            return (int)createOperationNumber.Id;
+        }
+
+        public void OperationNumberUpdate(OperationNumberDTO operationNumberDTO)
+        {
+            var updateOperationNumber = operationNumber.GetAll().SingleOrDefault(c => c.Id == operationNumberDTO.Id);
+            operationNumber.Update((mapper.Map<OperationNumberDTO, OperationNumber>(operationNumberDTO, updateOperationNumber)));
+        }
+
+        public bool OperationNumberDelete(int id)
+        {
+            try
+            {
+                operationNumber.Delete(operationNumber.GetAll().FirstOrDefault(c => c.Id == id));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        #endregion
+
+        #region OperationMaterialName's CRUD method's
+
+        public int OperationPaintMaterialCreate(OperationPaintMaterialDTO operationPaintMaterialDTO)
+        {
+            var createOperationPaintMaterial = operationNumber.Create(mapper.Map<OperationNumber>(operationNumberDTO));
+            return (int)createOperationNumber.Id;
+        }
+
+        public void OperationNumberUpdate(OperationNumberDTO operationNumberDTO)
+        {
+            var updateOperationNumber = operationNumber.GetAll().SingleOrDefault(c => c.Id == operationNumberDTO.Id);
+            operationNumber.Update((mapper.Map<OperationNumberDTO, OperationNumber>(operationNumberDTO, updateOperationNumber)));
+        }
+
+        public bool OperationNumberDelete(int id)
+        {
+            try
+            {
+                operationNumber.Delete(operationNumber.GetAll().FirstOrDefault(c => c.Id == id));
                 return true;
             }
             catch (Exception ex)

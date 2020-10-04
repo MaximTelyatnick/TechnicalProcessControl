@@ -19,6 +19,8 @@ namespace TechnicalProcessControl.BLL.Interfaces
         bool CheckOperationName(OperationNameDTO operationNameDTO);
 
         IEnumerable<OperationNumberDTO> GetOperationNumber();
+        bool CheckOperationNumber(OperationNumberDTO operationNumberDTO);
+
         IEnumerable<OperationPaintMaterialDTO> GetOperationPaintMaterial();
 
         int MaterialsCreate(MaterialsDTO materialsDTO);
@@ -32,5 +34,9 @@ namespace TechnicalProcessControl.BLL.Interfaces
         int OperationNameCreate(OperationNameDTO operationNameDTO);
         void OperationNameUpdate(OperationNameDTO operationNameDTO);
         bool OperationNameDelete(int id);
+
+        int OperationNumberCreate(OperationNumberDTO operationNumberDTO);
+        void OperationNumberUpdate(OperationNumberDTO operationNumberDTO);
+        bool OperationNumberDelete(int id);
     }
 }

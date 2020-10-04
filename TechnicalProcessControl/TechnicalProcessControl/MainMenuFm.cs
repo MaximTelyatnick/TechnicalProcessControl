@@ -151,33 +151,38 @@ namespace TechnicalProcessControl
                     techprocess001Fm.MdiParent = this;
                     techprocess001Fm.Show();
                     break;
-                //case "operationNameItem":
-                //    OperationNameFm operationNameFm = new OperationNameFm();
-                //    operationNameFm.Text = "Наименование операций";
-                //    operationNameFm.MdiParent = this;
-                //    operationNameFm.Show();
-                //    break;
-                //case "operationNameItem":
-                //    OperationNameFm operationNameFm = new OperationNameFm();
-                //    operationNameFm.Text = "Наименование операций";
-                //    operationNameFm.MdiParent = this;
-                //    operationNameFm.Show();
-                //    break;
-                //case "operationNameItem":
-                //    OperationNameFm operationNameFm = new OperationNameFm();
-                //    operationNameFm.Text = "Наименование операций";
-                //    operationNameFm.MdiParent = this;
-                //    operationNameFm.Show();
-                //    break;
-                //case "operationNameItem":
-                //    OperationNameFm operationNameFm = new OperationNameFm();
-                //    operationNameFm.Text = "Наименование операций";
-                //    operationNameFm.MdiParent = this;
-                //    operationNameFm.Show();
-                //    break;
+                case "operationNumberItem":
+                    OperationNumberFm operationNumberFm = new OperationNumberFm();
+                    operationNumberFm.Show();
+                    break;
+
+                    //case "operationNameItem":
+                    //    OperationNameFm operationNameFm = new OperationNameFm();
+                    //    operationNameFm.Text = "Наименование операций";
+                    //    operationNameFm.MdiParent = this;
+                    //    operationNameFm.Show();
+                    //    break;
+                    //case "operationNameItem":
+                    //    OperationNameFm operationNameFm = new OperationNameFm();
+                    //    operationNameFm.Text = "Наименование операций";
+                    //    operationNameFm.MdiParent = this;
+                    //    operationNameFm.Show();
+                    //    break;
+                    //case "operationNameItem":
+                    //    OperationNameFm operationNameFm = new OperationNameFm();
+                    //    operationNameFm.Text = "Наименование операций";
+                    //    operationNameFm.MdiParent = this;
+                    //    operationNameFm.Show();
+                    //    break;
+                    //case "operationNameItem":
+                    //    OperationNameFm operationNameFm = new OperationNameFm();
+                    //    operationNameFm.Text = "Наименование операций";
+                    //    operationNameFm.MdiParent = this;
+                    //    operationNameFm.Show();
+                    //    break;
 
 
-                    
+
 
 
 

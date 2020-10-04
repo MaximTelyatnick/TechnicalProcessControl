@@ -23,6 +23,8 @@ namespace TechnicalProcessControl.Journals
         {
             InitializeComponent();
 
+
+
             splashScreenManager.ShowWaitForm();
 
             LoadData();

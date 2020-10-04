@@ -82,6 +82,7 @@
             this.saveBtn.Size = new System.Drawing.Size(75, 23);
             this.saveBtn.TabIndex = 26;
             this.saveBtn.Text = "Сохранить";
+            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
             // 
             // labelControl1
             // 

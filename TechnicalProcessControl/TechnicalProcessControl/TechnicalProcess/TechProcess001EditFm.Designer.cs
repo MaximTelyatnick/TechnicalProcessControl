@@ -82,6 +82,17 @@
             this.checkPanelControl = new DevExpress.XtraEditors.PanelControl();
             this.techProcess001Tab = new DevExpress.XtraTab.XtraTabControl();
             this.generalPage = new DevExpress.XtraTab.XtraTabPage();
+            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.labelControl33 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl25 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl23 = new DevExpress.XtraEditors.LabelControl();
+            this.weightEdit = new DevExpress.XtraEditors.TextEdit();
+            this.lEdit = new DevExpress.XtraEditors.TextEdit();
+            this.w2Edit = new DevExpress.XtraEditors.TextEdit();
+            this.wEdit = new DevExpress.XtraEditors.TextEdit();
+            this.thEdit = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl35 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl42 = new DevExpress.XtraEditors.LabelControl();
             this.weldingAndGasPage = new DevExpress.XtraTab.XtraTabPage();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.labelControl19 = new DevExpress.XtraEditors.LabelControl();
@@ -153,17 +164,6 @@
             this.groupControl6 = new DevExpress.XtraEditors.GroupControl();
             this.labelControl26 = new DevExpress.XtraEditors.LabelControl();
             this.textEdit19 = new DevExpress.XtraEditors.TextEdit();
-            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
-            this.textEdit16 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit18 = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl35 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl42 = new DevExpress.XtraEditors.LabelControl();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit26 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit28 = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl23 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl25 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl33 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.techProcessNumber001Edit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawingNumberEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.techProcessFullName.Properties)).BeginInit();
@@ -182,6 +182,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.techProcess001Tab)).BeginInit();
             this.techProcess001Tab.SuspendLayout();
             this.generalPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
+            this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.weightEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.w2Edit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.wEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.thEdit.Properties)).BeginInit();
             this.weldingAndGasPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
@@ -233,13 +240,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl6)).BeginInit();
             this.groupControl6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit19.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
-            this.panelControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit16.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit18.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit26.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit28.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl2
@@ -263,7 +263,7 @@
             // 
             // cancelBtn
             // 
-            this.cancelBtn.Location = new System.Drawing.Point(453, 352);
+            this.cancelBtn.Location = new System.Drawing.Point(453, 356);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(75, 23);
             this.cancelBtn.TabIndex = 23;
@@ -272,7 +272,7 @@
             // 
             // saveBtn
             // 
-            this.saveBtn.Location = new System.Drawing.Point(372, 352);
+            this.saveBtn.Location = new System.Drawing.Point(372, 356);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(75, 23);
             this.saveBtn.TabIndex = 22;
@@ -291,7 +291,7 @@
             // 
             this.techProcessFullName.Location = new System.Drawing.Point(3, 55);
             this.techProcessFullName.Name = "techProcessFullName";
-            this.techProcessFullName.Size = new System.Drawing.Size(495, 20);
+            this.techProcessFullName.Size = new System.Drawing.Size(499, 20);
             this.techProcessFullName.TabIndex = 27;
             // 
             // labelControl1
@@ -351,7 +351,7 @@
             this.revisionEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Symbol", "Ревизия")});
             this.revisionEdit.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
-            this.revisionEdit.Size = new System.Drawing.Size(98, 20);
+            this.revisionEdit.Size = new System.Drawing.Size(102, 20);
             this.revisionEdit.TabIndex = 33;
             this.revisionEdit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.revisionEdit_ButtonClick);
             this.revisionEdit.TextChanged += new System.EventHandler(this.revisionEdit_TextChanged);
@@ -508,7 +508,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.createDateEdit.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.createDateEdit.Size = new System.Drawing.Size(100, 20);
+            this.createDateEdit.Size = new System.Drawing.Size(97, 20);
             this.createDateEdit.TabIndex = 108;
             // 
             // useExistingWorkflowCheck
@@ -524,15 +524,15 @@
             // 
             this.existingWorkflowPathEdit.Location = new System.Drawing.Point(3, 32);
             this.existingWorkflowPathEdit.Name = "existingWorkflowPathEdit";
-            this.existingWorkflowPathEdit.Size = new System.Drawing.Size(493, 20);
+            this.existingWorkflowPathEdit.Size = new System.Drawing.Size(499, 20);
             this.existingWorkflowPathEdit.TabIndex = 110;
             // 
             // addExistingWorkflowBtn
             // 
             this.addExistingWorkflowBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addExistingWorkflowBtn.ImageOptions.Image")));
-            this.addExistingWorkflowBtn.Location = new System.Drawing.Point(421, 3);
+            this.addExistingWorkflowBtn.Location = new System.Drawing.Point(421, 5);
             this.addExistingWorkflowBtn.Name = "addExistingWorkflowBtn";
-            this.addExistingWorkflowBtn.Size = new System.Drawing.Size(75, 23);
+            this.addExistingWorkflowBtn.Size = new System.Drawing.Size(81, 21);
             this.addExistingWorkflowBtn.TabIndex = 111;
             this.addExistingWorkflowBtn.Text = "Добавить";
             this.addExistingWorkflowBtn.Click += new System.EventHandler(this.addExistingWorkflowBtn_Click);
@@ -560,7 +560,7 @@
             this.checkPanelControl.Controls.Add(this.addExistingWorkflowBtn);
             this.checkPanelControl.Location = new System.Drawing.Point(11, 252);
             this.checkPanelControl.Name = "checkPanelControl";
-            this.checkPanelControl.Size = new System.Drawing.Size(508, 64);
+            this.checkPanelControl.Size = new System.Drawing.Size(508, 63);
             this.checkPanelControl.TabIndex = 114;
             // 
             // techProcess001Tab
@@ -568,7 +568,7 @@
             this.techProcess001Tab.Location = new System.Drawing.Point(0, -1);
             this.techProcess001Tab.Name = "techProcess001Tab";
             this.techProcess001Tab.SelectedTabPage = this.generalPage;
-            this.techProcess001Tab.Size = new System.Drawing.Size(533, 347);
+            this.techProcess001Tab.Size = new System.Drawing.Size(533, 351);
             this.techProcess001Tab.TabIndex = 115;
             this.techProcess001Tab.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.generalPage,
@@ -588,8 +588,115 @@
             this.generalPage.Controls.Add(this.panelControl1);
             this.generalPage.Controls.Add(this.labelControl1);
             this.generalPage.Name = "generalPage";
-            this.generalPage.Size = new System.Drawing.Size(527, 319);
+            this.generalPage.Size = new System.Drawing.Size(527, 323);
             this.generalPage.Text = "Техпроцесс";
+            // 
+            // panelControl2
+            // 
+            this.panelControl2.Controls.Add(this.labelControl33);
+            this.panelControl2.Controls.Add(this.labelControl25);
+            this.panelControl2.Controls.Add(this.labelControl23);
+            this.panelControl2.Controls.Add(this.weightEdit);
+            this.panelControl2.Controls.Add(this.lEdit);
+            this.panelControl2.Controls.Add(this.w2Edit);
+            this.panelControl2.Controls.Add(this.wEdit);
+            this.panelControl2.Controls.Add(this.thEdit);
+            this.panelControl2.Controls.Add(this.labelControl35);
+            this.panelControl2.Controls.Add(this.labelControl42);
+            this.panelControl2.Location = new System.Drawing.Point(10, 176);
+            this.panelControl2.Name = "panelControl2";
+            this.panelControl2.Size = new System.Drawing.Size(508, 70);
+            this.panelControl2.TabIndex = 115;
+            // 
+            // labelControl33
+            // 
+            this.labelControl33.Appearance.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelControl33.Appearance.Options.UseFont = true;
+            this.labelControl33.Location = new System.Drawing.Point(337, 5);
+            this.labelControl33.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.labelControl33.Name = "labelControl33";
+            this.labelControl33.Size = new System.Drawing.Size(98, 18);
+            this.labelControl33.TabIndex = 37;
+            this.labelControl33.Text = "Маса заготовки";
+            // 
+            // labelControl25
+            // 
+            this.labelControl25.Appearance.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelControl25.Appearance.Options.UseFont = true;
+            this.labelControl25.Location = new System.Drawing.Point(251, 5);
+            this.labelControl25.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.labelControl25.Name = "labelControl25";
+            this.labelControl25.Size = new System.Drawing.Size(7, 18);
+            this.labelControl25.TabIndex = 36;
+            this.labelControl25.Text = "L";
+            // 
+            // labelControl23
+            // 
+            this.labelControl23.Appearance.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelControl23.Appearance.Options.UseFont = true;
+            this.labelControl23.Location = new System.Drawing.Point(165, 5);
+            this.labelControl23.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.labelControl23.Name = "labelControl23";
+            this.labelControl23.Size = new System.Drawing.Size(21, 18);
+            this.labelControl23.TabIndex = 35;
+            this.labelControl23.Text = "W2";
+            // 
+            // weightEdit
+            // 
+            this.weightEdit.Location = new System.Drawing.Point(337, 29);
+            this.weightEdit.Name = "weightEdit";
+            this.weightEdit.Size = new System.Drawing.Size(166, 20);
+            this.weightEdit.TabIndex = 34;
+            // 
+            // lEdit
+            // 
+            this.lEdit.Location = new System.Drawing.Point(251, 29);
+            this.lEdit.Name = "lEdit";
+            this.lEdit.Size = new System.Drawing.Size(80, 20);
+            this.lEdit.TabIndex = 33;
+            // 
+            // w2Edit
+            // 
+            this.w2Edit.Location = new System.Drawing.Point(165, 29);
+            this.w2Edit.Name = "w2Edit";
+            this.w2Edit.Size = new System.Drawing.Size(80, 20);
+            this.w2Edit.TabIndex = 32;
+            // 
+            // wEdit
+            // 
+            this.wEdit.Location = new System.Drawing.Point(79, 29);
+            this.wEdit.Name = "wEdit";
+            this.wEdit.Size = new System.Drawing.Size(80, 20);
+            this.wEdit.TabIndex = 24;
+            // 
+            // thEdit
+            // 
+            this.thEdit.Location = new System.Drawing.Point(3, 29);
+            this.thEdit.Name = "thEdit";
+            this.thEdit.Size = new System.Drawing.Size(70, 20);
+            this.thEdit.TabIndex = 26;
+            // 
+            // labelControl35
+            // 
+            this.labelControl35.Appearance.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelControl35.Appearance.Options.UseFont = true;
+            this.labelControl35.Location = new System.Drawing.Point(4, 5);
+            this.labelControl35.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.labelControl35.Name = "labelControl35";
+            this.labelControl35.Size = new System.Drawing.Size(16, 18);
+            this.labelControl35.TabIndex = 30;
+            this.labelControl35.Text = "TH";
+            // 
+            // labelControl42
+            // 
+            this.labelControl42.Appearance.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelControl42.Appearance.Options.UseFont = true;
+            this.labelControl42.Location = new System.Drawing.Point(79, 5);
+            this.labelControl42.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.labelControl42.Name = "labelControl42";
+            this.labelControl42.Size = new System.Drawing.Size(14, 18);
+            this.labelControl42.TabIndex = 31;
+            this.labelControl42.Text = "W";
             // 
             // weldingAndGasPage
             // 
@@ -1301,113 +1408,6 @@
             this.textEdit19.Size = new System.Drawing.Size(62, 20);
             this.textEdit19.TabIndex = 25;
             // 
-            // panelControl2
-            // 
-            this.panelControl2.Controls.Add(this.labelControl33);
-            this.panelControl2.Controls.Add(this.labelControl25);
-            this.panelControl2.Controls.Add(this.labelControl23);
-            this.panelControl2.Controls.Add(this.textEdit28);
-            this.panelControl2.Controls.Add(this.textEdit26);
-            this.panelControl2.Controls.Add(this.textEdit1);
-            this.panelControl2.Controls.Add(this.textEdit16);
-            this.panelControl2.Controls.Add(this.textEdit18);
-            this.panelControl2.Controls.Add(this.labelControl35);
-            this.panelControl2.Controls.Add(this.labelControl42);
-            this.panelControl2.Location = new System.Drawing.Point(10, 176);
-            this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(508, 70);
-            this.panelControl2.TabIndex = 115;
-            // 
-            // textEdit16
-            // 
-            this.textEdit16.Location = new System.Drawing.Point(79, 29);
-            this.textEdit16.Name = "textEdit16";
-            this.textEdit16.Size = new System.Drawing.Size(80, 20);
-            this.textEdit16.TabIndex = 24;
-            // 
-            // textEdit18
-            // 
-            this.textEdit18.Location = new System.Drawing.Point(3, 29);
-            this.textEdit18.Name = "textEdit18";
-            this.textEdit18.Size = new System.Drawing.Size(70, 20);
-            this.textEdit18.TabIndex = 26;
-            // 
-            // labelControl35
-            // 
-            this.labelControl35.Appearance.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelControl35.Appearance.Options.UseFont = true;
-            this.labelControl35.Location = new System.Drawing.Point(4, 5);
-            this.labelControl35.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.labelControl35.Name = "labelControl35";
-            this.labelControl35.Size = new System.Drawing.Size(16, 18);
-            this.labelControl35.TabIndex = 30;
-            this.labelControl35.Text = "TH";
-            // 
-            // labelControl42
-            // 
-            this.labelControl42.Appearance.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelControl42.Appearance.Options.UseFont = true;
-            this.labelControl42.Location = new System.Drawing.Point(79, 5);
-            this.labelControl42.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.labelControl42.Name = "labelControl42";
-            this.labelControl42.Size = new System.Drawing.Size(14, 18);
-            this.labelControl42.TabIndex = 31;
-            this.labelControl42.Text = "W";
-            // 
-            // textEdit1
-            // 
-            this.textEdit1.Location = new System.Drawing.Point(165, 29);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Size = new System.Drawing.Size(80, 20);
-            this.textEdit1.TabIndex = 32;
-            // 
-            // textEdit26
-            // 
-            this.textEdit26.Location = new System.Drawing.Point(251, 29);
-            this.textEdit26.Name = "textEdit26";
-            this.textEdit26.Size = new System.Drawing.Size(80, 20);
-            this.textEdit26.TabIndex = 33;
-            // 
-            // textEdit28
-            // 
-            this.textEdit28.Location = new System.Drawing.Point(337, 29);
-            this.textEdit28.Name = "textEdit28";
-            this.textEdit28.Size = new System.Drawing.Size(166, 20);
-            this.textEdit28.TabIndex = 34;
-            // 
-            // labelControl23
-            // 
-            this.labelControl23.Appearance.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelControl23.Appearance.Options.UseFont = true;
-            this.labelControl23.Location = new System.Drawing.Point(165, 5);
-            this.labelControl23.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.labelControl23.Name = "labelControl23";
-            this.labelControl23.Size = new System.Drawing.Size(21, 18);
-            this.labelControl23.TabIndex = 35;
-            this.labelControl23.Text = "W2";
-            // 
-            // labelControl25
-            // 
-            this.labelControl25.Appearance.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelControl25.Appearance.Options.UseFont = true;
-            this.labelControl25.Location = new System.Drawing.Point(251, 5);
-            this.labelControl25.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.labelControl25.Name = "labelControl25";
-            this.labelControl25.Size = new System.Drawing.Size(7, 18);
-            this.labelControl25.TabIndex = 36;
-            this.labelControl25.Text = "L";
-            // 
-            // labelControl33
-            // 
-            this.labelControl33.Appearance.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelControl33.Appearance.Options.UseFont = true;
-            this.labelControl33.Location = new System.Drawing.Point(337, 5);
-            this.labelControl33.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.labelControl33.Name = "labelControl33";
-            this.labelControl33.Size = new System.Drawing.Size(98, 18);
-            this.labelControl33.TabIndex = 37;
-            this.labelControl33.Text = "Маса заготовки";
-            // 
             // TechProcess001EditFm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1445,6 +1445,14 @@
             this.techProcess001Tab.ResumeLayout(false);
             this.generalPage.ResumeLayout(false);
             this.generalPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
+            this.panelControl2.ResumeLayout(false);
+            this.panelControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.weightEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.w2Edit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.wEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.thEdit.Properties)).EndInit();
             this.weldingAndGasPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
@@ -1505,14 +1513,6 @@
             this.groupControl6.ResumeLayout(false);
             this.groupControl6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit19.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
-            this.panelControl2.ResumeLayout(false);
-            this.panelControl2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit16.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit18.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit26.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit28.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1627,11 +1627,11 @@
         private DevExpress.XtraEditors.LabelControl labelControl33;
         private DevExpress.XtraEditors.LabelControl labelControl25;
         private DevExpress.XtraEditors.LabelControl labelControl23;
-        private DevExpress.XtraEditors.TextEdit textEdit28;
-        private DevExpress.XtraEditors.TextEdit textEdit26;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
-        private DevExpress.XtraEditors.TextEdit textEdit16;
-        private DevExpress.XtraEditors.TextEdit textEdit18;
+        private DevExpress.XtraEditors.TextEdit weightEdit;
+        private DevExpress.XtraEditors.TextEdit lEdit;
+        private DevExpress.XtraEditors.TextEdit w2Edit;
+        private DevExpress.XtraEditors.TextEdit wEdit;
+        private DevExpress.XtraEditors.TextEdit thEdit;
         private DevExpress.XtraEditors.LabelControl labelControl35;
         private DevExpress.XtraEditors.LabelControl labelControl42;
     }

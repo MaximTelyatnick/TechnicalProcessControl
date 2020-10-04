@@ -43,7 +43,7 @@ namespace TechnicalProcessControl.Journals
             this.materialsDTO = materialsDTO;
             this.operation = operation;
 
-            operationNameBS.DataSource = Item = materialsDTO;
+            operationNameBS.DataSource = Item = operationNameDTO;
 
             idEdit.DataBindings.Add("EditValue", operationNameBS, "TableId", true, DataSourceUpdateMode.OnPropertyChanged);
             codeEdit.DataBindings.Add("EditValue", operationNameBS, "Code", true, DataSourceUpdateMode.OnPropertyChanged);
@@ -97,6 +97,26 @@ namespace TechnicalProcessControl.Journals
             this.Item.CancelEdit();
             DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        private void saveBtn_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Сохранить изменения?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                try
+                {
+                    if (SaveItem())
+                    {
+                        DialogResult = DialogResult.OK;
+                        this.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("При сохранении возникла ошибка. " + ex.Message, "Сохранение контрагента", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
         }
     }
 }

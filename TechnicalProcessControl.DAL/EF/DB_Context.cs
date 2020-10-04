@@ -38,7 +38,11 @@ namespace TechnicalProcessControl.DAL.EF
         public DbSet<Drawing> Drawing { get; set; }
         public DbSet<Revisions> Revisions { get; set; }
         public DbSet<OperationName> OperationName { get; set; }
+        public DbSet<OperationNumber> OperationNumber { get; set; }
+        public DbSet<OperationPaintMaterial> OperationPaintMaterial { get; set; }
         #endregion
+
+
 
 
 
