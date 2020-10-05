@@ -155,6 +155,10 @@ namespace TechnicalProcessControl
                     OperationNumberFm operationNumberFm = new OperationNumberFm();
                     operationNumberFm.Show();
                     break;
+                case "operationPaintMaterial":
+                    OperationPaintMaterialFm operationPaintMaterialFm = new OperationPaintMaterialFm();
+                    operationPaintMaterialFm.Show();
+                    break;
 
                     //case "operationNameItem":
                     //    OperationNameFm operationNameFm = new OperationNameFm();

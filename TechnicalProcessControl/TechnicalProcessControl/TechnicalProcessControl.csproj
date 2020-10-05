@@ -261,6 +261,18 @@
     <Compile Include="Journals\OperationNumberFm.Designer.cs">
       <DependentUpon>OperationNumberFm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Journals\OperationPaintMaterialEditFm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Journals\OperationPaintMaterialEditFm.Designer.cs">
+      <DependentUpon>OperationPaintMaterialEditFm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Journals\OperationPaintMaterialFm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Journals\OperationPaintMaterialFm.Designer.cs">
+      <DependentUpon>OperationPaintMaterialFm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Journals\ScanFm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -396,6 +408,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Journals\OperationNumberFm.resx">
       <DependentUpon>OperationNumberFm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Journals\OperationPaintMaterialEditFm.resx">
+      <DependentUpon>OperationPaintMaterialEditFm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Journals\OperationPaintMaterialFm.resx">
+      <DependentUpon>OperationPaintMaterialFm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Journals\ScanFm.resx">
       <DependentUpon>ScanFm.cs</DependentUpon>
