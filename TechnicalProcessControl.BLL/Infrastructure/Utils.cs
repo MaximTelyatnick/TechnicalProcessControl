@@ -16,6 +16,13 @@ namespace TechnicalProcessControl.BLL.Infrastructure
             Custom
         };
 
+        public enum OperationTemplateExcel
+        {
+            Add,
+            Update,
+            View
+        };
+
         public enum Rules
         {
             NoAuthUser,

@@ -20,7 +20,6 @@ namespace TechnicalProcessControl.BLL.Services
     {
         private string GeneratedReportsDir = Utils.HomePath + @"\Templates\";
         private string DbExelDir = @"C:\TechProcess\";
-        public static IDrawingService drawingService;
 
         private IUnitOfWork Database { get; set; }
 
@@ -62,6 +61,7 @@ namespace TechnicalProcessControl.BLL.Services
             techProcess004 = Database.GetRepository<TechProcess004>();
             techProcess005 = Database.GetRepository<TechProcess005>();
             revisions = Database.GetRepository<Revisions>();
+            
 
             var config = new MapperConfiguration(cfg =>
             {
@@ -239,14 +239,16 @@ namespace TechnicalProcessControl.BLL.Services
             return drawingsDTO.TechProcess001Path;
         }
 
-        public string CreateTemplateTechProcess001Exp(UsersDTO usersDTO, TechProcess001DTO techProcess001DTO, TechProcess001DTO techProcess001OldDTO = null)
+        public string CreateTemplateTechProcess001Exp(UsersDTO usersDTO,DrawingDTO techProces001Drawing,List<DrawingDTO> techProcess001DrawingParent, TechProcess001DTO techProcess001, TechProcess001DTO techProcess001Old = null)
         {
+            
+
             try
             {
-                if (techProcess001OldDTO == null)
+                if (techProcess001Old == null)
                     Factory.GetWorkbook(GeneratedReportsDir + @"\template001.xls");
                 else
-                    Factory.GetWorkbook(techProcess001OldDTO.TechProcessPath);
+                    Factory.GetWorkbook(techProcess001Old.TechProcessPath);
             }
             catch (Exception ex)
             {
@@ -256,10 +258,10 @@ namespace TechnicalProcessControl.BLL.Services
 
             IWorkbook workbook = null;
 
-            if (techProcess001OldDTO == null)
+            if (techProcess001Old == null)
                 workbook = Factory.GetWorkbook(GeneratedReportsDir + @"\template001.xls");
             else
-                workbook = Factory.GetWorkbook(techProcess001OldDTO.TechProcessPath);
+                workbook = Factory.GetWorkbook(techProcess001Old.TechProcessPath);
 
             var Worksheet = workbook.Worksheets[0];
             var Сells = Worksheet.Cells;
@@ -267,56 +269,56 @@ namespace TechnicalProcessControl.BLL.Services
 
             string parentDrawings = "";
             //получаем чертеж на который создаём техпроцесс
-            var drawingDTO = drawingService.GetDrawingById((int)techProcess001DTO.DrawingId);
+            //var drawingDTO = drawingService.GetDrawingById((int)techProcess001DTO.DrawingId);
             //получаем все чертежи-родители 
-            var listParentDrawings = GetDrawingParentByDrawingChildId((int)techProcess001DTO.DrawingId);
-            if (listParentDrawings != null)
-                parentDrawings = String.Join(", ", listParentDrawings.Select(bdsm => bdsm.Number).ToArray());
+            //var listParentDrawings = GetDrawingParentByDrawingChildId((int)techProcess001DTO.DrawingId);
+            if (techProcess001DrawingParent != null)
+                parentDrawings = String.Join(", ", techProcess001DrawingParent.Select(bdsm => bdsm.Number).ToArray());
 
-            cells["BY" + 28].Value = "Created by " + usersDTO.Name;
+            cells["BY" + 28].Value = "Created by " + usersDTO.Name + techProcess001.CreateDate.Value.ToShortDateString();
             cells["J" + 41].Value = usersDTO.Name;
             cells["D" + 30].Value = "Date of issue ";
 
 
-            Сells["AQ" + 10].Value = drawingDTO.DetailName;
+            Сells["AQ" + 10].Value = techProces001Drawing.DetailName;
             Сells["AQ" + 10].HorizontalAlignment = HAlign.Center;
-            Сells["AL" + 44].Value = drawingDTO.DetailName;
+            Сells["AL" + 44].Value = techProces001Drawing.DetailName;
             Сells["AL" + 44].HorizontalAlignment = HAlign.Center;
 
-            Сells["F" + 46].Value = drawingDTO.MaterialName;
+            Сells["F" + 46].Value = techProces001Drawing.MaterialName;
             Сells["F" + 46].HorizontalAlignment = HAlign.Left;
 
             Сells["A" + 39].Value = parentDrawings;
             Сells["A" + 39].HorizontalAlignment = HAlign.Center;
-            Сells["W" + 48].Value = drawingDTO.DetailWeight;
+            Сells["W" + 48].Value = techProces001Drawing.DetailWeight;
             Сells["W" + 48].HorizontalAlignment = HAlign.Center;
-            Сells["BI" + 48].Value = drawingDTO.TH.ToString() + "х" + drawingDTO.W.ToString() + "х" + drawingDTO.L.ToString();
+            Сells["BI" + 48].Value = techProces001Drawing.TH.ToString() + "х" + techProces001Drawing.W.ToString() + "х" + techProces001Drawing.L.ToString();
             Сells["BI" + 48].HorizontalAlignment = HAlign.Center;
             
             //Количество, нужно ли??????????????
             //Сells["CD" + 48].Value = drawingsDTO.Quantity;
             //Сells["CD" + 48].HorizontalAlignment = HAlign.Center;
-            Сells["BB" + 7].Value = drawingDTO.Number;
+            Сells["BB" + 7].Value = techProces001Drawing.Number;
             Сells["BB" + 7].HorizontalAlignment = HAlign.Center;
-            Сells["BB" + 41].Value = drawingDTO.Number;
+            Сells["BB" + 41].Value = techProces001Drawing.Number;
             Сells["BB" + 41].HorizontalAlignment = HAlign.Center;
-            Сells["BS" + 75].Value = drawingDTO.Number;
+            Сells["BS" + 75].Value = techProces001Drawing.Number;
             Сells["BS" + 75].HorizontalAlignment = HAlign.Center;
-            Сells["BS" + 106].Value = drawingDTO.Number;
+            Сells["BS" + 106].Value = techProces001Drawing.Number;
             Сells["BS" + 106].HorizontalAlignment = HAlign.Center;
-            Сells["CO" + 07].Value = TechProcesNameToStr(techProcess001DTO.TechProcessName);
+            Сells["CO" + 07].Value = TechProcesNameToStr(techProcess001.TechProcessName);
             Сells["CO" + 07].HorizontalAlignment = HAlign.Center;
-            Сells["CO" + 41].Value = TechProcesNameToStr(techProcess001DTO.TechProcessName);
+            Сells["CO" + 41].Value = TechProcesNameToStr(techProcess001.TechProcessName);
             Сells["CO" + 41].HorizontalAlignment = HAlign.Center;
-            Сells["CO" + 75].Value = TechProcesNameToStr(techProcess001DTO.TechProcessName);
+            Сells["CO" + 75].Value = TechProcesNameToStr(techProcess001.TechProcessName);
             Сells["CO" + 75].HorizontalAlignment = HAlign.Center;
-            Сells["CO" + 106].Value = TechProcesNameToStr(techProcess001DTO.TechProcessName);
+            Сells["CO" + 106].Value = TechProcesNameToStr(techProcess001.TechProcessName);
             Сells["CO" + 106].HorizontalAlignment = HAlign.Center;
 
 
             try
             {
-                workbook.SaveAs(techProcess001DTO.TechProcessPath, FileFormat.XLS97);
+                workbook.SaveAs(techProcess001.TechProcessPath, FileFormat.XLS97);
 
             }
 
@@ -331,7 +333,7 @@ namespace TechnicalProcessControl.BLL.Services
                 return "";
             }
 
-            return techProcess001DTO.TechProcessPath;
+            return techProcess001.TechProcessPath;
         }
 
         public string UpdateTemplateTechProcess001(DrawingsDTO drawingsDTO)
@@ -648,7 +650,7 @@ namespace TechnicalProcessControl.BLL.Services
             process.Start();
         }
 
-        public string ResaveFileTechProcess001(DrawingsDTO drawingsDTO, string fullPathExistingFile)
+        public string ResaveFileTechProcess001(TechProcess001DTO techProcess001, string fullPathExistingFile)
         {
             try
             {
@@ -661,13 +663,10 @@ namespace TechnicalProcessControl.BLL.Services
             }
 
             IWorkbook workbook = Factory.GetWorkbook(fullPathExistingFile); ;
-
             try
             {
-                workbook.SaveAs(drawingsDTO.TechProcess001Path, FileFormat.XLS97);
-
+                workbook.SaveAs(techProcess001.TechProcessPath, FileFormat.XLS97);
             }
-
             catch (System.IO.IOException)
             {
                 MessageBox.Show("Документ уже открыто!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -678,8 +677,7 @@ namespace TechnicalProcessControl.BLL.Services
                 MessageBox.Show("На рабочей станции отсутсутствует пакет программ Microsoft Oficce!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return "";
             }
-
-            return drawingsDTO.TechProcess001Path;
+            return techProcess001.TechProcessPath;
         }
 
         public string TechProcesNameToStr(long? techProcessName)

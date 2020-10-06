@@ -367,15 +367,15 @@ namespace TechnicalProcessControl.Drawings
 
 
 
-        private void groupControl1_Paint(object sender, PaintEventArgs e)
-        {
+        //private void groupControl1_Paint(object sender, PaintEventArgs e)
+        //{
             
-        }
+        //}
 
-        private void groupControl2_Paint(object sender, PaintEventArgs e)
-        {
+        //private void groupControl2_Paint(object sender, PaintEventArgs e)
+        //{
 
-        }
+        //}
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
@@ -404,49 +404,49 @@ namespace TechnicalProcessControl.Drawings
             }
         }
 
-        private void openFileBtn_Click(object sender, EventArgs e)
-        {
-            DrawingScanDTO drawingScanDTO = new DrawingScanDTO();
+        //private void openFileBtn_Click(object sender, EventArgs e)
+        //{
+        //    DrawingScanDTO drawingScanDTO = new DrawingScanDTO();
 
-            string filePath = "";
-            string fileName = "";
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.InitialDirectory = @"D:\";
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                filePath = ofd.FileName;
-                fileName = ofd.SafeFileName;
-            }
-            if (filePath.Length > 0)
-            {
-                byte[] scan = System.IO.File.ReadAllBytes(@filePath);
-                drawingScanDTO.DrawingId = ((DrawingsDTO)Item).Id;
-                drawingScanDTO.Scan = scan;
-                drawingScanDTO.FileName = fileName;
+        //    string filePath = "";
+        //    string fileName = "";
+        //    OpenFileDialog ofd = new OpenFileDialog();
+        //    ofd.InitialDirectory = @"D:\";
+        //    if (ofd.ShowDialog() == DialogResult.OK)
+        //    {
+        //        filePath = ofd.FileName;
+        //        fileName = ofd.SafeFileName;
+        //    }
+        //    if (filePath.Length > 0)
+        //    {
+        //        byte[] scan = System.IO.File.ReadAllBytes(@filePath);
+        //        drawingScanDTO.DrawingId = ((DrawingsDTO)Item).Id;
+        //        drawingScanDTO.Scan = scan;
+        //        drawingScanDTO.FileName = fileName;
 
-                try
-                {
-                    int drawingScanId = drawingService.DrawingScanCreate(drawingScanDTO);
-                    drawingScanList.Add(drawingScanDTO);
-                    drawingScanEdit.EditValue = drawingScanId;
-                    drawingScanEdit.Text = drawingScanDTO.FileName;
+        //        try
+        //        {
+        //            int drawingScanId = drawingService.DrawingScanCreate(drawingScanDTO);
+        //            drawingScanList.Add(drawingScanDTO);
+        //            drawingScanEdit.EditValue = drawingScanId;
+        //            drawingScanEdit.Text = drawingScanDTO.FileName;
 
-                    Bitmap bitmap = new Bitmap(filePath);
-                    pictureEdit.Properties.SizeMode = PictureSizeMode.Zoom;
-                    pictureEdit.EditValue = bitmap;
-                    //fileNameTbox.EditValue = fileName;
-                }
-                catch (Exception  ex)
-                {
-                    MessageBox.Show("При добавлении скана возникла ошибка. " + ex.Message, "Сохранение чертежа", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+        //            Bitmap bitmap = new Bitmap(filePath);
+        //            pictureEdit.Properties.SizeMode = PictureSizeMode.Zoom;
+        //            pictureEdit.EditValue = bitmap;
+        //            //fileNameTbox.EditValue = fileName;
+        //        }
+        //        catch (Exception  ex)
+        //        {
+        //            MessageBox.Show("При добавлении скана возникла ошибка. " + ex.Message, "Сохранение чертежа", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //        }
                 
-            }
-            else
-                return;
+        //    }
+        //    else
+        //        return;
 
             
-        }
+        //}
 
         private void clearBtn_Click(object sender, EventArgs e)
         {
@@ -926,7 +926,7 @@ namespace TechnicalProcessControl.Drawings
                         //}
 
                         TechProcess001DTO addTechProcessDTO = new TechProcess001DTO();
-                        addTechProcessDTO.DrawingsId = ((DrawingsDTO)Item).Id;
+                        //addTechProcessDTO.DrawingsId = ((DrawingsDTO)Item).Id;
                         addTechProcessDTO.DrawingNumber = ((DrawingsDTO)Item).Number;
                         addTechProcessDTO.DrawingNumberWithRevision = ((DrawingsDTO)Item).NumberWithRevisionName;
                         addTechProcessDTO.DrawingId = ((DrawingsDTO)Item).DrawingId;
@@ -952,19 +952,21 @@ namespace TechnicalProcessControl.Drawings
                     }
                 case 1://Редагувати
                     {
-                        //if (organisationEdit.EditValue == DBNull.Value)
-                        //    return;
+                        if (techProcess001Edit.EditValue == DBNull.Value)
+                            return;
 
-                        //using (OrganisationEditFm organisationEditFm = new OrganisationEditFm(Utils.Operation.Update, (ContractorsDTO)organisationEdit.GetSelectedDataRow()))
-                        //{
-                        //    if (organisationEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                        //    {
-                        //        int return_Id = organisationEditFm.Return();
-                        //        botService = Program.kernel.Get<IBotService>();
-                        //        organisationBS.DataSource = botService.GetAllContractors();
-                        //        organisationEdit.EditValue = return_Id;
-                        //    }
-                        //}
+                        TechProcess001DTO techProcess001 = drawingService.GetTechProcess001ByDrawingId((int)((DrawingsDTO)Item).DrawingId);
+
+                        using (TechProcess001EditFm techProcess001EditFm = new TechProcess001EditFm(usersDTO, Utils.Operation.Update, techProcess001))
+                        {
+                            if (techProcess001EditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                            {
+                                techProcess001Edit.Properties.DataSource = drawingService.GetAllTechProcess001();
+                                int return_Id = techProcess001EditFm.Return().Id;
+                                techProcess001Edit.EditValue = return_Id;
+
+                            }
+                        }
                         break;
                     }
                 case 2://Видалити
@@ -1014,6 +1016,18 @@ namespace TechnicalProcessControl.Drawings
                                 techProcess001Edit.EditValue = return_Id;
                             }
                         }
+
+                        break;
+                    }
+                case 4://Ревизия
+                    {
+                        if (techProcess001Edit.EditValue == DBNull.Value || techProcess001Edit.EditValue == null)
+                            return;
+
+                        TechProcess001DTO techProcess001 = drawingService.GetTechProcess001ByIdFull((int)techProcess001Edit.EditValue);
+
+                        TestFm testFm = new TestFm(techProcess001.TechProcessPath);
+                        testFm.Show();
 
                         break;
                     }
@@ -1220,11 +1234,10 @@ namespace TechnicalProcessControl.Drawings
 
         }
 
-        private void dxValidationProvider_ValidationFailed(object sender, DevExpress.XtraEditors.DXErrorProvider.ValidationFailedEventArgs e)
-        {
-            this.saveBtn.Enabled = false;
-            this.validateLbl.Visible = true;
-        }
+        
+
+
+        #region Validation
 
         private void dxValidationProvider_ValidationSucceeded(object sender, DevExpress.XtraEditors.DXErrorProvider.ValidationSucceededEventArgs e)
         {
@@ -1235,9 +1248,18 @@ namespace TechnicalProcessControl.Drawings
 
         }
 
+        private void dxValidationProvider_ValidationFailed(object sender, DevExpress.XtraEditors.DXErrorProvider.ValidationFailedEventArgs e)
+        {
+            this.saveBtn.Enabled = false;
+            this.validateLbl.Visible = true;
+        }
+
         private void currentLevelMenuEdit_EditValueChanged(object sender, EventArgs e)
         {
             dxValidationProvider.Validate((Control)sender);
         }
+
+
+        #endregion
     }
 }

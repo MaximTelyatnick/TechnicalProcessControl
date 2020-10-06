@@ -11,7 +11,9 @@ namespace TechnicalProcessControl.BLL.Interfaces
     {
         string CreateTemplateTechProcess001(UsersDTO usersDTO, DrawingsDTO drawingsDTO, TechProcess001DTO techProcess001OldDTO = null, List<DrawingDTO> listParentDrawings = null);
         string UpdateTemplateTechProcess001(DrawingsDTO drawingsDTO);
-        string ResaveFileTechProcess001(DrawingsDTO drawingsDTO, string fullPathExistingFile);
+        string ResaveFileTechProcess001(TechProcess001DTO techProcess001, string fullPathExistingFile);
+
+        string CreateTemplateTechProcess001Exp(UsersDTO usersDTO, DrawingDTO techProces001Drawing, List<DrawingDTO> techProcess001DrawingParent, TechProcess001DTO techProcess001, TechProcess001DTO techProcess001Old = null);
 
         string CreateTemplateTechProcess002(DrawingsDTO drawingsDTO);
         string UpdateTemplateTechProcess002(DrawingsDTO drawingsDTO);

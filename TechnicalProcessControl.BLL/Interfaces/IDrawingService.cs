@@ -50,6 +50,7 @@ namespace TechnicalProcessControl.BLL.Interfaces
         long GetLastTechProcess002();
         long GetLastTechProcess003();
 
+        TechProcess001DTO GetTechProcess001ByIdFull(int techProcess001Id);
         IEnumerable<TechProcess001DTO> GetAllTechProcess001();
         IEnumerable<TechProcess001DTO> GetAllTechProcessActual001();
 

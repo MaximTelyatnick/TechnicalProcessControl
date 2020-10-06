@@ -731,11 +731,11 @@ namespace TechnicalProcessControl.BLL.Services
                               CreateDate = tcp.CreateDate,
                               ParentId = tcp.ParentId,
                               RevisionId = tcp.RevisionId,
-                              LaborIntensity001 = tcp.LaborIntensity001,
-                              LaborIntensity002 = tcp.LaborIntensity002,
-                              LaborIntensity003 = tcp.LaborIntensity003,
-                              LaborIntensity004 = tcp.LaborIntensity004,
-                              LaborIntensity005 = tcp.LaborIntensity005,
+                              TH = tcp.TH,
+                              W = tcp.W,
+                              W2 = tcp.W2,
+                              L = tcp.L,
+                              Weight = tcp.Weight,
                               TechProcessName = tcp.TechProcessName,
                               DrawingId = tcp.DrawingId,
                               DrawingNumber = dr.Number,
@@ -796,6 +796,42 @@ namespace TechnicalProcessControl.BLL.Services
             return mapper.Map<TechProcess005, TechProcess005DTO>(techProcess005.GetAll().FirstOrDefault(bdsm => bdsm.DrawingId == drawingId && bdsm.ParentId == null));
         }
 
+
+        public TechProcess001DTO GetTechProcess001ByIdFull(int techProcess001Id)
+        {
+            var result = (from tcp in techProcess001.GetAll()
+                          join rt in revisionsTechProcess001.GetAll() on tcp.RevisionId equals rt.Id into rtt
+                          from rt in rtt.DefaultIfEmpty()
+                          join dr in drawing.GetAll() on tcp.DrawingId equals dr.Id into drr
+                          from dr in drr.DefaultIfEmpty()
+                          join rd in revisions.GetAll() on dr.RevisionId equals rd.Id into rdd
+                          from rd in rdd.DefaultIfEmpty()
+                          where tcp.Id == techProcess001Id
+                          select new TechProcess001DTO
+                          {
+                              Id = tcp.Id,
+                              CreateDate = tcp.CreateDate,
+                              ParentId = tcp.ParentId,
+                              RevisionId = tcp.RevisionId,
+                              TH = tcp.TH,
+                              W = tcp.W,
+                              W2 = tcp.W2,
+                              L = tcp.L,
+                              Weight = tcp.Weight,
+                              TechProcessName = tcp.TechProcessName,
+                              DrawingId = tcp.DrawingId,
+                              DrawingNumber = dr.Number,
+                              TechProcessFullName = tcp.TechProcessFullName,
+                              TechProcessPath = tcp.TechProcessPath,
+                              DrawingNumberWithRevision = rd.Symbol == null ? dr.Number : (dr.Number + "_" + rd.Symbol),
+                              RivisionName = rt.Symbol,
+                              TypeId = tcp.TypeId,
+                              OldTechProcess = tcp.OldTechProcess
+                          }
+                          ).ToList();
+
+            return result.FirstOrDefault();
+        }
         public IEnumerable<TechProcess001DTO> GetAllTechProcess001Simple()
         {
             return mapper.Map<IEnumerable<TechProcess001>, List<TechProcess001DTO>>(techProcess001.GetAll());
@@ -815,11 +851,11 @@ namespace TechnicalProcessControl.BLL.Services
                               CreateDate = tcp.CreateDate,
                               ParentId = tcp.ParentId,
                               RevisionId = tcp.RevisionId,
-                              LaborIntensity001 = tcp.LaborIntensity001,
-                              LaborIntensity002 = tcp.LaborIntensity002,
-                              LaborIntensity003 = tcp.LaborIntensity003,
-                              LaborIntensity004 = tcp.LaborIntensity004,
-                              LaborIntensity005 = tcp.LaborIntensity005,
+                              TH = tcp.TH,
+                              W = tcp.W,
+                              W2 = tcp.W2,
+                              L = tcp.L,
+                              Weight = tcp.Weight,
                               TechProcessName = tcp.TechProcessName,
                               DrawingId = tcp.DrawingId,
                               DrawingNumber = dr.Number,
@@ -848,11 +884,11 @@ namespace TechnicalProcessControl.BLL.Services
                               CreateDate = tcp.CreateDate,
                               ParentId = tcp.ParentId,
                               RevisionId = tcp.RevisionId,
-                              LaborIntensity001 = tcp.LaborIntensity001,
-                              LaborIntensity002 = tcp.LaborIntensity002,
-                              LaborIntensity003 = tcp.LaborIntensity003,
-                              LaborIntensity004 = tcp.LaborIntensity004,
-                              LaborIntensity005 = tcp.LaborIntensity005,
+                              TH = tcp.TH,
+                              W = tcp.W,
+                              W2 = tcp.W2,
+                              L = tcp.L,
+                              Weight = tcp.Weight,
                               TechProcessName = tcp.TechProcessName,
                               DrawingId = tcp.DrawingId,
                               DrawingNumber = dr.Number,
