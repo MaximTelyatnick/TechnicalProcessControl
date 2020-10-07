@@ -292,7 +292,19 @@ namespace TechnicalProcessControl.BLL.Services
             Сells["A" + 39].HorizontalAlignment = HAlign.Center;
             Сells["W" + 48].Value = techProces001Drawing.DetailWeight;
             Сells["W" + 48].HorizontalAlignment = HAlign.Center;
-            Сells["BI" + 48].Value = techProces001Drawing.TH.ToString() + "х" + techProces001Drawing.W.ToString() + "х" + techProces001Drawing.L.ToString();
+
+            string paramaterBlank = "";
+
+            if (techProcess001.TH != null)
+                paramaterBlank += techProcess001.TH.ToString() + "х";
+            if (techProcess001.W != null)
+                paramaterBlank += techProcess001.TH.ToString() + "х";
+            if (techProcess001.W2 != null)
+                paramaterBlank += techProcess001.TH.ToString() + "х";
+            if (techProcess001.L != null)
+                paramaterBlank += techProcess001.TH.ToString() + "х";
+
+            Сells["BI" + 48].Value = paramaterBlank;
             Сells["BI" + 48].HorizontalAlignment = HAlign.Center;
             
             //Количество, нужно ли??????????????

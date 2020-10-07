@@ -91,7 +91,8 @@ namespace TechnicalProcessControl
                 ((TechProcess001DTO)Item).TechProcessName = drawingService.GetLastTechProcess001();
                 ((TechProcess001DTO)Item).CreateDate = DateTime.Now;
                 ((TechProcess001DTO)Item).OldTechProcess = false;
-                
+                drawingEdit.ReadOnly = true;
+
             }
             else if(operation == Utils.Operation.Update)
             {
@@ -102,6 +103,10 @@ namespace TechnicalProcessControl
                 revisionEdit.ReadOnly = true;
                 drawingEdit.ReadOnly = true;
                 createDateEdit.ReadOnly = true;
+                thEdit.ReadOnly = true;
+                wEdit.ReadOnly = true;
+                w2Edit.ReadOnly = true;
+                lEdit.ReadOnly = true;
             }
             else if (operation == Utils.Operation.Custom)
             {
