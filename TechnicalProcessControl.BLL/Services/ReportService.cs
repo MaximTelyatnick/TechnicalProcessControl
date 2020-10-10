@@ -142,6 +142,45 @@ namespace TechnicalProcessControl.BLL.Services
         }
 
 
+        public int GetLastEmptyRow(IWorkbook workbook)
+        {
+            int currentLastRow = 128;
+            var worksheet = workbook.Worksheets[0];
+
+            //worksheet = workbook.Worksheets[0];
+            while (currentLastRow > 0)
+            {
+                if (worksheet.Cells["A" + (currentLastRow)].Value == null)
+                {
+                    if (worksheet.Cells["A" + (currentLastRow + 1)].Value == null &&
+                        worksheet.Cells["A" + (currentLastRow + 2)].Value == null &&
+                        worksheet.Cells["A" + (currentLastRow + 3)].Value == null &&
+                        worksheet.Cells["A" + (currentLastRow + 4)].Value == null &&
+                        worksheet.Cells["A" + (currentLastRow + 5)].Value == null &&
+                        worksheet.Cells["A" + (currentLastRow + 6)].Value == null)
+                    {
+                        return currentLastRow;
+                    }
+                    else
+                        currentLastRow++;
+                }
+                else
+                    currentLastRow++;
+            }
+            return 0;
+        }
+
+        public int GetNumberDocumentPages(IWorkbook workbook)
+        {
+            var worksheet = workbook.Worksheets[0];
+            int currentLastRow = GetLastEmptyRow(workbook);
+
+            //double kkk = ((double)currentLastRow / 34);
+
+            return (int)Math.Ceiling(((double)currentLastRow / 34));
+        }
+
+
 
         /*
          * 1 - структура
@@ -176,8 +215,10 @@ namespace TechnicalProcessControl.BLL.Services
 
             string parentDrawings="";
 
+            int pages = GetNumberDocumentPages(workbook);
+
             //получаем все чертежи-родители 
-            if(listParentDrawings!=null)
+            if (listParentDrawings!=null)
                 parentDrawings = String.Join(", ", listParentDrawings.Select(bdsm => bdsm.Number).ToArray());
 
             cells["BY" + 28].Value = "Created by "+ usersDTO.Name;
@@ -217,6 +258,10 @@ namespace TechnicalProcessControl.BLL.Services
             Сells["CO" + 75].HorizontalAlignment = HAlign.Center;
             Сells["CO" + 106].Value = TechProcesNameToStr(drawingsDTO.TechProcess001Name);
             Сells["CO" + 106].HorizontalAlignment = HAlign.Center;
+
+            //+31
+
+
 
 
             try
@@ -267,6 +312,8 @@ namespace TechnicalProcessControl.BLL.Services
             var Сells = Worksheet.Cells;
             IRange cells = Worksheet.Cells;
 
+            int pagesStock = 4;
+            int pagesOpenDocument = GetNumberDocumentPages(workbook);
             string parentDrawings = "";
             //получаем чертеж на который создаём техпроцесс
             //var drawingDTO = drawingService.GetDrawingById((int)techProcess001DTO.DrawingId);
@@ -277,6 +324,7 @@ namespace TechnicalProcessControl.BLL.Services
 
             cells["BY" + 28].Value = "Created by " + usersDTO.Name + techProcess001.CreateDate.Value.ToShortDateString();
             cells["J" + 41].Value = usersDTO.Name;
+            cells["AF" + 41].Value = techProcess001.CreateDate.Value.ToShortDateString();
             cells["D" + 30].Value = "Date of issue ";
 
 
@@ -295,14 +343,14 @@ namespace TechnicalProcessControl.BLL.Services
 
             string paramaterBlank = "";
 
-            if (techProcess001.TH != null)
+            if (techProcess001.TH != 0)
                 paramaterBlank += techProcess001.TH.ToString() + "х";
-            if (techProcess001.W != null)
-                paramaterBlank += techProcess001.TH.ToString() + "х";
-            if (techProcess001.W2 != null)
-                paramaterBlank += techProcess001.TH.ToString() + "х";
-            if (techProcess001.L != null)
-                paramaterBlank += techProcess001.TH.ToString() + "х";
+            if (techProcess001.W != 0)
+                paramaterBlank += "x" + techProcess001.W.ToString();
+            if (techProcess001.W2 != 0)
+                paramaterBlank += "x" + techProcess001.W2.ToString();
+            if (techProcess001.L != 0)
+                paramaterBlank += "x" + techProcess001.L.ToString();
 
             Сells["BI" + 48].Value = paramaterBlank;
             Сells["BI" + 48].HorizontalAlignment = HAlign.Center;
@@ -327,11 +375,20 @@ namespace TechnicalProcessControl.BLL.Services
             Сells["CO" + 106].Value = TechProcesNameToStr(techProcess001.TechProcessName);
             Сells["CO" + 106].HorizontalAlignment = HAlign.Center;
 
+            if(pagesOpenDocument>pagesStock)
+            {
+                for (int i = 1; i <= pagesOpenDocument- pagesStock; i++)
+                {
+                    Сells["CO" + (106 + (31*i))].Value = TechProcesNameToStr(techProcess001.TechProcessName);
+                    Сells["CO" + (106 + (31 * i))].HorizontalAlignment = HAlign.Center;
+                    Сells["BS" + (106 + (31 * i))].Value = techProces001Drawing.Number;
+                    Сells["BS" + (106 + (31 * i))].HorizontalAlignment = HAlign.Center;
+                } 
+            }
 
             try
             {
                 workbook.SaveAs(techProcess001.TechProcessPath, FileFormat.XLS97);
-
             }
 
             catch (System.IO.IOException)

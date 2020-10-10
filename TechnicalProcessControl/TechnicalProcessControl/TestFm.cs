@@ -34,7 +34,7 @@ namespace TechnicalProcessControl
 
         private Utils.Operation operation;
 
-        public int pageNumber = 4;
+        public int pageNumber;
 
         public IWorkbook workbook;
         public Worksheet worksheet;
@@ -56,10 +56,15 @@ namespace TechnicalProcessControl
             InitializeComponent();
             this.pathToFile = pathToFile;
 
+           
+
+
             splashScreenManager.ShowWaitForm();
 
 
             LoadData();
+
+            pageNumber = GetNumberDocumentPages();
             splashScreenManager.CloseWaitForm();
 
 
@@ -292,6 +297,15 @@ namespace TechnicalProcessControl
             }
             workbook.EndUpdate();
             return 0;
+        }
+
+        public int GetNumberDocumentPages()
+        {
+            int currentLastRow = GetLastEmptyRow();
+
+            //double kkk = ((double)currentLastRow / 34);
+
+            return (int)Math.Ceiling(((double)currentLastRow / 34));
         }
 
         private void barButtonItem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

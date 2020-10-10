@@ -26,6 +26,16 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
 
         public int? DrawingsId { get; set; }
 
+        public TechProcess001DTO()
+        {
+            this.TH = 0;
+            this.W = 0;
+            this.W2 = 0;
+            this.L = 0;
+            this.Weight = 0;
+            this.TypeId = 1;
+        }
+
         public object Clone()
         {
             return this.MemberwiseClone();

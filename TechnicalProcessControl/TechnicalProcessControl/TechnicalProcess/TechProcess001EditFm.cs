@@ -182,16 +182,23 @@ namespace TechnicalProcessControl
                                 throw new System.ArgumentException("Не получилось создать файл или сохранить в бд", "Ошибка");
                             }
 
-                        }
-
-                        
-                        
+                        }                                       
                         return true;
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("При сохранении техпроцесса возникла ошибка. " + ex.Message, "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return false;
+                        try
+                        {
+                            drawingService.TechProcess001Delete(((TechProcess001DTO)Item).Id);
+                            MessageBox.Show("При сохранении техпроцесса возникла ошибка. Выполнен откат изменений. " + ex.Message, "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return false;
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("При сохранении техпроцесса возникла ошибка. Не удалось выполнить откат изменений. " + ex.Message, "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return false;
+                        }
+                        
                     }
                 }
                 else
@@ -394,5 +401,7 @@ namespace TechnicalProcessControl
             else
                 checkPanelControl.Enabled = false;
         }
+
+
     }
 }

@@ -689,12 +689,7 @@ namespace TechnicalProcessControl.BLL.Services
             return techProcess003.GetAll().Any(chk => chk.TechProcessFullName == techProcesName);
         }
 
-        public long GetLastTechProcess001()
-        {
-            long maxValue = techProcess001.GetAll().Where(srt => srt.TechProcessName < 200000000).Select(bdsm => bdsm.TechProcessName).Max();
-            ++maxValue;
-            return maxValue;
-        }
+        
 
         public long GetLastTechProcess002()
         {
@@ -715,56 +710,7 @@ namespace TechnicalProcessControl.BLL.Services
             return mapper.Map<IEnumerable<DrawingScan>, List<DrawingScanDTO>>(drawingScan.GetAll().Where(bdsm => bdsm.DrawingId == drawingId));
         }
 
-        public TechProcess001DTO GetTechProcess001ByDrawingId(int drawingId)
-        {
-            var result = (from tcp in techProcess001.GetAll()
-                          join rt in revisionsTechProcess001.GetAll() on tcp.RevisionId equals rt.Id into rtt
-                          from rt in rtt.DefaultIfEmpty()
-                          join dr in drawing.GetAll() on tcp.DrawingId equals dr.Id into drr
-                          from dr in drr.DefaultIfEmpty()
-                          join rd in revisions.GetAll() on dr.RevisionId equals rd.Id into rdd
-                          from rd in rdd.DefaultIfEmpty()
-                          where tcp.DrawingId == drawingId && tcp.ParentId == null
-                          select new TechProcess001DTO
-                          {
-                              Id = tcp.Id,
-                              CreateDate = tcp.CreateDate,
-                              ParentId = tcp.ParentId,
-                              RevisionId = tcp.RevisionId,
-                              TH = tcp.TH,
-                              W = tcp.W,
-                              W2 = tcp.W2,
-                              L = tcp.L,
-                              Weight = tcp.Weight,
-                              TechProcessName = tcp.TechProcessName,
-                              DrawingId = tcp.DrawingId,
-                              DrawingNumber = dr.Number,
-                              TechProcessFullName = tcp.TechProcessFullName,
-                              TechProcessPath = tcp.TechProcessPath,
-                              DrawingNumberWithRevision = rd.Symbol == null ? dr.Number : (dr.Number + "_" + rd.Symbol),
-                              RivisionName = rt.Symbol,
-                               TypeId = tcp.TypeId,
-                                OldTechProcess = tcp.OldTechProcess
-                          }
-                          ).ToList();
-
-            return result.FirstOrDefault();
-
-
-            //var techProcess = mapper.Map<TechProcess001, TechProcess001DTO>(techProcess001.GetAll().FirstOrDefault(bdsm => bdsm.DrawingId == drawingId && bdsm.ParentId == null));
-            //if (techProcess != null)
-            //{
-            //    if (techProcess.RevisionId != null)
-            //    {
-            //        techProcess.RivisionName = mapper.Map<Revisions, RevisionsDTO>(revisions.GetAll().FirstOrDefault(bdsm => bdsm.Id == techProcess.RevisionId)).Symbol;
-            //        if (techProcess.RivisionName != null)
-            //            techProcess.TechProcessFullName = techProcess.TechProcessName.ToString() + "_" + techProcess.RivisionName;
-            //        else
-            //            techProcess.TechProcessFullName = techProcess.TechProcessName.ToString();
-            //    }
-            //}
-            //return techProcess;
-        }
+        
         public TechProcess002DTO GetTechProcess002ByDrawingId(int drawingId)
         {
             return mapper.Map<TechProcess002, TechProcess002DTO>(techProcess002.GetAll().FirstOrDefault(bdsm => bdsm.DrawingId == drawingId && bdsm.ParentId == null));
@@ -796,7 +742,7 @@ namespace TechnicalProcessControl.BLL.Services
             return mapper.Map<TechProcess005, TechProcess005DTO>(techProcess005.GetAll().FirstOrDefault(bdsm => bdsm.DrawingId == drawingId && bdsm.ParentId == null));
         }
 
-
+        //получить техпроцесс 001 по айди техпроцесса с подробной информацией
         public TechProcess001DTO GetTechProcess001ByIdFull(int techProcess001Id)
         {
             var result = (from tcp in techProcess001.GetAll()
@@ -832,10 +778,48 @@ namespace TechnicalProcessControl.BLL.Services
 
             return result.FirstOrDefault();
         }
+        //получить техпроцесс 001 по айди техпроцесса с краткой информацией
         public IEnumerable<TechProcess001DTO> GetAllTechProcess001Simple()
         {
             return mapper.Map<IEnumerable<TechProcess001>, List<TechProcess001DTO>>(techProcess001.GetAll());
         }
+        //получить техпроцесс 001 по айди чертежа  с подробной информацией
+        public TechProcess001DTO GetTechProcess001ByDrawingId(int drawingId)
+        {
+            var result = (from tcp in techProcess001.GetAll()
+                          join rt in revisionsTechProcess001.GetAll() on tcp.RevisionId equals rt.Id into rtt
+                          from rt in rtt.DefaultIfEmpty()
+                          join dr in drawing.GetAll() on tcp.DrawingId equals dr.Id into drr
+                          from dr in drr.DefaultIfEmpty()
+                          join rd in revisions.GetAll() on dr.RevisionId equals rd.Id into rdd
+                          from rd in rdd.DefaultIfEmpty()
+                          where tcp.DrawingId == drawingId && tcp.ParentId == null
+                          select new TechProcess001DTO
+                          {
+                              Id = tcp.Id,
+                              CreateDate = tcp.CreateDate,
+                              ParentId = tcp.ParentId,
+                              RevisionId = tcp.RevisionId,
+                              TH = tcp.TH,
+                              W = tcp.W,
+                              W2 = tcp.W2,
+                              L = tcp.L,
+                              Weight = tcp.Weight,
+                              TechProcessName = tcp.TechProcessName,
+                              DrawingId = tcp.DrawingId,
+                              DrawingNumber = dr.Number,
+                              TechProcessFullName = tcp.TechProcessFullName,
+                              TechProcessPath = tcp.TechProcessPath,
+                              DrawingNumberWithRevision = rd.Symbol == null ? dr.Number : (dr.Number + "_" + rd.Symbol),
+                              RivisionName = rt.Symbol,
+                              TypeId = tcp.TypeId,
+                              OldTechProcess = tcp.OldTechProcess
+                          }
+                          ).ToList();
+
+            return result.FirstOrDefault();
+        }
+        //получить все техпроцессы 001 и их ревизии 
         public IEnumerable<TechProcess001DTO> GetAllTechProcess001()
         {
             var result = (from tcp in techProcess001.GetAll()
@@ -868,6 +852,7 @@ namespace TechnicalProcessControl.BLL.Services
 
             return result;
         }
+        //получить только актуальные техпроцессы 001 без ревизий
         public IEnumerable<TechProcess001DTO> GetAllTechProcessActual001()
         {
             var result = (from tcp in techProcess001.GetAll()
@@ -901,9 +886,17 @@ namespace TechnicalProcessControl.BLL.Services
 
             return result;
         }
+        //проверить наличие техпроцесса 001 по его номеру
         public bool CheckTechProcess001(long techProcesName)
         {
             return techProcess001.GetAll().Any(chk => chk.TechProcessName == techProcesName);
+        }
+        //получить номер техпроцесса 001 которого еще не существует в базе
+        public long GetLastTechProcess001()
+        {
+            long maxValue = techProcess001.GetAll().Where(srt => srt.TechProcessName < 200000000).Select(bdsm => bdsm.TechProcessName).Max();
+            ++maxValue;
+            return maxValue;
         }
 
 
