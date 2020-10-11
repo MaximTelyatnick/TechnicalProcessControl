@@ -779,6 +779,52 @@ namespace TechnicalProcessControl.BLL.Services
             return result.FirstOrDefault();
         }
         //получить техпроцесс 001 по айди техпроцесса с краткой информацией
+        public TechProcess001DTO GetTechProcess001Simple(int techProcess001Id)
+        {
+            return mapper.Map<TechProcess001, TechProcess001DTO>(techProcess001.GetAll().FirstOrDefault(srt => srt.Id == techProcess001Id));
+        }
+        //получить ревизию техпроцесс 001 по айди техпроцесса с подробной информацией
+        public TechProcess001DTO GetTechProcess001RevisionByIdFull(int techProcess001Id)
+        {
+            var result = (from tcp in techProcess001.GetAll()
+                          join rt in revisionsTechProcess001.GetAll() on tcp.RevisionId equals rt.Id into rtt
+                          from rt in rtt.DefaultIfEmpty()
+                          join dr in drawing.GetAll() on tcp.DrawingId equals dr.Id into drr
+                          from dr in drr.DefaultIfEmpty()
+                          join rd in revisions.GetAll() on dr.RevisionId equals rd.Id into rdd
+                          from rd in rdd.DefaultIfEmpty()
+                          where tcp.ParentId == techProcess001Id
+                          select new TechProcess001DTO
+                          {
+                              Id = tcp.Id,
+                              CreateDate = tcp.CreateDate,
+                              ParentId = tcp.ParentId,
+                              RevisionId = tcp.RevisionId,
+                              TH = tcp.TH,
+                              W = tcp.W,
+                              W2 = tcp.W2,
+                              L = tcp.L,
+                              Weight = tcp.Weight,
+                              TechProcessName = tcp.TechProcessName,
+                              DrawingId = tcp.DrawingId,
+                              DrawingNumber = dr.Number,
+                              TechProcessFullName = tcp.TechProcessFullName,
+                              TechProcessPath = tcp.TechProcessPath,
+                              DrawingNumberWithRevision = rd.Symbol == null ? dr.Number : (dr.Number + "_" + rd.Symbol),
+                              RivisionName = rt.Symbol,
+                              TypeId = tcp.TypeId,
+                              OldTechProcess = tcp.OldTechProcess
+                          }
+                          ).ToList();
+
+            return result.FirstOrDefault();
+        }
+        //получить ревизию техпроцесса 001 по айди техпроцесса с краткой информацией
+        public TechProcess001DTO GetTechProcess001RevisionByIdSimple(int techProcess001Id)
+        {
+            return mapper.Map<TechProcess001, TechProcess001DTO>(techProcess001.GetAll().FirstOrDefault(srt => srt.ParentId == techProcess001Id));
+        }
+        //получить техпроцесс 001 по айди техпроцесса с краткой информацией
         public IEnumerable<TechProcess001DTO> GetAllTechProcess001Simple()
         {
             return mapper.Map<IEnumerable<TechProcess001>, List<TechProcess001DTO>>(techProcess001.GetAll());
@@ -897,6 +943,38 @@ namespace TechnicalProcessControl.BLL.Services
             long maxValue = techProcess001.GetAll().Where(srt => srt.TechProcessName < 200000000).Select(bdsm => bdsm.TechProcessName).Max();
             ++maxValue;
             return maxValue;
+        }
+
+        // получить ревизии техпроцесса 001
+        public IEnumerable<TechProcess001DTO> GetAllTechProcess001Revision(int techProcessId)
+        {
+            List<TechProcess001DTO> allRevisiontechProcess001 = new List<TechProcess001DTO>();
+
+            var techProcess001 = GetTechProcess001ByIdFull(techProcessId);
+            if (techProcess001 == null)
+            {
+                return allRevisiontechProcess001;
+            }
+            else
+            {
+                allRevisiontechProcess001 = TechProcess001Revision(techProcess001, allRevisiontechProcess001);
+                return allRevisiontechProcess001;
+            }
+        }
+
+        public List<TechProcess001DTO> TechProcess001Revision(TechProcess001DTO techProcess001, List<TechProcess001DTO> alltechProcessRevision)
+        {
+            var techProcessRevision001 = GetTechProcess001ByIdFull(((TechProcess001DTO)techProcess001).Id);
+            if (techProcessRevision001 == null)
+            {
+                return alltechProcessRevision;
+            }
+            else
+            {
+                alltechProcessRevision.Add(techProcessRevision001);
+                alltechProcessRevision = TechProcess001Revision(techProcessRevision001, alltechProcessRevision);
+                return alltechProcessRevision;
+            }
         }
 
 

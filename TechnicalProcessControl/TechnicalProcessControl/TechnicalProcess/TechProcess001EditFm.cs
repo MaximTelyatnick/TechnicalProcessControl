@@ -165,7 +165,7 @@ namespace TechnicalProcessControl
                         ((TechProcess001DTO)Item).Id = drawingService.TechProcess001Create(((TechProcess001DTO)Item));
                         if (((TechProcess001DTO)Item).Id > 0)
                         {
-                            string path = reportService.CreateTemplateTechProcess001Exp(usersDTO, drawingTechproces, parentDrawings, ((TechProcess001DTO)Item), null);
+                            string path = reportService.CreateTemplateTechProcess001Exp(usersDTO, drawingTechproces, parentDrawings,null, ((TechProcess001DTO)Item), null);
                             if (path != "")
                             {
                                 using (TestFm testFm = new TestFm(path))
@@ -252,6 +252,7 @@ namespace TechnicalProcessControl
                     ((TechProcess001DTO)Item).TechProcessPath = @"C:\TechProcess\" + ((TechProcess001DTO)Item).TechProcessFullName + ".xls";
                     List<DrawingDTO> parentDrawings = drawingService.GetDrawingParentByDrawingChildId((int)((TechProcess001DTO)Item).DrawingId).ToList();
                     DrawingDTO drawingTechproces = drawingService.GetDrawingById((int)((TechProcess001DTO)Item).DrawingId);
+                    
 
                     ((TechProcess001DTO)Item).Id = drawingService.TechProcess001Create(((TechProcess001DTO)Item));
 
@@ -260,7 +261,9 @@ namespace TechnicalProcessControl
                         techProcess001OldDTO.ParentId = ((TechProcess001DTO)Item).Id;
                         drawingService.TechProcess001Update(techProcess001OldDTO);
 
-                        string path = reportService.CreateTemplateTechProcess001Exp(usersDTO, drawingTechproces, parentDrawings, ((TechProcess001DTO)Item), techProcess001OldDTO);
+                        List<TechProcess001DTO> techProcess001Revision = drawingService.GetAllTechProcess001Revision(((TechProcess001DTO)Item).Id).ToList();
+
+                        string path = reportService.CreateTemplateTechProcess001Exp(usersDTO, drawingTechproces, parentDrawings, techProcess001Revision, ((TechProcess001DTO)Item), techProcess001OldDTO);
 
                         if (path != "")
                         {

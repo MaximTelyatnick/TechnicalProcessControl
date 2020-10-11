@@ -284,7 +284,7 @@ namespace TechnicalProcessControl.BLL.Services
             return drawingsDTO.TechProcess001Path;
         }
 
-        public string CreateTemplateTechProcess001Exp(UsersDTO usersDTO,DrawingDTO techProces001Drawing,List<DrawingDTO> techProcess001DrawingParent, TechProcess001DTO techProcess001, TechProcess001DTO techProcess001Old = null)
+        public string CreateTemplateTechProcess001Exp(UsersDTO usersDTO,DrawingDTO techProces001Drawing,List<DrawingDTO> techProcess001DrawingParent, List<TechProcess001DTO> techProcess001Revision, TechProcess001DTO techProcess001, TechProcess001DTO techProcess001Old = null)
         {
             
 
@@ -332,6 +332,37 @@ namespace TechnicalProcessControl.BLL.Services
             Сells["AQ" + 10].HorizontalAlignment = HAlign.Center;
             Сells["AL" + 44].Value = techProces001Drawing.DetailName;
             Сells["AL" + 44].HorizontalAlignment = HAlign.Center;
+            if (techProcess001Revision != null)
+            {
+                for (int i = 0; i < techProcess001Revision.Count(); i++)
+                {
+                    if(i==0)
+                    {
+                        Сells["AW" + 37].HorizontalAlignment = HAlign.Center;
+                        Сells["AW" + 37].Value = techProcess001Revision[0].RivisionName;
+                        continue;
+                    }
+                    if (i == 1)
+                    {
+                        Сells["CB" + 35].HorizontalAlignment = HAlign.Center;
+                        Сells["CB" + 35].Value = techProcess001Revision[0].RivisionName;
+                        continue;
+                    }
+                    if (i == 2)
+                    {
+                        Сells["CB" + 36].HorizontalAlignment = HAlign.Center;
+                        Сells["CB" + 36].Value = techProcess001Revision[0].RivisionName;
+                        continue;
+                    }
+                    if (i == 3)
+                    {
+                        Сells["CB" + 37].HorizontalAlignment = HAlign.Center;
+                        Сells["CB" + 37].Value = techProcess001Revision[0].RivisionName;
+                        continue;
+                    }
+                }
+            }
+
 
             Сells["F" + 46].Value = techProces001Drawing.MaterialName;
             Сells["F" + 46].HorizontalAlignment = HAlign.Left;
