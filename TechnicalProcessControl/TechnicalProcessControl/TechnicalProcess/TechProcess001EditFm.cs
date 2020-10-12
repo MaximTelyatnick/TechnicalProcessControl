@@ -29,6 +29,7 @@ namespace TechnicalProcessControl
         public DrawingsDTO drawingsDTO;
         public TechProcess001DTO techProcess001DTO;
         public TechProcess001DTO techProcess001OldDTO;
+        public DrawingDTO drawingDTO;
         public Utils.Operation operation;
 
         public string filePath = "";
@@ -50,14 +51,22 @@ namespace TechnicalProcessControl
             InitializeComponent();
 
             drawingService = Program.kernel.Get<IDrawingService>();
-
-            this.operation = operation;
-            this.drawingsDTO = drawingsDTO;
-            this.usersDTO = usersDTO;
-            techProcessBS.DataSource = Item = techProcess001DTO;
+            drawingDTO = drawingService.GetDrawingById((int)techProcess001DTO.DrawingId);
 
             this.techProcess001DTO = techProcess001DTO;
             this.techProcess001OldDTO = techProcess001OldDTO;
+            this.operation = operation;
+            this.drawingsDTO = drawingsDTO;
+            this.usersDTO = usersDTO;
+
+            techProcess001DTO.DrawingNumberWithRevision = drawingDTO.FullName;
+            techProcess001DTO.DrawingNumber = drawingDTO.Number;
+
+
+            techProcessBS.DataSource = Item = techProcess001DTO;
+
+            
+            
 
             drawingNumberEdit.DataBindings.Add("EditValue", techProcessBS, "DrawingNumberWithRevision", true, DataSourceUpdateMode.OnPropertyChanged);
             techProcessNumber001Edit.DataBindings.Add("EditValue", techProcessBS, "TechProcessName", true, DataSourceUpdateMode.OnPropertyChanged);
@@ -90,6 +99,7 @@ namespace TechnicalProcessControl
             {
                 ((TechProcess001DTO)Item).TechProcessName = drawingService.GetLastTechProcess001();
                 ((TechProcess001DTO)Item).CreateDate = DateTime.Now;
+                ((TechProcess001DTO)Item).UserId = usersDTO.Id;
                 ((TechProcess001DTO)Item).OldTechProcess = false;
                 drawingEdit.ReadOnly = true;
 
@@ -119,8 +129,10 @@ namespace TechnicalProcessControl
                 revisionEdit.ReadOnly = true;
                 drawingEdit.ReadOnly = true;
 
+                ((TechProcess001DTO)Item).OldTechProcess = false;
                 ((TechProcess001DTO)Item).ParentId = null;
                 ((TechProcess001DTO)Item).CreateDate = DateTime.Now;
+                ((TechProcess001DTO)Item).UserId = usersDTO.Id;
 
                 if (((TechProcess001DTO)Item).RevisionId != null)
                     ((TechProcess001DTO)Item).RevisionId++;

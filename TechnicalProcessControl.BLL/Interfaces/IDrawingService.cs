@@ -52,6 +52,10 @@ namespace TechnicalProcessControl.BLL.Interfaces
 
         TechProcess001DTO GetTechProcess001ByIdFull(int techProcess001Id);
         TechProcess001DTO GetTechProcess001Simple(int techProcess001Id);
+        TechProcess001DTO GetTechProcess001RevisionByIdFull(int techProcess001Id);
+        TechProcess001DTO GetTechProcess001RevisionByIdSimple(int techProcess001Id);
+
+
         IEnumerable<TechProcess001DTO> GetAllTechProcess001Revision(int techProcessId);
         IEnumerable<TechProcess001DTO> GetAllTechProcess001();
         

@@ -581,6 +581,12 @@ namespace TechnicalProcessControl.Drawings
                 //noteEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow());
                 //dateEdit.EditValue = ((DrawingDTO)numberEdit.GetSelectedDataRow()).CreateDate.Value.ToShortDateString();
 
+                Item.BeginEdit();
+                //((DrawingsDTO)Item).Number = ((DrawingDTO)numberEdit.GetSelectedDataRow()).Number;
+                //((DrawingsDTO)Item).NumberWithRevisionName = ((DrawingDTO)numberEdit.GetSelectedDataRow()).NumberWithRevisionName;
+                //((DrawingsDTO)Item).DrawingId = ((DrawingDTO)numberEdit.GetSelectedDataRow()).Id;
+                Item.EndEdit();
+
                 drawingScanList = drawingService.GetDravingScanById(((DrawingDTO)numberEdit.GetSelectedDataRow()).Id).ToList();
                 drawingsScanBS.DataSource = drawingScanList;
                 drawingScanEdit.Properties.DataSource = drawingsScanBS;
@@ -977,15 +983,28 @@ namespace TechnicalProcessControl.Drawings
                         if (MessageBox.Show("Удалить?", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             drawingService = Program.kernel.Get<IDrawingService>();
+                            //получаем айди ревизии техпроцесса, чтобы потом коректно показать что у техпроцесса есть ревизия
+                            var Child = drawingService.GetTechProcess001RevisionByIdFull((int)((DrawingsDTO)Item).TechProcess001Id);
+
+                            //пробуем удалить информацию о техпроцессе в базе, если получается, удаляем файл техпроцесса в файловой БД
                             if (drawingService.TechProcess001Delete((int)((DrawingsDTO)Item).TechProcess001Id))
                                 drawingService.FileDelete(((DrawingsDTO)Item).TechProcess001Path);
-                            techProcess001Edit.EditValue = null;
-                            techProcess001Edit.Properties.NullText = "Не добавлен техпроцесс";
+
+                            //если у техпроцесса была ревизия, отбражаем её
+                            if (Child != null)
+                            {
+                                techProcess001Edit.EditValue = ((TechProcess001DTO)Child).Id;
+                            }
+                            else
+                            {
+                                techProcess001Edit.EditValue = null;
+                                techProcess001Edit.Properties.NullText = "Не добавлен техпроцесс";
+                            }
                         }
 
                         break;
                     }
-                case 3://Ревизия
+                case 3://Создать ревизию
                     {
                         if (techProcess001Edit.EditValue == DBNull.Value || techProcess001Edit.EditValue == null)
                             return;

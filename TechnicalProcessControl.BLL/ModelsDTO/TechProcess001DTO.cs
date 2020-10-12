@@ -23,6 +23,8 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public string RivisionName { get; set; }
         public short? TypeId { get; set; }
         public bool? OldTechProcess { get; set; }
+        public int? UserId { get; set; }
+        public string UserName { get; set; }
 
         public int? DrawingsId { get; set; }
 

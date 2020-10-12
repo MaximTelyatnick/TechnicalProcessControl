@@ -25,5 +25,6 @@ namespace TechnicalProcessControl.DAL.Models
         public DateTime? CreateDate { get; set; }
         public short? TypeId { get; set; }
         public bool? OldTechProcess { get; set; }
+        public int? UserId { get; set; }
     }
 }

@@ -37,6 +37,14 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public int? ParentId { get; set; }
         public string Note { get; set; }
         public int? ScanId { get; set; }
+        public string NumberWithRevisionName { get; set; }
+
+        public DrawingDTO()
+        {
+            this.NumberWithRevisionName = this.RevisionId == null ? this.Number : this.Number + "_" + this.RevisionName;
+        }
+
+        
 
         public object Clone()
         {
