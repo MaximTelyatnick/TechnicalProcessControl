@@ -80,6 +80,7 @@ namespace TechnicalProcessControl
             w2Edit.DataBindings.Add("EditValue", techProcessBS, "W2", true, DataSourceUpdateMode.OnPropertyChanged);
             lEdit.DataBindings.Add("EditValue", techProcessBS, "L", true, DataSourceUpdateMode.OnPropertyChanged);
             weightEdit.DataBindings.Add("EditValue", techProcessBS, "Weight", true, DataSourceUpdateMode.OnPropertyChanged);
+            revisionDocumentEdit.DataBindings.Add("EditValue", techProcessBS, "RevisionDocumentName", true, DataSourceUpdateMode.OnPropertyChanged);
 
 
             drawingBS.DataSource = drawingService.GetAllDrawing();
@@ -117,6 +118,8 @@ namespace TechnicalProcessControl
                 wEdit.ReadOnly = true;
                 w2Edit.ReadOnly = true;
                 lEdit.ReadOnly = true;
+                weightEdit.ReadOnly = true;
+                revisionDocumentEdit.ReadOnly = true;
             }
             else if (operation == Utils.Operation.Custom)
             {

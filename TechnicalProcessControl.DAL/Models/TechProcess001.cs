@@ -26,5 +26,6 @@ namespace TechnicalProcessControl.DAL.Models
         public short? TypeId { get; set; }
         public bool? OldTechProcess { get; set; }
         public int? UserId { get; set; }
+        public string RevisionDocumentName { get; set; }
     }
 }

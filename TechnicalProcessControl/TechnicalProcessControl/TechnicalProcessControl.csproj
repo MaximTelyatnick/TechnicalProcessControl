@@ -480,6 +480,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Templates\template001New.xls" />
     <None Include="Templates\template002.xls" />
   </ItemGroup>
   <ItemGroup>

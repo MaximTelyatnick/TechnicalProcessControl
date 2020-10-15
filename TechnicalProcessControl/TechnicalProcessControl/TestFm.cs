@@ -25,7 +25,7 @@ namespace TechnicalProcessControl
         /// 
         /// </summary>
         /// 
-        int defaultLastRow = 128;
+        int defaultLastRow = 126;
 
 
 
@@ -233,11 +233,30 @@ namespace TechnicalProcessControl
         {
             workbook.BeginUpdate();
             ++pageNumber;
+            
             worksheet = workbook.Worksheets[0];
-            copyRange = worksheet["A97:DG127"];
+            copyRange = worksheet["A97:DG126"];
             int lastRow = GetLastEmptyRow();
-            worksheet.Range["A" + (lastRow) + ":DG" + (lastRow+30)].CopyFrom(copyRange);
+            ++lastRow;
+            worksheet.AddPrintRange(worksheet.Range["A" + (lastRow) + ":DG" + (lastRow + 29)]);
+            worksheet.Range["A" + (lastRow) + ":DG" + (lastRow+29)].CopyFrom(copyRange);
+            
+            worksheet.Cells["A" + (lastRow)].RowHeight = 60.28;
+            worksheet.Cells["A" + (lastRow+1)].RowHeight = 60.28;
+            worksheet.Cells["A" + (lastRow+2)].RowHeight = 60.28;
+            worksheet.Cells["A" + (lastRow+3)].RowHeight = 60.28;
+            worksheet.Cells["A" + (lastRow+4)].RowHeight = 60.28;
+            worksheet.Cells["A" + (lastRow+5)].RowHeight = 60.28;
+            worksheet.Cells["A" + (lastRow+6)].RowHeight = 60.28;
+            worksheet.Cells["A" + (lastRow+7)].RowHeight = 60.28;
+            worksheet.Cells["A" + (lastRow+8)].RowHeight = 60.28;
+            worksheet.Cells["A" + (lastRow+9)].RowHeight = 60.28;
+            worksheet.Cells["A" + (lastRow+10)].RowHeight = 60.28;
+            worksheet.Cells["A" + (lastRow+11)].RowHeight = 60.28;
+            worksheet.Cells["A" + (lastRow+12)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow+13)].RowHeight = 97.7;
 
+            worksheet.Cells["A" + (lastRow+29)].RowHeight = 60.28;
             worksheet.Cells["A" + (lastRow + 14)].RowHeight = 97.7;
             worksheet.Cells["A" + (lastRow + 15)].RowHeight = 97.7;
             worksheet.Cells["A" + (lastRow + 16)].RowHeight = 97.7;
@@ -253,9 +272,9 @@ namespace TechnicalProcessControl
             worksheet.Cells["A" + (lastRow + 26)].RowHeight = 97.7;
             worksheet.Cells["A" + (lastRow + 27)].RowHeight = 97.7;
             worksheet.Cells["A" + (lastRow + 28)].RowHeight = 97.7;
-            worksheet.Cells["A" + (lastRow + 29)].RowHeight = 97.7;
-            worksheet.Cells["A" + (lastRow + 30)].RowHeight = 97.7;
-            worksheet.Cells["DA" + (lastRow + 7)].Value = pageNumber;
+            //worksheet.Cells["A" + (lastRow + 29)].RowHeight = 97.7;
+            //worksheet.Cells["A" + (lastRow + 30)].RowHeight = 97.7;
+            worksheet.Cells["DA" + (lastRow + 5)].Value = pageNumber;
             UpdatePageCounter();
             workbook.EndUpdate();
 

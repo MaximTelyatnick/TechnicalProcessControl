@@ -9,6 +9,7 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
 {
     public class DrawingsDTO : ObjectBase
     {
+        //структура
         public int Id { get; set; }
         public int? ParentId { get; set; }
         public string CurrentLevelMenu { get; set; }
@@ -22,7 +23,7 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public bool StructuraDisable { get; set; }
 
 
-
+        //чертёж
         public string Number { get; set; }
         public string RevisionName { get; set; }
         public string NumberWithRevisionName { get; set; }
@@ -37,10 +38,11 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public string MaterialName { get; set; }
         public string NoteName { get; set; }
         public DateTime? CreateDate { get; set; }
+        public bool? Assembly { get; set; }
 
 
 
-
+        //техпроцессы
         public int? TechProcess001Id { get; set; }
         public int? TechProcess002Id { get; set; }
         public int? TechProcess003Id { get; set; }
@@ -67,6 +69,16 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public string TechProcess004PathOld { get; set; }
         public string TechProcess005PathOld { get; set; }
         public bool? TechProcess001Old { get; set; }
+        public bool? TechProcess002Old { get; set; }
+        public bool? TechProcess003Old { get; set; }
+        public bool? TechProcess004Old { get; set; }
+        public bool? TechProcess005Old { get; set; }
+
+        public short? TechProcess001Type { get; set; }
+        public short? TechProcess002Type { get; set; }
+        public short? TechProcess003Type { get; set; }
+        public short? TechProcess004Type { get; set; }
+        public short? TechProcess005Type { get; set; }
 
 
         public object Clone()

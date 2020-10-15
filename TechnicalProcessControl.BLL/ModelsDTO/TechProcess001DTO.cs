@@ -27,6 +27,7 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public string UserName { get; set; }
 
         public int? DrawingsId { get; set; }
+        public string RevisionDocumentName { get; set; }
 
         public TechProcess001DTO()
         {

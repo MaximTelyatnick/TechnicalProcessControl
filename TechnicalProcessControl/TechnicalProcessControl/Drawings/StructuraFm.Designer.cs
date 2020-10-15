@@ -147,6 +147,7 @@
             this.pasteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.удалитьСборкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
+            this.showMaterialBtn = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.contractorsRibonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawingGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawingBandedGridView)).BeginInit();
@@ -176,9 +177,10 @@
             this.replaceDrawingBtn,
             this.copyStructuraRangeBtn,
             this.addCurrentStructuraBtn,
-            this.disableBtn});
+            this.disableBtn,
+            this.showMaterialBtn});
             this.contractorsRibonControl.Location = new System.Drawing.Point(0, 0);
-            this.contractorsRibonControl.MaxItemId = 16;
+            this.contractorsRibonControl.MaxItemId = 17;
             this.contractorsRibonControl.Name = "contractorsRibonControl";
             this.contractorsRibonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -242,7 +244,6 @@
             this.addTechProcess001Btn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("addTechProcess001Btn.ImageOptions.LargeImage")));
             this.addTechProcess001Btn.Name = "addTechProcess001Btn";
             this.addTechProcess001Btn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.addTechProcess001Btn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addTechProcess001Btn_ItemClick);
             // 
             // addTechProcess005Btn
             // 
@@ -314,6 +315,7 @@
             // 
             this.ribbonPageGroup3.ItemLinks.Add(this.replaceDrawingBtn);
             this.ribbonPageGroup3.ItemLinks.Add(this.disableBtn);
+            this.ribbonPageGroup3.ItemLinks.Add(this.showMaterialBtn);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "Функции";
             // 
@@ -905,7 +907,7 @@
             this.revision004Col,
             this.revision005Col});
             this.drawingTreeListGrid.ContextMenuStrip = this.copyPasteMenuStrip;
-            this.drawingTreeListGrid.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.drawingTreeListGrid.Cursor = System.Windows.Forms.Cursors.SizeWE;
             this.drawingTreeListGrid.DataSource = null;
             this.drawingTreeListGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             treeListFormatRule1.Name = "Format0";
@@ -962,7 +964,7 @@
             this.curentLevelMenuTreeCol.OptionsColumn.AllowFocus = false;
             this.curentLevelMenuTreeCol.Visible = true;
             this.curentLevelMenuTreeCol.VisibleIndex = 0;
-            this.curentLevelMenuTreeCol.Width = 206;
+            this.curentLevelMenuTreeCol.Width = 208;
             // 
             // quantityTreeCol
             // 
@@ -976,7 +978,7 @@
             this.quantityTreeCol.OptionsColumn.AllowFocus = false;
             this.quantityTreeCol.Visible = true;
             this.quantityTreeCol.VisibleIndex = 1;
-            this.quantityTreeCol.Width = 70;
+            this.quantityTreeCol.Width = 72;
             // 
             // treeListBand12
             // 
@@ -1010,7 +1012,7 @@
             this.drawingNumberTreeCol.OptionsColumn.AllowFocus = false;
             this.drawingNumberTreeCol.Visible = true;
             this.drawingNumberTreeCol.VisibleIndex = 2;
-            this.drawingNumberTreeCol.Width = 128;
+            this.drawingNumberTreeCol.Width = 130;
             // 
             // partNameTreeCol
             // 
@@ -1024,7 +1026,7 @@
             this.partNameTreeCol.OptionsColumn.AllowFocus = false;
             this.partNameTreeCol.Visible = true;
             this.partNameTreeCol.VisibleIndex = 3;
-            this.partNameTreeCol.Width = 81;
+            this.partNameTreeCol.Width = 83;
             // 
             // statusTreeCol
             // 
@@ -1038,7 +1040,7 @@
             this.statusTreeCol.OptionsColumn.AllowFocus = false;
             this.statusTreeCol.Visible = true;
             this.statusTreeCol.VisibleIndex = 4;
-            this.statusTreeCol.Width = 63;
+            this.statusTreeCol.Width = 65;
             // 
             // ltreeCol
             // 
@@ -1052,7 +1054,7 @@
             this.ltreeCol.OptionsColumn.AllowFocus = false;
             this.ltreeCol.Visible = true;
             this.ltreeCol.VisibleIndex = 5;
-            this.ltreeCol.Width = 44;
+            this.ltreeCol.Width = 46;
             // 
             // wTreeCol
             // 
@@ -1066,7 +1068,7 @@
             this.wTreeCol.OptionsColumn.AllowFocus = false;
             this.wTreeCol.Visible = true;
             this.wTreeCol.VisibleIndex = 6;
-            this.wTreeCol.Width = 49;
+            this.wTreeCol.Width = 51;
             // 
             // w2TreeCol
             // 
@@ -1080,7 +1082,7 @@
             this.w2TreeCol.OptionsColumn.AllowFocus = false;
             this.w2TreeCol.Visible = true;
             this.w2TreeCol.VisibleIndex = 7;
-            this.w2TreeCol.Width = 58;
+            this.w2TreeCol.Width = 60;
             // 
             // thTreeCol
             // 
@@ -1112,12 +1114,11 @@
             this.drawingScanCol.UnboundType = DevExpress.XtraTreeList.Data.UnboundColumnType.Object;
             this.drawingScanCol.Visible = true;
             this.drawingScanCol.VisibleIndex = 9;
-            this.drawingScanCol.Width = 85;
+            this.drawingScanCol.Width = 36;
             // 
             // repositoryItemPictureEdit1
             // 
             this.repositoryItemPictureEdit1.Name = "repositoryItemPictureEdit1";
-            this.repositoryItemPictureEdit1.DoubleClick += new System.EventHandler(this.repositoryItemPictureEdit1_DoubleClick);
             // 
             // weightTreeCol
             // 
@@ -1131,6 +1132,7 @@
             this.weightTreeCol.OptionsColumn.AllowFocus = false;
             this.weightTreeCol.Visible = true;
             this.weightTreeCol.VisibleIndex = 10;
+            this.weightTreeCol.Width = 78;
             // 
             // treeListBand6
             // 
@@ -1165,7 +1167,7 @@
             // 
             // techProcessOneTreeCol
             // 
-            this.techProcessOneTreeCol.AppearanceCell.BackColor = System.Drawing.Color.MistyRose;
+            this.techProcessOneTreeCol.AppearanceCell.BackColor = System.Drawing.Color.Azure;
             this.techProcessOneTreeCol.AppearanceCell.Options.UseBackColor = true;
             this.techProcessOneTreeCol.AppearanceHeader.Options.UseTextOptions = true;
             this.techProcessOneTreeCol.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -1176,7 +1178,7 @@
             this.techProcessOneTreeCol.Name = "techProcessOneTreeCol";
             this.techProcessOneTreeCol.Visible = true;
             this.techProcessOneTreeCol.VisibleIndex = 11;
-            this.techProcessOneTreeCol.Width = 113;
+            this.techProcessOneTreeCol.Width = 116;
             // 
             // techProcess001Repository
             // 
@@ -1186,12 +1188,14 @@
             // 
             // revision001Col
             // 
+            this.revision001Col.AppearanceCell.BackColor = System.Drawing.Color.Azure;
+            this.revision001Col.AppearanceCell.Options.UseBackColor = true;
             this.revision001Col.Caption = "R1";
             this.revision001Col.FieldName = "Revision001";
             this.revision001Col.Name = "revision001Col";
             this.revision001Col.Visible = true;
             this.revision001Col.VisibleIndex = 12;
-            this.revision001Col.Width = 44;
+            this.revision001Col.Width = 47;
             // 
             // techProcessOneTTreeCol
             // 
@@ -1223,7 +1227,7 @@
             // 
             // techProcessTwooTreeCol
             // 
-            this.techProcessTwooTreeCol.AppearanceCell.BackColor = System.Drawing.Color.Bisque;
+            this.techProcessTwooTreeCol.AppearanceCell.BackColor = System.Drawing.Color.AntiqueWhite;
             this.techProcessTwooTreeCol.AppearanceCell.Options.UseBackColor = true;
             this.techProcessTwooTreeCol.AppearanceHeader.Options.UseTextOptions = true;
             this.techProcessTwooTreeCol.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -1234,7 +1238,7 @@
             this.techProcessTwooTreeCol.Name = "techProcessTwooTreeCol";
             this.techProcessTwooTreeCol.Visible = true;
             this.techProcessTwooTreeCol.VisibleIndex = 13;
-            this.techProcessTwooTreeCol.Width = 93;
+            this.techProcessTwooTreeCol.Width = 96;
             // 
             // techProcess002Repository
             // 
@@ -1244,12 +1248,14 @@
             // 
             // revision002Col
             // 
+            this.revision002Col.AppearanceCell.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.revision002Col.AppearanceCell.Options.UseBackColor = true;
             this.revision002Col.Caption = "R2";
             this.revision002Col.FieldName = "Revision002";
             this.revision002Col.Name = "revision002Col";
             this.revision002Col.Visible = true;
             this.revision002Col.VisibleIndex = 14;
-            this.revision002Col.Width = 49;
+            this.revision002Col.Width = 52;
             // 
             // techProcessTwoTTreeCol
             // 
@@ -1281,7 +1287,7 @@
             // 
             // techProcessThreeTreeCol
             // 
-            this.techProcessThreeTreeCol.AppearanceCell.BackColor = System.Drawing.Color.LemonChiffon;
+            this.techProcessThreeTreeCol.AppearanceCell.BackColor = System.Drawing.Color.MistyRose;
             this.techProcessThreeTreeCol.AppearanceCell.Options.UseBackColor = true;
             this.techProcessThreeTreeCol.AppearanceHeader.Options.UseTextOptions = true;
             this.techProcessThreeTreeCol.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -1292,7 +1298,7 @@
             this.techProcessThreeTreeCol.Name = "techProcessThreeTreeCol";
             this.techProcessThreeTreeCol.Visible = true;
             this.techProcessThreeTreeCol.VisibleIndex = 15;
-            this.techProcessThreeTreeCol.Width = 137;
+            this.techProcessThreeTreeCol.Width = 140;
             // 
             // techProcess003Repository
             // 
@@ -1302,12 +1308,14 @@
             // 
             // revision003Col
             // 
+            this.revision003Col.AppearanceCell.BackColor = System.Drawing.Color.MistyRose;
+            this.revision003Col.AppearanceCell.Options.UseBackColor = true;
             this.revision003Col.Caption = "R3";
             this.revision003Col.FieldName = "Revision003";
             this.revision003Col.Name = "revision003Col";
             this.revision003Col.Visible = true;
             this.revision003Col.VisibleIndex = 16;
-            this.revision003Col.Width = 35;
+            this.revision003Col.Width = 38;
             // 
             // techProcessThreeTTreeCol
             // 
@@ -1340,7 +1348,7 @@
             // 
             // techProcessFourTreeCol
             // 
-            this.techProcessFourTreeCol.AppearanceCell.BackColor = System.Drawing.Color.Aquamarine;
+            this.techProcessFourTreeCol.AppearanceCell.BackColor = System.Drawing.Color.MintCream;
             this.techProcessFourTreeCol.AppearanceCell.Options.UseBackColor = true;
             this.techProcessFourTreeCol.AppearanceHeader.Options.UseTextOptions = true;
             this.techProcessFourTreeCol.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -1351,7 +1359,7 @@
             this.techProcessFourTreeCol.Name = "techProcessFourTreeCol";
             this.techProcessFourTreeCol.Visible = true;
             this.techProcessFourTreeCol.VisibleIndex = 17;
-            this.techProcessFourTreeCol.Width = 152;
+            this.techProcessFourTreeCol.Width = 155;
             // 
             // techProcess004Repository
             // 
@@ -1361,12 +1369,14 @@
             // 
             // revision004Col
             // 
+            this.revision004Col.AppearanceCell.BackColor = System.Drawing.Color.MintCream;
+            this.revision004Col.AppearanceCell.Options.UseBackColor = true;
             this.revision004Col.Caption = "R4";
             this.revision004Col.FieldName = "Revision004";
             this.revision004Col.Name = "revision004Col";
             this.revision004Col.Visible = true;
             this.revision004Col.VisibleIndex = 18;
-            this.revision004Col.Width = 33;
+            this.revision004Col.Width = 36;
             // 
             // techProcessFourTTreeCol
             // 
@@ -1399,7 +1409,7 @@
             // 
             // techProcessFiveTreeCol
             // 
-            this.techProcessFiveTreeCol.AppearanceCell.BackColor = System.Drawing.Color.Lavender;
+            this.techProcessFiveTreeCol.AppearanceCell.BackColor = System.Drawing.Color.Beige;
             this.techProcessFiveTreeCol.AppearanceCell.Options.UseBackColor = true;
             this.techProcessFiveTreeCol.AppearanceHeader.Options.UseTextOptions = true;
             this.techProcessFiveTreeCol.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -1410,7 +1420,7 @@
             this.techProcessFiveTreeCol.Name = "techProcessFiveTreeCol";
             this.techProcessFiveTreeCol.Visible = true;
             this.techProcessFiveTreeCol.VisibleIndex = 19;
-            this.techProcessFiveTreeCol.Width = 113;
+            this.techProcessFiveTreeCol.Width = 116;
             // 
             // techProcess005Repository
             // 
@@ -1420,12 +1430,14 @@
             // 
             // revision005Col
             // 
+            this.revision005Col.AppearanceCell.BackColor = System.Drawing.Color.Beige;
+            this.revision005Col.AppearanceCell.Options.UseBackColor = true;
             this.revision005Col.Caption = "R5";
             this.revision005Col.FieldName = "Revision005";
             this.revision005Col.Name = "revision005Col";
             this.revision005Col.Visible = true;
             this.revision005Col.VisibleIndex = 20;
-            this.revision005Col.Width = 34;
+            this.revision005Col.Width = 37;
             // 
             // techProcessFiveTTreeCol
             // 
@@ -1603,7 +1615,7 @@
             this.pasteMenuItem,
             this.удалитьСборкуToolStripMenuItem});
             this.copyPasteMenuStrip.Name = "copyPasteMenuStrip";
-            this.copyPasteMenuStrip.Size = new System.Drawing.Size(182, 92);
+            this.copyPasteMenuStrip.Size = new System.Drawing.Size(182, 70);
             // 
             // copyMenuItem
             // 
@@ -1635,6 +1647,15 @@
             this.imageCollection.Images.SetKeyName(0, "picturebox_16x16.png");
             this.imageCollection.InsertGalleryImage("removepivotfield_16x16.png", "images/spreadsheet/removepivotfield_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/spreadsheet/removepivotfield_16x16.png"), 1);
             this.imageCollection.Images.SetKeyName(1, "removepivotfield_16x16.png");
+            // 
+            // showMaterialBtn
+            // 
+            this.showMaterialBtn.Caption = "Отобразить материалы";
+            this.showMaterialBtn.Id = 16;
+            this.showMaterialBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("showMaterialBtn.ImageOptions.Image")));
+            this.showMaterialBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("showMaterialBtn.ImageOptions.LargeImage")));
+            this.showMaterialBtn.Name = "showMaterialBtn";
+            this.showMaterialBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             // 
             // StructuraFm
             // 
@@ -1780,5 +1801,6 @@
         private System.Windows.Forms.ToolStripMenuItem copyMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pasteMenuItem;
         private System.Windows.Forms.ToolStripMenuItem удалитьСборкуToolStripMenuItem;
+        private DevExpress.XtraBars.BarButtonItem showMaterialBtn;
     }
 }

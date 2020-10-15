@@ -242,15 +242,19 @@ namespace TechnicalProcessControl.BLL.Services
                           {
                               Id = drw.Id,
                               ParentId = drw.ParentId,
-                              TypeName = tp.TypeName,
-                              CurrentLevelMenu = drw.CurrentLevelMenu,
-                              DetailName = det.DetailName,
                               Quantity = drw.Quantity,
                               QuantityL = drw.QuantityL,
                               QuantityR = drw.QuantityL,
-                               StructuraDisable = drw.StructuraDisable,
-                               NumberWithRevisionName = dr.RevisionId == null ? dr.Number : dr.Number + "_" + rev.Symbol,
+                              CurrentLevelMenu = drw.CurrentLevelMenu,
+                              StructuraDisable = drw.StructuraDisable,
+                              OccurrenceId = drw.OccurrenceId,
+                              ReplaceDrawingId = drw.ReplaceDrawingId,
+
+                              DrawingId = dr.Id,
                               Number = dr.Number,
+                              TypeName = tp.TypeName,
+                              DetailName = det.DetailName,
+                              NumberWithRevisionName = dr.RevisionId == null ? dr.Number : dr.Number + "_" + rev.Symbol,
                               RevisionName = rev.Symbol,
                               TH = dr.TH,
                               L = dr.L,
@@ -258,9 +262,8 @@ namespace TechnicalProcessControl.BLL.Services
                               W2 = dr.W2,
                               DetailWeight = dr.DetailWeight,
                               MaterialName = mat.MaterialName,
-                              DrawingId = dr.Id,
-                              OccurrenceId = drw.OccurrenceId,
-                              ReplaceDrawingId = drw.ReplaceDrawingId,
+                              CreateDate = dr.CreateDate,
+
                               TechProcess001Id = tcp001.Id,
                               TechProcess002Id = tcp002.Id,
                               TechProcess003Id = tcp003.Id,
@@ -276,14 +279,21 @@ namespace TechnicalProcessControl.BLL.Services
                               TechProcess003Path = tcp003.TechProcessPath,
                               TechProcess004Path = tcp004.TechProcessPath,
                               TechProcess005Path = tcp005.TechProcessPath,
-                               TechProcess001Old = tcp001.OldTechProcess,
+                              TechProcess001Old = tcp001.OldTechProcess,
+                              //TechProcess001Old = tcp002.OldTechProcess,
                               Revision001 = rev001.Symbol,
                               Revision002 = rev002.Symbol,
                               Revision003 = rev003.Symbol,
                               Revision004 = rev004.Symbol,
                               Revision005 = rev005.Symbol,
                               ScanId = drws.DrawingId > 0 ? 1 : 0,
-                              ParentName = drp.Number != "" ? drp.Number : dr.Number
+                              ParentName = drp.Number != "" ? drp.Number : dr.Number,
+                              TechProcess001Type = tcp001.TypeId,
+                              TechProcess002Type = tcp002.TypeId,
+                              TechProcess003Type = tcp003.TypeId,
+                              TechProcess004Type = tcp004.TypeId,
+                              TechProcess005Type = tcp005.TypeId
+
                               //TotalWeight = drw.Quantity > 0 ? drw.Quantity * dr.DetailWeight : 0
 
                           }
@@ -576,10 +586,10 @@ namespace TechnicalProcessControl.BLL.Services
         {
             var allStructure = mapper.Map<IEnumerable<Drawings>, List<DrawingsDTO>>(drawings.GetAll());
             var structureDrawingId = allStructure.First(bdsm => bdsm.DrawingId == drivingId).Id;
-
             return allStructure.Any(bdsm => bdsm.ParentId == structureDrawingId);
         }
 
+        //получить чертеж по id с подробной информацией
         public DrawingDTO GetDrawingById(int drawingId)
         {
 
@@ -618,7 +628,8 @@ namespace TechnicalProcessControl.BLL.Services
                               ParentId = drw.ParentId,
                               Note = drw.Note,
                               FullName = rev.Symbol == null ? drw.Number : (drw.Number + "_" + rev.Symbol),
-                              ScanId = 0
+                              ScanId = 0,
+                              Assembly = drw.Assembly
                           }
                           ).ToList();
 
@@ -756,6 +767,8 @@ namespace TechnicalProcessControl.BLL.Services
                           from dr in drr.DefaultIfEmpty()
                           join rd in revisions.GetAll() on dr.RevisionId equals rd.Id into rdd
                           from rd in rdd.DefaultIfEmpty()
+                          join usr in users.GetAll() on tcp.UserId equals usr.Id into usrr
+                          from usr in usrr.DefaultIfEmpty()
                           where tcp.Id == techProcess001Id
                           select new TechProcess001DTO
                           {
@@ -776,7 +789,10 @@ namespace TechnicalProcessControl.BLL.Services
                               DrawingNumberWithRevision = rd.Symbol == null ? dr.Number : (dr.Number + "_" + rd.Symbol),
                               RivisionName = rt.Symbol,
                               TypeId = tcp.TypeId,
-                              OldTechProcess = tcp.OldTechProcess
+                              OldTechProcess = tcp.OldTechProcess,
+                              RevisionDocumentName = tcp.RevisionDocumentName,
+                              UserId = tcp.UserId,
+                              UserName = usr.Name
                           }
                           ).ToList();
 
@@ -797,6 +813,8 @@ namespace TechnicalProcessControl.BLL.Services
                           from dr in drr.DefaultIfEmpty()
                           join rd in revisions.GetAll() on dr.RevisionId equals rd.Id into rdd
                           from rd in rdd.DefaultIfEmpty()
+                          join usr in users.GetAll() on tcp.UserId equals usr.Id into usrr
+                          from usr in usrr.DefaultIfEmpty()
                           where tcp.ParentId == techProcess001Id
                           select new TechProcess001DTO
                           {
@@ -817,7 +835,10 @@ namespace TechnicalProcessControl.BLL.Services
                               DrawingNumberWithRevision = rd.Symbol == null ? dr.Number : (dr.Number + "_" + rd.Symbol),
                               RivisionName = rt.Symbol,
                               TypeId = tcp.TypeId,
-                              OldTechProcess = tcp.OldTechProcess
+                              OldTechProcess = tcp.OldTechProcess,
+                              RevisionDocumentName = tcp.RevisionDocumentName,
+                              UserId = tcp.UserId,
+                              UserName = usr.Name
                           }
                           ).ToList();
 
@@ -867,8 +888,9 @@ namespace TechnicalProcessControl.BLL.Services
                               TypeId = tcp.TypeId,
                               //OldTechProcess = tcp.OldTechProcess,
                               UserId = usr.Id,
-                               UserName = usr.Name,
-                                OldTechProcess = tcp.OldTechProcess
+                              UserName = usr.Name,
+                              OldTechProcess = tcp.OldTechProcess,
+                              RevisionDocumentName = tcp.RevisionDocumentName
                           }
                           ).ToList();
 
@@ -904,8 +926,11 @@ namespace TechnicalProcessControl.BLL.Services
                               TechProcessPath = tcp.TechProcessPath,
                               DrawingNumberWithRevision = rd.Symbol == null ? dr.Number : (dr.Number + "_" + rd.Symbol),
                               RivisionName = rt.Symbol,
-                               UserId = usr.Id,
-                                UserName = usr.Name
+                              UserId = usr.Id,
+                              UserName = usr.Name,
+                              TypeId = tcp.TypeId,
+                              OldTechProcess = tcp.OldTechProcess,
+                              RevisionDocumentName = tcp.RevisionDocumentName
                           }
                           ).ToList();
 
@@ -943,7 +968,10 @@ namespace TechnicalProcessControl.BLL.Services
                               DrawingNumberWithRevision = rd.Symbol == null ? dr.Number : (dr.Number + "_" + rd.Symbol),
                               RivisionName = rt.Symbol,
                                UserId = usr.Id,
-                                UserName = usr.Name
+                                UserName = usr.Name,
+                                 OldTechProcess = tcp.OldTechProcess,
+                                  TypeId = tcp.TypeId,
+                                 RevisionDocumentName = tcp.RevisionDocumentName
                           }
                           ).ToList();
 
@@ -961,8 +989,7 @@ namespace TechnicalProcessControl.BLL.Services
             ++maxValue;
             return maxValue;
         }
-
-        // получить ревизии техпроцесса 001
+        // получить ревизии техпроцесса 001 по Id родителя
         public IEnumerable<TechProcess001DTO> GetAllTechProcess001Revision(int techProcessId)
         {
             List<TechProcess001DTO> allRevisiontechProcess001 = new List<TechProcess001DTO>();

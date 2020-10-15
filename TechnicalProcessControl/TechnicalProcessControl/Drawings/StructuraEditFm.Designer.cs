@@ -783,7 +783,6 @@ namespace TechnicalProcessControl.Drawings
             this.drawingScanEdit.Size = new System.Drawing.Size(526, 18);
             this.drawingScanEdit.TabIndex = 25;
             this.drawingScanEdit.EditValueChanged += new System.EventHandler(this.drawingScanEdit_EditValueChanged);
-            this.drawingScanEdit.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.drawingScanEdit_EditValueChanging);
             // 
             // pictureEdit
             // 
@@ -1009,6 +1008,7 @@ namespace TechnicalProcessControl.Drawings
             this.techProcess001Edit.Size = new System.Drawing.Size(788, 20);
             this.techProcess001Edit.TabIndex = 37;
             this.techProcess001Edit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.techProcess001Edit_ButtonClick);
+            this.techProcess001Edit.EditValueChanged += new System.EventHandler(this.techProcess001Edit_EditValueChanged);
             // 
             // labelControl5
             // 

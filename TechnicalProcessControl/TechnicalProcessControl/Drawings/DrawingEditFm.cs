@@ -110,7 +110,6 @@ namespace TechnicalProcessControl.Drawings
             if (operation == Utils.Operation.Add)
             {
                 dateEdit.EditValue = DateTime.Now;
-                assemblyCheckEdit.Checked = false;
 
             }
             else if(operation == Utils.Operation.Update)

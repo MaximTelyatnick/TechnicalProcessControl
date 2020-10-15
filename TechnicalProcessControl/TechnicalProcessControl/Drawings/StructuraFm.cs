@@ -73,22 +73,14 @@ namespace TechnicalProcessControl
         {
             drawingService = Program.kernel.Get<IDrawingService>();
             reportService = Program.kernel.Get<IReportService>();
-
             splashScreenManager.ShowWaitForm();
 
             this.drawingsList = drawingService.GetAllDrawings().OrderBy(bdsm => Convert.ToInt32(bdsm.CurrentLevelMenu.Split('.').Last())).ToList();
-
             drawingsBS.DataSource = drawingsList;
-
-            drawingGrid.DataSource = drawingsBS;
-
-
-            //decreeTreeBS.DataSource = businessTripsService.GetBusinessTripsDecreeByPeriod(beginDate, endDate);
             drawingTreeListGrid.DataSource = drawingsBS;
             drawingTreeListGrid.KeyFieldName = "Id";
             drawingTreeListGrid.ParentFieldName = "ParentId";
             drawingTreeListGrid.ExpandAll();
-
 
             splashScreenManager.CloseWaitForm();
         }
@@ -98,16 +90,6 @@ namespace TechnicalProcessControl
             using (StructuraEditFm drawingsEditFm = new StructuraEditFm(usersDTO,userTelegramDTO, operation))
             {
                 if (drawingsEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    //UsersTelegramDTO return_Id = contractorsEditFm.Return();
-                    drawingTreeListGrid.BeginUpdate();
-                    LoadData();
-                    drawingTreeListGrid.EndUpdate();
-                    //int rowHandle = contractorsGridView.LocateByValue("Id", return_Id.Id);
-                    //contractorsGridView.FocusedRowHandle = rowHandle;
-
-                }
-                else
                 {
                     drawingTreeListGrid.BeginUpdate();
                     LoadData();
@@ -138,26 +120,21 @@ namespace TechnicalProcessControl
             {
                 drawingService = Program.kernel.Get<IDrawingService>();
 
-                drawingTreeListGrid.BeginUpdate();
-
                 if (drawingService.DrawingsDelete(((DrawingsDTO)drawingsBS.Current).Id))
                 {
+                    drawingTreeListGrid.BeginUpdate();
                     LoadData();
+                    drawingTreeListGrid.EndUpdate();
                 }
-
-                drawingTreeListGrid.EndUpdate();
             }
         }
 
-        //private async void sendMessageBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        //{
-
-            
-        //}
 
         private void updateBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            drawingTreeListGrid.BeginUpdate();
             LoadData();
+            drawingTreeListGrid.EndUpdate();
         }
 
         
@@ -206,76 +183,21 @@ namespace TechnicalProcessControl
 
         }
 
-        private void repositoryItemPictureEdit1_DoubleClick(object sender, System.EventArgs e)
-        {
-            if (((DrawingsDTO)drawingsBS.Current).ScanId != null)
-            {
-                //DrawingScanDTO model = drawingService.GetDravingScanById(((DrawingsDTO)drawingsBS.Current).Id);
+        //private void repositoryItemPictureEdit1_DoubleClick(object sender, System.EventArgs e)
+        //{
+        //    if (((DrawingsDTO)drawingsBS.Current).ScanId != null)
+        //    {
+        //        //DrawingScanDTO model = drawingService.GetDravingScanById(((DrawingsDTO)drawingsBS.Current).Id);
 
-                //string path = Utils.HomePath + @"\Temp";
+        //        //string path = Utils.HomePath + @"\Temp";
 
-                //System.IO.File.WriteAllBytes(path + model.FileName, model.Scan);
+        //        //System.IO.File.WriteAllBytes(path + model.FileName, model.Scan);
 
-                //System.Diagnostics.Process.Start(path + model.FileName);
-            }
-        }
+        //        //System.Diagnostics.Process.Start(path + model.FileName);
+        //    }
+        //}
 
-        private void addTechProcess001Btn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            TechProcess001DTO addTechProcessDTO = new TechProcess001DTO();
-            addTechProcessDTO.DrawingsId = ((DrawingsDTO)Item).Id;
-            addTechProcessDTO.DrawingNumber = ((DrawingsDTO)Item).Number;
-            addTechProcessDTO.DrawingNumberWithRevision = ((DrawingsDTO)Item).NumberWithRevisionName;
-            addTechProcessDTO.DrawingId = ((DrawingsDTO)Item).DrawingId;
-
-            using (TechProcess001EditFm techProcess001EditFm = new TechProcess001EditFm(usersDTO,Utils.Operation.Add, addTechProcessDTO, ((DrawingsDTO)Item)))
-            {
-                if (techProcess001EditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    //techProcess001Edit.Properties.DataSource = drawingService.GetAllTechProcess001();
-                    int return_Id = techProcess001EditFm.Return().Id;
-                    LoadData();
-                    //techProcess001Edit.EditValue = return_Id;
-                }
-            }
-            
-
-
-
-
-
-            //if (((DrawingsDTO)drawingsBS.Current).TechProcess001Id == null)
-            //{
-            //    TechProcess001DTO techProcess001DTO = new TechProcess001DTO();
-            //    techProcess001DTO.TechProcessName = drawingService.GetLastTechProcess001();
-            //    techProcess001DTO.TechProcessPath = @"C:\TechProcess\" + techProcess001DTO.TechProcessName.ToString() + ".xls";
-
-            //    var createTechProcess = drawingService.TechProcess001Create(techProcess001DTO);
-
-            //    if (createTechProcess>0)
-            //    {
-            //        ((DrawingsDTO)Item).TechProcess001Id = createTechProcess;
-            //        ((DrawingsDTO)Item).TechProcess001Path = techProcess001DTO.TechProcessPath;
-            //        ((DrawingsDTO)Item).TechProcess001Name = techProcess001DTO.TechProcessName;
-
-            //        drawingService.DrawingsUpdate(((DrawingsDTO)Item));
-            //        reportService.CreateTemplateTechProcess001(((DrawingsDTO)Item));
-            //        LoadData();
-                    
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("При формировании щаблона техпроцесса возникла ошибка", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    }
-            //}
-            //else
-            //{
-            //    Process process = new Process();
-            //    process.StartInfo.Arguments = "\"" + ((DrawingsDTO)drawingsBS.Current).TechProcess001Path + "\"";
-            //    process.StartInfo.FileName = "Excel.exe";
-            //    process.Start();
-            //}
-        }
+        #region TechProcess openfiles method's
 
         private void techProcess001Repository_DoubleClick(object sender, System.EventArgs e)
         {
@@ -289,10 +211,7 @@ namespace TechnicalProcessControl
         {
             if (((DrawingsDTO)drawingsBS.Current).TechProcess002Id != null)
             {
-                Process process = new Process();
-                process.StartInfo.Arguments = "\"" + ((DrawingsDTO)drawingsBS.Current).TechProcess002Path + "\"";
-                process.StartInfo.FileName = "Excel.exe";
-                process.Start();
+                reportService.OpenExcelFile(((DrawingsDTO)drawingsBS.Current).TechProcess002Path);
             }
         }
 
@@ -300,13 +219,7 @@ namespace TechnicalProcessControl
         {
             if (((DrawingsDTO)drawingsBS.Current).TechProcess003Id != null)
             {
-                using (TestFm testFm = new TestFm(((DrawingsDTO)drawingsBS.Current).TechProcess003Path))
-                {
-                    if (testFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                    {
-
-                    }
-                }
+                reportService.OpenExcelFile(((DrawingsDTO)drawingsBS.Current).TechProcess003Path);
             }
         }
 
@@ -314,10 +227,7 @@ namespace TechnicalProcessControl
         {
             if (((DrawingsDTO)drawingsBS.Current).TechProcess004Id != null)
             {
-                Process process = new Process();
-                process.StartInfo.Arguments = "\"" + ((DrawingsDTO)drawingsBS.Current).TechProcess004Path + "\"";
-                process.StartInfo.FileName = "Excel.exe";
-                process.Start();
+                reportService.OpenExcelFile(((DrawingsDTO)drawingsBS.Current).TechProcess004Path);
             }
         }
 
@@ -325,50 +235,14 @@ namespace TechnicalProcessControl
         {
             if (((DrawingsDTO)drawingsBS.Current).TechProcess005Id != null)
             {
-                Process process = new Process();
-                process.StartInfo.Arguments = "\"" + ((DrawingsDTO)drawingsBS.Current).TechProcess005Path + "\"";
-                process.StartInfo.FileName = "Excel.exe";
-                process.Start();
+                reportService.OpenExcelFile(((DrawingsDTO)drawingsBS.Current).TechProcess005Path);
             }
         }
 
-        private void addTechProcess002Btn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            if (((DrawingsDTO)drawingsBS.Current).TechProcess002Id == null)
-            {
-                TechProcess002DTO techProcess002DTO = new TechProcess002DTO();
-                techProcess002DTO.TechProcessName = drawingService.GetLastTechProcess002();
-                techProcess002DTO.TechProcessPath = @"C:\TechProcess\" + techProcess002DTO.TechProcessName.ToString() + ".xls";
-
-                var createTechProcess = drawingService.TechProcess002Create(techProcess002DTO);
-
-                if (createTechProcess > 0)
-                {
-                    ((DrawingsDTO)Item).TechProcess002Id = createTechProcess;
-                    ((DrawingsDTO)Item).TechProcess002Path = techProcess002DTO.TechProcessPath;
-                    ((DrawingsDTO)Item).TechProcess002Name = techProcess002DTO.TechProcessName;
-
-                    drawingService.DrawingsUpdate(((DrawingsDTO)Item));
-                    reportService.CreateTemplateTechProcess002(((DrawingsDTO)Item));
-                    LoadData();
-
-                }
-                else
-                {
-                    MessageBox.Show("При формировании щаблона техпроцесса возникла ошибка", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+        #endregion
 
 
 
-            }
-            else
-            {
-                Process process = new Process();
-                process.StartInfo.Arguments = "\"" + ((DrawingsDTO)drawingsBS.Current).TechProcess002Path + "\"";
-                process.StartInfo.FileName = "Excel.exe";
-                process.Start();
-            }
-        }
 
         private bool CheckStructura()
         {
@@ -452,6 +326,34 @@ namespace TechnicalProcessControl
                 e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Regular);
             }
 
+            if (item.TechProcess001Id!=null && e.Column.FieldName == "TechProcess001Name")
+            {
+                switch (item.TechProcess001Type)
+                {
+                    case 1:
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.Yellow;
+
+                        break;
+                    case 2:
+
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.Gray;
+                        break;
+                    case 3:
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.Green;
+                        break;
+                    case 4:
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.Red;
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+
 
 
             //if (Convert.ToBoolean(e.Node.GetValue(e.Column.FieldName == "StructuraDisable")))
@@ -462,14 +364,14 @@ namespace TechnicalProcessControl
             //}
 
 
-            //if ((bool)e.Node["StructuraDisable"])
-            //{
-            //    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Strikeout);
-            //}
-            //else
-            //{
-            //    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Regular);
-            //}
+                //if ((bool)e.Node["StructuraDisable"])
+                //{
+                //    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Strikeout);
+                //}
+                //else
+                //{
+                //    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Regular);
+                //}
 
         }
 
