@@ -486,8 +486,9 @@ namespace TechnicalProcessControl.Drawings
         void CheckTechProcess001()
         {
             object key = numberEdit.EditValue;
-            if (key != null)
+            if (key != null && (bool)!((DrawingDTO)numberEdit.GetSelectedDataRow()).Assembly)
             {
+                techProcessPanel.Enabled = true;
                 var selectedIndex = numberEdit.Properties.GetIndexByKeyValue(key);
                 var techProcess001 = drawingService.GetTechProcess001ByDrawingId((int)key);
                 if (techProcess001 != null)
@@ -521,10 +522,20 @@ namespace TechnicalProcessControl.Drawings
                     techProcess001Edit.Properties.Buttons[4].Enabled = false;
                 }
             }
+            else
+            {
+                techProcessPanel.Enabled = false;
+            }
         }
 
         private void numberEdit_EditValueChanged(object sender, EventArgs e)
         {
+            //if(numberEdit.EditValue == null || numberEdit.EditValue == DBNull.Value)
+            //{
+            //    MessageBox.Show("Нету чертежа", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            //    return;
+            //}
+
             if (numberEdit.EditValue != DBNull.Value && numberEdit.EditValue != null && FormReady)
             {
                 object key = numberEdit.EditValue;
@@ -676,6 +687,15 @@ namespace TechnicalProcessControl.Drawings
             journalService = Program.kernel.Get<IJournalService>();
             switch (e.Button.Index)
             {
+                case 0: //Додати
+                    {
+                        if (numberEdit.EditValue == null || numberEdit.EditValue == DBNull.Value)
+                        {
+                            MessageBox.Show("Нету чертежа", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            return;
+                        }
+                        break;
+                    }
                 case 1: //Додати
                     {
                         using (DrawingEditFm drawingEditFm = new DrawingEditFm(usersDTO,new DrawingDTO(), Utils.Operation.Add))
@@ -1268,8 +1288,26 @@ namespace TechnicalProcessControl.Drawings
             CheckTechProcess001();
         }
 
+
         #endregion
 
+        private void numberEdit_BeforePopup(object sender, EventArgs e)
+        {
+            if (numberEdit.EditValue == null || numberEdit.EditValue == DBNull.Value)
+            {
+                MessageBox.Show("Нету чертежа", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                return;
+            }
+            else
+            {
+                if (MessageBox.Show("Заменить чертёж?", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
 
+                }
+                else
+                    return; 
+
+            }
+        }
     }
 }

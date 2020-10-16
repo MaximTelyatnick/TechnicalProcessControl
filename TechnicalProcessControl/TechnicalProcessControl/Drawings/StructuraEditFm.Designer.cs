@@ -419,6 +419,7 @@ namespace TechnicalProcessControl.Drawings
             this.numberEdit.Properties.PopupView = this.gridLookUpEdit1View;
             this.numberEdit.Size = new System.Drawing.Size(365, 22);
             this.numberEdit.TabIndex = 105;
+            this.numberEdit.BeforePopup += new System.EventHandler(this.numberEdit_BeforePopup);
             this.numberEdit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.numberEdit_ButtonClick);
             this.numberEdit.EditValueChanged += new System.EventHandler(this.numberEdit_EditValueChanged);
             // 

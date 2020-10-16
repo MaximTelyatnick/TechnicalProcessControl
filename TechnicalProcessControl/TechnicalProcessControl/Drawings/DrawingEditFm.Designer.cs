@@ -770,11 +770,11 @@
             // assemblyCheckEdit
             // 
             this.assemblyCheckEdit.AutoSize = true;
-            this.assemblyCheckEdit.Location = new System.Drawing.Point(241, 16);
+            this.assemblyCheckEdit.Location = new System.Drawing.Point(346, 14);
             this.assemblyCheckEdit.Name = "assemblyCheckEdit";
-            this.assemblyCheckEdit.Size = new System.Drawing.Size(164, 17);
+            this.assemblyCheckEdit.Size = new System.Drawing.Size(59, 17);
             this.assemblyCheckEdit.TabIndex = 124;
-            this.assemblyCheckEdit.Text = "Отсутствуют техпроцессы";
+            this.assemblyCheckEdit.Text = "без ТП";
             this.assemblyCheckEdit.UseVisualStyleBackColor = true;
             this.assemblyCheckEdit.CheckedChanged += new System.EventHandler(this.assemblyCheckEdit_CheckedChanged);
             // 
