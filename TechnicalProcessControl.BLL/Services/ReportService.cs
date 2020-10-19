@@ -557,14 +557,14 @@ namespace TechnicalProcessControl.BLL.Services
 
             string paramaterBlank = "";
 
-            if (techProcess001.TH != 0)
+            if (techProcess001.TH != "" && techProcess001.TH != null)
                 paramaterBlank += techProcess001.TH.ToString() + "х";
-            if (techProcess001.W != 0)
-                paramaterBlank += "x" + techProcess001.W.ToString();
-            if (techProcess001.W2 != 0)
-                paramaterBlank += "x" + techProcess001.W2.ToString();
-            if (techProcess001.L != 0)
-                paramaterBlank += "x" + techProcess001.L.ToString();
+            if (techProcess001.W != "" && techProcess001.W != null)
+                paramaterBlank += techProcess001.W.ToString() + "x";
+            if (techProcess001.W2 != "" && techProcess001.W2 != null)
+                paramaterBlank += techProcess001.W2.ToString() + "x";
+            if (techProcess001.L != "" && techProcess001.L != null)
+                paramaterBlank += techProcess001.L.ToString();
 
             Сells["BI" + 48].Value = paramaterBlank;
             Сells["BI" + 48].HorizontalAlignment = HAlign.Center;

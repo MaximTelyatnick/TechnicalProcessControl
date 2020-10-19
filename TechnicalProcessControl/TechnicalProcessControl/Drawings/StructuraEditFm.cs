@@ -498,10 +498,11 @@ namespace TechnicalProcessControl.Drawings
                     if ((bool)((TechProcess001DTO)techProcess001).OldTechProcess)
                     {
                         techProcess001Edit.Properties.Buttons[0].Enabled = false;
-                        techProcess001Edit.Properties.Buttons[1].Enabled = false;
+                        techProcess001Edit.Properties.Buttons[1].Enabled = true;
+                        techProcess001Edit.Properties.Buttons[2].Enabled = true;
                         techProcess001Edit.Properties.Buttons[3].Enabled = false;
                         techProcess001Edit.Properties.Buttons[4].Enabled = true;
-                        techProcess001Edit.Properties.Buttons[4].Enabled = true;
+                        
                     }
                     else
                     {
@@ -574,6 +575,8 @@ namespace TechnicalProcessControl.Drawings
                     var techProcess003 = drawingService.GetTechProcess003ByDrawingId((int)key);
                     var techProcess004 = drawingService.GetTechProcess004ByDrawingId((int)key);
                     var techProcess005 = drawingService.GetTechProcess005ByDrawingId((int)key);
+
+                    //CheckTechProcess001();
 
                     if (techProcess001 != null)
                     {
@@ -689,11 +692,11 @@ namespace TechnicalProcessControl.Drawings
             {
                 case 0: //Додати
                     {
-                        if (numberEdit.EditValue == null || numberEdit.EditValue == DBNull.Value)
-                        {
-                            MessageBox.Show("Нету чертежа", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                            return;
-                        }
+                        //if (numberEdit.EditValue == null || numberEdit.EditValue == DBNull.Value)
+                        //{
+                        //    MessageBox.Show("Нету чертежа", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        //    return;
+                        //}
                         break;
                     }
                 case 1: //Додати
@@ -1293,21 +1296,21 @@ namespace TechnicalProcessControl.Drawings
 
         private void numberEdit_BeforePopup(object sender, EventArgs e)
         {
-            if (numberEdit.EditValue == null || numberEdit.EditValue == DBNull.Value)
-            {
-                MessageBox.Show("Нету чертежа", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                return;
-            }
-            else
-            {
-                if (MessageBox.Show("Заменить чертёж?", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
+            //if (numberEdit.EditValue == null || numberEdit.EditValue == DBNull.Value)
+            //{
+            //    MessageBox.Show("Нету чертежа", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            //    return;
+            //}
+            //else
+            //{
+            //    if (MessageBox.Show("Заменить чертёж?", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            //    {
 
-                }
-                else
-                    return; 
+            //    }
+            //    else
+            //        return; 
 
-            }
+            //}
         }
     }
 }

@@ -25,10 +25,10 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public string RevisionName { get; set; }
 
         public decimal? DetailWeight { get; set; }
-        public decimal? TH { get; set; }
-        public decimal? W { get; set; }
-        public decimal? W2 { get; set; }
-        public decimal? L { get; set; }
+        public string TH { get; set; }
+        public string W { get; set; }
+        public string W2 { get; set; }
+        public string L { get; set; }
         public short? Quantity { get; set; }
         public short? QuantityR { get; set; }
         public short? QuantityL { get; set; }

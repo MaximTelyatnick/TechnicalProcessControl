@@ -120,6 +120,7 @@ namespace TechnicalProcessControl
                 lEdit.ReadOnly = true;
                 weightEdit.ReadOnly = true;
                 revisionDocumentEdit.ReadOnly = true;
+                checkPanelControl.Enabled = false;
             }
             else if (operation == Utils.Operation.Custom)
             {
@@ -406,18 +407,22 @@ namespace TechnicalProcessControl
 
         private void useExistingWorkflowCheck_EditValueChanged(object sender, EventArgs e)
         {
-            if(useExistingWorkflowCheck.Checked)
+            if (useExistingWorkflowCheck.Checked && operation!= Utils.Operation.Update)
+            {
                 checkPanelControl.Enabled = true;
+            }
             else
+            {
                 checkPanelControl.Enabled = false;
+            }
         }
 
         private void TechProcess001EditFm_Load(object sender, EventArgs e)
         {
-            if (useExistingWorkflowCheck.Checked)
-                checkPanelControl.Enabled = true;
-            else
-                checkPanelControl.Enabled = false;
+            //if (useExistingWorkflowCheck.Checked)
+            //    checkPanelControl.Enabled = true;
+            //else
+            //    checkPanelControl.Enabled = false;
         }
 
 

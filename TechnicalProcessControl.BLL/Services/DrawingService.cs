@@ -421,9 +421,7 @@ namespace TechnicalProcessControl.BLL.Services
                               DetailName = det.DetailName,
                               MaterialId = mat.Id,
                               MaterialName = mat.MaterialName,
-                              Quantity = drw.Quantity,
-                              QuantityL = drw.QuantityL,
-                              QuantityR = drw.QuantityR,
+                              
                               TH = drw.TH,
                               L = drw.L,
                               W = drw.W,
@@ -469,9 +467,7 @@ namespace TechnicalProcessControl.BLL.Services
                               DetailName = det.DetailName,
                               MaterialId = mat.Id,
                               MaterialName = mat.MaterialName,
-                              Quantity = drw.Quantity,
-                              QuantityL = drw.QuantityL,
-                              QuantityR = drw.QuantityR,
+                              
                               TH = drw.TH,
                               L = drw.L,
                               W = drw.W,
@@ -614,9 +610,7 @@ namespace TechnicalProcessControl.BLL.Services
                               DetailName = det.DetailName,
                               MaterialId = mat.Id,
                               MaterialName = mat.MaterialName,
-                              Quantity = drw.Quantity,
-                              QuantityL = drw.QuantityL,
-                              QuantityR = drw.QuantityR,
+                              
                               TH = drw.TH,
                               L = drw.L,
                               W = drw.W,

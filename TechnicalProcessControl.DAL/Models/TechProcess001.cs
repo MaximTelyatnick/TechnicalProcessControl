@@ -16,10 +16,10 @@ namespace TechnicalProcessControl.DAL.Models
         public int? ParentId { get; set; }
         public long TechProcessName { get; set; }
         public string TechProcessPath { get; set; }
-        public decimal? TH { get; set; }
-        public decimal? W { get; set; }
-        public decimal? W2 { get; set; }
-        public decimal? L { get; set; }
+        public string TH { get; set; }
+        public string W { get; set; }
+        public string W2 { get; set; }
+        public string L { get; set; }
         public decimal? Weight { get; set; }
         public string TechProcessFullName { get; set; }
         public DateTime? CreateDate { get; set; }

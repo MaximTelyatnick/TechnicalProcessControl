@@ -705,7 +705,6 @@ namespace TechnicalProcessControl.Drawings
 
         private void materialEdit_EditValueChanged(object sender, EventArgs e)
         {
-            dxValidationProvider.Validate((Control)sender);
         }
 
         private void wEdit_EditValueChanged(object sender, EventArgs e)
