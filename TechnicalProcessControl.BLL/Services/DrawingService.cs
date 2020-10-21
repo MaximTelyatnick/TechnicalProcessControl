@@ -236,7 +236,7 @@ namespace TechnicalProcessControl.BLL.Services
                           join drp in drawing.GetAll() on pdrw.DrawingId equals drp.Id into drpp
                           from drp in drpp.DefaultIfEmpty()
                           where tcp001.ParentId == null && tcp002.ParentId == null && tcp003.ParentId == null && tcp004.ParentId == null && tcp005.ParentId == null
-                          orderby drw.CurrentLevelMenu
+                          //orderby drw.CurrentLevelMenu
 
                           select new DrawingsDTO
                           {
@@ -249,6 +249,7 @@ namespace TechnicalProcessControl.BLL.Services
                               StructuraDisable = drw.StructuraDisable,
                               OccurrenceId = drw.OccurrenceId,
                               ReplaceDrawingId = drw.ReplaceDrawingId,
+
 
                               DrawingId = dr.Id,
                               Number = dr.Number,
@@ -263,6 +264,9 @@ namespace TechnicalProcessControl.BLL.Services
                               DetailWeight = dr.DetailWeight,
                               MaterialName = mat.MaterialName,
                               CreateDate = dr.CreateDate,
+                              NoteName = dr.Note,
+
+
 
                               TechProcess001Id = tcp001.Id,
                               TechProcess002Id = tcp002.Id,

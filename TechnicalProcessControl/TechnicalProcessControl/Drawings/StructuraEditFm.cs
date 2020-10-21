@@ -291,9 +291,17 @@ namespace TechnicalProcessControl.Drawings
 
                     if (drawingService.CheckStructuraName((DrawingsDTO)Item))
                     {
-                        MessageBox.Show("Структура з таким номером вже існує!", "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Структура з таким номером уже существует!", "Сохранение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return false;
                     }
+
+                    if (!CheckStructuraQuantity())
+                    {
+                        MessageBox.Show("Не коректно указано количество!", "Сохранение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
+
+                    }
+
 
 
 
@@ -306,10 +314,14 @@ namespace TechnicalProcessControl.Drawings
 
                     if (drawingService.CheckStructuraName((DrawingsDTO)Item))
                     {
-                        MessageBox.Show("Структура з таким номером вже існує!", "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Структура з таким номером уже существует!", "Сохранение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return false;
                     }
-
+                    if (!CheckStructuraQuantity())
+                    {
+                        MessageBox.Show("Не коректно указано количество!", "Сохранение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
+                    }
 
                     drawingService.DrawingsUpdate((DrawingsDTO)Item);
                     //if (drawingScanDTO != null)
@@ -361,6 +373,15 @@ namespace TechnicalProcessControl.Drawings
         }
 
 
+        private bool CheckStructuraQuantity()
+        {
+            if ((decimal)quantityEdit.EditValue == 0 && (decimal)quantityREdit.EditValue == 0 && (decimal)quantityLEdit.EditValue == 0)
+                return false;
+            else if ((decimal)quantityEdit.EditValue != 0 && ((decimal)quantityREdit.EditValue != 0 || (decimal)quantityLEdit.EditValue != 0))
+                return false;
+
+            return true;
+        }
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
@@ -1312,5 +1333,7 @@ namespace TechnicalProcessControl.Drawings
 
             //}
         }
+
+
     }
 }

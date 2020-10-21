@@ -137,6 +137,7 @@ namespace TechnicalProcessControl
                 ((TechProcess001DTO)Item).ParentId = null;
                 ((TechProcess001DTO)Item).CreateDate = DateTime.Now;
                 ((TechProcess001DTO)Item).UserId = usersDTO.Id;
+                ((TechProcess001DTO)Item).TypeId = 1;
 
                 if (((TechProcess001DTO)Item).RevisionId != null)
                     ((TechProcess001DTO)Item).RevisionId++;
@@ -275,6 +276,7 @@ namespace TechnicalProcessControl
                     if (((TechProcess001DTO)Item).Id > 0)
                     {
                         techProcess001OldDTO.ParentId = ((TechProcess001DTO)Item).Id;
+                        techProcess001OldDTO.TypeId = 2;
                         drawingService.TechProcess001Update(techProcess001OldDTO);
 
                         List<TechProcess001DTO> techProcess001Revision = drawingService.GetAllTechProcess001Revision(((TechProcess001DTO)Item).Id).ToList();

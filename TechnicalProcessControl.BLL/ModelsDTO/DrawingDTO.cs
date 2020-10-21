@@ -29,9 +29,6 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public string W { get; set; }
         public string W2 { get; set; }
         public string L { get; set; }
-        public short? Quantity { get; set; }
-        public short? QuantityR { get; set; }
-        public short? QuantityL { get; set; }
 
         public DateTime? CreateDate { get; set; }
         public int? ParentId { get; set; }
@@ -42,6 +39,7 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public DrawingDTO()
         {
             this.NumberWithRevisionName = this.RevisionId == null ? this.Number : this.Number + "_" + this.RevisionName;
+            this.Assembly = false;
         }
 
         

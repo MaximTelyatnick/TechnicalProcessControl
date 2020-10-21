@@ -75,7 +75,8 @@ namespace TechnicalProcessControl
             reportService = Program.kernel.Get<IReportService>();
             splashScreenManager.ShowWaitForm();
 
-            this.drawingsList = drawingService.GetAllDrawings().OrderBy(bdsm => Convert.ToInt32(bdsm.CurrentLevelMenu.Split('.').Last())).ToList();
+            drawingsList = drawingService.GetAllDrawings().OrderBy(bdsm => Convert.ToInt32(bdsm.CurrentLevelMenu.Split('.').Last())).ToList();
+            //this.drawingsList = drawingService.GetAllDrawings().ToList();
             drawingsBS.DataSource = drawingsList;
             drawingTreeListGrid.DataSource = drawingsBS;
             drawingTreeListGrid.KeyFieldName = "Id";
@@ -536,6 +537,22 @@ namespace TechnicalProcessControl
                 }
 
                 drawingTreeListGrid.EndUpdate();
+            }
+        }
+
+        private void showTechProcessBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (techProcessBand.Visible == true)
+            {
+                techProcessBand.Visible = false;
+                showTechProcessBtn.ImageOptions.Image = imageCollection.Images[2];
+                showTechProcessBtn.Caption = "Отобразить техпроцессы";
+            }
+            else
+            {
+                techProcessBand.Visible = true;
+                showTechProcessBtn.ImageOptions.Image = imageCollection.Images[3];
+                showTechProcessBtn.Caption = "Не отображать техпроцессы";
             }
         }
     }

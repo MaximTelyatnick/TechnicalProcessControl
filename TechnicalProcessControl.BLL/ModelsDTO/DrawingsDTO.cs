@@ -80,6 +80,13 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public short? TechProcess004Type { get; set; }
         public short? TechProcess005Type { get; set; }
 
+        public DrawingsDTO()
+        {
+            this.Quantity = 0;
+            this.QuantityR = 0;
+            this.QuantityL = 0;
+            this.StructuraDisable = false;
+        }
 
         public object Clone()
         {
