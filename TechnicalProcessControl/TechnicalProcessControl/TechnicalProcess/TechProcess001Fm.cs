@@ -72,6 +72,12 @@ namespace TechnicalProcessControl.TechnicalProcess
                 return;
             }
 
+            if (((TechProcess001DTO)Item).TechProcessName == 100010000)
+            {
+                MessageBox.Show("Невозможно удалить корневой техпроцесс.", "Подтверждение", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             if (MessageBox.Show("Удалить Техпроцесс?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 if (((TechProcess001DTO)Item).DrawingId != null)
@@ -83,6 +89,8 @@ namespace TechnicalProcessControl.TechnicalProcess
 
                 if (drawingService.TechProcess001Delete(((TechProcess001DTO)techProcess001BS.Current).Id))
                 {
+                    drawingService.FileDelete(((TechProcess001DTO)Item).TechProcessPath);
+
                     techProcessTreeListGrid.BeginUpdate();
                     LoadData();
                     techProcessTreeListGrid.EndUpdate();
@@ -128,6 +136,30 @@ namespace TechnicalProcessControl.TechnicalProcess
                     default:
                         break;
                 }
+            }
+        }
+
+        private void repositoryItemTextEdit_DoubleClick(object sender, EventArgs e)
+        {
+            if (((TechProcess001DTO)techProcess001BS.Current).TechProcessPath != null)
+            {
+                reportService.OpenExcelFile(((TechProcess001DTO)techProcess001BS.Current).TechProcessPath);
+            }
+            else
+            {
+                MessageBox.Show("Техпроцесс не имеет файла в бд. Необходимо пересоздать техпроцесс!", "ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+        }
+
+        private void techProcessTreeListGrid_DoubleClick(object sender, EventArgs e)
+        {
+            if (((TechProcess001DTO)techProcess001BS.Current).TechProcessPath != null)
+            {
+                reportService.OpenExcelFile(((TechProcess001DTO)techProcess001BS.Current).TechProcessPath);
+            }
+            else
+            {
+                MessageBox.Show("Техпроцесс не имеет файла в бд. Необходимо пересоздать техпроцесс!", "ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
         }
     }

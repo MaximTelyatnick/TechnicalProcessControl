@@ -202,14 +202,14 @@ namespace TechnicalProcessControl
 
         private void techProcess001Repository_DoubleClick(object sender, System.EventArgs e)
         {
-            if (((DrawingsDTO)drawingsBS.Current).TechProcess001Id != null)
-            {
-                reportService.OpenExcelFile(((DrawingsDTO)drawingsBS.Current).TechProcess001Path);
-            }
+            
         }
 
         private void techProcess002Repository_DoubleClick(object sender, System.EventArgs e)
-        {
+        {if (((DrawingsDTO)drawingsBS.Current).TechProcess001Id != null)
+            {
+                reportService.OpenExcelFile(((DrawingsDTO)drawingsBS.Current).TechProcess001Path);
+            }
             if (((DrawingsDTO)drawingsBS.Current).TechProcess002Id != null)
             {
                 reportService.OpenExcelFile(((DrawingsDTO)drawingsBS.Current).TechProcess002Path);

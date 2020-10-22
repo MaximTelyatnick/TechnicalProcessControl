@@ -55,7 +55,6 @@
             this.rCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.splashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::TechnicalProcessControl.WaitFm), true, true);
             this.drawingTreeListGrid = new DevExpress.XtraTreeList.TreeList();
-            this.treeListBand12 = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.drawingNumberTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.revisionCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.partNameTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
@@ -69,14 +68,16 @@
             this.weightTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.drawingScanCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.repositoryItemPictureEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
-            this.treeListBand14 = new DevExpress.XtraTreeList.Columns.TreeListBand();
-            this.treeListBand15 = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.techProcess001Repository = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.techProcess002Repository = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.techProcess003Repository = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.techProcess004Repository = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.techProcess005Repository = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
+            this.treeListBand12 = new DevExpress.XtraTreeList.Columns.TreeListBand();
+            this.treeListBand14 = new DevExpress.XtraTreeList.Columns.TreeListBand();
+            this.treeListBand15 = new DevExpress.XtraTreeList.Columns.TreeListBand();
+            this.treeListBand1 = new DevExpress.XtraTreeList.Columns.TreeListBand();
             ((System.ComponentModel.ISupportInitialize)(this.drawingRibon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawingGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawingGridView)).BeginInit();
@@ -107,7 +108,7 @@
             this.ribbonPage1});
             this.drawingRibon.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2007;
             this.drawingRibon.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
-            this.drawingRibon.Size = new System.Drawing.Size(1181, 95);
+            this.drawingRibon.Size = new System.Drawing.Size(1346, 95);
             this.drawingRibon.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             // 
             // addBtn
@@ -359,7 +360,8 @@
             this.drawingTreeListGrid.Bands.AddRange(new DevExpress.XtraTreeList.Columns.TreeListBand[] {
             this.treeListBand12,
             this.treeListBand14,
-            this.treeListBand15});
+            this.treeListBand15,
+            this.treeListBand1});
             this.drawingTreeListGrid.ColumnPanelRowHeight = 80;
             this.drawingTreeListGrid.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
             this.statusTreeCol,
@@ -395,38 +397,17 @@
             this.techProcess003Repository,
             this.techProcess004Repository,
             this.techProcess005Repository});
-            this.drawingTreeListGrid.Size = new System.Drawing.Size(1181, 441);
+            this.drawingTreeListGrid.Size = new System.Drawing.Size(1346, 441);
             this.drawingTreeListGrid.TabIndex = 4;
             this.drawingTreeListGrid.TreeLevelWidth = 12;
             this.drawingTreeListGrid.TreeLineStyle = DevExpress.XtraTreeList.LineStyle.None;
             this.drawingTreeListGrid.ViewStyle = DevExpress.XtraTreeList.TreeListViewStyle.TreeList;
             this.drawingTreeListGrid.CustomUnboundColumnData += new DevExpress.XtraTreeList.CustomColumnDataEventHandler(this.drawingTreeListGrid_CustomUnboundColumnData);
             // 
-            // treeListBand12
-            // 
-            this.treeListBand12.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.treeListBand12.AppearanceHeader.Options.UseFont = true;
-            this.treeListBand12.AppearanceHeader.Options.UseTextOptions = true;
-            this.treeListBand12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.treeListBand12.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.treeListBand12.Caption = "Чертеж";
-            this.treeListBand12.Columns.Add(this.drawingNumberTreeCol);
-            this.treeListBand12.Columns.Add(this.revisionCol);
-            this.treeListBand12.Columns.Add(this.partNameTreeCol);
-            this.treeListBand12.Columns.Add(this.drawingMaterialCol);
-            this.treeListBand12.Columns.Add(this.statusTreeCol);
-            this.treeListBand12.Columns.Add(this.dateCol);
-            this.treeListBand12.Columns.Add(this.ltreeCol);
-            this.treeListBand12.Columns.Add(this.wTreeCol);
-            this.treeListBand12.Columns.Add(this.w2TreeCol);
-            this.treeListBand12.Columns.Add(this.thTreeCol);
-            this.treeListBand12.Columns.Add(this.weightTreeCol);
-            this.treeListBand12.Columns.Add(this.drawingScanCol);
-            this.treeListBand12.Name = "treeListBand12";
-            this.treeListBand12.Width = 561;
-            // 
             // drawingNumberTreeCol
             // 
+            this.drawingNumberTreeCol.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.drawingNumberTreeCol.AppearanceHeader.Options.UseFont = true;
             this.drawingNumberTreeCol.AppearanceHeader.Options.UseTextOptions = true;
             this.drawingNumberTreeCol.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.drawingNumberTreeCol.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
@@ -437,18 +418,27 @@
             this.drawingNumberTreeCol.OptionsColumn.AllowFocus = false;
             this.drawingNumberTreeCol.Visible = true;
             this.drawingNumberTreeCol.VisibleIndex = 0;
-            this.drawingNumberTreeCol.Width = 199;
+            this.drawingNumberTreeCol.Width = 364;
             // 
             // revisionCol
             // 
+            this.revisionCol.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.revisionCol.AppearanceHeader.Options.UseFont = true;
+            this.revisionCol.AppearanceHeader.Options.UseTextOptions = true;
+            this.revisionCol.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.revisionCol.Caption = "Ревизия";
             this.revisionCol.FieldName = "RevisionName";
             this.revisionCol.Name = "revisionCol";
+            this.revisionCol.OptionsColumn.AllowEdit = false;
+            this.revisionCol.OptionsColumn.AllowFocus = false;
             this.revisionCol.Visible = true;
             this.revisionCol.VisibleIndex = 1;
+            this.revisionCol.Width = 71;
             // 
             // partNameTreeCol
             // 
+            this.partNameTreeCol.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.partNameTreeCol.AppearanceHeader.Options.UseFont = true;
             this.partNameTreeCol.AppearanceHeader.Options.UseTextOptions = true;
             this.partNameTreeCol.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.partNameTreeCol.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
@@ -459,18 +449,25 @@
             this.partNameTreeCol.OptionsColumn.AllowFocus = false;
             this.partNameTreeCol.Visible = true;
             this.partNameTreeCol.VisibleIndex = 2;
-            this.partNameTreeCol.Width = 145;
+            this.partNameTreeCol.Width = 135;
             // 
             // drawingMaterialCol
             // 
+            this.drawingMaterialCol.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.drawingMaterialCol.AppearanceHeader.Options.UseFont = true;
+            this.drawingMaterialCol.AppearanceHeader.Options.UseTextOptions = true;
+            this.drawingMaterialCol.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.drawingMaterialCol.Caption = "Материал";
             this.drawingMaterialCol.FieldName = "MaterialName";
             this.drawingMaterialCol.Name = "drawingMaterialCol";
             this.drawingMaterialCol.Visible = true;
             this.drawingMaterialCol.VisibleIndex = 3;
+            this.drawingMaterialCol.Width = 109;
             // 
             // statusTreeCol
             // 
+            this.statusTreeCol.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.statusTreeCol.AppearanceHeader.Options.UseFont = true;
             this.statusTreeCol.AppearanceHeader.Options.UseTextOptions = true;
             this.statusTreeCol.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.statusTreeCol.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
@@ -481,18 +478,27 @@
             this.statusTreeCol.OptionsColumn.AllowFocus = false;
             this.statusTreeCol.Visible = true;
             this.statusTreeCol.VisibleIndex = 4;
-            this.statusTreeCol.Width = 121;
+            this.statusTreeCol.Width = 105;
             // 
             // dateCol
             // 
+            this.dateCol.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateCol.AppearanceHeader.Options.UseFont = true;
+            this.dateCol.AppearanceHeader.Options.UseTextOptions = true;
+            this.dateCol.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.dateCol.Caption = "Дата";
             this.dateCol.FieldName = "CreateDate";
             this.dateCol.Name = "dateCol";
+            this.dateCol.OptionsColumn.AllowEdit = false;
+            this.dateCol.OptionsColumn.AllowFocus = false;
             this.dateCol.Visible = true;
             this.dateCol.VisibleIndex = 5;
+            this.dateCol.Width = 80;
             // 
             // ltreeCol
             // 
+            this.ltreeCol.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ltreeCol.AppearanceHeader.Options.UseFont = true;
             this.ltreeCol.AppearanceHeader.Options.UseTextOptions = true;
             this.ltreeCol.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.ltreeCol.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
@@ -502,11 +508,13 @@
             this.ltreeCol.OptionsColumn.AllowEdit = false;
             this.ltreeCol.OptionsColumn.AllowFocus = false;
             this.ltreeCol.Visible = true;
-            this.ltreeCol.VisibleIndex = 6;
-            this.ltreeCol.Width = 130;
+            this.ltreeCol.VisibleIndex = 10;
+            this.ltreeCol.Width = 53;
             // 
             // wTreeCol
             // 
+            this.wTreeCol.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.wTreeCol.AppearanceHeader.Options.UseFont = true;
             this.wTreeCol.AppearanceHeader.Options.UseTextOptions = true;
             this.wTreeCol.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.wTreeCol.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
@@ -516,11 +524,13 @@
             this.wTreeCol.OptionsColumn.AllowEdit = false;
             this.wTreeCol.OptionsColumn.AllowFocus = false;
             this.wTreeCol.Visible = true;
-            this.wTreeCol.VisibleIndex = 7;
-            this.wTreeCol.Width = 135;
+            this.wTreeCol.VisibleIndex = 8;
+            this.wTreeCol.Width = 67;
             // 
             // w2TreeCol
             // 
+            this.w2TreeCol.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.w2TreeCol.AppearanceHeader.Options.UseFont = true;
             this.w2TreeCol.AppearanceHeader.Options.UseTextOptions = true;
             this.w2TreeCol.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.w2TreeCol.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
@@ -530,11 +540,13 @@
             this.w2TreeCol.OptionsColumn.AllowEdit = false;
             this.w2TreeCol.OptionsColumn.AllowFocus = false;
             this.w2TreeCol.Visible = true;
-            this.w2TreeCol.VisibleIndex = 8;
-            this.w2TreeCol.Width = 144;
+            this.w2TreeCol.VisibleIndex = 9;
+            this.w2TreeCol.Width = 67;
             // 
             // thTreeCol
             // 
+            this.thTreeCol.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.thTreeCol.AppearanceHeader.Options.UseFont = true;
             this.thTreeCol.AppearanceHeader.Options.UseTextOptions = true;
             this.thTreeCol.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.thTreeCol.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
@@ -544,11 +556,13 @@
             this.thTreeCol.OptionsColumn.AllowEdit = false;
             this.thTreeCol.OptionsColumn.AllowFocus = false;
             this.thTreeCol.Visible = true;
-            this.thTreeCol.VisibleIndex = 9;
-            this.thTreeCol.Width = 127;
+            this.thTreeCol.VisibleIndex = 7;
+            this.thTreeCol.Width = 59;
             // 
             // weightTreeCol
             // 
+            this.weightTreeCol.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.weightTreeCol.AppearanceHeader.Options.UseFont = true;
             this.weightTreeCol.AppearanceHeader.Options.UseTextOptions = true;
             this.weightTreeCol.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.weightTreeCol.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
@@ -558,13 +572,15 @@
             this.weightTreeCol.OptionsColumn.AllowEdit = false;
             this.weightTreeCol.OptionsColumn.AllowFocus = false;
             this.weightTreeCol.Visible = true;
-            this.weightTreeCol.VisibleIndex = 10;
-            this.weightTreeCol.Width = 162;
+            this.weightTreeCol.VisibleIndex = 11;
+            this.weightTreeCol.Width = 96;
             // 
             // drawingScanCol
             // 
+            this.drawingScanCol.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.drawingScanCol.AppearanceHeader.ForeColor = System.Drawing.Color.Black;
             this.drawingScanCol.AppearanceHeader.Image = ((System.Drawing.Image)(resources.GetObject("drawingScanCol.AppearanceHeader.Image")));
+            this.drawingScanCol.AppearanceHeader.Options.UseFont = true;
             this.drawingScanCol.AppearanceHeader.Options.UseForeColor = true;
             this.drawingScanCol.AppearanceHeader.Options.UseImage = true;
             this.drawingScanCol.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -574,38 +590,16 @@
             this.drawingScanCol.ImageOptions.Alignment = System.Drawing.StringAlignment.Center;
             this.drawingScanCol.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("drawingScanCol.ImageOptions.Image")));
             this.drawingScanCol.Name = "drawingScanCol";
+            this.drawingScanCol.OptionsColumn.AllowEdit = false;
+            this.drawingScanCol.OptionsColumn.AllowFocus = false;
             this.drawingScanCol.UnboundType = DevExpress.XtraTreeList.Data.UnboundColumnType.Object;
             this.drawingScanCol.Visible = true;
-            this.drawingScanCol.VisibleIndex = 11;
+            this.drawingScanCol.VisibleIndex = 6;
+            this.drawingScanCol.Width = 122;
             // 
             // repositoryItemPictureEdit1
             // 
             this.repositoryItemPictureEdit1.Name = "repositoryItemPictureEdit1";
-            // 
-            // treeListBand14
-            // 
-            this.treeListBand14.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.treeListBand14.AppearanceHeader.Options.UseFont = true;
-            this.treeListBand14.AppearanceHeader.Options.UseTextOptions = true;
-            this.treeListBand14.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.treeListBand14.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.treeListBand14.Caption = "Расход сварочных материалов";
-            this.treeListBand14.Name = "treeListBand14";
-            this.treeListBand14.Visible = false;
-            this.treeListBand14.Width = 260;
-            // 
-            // treeListBand15
-            // 
-            this.treeListBand15.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.treeListBand15.AppearanceHeader.Options.UseFont = true;
-            this.treeListBand15.AppearanceHeader.Options.UseTextOptions = true;
-            this.treeListBand15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.treeListBand15.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.treeListBand15.Caption = "Расход лакокрасочных материалов";
-            this.treeListBand15.Name = "treeListBand15";
-            this.treeListBand15.RowCount = 2;
-            this.treeListBand15.Visible = false;
-            this.treeListBand15.Width = 130;
             // 
             // techProcess001Repository
             // 
@@ -642,11 +636,69 @@
             this.imageCollection.InsertGalleryImage("removepivotfield_16x16.png", "images/spreadsheet/removepivotfield_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/spreadsheet/removepivotfield_16x16.png"), 1);
             this.imageCollection.Images.SetKeyName(1, "removepivotfield_16x16.png");
             // 
+            // treeListBand12
+            // 
+            this.treeListBand12.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.treeListBand12.AppearanceHeader.Options.UseFont = true;
+            this.treeListBand12.AppearanceHeader.Options.UseTextOptions = true;
+            this.treeListBand12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.treeListBand12.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.treeListBand12.Caption = "Чертеж";
+            this.treeListBand12.Columns.Add(this.drawingNumberTreeCol);
+            this.treeListBand12.Columns.Add(this.revisionCol);
+            this.treeListBand12.Columns.Add(this.partNameTreeCol);
+            this.treeListBand12.Columns.Add(this.drawingMaterialCol);
+            this.treeListBand12.Columns.Add(this.statusTreeCol);
+            this.treeListBand12.Columns.Add(this.dateCol);
+            this.treeListBand12.Columns.Add(this.drawingScanCol);
+            this.treeListBand12.Name = "treeListBand12";
+            this.treeListBand12.Width = 1049;
+            // 
+            // treeListBand14
+            // 
+            this.treeListBand14.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.treeListBand14.AppearanceHeader.Options.UseFont = true;
+            this.treeListBand14.AppearanceHeader.Options.UseTextOptions = true;
+            this.treeListBand14.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.treeListBand14.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.treeListBand14.Caption = "Расход сварочных материалов";
+            this.treeListBand14.Name = "treeListBand14";
+            this.treeListBand14.Visible = false;
+            this.treeListBand14.Width = 260;
+            // 
+            // treeListBand15
+            // 
+            this.treeListBand15.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.treeListBand15.AppearanceHeader.Options.UseFont = true;
+            this.treeListBand15.AppearanceHeader.Options.UseTextOptions = true;
+            this.treeListBand15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.treeListBand15.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.treeListBand15.Caption = "Расход лакокрасочных материалов";
+            this.treeListBand15.Name = "treeListBand15";
+            this.treeListBand15.RowCount = 2;
+            this.treeListBand15.Visible = false;
+            this.treeListBand15.Width = 130;
+            // 
+            // treeListBand1
+            // 
+            this.treeListBand1.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.treeListBand1.AppearanceHeader.Options.UseFont = true;
+            this.treeListBand1.AppearanceHeader.Options.UseTextOptions = true;
+            this.treeListBand1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.treeListBand1.Caption = "DIM";
+            this.treeListBand1.Columns.Add(this.thTreeCol);
+            this.treeListBand1.Columns.Add(this.wTreeCol);
+            this.treeListBand1.Columns.Add(this.w2TreeCol);
+            this.treeListBand1.Columns.Add(this.ltreeCol);
+            this.treeListBand1.Columns.Add(this.weightTreeCol);
+            this.treeListBand1.Name = "treeListBand1";
+            this.treeListBand1.Width = 279;
+            // 
             // DrawingFm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1181, 536);
+            this.ClientSize = new System.Drawing.Size(1346, 536);
             this.Controls.Add(this.drawingTreeListGrid);
             this.Controls.Add(this.drawingGrid);
             this.Controls.Add(this.drawingRibon);
@@ -715,9 +767,10 @@
         private DevExpress.Utils.ImageCollection imageCollection;
         private DevExpress.XtraTreeList.Columns.TreeListColumn drawingScanCol;
         private DevExpress.XtraTreeList.Columns.TreeListColumn dateCol;
+        private DevExpress.XtraBars.BarButtonItem addRevisionBtn;
         private DevExpress.XtraTreeList.Columns.TreeListBand treeListBand12;
         private DevExpress.XtraTreeList.Columns.TreeListBand treeListBand14;
         private DevExpress.XtraTreeList.Columns.TreeListBand treeListBand15;
-        private DevExpress.XtraBars.BarButtonItem addRevisionBtn;
+        private DevExpress.XtraTreeList.Columns.TreeListBand treeListBand1;
     }
 }

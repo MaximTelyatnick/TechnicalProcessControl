@@ -38,11 +38,13 @@
             this.dateCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.techProcessFullNameCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.drawingCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.repositoryItemTextEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.fullPathCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.splashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::TechnicalProcessControl.WaitFm), true, true);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.techProcessTreeListGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl1
@@ -99,9 +101,12 @@
             this.techProcessTreeListGrid.Location = new System.Drawing.Point(0, 95);
             this.techProcessTreeListGrid.Name = "techProcessTreeListGrid";
             this.techProcessTreeListGrid.OptionsView.ShowAutoFilterRow = true;
+            this.techProcessTreeListGrid.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemTextEdit});
             this.techProcessTreeListGrid.Size = new System.Drawing.Size(1191, 423);
             this.techProcessTreeListGrid.TabIndex = 3;
             this.techProcessTreeListGrid.NodeCellStyle += new DevExpress.XtraTreeList.GetCustomNodeCellStyleEventHandler(this.techProcessTreeListGrid_NodeCellStyle);
+            this.techProcessTreeListGrid.DoubleClick += new System.EventHandler(this.techProcessTreeListGrid_DoubleClick);
             // 
             // numberCol
             // 
@@ -144,12 +149,19 @@
             this.drawingCol.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.drawingCol.AppearanceHeader.Options.UseFont = true;
             this.drawingCol.Caption = "Номер чертежа";
+            this.drawingCol.ColumnEdit = this.repositoryItemTextEdit;
             this.drawingCol.FieldName = "DrawingNumber";
             this.drawingCol.Name = "drawingCol";
             this.drawingCol.OptionsColumn.AllowEdit = false;
             this.drawingCol.OptionsColumn.AllowFocus = false;
             this.drawingCol.Visible = true;
             this.drawingCol.VisibleIndex = 3;
+            // 
+            // repositoryItemTextEdit
+            // 
+            this.repositoryItemTextEdit.AutoHeight = false;
+            this.repositoryItemTextEdit.Name = "repositoryItemTextEdit";
+            this.repositoryItemTextEdit.DoubleClick += new System.EventHandler(this.repositoryItemTextEdit_DoubleClick);
             // 
             // fullPathCol
             // 
@@ -158,6 +170,8 @@
             this.fullPathCol.Caption = "Путь к файлу";
             this.fullPathCol.FieldName = "TechProcessPath";
             this.fullPathCol.Name = "fullPathCol";
+            this.fullPathCol.OptionsColumn.AllowEdit = false;
+            this.fullPathCol.OptionsColumn.AllowFocus = false;
             this.fullPathCol.Visible = true;
             this.fullPathCol.VisibleIndex = 4;
             // 
@@ -189,6 +203,7 @@
             this.Text = "Заготовительное производство";
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.techProcessTreeListGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -208,5 +223,6 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn fullPathCol;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
         private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit;
     }
 }
