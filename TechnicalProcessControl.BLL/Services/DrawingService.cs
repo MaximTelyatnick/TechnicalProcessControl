@@ -16,6 +16,9 @@ namespace TechnicalProcessControl.BLL.Services
     {
         private IUnitOfWork Database { get; set; }
 
+        private IRepository<Colors> colorsMenu;
+        private IRepository<Colors> colorsDrawing;
+        private IRepository<Colors> colorsDetail;
         private IRepository<Drawings> drawings;
         private IRepository<Drawings> drawingsChild;
         private IRepository<Drawings> parentDrawings;
@@ -46,6 +49,9 @@ namespace TechnicalProcessControl.BLL.Services
         {
             Database = uow;
 
+            colorsMenu = Database.GetRepository<Colors>();
+            colorsDrawing = Database.GetRepository<Colors>();
+            colorsDetail = Database.GetRepository<Colors>();
             drawings = Database.GetRepository<Drawings>();
             drawingsChild = Database.GetRepository<Drawings>();
             parentDrawings = Database.GetRepository<Drawings>();
@@ -74,6 +80,8 @@ namespace TechnicalProcessControl.BLL.Services
 
             var config = new MapperConfiguration(cfg =>
             {
+                cfg.CreateMap<Colors, ColorsDTO>();
+                cfg.CreateMap<ColorsDTO, Colors>();
                 cfg.CreateMap<Drawings, DrawingsDTO>();
                 cfg.CreateMap<DrawingsDTO, Drawings>();
                 cfg.CreateMap<DrawingScan, DrawingScanDTO>();
@@ -109,7 +117,7 @@ namespace TechnicalProcessControl.BLL.Services
 
         public bool FindDublicateDrawing(DrawingDTO drawingDTO)
         {
-            return drawing.GetAll().Any(srt => srt.Number == drawingDTO.Number && srt.Id != drawingDTO.Id && srt.RevisionId == drawingDTO.RevisionId);
+            return drawing.GetAll().Any(srt => srt.Number == drawingDTO.Number && srt.DetailId == drawingDTO.DetailId && srt.Id != drawingDTO.Id && srt.RevisionId == drawingDTO.RevisionId);
         }
 
         public IEnumerable<DrawingsDTO> GetAllDrawingsByDrawingId(int drawingId)
@@ -235,6 +243,13 @@ namespace TechnicalProcessControl.BLL.Services
                           from pdrw in pdrww.DefaultIfEmpty()
                           join drp in drawing.GetAll() on pdrw.DrawingId equals drp.Id into drpp
                           from drp in drpp.DefaultIfEmpty()
+                          join colm in colorsMenu.GetAll() on drw.CurrentLevelMenuColorId equals colm.Id into colmm
+                          from colm in colmm.DefaultIfEmpty()
+                          join cold in colorsDrawing.GetAll() on drw.DrawingColorId equals cold.Id into coldd
+                          from cold in coldd.DefaultIfEmpty()
+                          join coldet in colorsDetail.GetAll() on drw.MaterialColorId equals coldet.Id into coldett
+                          from coldet in coldett.DefaultIfEmpty()
+
                           where tcp001.ParentId == null && tcp002.ParentId == null && tcp003.ParentId == null && tcp004.ParentId == null && tcp005.ParentId == null
                           //orderby drw.CurrentLevelMenu
 
@@ -249,6 +264,12 @@ namespace TechnicalProcessControl.BLL.Services
                               StructuraDisable = drw.StructuraDisable,
                               OccurrenceId = drw.OccurrenceId,
                               ReplaceDrawingId = drw.ReplaceDrawingId,
+                               CurrentLevelMenuColorId = colm.Id,
+                                CurrentLevelMenuColorName = colm.Code,
+                                 DrawingColorId = cold.Id,
+                                  DrawingColorName = cold.Code,
+                                   MaterialColorId = coldet.Id,
+                                    MaterialColorName = coldet.Code,
 
 
                               DrawingId = dr.Id,

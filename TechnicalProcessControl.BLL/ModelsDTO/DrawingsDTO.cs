@@ -80,6 +80,13 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public short? TechProcess004Type { get; set; }
         public short? TechProcess005Type { get; set; }
 
+        public int? CurrentLevelMenuColorId { get; set; }
+        public string CurrentLevelMenuColorName { get; set; }
+        public int? DrawingColorId { get; set; }
+        public string DrawingColorName { get; set; }
+        public int? MaterialColorId { get; set; }
+        public string MaterialColorName { get; set; }
+
         public DrawingsDTO()
         {
             this.Quantity = 0;

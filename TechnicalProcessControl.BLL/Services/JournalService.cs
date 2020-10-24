@@ -21,6 +21,7 @@ namespace TechnicalProcessControl.BLL.Services
         private IRepository<OperationName> operationName;
         private IRepository<OperationNumber> operationNumber;
         private IRepository<OperationPaintMaterial> operationPaintMaterial;
+        private IRepository<Colors> colors;
 
         private IMapper mapper;
 
@@ -28,6 +29,7 @@ namespace TechnicalProcessControl.BLL.Services
         {
             Database = uow;
 
+            colors = Database.GetRepository<Colors>();
             drawings = Database.GetRepository<Drawings>();
             parentDrawings = Database.GetRepository<Drawings>();
             drawingScan = Database.GetRepository<DrawingScan>();
@@ -41,6 +43,8 @@ namespace TechnicalProcessControl.BLL.Services
 
             var config = new MapperConfiguration(cfg =>
             {
+                cfg.CreateMap<Colors, ColorsDTO>();
+                cfg.CreateMap<ColorsDTO, Colors>();
                 cfg.CreateMap<Drawings, DrawingsDTO>();
                 cfg.CreateMap<DrawingsDTO, Drawings>();
                 cfg.CreateMap<DrawingScan, DrawingScanDTO>();
@@ -64,6 +68,11 @@ namespace TechnicalProcessControl.BLL.Services
         public IEnumerable<DetailsDTO> GetDetails()
         {
             return mapper.Map<IEnumerable<Details>, List<DetailsDTO>>(details.GetAll());
+        }
+
+        public IEnumerable<ColorsDTO> GetColors()
+        {
+            return mapper.Map<IEnumerable<Colors>, List<ColorsDTO>>(colors.GetAll());
         }
 
         public IEnumerable<MaterialsDTO> GetMaterials()

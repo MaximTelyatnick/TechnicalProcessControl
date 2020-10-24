@@ -46,9 +46,11 @@
             this.disableBtn = new DevExpress.XtraBars.BarButtonItem();
             this.showMaterialBtn = new DevExpress.XtraBars.BarButtonItem();
             this.showTechProcessBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.Штащ = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.splashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::TechnicalProcessControl.WaitFm), true, true);
             this.drawingGrid = new DevExpress.XtraGrid.GridControl();
             this.drawingBandedGridView = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
@@ -158,9 +160,10 @@
             this.copyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pasteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.удалитьСборкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.structuraColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.drawingColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.detailColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
-            this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.Штащ = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.contractorsRibonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawingGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawingBandedGridView)).BeginInit();
@@ -326,6 +329,14 @@
             this.showTechProcessBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.showTechProcessBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.showTechProcessBtn_ItemClick);
             // 
+            // Штащ
+            // 
+            this.Штащ.Id = 18;
+            this.Штащ.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("Штащ.ImageOptions.Image")));
+            this.Штащ.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("Штащ.ImageOptions.LargeImage")));
+            this.Штащ.Name = "Штащ";
+            this.Штащ.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -353,6 +364,12 @@
             this.ribbonPageGroup3.ItemLinks.Add(this.showTechProcessBtn);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "Функции";
+            // 
+            // ribbonPageGroup2
+            // 
+            this.ribbonPageGroup2.ItemLinks.Add(this.Штащ);
+            this.ribbonPageGroup2.Name = "ribbonPageGroup2";
+            this.ribbonPageGroup2.Text = "Помощь";
             // 
             // splashScreenManager
             // 
@@ -1002,8 +1019,6 @@
             this.curentLevelMenuTreeCol.Caption = " - - - - -";
             this.curentLevelMenuTreeCol.FieldName = "CurrentLevelMenu";
             this.curentLevelMenuTreeCol.Name = "curentLevelMenuTreeCol";
-            this.curentLevelMenuTreeCol.OptionsColumn.AllowEdit = false;
-            this.curentLevelMenuTreeCol.OptionsColumn.AllowFocus = false;
             this.curentLevelMenuTreeCol.Visible = true;
             this.curentLevelMenuTreeCol.VisibleIndex = 0;
             this.curentLevelMenuTreeCol.Width = 326;
@@ -1765,30 +1780,53 @@
             this.copyPasteMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copyMenuItem,
             this.pasteMenuItem,
-            this.удалитьСборкуToolStripMenuItem});
+            this.удалитьСборкуToolStripMenuItem,
+            this.structuraColorToolStripMenuItem,
+            this.drawingColorToolStripMenuItem,
+            this.detailColorToolStripMenuItem});
             this.copyPasteMenuStrip.Name = "copyPasteMenuStrip";
-            this.copyPasteMenuStrip.Size = new System.Drawing.Size(182, 70);
+            this.copyPasteMenuStrip.Size = new System.Drawing.Size(185, 136);
             // 
             // copyMenuItem
             // 
             this.copyMenuItem.Name = "copyMenuItem";
-            this.copyMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.copyMenuItem.Size = new System.Drawing.Size(184, 22);
             this.copyMenuItem.Text = "Копировать сборку";
             this.copyMenuItem.Click += new System.EventHandler(this.copyMenuItem_Click);
             // 
             // pasteMenuItem
             // 
             this.pasteMenuItem.Name = "pasteMenuItem";
-            this.pasteMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.pasteMenuItem.Size = new System.Drawing.Size(184, 22);
             this.pasteMenuItem.Text = "Вставить сборку";
             this.pasteMenuItem.Click += new System.EventHandler(this.pasteMenuItem_Click);
             // 
             // удалитьСборкуToolStripMenuItem
             // 
             this.удалитьСборкуToolStripMenuItem.Name = "удалитьСборкуToolStripMenuItem";
-            this.удалитьСборкуToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.удалитьСборкуToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.удалитьСборкуToolStripMenuItem.Text = "Удалить сборку";
             this.удалитьСборкуToolStripMenuItem.Click += new System.EventHandler(this.удалитьСборкуToolStripMenuItem_Click);
+            // 
+            // structuraColorToolStripMenuItem
+            // 
+            this.structuraColorToolStripMenuItem.Name = "structuraColorToolStripMenuItem";
+            this.structuraColorToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.structuraColorToolStripMenuItem.Text = "Выделить структуру";
+            this.structuraColorToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.structuraColorToolStripMenuItem_DropDownItemClicked);
+            // 
+            // drawingColorToolStripMenuItem
+            // 
+            this.drawingColorToolStripMenuItem.Name = "drawingColorToolStripMenuItem";
+            this.drawingColorToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.drawingColorToolStripMenuItem.Text = "Выделить чертёж";
+            this.drawingColorToolStripMenuItem.Click += new System.EventHandler(this.выделитьToolStripMenuItem_Click);
+            // 
+            // detailColorToolStripMenuItem
+            // 
+            this.detailColorToolStripMenuItem.Name = "detailColorToolStripMenuItem";
+            this.detailColorToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.detailColorToolStripMenuItem.Text = "Выдклить деталь";
             // 
             // imageCollection
             // 
@@ -1803,20 +1841,6 @@
             this.imageCollection.Images.SetKeyName(2, "zoom_32x32.png");
             this.imageCollection.InsertGalleryImage("hiddentext_32x32.png", "images/format/hiddentext_32x32.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/format/hiddentext_32x32.png"), 3);
             this.imageCollection.Images.SetKeyName(3, "hiddentext_32x32.png");
-            // 
-            // ribbonPageGroup2
-            // 
-            this.ribbonPageGroup2.ItemLinks.Add(this.Штащ);
-            this.ribbonPageGroup2.Name = "ribbonPageGroup2";
-            this.ribbonPageGroup2.Text = "Помощь";
-            // 
-            // Штащ
-            // 
-            this.Штащ.Id = 18;
-            this.Штащ.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("Штащ.ImageOptions.Image")));
-            this.Штащ.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("Штащ.ImageOptions.LargeImage")));
-            this.Штащ.Name = "Штащ";
-            this.Штащ.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             // 
             // StructuraFm
             // 
@@ -1976,5 +2000,8 @@
         private DevExpress.XtraTreeList.Columns.TreeListBand treeListBand16;
         private DevExpress.XtraBars.BarButtonItem Штащ;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
+        private System.Windows.Forms.ToolStripMenuItem structuraColorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem drawingColorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem detailColorToolStripMenuItem;
     }
 }

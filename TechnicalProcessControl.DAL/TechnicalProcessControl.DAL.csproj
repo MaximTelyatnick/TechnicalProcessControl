@@ -75,6 +75,7 @@
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Interfaces\IUnitOfWorkMysql.cs" />
     <Compile Include="Models\City.cs" />
+    <Compile Include="Models\Colors.cs" />
     <Compile Include="Models\Contractors.cs" />
     <Compile Include="Models\Details.cs" />
     <Compile Include="Models\Drawing.cs" />

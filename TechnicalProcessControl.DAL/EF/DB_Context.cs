@@ -23,6 +23,7 @@ namespace TechnicalProcessControl.DAL.EF
         public DbSet<Routes> Routes { get; set; }
         public DbSet<Contractors> Contractors { get; set; }
         public DbSet<City> City { get; set; }
+        public DbSet<Colors> Colors { get; set; }
         public DbSet<UserRole> Rules { get; set; }
 
         public DbSet<Drawings> Drawings { get; set; }

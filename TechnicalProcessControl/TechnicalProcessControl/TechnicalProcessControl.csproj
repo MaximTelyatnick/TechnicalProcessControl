@@ -177,6 +177,9 @@
     <Compile Include="AuthUserPhoneFm.Designer.cs">
       <DependentUpon>AuthUserPhoneFm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomView\ToolStripMenuItemCustom.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Drawings\DrawingEditFm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -65,6 +65,7 @@
     <Compile Include="Interfaces\IReportService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="ModelsDTO\CityDTO.cs" />
+    <Compile Include="ModelsDTO\ColorsDTO.cs" />
     <Compile Include="ModelsDTO\ContractorsDTO.cs" />
     <Compile Include="ModelsDTO\DetailsDTO.cs" />
     <Compile Include="ModelsDTO\DrawingDTO.cs" />

@@ -11,6 +11,7 @@ namespace TechnicalProcessControl.BLL.Interfaces
     {
         IEnumerable<DetailsDTO> GetDetails();
         IEnumerable<MaterialsDTO> GetMaterials();
+        IEnumerable<ColorsDTO> GetColors();
 
         bool CheckDetailName(DetailsDTO detailName);
         bool CheckMaterialName(MaterialsDTO materialName);

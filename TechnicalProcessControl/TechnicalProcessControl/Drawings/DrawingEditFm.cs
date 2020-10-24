@@ -71,9 +71,7 @@ namespace TechnicalProcessControl.Drawings
             w2Edit.DataBindings.Add("EditValue", drawingBS, "W2", true, DataSourceUpdateMode.OnPropertyChanged);
             lEdit.DataBindings.Add("EditValue", drawingBS, "L", true, DataSourceUpdateMode.OnPropertyChanged);
             thEdit.DataBindings.Add("EditValue", drawingBS, "TH", true, DataSourceUpdateMode.OnPropertyChanged);
-            quantityEdit.DataBindings.Add("EditValue", drawingBS, "Quantity", true, DataSourceUpdateMode.OnPropertyChanged);
-            quantityREdit.DataBindings.Add("EditValue", drawingBS, "QuantityR", true, DataSourceUpdateMode.OnPropertyChanged);
-            quantityLEdit.DataBindings.Add("EditValue", drawingBS, "QuantityL", true, DataSourceUpdateMode.OnPropertyChanged);
+            
             weightEdit.DataBindings.Add("EditValue", drawingBS, "DetailWeight", true, DataSourceUpdateMode.OnPropertyChanged);
             revisionEdit.DataBindings.Add("EditValue", drawingBS, "RevisionId", true, DataSourceUpdateMode.OnPropertyChanged);
             dateEdit.DataBindings.Add("EditValue", drawingBS, "CreateDate", true, DataSourceUpdateMode.OnPropertyChanged);
@@ -115,10 +113,19 @@ namespace TechnicalProcessControl.Drawings
             }
             else if(operation == Utils.Operation.Update)
             {
-                if (((DrawingDTO)Item).ParentId != null)
-                    saveBtn.Enabled = false;
-                else
-                    saveBtn.Enabled = true;
+                //if (((DrawingDTO)Item).ParentId != null)
+                //    saveBtn.Enabled = false;
+                //else
+                //    saveBtn.Enabled = true;
+
+                materialEdit.Enabled = false;
+                revisionEdit.ReadOnly = true;
+                typeEdit.ReadOnly = true;
+                detailEdit.Enabled = false;
+                dateEdit.ReadOnly = true;
+                assemblyCheckEdit.Enabled = false;
+                numberEdit.ReadOnly = true;
+
 
                 LoadScanDrawing();
             }

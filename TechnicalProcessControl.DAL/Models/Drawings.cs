@@ -25,6 +25,10 @@ namespace TechnicalProcessControl.DAL.Models
         public decimal? QuantityL { get; set; }
         public bool StructuraDisable { get; set; }
 
+        public int? CurrentLevelMenuColorId { get; set; }
+        public int? DrawingColorId { get; set; }
+        public int? MaterialColorId { get; set; }
+
         //public string Number { get; set; }
 
         //public int? DetailId { get; set; }

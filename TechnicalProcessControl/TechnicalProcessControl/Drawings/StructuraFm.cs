@@ -11,17 +11,24 @@ using System.Drawing;
 using DevExpress.XtraTreeList.Nodes;
 using DevExpress.XtraTreeList;
 using System.Collections.Generic;
+using TechnicalProcessControl.CustomView;
 
 namespace TechnicalProcessControl
 {
     public partial class StructuraFm : DevExpress.XtraEditors.XtraForm
     {
         public static IDrawingService drawingService;
+        public static IJournalService journalService;
         public static IReportService reportService;
 
         private UsersDTO usersDTO;
         private List<DrawingsDTO> drawingsList = new List<DrawingsDTO>();
         private List<DrawingsDTO> bifferdrawingsList = new List<DrawingsDTO>();
+        private List<ColorsDTO> colorsPalleteStructura = new List<ColorsDTO>();
+        private List<ColorsDTO> colorsPalleteDrawing = new List<ColorsDTO>();
+        private List<ColorsDTO> colorsPalleteMaterial = new List<ColorsDTO>();
+        private List<ColorsDTO> colorsPallete = new List<ColorsDTO>();
+
 
         public BindingSource drawingsBS = new BindingSource();
 
@@ -66,7 +73,9 @@ namespace TechnicalProcessControl
 
             this.usersDTO = usersDTO;
 
-            LoadData(); 
+            LoadData();
+
+            LoadColorsPallete();
         }
 
         public void LoadData()
@@ -308,6 +317,14 @@ namespace TechnicalProcessControl
             //    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Regular);
 
             //if (e.Column.FieldName != "Budget") return;
+            //TreeView view = (TreeView)sender;
+            //if (view.C(e.RowHandle, "ColorName") != null)
+            //{
+            //    string currentRowColor = gv.GetRowCellValue(e.RowHandle, "ColorName").ToString();
+            //    e.Appearance.BackColor = Color.FromName(currentRowColor);
+            //}
+
+
 
             var item = (DrawingsDTO)drawingTreeListGrid.GetDataRecordByNode(e.Node);
 
@@ -355,6 +372,11 @@ namespace TechnicalProcessControl
                 }
             }
 
+            if (item.CurrentLevelMenuColorId != null && e.Column.FieldName == "CurrentLevelMenu")
+            {
+                e.Appearance.ForeColor = Color.FromName(item.CurrentLevelMenuColorName);
+            }
+
 
 
             //if (Convert.ToBoolean(e.Node.GetValue(e.Column.FieldName == "StructuraDisable")))
@@ -365,14 +387,14 @@ namespace TechnicalProcessControl
             //}
 
 
-                //if ((bool)e.Node["StructuraDisable"])
-                //{
-                //    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Strikeout);
-                //}
-                //else
-                //{
-                //    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Regular);
-                //}
+            //if ((bool)e.Node["StructuraDisable"])
+            //{
+            //    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Strikeout);
+            //}
+            //else
+            //{
+            //    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Regular);
+            //}
 
         }
 
@@ -554,6 +576,70 @@ namespace TechnicalProcessControl
                 showTechProcessBtn.ImageOptions.Image = imageCollection.Images[3];
                 showTechProcessBtn.Caption = "Не отображать техпроцессы";
             }
+        }
+
+        private void выделитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LoadColorsPallete()
+        {
+            splashScreenManager.ShowWaitForm();
+
+            journalService = Program.kernel.Get<IJournalService>();
+
+            colorsPallete = journalService.GetColors().ToList();
+            for (int i = 0; i < colorsPallete.Count; i++)
+            {
+                ToolStripMenuItem MenuItem = new ToolStripMenuItem()
+                {
+                    Text = colorsPallete[i].NameRus.ToString(),
+                    Image = Rgb2Bitmap(colorsPallete[i].Code.ToString()),
+                    ToolTipText = colorsPallete[i].NameRus.ToString(),
+                    Tag = colorsPallete[i].Id
+                };
+
+                //ToolStripMenuItemCustom MenuItem = new ToolStripMenuItemCustom()
+                //{
+                //    Text = colorsPallete[i].NameRus.ToString(),
+                //    Image = Rgb2Bitmap(colorsPallete[i].Code.ToString()),
+                //    ToolTipText = colorsPallete[i].NameRus.ToString(),
+                //    Tag = colorsPallete[i].Id
+                //};
+                //ToolStripMenuItemStructuraColor.Add(MenuItem);
+
+                //ToolStripMenuItemCustom MenuItem2 = (ToolStripMenuItemCustom)MenuItem.Clone();
+
+                
+                drawingColorToolStripMenuItem.DropDownItems.Add(MenuItem);
+                detailColorToolStripMenuItem.DropDownItems.Add(MenuItem);
+                structuraColorToolStripMenuItem.DropDownItems.Add(MenuItem);
+                //copyPasteMenuStrip.Items[3].Add(MenuItem);
+            }
+
+            splashScreenManager.CloseWaitForm();
+        }
+
+        public Bitmap Rgb2Bitmap(string HtmlRgb)
+        {
+            Bitmap bitmap = new Bitmap(16, 16);
+            Graphics graphics = Graphics.FromImage(bitmap);
+            SolidBrush brush = new SolidBrush(ColorTranslator.FromHtml(HtmlRgb));
+            graphics.FillRectangle(brush, 0, 0, 16, 16);
+            return bitmap;
+        }
+
+        private void structuraColorToolStripMenuItem_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            DrawingsDTO updateModel = ((DrawingsDTO)drawingsBS.Current);
+
+            var per = Convert.ToInt16(e.ClickedItem.Tag);
+            updateModel.CurrentLevelMenuColorId = Convert.ToInt16(e.ClickedItem.Tag);
+            ((DrawingsDTO)drawingsBS.Current).CurrentLevelMenuColorName = e.ClickedItem.ToolTipText;
+            //((AccountOrdersDTO)ordersBS.Current).ColorId = (int)e.ClickedItem.Tag;
+            drawingsBS.EndEdit();
+            drawingService.DrawingsUpdate(updateModel);
         }
     }
 }
