@@ -161,8 +161,11 @@
             this.pasteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.удалитьСборкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.structuraColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.drawingColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.colorMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.detailColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.drawingColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.contractorsRibonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawingGrid)).BeginInit();
@@ -928,6 +931,7 @@
             this.statusTreeCol,
             this.curentLevelMenuTreeCol,
             this.drawingNumberTreeCol,
+            this.revCol,
             this.partNameTreeCol,
             this.quantityTreeCol,
             this.techProcessOneTreeCol,
@@ -960,7 +964,6 @@
             this.revision005Col,
             this.quantityRCol,
             this.quantityLCol,
-            this.revCol,
             this.remarksCol,
             this.materialNameCol});
             this.drawingTreeListGrid.ContextMenuStrip = this.copyPasteMenuStrip;
@@ -1019,6 +1022,8 @@
             this.curentLevelMenuTreeCol.Caption = " - - - - -";
             this.curentLevelMenuTreeCol.FieldName = "CurrentLevelMenu";
             this.curentLevelMenuTreeCol.Name = "curentLevelMenuTreeCol";
+            this.curentLevelMenuTreeCol.OptionsColumn.AllowEdit = false;
+            this.curentLevelMenuTreeCol.OptionsColumn.AllowFocus = false;
             this.curentLevelMenuTreeCol.Visible = true;
             this.curentLevelMenuTreeCol.VisibleIndex = 0;
             this.curentLevelMenuTreeCol.Width = 326;
@@ -1075,6 +1080,8 @@
             this.revCol.Caption = "REV";
             this.revCol.FieldName = "RevisionName";
             this.revCol.Name = "revCol";
+            this.revCol.OptionsColumn.AllowEdit = false;
+            this.revCol.OptionsColumn.AllowFocus = false;
             this.revCol.Visible = true;
             this.revCol.VisibleIndex = 3;
             this.revCol.Width = 99;
@@ -1100,6 +1107,8 @@
             this.quantityRCol.Caption = "R";
             this.quantityRCol.FieldName = "QuantityR";
             this.quantityRCol.Name = "quantityRCol";
+            this.quantityRCol.OptionsColumn.AllowEdit = false;
+            this.quantityRCol.OptionsColumn.AllowFocus = false;
             this.quantityRCol.Visible = true;
             this.quantityRCol.VisibleIndex = 5;
             this.quantityRCol.Width = 99;
@@ -1111,6 +1120,8 @@
             this.quantityLCol.Caption = "L";
             this.quantityLCol.FieldName = "QuantityL";
             this.quantityLCol.Name = "quantityLCol";
+            this.quantityLCol.OptionsColumn.AllowEdit = false;
+            this.quantityLCol.OptionsColumn.AllowFocus = false;
             this.quantityLCol.Visible = true;
             this.quantityLCol.VisibleIndex = 6;
             this.quantityLCol.Width = 98;
@@ -1136,6 +1147,8 @@
             this.materialNameCol.Caption = "MATERIAL";
             this.materialNameCol.FieldName = "MaterialName";
             this.materialNameCol.Name = "materialNameCol";
+            this.materialNameCol.OptionsColumn.AllowEdit = false;
+            this.materialNameCol.OptionsColumn.AllowFocus = false;
             this.materialNameCol.Visible = true;
             this.materialNameCol.VisibleIndex = 8;
             this.materialNameCol.Width = 98;
@@ -1231,6 +1244,8 @@
             this.remarksCol.Caption = "REMARKS";
             this.remarksCol.FieldName = "NoteName";
             this.remarksCol.Name = "remarksCol";
+            this.remarksCol.OptionsColumn.AllowEdit = false;
+            this.remarksCol.OptionsColumn.AllowFocus = false;
             this.remarksCol.Visible = true;
             this.remarksCol.VisibleIndex = 13;
             this.remarksCol.Width = 102;
@@ -1247,6 +1262,8 @@
             this.drawingScanCol.ImageOptions.Alignment = System.Drawing.StringAlignment.Center;
             this.drawingScanCol.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("drawingScanCol.ImageOptions.Image")));
             this.drawingScanCol.Name = "drawingScanCol";
+            this.drawingScanCol.OptionsColumn.AllowEdit = false;
+            this.drawingScanCol.OptionsColumn.AllowFocus = false;
             this.drawingScanCol.UnboundType = DevExpress.XtraTreeList.Data.UnboundColumnType.Object;
             this.drawingScanCol.Visible = true;
             this.drawingScanCol.VisibleIndex = 14;
@@ -1327,6 +1344,8 @@
             this.revision001Col.Caption = "REV";
             this.revision001Col.FieldName = "Revision001";
             this.revision001Col.Name = "revision001Col";
+            this.revision001Col.OptionsColumn.AllowEdit = false;
+            this.revision001Col.OptionsColumn.AllowFocus = false;
             this.revision001Col.Visible = true;
             this.revision001Col.VisibleIndex = 16;
             this.revision001Col.Width = 47;
@@ -1399,6 +1418,8 @@
             this.revision002Col.Caption = "REV";
             this.revision002Col.FieldName = "Revision002";
             this.revision002Col.Name = "revision002Col";
+            this.revision002Col.OptionsColumn.AllowEdit = false;
+            this.revision002Col.OptionsColumn.AllowFocus = false;
             this.revision002Col.Visible = true;
             this.revision002Col.VisibleIndex = 18;
             this.revision002Col.Width = 52;
@@ -1471,6 +1492,8 @@
             this.revision003Col.Caption = "REV";
             this.revision003Col.FieldName = "Revision003";
             this.revision003Col.Name = "revision003Col";
+            this.revision003Col.OptionsColumn.AllowEdit = false;
+            this.revision003Col.OptionsColumn.AllowFocus = false;
             this.revision003Col.Visible = true;
             this.revision003Col.VisibleIndex = 20;
             this.revision003Col.Width = 38;
@@ -1544,6 +1567,8 @@
             this.revision004Col.Caption = "REV";
             this.revision004Col.FieldName = "Revision004";
             this.revision004Col.Name = "revision004Col";
+            this.revision004Col.OptionsColumn.AllowEdit = false;
+            this.revision004Col.OptionsColumn.AllowFocus = false;
             this.revision004Col.Visible = true;
             this.revision004Col.VisibleIndex = 22;
             this.revision004Col.Width = 36;
@@ -1617,6 +1642,8 @@
             this.revision005Col.Caption = "REV";
             this.revision005Col.FieldName = "Revision005";
             this.revision005Col.Name = "revision005Col";
+            this.revision005Col.OptionsColumn.AllowEdit = false;
+            this.revision005Col.OptionsColumn.AllowFocus = false;
             this.revision005Col.Visible = true;
             this.revision005Col.VisibleIndex = 24;
             this.revision005Col.Width = 37;
@@ -1783,9 +1810,11 @@
             this.удалитьСборкуToolStripMenuItem,
             this.structuraColorToolStripMenuItem,
             this.drawingColorToolStripMenuItem,
-            this.detailColorToolStripMenuItem});
+            this.detailColorToolStripMenuItem,
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem3});
             this.copyPasteMenuStrip.Name = "copyPasteMenuStrip";
-            this.copyPasteMenuStrip.Size = new System.Drawing.Size(185, 136);
+            this.copyPasteMenuStrip.Size = new System.Drawing.Size(185, 180);
             // 
             // copyMenuItem
             // 
@@ -1810,23 +1839,46 @@
             // 
             // structuraColorToolStripMenuItem
             // 
+            this.structuraColorToolStripMenuItem.DropDown = this.colorMenu;
             this.structuraColorToolStripMenuItem.Name = "structuraColorToolStripMenuItem";
             this.structuraColorToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.structuraColorToolStripMenuItem.Text = "Выделить структуру";
             this.structuraColorToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.structuraColorToolStripMenuItem_DropDownItemClicked);
             // 
-            // drawingColorToolStripMenuItem
+            // colorMenu
             // 
-            this.drawingColorToolStripMenuItem.Name = "drawingColorToolStripMenuItem";
-            this.drawingColorToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.drawingColorToolStripMenuItem.Text = "Выделить чертёж";
-            this.drawingColorToolStripMenuItem.Click += new System.EventHandler(this.выделитьToolStripMenuItem_Click);
+            this.colorMenu.Name = "colorMenu";
+            this.colorMenu.OwnerItem = this.drawingColorToolStripMenuItem;
+            this.colorMenu.Size = new System.Drawing.Size(61, 4);
             // 
             // detailColorToolStripMenuItem
             // 
+            this.detailColorToolStripMenuItem.DropDown = this.colorMenu;
             this.detailColorToolStripMenuItem.Name = "detailColorToolStripMenuItem";
             this.detailColorToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.detailColorToolStripMenuItem.Text = "Выдклить деталь";
+            this.detailColorToolStripMenuItem.Text = "Выделить деталь";
+            this.detailColorToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.detailColorToolStripMenuItem_DropDownItemClicked);
+            // 
+            // drawingColorToolStripMenuItem
+            // 
+            this.drawingColorToolStripMenuItem.DropDown = this.colorMenu;
+            this.drawingColorToolStripMenuItem.Name = "drawingColorToolStripMenuItem";
+            this.drawingColorToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.drawingColorToolStripMenuItem.Text = "Выделить чертёж";
+            this.drawingColorToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.drawingColorToolStripMenuItem_DropDownItemClicked);
+            this.drawingColorToolStripMenuItem.Click += new System.EventHandler(this.выделитьToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(184, 22);
+            this.toolStripMenuItem2.Text = "123";
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(184, 22);
+            this.toolStripMenuItem3.Text = "12333";
             // 
             // imageCollection
             // 
@@ -2003,5 +2055,8 @@
         private System.Windows.Forms.ToolStripMenuItem structuraColorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem drawingColorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem detailColorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ContextMenuStrip colorMenu;
     }
 }

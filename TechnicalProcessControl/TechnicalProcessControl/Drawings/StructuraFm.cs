@@ -310,6 +310,13 @@ namespace TechnicalProcessControl
         private void drawingTreeListGrid_NodeCellStyle(object sender, DevExpress.XtraTreeList.GetCustomNodeCellStyleEventArgs e)
         {
             //TreeView view = (TreeView)sender;
+
+            //if (view.Val(e.RowHandle, "ColorName") != null)
+            //{
+            //    string currentRowColor = gv.GetRowCellValue(e.RowHandle, "ColorName").ToString();
+            //    e.Appearance.BackColor = Color.FromName(currentRowColor);
+            //}
+
             //bool checkErledigt = Convert.ToBoolean(view.GetNodeAt(e.Node, "A"));
             //if (checkErledigt)
             //    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Strikeout);
@@ -324,7 +331,8 @@ namespace TechnicalProcessControl
             //    e.Appearance.BackColor = Color.FromName(currentRowColor);
             //}
 
-
+            //drawingTreeListGrid.PostEditor();
+            //drawingTreeListGrid.BeginUpdate();
 
             var item = (DrawingsDTO)drawingTreeListGrid.GetDataRecordByNode(e.Node);
 
@@ -374,10 +382,18 @@ namespace TechnicalProcessControl
 
             if (item.CurrentLevelMenuColorId != null && e.Column.FieldName == "CurrentLevelMenu")
             {
-                e.Appearance.ForeColor = Color.FromName(item.CurrentLevelMenuColorName);
+                e.Appearance.BackColor = Color.FromName(item.CurrentLevelMenuColorName);
+            }
+            if (item.DrawingColorId != null && (e.Column.FieldName == "Number" || e.Column.FieldName == "RevisionName"))
+            {
+                e.Appearance.BackColor = Color.FromName(item.DrawingColorName);
+            }
+            if (item.MaterialColorId != null && e.Column.FieldName == "DetailName")
+            {
+                e.Appearance.BackColor = Color.FromName(item.MaterialColorName);
             }
 
-
+            //drawingTreeListGrid.EndUpdate();
 
             //if (Convert.ToBoolean(e.Node.GetValue(e.Column.FieldName == "StructuraDisable")))
             //{
@@ -585,40 +601,66 @@ namespace TechnicalProcessControl
 
         private void LoadColorsPallete()
         {
-            splashScreenManager.ShowWaitForm();
 
             journalService = Program.kernel.Get<IJournalService>();
-
             colorsPallete = journalService.GetColors().ToList();
+
+            ToolStripMenuItem[] MenuItemStructuraColor = new ToolStripMenuItem[colorsPallete.Count()];
+            ToolStripMenuItem[] MenuItemDrawingColor = new ToolStripMenuItem[colorsPallete.Count()];
+            ToolStripMenuItem[] MenuItemDetailColor = new ToolStripMenuItem[colorsPallete.Count()];
+
             for (int i = 0; i < colorsPallete.Count; i++)
             {
-                ToolStripMenuItem MenuItem = new ToolStripMenuItem()
-                {
-                    Text = colorsPallete[i].NameRus.ToString(),
-                    Image = Rgb2Bitmap(colorsPallete[i].Code.ToString()),
-                    ToolTipText = colorsPallete[i].NameRus.ToString(),
-                    Tag = colorsPallete[i].Id
-                };
-
-                //ToolStripMenuItemCustom MenuItem = new ToolStripMenuItemCustom()
+                //ToolStripMenuItem MenuItem = new ToolStripMenuItem()
                 //{
                 //    Text = colorsPallete[i].NameRus.ToString(),
                 //    Image = Rgb2Bitmap(colorsPallete[i].Code.ToString()),
                 //    ToolTipText = colorsPallete[i].NameRus.ToString(),
                 //    Tag = colorsPallete[i].Id
                 //};
-                //ToolStripMenuItemStructuraColor.Add(MenuItem);
+                //MenuItemStructuraColor[i] = MenuItem;
+                //MenuItemDrawingColor[i] = MenuItem;
+                //MenuItemDetailColor[i] = MenuItem;
 
-                //ToolStripMenuItemCustom MenuItem2 = (ToolStripMenuItemCustom)MenuItem.Clone();
+                ToolStripMenuItem MenuItem = new ToolStripMenuItem()
+                {
+                    Text = colorsPallete[i].NameRus.ToString(),
+                    Image = Rgb2Bitmap(colorsPallete[i].Code.ToString()),
+                    ToolTipText = colorsPallete[i].NameEng.ToString(),
+                    Tag = colorsPallete[i].Id
+                };
+
+                //MenuItemStructuraColor[i] = MenuItem;
+                //MenuItemDrawingColor[i] = MenuItem;
+                //MenuItemDetailColor[i] = MenuItem;
+
+                colorMenu.Items.Add(MenuItem);
+
 
                 
-                drawingColorToolStripMenuItem.DropDownItems.Add(MenuItem);
-                detailColorToolStripMenuItem.DropDownItems.Add(MenuItem);
-                structuraColorToolStripMenuItem.DropDownItems.Add(MenuItem);
+
+                
+
+
+
                 //copyPasteMenuStrip.Items[3].Add(MenuItem);
             }
 
-            splashScreenManager.CloseWaitForm();
+            //toolStripMenuItem3.DropDown.Items.AddRange(MenuItemStructuraColor);
+            //toolStripMenuItem2.DropDown.Items.AddRange(MenuItemDrawingColor);
+
+            //copyPasteMenuStrip.Items
+
+            //drawingColorToolStripMenuItem.DropDown.Items.AddRange(MenuItemDrawingColor);
+            //copyPasteMenuStrip.Items.Add(drawingColorToolStripMenuItem);
+            // detailColorToolStripMenuItem.DropDown.Items.AddRange(MenuItemDetailColor);
+            //this.toolStripMenuItem2.DropDownItems.AddRange(MenuItemDetailColor);
+            //toolStripMenuItem3.DropDownItems.AddRange(MenuItemDetailColor);
+            //copyPasteMenuStrip.Items.Add(detailColorToolStripMenuItem);
+            //structuraColorToolStripMenuItem.DropDownItems.AddRange(MenuItemStructuraColor);
+            //copyPasteMenuStrip.Items.Add(structuraColorToolStripMenuItem);
+            //copyPasteMenuStrip.D
+
         }
 
         public Bitmap Rgb2Bitmap(string HtmlRgb)
@@ -633,12 +675,29 @@ namespace TechnicalProcessControl
         private void structuraColorToolStripMenuItem_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             DrawingsDTO updateModel = ((DrawingsDTO)drawingsBS.Current);
-
             var per = Convert.ToInt16(e.ClickedItem.Tag);
             updateModel.CurrentLevelMenuColorId = Convert.ToInt16(e.ClickedItem.Tag);
             ((DrawingsDTO)drawingsBS.Current).CurrentLevelMenuColorName = e.ClickedItem.ToolTipText;
-            //((AccountOrdersDTO)ordersBS.Current).ColorId = (int)e.ClickedItem.Tag;
             drawingsBS.EndEdit();
+            drawingService.DrawingsUpdate(updateModel);
+        }
+
+        private void drawingColorToolStripMenuItem_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            DrawingsDTO updateModel = ((DrawingsDTO)drawingsBS.Current);
+            var per = Convert.ToInt16(e.ClickedItem.Tag);
+            updateModel.DrawingColorId = Convert.ToInt16(e.ClickedItem.Tag);
+            drawingTreeListGrid.Update();
+            ((DrawingsDTO)drawingsBS.Current).DrawingColorName = e.ClickedItem.ToolTipText;
+            drawingService.DrawingsUpdate(((DrawingsDTO)Item));
+        }
+
+        private void detailColorToolStripMenuItem_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            DrawingsDTO updateModel = ((DrawingsDTO)drawingsBS.Current);
+            var per = Convert.ToInt16(e.ClickedItem.Tag);
+            updateModel.MaterialColorId = Convert.ToInt16(e.ClickedItem.Tag);
+            ((DrawingsDTO)drawingsBS.Current).MaterialColorName = e.ClickedItem.ToolTipText;
             drawingService.DrawingsUpdate(updateModel);
         }
     }

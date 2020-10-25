@@ -265,11 +265,11 @@ namespace TechnicalProcessControl.BLL.Services
                               OccurrenceId = drw.OccurrenceId,
                               ReplaceDrawingId = drw.ReplaceDrawingId,
                                CurrentLevelMenuColorId = colm.Id,
-                                CurrentLevelMenuColorName = colm.Code,
+                                CurrentLevelMenuColorName = colm.NameEng,
                                  DrawingColorId = cold.Id,
-                                  DrawingColorName = cold.Code,
+                                  DrawingColorName = cold.NameEng,
                                    MaterialColorId = coldet.Id,
-                                    MaterialColorName = coldet.Code,
+                                    MaterialColorName = coldet.NameEng,
 
 
                               DrawingId = dr.Id,

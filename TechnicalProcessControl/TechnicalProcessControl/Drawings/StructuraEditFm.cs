@@ -1317,21 +1317,21 @@ namespace TechnicalProcessControl.Drawings
 
         private void numberEdit_BeforePopup(object sender, EventArgs e)
         {
-            //if (numberEdit.EditValue == null || numberEdit.EditValue == DBNull.Value)
-            //{
-            //    MessageBox.Show("Нету чертежа", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            //    return;
-            //}
-            //else
-            //{
-            //    if (MessageBox.Show("Заменить чертёж?", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            //    {
+            if (numberEdit.EditValue == null || numberEdit.EditValue == DBNull.Value)
+            {
+                MessageBox.Show("Нету чертежа", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                return;
+            }
+            else
+            {
+                if (MessageBox.Show("Заменить чертёж?", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
 
-            //    }
-            //    else
-            //        return; 
+                }
+                else
+                    return;
 
-            //}
+            }
         }
 
 
