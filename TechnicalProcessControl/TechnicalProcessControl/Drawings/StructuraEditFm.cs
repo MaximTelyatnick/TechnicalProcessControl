@@ -506,48 +506,58 @@ namespace TechnicalProcessControl.Drawings
 
         void CheckTechProcess001()
         {
-            object key = numberEdit.EditValue;
-            if (key != null && (bool)!((DrawingDTO)numberEdit.GetSelectedDataRow()).Assembly)
-            {
-                techProcessPanel.Enabled = true;
-                var selectedIndex = numberEdit.Properties.GetIndexByKeyValue(key);
-                var techProcess001 = drawingService.GetTechProcess001ByDrawingId((int)key);
-                if (techProcess001 != null)
+
+
+                object key = numberEdit.EditValue;
+                if (key != null)
                 {
-                    techProcess001BS.DataSource = drawingService.GetAllTechProcess001();
-                    techProcess001Edit.EditValue = ((TechProcess001DTO)techProcess001).Id;
-                    if ((bool)((TechProcess001DTO)techProcess001).OldTechProcess)
+                    if ((bool)!((DrawingDTO)numberEdit.GetSelectedDataRow()).Assembly)
                     {
-                        techProcess001Edit.Properties.Buttons[0].Enabled = false;
-                        techProcess001Edit.Properties.Buttons[1].Enabled = true;
-                        techProcess001Edit.Properties.Buttons[2].Enabled = true;
-                        techProcess001Edit.Properties.Buttons[3].Enabled = false;
-                        techProcess001Edit.Properties.Buttons[4].Enabled = true;
-                        
+                        techProcessPanel.Enabled = true;
+                        var selectedIndex = numberEdit.Properties.GetIndexByKeyValue(key);
+                        var techProcess001 = drawingService.GetTechProcess001ByDrawingId((int)key);
+                        if (techProcess001 != null)
+                        {
+                            techProcess001BS.DataSource = drawingService.GetAllTechProcess001();
+                            techProcess001Edit.EditValue = ((TechProcess001DTO)techProcess001).Id;
+                            if ((bool)((TechProcess001DTO)techProcess001).OldTechProcess)
+                            {
+                                techProcess001Edit.Properties.Buttons[0].Enabled = false;
+                                techProcess001Edit.Properties.Buttons[1].Enabled = true;
+                                techProcess001Edit.Properties.Buttons[2].Enabled = true;
+                                techProcess001Edit.Properties.Buttons[3].Enabled = false;
+                                techProcess001Edit.Properties.Buttons[4].Enabled = true;
+
+                            }
+                            else
+                            {
+                                techProcess001Edit.Properties.Buttons[0].Enabled = false;
+                                techProcess001Edit.Properties.Buttons[1].Enabled = true;
+                                techProcess001Edit.Properties.Buttons[2].Enabled = true;
+                                techProcess001Edit.Properties.Buttons[3].Enabled = true;
+                                techProcess001Edit.Properties.Buttons[4].Enabled = true;
+                            }
+                        }
+                        else
+                        {
+                            techProcess001Edit.EditValue = null;
+                            techProcess001Edit.Properties.Buttons[0].Enabled = true;
+                            techProcess001Edit.Properties.Buttons[1].Enabled = false;
+                            techProcess001Edit.Properties.Buttons[2].Enabled = false;
+                            techProcess001Edit.Properties.Buttons[3].Enabled = false;
+                            techProcess001Edit.Properties.Buttons[4].Enabled = false;
+                        }
                     }
                     else
                     {
-                        techProcess001Edit.Properties.Buttons[0].Enabled = false;
-                        techProcess001Edit.Properties.Buttons[1].Enabled = true;
-                        techProcess001Edit.Properties.Buttons[2].Enabled = true;
-                        techProcess001Edit.Properties.Buttons[3].Enabled = true;
-                        techProcess001Edit.Properties.Buttons[4].Enabled = true;
+                        techProcessPanel.Enabled = false;
                     }
                 }
                 else
                 {
-                    techProcess001Edit.EditValue = null;
-                    techProcess001Edit.Properties.Buttons[0].Enabled = true;
-                    techProcess001Edit.Properties.Buttons[1].Enabled = false;
-                    techProcess001Edit.Properties.Buttons[2].Enabled = false;
-                    techProcess001Edit.Properties.Buttons[3].Enabled = false;
-                    techProcess001Edit.Properties.Buttons[4].Enabled = false;
+                    techProcessPanel.Enabled = false;
                 }
-            }
-            else
-            {
-                techProcessPanel.Enabled = false;
-            }
+            
         }
 
         private void numberEdit_EditValueChanged(object sender, EventArgs e)
@@ -620,7 +630,7 @@ namespace TechnicalProcessControl.Drawings
                     }
                     else
                     {
-                        ((DrawingsDTO)Item).TechProcess001Id = null;
+                        //((DrawingsDTO)Item).TechProcess001Id = null;
                         techProcess001Edit.Properties.Buttons[0].Enabled = true;
                         techProcess001Edit.Properties.Buttons[1].Enabled = false;
                         techProcess001Edit.Properties.Buttons[2].Enabled = false;
@@ -678,6 +688,20 @@ namespace TechnicalProcessControl.Drawings
                 }
 
 
+            }
+            else
+            {
+                techProcess001Edit.EditValue = null;
+                techProcess002Edit.EditValue = null;
+                techProcess003Edit.EditValue = null;
+                techProcess004Edit.EditValue = null;
+                techProcess005Edit.EditValue = null;
+
+                techProcess001Edit.Enabled = false;
+                techProcess002Edit.Enabled = false;
+                techProcess003Edit.Enabled = false;
+                techProcess004Edit.Enabled = false;
+                techProcess005Edit.Enabled = false;
             }           
         }
 

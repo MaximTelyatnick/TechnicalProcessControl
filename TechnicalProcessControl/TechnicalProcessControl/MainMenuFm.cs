@@ -29,13 +29,21 @@ namespace TechnicalProcessControl
             this.usersDTO = usersDTO;
             documentManager.MdiParent = this;
             documentManager.View = new TabbedView();
-            userBtn.Caption = usersDTO.Name;
+            CheckUser();
 
 
             //telegram user auth
 
 
-            //CreateTimer(1000);
+                //CreateTimer(1000);
+        }
+
+        public void CheckUser()
+        {
+            if (usersDTO != null)
+                userBtn.Caption = usersDTO.Name;
+            else
+                userBtn.Caption = "Login";
         }
 
         public void CreateTimer(int seconds)
@@ -86,10 +94,28 @@ namespace TechnicalProcessControl
 
         private void navButton2_ElementClick(object sender, DevExpress.XtraBars.Navigation.NavElementEventArgs e)
         {
-            TestExcel testFm = new TestExcel();
-            testFm.Text = "Тестовая форма";
-            testFm.MdiParent = this;
-            testFm.Show();
+            using (LoginFm loginFm = new LoginFm())
+            {
+                if (loginFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    splashScreenManager.ShowWaitForm();
+
+                    DialogResult = DialogResult.OK;
+                    this.usersDTO = loginFm.Return();
+                    CheckUser();
+                    CloseAllMdiForm();
+
+                    splashScreenManager.CloseWaitForm();
+                }
+            }
+        }
+
+        void CloseAllMdiForm()
+        {
+            foreach (Form f in MdiChildren)
+            {
+                f.Close();
+            }
         }
 
         void messageWorker_DoWork(object sender, DoWorkEventArgs e)

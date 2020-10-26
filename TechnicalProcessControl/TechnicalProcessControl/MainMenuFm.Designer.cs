@@ -57,11 +57,12 @@
             this.drawingItem = new DevExpress.XtraBars.Navigation.TileNavItem();
             this.operationNameItem = new DevExpress.XtraBars.Navigation.TileNavItem();
             this.operationNumberItem = new DevExpress.XtraBars.Navigation.TileNavItem();
+            this.operationPaintMaterial = new DevExpress.XtraBars.Navigation.TileNavItem();
             this.userBtn = new DevExpress.XtraBars.Navigation.NavButton();
             this.documentManager = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
             this.tabbedView1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
             this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
-            this.operationPaintMaterial = new DevExpress.XtraBars.Navigation.TileNavItem();
+            this.splashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::TechnicalProcessControl.WaitFm), true, true);
             ((System.ComponentModel.ISupportInitialize)(this.tileNavPane)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView1)).BeginInit();
@@ -374,6 +375,25 @@
             this.operationNumberItem.Tile.Elements.Add(tileItemElement11);
             this.operationNumberItem.Tile.Name = "tileBarItem1";
             // 
+            // operationPaintMaterial
+            // 
+            this.operationPaintMaterial.Caption = "Операции по окраске";
+            this.operationPaintMaterial.Name = "operationPaintMaterial";
+            this.operationPaintMaterial.OwnerCollection = this.tileNavCategory4.Items;
+            // 
+            // 
+            // 
+            this.operationPaintMaterial.Tile.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+            this.operationPaintMaterial.Tile.AppearanceItem.Normal.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.operationPaintMaterial.Tile.AppearanceItem.Normal.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.operationPaintMaterial.Tile.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.operationPaintMaterial.Tile.AppearanceItem.Normal.Options.UseFont = true;
+            this.operationPaintMaterial.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            tileItemElement12.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image6")));
+            tileItemElement12.Text = "Операции по окраске";
+            this.operationPaintMaterial.Tile.Elements.Add(tileItemElement12);
+            this.operationPaintMaterial.Tile.Name = "tileBarItem1";
+            // 
             // userBtn
             // 
             this.userBtn.Alignment = DevExpress.XtraBars.Navigation.NavButtonAlignment.Right;
@@ -395,24 +415,9 @@
             this.imageCollection.Images.SetKeyName(0, "mail.png");
             this.imageCollection.Images.SetKeyName(1, "openmessages.png");
             // 
-            // operationPaintMaterial
+            // splashScreenManager
             // 
-            this.operationPaintMaterial.Caption = "Операции по окраске";
-            this.operationPaintMaterial.Name = "operationPaintMaterial";
-            this.operationPaintMaterial.OwnerCollection = this.tileNavCategory4.Items;
-            // 
-            // tileBarItem1
-            // 
-            this.operationPaintMaterial.Tile.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
-            this.operationPaintMaterial.Tile.AppearanceItem.Normal.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.operationPaintMaterial.Tile.AppearanceItem.Normal.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.operationPaintMaterial.Tile.AppearanceItem.Normal.Options.UseBackColor = true;
-            this.operationPaintMaterial.Tile.AppearanceItem.Normal.Options.UseFont = true;
-            this.operationPaintMaterial.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement12.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image6")));
-            tileItemElement12.Text = "Операции по окраске";
-            this.operationPaintMaterial.Tile.Elements.Add(tileItemElement12);
-            this.operationPaintMaterial.Tile.Name = "tileBarItem1";
+            this.splashScreenManager.ClosingDelay = 500;
             // 
             // MainMenuFm
             // 
@@ -455,5 +460,6 @@
         private DevExpress.XtraBars.Navigation.TileNavItem operationNameItem;
         private DevExpress.XtraBars.Navigation.TileNavItem operationNumberItem;
         private DevExpress.XtraBars.Navigation.TileNavItem operationPaintMaterial;
+        private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager;
     }
 }

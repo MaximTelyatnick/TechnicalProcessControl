@@ -17,6 +17,7 @@ namespace TechnicalProcessControl
     public partial class LoginFm : DevExpress.XtraEditors.XtraForm
     {
         public IUserService usersService;
+        public UsersDTO userDTO = new UsersDTO();
 
         public LoginFm()
         {
@@ -32,25 +33,29 @@ namespace TechnicalProcessControl
             var user = usersService.CheckUser(loginEdit.Text, passEdit.Text);
             if (user != null)
             {
-                using (MainMenuFm tmainMenuFm = new MainMenuFm((UsersDTO)user))
-                {
-                    if (tmainMenuFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                    {
-                        DialogResult = DialogResult.OK;
-                        
-                    }
-                    else if (tmainMenuFm.ShowDialog() == System.Windows.Forms.DialogResult.Retry)
-                    {
-                        DialogResult = DialogResult.OK;
-                    }
-                    else 
-                    {
-                        Close();
-                    }
-                }
+                userDTO = user;
+                DialogResult = DialogResult.OK;
+                Close();
+                //using (MainMenuFm tmainMenuFm = new MainMenuFm((UsersDTO)user))
+                //{
+                //    if (tmainMenuFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                //    {
+                //        DialogResult = DialogResult.OK;
+
+                //    }
+                //    else if (tmainMenuFm.ShowDialog() == System.Windows.Forms.DialogResult.Retry)
+                //    {
+                //        DialogResult = DialogResult.OK;
+                //    }
+                //    else 
+                //    {
+                //        Close();
+                //    }
+                //}
             }
             else
             {
+                userDTO = null;
                 MessageBox.Show("Логин или пароль не совпадают", "Ошибка авторизации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
@@ -66,5 +71,12 @@ namespace TechnicalProcessControl
             Properties.Settings.Default.Password = passEdit.Text;
             Properties.Settings.Default.Save();
         }
+        public UsersDTO Return()
+        {
+            return userDTO;
+
+        }
+
+
     }
 }
