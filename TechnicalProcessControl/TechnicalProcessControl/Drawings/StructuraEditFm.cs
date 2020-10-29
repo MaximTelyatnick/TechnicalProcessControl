@@ -34,6 +34,7 @@ namespace TechnicalProcessControl.Drawings
         private UsersDTO usersDTO;
 
         private bool FormReady = false;
+        private bool DrawingReady = false;
 
         private BindingSource drawingBS = new BindingSource();
         private BindingSource replaceDrawingBS = new BindingSource();
@@ -122,31 +123,31 @@ namespace TechnicalProcessControl.Drawings
             techProcess001Edit.Properties.DataSource = techProcess001BS;
             techProcess001Edit.Properties.ValueMember = "Id";
             techProcess001Edit.Properties.DisplayMember = "TechProcessFullName";
-            techProcess001Edit.Properties.NullText = "Немає данних";
+            techProcess001Edit.Properties.NullText = "";
 
             techProcess002BS.DataSource = drawingService.GetAllTechProcess002();
             techProcess002Edit.Properties.DataSource = techProcess002BS;
             techProcess002Edit.Properties.ValueMember = "Id";
             techProcess002Edit.Properties.DisplayMember = "TechProcessFullName";
-            techProcess002Edit.Properties.NullText = "Немає данних";
+            techProcess002Edit.Properties.NullText = "";
 
             techProcess003BS.DataSource = drawingService.GetAllTechProcess003();
             techProcess003Edit.Properties.DataSource = techProcess003BS;
             techProcess003Edit.Properties.ValueMember = "Id";
             techProcess003Edit.Properties.DisplayMember = "TechProcessFullName";
-            techProcess003Edit.Properties.NullText = "Немає данних";
+            techProcess003Edit.Properties.NullText = "";
 
             techProcess004BS.DataSource = drawingService.GetAllTechProcess004();
             techProcess004Edit.Properties.DataSource = techProcess004BS;
             techProcess004Edit.Properties.ValueMember = "Id";
             techProcess004Edit.Properties.DisplayMember = "TechProcessFullName";
-            techProcess004Edit.Properties.NullText = "Немає данних";
+            techProcess004Edit.Properties.NullText = "";
 
             techProcess005BS.DataSource = drawingService.GetAllTechProcess005();
             techProcess005Edit.Properties.DataSource = techProcess005BS;
             techProcess005Edit.Properties.ValueMember = "Id";
             techProcess005Edit.Properties.DisplayMember = "TechProcessFullName";
-            techProcess005Edit.Properties.NullText = "Немає данних";
+            techProcess005Edit.Properties.NullText = "";
 
             drawingScanList = drawingService.GetDravingScanById(((DrawingsDTO)Item).DrawingId).ToList();
             drawingsScanBS.DataSource = drawingScanList;
@@ -506,9 +507,9 @@ namespace TechnicalProcessControl.Drawings
 
         void CheckTechProcess001()
         {
-
-
-                object key = numberEdit.EditValue;
+            if (numberEdit.EditValue != DBNull.Value)
+            {
+                var key = numberEdit.EditValue;
                 if (key != null)
                 {
                     if ((bool)!((DrawingDTO)numberEdit.GetSelectedDataRow()).Assembly)
@@ -519,7 +520,7 @@ namespace TechnicalProcessControl.Drawings
                         if (techProcess001 != null)
                         {
                             techProcess001BS.DataSource = drawingService.GetAllTechProcess001();
-                            techProcess001Edit.EditValue = ((TechProcess001DTO)techProcess001).Id;
+                            //techProcess001Edit.EditValue = ((TechProcess001DTO)techProcess001).Id;
                             if ((bool)((TechProcess001DTO)techProcess001).OldTechProcess)
                             {
                                 techProcess001Edit.Properties.Buttons[0].Enabled = false;
@@ -540,7 +541,6 @@ namespace TechnicalProcessControl.Drawings
                         }
                         else
                         {
-                            techProcess001Edit.EditValue = null;
                             techProcess001Edit.Properties.Buttons[0].Enabled = true;
                             techProcess001Edit.Properties.Buttons[1].Enabled = false;
                             techProcess001Edit.Properties.Buttons[2].Enabled = false;
@@ -557,7 +557,7 @@ namespace TechnicalProcessControl.Drawings
                 {
                     techProcessPanel.Enabled = false;
                 }
-            
+            }
         }
 
         private void numberEdit_EditValueChanged(object sender, EventArgs e)
@@ -594,7 +594,7 @@ namespace TechnicalProcessControl.Drawings
 
                 if (!(bool)((DrawingDTO)numberEdit.GetSelectedDataRow()).Assembly)
                 {
-
+                    techProcessPanel.Enabled = true;
                     techProcess001Edit.Enabled = true;
                     techProcess002Edit.Enabled = true;
                     techProcess003Edit.Enabled = true;
@@ -691,18 +691,19 @@ namespace TechnicalProcessControl.Drawings
             }
             else
             {
-                techProcess001Edit.EditValue = null;
-                techProcess002Edit.EditValue = null;
-                techProcess003Edit.EditValue = null;
-                techProcess004Edit.EditValue = null;
-                techProcess005Edit.EditValue = null;
+                CheckTechProcess001();
+                //techProcess001Edit.EditValue = null;
+                //techProcess002Edit.EditValue = null;
+                //techProcess003Edit.EditValue = null;
+                //techProcess004Edit.EditValue = null;
+                //techProcess005Edit.EditValue = null;
 
-                techProcess001Edit.Enabled = false;
-                techProcess002Edit.Enabled = false;
-                techProcess003Edit.Enabled = false;
-                techProcess004Edit.Enabled = false;
-                techProcess005Edit.Enabled = false;
-            }           
+                //techProcess001Edit.Enabled = false;
+                //techProcess002Edit.Enabled = false;
+                //techProcess003Edit.Enabled = false;
+                //techProcess004Edit.Enabled = false;
+                //techProcess005Edit.Enabled = false;
+            }
         }
 
         private void numberEditPatheticCrutch()
@@ -788,7 +789,7 @@ namespace TechnicalProcessControl.Drawings
                             drawingService.DrawingDelete(((DrawingDTO)numberEdit.GetSelectedDataRow()).Id);
                             numberEdit.Properties.DataSource = drawingService.GetAllDrawing();
                             numberEdit.EditValue = null;
-                            numberEdit.Properties.NullText = "Немає данних";
+                            numberEdit.Properties.NullText = "";
                         }
 
                         break;

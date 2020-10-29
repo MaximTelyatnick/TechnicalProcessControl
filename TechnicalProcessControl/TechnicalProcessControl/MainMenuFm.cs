@@ -41,9 +41,17 @@ namespace TechnicalProcessControl
         public void CheckUser()
         {
             if (usersDTO != null)
+            {
                 userBtn.Caption = usersDTO.Name;
+                MessageBox.Show("Выполнен вход под именем пользователя: " + usersDTO.Name, "Потверждение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
+            }
             else
+            {
                 userBtn.Caption = "Login";
+                MessageBox.Show("Не выполнен вход!\nПрограмма будет использоваться в режиме просмотра.", "Потверждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            }
         }
 
         public void CreateTimer(int seconds)

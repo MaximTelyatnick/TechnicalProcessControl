@@ -493,6 +493,7 @@ namespace TechnicalProcessControl.BLL.Services
                               MaterialId = mat.Id,
                               MaterialName = mat.MaterialName,
                               
+                              
                               TH = drw.TH,
                               L = drw.L,
                               W = drw.W,
