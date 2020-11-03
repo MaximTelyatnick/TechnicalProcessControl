@@ -25,6 +25,7 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public bool? OldTechProcess { get; set; }
         public int? UserId { get; set; }
         public string UserName { get; set; }
+        public bool Active { get; set; }
 
         public int? DrawingsId { get; set; }
         public string RevisionDocumentName { get; set; }
@@ -33,6 +34,7 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         {
             this.Weight = 0;
             this.TypeId = 1;
+            this.Active = true;
         }
 
         public object Clone()

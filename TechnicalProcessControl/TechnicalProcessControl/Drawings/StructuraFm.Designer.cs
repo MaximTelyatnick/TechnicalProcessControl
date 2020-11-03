@@ -162,10 +162,8 @@
             this.удалитьСборкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.structuraColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.detailColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.drawingColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.detailColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.contractorsRibonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawingGrid)).BeginInit();
@@ -1810,11 +1808,9 @@
             this.удалитьСборкуToolStripMenuItem,
             this.structuraColorToolStripMenuItem,
             this.drawingColorToolStripMenuItem,
-            this.detailColorToolStripMenuItem,
-            this.toolStripMenuItem2,
-            this.toolStripMenuItem3});
+            this.detailColorToolStripMenuItem});
             this.copyPasteMenuStrip.Name = "copyPasteMenuStrip";
-            this.copyPasteMenuStrip.Size = new System.Drawing.Size(185, 180);
+            this.copyPasteMenuStrip.Size = new System.Drawing.Size(185, 136);
             // 
             // copyMenuItem
             // 
@@ -1848,16 +1844,7 @@
             // colorMenu
             // 
             this.colorMenu.Name = "colorMenu";
-            this.colorMenu.OwnerItem = this.drawingColorToolStripMenuItem;
             this.colorMenu.Size = new System.Drawing.Size(61, 4);
-            // 
-            // detailColorToolStripMenuItem
-            // 
-            this.detailColorToolStripMenuItem.DropDown = this.colorMenu;
-            this.detailColorToolStripMenuItem.Name = "detailColorToolStripMenuItem";
-            this.detailColorToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.detailColorToolStripMenuItem.Text = "Выделить деталь";
-            this.detailColorToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.detailColorToolStripMenuItem_DropDownItemClicked);
             // 
             // drawingColorToolStripMenuItem
             // 
@@ -1868,17 +1855,13 @@
             this.drawingColorToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.drawingColorToolStripMenuItem_DropDownItemClicked);
             this.drawingColorToolStripMenuItem.Click += new System.EventHandler(this.выделитьToolStripMenuItem_Click);
             // 
-            // toolStripMenuItem2
+            // detailColorToolStripMenuItem
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(184, 22);
-            this.toolStripMenuItem2.Text = "123";
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(184, 22);
-            this.toolStripMenuItem3.Text = "12333";
+            this.detailColorToolStripMenuItem.DropDown = this.colorMenu;
+            this.detailColorToolStripMenuItem.Name = "detailColorToolStripMenuItem";
+            this.detailColorToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.detailColorToolStripMenuItem.Text = "Выделить деталь";
+            this.detailColorToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.detailColorToolStripMenuItem_DropDownItemClicked);
             // 
             // imageCollection
             // 
@@ -2055,8 +2038,6 @@
         private System.Windows.Forms.ToolStripMenuItem structuraColorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem drawingColorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem detailColorToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ContextMenuStrip colorMenu;
     }
 }

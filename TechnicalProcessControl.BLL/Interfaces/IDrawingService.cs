@@ -57,6 +57,8 @@ namespace TechnicalProcessControl.BLL.Interfaces
 
 
         IEnumerable<TechProcess001DTO> GetAllTechProcess001Revision(int techProcessId);
+        IEnumerable<TechProcess001DTO> GetAllTechProcess001RevisionSetActive(int techProcessId, bool setActive);
+        IEnumerable<TechProcess001DTO> GetAllTechProcess001RevisionWithActualTechprocess(int techProcessId);
         IEnumerable<TechProcess001DTO> GetAllTechProcess001();
         
         IEnumerable<TechProcess001DTO> GetAllTechProcessActual001();
