@@ -32,6 +32,7 @@ namespace TechnicalProcessControl.BLL.Services
         private IRepository<TechProcess004> techProcess004;
         private IRepository<TechProcess005> techProcess005;
         private IRepository<Drawing> drawing;
+        private IRepository<Drawing> drawingTech;
         private IRepository<Drawing> drawingChild;
         private IRepository<Drawing> replacementDrawing;
         private IRepository<Drawing> firstUseDrawing;
@@ -65,6 +66,7 @@ namespace TechnicalProcessControl.BLL.Services
             techProcess004 = Database.GetRepository<TechProcess004>();
             techProcess005 = Database.GetRepository<TechProcess005>();
             drawing = Database.GetRepository<Drawing>();
+            drawingTech = Database.GetRepository<Drawing>();
             drawingChild = Database.GetRepository<Drawing>();
             replacementDrawing = Database.GetRepository<Drawing>();
             firstUseDrawing = Database.GetRepository<Drawing>();
@@ -137,6 +139,8 @@ namespace TechnicalProcessControl.BLL.Services
                           from det in dett.DefaultIfEmpty()
                           join mat in materials.GetAll() on dr.MaterialId equals mat.Id into matt
                           from mat in matt.DefaultIfEmpty()
+                          
+
                           join tcp001 in techProcess001.GetAll() on dr.Id equals tcp001.DrawingId into tcpp001
                           from tcp001 in tcpp001.DefaultIfEmpty()
                           join tcp002 in techProcess002.GetAll() on dr.Id equals tcp002.DrawingId into tcpp002
@@ -176,17 +180,17 @@ namespace TechnicalProcessControl.BLL.Services
                               DrawingId = dr.Id,
                               OccurrenceId = drw.OccurrenceId,
                               ReplaceDrawingId = drw.ReplaceDrawingId,
-                              TechProcess001Id = tcp001.Active? tcp001.Id: (int?)null,
+                              TechProcess001Id = tcp001.Id,
                               TechProcess002Id = tcp002.Id,
                               TechProcess003Id = tcp003.Id,
                               TechProcess004Id = tcp004.Id,
                               TechProcess005Id = tcp005.Id,
-                              TechProcess001Name = tcp001.Active ? tcp001.TechProcessName: (long?)null,
+                              TechProcess001Name = tcp001.TechProcessName,
                               TechProcess002Name = tcp002.TechProcessName,
                               TechProcess003Name = tcp003.TechProcessName,
                               TechProcess004Name = tcp004.TechProcessName,
                               TechProcess005Name = tcp005.TechProcessName,
-                              TechProcess001Path = tcp001.Active ? tcp001.TechProcessPath:"",
+                              TechProcess001Path = tcp001.TechProcessPath,
                               TechProcess002Path = tcp002.TechProcessPath,
                               TechProcess003Path = tcp003.TechProcessPath,
                               TechProcess004Path = tcp004.TechProcessPath,
@@ -219,7 +223,8 @@ namespace TechnicalProcessControl.BLL.Services
                           from mat in matt.DefaultIfEmpty()
                           join tcp001 in techProcess001.GetAll() on dr.Id equals tcp001.DrawingId into tcpp001
                           from tcp001 in tcpp001.DefaultIfEmpty()
-                          //join tcp001 in techProcess001.GetAll() on dr.Id equals tcp001.DrawingId
+
+                              //join tcp001 in techProcess001.GetAll() on dr.Id equals tcp001.DrawingId
                           join rev001 in revisionsTechProcess001.GetAll() on tcp001.RevisionId equals rev001.Id into revv001
                           from rev001 in revv001.DefaultIfEmpty()
                           join tcp002 in techProcess002.GetAll() on dr.Id equals tcp002.DrawingId into tcpp002
@@ -251,8 +256,9 @@ namespace TechnicalProcessControl.BLL.Services
                           join coldet in colorsDetail.GetAll() on drw.MaterialColorId equals coldet.Id into coldett
                           from coldet in coldett.DefaultIfEmpty()
 
-                          where ((tcp001.ParentId == null || tcp001.Id == null) && (tcp001.Active)) && tcp002.ParentId == null && tcp003.ParentId == null && tcp004.ParentId == null && tcp005.ParentId == null 
-                           
+                              // where ((tcp001.ParentId == null && tcp001.Id==1 && tcp001.DrawingId == null) || (tcp001.ParentId == null && tcp001.DrawingId != null)) && tcp002.ParentId == null && tcp003.ParentId == null && tcp004.ParentId == null && tcp005.ParentId == null
+                          where (tcp001.ParentId == null  && tcp002.ParentId == null && tcp003.ParentId == null && tcp004.ParentId == null && tcp005.ParentId == null
+                          )
                           //orderby drw.CurrentLevelMenu
 
                           select new DrawingsDTO
@@ -291,16 +297,16 @@ namespace TechnicalProcessControl.BLL.Services
 
 
 
-                              TechProcess001Id = tcp001.Id,
-                              TechProcess002Id = tcp002.Id,
-                              TechProcess003Id = tcp003.Id,
-                              TechProcess004Id = tcp004.Id,
-                              TechProcess005Id = tcp005.Id,
-                              TechProcess001Name = tcp001.Id != 1 ? tcp001.TechProcessName : (long?)null,
-                              TechProcess002Name = tcp002.Id != 1 ? tcp002.TechProcessName : (long?)null,
-                              TechProcess003Name = tcp003.Id != 1 ? tcp003.TechProcessName : (long?)null,
-                              TechProcess004Name = tcp004.Id != 1 ? tcp004.TechProcessName : (long?)null,
-                              TechProcess005Name = tcp005.Id != 1 ? tcp005.TechProcessName : (long?)null,
+                              TechProcess001Id = tcp001.DrawingId != null ? tcp001.Id : (int?)null,
+                              TechProcess002Id = tcp001.DrawingId != null ? tcp002.Id : (int?)null,
+                              TechProcess003Id = tcp001.DrawingId != null ? tcp003.Id : (int?)null,
+                              TechProcess004Id = tcp001.DrawingId != null ? tcp004.Id : (int?)null,
+                              TechProcess005Id = tcp001.DrawingId != null ? tcp005.Id : (int?)null,
+                              TechProcess001Name = tcp001.DrawingId != null ? tcp001.TechProcessName : (long?)null,
+                              TechProcess002Name = tcp002.DrawingId != null ? tcp002.TechProcessName : (long?)null,
+                              TechProcess003Name = tcp003.DrawingId != null ? tcp003.TechProcessName : (long?)null,
+                              TechProcess004Name = tcp004.DrawingId != null ? tcp004.TechProcessName : (long?)null,
+                              TechProcess005Name = tcp005.DrawingId != null ? tcp005.TechProcessName : (long?)null,
                               TechProcess001Path = tcp001.TechProcessPath,
                               TechProcess002Path = tcp002.TechProcessPath,
                               TechProcess003Path = tcp003.TechProcessPath,
@@ -308,11 +314,11 @@ namespace TechnicalProcessControl.BLL.Services
                               TechProcess005Path = tcp005.TechProcessPath,
                               TechProcess001Old = tcp001.OldTechProcess,
                               //TechProcess001Old = tcp002.OldTechProcess,
-                              Revision001 = rev001.Symbol,
-                              Revision002 = rev002.Symbol,
-                              Revision003 = rev003.Symbol,
-                              Revision004 = rev004.Symbol,
-                              Revision005 = rev005.Symbol,
+                              Revision001 = tcp001.DrawingId != null?rev001.Symbol : null,
+                              Revision002 = tcp002.DrawingId != null ? rev002.Symbol : null,
+                              Revision003 = tcp003.DrawingId != null ? rev003.Symbol : null,
+                              Revision004 = tcp004.DrawingId != null ? rev004.Symbol : null,
+                              Revision005 = tcp005.DrawingId != null ? rev005.Symbol : null,
                               ScanId = drws.DrawingId > 0 ? 1 : 0,
                               ParentName = drp.Number != "" ? drp.Number : dr.Number,
                               TechProcess001Type = tcp001.TypeId,
@@ -366,7 +372,7 @@ namespace TechnicalProcessControl.BLL.Services
                           join drp in drawing.GetAll() on pdrw.DrawingId equals drp.Id into drpp
                           from drp in drpp.DefaultIfEmpty()
                           where drw.Id == structuraId && tcp001.ParentId == null && tcp002.ParentId == null && tcp003.ParentId == null && tcp004.ParentId == null && tcp005.ParentId == null
-                            && tcp001.Active
+                 
                           select new DrawingsDTO
                           {
                               Id = drw.Id,
@@ -794,8 +800,7 @@ namespace TechnicalProcessControl.BLL.Services
                               OldTechProcess = tcp.OldTechProcess,
                               RevisionDocumentName = tcp.RevisionDocumentName,
                               UserId = tcp.UserId,
-                              UserName = usr.Name,
-                               Active = tcp.Active
+                              UserName = usr.Name
                           }
                           ).ToList();
 
@@ -841,8 +846,7 @@ namespace TechnicalProcessControl.BLL.Services
                               OldTechProcess = tcp.OldTechProcess,
                               RevisionDocumentName = tcp.RevisionDocumentName,
                               UserId = tcp.UserId,
-                              UserName = usr.Name,
-                               Active = tcp.Active
+                              UserName = usr.Name
                           }
                           ).ToList();
 
@@ -870,7 +874,7 @@ namespace TechnicalProcessControl.BLL.Services
                           from rd in rdd.DefaultIfEmpty()
                           join usr in users.GetAll() on tcp.UserId equals usr.Id into usrr
                           from usr in usrr.DefaultIfEmpty()
-                          where tcp.DrawingId == drawingId && tcp.ParentId == null && tcp.Active
+                          where tcp.DrawingId == drawingId && tcp.ParentId == null 
                           select new TechProcess001DTO
                           {
                               Id = tcp.Id,
@@ -894,8 +898,7 @@ namespace TechnicalProcessControl.BLL.Services
                               UserId = usr.Id,
                               UserName = usr.Name,
                               OldTechProcess = tcp.OldTechProcess,
-                              RevisionDocumentName = tcp.RevisionDocumentName,
-                               Active = tcp.Active
+                              RevisionDocumentName = tcp.RevisionDocumentName
                           }
                           ).ToList();
 
@@ -935,8 +938,7 @@ namespace TechnicalProcessControl.BLL.Services
                               UserName = usr.Name,
                               TypeId = tcp.TypeId,
                               OldTechProcess = tcp.OldTechProcess,
-                              RevisionDocumentName = tcp.RevisionDocumentName,
-                              Active = tcp.Active
+                              RevisionDocumentName = tcp.RevisionDocumentName
                           }
                           ).ToList();
 
@@ -954,7 +956,7 @@ namespace TechnicalProcessControl.BLL.Services
                           from rd in rdd.DefaultIfEmpty()
                           join usr in users.GetAll() on tcp.UserId equals usr.Id into usrr
                           from usr in usrr.DefaultIfEmpty()
-                          where tcp.ParentId == null && tcp.Active
+                          where tcp.ParentId == null 
                           select new TechProcess001DTO
                           {
                               Id = tcp.Id,
@@ -977,8 +979,7 @@ namespace TechnicalProcessControl.BLL.Services
                                 UserName = usr.Name,
                                  OldTechProcess = tcp.OldTechProcess,
                                   TypeId = tcp.TypeId,
-                                 RevisionDocumentName = tcp.RevisionDocumentName,
-                              Active = tcp.Active
+                                 RevisionDocumentName = tcp.RevisionDocumentName
                           }
                           ).ToList();
 
@@ -1031,26 +1032,7 @@ namespace TechnicalProcessControl.BLL.Services
             }
         }
 
-        // получить ревизии техпроцесса 001 по Id родителя и установить active
-        public IEnumerable<TechProcess001DTO> GetAllTechProcess001RevisionSetActive(int techProcessId, bool setActive)
-        {
-            List<TechProcess001DTO> allRevisiontechProcess001 = new List<TechProcess001DTO>();
-
-            var techProcess001 = GetTechProcess001RevisionByIdFull(techProcessId);
-            if (techProcess001 == null)
-            {
-                return allRevisiontechProcess001;
-            }
-            else
-            {
-                allRevisiontechProcess001.Add(techProcess001);
-                techProcess001.Active = setActive;
-                techProcess001.TypeId = 2;
-                TechProcess001Update(techProcess001);
-                allRevisiontechProcess001 = TechProcess001Revision(techProcess001, allRevisiontechProcess001);
-                return allRevisiontechProcess001;
-            }
-        }
+        
 
         // получить  ревизии техпроцесса 001 + актуальный по Id 
         public IEnumerable<TechProcess001DTO> GetAllTechProcess001RevisionWithActualTechprocess(int techProcessId)

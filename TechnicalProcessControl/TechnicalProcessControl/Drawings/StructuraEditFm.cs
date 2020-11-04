@@ -526,7 +526,8 @@ namespace TechnicalProcessControl.Drawings
                         techProcess001Edit.Properties.Buttons[2].Enabled = true;
                         techProcess001Edit.Properties.Buttons[3].Enabled = false;
                         techProcess001Edit.Properties.Buttons[4].Enabled = true;
-                        techProcess001Edit.Properties.Buttons[4].Enabled = true;
+                        techProcess001Edit.Properties.Buttons[5].Enabled = true;
+
 
                     }
                     else
@@ -536,7 +537,7 @@ namespace TechnicalProcessControl.Drawings
                         techProcess001Edit.Properties.Buttons[2].Enabled = true;
                         techProcess001Edit.Properties.Buttons[3].Enabled = true;
                         techProcess001Edit.Properties.Buttons[4].Enabled = true;
-                        techProcess001Edit.Properties.Buttons[4].Enabled = true;
+                        techProcess001Edit.Properties.Buttons[5].Enabled = true;
                     }
                 }
                 else
@@ -546,7 +547,7 @@ namespace TechnicalProcessControl.Drawings
                     techProcess001Edit.Properties.Buttons[2].Enabled = false;
                     techProcess001Edit.Properties.Buttons[3].Enabled = false;
                     techProcess001Edit.Properties.Buttons[4].Enabled = false;
-                    techProcess001Edit.Properties.Buttons[4].Enabled = false;
+                    techProcess001Edit.Properties.Buttons[5].Enabled = false;
                 }
             }
 
@@ -1404,7 +1405,8 @@ namespace TechnicalProcessControl.Drawings
 
                             foreach (var item in techProcessWithRevision)
                             {
-                                item.Active = false;
+                                item.CopyDrawingId = item.DrawingId;
+                                item.DrawingId = null;
                                 item.TypeId = 2;
                                 drawingService.TechProcess001Update(item);
                             }

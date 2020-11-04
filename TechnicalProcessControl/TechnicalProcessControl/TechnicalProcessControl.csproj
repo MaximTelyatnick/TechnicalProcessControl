@@ -157,8 +157,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="TechnicalProcessControl.BLL">
-      <HintPath>..\..\TechnicalProcessControl.BLL\obj\Debug\TechnicalProcessControl.BLL.dll</HintPath>
+    <Reference Include="TechnicalProcessControl.BLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\TechnicalProcessControl.BLL\bin\Debug\TechnicalProcessControl.BLL.dll</HintPath>
     </Reference>
     <Reference Include="TechnicalProcessControl.DAL">
       <HintPath>..\..\TechnicalProcessControl.DAL\bin\Debug\TechnicalProcessControl.DAL.dll</HintPath>

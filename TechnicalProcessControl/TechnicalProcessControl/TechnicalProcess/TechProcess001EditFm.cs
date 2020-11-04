@@ -138,7 +138,7 @@ namespace TechnicalProcessControl
                 ((TechProcess001DTO)Item).CreateDate = DateTime.Now;
                 ((TechProcess001DTO)Item).UserId = usersDTO.Id;
                 ((TechProcess001DTO)Item).TypeId = 1;
-                ((TechProcess001DTO)Item).Active = true;
+                //((TechProcess001DTO)Item).Active = true;
 
                 if (((TechProcess001DTO)Item).RevisionId != null)
                     ((TechProcess001DTO)Item).RevisionId++;

@@ -12,6 +12,7 @@ namespace TechnicalProcessControl.DAL.Models
         [Key]
         public int Id { get; set; }
         public int? DrawingId { get; set; }
+        public int? CopyDrawingId { get; set; }
         public int? RevisionId { get; set; }
         public int? ParentId { get; set; }
         public long TechProcessName { get; set; }
@@ -27,6 +28,6 @@ namespace TechnicalProcessControl.DAL.Models
         public bool? OldTechProcess { get; set; }
         public int? UserId { get; set; }
         public string RevisionDocumentName { get; set; }
-        public bool Active { get; set; }
+        //public bool Active { get; set; }
     }
 }

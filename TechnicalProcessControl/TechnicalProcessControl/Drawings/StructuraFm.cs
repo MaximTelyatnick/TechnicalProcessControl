@@ -211,42 +211,55 @@ namespace TechnicalProcessControl
 
         private void techProcess001Repository_DoubleClick(object sender, System.EventArgs e)
         {
+                if (((DrawingsDTO)drawingsBS.Current).TechProcess001Id != null)
+                {
+                    reportService.OpenExcelFile(((DrawingsDTO)drawingsBS.Current).TechProcess001Path);
+                }
+                if (((DrawingsDTO)drawingsBS.Current).TechProcess002Id != null)
+                {
+                    reportService.OpenExcelFile(((DrawingsDTO)drawingsBS.Current).TechProcess002Path);
+                }
             
         }
 
         private void techProcess002Repository_DoubleClick(object sender, System.EventArgs e)
-        {if (((DrawingsDTO)drawingsBS.Current).TechProcess001Id != null)
-            {
-                reportService.OpenExcelFile(((DrawingsDTO)drawingsBS.Current).TechProcess001Path);
-            }
-            if (((DrawingsDTO)drawingsBS.Current).TechProcess002Id != null)
-            {
-                reportService.OpenExcelFile(((DrawingsDTO)drawingsBS.Current).TechProcess002Path);
-            }
+        {
+                if (((DrawingsDTO)drawingsBS.Current).TechProcess001Id != null)
+                {
+                    reportService.OpenExcelFile(((DrawingsDTO)drawingsBS.Current).TechProcess001Path);
+                }
+                if (((DrawingsDTO)drawingsBS.Current).TechProcess002Id != null)
+                {
+                    reportService.OpenExcelFile(((DrawingsDTO)drawingsBS.Current).TechProcess002Path);
+                }
+            
         }
 
         private void techProcess003Repository_DoubleClick(object sender, System.EventArgs e)
         {
-            if (((DrawingsDTO)drawingsBS.Current).TechProcess003Id != null)
-            {
-                reportService.OpenExcelFile(((DrawingsDTO)drawingsBS.Current).TechProcess003Path);
-            }
+                if (((DrawingsDTO)drawingsBS.Current).TechProcess003Id != null)
+                {
+                    reportService.OpenExcelFile(((DrawingsDTO)drawingsBS.Current).TechProcess003Path);
+                }
+            
         }
 
         private void techProcess004Repository_DoubleClick(object sender, System.EventArgs e)
         {
-            if (((DrawingsDTO)drawingsBS.Current).TechProcess004Id != null)
-            {
-                reportService.OpenExcelFile(((DrawingsDTO)drawingsBS.Current).TechProcess004Path);
-            }
+                if (((DrawingsDTO)drawingsBS.Current).TechProcess004Id != null)
+                {
+                    reportService.OpenExcelFile(((DrawingsDTO)drawingsBS.Current).TechProcess004Path);
+                }
+            
         }
 
         private void techProcess005Repository_DoubleClick(object sender, System.EventArgs e)
         {
-            if (((DrawingsDTO)drawingsBS.Current).TechProcess005Id != null)
-            {
-                reportService.OpenExcelFile(((DrawingsDTO)drawingsBS.Current).TechProcess005Path);
-            }
+                if (((DrawingsDTO)drawingsBS.Current).TechProcess005Id != null)
+                {
+                    reportService.OpenExcelFile(((DrawingsDTO)drawingsBS.Current).TechProcess005Path);
+                }
+            
         }
 
         #endregion
@@ -309,108 +322,112 @@ namespace TechnicalProcessControl
 
         private void drawingTreeListGrid_NodeCellStyle(object sender, DevExpress.XtraTreeList.GetCustomNodeCellStyleEventArgs e)
         {
-            //TreeView view = (TreeView)sender;
+            //////TreeView view = (TreeView)sender;
 
-            //if (view.Val(e.RowHandle, "ColorName") != null)
-            //{
-            //    string currentRowColor = gv.GetRowCellValue(e.RowHandle, "ColorName").ToString();
-            //    e.Appearance.BackColor = Color.FromName(currentRowColor);
-            //}
+            //////if (view.Val(e.RowHandle, "ColorName") != null)
+            //////{
+            //////    string currentRowColor = gv.GetRowCellValue(e.RowHandle, "ColorName").ToString();
+            //////    e.Appearance.BackColor = Color.FromName(currentRowColor);
+            //////}
 
-            //bool checkErledigt = Convert.ToBoolean(view.GetNodeAt(e.Node, "A"));
-            //if (checkErledigt)
-            //    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Strikeout);
-            //else
-            //    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Regular);
+            //////bool checkErledigt = Convert.ToBoolean(view.GetNodeAt(e.Node, "A"));
+            //////if (checkErledigt)
+            //////    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Strikeout);
+            //////else
+            //////    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Regular);
 
-            //if (e.Column.FieldName != "Budget") return;
-            //TreeView view = (TreeView)sender;
-            //if (view.C(e.RowHandle, "ColorName") != null)
-            //{
-            //    string currentRowColor = gv.GetRowCellValue(e.RowHandle, "ColorName").ToString();
-            //    e.Appearance.BackColor = Color.FromName(currentRowColor);
-            //}
+            //////if (e.Column.FieldName != "Budget") return;
+            //////TreeView view = (TreeView)sender;
+            //////if (view.C(e.RowHandle, "ColorName") != null)
+            //////{
+            //////    string currentRowColor = gv.GetRowCellValue(e.RowHandle, "ColorName").ToString();
+            //////    e.Appearance.BackColor = Color.FromName(currentRowColor);
+            //////}
 
-            //drawingTreeListGrid.PostEditor();
-            //drawingTreeListGrid.BeginUpdate();
+            //////drawingTreeListGrid.PostEditor();
+            //////drawingTreeListGrid.BeginUpdate();
 
-            var item = (DrawingsDTO)drawingTreeListGrid.GetDataRecordByNode(e.Node);
+            ////var item = (DrawingsDTO)drawingTreeListGrid.GetDataRecordByNode(e.Node);
 
-            if (item == null)
-                return;
-
-
-            if (item.StructuraDisable)
-            {
-                e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Strikeout);
-                e.Appearance.BackColor = Color.Gainsboro;
-                //e.Appearance.ForeColor = Color.White;
-                e.Appearance.FontStyleDelta = FontStyle.Bold;
-            }
-            else
-            {
-                e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Regular);
-            }
-
-            if (item.TechProcess001Id!=null && e.Column.FieldName == "TechProcess001Name")
-            {
-                switch (item.TechProcess001Type)
-                {
-                    case 1:
-                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
-                        e.Appearance.ForeColor = Color.Yellow;
-
-                        break;
-                    case 2:
-
-                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
-                        e.Appearance.ForeColor = Color.Gray;
-                        break;
-                    case 3:
-                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
-                        e.Appearance.ForeColor = Color.Green;
-                        break;
-                    case 4:
-                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
-                        e.Appearance.ForeColor = Color.Red;
-                        break;
-
-                    default:
-                        break;
-                }
-            }
-
-            if (item.CurrentLevelMenuColorId != null && e.Column.FieldName == "CurrentLevelMenu")
-            {
-                e.Appearance.BackColor = Color.FromName(item.CurrentLevelMenuColorName);
-            }
-            if (item.DrawingColorId != null && (e.Column.FieldName == "Number" || e.Column.FieldName == "RevisionName"))
-            {
-                e.Appearance.BackColor = Color.FromName(item.DrawingColorName);
-            }
-            if (item.MaterialColorId != null && e.Column.FieldName == "DetailName")
-            {
-                e.Appearance.BackColor = Color.FromName(item.MaterialColorName);
-            }
-
-            //drawingTreeListGrid.EndUpdate();
-
-            //if (Convert.ToBoolean(e.Node.GetValue(e.Column.FieldName == "StructuraDisable")))
-            //{
-            //    e.Appearance.BackColor = Color.FromArgb(80, 255, 0, 255);
-            //    e.Appearance.ForeColor = Color.White;
-            //    e.Appearance.FontStyleDelta = FontStyle.Bold;
-            //}
+            ////if (item == null)
+            ////    return;
 
 
-            //if ((bool)e.Node["StructuraDisable"])
-            //{
-            //    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Strikeout);
-            //}
-            //else
-            //{
-            //    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Regular);
-            //}
+            ////if (item.StructuraDisable)
+            ////{
+            ////    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Strikeout);
+            ////    e.Appearance.BackColor = Color.Gainsboro;
+            ////    //e.Appearance.ForeColor = Color.White;
+            ////    e.Appearance.FontStyleDelta = FontStyle.Bold;
+            ////}
+            ////else
+            ////{
+            ////    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Regular);
+            ////}
+
+            ////if (item.TechProcess001Id!=null && e.Column.FieldName == "TechProcess001Name")
+            ////{
+            ////    switch (item.TechProcess001Type)
+            ////    {
+            ////        case 1:
+            ////            e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+            ////            e.Appearance.ForeColor = Color.Black;
+
+            ////            break;
+            ////        case 2:
+
+            ////            e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+            ////            e.Appearance.ForeColor = Color.Gray;
+            ////            break;
+            ////        case 3:
+            ////            e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+            ////            e.Appearance.ForeColor = Color.Green;
+            ////            break;
+            ////        case 4:
+            ////            e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+            ////            e.Appearance.ForeColor = Color.Red;
+            ////            break;
+            ////        case 5:
+            ////            e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+            ////            e.Appearance.ForeColor = Color.Orange;
+            ////            break;
+
+            ////        default:
+            ////            break;
+            ////    }
+            ////}
+
+            ////if (item.CurrentLevelMenuColorId != null && e.Column.FieldName == "CurrentLevelMenu")
+            ////{
+            ////    e.Appearance.BackColor = Color.FromName(item.CurrentLevelMenuColorName);
+            ////}
+            ////if (item.DrawingColorId != null && (e.Column.FieldName == "Number" || e.Column.FieldName == "RevisionName"))
+            ////{
+            ////    e.Appearance.BackColor = Color.FromName(item.DrawingColorName);
+            ////}
+            ////if (item.MaterialColorId != null && e.Column.FieldName == "DetailName")
+            ////{
+            ////    e.Appearance.BackColor = Color.FromName(item.MaterialColorName);
+            ////}
+
+            //////drawingTreeListGrid.EndUpdate();
+
+            //////if (Convert.ToBoolean(e.Node.GetValue(e.Column.FieldName == "StructuraDisable")))
+            //////{
+            //////    e.Appearance.BackColor = Color.FromArgb(80, 255, 0, 255);
+            //////    e.Appearance.ForeColor = Color.White;
+            //////    e.Appearance.FontStyleDelta = FontStyle.Bold;
+            //////}
+
+
+            //////if ((bool)e.Node["StructuraDisable"])
+            //////{
+            //////    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Strikeout);
+            //////}
+            //////else
+            //////{
+            //////    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Regular);
+            //////}
 
         }
 
@@ -582,12 +599,36 @@ namespace TechnicalProcessControl
         {
             if (techProcessBand.Visible == true)
             {
+                drawingTreeListGrid.Columns[6].OptionsColumn.AllowEdit = false;
+                drawingTreeListGrid.Columns[7].OptionsColumn.AllowEdit = false;
+                drawingTreeListGrid.Columns[8].OptionsColumn.AllowEdit = false;
+                drawingTreeListGrid.Columns[9].OptionsColumn.AllowEdit = false;
+                drawingTreeListGrid.Columns[10].OptionsColumn.AllowEdit = false;
+                drawingTreeListGrid.Columns[6].OptionsColumn.AllowFocus = false;
+                drawingTreeListGrid.Columns[7].OptionsColumn.AllowFocus = false;
+                drawingTreeListGrid.Columns[8].OptionsColumn.AllowFocus = false;
+                drawingTreeListGrid.Columns[9].OptionsColumn.AllowFocus = false;
+                drawingTreeListGrid.Columns[10].OptionsColumn.AllowFocus = false;
+                //techProcess001Repository.DoubleClick -= techProcess001Repository_DoubleClick;
+
                 techProcessBand.Visible = false;
                 showTechProcessBtn.ImageOptions.Image = imageCollection.Images[2];
                 showTechProcessBtn.Caption = "Отобразить техпроцессы";
             }
             else
             {
+                drawingTreeListGrid.Columns[6].OptionsColumn.AllowEdit = true;
+                drawingTreeListGrid.Columns[7].OptionsColumn.AllowEdit = true;
+                drawingTreeListGrid.Columns[8].OptionsColumn.AllowEdit = true;
+                drawingTreeListGrid.Columns[9].OptionsColumn.AllowEdit = true;
+                drawingTreeListGrid.Columns[10].OptionsColumn.AllowEdit = true;
+                drawingTreeListGrid.Columns[6].OptionsColumn.AllowFocus = true;
+                drawingTreeListGrid.Columns[7].OptionsColumn.AllowFocus = true;
+                drawingTreeListGrid.Columns[8].OptionsColumn.AllowFocus = true;
+                drawingTreeListGrid.Columns[9].OptionsColumn.AllowFocus = true;
+                drawingTreeListGrid.Columns[10].OptionsColumn.AllowFocus = true;
+                //techProcess001Repository.DoubleClick += techProcess001Repository_DoubleClick;
+
                 techProcessBand.Visible = true;
                 showTechProcessBtn.ImageOptions.Image = imageCollection.Images[3];
                 showTechProcessBtn.Caption = "Не отображать техпроцессы";
@@ -699,6 +740,12 @@ namespace TechnicalProcessControl
             updateModel.MaterialColorId = Convert.ToInt16(e.ClickedItem.Tag);
             ((DrawingsDTO)drawingsBS.Current).MaterialColorName = e.ClickedItem.ToolTipText;
             drawingService.DrawingsUpdate(updateModel);
+        }
+
+        private void StructuraFm_Load(object sender, EventArgs e)
+        {
+            showTechProcessBtn.ImageOptions.Image = imageCollection.Images[3];
+            showTechProcessBtn.Caption = "Не отображать техпроцессы";
         }
     }
 }
