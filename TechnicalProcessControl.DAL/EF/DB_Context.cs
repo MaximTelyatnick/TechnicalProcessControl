@@ -43,6 +43,14 @@ namespace TechnicalProcessControl.DAL.EF
         public DbSet<OperationPaintMaterial> OperationPaintMaterial { get; set; }
         #endregion
 
+        #region DBSet`s proc
+        //A
+        // public DbSet<AccessScheduleEntity> AccessScheduleEntites { get; set; }
+        public DbSet<DrawingsInfo> DrawingsInfo { get; set; }
+        public DbSet<Test> Test { get; set; }
+
+        #endregion
+
 
 
 

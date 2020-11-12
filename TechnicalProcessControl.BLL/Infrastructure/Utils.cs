@@ -30,5 +30,12 @@ namespace TechnicalProcessControl.BLL.Infrastructure
             Manager,
             Admin
         };
+
+        public enum TypeViewGeneralGrid
+        {
+            Simple,
+            LaborIntensity,
+            Full
+        };
     }
 }

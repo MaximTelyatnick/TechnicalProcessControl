@@ -46,10 +46,10 @@
             this.contractorBtn = new DevExpress.XtraBars.Navigation.NavButton();
             this.tileNavCategory3 = new DevExpress.XtraBars.Navigation.TileNavCategory();
             this.TechProcess001Item = new DevExpress.XtraBars.Navigation.TileNavItem();
-            this.tileNavItem2 = new DevExpress.XtraBars.Navigation.TileNavItem();
-            this.tileNavItem3 = new DevExpress.XtraBars.Navigation.TileNavItem();
-            this.tileNavItem4 = new DevExpress.XtraBars.Navigation.TileNavItem();
-            this.tileNavItem5 = new DevExpress.XtraBars.Navigation.TileNavItem();
+            this.TechProcess002Item = new DevExpress.XtraBars.Navigation.TileNavItem();
+            this.TechProcess003Item = new DevExpress.XtraBars.Navigation.TileNavItem();
+            this.TechProcess004Item = new DevExpress.XtraBars.Navigation.TileNavItem();
+            this.TechProcess005Item = new DevExpress.XtraBars.Navigation.TileNavItem();
             this.tileNavCategory4 = new DevExpress.XtraBars.Navigation.TileNavCategory();
             this.materialItem = new DevExpress.XtraBars.Navigation.TileNavItem();
             this.tileNavItem6 = new DevExpress.XtraBars.Navigation.TileNavItem();
@@ -125,10 +125,10 @@
             this.tileNavCategory3.Glyph = ((System.Drawing.Image)(resources.GetObject("tileNavCategory3.Glyph")));
             this.tileNavCategory3.Items.AddRange(new DevExpress.XtraBars.Navigation.TileNavItem[] {
             this.TechProcess001Item,
-            this.tileNavItem2,
-            this.tileNavItem3,
-            this.tileNavItem4,
-            this.tileNavItem5});
+            this.TechProcess002Item,
+            this.TechProcess003Item,
+            this.TechProcess004Item,
+            this.TechProcess005Item});
             this.tileNavCategory3.Name = "tileNavCategory3";
             this.tileNavCategory3.OwnerCollection = null;
             // 
@@ -147,7 +147,7 @@
             // 
             // 
             // 
-            this.TechProcess001Item.Tile.AppearanceItem.Normal.BackColor = System.Drawing.Color.Salmon;
+            this.TechProcess001Item.Tile.AppearanceItem.Normal.BackColor = System.Drawing.Color.DarkGreen;
             this.TechProcess001Item.Tile.AppearanceItem.Normal.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.TechProcess001Item.Tile.AppearanceItem.Normal.ForeColor = System.Drawing.Color.White;
             this.TechProcess001Item.Tile.AppearanceItem.Normal.Options.UseBackColor = true;
@@ -158,73 +158,73 @@
             this.TechProcess001Item.Tile.Elements.Add(tileItemElement1);
             this.TechProcess001Item.Tile.Name = "tileBarItem1";
             // 
-            // tileNavItem2
+            // TechProcess002Item
             // 
-            this.tileNavItem2.Caption = "Механическая обработка";
-            this.tileNavItem2.Name = "tileNavItem2";
-            this.tileNavItem2.OwnerCollection = this.tileNavCategory3.Items;
+            this.TechProcess002Item.Caption = "Механическая обработка";
+            this.TechProcess002Item.Name = "TechProcess002Item";
+            this.TechProcess002Item.OwnerCollection = this.tileNavCategory3.Items;
             // 
             // 
             // 
-            this.tileNavItem2.Tile.AppearanceItem.Normal.BackColor = System.Drawing.Color.PeachPuff;
-            this.tileNavItem2.Tile.AppearanceItem.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tileNavItem2.Tile.AppearanceItem.Normal.Options.UseBackColor = true;
-            this.tileNavItem2.Tile.AppearanceItem.Normal.Options.UseFont = true;
-            this.tileNavItem2.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            this.TechProcess002Item.Tile.AppearanceItem.Normal.BackColor = System.Drawing.Color.SteelBlue;
+            this.TechProcess002Item.Tile.AppearanceItem.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TechProcess002Item.Tile.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.TechProcess002Item.Tile.AppearanceItem.Normal.Options.UseFont = true;
+            this.TechProcess002Item.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
             tileItemElement2.Text = "Механическая обработка";
-            this.tileNavItem2.Tile.Elements.Add(tileItemElement2);
-            this.tileNavItem2.Tile.Name = "tileBarItem2";
+            this.TechProcess002Item.Tile.Elements.Add(tileItemElement2);
+            this.TechProcess002Item.Tile.Name = "tileBarItem2";
             // 
-            // tileNavItem3
+            // TechProcess003Item
             // 
-            this.tileNavItem3.Caption = "Сборка с использованием сварки";
-            this.tileNavItem3.Name = "tileNavItem3";
-            this.tileNavItem3.OwnerCollection = this.tileNavCategory3.Items;
+            this.TechProcess003Item.Caption = "Сборка с использованием сварки";
+            this.TechProcess003Item.Name = "TechProcess003Item";
+            this.TechProcess003Item.OwnerCollection = this.tileNavCategory3.Items;
             // 
             // 
             // 
-            this.tileNavItem3.Tile.AppearanceItem.Normal.BackColor = System.Drawing.Color.Khaki;
-            this.tileNavItem3.Tile.AppearanceItem.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tileNavItem3.Tile.AppearanceItem.Normal.Options.UseBackColor = true;
-            this.tileNavItem3.Tile.AppearanceItem.Normal.Options.UseFont = true;
-            this.tileNavItem3.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            this.TechProcess003Item.Tile.AppearanceItem.Normal.BackColor = System.Drawing.Color.MediumPurple;
+            this.TechProcess003Item.Tile.AppearanceItem.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TechProcess003Item.Tile.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.TechProcess003Item.Tile.AppearanceItem.Normal.Options.UseFont = true;
+            this.TechProcess003Item.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
             tileItemElement3.Text = "Сборка с использованием сварки";
-            this.tileNavItem3.Tile.Elements.Add(tileItemElement3);
-            this.tileNavItem3.Tile.Name = "tileBarItem3";
+            this.TechProcess003Item.Tile.Elements.Add(tileItemElement3);
+            this.TechProcess003Item.Tile.Name = "tileBarItem3";
             // 
-            // tileNavItem4
+            // TechProcess004Item
             // 
-            this.tileNavItem4.Caption = "Общая сборка";
-            this.tileNavItem4.Name = "tileNavItem4";
-            this.tileNavItem4.OwnerCollection = this.tileNavCategory3.Items;
+            this.TechProcess004Item.Caption = "Общая сборка";
+            this.TechProcess004Item.Name = "TechProcess004Item";
+            this.TechProcess004Item.OwnerCollection = this.tileNavCategory3.Items;
             // 
             // 
             // 
-            this.tileNavItem4.Tile.AppearanceItem.Normal.BackColor = System.Drawing.Color.Aquamarine;
-            this.tileNavItem4.Tile.AppearanceItem.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tileNavItem4.Tile.AppearanceItem.Normal.Options.UseBackColor = true;
-            this.tileNavItem4.Tile.AppearanceItem.Normal.Options.UseFont = true;
-            this.tileNavItem4.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            this.TechProcess004Item.Tile.AppearanceItem.Normal.BackColor = System.Drawing.Color.BlueViolet;
+            this.TechProcess004Item.Tile.AppearanceItem.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TechProcess004Item.Tile.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.TechProcess004Item.Tile.AppearanceItem.Normal.Options.UseFont = true;
+            this.TechProcess004Item.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
             tileItemElement4.Text = "Общая сборка";
-            this.tileNavItem4.Tile.Elements.Add(tileItemElement4);
-            this.tileNavItem4.Tile.Name = "tileBarItem4";
+            this.TechProcess004Item.Tile.Elements.Add(tileItemElement4);
+            this.TechProcess004Item.Tile.Name = "tileBarItem4";
             // 
-            // tileNavItem5
+            // TechProcess005Item
             // 
-            this.tileNavItem5.Caption = "Подготовка поверхности и окраска";
-            this.tileNavItem5.Name = "tileNavItem5";
-            this.tileNavItem5.OwnerCollection = this.tileNavCategory3.Items;
+            this.TechProcess005Item.Caption = "Подготовка поверхности и окраска";
+            this.TechProcess005Item.Name = "TechProcess005Item";
+            this.TechProcess005Item.OwnerCollection = this.tileNavCategory3.Items;
             // 
             // 
             // 
-            this.tileNavItem5.Tile.AppearanceItem.Normal.BackColor = System.Drawing.Color.MediumTurquoise;
-            this.tileNavItem5.Tile.AppearanceItem.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tileNavItem5.Tile.AppearanceItem.Normal.Options.UseBackColor = true;
-            this.tileNavItem5.Tile.AppearanceItem.Normal.Options.UseFont = true;
-            this.tileNavItem5.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            this.TechProcess005Item.Tile.AppearanceItem.Normal.BackColor = System.Drawing.Color.Sienna;
+            this.TechProcess005Item.Tile.AppearanceItem.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TechProcess005Item.Tile.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.TechProcess005Item.Tile.AppearanceItem.Normal.Options.UseFont = true;
+            this.TechProcess005Item.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
             tileItemElement5.Text = "Подготовка поверхности и окраска";
-            this.tileNavItem5.Tile.Elements.Add(tileItemElement5);
-            this.tileNavItem5.Tile.Name = "tileBarItem5";
+            this.TechProcess005Item.Tile.Elements.Add(tileItemElement5);
+            this.TechProcess005Item.Tile.Name = "tileBarItem5";
             // 
             // tileNavCategory4
             // 
@@ -447,10 +447,10 @@
         private DevExpress.Utils.ImageCollection imageCollection;
         private DevExpress.XtraBars.Navigation.TileNavCategory tileNavCategory3;
         private DevExpress.XtraBars.Navigation.TileNavItem TechProcess001Item;
-        private DevExpress.XtraBars.Navigation.TileNavItem tileNavItem2;
-        private DevExpress.XtraBars.Navigation.TileNavItem tileNavItem3;
-        private DevExpress.XtraBars.Navigation.TileNavItem tileNavItem4;
-        private DevExpress.XtraBars.Navigation.TileNavItem tileNavItem5;
+        private DevExpress.XtraBars.Navigation.TileNavItem TechProcess002Item;
+        private DevExpress.XtraBars.Navigation.TileNavItem TechProcess003Item;
+        private DevExpress.XtraBars.Navigation.TileNavItem TechProcess004Item;
+        private DevExpress.XtraBars.Navigation.TileNavItem TechProcess005Item;
         private DevExpress.XtraBars.Navigation.TileNavCategory tileNavCategory4;
         private DevExpress.XtraBars.Navigation.TileNavItem materialItem;
         private DevExpress.XtraBars.Navigation.TileNavItem tileNavItem6;

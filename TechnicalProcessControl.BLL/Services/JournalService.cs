@@ -169,7 +169,7 @@ namespace TechnicalProcessControl.BLL.Services
         {
             try
             {
-                drawingScan.Delete(drawingScan.GetAll().FirstOrDefault(c => c.Id == id));
+                materials.Delete(materials.GetAll().FirstOrDefault(c => c.Id == id));
                 return true;
             }
             catch (Exception ex)

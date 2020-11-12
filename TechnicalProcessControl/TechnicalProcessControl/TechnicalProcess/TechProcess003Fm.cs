@@ -10,31 +10,31 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using TechnicalProcessControl.BLL.Interfaces;
 using TechnicalProcessControl.BLL.ModelsDTO;
-using Ninject;
 using TechnicalProcessControl.BLL.Infrastructure;
+using Ninject;
+using TechnicalProcessControl.BLL;
 
 namespace TechnicalProcessControl.TechnicalProcess
 {
-    public partial class TechProcess001Fm : DevExpress.XtraEditors.XtraForm
+    public partial class TechProcess003Fm : DevExpress.XtraEditors.XtraForm
     {
         public static IDrawingService drawingService;
         public static IReportService reportService;
 
         private UsersDTO usersDTO;
 
-        public BindingSource techProcess001BS = new BindingSource();
+        public BindingSource techProcess003BS = new BindingSource();
 
         private ObjectBase Item
         {
-            get { return techProcess001BS.Current as ObjectBase; }
+            get { return techProcess003BS.Current as ObjectBase; }
             set
             {
-                techProcess001BS.DataSource = value;
+                techProcess003BS.DataSource = value;
                 value.BeginEdit();
             }
         }
-
-        public TechProcess001Fm(UsersDTO usersDTO)
+        public TechProcess003Fm(UsersDTO usersDTO)
         {
             InitializeComponent();
 
@@ -42,8 +42,6 @@ namespace TechnicalProcessControl.TechnicalProcess
 
 
             LoadData();
-
-
         }
 
         public void LoadData()
@@ -53,9 +51,9 @@ namespace TechnicalProcessControl.TechnicalProcess
 
             splashScreenManager.ShowWaitForm();
 
-            techProcess001BS.DataSource = drawingService.GetAllTechProcess001();
+            techProcess003BS.DataSource = drawingService.GetAllTechProcess003();
 
-            techProcessTreeListGrid.DataSource = techProcess001BS;
+            techProcessTreeListGrid.DataSource = techProcess003BS;
             techProcessTreeListGrid.KeyFieldName = "Id";
             techProcessTreeListGrid.ParentFieldName = "ParentId";
             techProcessTreeListGrid.ExpandAll();
@@ -64,43 +62,9 @@ namespace TechnicalProcessControl.TechnicalProcess
             splashScreenManager.CloseWaitForm();
         }
 
-        private void deleteBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            if (((TechProcess001DTO)Item).ParentId != null)
-            {
-                MessageBox.Show("Невозможно удалить техпроцесс который не является последней ревизией.", "Подтверждение", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                return;
-            }
-
-            if (((TechProcess001DTO)Item).TechProcessName == 100010000)
-            {
-                MessageBox.Show("Невозможно удалить корневой техпроцесс.", "Подтверждение", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                return;
-            }
-
-            if (MessageBox.Show("Удалить Техпроцесс?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                if (((TechProcess001DTO)Item).DrawingId != null)
-                    if (MessageBox.Show("Техпроцесс имеет привязку чертежу, удалить техпроцесс?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                        return;
-
-
-                drawingService = Program.kernel.Get<IDrawingService>();
-
-                if (drawingService.TechProcess001Delete(((TechProcess001DTO)techProcess001BS.Current).Id))
-                {
-                    //drawingService.FileDelete(((TechProcess001DTO)Item).TechProcessPath);
-
-                    techProcessTreeListGrid.BeginUpdate();
-                    LoadData();
-                    techProcessTreeListGrid.EndUpdate();
-                }
-            }
-        }
-
         private void techProcessTreeListGrid_NodeCellStyle(object sender, DevExpress.XtraTreeList.GetCustomNodeCellStyleEventArgs e)
         {
-            var item = (TechProcess001DTO)techProcessTreeListGrid.GetDataRecordByNode(e.Node);
+            var item = (TechProcess002DTO)techProcessTreeListGrid.GetDataRecordByNode(e.Node);
 
             if (item == null)
                 return;
@@ -139,11 +103,11 @@ namespace TechnicalProcessControl.TechnicalProcess
             }
         }
 
-        private void repositoryItemTextEdit_DoubleClick(object sender, EventArgs e)
+        private void repositoryItemTextEdit_Click(object sender, EventArgs e)
         {
-            if (((TechProcess001DTO)techProcess001BS.Current).TechProcessPath != null)
+            if (((TechProcess003DTO)techProcess003BS.Current).TechProcessPath != null)
             {
-                reportService.OpenExcelFile(((TechProcess001DTO)techProcess001BS.Current).TechProcessPath);
+                reportService.OpenExcelFile(((TechProcess003DTO)techProcess003BS.Current).TechProcessPath);
             }
             else
             {
@@ -153,13 +117,49 @@ namespace TechnicalProcessControl.TechnicalProcess
 
         private void techProcessTreeListGrid_DoubleClick(object sender, EventArgs e)
         {
-            if (((TechProcess001DTO)techProcess001BS.Current).TechProcessPath != null)
+            if (((TechProcess003DTO)techProcess003BS.Current).TechProcessPath != null)
             {
-                reportService.OpenExcelFile(((TechProcess001DTO)techProcess001BS.Current).TechProcessPath);
+                reportService.OpenExcelFile(((TechProcess003DTO)techProcess003BS.Current).TechProcessPath);
             }
             else
             {
                 MessageBox.Show("Техпроцесс не имеет файла в бд. Необходимо пересоздать техпроцесс!", "ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+        }
+
+        private void deleteBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (((TechProcess003DTO)Item).ParentId != null)
+            {
+                MessageBox.Show("Невозможно удалить техпроцесс который не является последней ревизией.", "Подтверждение", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
+            if (((TechProcess003DTO)Item).TechProcessName == 100030000)
+            {
+                MessageBox.Show("Невозможно удалить корневой техпроцесс.", "Подтверждение", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
+            if (MessageBox.Show("Удалить Техпроцесс?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                if (((TechProcess003DTO)Item).DrawingId != null)
+                    if (MessageBox.Show("Техпроцесс имеет привязку чертежу, удалить техпроцесс?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                        return;
+
+
+                drawingService = Program.kernel.Get<IDrawingService>();
+
+                if (drawingService.TechProcess003Delete(((TechProcess003DTO)techProcess003BS.Current).Id))
+                {
+
+                    //drawingService.FileDelete(((TechProcess001DTO)Item).TechProcessPath);
+
+                    techProcessTreeListGrid.BeginUpdate();
+                    LoadData();
+                    techProcessTreeListGrid.EndUpdate();
+
+                }
             }
         }
     }

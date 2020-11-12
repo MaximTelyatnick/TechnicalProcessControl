@@ -80,7 +80,6 @@
     <Reference Include="DevExpress.Images.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Office.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Printing.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Printing.v18.2.Core, Version=18.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.RichEdit.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Spreadsheet.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -285,6 +284,12 @@
     <Compile Include="Journals\ScanFm.Designer.cs">
       <DependentUpon>ScanFm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TechnicalProcess\TechProcess002Fm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TechnicalProcess\TechProcess002Fm.Designer.cs">
+      <DependentUpon>TechProcess002Fm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TestExcel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -423,6 +428,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Journals\ScanFm.resx">
       <DependentUpon>ScanFm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TechnicalProcess\TechProcess002Fm.resx">
+      <DependentUpon>TechProcess002Fm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TestExcel.resx">
       <DependentUpon>TestExcel.cs</DependentUpon>

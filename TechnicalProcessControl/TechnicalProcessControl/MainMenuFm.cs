@@ -10,11 +10,13 @@ using TechnicalProcessControl.Drawings;
 using TechnicalProcessControl.BLL.ModelsDTO;
 using TechnicalProcessControl;
 using TechnicalProcessControl.TechnicalProcess;
+using System.Linq;
 
 namespace TechnicalProcessControl
 {
     public partial class MainMenuFm : DevExpress.XtraEditors.XtraForm
     {
+        public IUserService usersService;
         private UsersDTO usersDTO;
 
         public MainMenuFm(UsersDTO usersDTO)
@@ -40,6 +42,7 @@ namespace TechnicalProcessControl
 
         public void CheckUser()
         {
+            usersService = Program.kernel.Get<IUserService>();
             if (usersDTO != null)
             {
                 userBtn.Caption = usersDTO.Name;
@@ -50,7 +53,7 @@ namespace TechnicalProcessControl
             {
                 userBtn.Caption = "Login";
                 MessageBox.Show("Не выполнен вход!\nПрограмма будет использоваться в режиме просмотра.", "Потверждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
+                usersDTO = usersService.GetAllUsers().First(bdsm => bdsm.Id == 4);
             }
         }
 
@@ -181,10 +184,22 @@ namespace TechnicalProcessControl
                     break;
                 case "TechProcess001Item":
                     TechProcess001Fm techprocess001Fm = new TechProcess001Fm(usersDTO);
-                    techprocess001Fm.Text = "Техпроцессы ";
+                    techprocess001Fm.Text = "Техпроцессы 001";
                     techprocess001Fm.MdiParent = this;
                     techprocess001Fm.Show();
                     break;
+                case "TechProcess002Item":
+                    TechProcess002Fm techprocess002Fm = new TechProcess002Fm(usersDTO);
+                    techprocess002Fm.Text = "Техпроцессы 002";
+                    techprocess002Fm.MdiParent = this;
+                    techprocess002Fm.Show();
+                    break;
+                //case "TechProcess003Item":
+                //    TechProcess003Fm techprocess003Fm = new TechProcess003Fm(usersDTO);
+                //    techprocess003Fm.Text = "Техпроцессы 003";
+                //    techprocess003Fm.MdiParent = this;
+                //    techprocess003Fm.Show();
+                //    break;
                 case "operationNumberItem":
                     OperationNumberFm operationNumberFm = new OperationNumberFm();
                     operationNumberFm.Show();

@@ -461,45 +461,45 @@ namespace TechnicalProcessControl.Drawings
 
                                 #region Create revision for techprocess 003
 
-                                if (techProcess003OldDTO != null)
-                                {
-                                    if (MessageBox.Show("Для чертежа с номером " + drawingRevisionDTO.FullName + " была создана ревизия " + ((DrawingDTO)Item).Number + "_" + revisionEdit.Text +
-                                           "\nЧертёж: " + drawingRevisionDTO.FullName + " содержит техпроцесс: " + techProcess003OldDTO.TechProcessFullName +
-                                           "\nПрисвоить техпроцесс " + techProcess003OldDTO.TechProcessFullName + " новой ревизии чертежа ?"
-                                            , "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                                    {
-                                        techProcess003OldDTO.DrawingId = ((DrawingDTO)Item).Id;
-                                        drawingService.TechProcess003Update(techProcess003OldDTO);
+                                //if (techProcess003OldDTO != null)
+                                //{
+                                //    if (MessageBox.Show("Для чертежа с номером " + drawingRevisionDTO.FullName + " была создана ревизия " + ((DrawingDTO)Item).Number + "_" + revisionEdit.Text +
+                                //           "\nЧертёж: " + drawingRevisionDTO.FullName + " содержит техпроцесс: " + techProcess003OldDTO.TechProcessFullName +
+                                //           "\nПрисвоить техпроцесс " + techProcess003OldDTO.TechProcessFullName + " новой ревизии чертежа ?"
+                                //            , "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                //    {
+                                //        techProcess003OldDTO.DrawingId = ((DrawingDTO)Item).Id;
+                                //        drawingService.TechProcess003Update(techProcess003OldDTO);
 
-                                    }
+                                //    }
 
-                                    else if (MessageBox.Show("Создать ревизию техпроцесса  на основе техпроцесса " + techProcess003OldDTO.TechProcessFullName + " ?"
-                                            , "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                                    {
+                                //    else if (MessageBox.Show("Создать ревизию техпроцесса  на основе техпроцесса " + techProcess003OldDTO.TechProcessFullName + " ?"
+                                //            , "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                //    {
 
-                                        TechProcess003DTO techProcessRevisionDTO = new TechProcess003DTO();
+                                //        TechProcess003DTO techProcessRevisionDTO = new TechProcess003DTO();
 
-                                        techProcessRevisionDTO.DrawingId = ((DrawingDTO)Item).Id;
-                                        techProcessRevisionDTO.RevisionId = techProcess003OldDTO.RevisionId;
-                                        techProcessRevisionDTO.TechProcessName = techProcess003OldDTO.TechProcessName;
-                                        techProcessRevisionDTO.DrawingNumberWithRevision = ((DrawingDTO)Item).FullName;
-                                        techProcessRevisionDTO.DrawingNumber = ((DrawingDTO)Item).Number;
+                                //        techProcessRevisionDTO.DrawingId = ((DrawingDTO)Item).Id;
+                                //        techProcessRevisionDTO.RevisionId = techProcess003OldDTO.RevisionId;
+                                //        techProcessRevisionDTO.TechProcessName = techProcess003OldDTO.TechProcessName;
+                                //        techProcessRevisionDTO.DrawingNumberWithRevision = ((DrawingDTO)Item).FullName;
+                                //        techProcessRevisionDTO.DrawingNumber = ((DrawingDTO)Item).Number;
 
 
-                                        using (TechProcess003EditFm techProcess003EditFm = new TechProcess003EditFm(Utils.Operation.Custom, techProcessRevisionDTO, drawingsDTO, techProcess003OldDTO))
-                                        {
-                                            if (techProcess003EditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                                            {
-                                                DialogResult = DialogResult.OK;
-                                            }
-                                        }
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("Ревизия техпроцесса не была создана", "Создание ревизии техпроцесса", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                //        using (TechProcess003EditFm techProcess003EditFm = new TechProcess003EditFm(Utils.Operation.Custom, techProcessRevisionDTO, drawingsDTO, techProcess003OldDTO))
+                                //        {
+                                //            if (techProcess003EditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                                //            {
+                                //                DialogResult = DialogResult.OK;
+                                //            }
+                                //        }
+                                //    }
+                                //    else
+                                //    {
+                                //        MessageBox.Show("Ревизия техпроцесса не была создана", "Создание ревизии техпроцесса", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                                    }
-                                }
+                                //    }
+                                //}
 
                                 #endregion
 

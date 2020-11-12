@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TechnicalProcessControl.DAL.Interfaces;
 using TechnicalProcessControl.DAL.EF;
 using TechnicalProcessControl.DAL.Repositories;
+using System.Data.Entity.Core;
 
 namespace TerminalMKTelegramBot.Services
 {
@@ -43,6 +44,41 @@ namespace TerminalMKTelegramBot.Services
                 }
             }
             this.disposed = true;
+        }
+
+        public bool GetExecuteSqlCommand(string str)
+        {
+            try
+            {
+                db.Database.BeginTransaction();
+                db.Database.ExecuteSqlCommand(str);
+                db.SaveChanges();
+
+                //db.Database.
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+
+
+
+
+            //try
+            //{
+            //    db.Database.BeginTransaction();
+            //    db.Database.ExecuteSqlCommand(str);
+            //    db.SaveChanges();
+
+            //    //db.Database.
+            //}
+            //catch (Exception ex)
+            //{
+            //    return false;
+            //}
+
+            return true;
         }
 
         public void Dispose()

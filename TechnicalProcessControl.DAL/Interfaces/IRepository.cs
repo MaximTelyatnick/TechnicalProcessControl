@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using FirebirdSql.Data.FirebirdClient;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace TechnicalProcessControl.DAL.Interfaces
@@ -11,7 +12,7 @@ namespace TechnicalProcessControl.DAL.Interfaces
         void Update(T item);
         void Delete(T item);
         void DeleteAll(IEnumerable<T> item);
-        //IEnumerable<T> SQLExecuteProc(string executeProcString, params FbParameter[] paramArr);
+        IEnumerable<T> SQLExecuteProc(string executeProcString, params FbParameter[] paramArr);
 
 
     }

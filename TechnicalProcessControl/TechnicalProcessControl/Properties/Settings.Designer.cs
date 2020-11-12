@@ -46,5 +46,17 @@ namespace TechnicalProcessControl.Properties {
                 this["Password"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public short ViewType {
+            get {
+                return ((short)(this["ViewType"]));
+            }
+            set {
+                this["ViewType"] = value;
+            }
+        }
     }
 }

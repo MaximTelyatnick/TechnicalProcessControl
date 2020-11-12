@@ -550,65 +550,92 @@ namespace TechnicalProcessControl.Drawings
                     techProcess001Edit.Properties.Buttons[5].Enabled = false;
                 }
             }
-
-
-
-                
-            
-
-
-            //if (numberEdit.EditValue != DBNull.Value)
-            //{
-            //    var key = numberEdit.EditValue;
-            //    if (key != null)
-            //    {
-            //        if ((bool)!((DrawingDTO)numberEdit.GetSelectedDataRow()).Assembly)
-            //        {
-            //            techProcessPanel.Enabled = true;
-            //            var selectedIndex = numberEdit.Properties.GetIndexByKeyValue(key);
-            //            var techProcess001 = drawingService.GetTechProcess001ByDrawingId((int)key);
-            //            if (techProcess001 != null)
-            //            {
-            //                techProcess001BS.DataSource = drawingService.GetAllTechProcess001();
-            //                //techProcess001Edit.EditValue = ((TechProcess001DTO)techProcess001).Id;
-            //                if ((bool)((TechProcess001DTO)techProcess001).OldTechProcess)
-            //                {
-            //                    techProcess001Edit.Properties.Buttons[0].Enabled = false;
-            //                    techProcess001Edit.Properties.Buttons[1].Enabled = true;
-            //                    techProcess001Edit.Properties.Buttons[2].Enabled = true;
-            //                    techProcess001Edit.Properties.Buttons[3].Enabled = false;
-            //                    techProcess001Edit.Properties.Buttons[4].Enabled = true;
-
-            //                }
-            //                else
-            //                {
-            //                    techProcess001Edit.Properties.Buttons[0].Enabled = false;
-            //                    techProcess001Edit.Properties.Buttons[1].Enabled = true;
-            //                    techProcess001Edit.Properties.Buttons[2].Enabled = true;
-            //                    techProcess001Edit.Properties.Buttons[3].Enabled = true;
-            //                    techProcess001Edit.Properties.Buttons[4].Enabled = true;
-            //                }
-            //            }
-            //            else
-            //            {
-            //                techProcess001Edit.Properties.Buttons[0].Enabled = true;
-            //                techProcess001Edit.Properties.Buttons[1].Enabled = false;
-            //                techProcess001Edit.Properties.Buttons[2].Enabled = false;
-            //                techProcess001Edit.Properties.Buttons[3].Enabled = false;
-            //                techProcess001Edit.Properties.Buttons[4].Enabled = false;
-            //            }
-            //        }
-            //        else
-            //        {
-            //            techProcessPanel.Enabled = false;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        techProcessPanel.Enabled = false;
-            //    }
-            //}
         }
+
+        void CheckTechProcess002()
+        {
+            if (numberEdit.EditValue != DBNull.Value && numberEdit.EditValue != null && TechProcess001Ready)
+            {
+                var techProcess002 = drawingService.GetTechProcess002ByDrawingId((int)numberEdit.EditValue);
+                if (techProcess002 != null)
+                {
+                    techProcess002BS.DataSource = drawingService.GetAllTechProcess002();
+                    //techProcess001Edit.EditValue = ((TechProcess001DTO)techProcess001).Id;
+                    if ((bool)((TechProcess002DTO)techProcess002).OldTechProcess)
+                    {
+                        techProcess002Edit.Properties.Buttons[0].Enabled = false;
+                        techProcess002Edit.Properties.Buttons[1].Enabled = true;
+                        techProcess002Edit.Properties.Buttons[2].Enabled = true;
+                        techProcess002Edit.Properties.Buttons[3].Enabled = false;
+                        techProcess002Edit.Properties.Buttons[4].Enabled = true;
+                        techProcess002Edit.Properties.Buttons[5].Enabled = true;
+
+
+                    }
+                    else
+                    {
+                        techProcess002Edit.Properties.Buttons[0].Enabled = false;
+                        techProcess002Edit.Properties.Buttons[1].Enabled = true;
+                        techProcess002Edit.Properties.Buttons[2].Enabled = true;
+                        techProcess002Edit.Properties.Buttons[3].Enabled = true;
+                        techProcess002Edit.Properties.Buttons[4].Enabled = true;
+                        techProcess002Edit.Properties.Buttons[5].Enabled = true;
+                    }
+                }
+                else
+                {
+                    techProcess002Edit.Properties.Buttons[0].Enabled = true;
+                    techProcess002Edit.Properties.Buttons[1].Enabled = false;
+                    techProcess002Edit.Properties.Buttons[2].Enabled = false;
+                    techProcess002Edit.Properties.Buttons[3].Enabled = false;
+                    techProcess002Edit.Properties.Buttons[4].Enabled = false;
+                    techProcess002Edit.Properties.Buttons[5].Enabled = false;
+                }
+            }
+        }
+
+        void CheckTechProcess003()
+        {
+            if (numberEdit.EditValue != DBNull.Value && numberEdit.EditValue != null && TechProcess001Ready)
+            {
+                var techProcess003 = drawingService.GetTechProcess003ByDrawingId((int)numberEdit.EditValue);
+                if (techProcess003 != null)
+                {
+                    techProcess003BS.DataSource = drawingService.GetAllTechProcess003();
+                    //techProcess001Edit.EditValue = ((TechProcess001DTO)techProcess001).Id;
+                    if ((bool)((TechProcess003DTO)techProcess003).OldTechProcess)
+                    {
+                        techProcess003Edit.Properties.Buttons[0].Enabled = false;
+                        techProcess003Edit.Properties.Buttons[1].Enabled = true;
+                        techProcess003Edit.Properties.Buttons[2].Enabled = true;
+                        techProcess003Edit.Properties.Buttons[3].Enabled = false;
+                        techProcess003Edit.Properties.Buttons[4].Enabled = true;
+                        techProcess003Edit.Properties.Buttons[5].Enabled = true;
+
+
+                    }
+                    else
+                    {
+                        techProcess003Edit.Properties.Buttons[0].Enabled = false;
+                        techProcess003Edit.Properties.Buttons[1].Enabled = true;
+                        techProcess003Edit.Properties.Buttons[2].Enabled = true;
+                        techProcess003Edit.Properties.Buttons[3].Enabled = true;
+                        techProcess003Edit.Properties.Buttons[4].Enabled = true;
+                        techProcess003Edit.Properties.Buttons[5].Enabled = true;
+                    }
+                }
+                else
+                {
+                    techProcess003Edit.Properties.Buttons[0].Enabled = true;
+                    techProcess003Edit.Properties.Buttons[1].Enabled = false;
+                    techProcess003Edit.Properties.Buttons[2].Enabled = false;
+                    techProcess003Edit.Properties.Buttons[3].Enabled = false;
+                    techProcess003Edit.Properties.Buttons[4].Enabled = false;
+                    techProcess003Edit.Properties.Buttons[5].Enabled = false;
+                }
+            }
+        }
+
 
         private void numberEdit_EditValueChanged(object sender, EventArgs e)
         {
@@ -655,8 +682,7 @@ namespace TechnicalProcessControl.Drawings
                     var techProcess004 = drawingService.GetTechProcess004ByDrawingId((int)key);
                     var techProcess005 = drawingService.GetTechProcess005ByDrawingId((int)key);
 
-                    //CheckTechProcess001();
-                    TechProcess001Ready = false;
+                    //TechProcess001Ready = false;
                     if (techProcess001 != null)
                     {
 
@@ -667,9 +693,9 @@ namespace TechnicalProcessControl.Drawings
                         if ((bool)((TechProcess001DTO)techProcess001).OldTechProcess)
                         {
                             techProcess001Edit.Properties.Buttons[0].Enabled = false;
-                            techProcess001Edit.Properties.Buttons[1].Enabled = false;
-                            techProcess001Edit.Properties.Buttons[2].Enabled = false;
-                            techProcess001Edit.Properties.Buttons[3].Enabled = true;
+                            techProcess001Edit.Properties.Buttons[1].Enabled = true;
+                            techProcess001Edit.Properties.Buttons[2].Enabled = true;
+                            techProcess001Edit.Properties.Buttons[3].Enabled = false;
                             techProcess001Edit.Properties.Buttons[4].Enabled = true;
                             techProcess001Edit.Properties.Buttons[5].Enabled = true;
                         }
@@ -700,21 +726,73 @@ namespace TechnicalProcessControl.Drawings
                     if (techProcess002 != null)
                     {
                         techProcess002BS.DataSource = drawingService.GetAllTechProcess002();
-                        ((DrawingsDTO)Item).TechProcess002Id = ((TechProcess002DTO)techProcess002).Id;
+                        techProcess002Edit.EditValue = ((TechProcess002DTO)techProcess002).Id;
+                        //((DrawingsDTO)Item).TechProcess001Id = ((TechProcess001DTO)techProcess001).Id;
+                        if ((bool)((TechProcess002DTO)techProcess002).OldTechProcess)
+                        {
+                            techProcess002Edit.Properties.Buttons[0].Enabled = false;
+                            techProcess002Edit.Properties.Buttons[1].Enabled = true;
+                            techProcess002Edit.Properties.Buttons[2].Enabled = true;
+                            techProcess002Edit.Properties.Buttons[3].Enabled = false;
+                            techProcess002Edit.Properties.Buttons[4].Enabled = true;
+                            techProcess002Edit.Properties.Buttons[5].Enabled = true;
+                        }
+                        else
+                        {
+                            techProcess002Edit.Properties.Buttons[0].Enabled = false;
+                            techProcess002Edit.Properties.Buttons[1].Enabled = true;
+                            techProcess002Edit.Properties.Buttons[2].Enabled = true;
+                            techProcess002Edit.Properties.Buttons[3].Enabled = true;
+                            techProcess002Edit.Properties.Buttons[4].Enabled = true;
+                            techProcess002Edit.Properties.Buttons[5].Enabled = true;
+                        }
                     }
                     else
                     {
-                        ((DrawingsDTO)Item).TechProcess002Id = null;
+                        techProcess002Edit.EditValue = null;
+                        //((DrawingsDTO)Item).TechProcess001Id = null;
+                        techProcess002Edit.Properties.Buttons[0].Enabled = true;
+                        techProcess002Edit.Properties.Buttons[1].Enabled = false;
+                        techProcess002Edit.Properties.Buttons[2].Enabled = false;
+                        techProcess002Edit.Properties.Buttons[3].Enabled = false;
+                        techProcess002Edit.Properties.Buttons[4].Enabled = false;
+                        techProcess002Edit.Properties.Buttons[5].Enabled = false;
                     }
 
                     if (techProcess003 != null)
                     {
                         techProcess003BS.DataSource = drawingService.GetAllTechProcess003();
-                        ((DrawingsDTO)Item).TechProcess003Id = ((TechProcess003DTO)techProcess003).Id;
+                        techProcess003Edit.EditValue = ((TechProcess003DTO)techProcess003).Id;
+                        //((DrawingsDTO)Item).TechProcess001Id = ((TechProcess001DTO)techProcess001).Id;
+                        if ((bool)((TechProcess003DTO)techProcess003).OldTechProcess)
+                        {
+                            techProcess003Edit.Properties.Buttons[0].Enabled = false;
+                            techProcess003Edit.Properties.Buttons[1].Enabled = true;
+                            techProcess003Edit.Properties.Buttons[2].Enabled = true;
+                            techProcess003Edit.Properties.Buttons[3].Enabled = false;
+                            techProcess003Edit.Properties.Buttons[4].Enabled = true;
+                            techProcess003Edit.Properties.Buttons[5].Enabled = true;
+                        }
+                        else
+                        {
+                            techProcess003Edit.Properties.Buttons[0].Enabled = false;
+                            techProcess003Edit.Properties.Buttons[1].Enabled = true;
+                            techProcess003Edit.Properties.Buttons[2].Enabled = true;
+                            techProcess003Edit.Properties.Buttons[3].Enabled = true;
+                            techProcess003Edit.Properties.Buttons[4].Enabled = true;
+                            techProcess003Edit.Properties.Buttons[5].Enabled = true;
+                        }
                     }
                     else
                     {
-                        ((DrawingsDTO)Item).TechProcess003Id = null;
+                        techProcess003Edit.EditValue = null;
+                        //((DrawingsDTO)Item).TechProcess001Id = null;
+                        techProcess003Edit.Properties.Buttons[0].Enabled = true;
+                        techProcess003Edit.Properties.Buttons[1].Enabled = false;
+                        techProcess003Edit.Properties.Buttons[2].Enabled = false;
+                        techProcess003Edit.Properties.Buttons[3].Enabled = false;
+                        techProcess003Edit.Properties.Buttons[4].Enabled = false;
+                        techProcess003Edit.Properties.Buttons[5].Enabled = false;
                     }
 
                     if (techProcess004 != null)
@@ -1036,164 +1114,104 @@ namespace TechnicalProcessControl.Drawings
             {
                 case 0: //Додати
                     {
-                        //////////////////////////////////////////////////////////////////////
-                        //Под вопросом 
+
                         //if (drawingService.CheckDrivingChild((int)((DrawingsDTO)Item).DrawingId))
                         //{
                         //    MessageBox.Show("Сборка содержит узлы, не возможно добавить этот вид техпроцесса", "Инфо", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         //    return;
                         //}
-                        ///////////////////////////////////////////////////////////////////////
-
-
 
                         TechProcess002DTO addTechProcessDTO = new TechProcess002DTO();
-                        addTechProcessDTO.DrawingsId = ((DrawingsDTO)Item).Id;
+                        //addTechProcessDTO.DrawingsId = ((DrawingsDTO)Item).Id;
                         addTechProcessDTO.DrawingNumber = ((DrawingsDTO)Item).Number;
+                        addTechProcessDTO.DrawingNumberWithRevision = ((DrawingsDTO)Item).NumberWithRevisionName;
                         addTechProcessDTO.DrawingId = ((DrawingsDTO)Item).DrawingId;
 
-                        using (TechProcess002EditFm techProcess002EditFm = new TechProcess002EditFm(Utils.Operation.Add, addTechProcessDTO, ((DrawingsDTO)Item)))
+                        using (TechProcess002EditFm techProcess002EditFm = new TechProcess002EditFm(usersDTO, Utils.Operation.Add, addTechProcessDTO, ((DrawingsDTO)Item)))
                         {
                             if (techProcess002EditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                             {
                                 techProcess002Edit.Properties.DataSource = drawingService.GetAllTechProcess002();
-                                techProcess002Edit.Properties.ValueMember = "Id";
-                                techProcess002Edit.Properties.DisplayMember = "TechProcessFullName";
-                                techProcess002Edit.Properties.NullText = "Нету записей";
-
                                 int return_Id = techProcess002EditFm.Return().Id;
                                 techProcess002Edit.EditValue = return_Id;
+
+                                if ((bool)techProcess002EditFm.Return().OldTechProcess)
+                                {
+                                    numberEdit.Properties.Buttons[0].Enabled = false;
+                                    numberEdit.Properties.Buttons[1].Enabled = false;
+                                    numberEdit.Properties.Buttons[3].Enabled = false;
+                                }
+
                             }
                         }
                         break;
                     }
                 case 1://Редагувати
                     {
-                        //if (organisationEdit.EditValue == DBNull.Value)
-                        //    return;
-
-                        //using (OrganisationEditFm organisationEditFm = new OrganisationEditFm(Utils.Operation.Update, (ContractorsDTO)organisationEdit.GetSelectedDataRow()))
-                        //{
-                        //    if (organisationEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                        //    {
-                        //        int return_Id = organisationEditFm.Return();
-                        //        botService = Program.kernel.Get<IBotService>();
-                        //        organisationBS.DataSource = botService.GetAllContractors();
-                        //        organisationEdit.EditValue = return_Id;
-                        //    }
-                        //}
-                        break;
-                    }
-                case 2://Видалити
-                    {
-                        if (techProcess002Edit.EditValue == DBNull.Value)
+                        if (techProcess002Edit.EditValue == DBNull.Value || techProcess002Edit.EditValue == null)
                             return;
 
-                        if (MessageBox.Show("Удалить?", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        TechProcess002DTO techProcess002 = drawingService.GetTechProcess002ByDrawingId((int)((DrawingsDTO)Item).DrawingId);
+
+                        using (TechProcess002EditFm techProcess002EditFm = new TechProcess002EditFm(usersDTO, Utils.Operation.Update, techProcess002))
                         {
-                            drawingService = Program.kernel.Get<IDrawingService>();
-                            if (drawingService.TechProcess002Delete((int)((DrawingsDTO)Item).TechProcess002Id))
-                                drawingService.FileDelete(((DrawingsDTO)Item).TechProcess002Path);
-                            techProcess002Edit.EditValue = null;
-                            techProcess002Edit.Properties.NullText = "Не добавлен техпроцесс";
-                        }
-
-                        break;
-                    }
-                    //case 4://Очистити
-                    //    {
-                    //        organisationEdit.EditValue = null;
-                    //        organisationEdit.Properties.NullText = "Немає данних";
-                    //        break;
-                    //    }
-            }
-        }
-
-        private void techProcess003Edit_ButtonClick(object sender, ButtonPressedEventArgs e)
-        {
-            drawingService = Program.kernel.Get<IDrawingService>();
-            switch (e.Button.Index)
-            {
-                case 0: //Додати
-                    {
-                        if (drawingService.GetChildDrawings(((DrawingsDTO)Item)).Count() == 0)
-                        {
-                            MessageBox.Show("Сборка не содержит узлы, не возможно добавить этот вид техпроцесса", "Инфо", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            return;
-                        }
-
-                        TechProcess003DTO addTechProcessDTO = new TechProcess003DTO();
-                        addTechProcessDTO.DrawingsId = ((DrawingsDTO)Item).Id;
-                        addTechProcessDTO.DrawingNumber = ((DrawingsDTO)Item).Number;
-                        addTechProcessDTO.DrawingId = ((DrawingsDTO)Item).DrawingId;
-                        addTechProcessDTO.DrawingNumberWithRevision = ((DrawingsDTO)Item).NumberWithRevisionName;
-
-                        using (TechProcess003EditFm techProcess003EditFm = new TechProcess003EditFm(Utils.Operation.Add, addTechProcessDTO, ((DrawingsDTO)Item)))
-                        {
-                            if (techProcess003EditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                            if (techProcess002EditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                             {
-                                //////detailsBS.DataSource = journalService.GetDetails();
-                                //techProcess003Edit.Properties.DataSource = drawingService.GetAllTechProcess002();
-                                //techProcess003Edit.Properties.ValueMember = "Id";
-                                //techProcess003Edit.Properties.DisplayMember = "TechProcessFullName";
-                                //techProcess002Edit.Properties.NullText = "Нету записей";
+                                techProcess002Edit.Properties.DataSource = drawingService.GetAllTechProcess002();
+                                int return_Id = techProcess002EditFm.Return().Id;
+                                techProcess002Edit.EditValue = return_Id;
 
-                                //int return_Id = techProcess003EditFm.Return().Id;
-                                //techProcess003Edit.EditValue = return_Id;
-
-                                techProcess003Edit.Properties.DataSource = drawingService.GetAllTechProcess003();
-                                int return_Id = techProcess003EditFm.Return().Id;
-                                techProcess003Edit.EditValue = return_Id;
                             }
                         }
                         break;
                     }
-                case 1://Редагувати
-                    {
-                        //if (organisationEdit.EditValue == DBNull.Value)
-                        //    return;
-
-                        //using (OrganisationEditFm organisationEditFm = new OrganisationEditFm(Utils.Operation.Update, (ContractorsDTO)organisationEdit.GetSelectedDataRow()))
-                        //{
-                        //    if (organisationEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                        //    {
-                        //        int return_Id = organisationEditFm.Return();
-                        //        botService = Program.kernel.Get<IBotService>();
-                        //        organisationBS.DataSource = botService.GetAllContractors();
-                        //        organisationEdit.EditValue = return_Id;
-                        //    }
-                        //}
-                        break;
-                    }
                 case 2://Видалити
                     {
-                        if (techProcess003Edit.EditValue == DBNull.Value)
+                        if (techProcess002Edit.EditValue == DBNull.Value || techProcess002Edit.EditValue == null)
                             return;
 
                         if (MessageBox.Show("Удалить?", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             drawingService = Program.kernel.Get<IDrawingService>();
-                            if (drawingService.TechProcess003Delete((int)((DrawingsDTO)Item).TechProcess003Id))
-                                drawingService.FileDelete(((DrawingsDTO)Item).TechProcess003Path);
-                            techProcess003Edit.EditValue = null;
-                            techProcess003Edit.Properties.NullText = "Не добавлен техпроцесс";
+                            //получаем айди ревизии техпроцесса, чтобы потом коректно показать что у техпроцесса есть ревизия
+                            var Child = drawingService.GetTechProcess002RevisionByIdFull((int)techProcess002Edit.EditValue);
+
+                            //пробуем удалить информацию о техпроцессе в базе, если получается, удаляем файл техпроцесса в файловой БД
+                            if (drawingService.TechProcess002Delete((int)techProcess002Edit.EditValue))
+                                MessageBox.Show("Техпроцесс был успешно удалён!", "Потверждение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            else
+                                MessageBox.Show("При удалении техпроцесса возникла ошибка, возможно файл техпроцесса открыт в проводнике!", "Потверждение", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            //если у техпроцесса была ревизия, отбражаем её
+                            //CheckTechProcess001();
+
+                            if (Child != null)
+                            {
+                                techProcess002Edit.EditValue = ((TechProcess002DTO)Child).Id;
+                            }
+                            else
+                            {
+                                techProcess002Edit.EditValue = null;
+                                techProcess002Edit.Properties.NullText = "";
+                            }
                         }
 
                         break;
                     }
-
-                case 3://Ревизия
+                case 3://Создать ревизию
                     {
-                        if (techProcess003Edit.EditValue == DBNull.Value)
+                        if (techProcess002Edit.EditValue == DBNull.Value || techProcess002Edit.EditValue == null)
                             return;
 
                         drawingService = Program.kernel.Get<IDrawingService>();
-                        TechProcess003DTO techProcess003OldDTO = drawingService.GetTechProcess003ByDrawingId((int)((DrawingsDTO)Item).DrawingId);
-                        TechProcess003DTO addTechProcessRevisionDTO = new TechProcess003DTO();
+                        TechProcess002DTO techProcess002OldDTO = drawingService.GetTechProcess002ByDrawingId((int)((DrawingsDTO)Item).DrawingId);
+                        TechProcess002DTO addTechProcessRevisionDTO = new TechProcess002DTO();
+
+                        addTechProcessRevisionDTO = (TechProcess002DTO)techProcess002OldDTO.Clone();
 
                         addTechProcessRevisionDTO.DrawingId = ((DrawingsDTO)Item).DrawingId;
-                        addTechProcessRevisionDTO.RevisionId = techProcess003OldDTO.RevisionId;
-                        addTechProcessRevisionDTO.TechProcessName = techProcess003OldDTO.TechProcessName;
+                        addTechProcessRevisionDTO.RevisionId = techProcess002OldDTO.RevisionId;
+                        addTechProcessRevisionDTO.TechProcessName = techProcess002OldDTO.TechProcessName;
                         addTechProcessRevisionDTO.DrawingNumber = ((DrawingsDTO)Item).Number;
                         addTechProcessRevisionDTO.DrawingNumberWithRevision = ((DrawingsDTO)Item).NumberWithRevisionName;
 
@@ -1202,25 +1220,52 @@ namespace TechnicalProcessControl.Drawings
                         //else
                         //    addTechProcessRevisionDTO.DrawingNumber = ((DrawingsDTO)Item).Number;
 
-                        using (TechProcess003EditFm techProcess003EditFm = new TechProcess003EditFm(Utils.Operation.Custom, addTechProcessRevisionDTO, ((DrawingsDTO)Item), techProcess003OldDTO))
+                        using (TechProcess002EditFm techProcess002EditFm = new TechProcess002EditFm(usersDTO, Utils.Operation.Custom, addTechProcessRevisionDTO, ((DrawingsDTO)Item), techProcess002OldDTO))
                         {
-                            if (techProcess003EditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                            if (techProcess002EditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                             {
-                                techProcess003Edit.Properties.DataSource = drawingService.GetAllTechProcess001();
-                                int return_Id = techProcess003EditFm.Return().Id;
-                                techProcess001Edit.EditValue = return_Id;
+                                techProcess002Edit.Properties.DataSource = drawingService.GetAllTechProcess002();
+                                int return_Id = techProcess002EditFm.Return().Id;
+                                techProcess002Edit.EditValue = return_Id;
                             }
                         }
 
                         break;
                     }
+                case 4://просмотр
+                    {
+                        if (techProcess002Edit.EditValue == DBNull.Value || techProcess002Edit.EditValue == null)
+                            return;
 
-                    //case 4://Очистити
-                    //    {
-                    //        organisationEdit.EditValue = null;
-                    //        organisationEdit.Properties.NullText = "Немає данних";
-                    //        break;
-                    //    }
+                        TechProcess002DTO techProcess002 = drawingService.GetTechProcess002ByIdFull((int)techProcess002Edit.EditValue);
+
+                        TestFm testFm = new TestFm(techProcess002.TechProcessPath);
+                        testFm.Show();
+
+                        break;
+                    }
+                case 5://убрать привязку
+                    {
+                        if (techProcess002Edit.EditValue == DBNull.Value || techProcess002Edit.EditValue == null)
+                            return;
+                        if (MessageBox.Show("Отвязать техпроцесс от чертежа?", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            List<TechProcess002DTO> techProcessWithRevision = drawingService.GetAllTechProcess002RevisionWithActualTechprocess((int)techProcess002Edit.EditValue).ToList();
+
+                            foreach (var item in techProcessWithRevision)
+                            {
+                                item.CopyDrawingId = item.DrawingId;
+                                item.DrawingId = null;
+                                item.TypeId = 2;
+                                drawingService.TechProcess002Update(item);
+                            }
+
+                            techProcess002Edit.EditValue = null;
+                            techProcess002Edit.Properties.NullText = "";
+                        }
+
+                        break;
+                    }
             }
         }
 
@@ -1447,6 +1492,181 @@ namespace TechnicalProcessControl.Drawings
             //}
         }
 
+        private void techProcess002Edit_EditValueChanged(object sender, EventArgs e)
+        {
+            CheckTechProcess002();
+        }
 
+        #region TechProcess 003
+
+        private void techProcess003Edit_ButtonClick(object sender, ButtonPressedEventArgs e)
+        {
+            drawingService = Program.kernel.Get<IDrawingService>();
+            switch (e.Button.Index)
+            {
+                case 0: //Додати
+                    {
+
+                        //if (drawingService.CheckDrivingChild((int)((DrawingsDTO)Item).DrawingId))
+                        //{
+                        //    MessageBox.Show("Сборка содержит узлы, не возможно добавить этот вид техпроцесса", "Инфо", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        //    return;
+                        //}
+
+                        TechProcess003DTO addTechProcessDTO = new TechProcess003DTO();
+                        //addTechProcessDTO.DrawingsId = ((DrawingsDTO)Item).Id;
+                        addTechProcessDTO.DrawingNumber = ((DrawingsDTO)Item).Number;
+                        addTechProcessDTO.DrawingNumberWithRevision = ((DrawingsDTO)Item).NumberWithRevisionName;
+                        addTechProcessDTO.DrawingId = ((DrawingsDTO)Item).DrawingId;
+
+                        using (TechProcess003EditFm techProcess003EditFm = new TechProcess003EditFm(usersDTO, Utils.Operation.Add, addTechProcessDTO, ((DrawingsDTO)Item)))
+                        {
+                            if (techProcess003EditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                            {
+                                techProcess003Edit.Properties.DataSource = drawingService.GetAllTechProcess003();
+                                int return_Id = techProcess003EditFm.Return().Id;
+                                techProcess003Edit.EditValue = return_Id;
+
+                                if ((bool)techProcess003EditFm.Return().OldTechProcess)
+                                {
+                                    numberEdit.Properties.Buttons[0].Enabled = false;
+                                    numberEdit.Properties.Buttons[1].Enabled = false;
+                                    numberEdit.Properties.Buttons[3].Enabled = false;
+                                }
+
+                            }
+                        }
+                        break;
+                    }
+                case 1://Редагувати
+                    {
+                        if (techProcess003Edit.EditValue == DBNull.Value || techProcess003Edit.EditValue == null)
+                            return;
+
+                        TechProcess003DTO techProcess003 = drawingService.GetTechProcess003ByDrawingId((int)((DrawingsDTO)Item).DrawingId);
+
+                        using (TechProcess003EditFm techProcess003EditFm = new TechProcess003EditFm(usersDTO, Utils.Operation.Update, techProcess003))
+                        {
+                            if (techProcess003EditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                            {
+                                techProcess003Edit.Properties.DataSource = drawingService.GetAllTechProcess003();
+                                int return_Id = techProcess003EditFm.Return().Id;
+                                techProcess003Edit.EditValue = return_Id;
+
+                            }
+                        }
+                        break;
+                    }
+                case 2://Видалити
+                    {
+                        if (techProcess003Edit.EditValue == DBNull.Value || techProcess003Edit.EditValue == null)
+                            return;
+
+                        if (MessageBox.Show("Удалить?", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            drawingService = Program.kernel.Get<IDrawingService>();
+                            //получаем айди ревизии техпроцесса, чтобы потом коректно показать что у техпроцесса есть ревизия
+                            var Child = drawingService.GetTechProcess003RevisionByIdFull((int)techProcess003Edit.EditValue);
+
+                            //пробуем удалить информацию о техпроцессе в базе, если получается, удаляем файл техпроцесса в файловой БД
+                            if (drawingService.TechProcess003Delete((int)techProcess003Edit.EditValue))
+                                MessageBox.Show("Техпроцесс был успешно удалён!", "Потверждение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            else
+                                MessageBox.Show("При удалении техпроцесса возникла ошибка, возможно файл техпроцесса открыт в проводнике!", "Потверждение", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            //если у техпроцесса была ревизия, отбражаем её
+                            //CheckTechProcess001();
+
+                            if (Child != null)
+                            {
+                                techProcess003Edit.EditValue = ((TechProcess003DTO)Child).Id;
+                            }
+                            else
+                            {
+                                techProcess003Edit.EditValue = null;
+                                techProcess003Edit.Properties.NullText = "";
+                            }
+                        }
+
+                        break;
+                    }
+                case 3://Создать ревизию
+                    {
+                        if (techProcess003Edit.EditValue == DBNull.Value || techProcess003Edit.EditValue == null)
+                            return;
+
+                        drawingService = Program.kernel.Get<IDrawingService>();
+                        TechProcess003DTO techProcess003OldDTO = drawingService.GetTechProcess003ByDrawingId((int)((DrawingsDTO)Item).DrawingId);
+                        TechProcess003DTO addTechProcessRevisionDTO = new TechProcess003DTO();
+
+                        addTechProcessRevisionDTO = (TechProcess003DTO)techProcess003OldDTO.Clone();
+
+                        addTechProcessRevisionDTO.DrawingId = ((DrawingsDTO)Item).DrawingId;
+                        addTechProcessRevisionDTO.RevisionId = techProcess003OldDTO.RevisionId;
+                        addTechProcessRevisionDTO.TechProcessName = techProcess003OldDTO.TechProcessName;
+                        addTechProcessRevisionDTO.DrawingNumber = ((DrawingsDTO)Item).Number;
+                        addTechProcessRevisionDTO.DrawingNumberWithRevision = ((DrawingsDTO)Item).NumberWithRevisionName;
+
+                        //if (((DrawingsDTO)Item).RevisionName != null)
+                        //    addTechProcessRevisionDTO.DrawingNumber = ((DrawingsDTO)Item).Number;
+                        //else
+                        //    addTechProcessRevisionDTO.DrawingNumber = ((DrawingsDTO)Item).Number;
+
+                        using (TechProcess003EditFm techProcess003EditFm = new TechProcess003EditFm(usersDTO, Utils.Operation.Custom, addTechProcessRevisionDTO, ((DrawingsDTO)Item), techProcess003OldDTO))
+                        {
+                            if (techProcess003EditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                            {
+                                techProcess003Edit.Properties.DataSource = drawingService.GetAllTechProcess003();
+                                int return_Id = techProcess003EditFm.Return().Id;
+                                techProcess003Edit.EditValue = return_Id;
+                            }
+                        }
+
+                        break;
+                    }
+                case 4://просмотр
+                    {
+                        if (techProcess003Edit.EditValue == DBNull.Value || techProcess003Edit.EditValue == null)
+                            return;
+
+                        TechProcess003DTO techProcess003 = drawingService.GetTechProcess003ByIdFull((int)techProcess003Edit.EditValue);
+
+                        TestFm testFm = new TestFm(techProcess003.TechProcessPath);
+                        testFm.Show();
+
+                        break;
+                    }
+                case 5://убрать привязку
+                    {
+                        if (techProcess003Edit.EditValue == DBNull.Value || techProcess003Edit.EditValue == null)
+                            return;
+                        if (MessageBox.Show("Отвязать техпроцесс от чертежа?", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            List<TechProcess003DTO> techProcessWithRevision = drawingService.GetAllTechProcess003RevisionWithActualTechprocess((int)techProcess003Edit.EditValue).ToList();
+
+                            foreach (var item in techProcessWithRevision)
+                            {
+                                item.CopyDrawingId = item.DrawingId;
+                                item.DrawingId = null;
+                                item.TypeId = 2;
+                                drawingService.TechProcess003Update(item);
+                            }
+
+                            techProcess003Edit.EditValue = null;
+                            techProcess003Edit.Properties.NullText = "";
+                        }
+
+                        break;
+                    }
+            }
+        }
+
+
+        #endregion
+
+        private void techProcess003Edit_EditValueChanged(object sender, EventArgs e)
+        {
+            CheckTechProcess003();
+        }
     }
 }

@@ -12,6 +12,11 @@ namespace TechnicalProcessControl.BLL.Interfaces
         bool FindDublicateDrawing(DrawingDTO drawingDTO);
 
         IEnumerable<DrawingsDTO> GetAllDrawings();
+        IEnumerable<DrawingsDTO> GetAllDrawingsWithoutMaterials();
+        IEnumerable<DrawingsDTO> GetAllDrawingsWithLaborIntensity();
+        IEnumerable<DrawingsInfoDTO> GetAllDrawingsProc();
+        IEnumerable<TestDTO> TestProc();
+
         IEnumerable<DrawingDTO> GetAllDrawingActual();
         IEnumerable<DrawingsDTO> GetAllDrawingsByDrawingId(int drawingId);
 
@@ -44,8 +49,8 @@ namespace TechnicalProcessControl.BLL.Interfaces
         IEnumerable<DrawingsDTO> ReplaceDrawingIdInStructura(int replaceDrawingId, int currentDrawingId);
 
         bool CheckTechProcess001(long techProcesName);
-        bool CheckTechProcess002(string techProcesName);
-        bool CheckTechProcess003(string techProcesName);
+        bool CheckTechProcess002(long techProcesName);
+        bool CheckTechProcess003(long techProcesName);
         long GetLastTechProcess001();
         long GetLastTechProcess002();
         long GetLastTechProcess003();
@@ -59,17 +64,43 @@ namespace TechnicalProcessControl.BLL.Interfaces
         IEnumerable<TechProcess001DTO> GetAllTechProcess001Revision(int techProcessId);
         //IEnumerable<TechProcess001DTO> GetAllTechProcess001RevisionSetActive(int techProcessId, bool setActive);
         IEnumerable<TechProcess001DTO> GetAllTechProcess001RevisionWithActualTechprocess(int techProcessId);
-        IEnumerable<TechProcess001DTO> GetAllTechProcess001();
-        
+        IEnumerable<TechProcess001DTO> GetAllTechProcess001();        
         IEnumerable<TechProcess001DTO> GetAllTechProcessActual001();
 
+        TechProcess002DTO GetTechProcess002ByIdFull(int techProcess002Id);
+        IEnumerable<TechProcess002DTO> GetAllTechProcess002Simple();
+        TechProcess002DTO GetTechProcess002RevisionByIdFull(int techProcess002Id);
 
+        IEnumerable<TechProcess002DTO> GetAllTechProcess002Revision(int techProcessId);
+        IEnumerable<TechProcess002DTO> GetAllTechProcess002RevisionWithActualTechprocess(int techProcessId);
         IEnumerable<TechProcess002DTO> GetAllTechProcess002();
         IEnumerable<TechProcess002DTO> GetAllTechProcessActual002();
 
 
+
+        TechProcess003DTO GetTechProcess003ByIdFull(int techProcess003Id);
+
         IEnumerable<TechProcess003DTO> GetAllTechProcess003();
+
         IEnumerable<TechProcess003DTO> GetAllTechProcessActual003();
+
+        IEnumerable<TechProcess003DTO> GetAllTechProcess003Revision(int techProcessId);
+
+        List<TechProcess003DTO> TechProcess003Revision(TechProcess003DTO techProcess003, List<TechProcess003DTO> alltechProcessRevision);
+
+        TechProcess003DTO GetTechProcess003RevisionByIdFull(int techProcess003Id);
+
+        //получить техпроцесс 003 по айди техпроцесса с краткой информацией
+        TechProcess003DTO GetTechProcess003Simple(int techProcess003Id);
+        //получить техпроцесс 003 по айди техпроцесса с краткой информацией
+        IEnumerable<TechProcess003DTO> GetAllTechProcess003Simple();
+        // получить  ревизии техпроцесса 003 + актуальный по Id 
+        IEnumerable<TechProcess003DTO> GetAllTechProcess003RevisionWithActualTechprocess(int techProcessId);
+
+
+
+        //IEnumerable<TechProcess003DTO> GetAllTechProcess003();
+        //IEnumerable<TechProcess003DTO> GetAllTechProcessActual003();
 
 
         IEnumerable<TechProcess004DTO> GetAllTechProcess004();

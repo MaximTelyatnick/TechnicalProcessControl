@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TechnicalProcessControl.BLL.Infrastructure;
 
-namespace TechnicalProcessControl.BLL.ModelsDTO
+namespace TechnicalProcessControl.DAL.Models
 {
-    public class DrawingsDTO : ObjectBase
+    public class DrawingsInfo
     {
         //структура
+        [Key]
         public int Id { get; set; }
         public int? ParentId { get; set; }
         public string CurrentLevelMenu { get; set; }
@@ -20,7 +21,7 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public decimal? Quantity { get; set; }
         public decimal? QuantityR { get; set; }
         public decimal? QuantityL { get; set; }
-        public bool StructuraDisable { get; set; }
+        public bool? StructuraDisable { get; set; }
 
 
         //чертёж
@@ -38,7 +39,7 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public string MaterialName { get; set; }
         public string NoteName { get; set; }
         public DateTime? CreateDate { get; set; }
-        public bool? Assembly { get; set; }
+        //public bool? Assembly { get; set; }
 
 
 
@@ -53,7 +54,7 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public long? TechProcess003Name { get; set; }
         public long? TechProcess004Name { get; set; }
         public long? TechProcess005Name { get; set; }
-        public string Revision001  { get; set; }
+        public string Revision001 { get; set; }
         public string Revision002 { get; set; }
         public string Revision003 { get; set; }
         public string Revision004 { get; set; }
@@ -63,11 +64,11 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public string TechProcess003Path { get; set; }
         public string TechProcess004Path { get; set; }
         public string TechProcess005Path { get; set; }
-        public string TechProcess001PathOld { get; set; }
-        public string TechProcess002PathOld { get; set; }
-        public string TechProcess003PathOld { get; set; }
-        public string TechProcess004PathOld { get; set; }
-        public string TechProcess005PathOld { get; set; }
+        //public string TechProcess001PathOld { get; set; }
+        //public string TechProcess002PathOld { get; set; }
+        //public string TechProcess003PathOld { get; set; }
+        //public string TechProcess004PathOld { get; set; }
+        //public string TechProcess005PathOld { get; set; }
         public bool? TechProcess001Old { get; set; }
         public bool? TechProcess002Old { get; set; }
         public bool? TechProcess003Old { get; set; }
@@ -156,83 +157,5 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public decimal? LaborIntensity004Total { get; set; }
         public decimal? LaborIntensity005Total { get; set; }
         public decimal? LaborIntensityGeneralTotal { get; set; }
-
-        public DrawingsDTO()
-        {
-            this.Quantity = 0;
-            this.QuantityR = 0;
-            this.QuantityL = 0;
-            this.StructuraDisable = false;
-
-            this.Welding20Steel = 0;
-            this.Welding10 = 0;
-            this.Welding12 = 0;
-            this.Welding16 = 0;
-            this.Welding20 = 0;
-            this.GasArCO2 = 0;
-            this.GasCO3 = 0;
-            this.GasAr = 0;
-            this.WeldingElektrod = 0;
-            this.GasO2 = 0;
-            this.GasNature = 0;
-            this.GasN2 = 0;
-            this.HardKapci881 = 0;
-            this.HardKapciHs6055 = 0;
-            this.HardKapci126 = 0;
-            this.HardKapciPEPutty = 0;
-            this.HardKapci2KMS651 = 0;
-            this.DilKapci881 = 0;
-            this.DilKapci2K = 0;
-            this.DilKapci880 = 0;
-            this.PrimerKapci125 = 0;
-            this.PrimerKapci633 = 0;
-            this.EnamelKapci641 = 0;
-            this.EnamelKapci670 = 0;
-            this.EnamelKapci6030 = 0;
-            this.UniversalSikaflex527 = 0;
-            this.PuttyKapci350 = 0;
-            this.LaborIntensity001 = 0;
-            this.LaborIntensity002 = 0;
-            this.LaborIntensity003 = 0;
-            this.LaborIntensity004 = 0;
-            this.LaborIntensity005 = 0;
-            this.Welding20SteelTotal = 0;
-            this.Welding10Total = 0;
-            this.Welding12Total = 0;
-            this.Welding16Total = 0;
-            this.Welding20Total = 0;
-            this.GasArCO2Total = 0;
-            this.GasCO3Total = 0;
-            this.GasArTotal = 0;
-            this.WeldingElektrodTotal = 0;
-            this.GasO2Total = 0;
-            this.GasNatureTotal = 0;
-            this.GasN2Total = 0;
-            this.HardKapci881Total = 0;
-            this.HardKapciHs6055Total = 0;
-            this.HardKapci126Total = 0;
-            this.HardKapciPEPuttyTotal = 0;
-            this.HardKapci2KMS651Total = 0;
-            this.DilKapci881Total = 0;
-            this.DilKapci2KTotal = 0;
-            this.DilKapci880Total = 0;
-            this.PrimerKapci125Total = 0;
-            this.PrimerKapci633Total = 0;
-            this.EnamelKapci641Total = 0;
-            this.EnamelKapci670Total = 0;
-            this.EnamelKapci6030Total = 0;
-            this.UniversalSikaflex527Total = 0;
-            this.PuttyKapci350Total = 0;
-            this.LaborIntensity001Total = 0;
-            this.LaborIntensity002Total = 0;
-            this.LaborIntensity003Total = 0;
-            this.LaborIntensity004Total = 0;
-            this.LaborIntensity005Total = 0;
-        }
-
-        public object Clone()
-        {
-            return this.MemberwiseClone();
-        }
     }
-}
+    }

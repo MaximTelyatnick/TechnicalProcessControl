@@ -29,6 +29,9 @@ namespace TechnicalProcessControl
         private List<ColorsDTO> colorsPalleteMaterial = new List<ColorsDTO>();
         private List<ColorsDTO> colorsPallete = new List<ColorsDTO>();
 
+        private int viewType = 0;
+        private bool materialShow = false;
+
 
         public BindingSource drawingsBS = new BindingSource();
 
@@ -47,16 +50,30 @@ namespace TechnicalProcessControl
             switch (usersDTO.RoleId)
             {
                 case 1:
-                    //админ
+                    
+                    generalButtonRibbon.Enabled = true;
+                    functionButtonRibbon.Enabled = true;
+                    copyPasteMenuStrip.Enabled = true;
 
                     break;
                 case 2:
+                    generalButtonRibbon.Enabled = true;
+                    functionButtonRibbon.Enabled = true;
+                    copyPasteMenuStrip.Enabled = true;
                     //технолог
-
 
                     break;
                 case 3:
-                    //конструктор
+                    generalButtonRibbon.Enabled = true;
+                    functionButtonRibbon.Enabled = true;
+                    copyPasteMenuStrip.Enabled = true;
+                    break;
+                //конструктор
+                case 4:
+                    generalButtonRibbon.Enabled = false;
+                    functionButtonRibbon.Enabled = false;
+                    copyPasteMenuStrip.Enabled = false;
+                    //админ
 
                     break;
                 default:
@@ -73,9 +90,16 @@ namespace TechnicalProcessControl
 
             this.usersDTO = usersDTO;
 
+            LoadLocalSetting();
             LoadData();
 
+            UserAcces();
             LoadColorsPallete();
+        }
+
+        public void LoadLocalSetting()
+        {
+            viewType = Properties.Settings.Default.ViewType;
         }
 
         public void LoadData()
@@ -84,16 +108,168 @@ namespace TechnicalProcessControl
             reportService = Program.kernel.Get<IReportService>();
             splashScreenManager.ShowWaitForm();
 
-            drawingsList = drawingService.GetAllDrawings().OrderBy(bdsm => Convert.ToInt32(bdsm.CurrentLevelMenu.Split('.').Last())).ToList();
-            //this.drawingsList = drawingService.GetAllDrawings().ToList();
+            var drawingsListInfo = drawingService.GetAllDrawingsProc().OrderBy(bdsm => Convert.ToInt32(bdsm.CurrentLevelMenu.Split('.').Last())).ToList();
+            drawingsList = ConvertList(drawingsListInfo);
             drawingsBS.DataSource = drawingsList;
             drawingTreeListGrid.DataSource = drawingsBS;
             drawingTreeListGrid.KeyFieldName = "Id";
             drawingTreeListGrid.ParentFieldName = "ParentId";
             drawingTreeListGrid.ExpandAll();
 
-            splashScreenManager.CloseWaitForm();
+            splashScreenManager.CloseWaitForm(); 
         }
+
+        public List<DrawingsDTO> ConvertList(List<DrawingsInfoDTO> data)
+        {
+            List<DrawingsDTO> returnList = new List<DrawingsDTO>();
+            foreach (var item in data)
+            {
+                DrawingsDTO temp = new DrawingsDTO()
+                {
+                    Id = item.Id,
+                    Assembly = item.Assembly,
+                    CreateDate = item.CreateDate,
+                    CurrentLevelMenu = item.CurrentLevelMenu,
+                    CurrentLevelMenuColorId = item.CurrentLevelMenuColorId,
+                    CurrentLevelMenuColorName = item.CurrentLevelMenuColorName,
+                    DetailName = item.DetailName,
+                    DetailWeight = item.DetailWeight,
+                    DilKapci2K = item.DilKapci2K,
+                    DilKapci2KTotal = item.DilKapci2KTotal,
+                    DilKapci880 = item.DilKapci880,
+                    DilKapci880Total = item.DilKapci880Total,
+                    DilKapci881 = item.DilKapci881,
+                    DilKapci881Total = item.DilKapci881Total,
+                    DrawingColorId = item.DrawingColorId,
+                    DrawingColorName = item.DrawingColorName,
+                    DrawingId = item.DrawingId,
+                    EnamelKapci6030 = item.EnamelKapci6030,
+                    EnamelKapci6030Total = item.EnamelKapci6030Total,
+                    EnamelKapci641 = item.EnamelKapci641,
+                    EnamelKapci641Total = item.EnamelKapci641Total,
+                    EnamelKapci670 = item.EnamelKapci670,
+                    EnamelKapci670Total = item.EnamelKapci670Total,
+
+                    GasArCO2 = item.GasArCO2,
+                    GasArCO2Total = item.GasArCO2Total,
+                    GasAr = item.GasAr,
+                    GasArTotal = item.GasArTotal,
+                    GasCO3 = item.GasCO3,
+                    GasCO3Total = item.GasCO3Total,
+                    GasN2 = item.GasN2,
+                    GasN2Total = item.GasN2Total,
+                    GasNature = item.GasNature,
+                    GasNatureTotal = item.GasNatureTotal,
+                    GasO2 = item.GasO2,
+                    GasO2Total = item.GasO2Total,
+                    HardKapci126 = item.HardKapci126,
+                    HardKapci126Total = item.HardKapci126Total,
+                    HardKapci2KMS651 = item.HardKapci2KMS651,
+                    HardKapci2KMS651Total = item.HardKapci2KMS651Total,
+                    HardKapci881 = item.HardKapci881,
+                    HardKapci881Total = item.HardKapci881Total,
+                    HardKapciHs6055 = item.HardKapciHs6055,
+                    HardKapciHs6055Total = item.HardKapciHs6055Total,
+                    HardKapciPEPutty = item.HardKapciPEPutty,
+                    HardKapciPEPuttyTotal = item.HardKapciPEPuttyTotal,
+                    LaborIntensity001 = item.LaborIntensity001,
+                    LaborIntensity001Total = item.LaborIntensity001Total,
+                    L = item.L,
+                    LaborIntensity002 = item.LaborIntensity002,
+                    LaborIntensity002Total = item.LaborIntensity002Total,
+                    LaborIntensity003 = item.LaborIntensity003,
+                    LaborIntensity003Total = item.LaborIntensity003Total,
+                    LaborIntensity004 = item.LaborIntensity004,
+                    LaborIntensity004Total = item.LaborIntensity004Total,
+                    LaborIntensity005 = item.LaborIntensity005,
+                    LaborIntensity005Total = item.LaborIntensity005Total,
+                    LaborIntensityGeneral = item.LaborIntensityGeneral,
+                    LaborIntensityGeneralTotal = item.LaborIntensityGeneralTotal,
+                    MaterialColorId = item.MaterialColorId,
+                    MaterialColorName = item.MaterialColorName,
+                    MaterialName = item.MaterialName,
+                    NoteName = item.NoteName,
+                    Number = item.Number,
+                    NumberWithRevisionName = item.NumberWithRevisionName,
+                    OccurrenceId = item.OccurrenceId,
+                    ParentId = item.ParentId,
+                    ParentName = item.ParentName,
+                    PrimerKapci125 = item.PrimerKapci125,
+                    PrimerKapci125Total = item.PrimerKapci125Total,
+                    PrimerKapci633 = item.PrimerKapci633,
+                    PrimerKapci633Total = item.PrimerKapci633Total,
+                    PuttyKapci350 = item.PuttyKapci350,
+                    PuttyKapci350Total = item.PuttyKapci350Total,
+                    Quantity = item.Quantity,
+                    QuantityL = item.QuantityL,
+                    QuantityR = item.QuantityR,
+                    ReplaceDrawingId = item.ReplaceDrawingId,
+                    Revision001 = item.Revision001,
+                    Revision002 = item.Revision002,
+                    Revision003 = item.Revision003,
+                    Revision004 = item.Revision004,
+                    Revision005 = item.Revision005,
+                    RevisionName = item.RevisionName,
+                    ScanId = item.ScanId,
+                    StructuraDisable = item.StructuraDisable,
+                    TechProcess001Id = item.TechProcess001Id,
+                    TechProcess001Name = item.TechProcess001Name,
+                    TechProcess001Old = item.TechProcess001Old,
+                    TechProcess001Path = item.TechProcess001Path,
+                    TechProcess001PathOld = item.TechProcess001PathOld,
+                    TechProcess001Type = item.TechProcess001Type,
+                    TechProcess002Id = item.TechProcess002Id,
+                    TechProcess002Name = item.TechProcess002Name,
+                    TechProcess002Old = item.TechProcess002Old,
+                    TechProcess002Path = item.TechProcess002Path,
+                    TechProcess002PathOld = item.TechProcess002PathOld,
+                    TechProcess002Type = item.TechProcess002Type,
+                    TechProcess003Id = item.TechProcess003Id,
+                    TechProcess003Name = item.TechProcess003Name,
+                    TechProcess003Old = item.TechProcess003Old,
+                    TechProcess003Path = item.TechProcess003Path,
+                    TechProcess003PathOld = item.TechProcess003PathOld,
+                    TechProcess003Type = item.TechProcess003Type,
+                    TechProcess004Id = item.TechProcess004Id,
+                    TechProcess004Name = item.TechProcess004Name,
+                    TechProcess004Old = item.TechProcess004Old,
+                    TechProcess004Path = item.TechProcess004Path,
+                    TechProcess004PathOld = item.TechProcess004PathOld,
+                    TechProcess004Type = item.TechProcess004Type,
+                    TechProcess005Id = item.TechProcess005Id,
+                    TechProcess005Name = item.TechProcess005Name,
+                    TechProcess005Old = item.TechProcess005Old,
+                    TechProcess005Path = item.TechProcess005Path,
+                    TechProcess005PathOld = item.TechProcess005PathOld,
+                    TechProcess005Type = item.TechProcess005Type,
+                    TH = item.TH,
+                    TypeName = item.TypeName,
+                    UniversalSikaflex527 = item.UniversalSikaflex527,
+                    UniversalSikaflex527Total = item.UniversalSikaflex527Total,
+                    W = item.W,
+                    W2 = item.W2,
+                    Welding10 = item.Welding10,
+                    Welding10Total = item.Welding10Total,
+                    Welding12 = item.Welding12,
+                    Welding12Total = item.Welding12Total,
+                    Welding16 = item.Welding16,
+                    Welding16Total = item.Welding16Total,
+                    Welding20 = item.Welding20,
+                    Welding20Steel = item.Welding20Steel,
+                    Welding20SteelTotal = item.Welding20SteelTotal,
+                    Welding20Total = item.Welding20Total,
+                    WeldingElektrod = item.WeldingElektrod,
+                    WeldingElektrodTotal = item.WeldingElektrodTotal
+                };
+
+                returnList.Add(temp);
+
+            }
+
+            return returnList;
+        }
+
+
 
         public void EditDrawing(Utils.Operation operation, DrawingsDTO userTelegramDTO)
         {
@@ -101,8 +277,8 @@ namespace TechnicalProcessControl
             {
                 if (drawingsEditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    drawingTreeListGrid.BeginUpdate();
-                    LoadData();
+                    drawingTreeListGrid.BeginUpdate(); 
+                        LoadData();
                     drawingTreeListGrid.EndUpdate();
                 }
             }
@@ -133,7 +309,8 @@ namespace TechnicalProcessControl
                 if (drawingService.DrawingsDelete(((DrawingsDTO)drawingsBS.Current).Id))
                 {
                     drawingTreeListGrid.BeginUpdate();
-                    LoadData();
+                        LoadData();
+
                     drawingTreeListGrid.EndUpdate();
                 }
             }
@@ -143,7 +320,7 @@ namespace TechnicalProcessControl
         private void updateBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             drawingTreeListGrid.BeginUpdate();
-            LoadData();
+                LoadData();
             drawingTreeListGrid.EndUpdate();
         }
 
@@ -291,13 +468,13 @@ namespace TechnicalProcessControl
                     if (drawingReplaceFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
                         drawingTreeListGrid.BeginUpdate();
-                        LoadData();
+                            LoadData();
                         drawingTreeListGrid.EndUpdate();
                     }
                     else
                     {
                         drawingTreeListGrid.BeginUpdate();
-                        LoadData();
+                            LoadData();
                         drawingTreeListGrid.EndUpdate();
                     }
                 }
@@ -322,112 +499,176 @@ namespace TechnicalProcessControl
 
         private void drawingTreeListGrid_NodeCellStyle(object sender, DevExpress.XtraTreeList.GetCustomNodeCellStyleEventArgs e)
         {
-            //////TreeView view = (TreeView)sender;
+            //TreeView view = (TreeView)sender;
 
-            //////if (view.Val(e.RowHandle, "ColorName") != null)
-            //////{
-            //////    string currentRowColor = gv.GetRowCellValue(e.RowHandle, "ColorName").ToString();
-            //////    e.Appearance.BackColor = Color.FromName(currentRowColor);
-            //////}
+            //if (view.Val(e.RowHandle, "ColorName") != null)
+            //{
+            //    string currentRowColor = gv.GetRowCellValue(e.RowHandle, "ColorName").ToString();
+            //    e.Appearance.BackColor = Color.FromName(currentRowColor);
+            //}
 
-            //////bool checkErledigt = Convert.ToBoolean(view.GetNodeAt(e.Node, "A"));
-            //////if (checkErledigt)
-            //////    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Strikeout);
-            //////else
-            //////    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Regular);
+            //bool checkErledigt = Convert.ToBoolean(view.GetNodeAt(e.Node, "A"));
+            //if (checkErledigt)
+            //    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Strikeout);
+            //else
+            //    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Regular);
 
-            //////if (e.Column.FieldName != "Budget") return;
-            //////TreeView view = (TreeView)sender;
-            //////if (view.C(e.RowHandle, "ColorName") != null)
-            //////{
-            //////    string currentRowColor = gv.GetRowCellValue(e.RowHandle, "ColorName").ToString();
-            //////    e.Appearance.BackColor = Color.FromName(currentRowColor);
-            //////}
+            //if (e.Column.FieldName != "Budget") return;
+            //TreeView view = (TreeView)sender;
+            //if (view.C(e.RowHandle, "ColorName") != null)
+            //{
+            //    string currentRowColor = gv.GetRowCellValue(e.RowHandle, "ColorName").ToString();
+            //    e.Appearance.BackColor = Color.FromName(currentRowColor);
+            //}
 
-            //////drawingTreeListGrid.PostEditor();
-            //////drawingTreeListGrid.BeginUpdate();
+            //drawingTreeListGrid.PostEditor();
+            //drawingTreeListGrid.BeginUpdate();
 
-            ////var item = (DrawingsDTO)drawingTreeListGrid.GetDataRecordByNode(e.Node);
+            var item = (DrawingsDTO)drawingTreeListGrid.GetDataRecordByNode(e.Node);
 
-            ////if (item == null)
-            ////    return;
-
-
-            ////if (item.StructuraDisable)
-            ////{
-            ////    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Strikeout);
-            ////    e.Appearance.BackColor = Color.Gainsboro;
-            ////    //e.Appearance.ForeColor = Color.White;
-            ////    e.Appearance.FontStyleDelta = FontStyle.Bold;
-            ////}
-            ////else
-            ////{
-            ////    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Regular);
-            ////}
-
-            ////if (item.TechProcess001Id!=null && e.Column.FieldName == "TechProcess001Name")
-            ////{
-            ////    switch (item.TechProcess001Type)
-            ////    {
-            ////        case 1:
-            ////            e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
-            ////            e.Appearance.ForeColor = Color.Black;
-
-            ////            break;
-            ////        case 2:
-
-            ////            e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
-            ////            e.Appearance.ForeColor = Color.Gray;
-            ////            break;
-            ////        case 3:
-            ////            e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
-            ////            e.Appearance.ForeColor = Color.Green;
-            ////            break;
-            ////        case 4:
-            ////            e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
-            ////            e.Appearance.ForeColor = Color.Red;
-            ////            break;
-            ////        case 5:
-            ////            e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
-            ////            e.Appearance.ForeColor = Color.Orange;
-            ////            break;
-
-            ////        default:
-            ////            break;
-            ////    }
-            ////}
-
-            ////if (item.CurrentLevelMenuColorId != null && e.Column.FieldName == "CurrentLevelMenu")
-            ////{
-            ////    e.Appearance.BackColor = Color.FromName(item.CurrentLevelMenuColorName);
-            ////}
-            ////if (item.DrawingColorId != null && (e.Column.FieldName == "Number" || e.Column.FieldName == "RevisionName"))
-            ////{
-            ////    e.Appearance.BackColor = Color.FromName(item.DrawingColorName);
-            ////}
-            ////if (item.MaterialColorId != null && e.Column.FieldName == "DetailName")
-            ////{
-            ////    e.Appearance.BackColor = Color.FromName(item.MaterialColorName);
-            ////}
-
-            //////drawingTreeListGrid.EndUpdate();
-
-            //////if (Convert.ToBoolean(e.Node.GetValue(e.Column.FieldName == "StructuraDisable")))
-            //////{
-            //////    e.Appearance.BackColor = Color.FromArgb(80, 255, 0, 255);
-            //////    e.Appearance.ForeColor = Color.White;
-            //////    e.Appearance.FontStyleDelta = FontStyle.Bold;
-            //////}
+            if (item == null)
+                return;
 
 
-            //////if ((bool)e.Node["StructuraDisable"])
-            //////{
-            //////    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Strikeout);
-            //////}
-            //////else
-            //////{
-            //////    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Regular);
-            //////}
+            if (item.StructuraDisable)
+            {
+                e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Strikeout);
+                e.Appearance.BackColor = Color.Gainsboro;
+                //e.Appearance.ForeColor = Color.White;
+                e.Appearance.FontStyleDelta = FontStyle.Bold;
+            }
+            else
+            {
+                e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Regular);
+            }
+
+            if (item.TechProcess001Id != null && e.Column.FieldName == "TechProcess001Name")
+            {
+                switch (item.TechProcess001Type)
+                {
+                    case 1:
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.Black;
+
+                        break;
+                    case 2:
+
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.Gray;
+                        break;
+                    case 3:
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.Green;
+                        break;
+                    case 4:
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.Red;
+                        break;
+                    case 5:
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.Orange;
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+
+            if (item.TechProcess002Id != null && e.Column.FieldName == "TechProcess002Name")
+            {
+                switch (item.TechProcess002Type)
+                {
+                    case 1:
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.Black;
+
+                        break;
+                    case 2:
+
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.Gray;
+                        break;
+                    case 3:
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.Green;
+                        break;
+                    case 4:
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.Red;
+                        break;
+                    case 5:
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.Orange;
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+
+            if (item.TechProcess003Id != null && e.Column.FieldName == "TechProcess003Name")
+            {
+                switch (item.TechProcess003Type)
+                {
+                    case 1:
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.Black;
+
+                        break;
+                    case 2:
+
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.Gray;
+                        break;
+                    case 3:
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.Green;
+                        break;
+                    case 4:
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.Red;
+                        break;
+                    case 5:
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.Orange;
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+
+            if (item.CurrentLevelMenuColorId != null && e.Column.FieldName == "CurrentLevelMenu")
+            {
+                e.Appearance.BackColor = Color.FromName(item.CurrentLevelMenuColorName);
+            }
+            if (item.DrawingColorId != null && (e.Column.FieldName == "Number" || e.Column.FieldName == "RevisionName"))
+            {
+                e.Appearance.BackColor = Color.FromName(item.DrawingColorName);
+            }
+            if (item.MaterialColorId != null && e.Column.FieldName == "DetailName")
+            {
+                e.Appearance.BackColor = Color.FromName(item.MaterialColorName);
+            }
+
+            //drawingTreeListGrid.EndUpdate();
+
+            //if (Convert.ToBoolean(e.Node.GetValue(e.Column.FieldName == "StructuraDisable")))
+            //{
+            //    e.Appearance.BackColor = Color.FromArgb(80, 255, 0, 255);
+            //    e.Appearance.ForeColor = Color.White;
+            //    e.Appearance.FontStyleDelta = FontStyle.Bold;
+            //}
+
+
+            //if ((bool)e.Node["StructuraDisable"])
+            //{
+            //    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Strikeout);
+            //}
+            //else
+            //{
+            //    e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Regular);
+            //}
 
         }
 
@@ -443,14 +684,15 @@ namespace TechnicalProcessControl
                 bifferdrawingsList.Clear();
                 GetAllNodes(((DrawingsDTO)Item));
                 NodesDisableValueUpdate(bifferdrawingsList, false);
-                LoadData();
+                    LoadData();
             }
             else
             {
                 bifferdrawingsList.Clear();
                 GetAllNodes(((DrawingsDTO)Item));
                 NodesDisableValueUpdate(bifferdrawingsList, true);
-                LoadData();
+ 
+                    LoadData();
             }
 
             drawingTreeListGrid.EndUpdate();
@@ -536,7 +778,8 @@ namespace TechnicalProcessControl
                 {
                     MessageBox.Show("При вставке сборки возникла ошибка, необходимо перепроверить данные!", "Ошибка вставки сборки", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     splashScreenManager.CloseWaitForm();
-                    LoadData();
+
+                        LoadData();
                     drawingTreeListGrid.EndUpdate();
 
                     return;
@@ -546,8 +789,7 @@ namespace TechnicalProcessControl
 
                 CheckHardTechProcess((DrawingsDTO)Item);
                 CheckEasyTechProcess(pasteDrawings);
-
-                LoadData();
+                    LoadData();
 
                 drawingTreeListGrid.EndUpdate();
             }
@@ -587,9 +829,8 @@ namespace TechnicalProcessControl
                 drawingTreeListGrid.BeginUpdate();
 
                 if (drawingService.DrawingsDelete(((DrawingsDTO)drawingsBS.Current).Id))
-                {
-                    LoadData();
-                }
+                        LoadData();
+                
 
                 drawingTreeListGrid.EndUpdate();
             }
@@ -744,8 +985,88 @@ namespace TechnicalProcessControl
 
         private void StructuraFm_Load(object sender, EventArgs e)
         {
+            techProcessPropBand.Visible = false;
+            gasMaterialBand.Visible = false;
+            weldingMaterialBand.Visible = false;
+            paintMaterialBand.Visible = false;
+            materialShow = false;
+
             showTechProcessBtn.ImageOptions.Image = imageCollection.Images[3];
             showTechProcessBtn.Caption = "Не отображать техпроцессы";
+            showLaborIntensityBtn.ImageOptions.Image = imageCollection.Images[3];
+            showLaborIntensityBtn.Caption = "Не отображать трудоёмкость";
+            showMaterialBtn.ImageOptions.Image = imageCollection.Images[2];
+            showMaterialBtn.Caption = "Отобразить материалы";
+        }
+
+        private void showLaborIntensityBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (laborIntensityBand.Visible == true)
+            {
+                laborIntensityBand.Visible = false;
+                showLaborIntensityBtn.ImageOptions.Image = imageCollection.Images[2];
+                showLaborIntensityBtn.Caption = "Отобразить трудоёмкость";
+
+            }
+            else
+            {
+                laborIntensityBand.Visible = true;
+                showLaborIntensityBtn.ImageOptions.Image = imageCollection.Images[3];
+                showLaborIntensityBtn.Caption = "Не отображать трудоёмкость";
+            }
+        }
+
+        private void showMaterialBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (techProcessPropBand.Visible == true)
+            {
+                techProcessPropBand.Visible = false;
+                gasMaterialBand.Visible = false;
+                weldingMaterialBand.Visible = false;
+                paintMaterialBand.Visible = false;
+                materialShow = false;
+                showMaterialBtn.ImageOptions.Image = imageCollection.Images[2];
+                showMaterialBtn.Caption = "Отобразить материалы";
+
+                drawingTreeListGrid.BeginUpdate();
+                LoadData();
+                drawingTreeListGrid.EndUpdate();
+
+            }
+            else
+            {
+                techProcessPropBand.Visible = true;
+                gasMaterialBand.Visible = true;
+                weldingMaterialBand.Visible = true;
+                paintMaterialBand.Visible = true;
+                materialShow = true;
+                showMaterialBtn.ImageOptions.Image = imageCollection.Images[3];
+                showMaterialBtn.Caption = "Не отображать материалы";
+                drawingTreeListGrid.BeginUpdate();
+                
+                drawingTreeListGrid.EndUpdate();
+            }
+        }
+
+        private void showNodeStatBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (!drawingTreeListGrid.OptionsView.ShowRowFooterSummary)
+            {
+                drawingTreeListGrid.BeginUpdate();
+
+                drawingTreeListGrid.OptionsView.ShowRowFooterSummary = true;
+                LoadData();
+                showNodeStatBtn.Caption = "Скрыть информацию по сборкам";
+                drawingTreeListGrid.EndUpdate();
+            }
+            else
+            {
+                drawingTreeListGrid.BeginUpdate();
+                drawingTreeListGrid.OptionsView.ShowRowFooterSummary = false;
+                LoadData();
+                showNodeStatBtn.Caption = "Отобразить информацию по сборкам";
+                drawingTreeListGrid.EndUpdate();
+            }
         }
     }
 }

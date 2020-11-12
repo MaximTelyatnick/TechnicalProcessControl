@@ -34,6 +34,10 @@
       <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FirebirdSql.Data.FirebirdClient, Version=5.7.0.0, Culture=neutral, PublicKeyToken=3750abcc3150b00c, processorArchitecture=MSIL">
+      <HintPath>..\packages\FirebirdSql.Data.FirebirdClient.5.7.0\lib\net452\FirebirdSql.Data.FirebirdClient.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
       <Private>True</Private>
@@ -71,6 +75,7 @@
     <Compile Include="ModelsDTO\DrawingDTO.cs" />
     <Compile Include="ModelsDTO\DrawingScanDTO.cs" />
     <Compile Include="ModelsDTO\DrawingsDTO.cs" />
+    <Compile Include="ModelsDTO\DrawingsInfoDTO.cs" />
     <Compile Include="ModelsDTO\MaterialsDTO.cs" />
     <Compile Include="ModelsDTO\MessagesDTO.cs" />
     <Compile Include="ModelsDTO\OperationNameDTO.cs" />
@@ -80,6 +85,7 @@
     <Compile Include="ModelsDTO\ProductionDTO.cs" />
     <Compile Include="ModelsDTO\RevisionsDTO.cs" />
     <Compile Include="ModelsDTO\RoutesDTO.cs" />
+    <Compile Include="ModelsDTO\TestDTO.cs" />
     <Compile Include="ModelsDTO\UserRoleDTO.cs" />
     <Compile Include="ModelsDTO\TechProcess001DTO.cs" />
     <Compile Include="ModelsDTO\TechProcess002DTO.cs" />

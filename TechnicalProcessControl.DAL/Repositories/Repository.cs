@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using FirebirdSql.Data.FirebirdClient;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using TechnicalProcessControl.DAL.EF;
@@ -53,10 +54,12 @@ namespace TechnicalProcessControl.DAL.Repositories
             db.SaveChanges();
         }
 
-        //public IEnumerable<T> SQLExecuteProc(string executeProcString, params FbParameter[] paramArr)
-        //{
-        //    return db.Set<T>().SqlQuery(executeProcString, paramArr);
-        //}
+
+
+        public IEnumerable<T> SQLExecuteProc(string executeProcString, params FbParameter[] paramArr)
+        {
+            return db.Set<T>().SqlQuery(executeProcString, paramArr);
+        }
 
 
     }
