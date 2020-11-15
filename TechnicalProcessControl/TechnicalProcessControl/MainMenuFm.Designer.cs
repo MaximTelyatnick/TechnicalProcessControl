@@ -63,6 +63,7 @@
             this.tabbedView1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
             this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
             this.splashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::TechnicalProcessControl.WaitFm), true, true);
+            this.settingsBtn = new DevExpress.XtraBars.Navigation.NavButton();
             ((System.ComponentModel.ISupportInitialize)(this.tileNavPane)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView1)).BeginInit();
@@ -81,6 +82,7 @@
             this.tileNavPane.Buttons.Add(this.tileNavCategory3);
             this.tileNavPane.Buttons.Add(this.tileNavCategory4);
             this.tileNavPane.Buttons.Add(this.userBtn);
+            this.tileNavPane.Buttons.Add(this.settingsBtn);
             // 
             // tileNavCategory1
             // 
@@ -419,6 +421,16 @@
             // 
             this.splashScreenManager.ClosingDelay = 500;
             // 
+            // settingsBtn
+            // 
+            this.settingsBtn.Alignment = DevExpress.XtraBars.Navigation.NavButtonAlignment.Right;
+            this.settingsBtn.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
+            this.settingsBtn.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("settingsBtn.Appearance.Image")));
+            this.settingsBtn.Appearance.Options.UseImage = true;
+            this.settingsBtn.Caption = "Настройки";
+            this.settingsBtn.Glyph = ((System.Drawing.Image)(resources.GetObject("settingsBtn.Glyph")));
+            this.settingsBtn.Name = "settingsBtn";
+            // 
             // MainMenuFm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -461,5 +473,6 @@
         private DevExpress.XtraBars.Navigation.TileNavItem operationNumberItem;
         private DevExpress.XtraBars.Navigation.TileNavItem operationPaintMaterial;
         private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager;
+        private DevExpress.XtraBars.Navigation.NavButton settingsBtn;
     }
 }

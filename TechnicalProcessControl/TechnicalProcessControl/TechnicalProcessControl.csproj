@@ -284,6 +284,12 @@
     <Compile Include="Journals\ScanFm.Designer.cs">
       <DependentUpon>ScanFm.cs</DependentUpon>
     </Compile>
+    <Compile Include="settingsFm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="settingsFm.Designer.cs">
+      <DependentUpon>settingsFm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TechnicalProcess\TechProcess002Fm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -428,6 +434,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Journals\ScanFm.resx">
       <DependentUpon>ScanFm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="settingsFm.resx">
+      <DependentUpon>settingsFm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TechnicalProcess\TechProcess002Fm.resx">
       <DependentUpon>TechProcess002Fm.cs</DependentUpon>
