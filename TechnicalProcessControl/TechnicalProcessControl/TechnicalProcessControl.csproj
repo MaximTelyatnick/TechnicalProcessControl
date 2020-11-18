@@ -14,7 +14,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
-    <PublishUrl>publish\</PublishUrl>
+    <PublishUrl>C:\Users\BigBro\Desktop\TPC\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -22,11 +22,13 @@
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
+    <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <MinimumRequiredVersion>1.0.0.1</MinimumRequiredVersion>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -67,6 +69,18 @@
   <PropertyGroup>
     <ApplicationIcon>TPC.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>CE587455BFBF96EED9F0FDCC3E484767D0D2CF8E</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>TechnicalProcessControl_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
@@ -81,6 +95,7 @@
     <Reference Include="DevExpress.Office.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Printing.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.RichEdit.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Sparkline.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Spreadsheet.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v17.2.UI, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -284,11 +299,17 @@
     <Compile Include="Journals\ScanFm.Designer.cs">
       <DependentUpon>ScanFm.cs</DependentUpon>
     </Compile>
-    <Compile Include="settingsFm.cs">
+    <Compile Include="Settings\SettingsFm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="settingsFm.Designer.cs">
-      <DependentUpon>settingsFm.cs</DependentUpon>
+    <Compile Include="Settings\SettingsFm.Designer.cs">
+      <DependentUpon>SettingsFm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\StructuraImportFm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Settings\StructuraImportFm.Designer.cs">
+      <DependentUpon>StructuraImportFm.cs</DependentUpon>
     </Compile>
     <Compile Include="TechnicalProcess\TechProcess002Fm.cs">
       <SubType>Form</SubType>
@@ -435,8 +456,11 @@
     <EmbeddedResource Include="Journals\ScanFm.resx">
       <DependentUpon>ScanFm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="settingsFm.resx">
-      <DependentUpon>settingsFm.cs</DependentUpon>
+    <EmbeddedResource Include="Settings\SettingsFm.resx">
+      <DependentUpon>SettingsFm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Settings\StructuraImportFm.resx">
+      <DependentUpon>StructuraImportFm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TechnicalProcess\TechProcess002Fm.resx">
       <DependentUpon>TechProcess002Fm.cs</DependentUpon>
@@ -491,6 +515,7 @@
     <EmbeddedResource Include="WaitFm.resx">
       <DependentUpon>WaitFm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="TechnicalProcessControl_TemporaryKey.pfx" />
     <None Include="Templates\template001.xls" />
     <None Include="Templates\template001.xlsx" />
     <None Include="packages.config" />

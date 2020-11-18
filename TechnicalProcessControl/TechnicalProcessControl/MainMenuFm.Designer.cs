@@ -59,11 +59,11 @@
             this.operationNumberItem = new DevExpress.XtraBars.Navigation.TileNavItem();
             this.operationPaintMaterial = new DevExpress.XtraBars.Navigation.TileNavItem();
             this.userBtn = new DevExpress.XtraBars.Navigation.NavButton();
+            this.settingsBtn = new DevExpress.XtraBars.Navigation.NavButton();
             this.documentManager = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
             this.tabbedView1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
             this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
             this.splashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::TechnicalProcessControl.WaitFm), true, true);
-            this.settingsBtn = new DevExpress.XtraBars.Navigation.NavButton();
             ((System.ComponentModel.ISupportInitialize)(this.tileNavPane)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView1)).BeginInit();
@@ -403,6 +403,17 @@
             this.userBtn.Name = "userBtn";
             this.userBtn.ElementClick += new DevExpress.XtraBars.Navigation.NavElementClickEventHandler(this.navButton2_ElementClick);
             // 
+            // settingsBtn
+            // 
+            this.settingsBtn.Alignment = DevExpress.XtraBars.Navigation.NavButtonAlignment.Right;
+            this.settingsBtn.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
+            this.settingsBtn.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("settingsBtn.Appearance.Image")));
+            this.settingsBtn.Appearance.Options.UseImage = true;
+            this.settingsBtn.Caption = "Настройки";
+            this.settingsBtn.Glyph = ((System.Drawing.Image)(resources.GetObject("settingsBtn.Glyph")));
+            this.settingsBtn.Name = "settingsBtn";
+            this.settingsBtn.ElementClick += new DevExpress.XtraBars.Navigation.NavElementClickEventHandler(this.settingsBtn_ElementClick);
+            // 
             // documentManager
             // 
             this.documentManager.ContainerControl = this;
@@ -420,16 +431,6 @@
             // splashScreenManager
             // 
             this.splashScreenManager.ClosingDelay = 500;
-            // 
-            // settingsBtn
-            // 
-            this.settingsBtn.Alignment = DevExpress.XtraBars.Navigation.NavButtonAlignment.Right;
-            this.settingsBtn.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
-            this.settingsBtn.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("settingsBtn.Appearance.Image")));
-            this.settingsBtn.Appearance.Options.UseImage = true;
-            this.settingsBtn.Caption = "Настройки";
-            this.settingsBtn.Glyph = ((System.Drawing.Image)(resources.GetObject("settingsBtn.Glyph")));
-            this.settingsBtn.Name = "settingsBtn";
             // 
             // MainMenuFm
             // 

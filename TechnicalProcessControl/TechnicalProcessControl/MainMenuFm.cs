@@ -242,6 +242,22 @@ namespace TechnicalProcessControl
             }
         }
 
-        
+        private void settingsBtn_ElementClick(object sender, DevExpress.XtraBars.Navigation.NavElementEventArgs e)
+        {
+            using (SettingsFm settingsFm = new SettingsFm())
+            {
+                if (settingsFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    splashScreenManager.ShowWaitForm();
+
+                    //DialogResult = DialogResult.OK;
+                    //this.usersDTO = loginFm.Return();
+                    //CheckUser();
+                    //CloseAllMdiForm();
+
+                    splashScreenManager.CloseWaitForm();
+                }
+            }
+        }
     }
 }

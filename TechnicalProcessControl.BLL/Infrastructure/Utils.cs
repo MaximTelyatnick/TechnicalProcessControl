@@ -37,5 +37,11 @@ namespace TechnicalProcessControl.BLL.Infrastructure
             LaborIntensity,
             Full
         };
+
+        public enum ConectionType
+        {
+            Local,
+            Server
+        };
     }
 }
