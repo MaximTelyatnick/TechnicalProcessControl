@@ -1065,7 +1065,7 @@ namespace TechnicalProcessControl.BLL.Services
         }
 
 
-        public IEnumerable<DrawingsDTO> GetShortDrawing()
+        public IEnumerable<DrawingsDTO> GetDrawingsSimple()
         {
             return mapper.Map<IEnumerable<Drawings>, List<DrawingsDTO>>(drawings.GetAll());
         }
@@ -2479,6 +2479,12 @@ namespace TechnicalProcessControl.BLL.Services
 
         #region Drawing's CRUD method's
 
+        public int? CheckDrawings(string currentLevelMenu)
+        {
+            var createDrawings = drawings.GetAll().SingleOrDefault(c => c.CurrentLevelMenu == currentLevelMenu);
+            return createDrawings.Id;
+        }
+
         public int DrawingsCreate(DrawingsDTO drawingsDTO)
         {
             var createDrawings = drawings.Create(mapper.Map<Drawings>(drawingsDTO));
@@ -2508,6 +2514,12 @@ namespace TechnicalProcessControl.BLL.Services
 
         #region Type's CRUD method's
 
+        public int? CheckType(string typeName)
+        {
+            var createType = type.GetAll().SingleOrDefault(c => c.TypeName == typeName);
+            return createType.Id;
+        }
+
         public int TypeCreate(TypeDTO typeDTO)
         {
             var createType = type.Create(mapper.Map<DAL.Models.Type>(typeDTO));
@@ -2536,6 +2548,12 @@ namespace TechnicalProcessControl.BLL.Services
         #endregion
 
         #region Drawing CRUD method's
+
+        public int? CheckDrawing(string drawingNumber)
+        {
+            var checkDrawing = drawing.GetAll().SingleOrDefault(c => c.Number == drawingNumber);
+            return checkDrawing.Id;
+        }
 
         public int DrawingCreate(DrawingDTO drawingDTO)
         {

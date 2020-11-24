@@ -25,10 +25,12 @@ namespace TechnicalProcessControl.BLL.Interfaces
 
         IEnumerable<OperationPaintMaterialDTO> GetOperationPaintMaterial();
 
+        int? CheckMaterial(string materiallName);
         int MaterialsCreate(MaterialsDTO materialsDTO);
         void MaterialsUpdate(MaterialsDTO materialsDTO);
         bool MaterialsDelete(int id);
 
+        int? CheckDetail(string detailName);
         int DetailCreate(DetailsDTO detailsDTO);
         void DetailsUpdate(DetailsDTO detailsDTO);
         bool DetailDelete(int id);

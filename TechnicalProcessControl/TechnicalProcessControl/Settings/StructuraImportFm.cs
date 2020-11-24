@@ -53,5 +53,52 @@ namespace TechnicalProcessControl.Settings
 
             splashScreenManager.CloseWaitForm();
         }
+
+        private void clearBaseBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            drawingService = Program.kernel.Get<IDrawingService>();
+
+            if (MessageBox.Show("Все элементы структуры будут удалены?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                splashScreenManager.ShowWaitForm();
+                var allStructuraItem = drawingService.GetDrawingsSimple();
+                try
+                {
+                    foreach (var item in allStructuraItem)
+                    {
+                        drawingService.DrawingsDelete(item.Id);
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Во время удаления произошла ошибка", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    splashScreenManager.CloseWaitForm();
+                    return;
+                }
+                splashScreenManager.CloseWaitForm();
+                MessageBox.Show("Все элементы структуры успешно удалены!", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+        }
+
+        private void importBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if(drawingsList.Count>0)
+            {
+                foreach (var item in drawingsList)
+                {
+                    int currentStructuraId = 0;
+
+                    
+
+
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Не найдены элементы структуры!", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }

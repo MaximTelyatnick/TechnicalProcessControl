@@ -153,6 +153,12 @@ namespace TechnicalProcessControl.BLL.Services
 
         #region Materials CRUD method's
 
+        public int? CheckMaterial(string materiallName)
+        {
+            var checkMaterial = materials.GetAll().SingleOrDefault(c => c.MaterialName == materiallName);
+            return checkMaterial.Id;
+        }
+
         public int MaterialsCreate(MaterialsDTO materialsDTO)
         {
             var createMaterials = materials.Create(mapper.Map<Materials>(materialsDTO));
@@ -181,6 +187,12 @@ namespace TechnicalProcessControl.BLL.Services
         #endregion
 
         #region Detail's CRUD method's
+
+        public int? CheckDetail(string detailName)
+        {
+            var checkDetail = details.GetAll().SingleOrDefault(c => c.DetailName== detailName);
+            return checkDetail.Id;
+        }
 
         public int DetailCreate(DetailsDTO detailsDTO)
         {

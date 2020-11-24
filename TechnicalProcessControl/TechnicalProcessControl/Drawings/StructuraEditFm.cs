@@ -118,7 +118,7 @@ namespace TechnicalProcessControl.Drawings
             firstUseDrawingEdit.Properties.DisplayMember = "Number";
             firstUseDrawingEdit.Properties.NullText = "Немає данних";
 
-            parentCurrentLevelMenuEditBS.DataSource = drawingService.GetShortDrawing();
+            parentCurrentLevelMenuEditBS.DataSource = drawingService.GetDrawingsSimple();
             parentCurrentLevelMenuEdit.Properties.DataSource = parentCurrentLevelMenuEditBS;
             parentCurrentLevelMenuEdit.Properties.ValueMember = "Id";
             parentCurrentLevelMenuEdit.Properties.DisplayMember = "CurrentLevelMenu";

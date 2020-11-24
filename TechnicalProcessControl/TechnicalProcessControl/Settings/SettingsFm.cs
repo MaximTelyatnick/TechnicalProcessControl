@@ -27,24 +27,40 @@ namespace TechnicalProcessControl
 
         private void importFromExcelBtn_Click(object sender, EventArgs e)
         {
-            parseDrawingsList = StartParseStructura(existingWorkflowFileEdit.Text);
-
-            using (StructuraImportFm structuImportFm = new StructuraImportFm(parseDrawingsList))
+            if (existingWorkflowFileEdit.Text != "")
             {
-                if (structuImportFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                parseDrawingsList = StartParseStructura(existingWorkflowFileEdit.Text);
+
+                using (StructuraImportFm structuImportFm = new StructuraImportFm(parseDrawingsList))
                 {
-                    //splashScreenManager.ShowWaitForm();
+                    if (structuImportFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        //splashScreenManager.ShowWaitForm();
 
-                    //DialogResult = DialogResult.OK;
-                    //this.usersDTO = loginFm.Return();
-                    //CheckUser();
-                    //CloseAllMdiForm();
+                        //DialogResult = DialogResult.OK;
+                        //this.usersDTO = loginFm.Return();
+                        //CheckUser();
+                        //CloseAllMdiForm();
 
-                    //splashScreenManager.CloseWaitForm();
+                        //splashScreenManager.CloseWaitForm();
+                    }
                 }
             }
-
+            else
+            {
+                MessageBox.Show("Перед началом импорта необходимо указать файл", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
+
+        public decimal ParseDecimalValue(object cell)
+        {
+            decimal value = 0;
+            if (cell != null)
+                decimal.TryParse(cell.ToString(), out value);
+
+            return value;
+        }
+        
 
         public List<DrawingsDTO> StartParseStructura(string pathToXlsImoprtFile)
         {
@@ -58,7 +74,7 @@ namespace TechnicalProcessControl
 
             #region Excel Document to list of ExcelModels
 
-            for (int i = 9; i < 4000; i++)
+            for (int i = 9; i < 8000; i++)
             {
                 decimal quantity = 0.00m;
                 lastLevel = currentLevel;
@@ -67,10 +83,7 @@ namespace TechnicalProcessControl
                     continue;
                 currentLevel = CellLevelAnalizator(Convert.ToString(Сells["C" + i].Value));
 
-                //decimal value;
-                //bool isValid = decimal.TryParse((string)Сells["I" + i].Value, out value);
-                //if (!isValid)
-                //    value = 0.00m;
+                
 
                 //if(Сells["I" + i].Value.ToString().Contains())
 
@@ -87,12 +100,12 @@ namespace TechnicalProcessControl
                             importDrawingsList.Add(new DrawingsDTO()
                             {
                                 Id = j,
-                                 ParentId = null,
-                                 CurrentLevelMenu = Convert.ToString(Сells["C" + i].Value),
-                                  //Quantity = Сells["I" + i].Value !=""? Convert.ToDecimal(Сells["I" + i].Value): 0.00m,
-                                  //QuantityR = Decimal.Parse(Сells["G" + i].Value),
-                                  //QuantityL = Decimal.Parse(Сells["H" + i].Value),
-                                   DetailName = Convert.ToString(Сells["F" + i].Value),
+                                ParentId = null,
+                                CurrentLevelMenu = Convert.ToString(Сells["C" + i].Value),
+                                Quantity = ParseDecimalValue(Сells["I" + i].Value),
+                                QuantityR = ParseDecimalValue(Сells["G" + i].Value),
+                                QuantityL = ParseDecimalValue(Сells["H" + i].Value),
+                                DetailName = Convert.ToString(Сells["F" + i].Value),
                                     Number = Convert.ToString(Сells["D" + i].Value),
                                      TypeName = Convert.ToString(Сells["A" + i].Value)!=""? Convert.ToString(Сells["A" + i].Value): Convert.ToString(Сells["B" + i].Value),
                                       MaterialName = Convert.ToString(Сells["L" + i].Value),
@@ -112,9 +125,9 @@ namespace TechnicalProcessControl
                                 Id = j,
                                 CurrentLevelMenu = Convert.ToString(Сells["C" + i].Value),
                                 ParentId = lastFirstLevelParent,
-                                //Quantity = Сells["I" + i].Value != "" ? Convert.ToDecimal(Сells["I" + i].Value) : 0.00m,
-                                //QuantityR = Convert.ToDecimal(Сells["G" + i].Value),
-                                //QuantityL = Convert.ToDecimal(Сells["H" + i].Value),
+                                Quantity = ParseDecimalValue(Сells["I" + i].Value),
+                                QuantityR = ParseDecimalValue(Сells["G" + i].Value),
+                                QuantityL = ParseDecimalValue(Сells["H" + i].Value),
                                 DetailName = Convert.ToString(Сells["F" + i].Value),
                                 Number = Convert.ToString(Сells["D" + i].Value),
                                 TypeName = Convert.ToString(Сells["A" + i].Value) != "" ? Convert.ToString(Сells["A" + i].Value) : Convert.ToString(Сells["B" + i].Value),
@@ -137,9 +150,9 @@ namespace TechnicalProcessControl
                                 Id = j,
                                 ParentId = lastSecondLevelParent,
                                 CurrentLevelMenu = Convert.ToString(Сells["C" + i].Value),
-                                //Quantity = Сells["I" + i].Value != "" ? Convert.ToDecimal(Сells["I" + i].Value) : 0.00m,
-                                //QuantityR = Convert.ToDecimal(Сells["G" + i].Value),
-                                //QuantityL = Convert.ToDecimal(Сells["H" + i].Value),
+                                Quantity = ParseDecimalValue(Сells["I" + i].Value),
+                                QuantityR = ParseDecimalValue(Сells["G" + i].Value),
+                                QuantityL = ParseDecimalValue(Сells["H" + i].Value),
                                 DetailName = Convert.ToString(Сells["F" + i].Value),
                                 Number = Convert.ToString(Сells["D" + i].Value),
                                 TypeName = Convert.ToString(Сells["A" + i].Value) != "" ? Convert.ToString(Сells["A" + i].Value) : Convert.ToString(Сells["B" + i].Value),
@@ -162,9 +175,9 @@ namespace TechnicalProcessControl
                                 Id = j,
                                 ParentId = lastThreeLevelParent,
                                 CurrentLevelMenu = Convert.ToString(Сells["C" + i].Value),
-                                //Quantity = Сells["I" + i].Value != "" ? Convert.ToDecimal(Сells["I" + i].Value) : 0.00m,
-                                //QuantityR = Convert.ToDecimal(Сells["G" + i].Value),
-                                //QuantityL = Convert.ToDecimal(Сells["H" + i].Value),
+                                Quantity = ParseDecimalValue(Сells["I" + i].Value),
+                                QuantityR = ParseDecimalValue(Сells["G" + i].Value),
+                                QuantityL = ParseDecimalValue(Сells["H" + i].Value),
                                 DetailName = Convert.ToString(Сells["F" + i].Value),
                                 Number = Convert.ToString(Сells["D" + i].Value),
                                 TypeName = Convert.ToString(Сells["A" + i].Value) != "" ? Convert.ToString(Сells["A" + i].Value) : Convert.ToString(Сells["B" + i].Value),
@@ -187,9 +200,9 @@ namespace TechnicalProcessControl
                                 Id = j,
                                 ParentId = lastFourthLevelParent,
                                 CurrentLevelMenu = Convert.ToString(Сells["C" + i].Value),
-                                //Quantity = Сells["I" + i].Value != "" ? Convert.ToDecimal(Сells["I" + i].Value) : 0.00m,
-                                //QuantityR = Convert.ToDecimal(Сells["G" + i].Value),
-                                //QuantityL = Convert.ToDecimal(Сells["H" + i].Value),
+                                Quantity = ParseDecimalValue(Сells["I" + i].Value),
+                                QuantityR = ParseDecimalValue(Сells["G" + i].Value),
+                                QuantityL = ParseDecimalValue(Сells["H" + i].Value),
                                 DetailName = Convert.ToString(Сells["F" + i].Value),
                                 Number = Convert.ToString(Сells["D" + i].Value),
                                 TypeName = Convert.ToString(Сells["A" + i].Value) != "" ? Convert.ToString(Сells["A" + i].Value) : Convert.ToString(Сells["B" + i].Value),
@@ -212,9 +225,9 @@ namespace TechnicalProcessControl
                                 Id = j,
                                 ParentId = lastFivesLevelParent,
                                 CurrentLevelMenu = Convert.ToString(Сells["C" + i].Value),
-                                //Quantity = Сells["I" + i].Value != "" ? Convert.ToDecimal(Сells["I" + i].Value) : 0.00m,
-                                //QuantityR = Convert.ToDecimal(Сells["G" + i].Value),
-                                //QuantityL = Convert.ToDecimal(Сells["H" + i].Value),
+                                Quantity = ParseDecimalValue(Сells["I" + i].Value),
+                                QuantityR = ParseDecimalValue(Сells["G" + i].Value),
+                                QuantityL = ParseDecimalValue(Сells["H" + i].Value),
                                 DetailName = Convert.ToString(Сells["F" + i].Value),
                                 Number = Convert.ToString(Сells["D" + i].Value),
                                 TypeName = Convert.ToString(Сells["A" + i].Value) != "" ? Convert.ToString(Сells["A" + i].Value) : Convert.ToString(Сells["B" + i].Value),
@@ -236,9 +249,9 @@ namespace TechnicalProcessControl
                                 Id = j,
                                 ParentId = lastSixLevelParent,
                                 CurrentLevelMenu = Convert.ToString(Сells["C" + i].Value),
-                                //Quantity = Сells["I" + i].Value != "" ? Convert.ToDecimal(Сells["I" + i].Value) : 0.00m,
-                                //QuantityR = Convert.ToDecimal(Сells["G" + i].Value),
-                                //QuantityL = Convert.ToDecimal(Сells["H" + i].Value),
+                                Quantity = ParseDecimalValue(Сells["I" + i].Value),
+                                QuantityR = ParseDecimalValue(Сells["G" + i].Value),
+                                QuantityL = ParseDecimalValue(Сells["H" + i].Value),
                                 DetailName = Convert.ToString(Сells["F" + i].Value),
                                 Number = Convert.ToString(Сells["D" + i].Value),
                                 TypeName = Convert.ToString(Сells["A" + i].Value) != "" ? Convert.ToString(Сells["A" + i].Value) : Convert.ToString(Сells["B" + i].Value),

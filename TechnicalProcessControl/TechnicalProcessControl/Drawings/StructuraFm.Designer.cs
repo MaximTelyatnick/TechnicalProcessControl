@@ -261,8 +261,8 @@
             this.удалитьСборкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.structuraColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.detailColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.drawingColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.detailColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
             this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
             this.xtraScrollableControl2 = new DevExpress.XtraEditors.XtraScrollableControl();
@@ -664,6 +664,7 @@
             this.drawingTreeListGrid.GetStateImage += new DevExpress.XtraTreeList.GetStateImageEventHandler(this.drawingTreeListGrid_GetStateImage);
             this.drawingTreeListGrid.NodeCellStyle += new DevExpress.XtraTreeList.GetCustomNodeCellStyleEventHandler(this.drawingTreeListGrid_NodeCellStyle);
             this.drawingTreeListGrid.CustomUnboundColumnData += new DevExpress.XtraTreeList.CustomColumnDataEventHandler(this.drawingTreeListGrid_CustomUnboundColumnData);
+            this.drawingTreeListGrid.CustomColumnDisplayText += new DevExpress.XtraTreeList.CustomColumnDisplayTextEventHandler(this.drawingTreeListGrid_CustomColumnDisplayText);
             this.drawingTreeListGrid.DoubleClick += new System.EventHandler(this.drawingTreeListGrid_DoubleClick);
             // 
             // treeListBand1
@@ -3547,16 +3548,8 @@
             // colorMenu
             // 
             this.colorMenu.Name = "colorMenu";
-            this.colorMenu.OwnerItem = this.drawingColorToolStripMenuItem;
+            this.colorMenu.OwnerItem = this.detailColorToolStripMenuItem;
             this.colorMenu.Size = new System.Drawing.Size(61, 4);
-            // 
-            // detailColorToolStripMenuItem
-            // 
-            this.detailColorToolStripMenuItem.DropDown = this.colorMenu;
-            this.detailColorToolStripMenuItem.Name = "detailColorToolStripMenuItem";
-            this.detailColorToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.detailColorToolStripMenuItem.Text = "Выделить деталь";
-            this.detailColorToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.detailColorToolStripMenuItem_DropDownItemClicked);
             // 
             // drawingColorToolStripMenuItem
             // 
@@ -3566,6 +3559,14 @@
             this.drawingColorToolStripMenuItem.Text = "Выделить чертёж";
             this.drawingColorToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.drawingColorToolStripMenuItem_DropDownItemClicked);
             this.drawingColorToolStripMenuItem.Click += new System.EventHandler(this.выделитьToolStripMenuItem_Click);
+            // 
+            // detailColorToolStripMenuItem
+            // 
+            this.detailColorToolStripMenuItem.DropDown = this.colorMenu;
+            this.detailColorToolStripMenuItem.Name = "detailColorToolStripMenuItem";
+            this.detailColorToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.detailColorToolStripMenuItem.Text = "Выделить деталь";
+            this.detailColorToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.detailColorToolStripMenuItem_DropDownItemClicked);
             // 
             // imageCollection
             // 

@@ -20,7 +20,7 @@ namespace TechnicalProcessControl.BLL.Interfaces
         IEnumerable<DrawingDTO> GetAllDrawingActual();
         IEnumerable<DrawingsDTO> GetAllDrawingsByDrawingId(int drawingId);
 
-        IEnumerable<DrawingsDTO> GetShortDrawing();
+        IEnumerable<DrawingsDTO> GetDrawingsSimple();
 
         IEnumerable<TypeDTO> GetType();
 
@@ -179,15 +179,21 @@ namespace TechnicalProcessControl.BLL.Interfaces
 
         #region Drawing's CRUD method's
 
+        int? CheckDrawings(string currentLevelMenu);
+
         int DrawingsCreate(DrawingsDTO drawingsDTO);
 
         void DrawingsUpdate(DrawingsDTO drawingsDTO);
 
         bool DrawingsDelete(int id);
 
+
+
         #endregion
 
         #region Type's CRUD method's
+
+        int? CheckType(string typeName);
 
         int TypeCreate(TypeDTO typeDTO);
 
@@ -199,7 +205,7 @@ namespace TechnicalProcessControl.BLL.Interfaces
         #endregion
 
         #region Drawing CRUD method's
-
+        int? CheckDrawing(string drawingNumber);
         int DrawingCreate(DrawingDTO drawingDTO);
         bool DrawingUpdate(DrawingDTO drawingDTO);
         bool DrawingDelete(int id);

@@ -28,15 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule treeListFormatRule1 = new DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StructuraImportFm));
+            DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule treeListFormatRule1 = new DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.importBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.clearBaseBtn = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.drawingTreeListGrid = new DevExpress.XtraTreeList.TreeList();
+            this.treeListBand1 = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.curentLevelMenuTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.statusTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.treeListBand12 = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.drawingNumberTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.revCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.partNameTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
@@ -44,6 +48,7 @@
             this.quantityLCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.quantityTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.materialNameCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.treeListBand2 = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.thTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.wTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.w2TreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
@@ -52,16 +57,13 @@
             this.remarksCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.drawingScanCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.repositoryItemPictureEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
+            this.treeListBand14 = new DevExpress.XtraTreeList.Columns.TreeListBand();
+            this.weightTotalTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.techProcess001Repository = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.techProcess002Repository = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.techProcess003Repository = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.techProcess004Repository = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.techProcess005Repository = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.weightTotalTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.treeListBand1 = new DevExpress.XtraTreeList.Columns.TreeListBand();
-            this.treeListBand12 = new DevExpress.XtraTreeList.Columns.TreeListBand();
-            this.treeListBand2 = new DevExpress.XtraTreeList.Columns.TreeListBand();
-            this.treeListBand14 = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.splashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::TechnicalProcessControl.WaitFm), true, true);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -79,9 +81,11 @@
             // 
             this.ribbonControl1.ExpandCollapseItem.Id = 0;
             this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.ribbonControl1.ExpandCollapseItem});
+            this.ribbonControl1.ExpandCollapseItem,
+            this.importBtn,
+            this.clearBaseBtn});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 1;
+            this.ribbonControl1.MaxItemId = 3;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -90,10 +94,25 @@
             this.ribbonControl1.Size = new System.Drawing.Size(1167, 95);
             this.ribbonControl1.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             // 
-            // ribbonPageGroup1
+            // importBtn
             // 
-            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
-            this.ribbonPageGroup1.Text = "Функции";
+            this.importBtn.Caption = "Импортировать";
+            this.importBtn.Id = 1;
+            this.importBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("importBtn.ImageOptions.Image")));
+            this.importBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("importBtn.ImageOptions.LargeImage")));
+            this.importBtn.Name = "importBtn";
+            this.importBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.importBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.importBtn_ItemClick);
+            // 
+            // clearBaseBtn
+            // 
+            this.clearBaseBtn.Caption = "Очистить базу";
+            this.clearBaseBtn.Id = 2;
+            this.clearBaseBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("clearBaseBtn.ImageOptions.Image")));
+            this.clearBaseBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("clearBaseBtn.ImageOptions.LargeImage")));
+            this.clearBaseBtn.Name = "clearBaseBtn";
+            this.clearBaseBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.clearBaseBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.clearBaseBtn_ItemClick);
             // 
             // ribbonPage1
             // 
@@ -101,6 +120,13 @@
             this.ribbonPageGroup1});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "ribbonPage1";
+            // 
+            // ribbonPageGroup1
+            // 
+            this.ribbonPageGroup1.ItemLinks.Add(this.importBtn);
+            this.ribbonPageGroup1.ItemLinks.Add(this.clearBaseBtn);
+            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
+            this.ribbonPageGroup1.Text = "Функции";
             // 
             // panelControl1
             // 
@@ -167,6 +193,19 @@
             this.drawingTreeListGrid.TreeLineStyle = DevExpress.XtraTreeList.LineStyle.None;
             this.drawingTreeListGrid.ViewStyle = DevExpress.XtraTreeList.TreeListViewStyle.TreeList;
             // 
+            // treeListBand1
+            // 
+            this.treeListBand1.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.treeListBand1.AppearanceHeader.Options.UseFont = true;
+            this.treeListBand1.AppearanceHeader.Options.UseTextOptions = true;
+            this.treeListBand1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.treeListBand1.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.treeListBand1.Columns.Add(this.curentLevelMenuTreeCol);
+            this.treeListBand1.Columns.Add(this.statusTreeCol);
+            this.treeListBand1.ImageOptions.Alignment = System.Drawing.StringAlignment.Center;
+            this.treeListBand1.Name = "treeListBand1";
+            this.treeListBand1.Width = 200;
+            // 
             // curentLevelMenuTreeCol
             // 
             this.curentLevelMenuTreeCol.AppearanceHeader.Options.UseTextOptions = true;
@@ -196,6 +235,23 @@
             this.statusTreeCol.Visible = true;
             this.statusTreeCol.VisibleIndex = 1;
             this.statusTreeCol.Width = 40;
+            // 
+            // treeListBand12
+            // 
+            this.treeListBand12.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.treeListBand12.AppearanceHeader.Options.UseFont = true;
+            this.treeListBand12.AppearanceHeader.Options.UseTextOptions = true;
+            this.treeListBand12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.treeListBand12.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.treeListBand12.Columns.Add(this.drawingNumberTreeCol);
+            this.treeListBand12.Columns.Add(this.revCol);
+            this.treeListBand12.Columns.Add(this.partNameTreeCol);
+            this.treeListBand12.Columns.Add(this.quantityRCol);
+            this.treeListBand12.Columns.Add(this.quantityLCol);
+            this.treeListBand12.Columns.Add(this.quantityTreeCol);
+            this.treeListBand12.Columns.Add(this.materialNameCol);
+            this.treeListBand12.Name = "treeListBand12";
+            this.treeListBand12.Width = 700;
             // 
             // drawingNumberTreeCol
             // 
@@ -296,6 +352,23 @@
             this.materialNameCol.Visible = true;
             this.materialNameCol.VisibleIndex = 8;
             this.materialNameCol.Width = 100;
+            // 
+            // treeListBand2
+            // 
+            this.treeListBand2.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.treeListBand2.AppearanceHeader.Options.UseFont = true;
+            this.treeListBand2.AppearanceHeader.Options.UseTextOptions = true;
+            this.treeListBand2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.treeListBand2.Caption = "Dim";
+            this.treeListBand2.Columns.Add(this.thTreeCol);
+            this.treeListBand2.Columns.Add(this.wTreeCol);
+            this.treeListBand2.Columns.Add(this.w2TreeCol);
+            this.treeListBand2.Columns.Add(this.ltreeCol);
+            this.treeListBand2.Columns.Add(this.weightTreeCol);
+            this.treeListBand2.Columns.Add(this.remarksCol);
+            this.treeListBand2.Columns.Add(this.drawingScanCol);
+            this.treeListBand2.Name = "treeListBand2";
+            this.treeListBand2.Width = 600;
             // 
             // thTreeCol
             // 
@@ -407,6 +480,32 @@
             // 
             this.repositoryItemPictureEdit1.Name = "repositoryItemPictureEdit1";
             // 
+            // treeListBand14
+            // 
+            this.treeListBand14.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.treeListBand14.AppearanceHeader.Options.UseFont = true;
+            this.treeListBand14.AppearanceHeader.Options.UseTextOptions = true;
+            this.treeListBand14.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.treeListBand14.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.treeListBand14.Caption = "Расход сварочных материалов";
+            this.treeListBand14.Name = "treeListBand14";
+            this.treeListBand14.Visible = false;
+            this.treeListBand14.Width = 260;
+            // 
+            // weightTotalTreeCol
+            // 
+            this.weightTotalTreeCol.AppearanceHeader.Options.UseTextOptions = true;
+            this.weightTotalTreeCol.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.weightTotalTreeCol.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.weightTotalTreeCol.Caption = "Всего";
+            this.weightTotalTreeCol.FieldName = "TotalWeight";
+            this.weightTotalTreeCol.Name = "weightTotalTreeCol";
+            this.weightTotalTreeCol.OptionsColumn.AllowEdit = false;
+            this.weightTotalTreeCol.OptionsColumn.AllowFocus = false;
+            this.weightTotalTreeCol.Visible = true;
+            this.weightTotalTreeCol.VisibleIndex = 11;
+            this.weightTotalTreeCol.Width = 65;
+            // 
             // techProcess001Repository
             // 
             this.techProcess001Repository.AutoHeight = false;
@@ -432,79 +531,6 @@
             this.techProcess005Repository.AutoHeight = false;
             this.techProcess005Repository.Name = "techProcess005Repository";
             // 
-            // weightTotalTreeCol
-            // 
-            this.weightTotalTreeCol.AppearanceHeader.Options.UseTextOptions = true;
-            this.weightTotalTreeCol.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.weightTotalTreeCol.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.weightTotalTreeCol.Caption = "Всего";
-            this.weightTotalTreeCol.FieldName = "TotalWeight";
-            this.weightTotalTreeCol.Name = "weightTotalTreeCol";
-            this.weightTotalTreeCol.OptionsColumn.AllowEdit = false;
-            this.weightTotalTreeCol.OptionsColumn.AllowFocus = false;
-            this.weightTotalTreeCol.Visible = true;
-            this.weightTotalTreeCol.VisibleIndex = 11;
-            this.weightTotalTreeCol.Width = 65;
-            // 
-            // treeListBand1
-            // 
-            this.treeListBand1.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.treeListBand1.AppearanceHeader.Options.UseFont = true;
-            this.treeListBand1.AppearanceHeader.Options.UseTextOptions = true;
-            this.treeListBand1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.treeListBand1.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.treeListBand1.Columns.Add(this.curentLevelMenuTreeCol);
-            this.treeListBand1.Columns.Add(this.statusTreeCol);
-            this.treeListBand1.ImageOptions.Alignment = System.Drawing.StringAlignment.Center;
-            this.treeListBand1.Name = "treeListBand1";
-            this.treeListBand1.Width = 200;
-            // 
-            // treeListBand12
-            // 
-            this.treeListBand12.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.treeListBand12.AppearanceHeader.Options.UseFont = true;
-            this.treeListBand12.AppearanceHeader.Options.UseTextOptions = true;
-            this.treeListBand12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.treeListBand12.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.treeListBand12.Columns.Add(this.drawingNumberTreeCol);
-            this.treeListBand12.Columns.Add(this.revCol);
-            this.treeListBand12.Columns.Add(this.partNameTreeCol);
-            this.treeListBand12.Columns.Add(this.quantityRCol);
-            this.treeListBand12.Columns.Add(this.quantityLCol);
-            this.treeListBand12.Columns.Add(this.quantityTreeCol);
-            this.treeListBand12.Columns.Add(this.materialNameCol);
-            this.treeListBand12.Name = "treeListBand12";
-            this.treeListBand12.Width = 700;
-            // 
-            // treeListBand2
-            // 
-            this.treeListBand2.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.treeListBand2.AppearanceHeader.Options.UseFont = true;
-            this.treeListBand2.AppearanceHeader.Options.UseTextOptions = true;
-            this.treeListBand2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.treeListBand2.Caption = "Dim";
-            this.treeListBand2.Columns.Add(this.thTreeCol);
-            this.treeListBand2.Columns.Add(this.wTreeCol);
-            this.treeListBand2.Columns.Add(this.w2TreeCol);
-            this.treeListBand2.Columns.Add(this.ltreeCol);
-            this.treeListBand2.Columns.Add(this.weightTreeCol);
-            this.treeListBand2.Columns.Add(this.remarksCol);
-            this.treeListBand2.Columns.Add(this.drawingScanCol);
-            this.treeListBand2.Name = "treeListBand2";
-            this.treeListBand2.Width = 600;
-            // 
-            // treeListBand14
-            // 
-            this.treeListBand14.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.treeListBand14.AppearanceHeader.Options.UseFont = true;
-            this.treeListBand14.AppearanceHeader.Options.UseTextOptions = true;
-            this.treeListBand14.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.treeListBand14.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.treeListBand14.Caption = "Расход сварочных материалов";
-            this.treeListBand14.Name = "treeListBand14";
-            this.treeListBand14.Visible = false;
-            this.treeListBand14.Width = 260;
-            // 
             // splashScreenManager
             // 
             this.splashScreenManager.ClosingDelay = 500;
@@ -516,7 +542,10 @@
             this.ClientSize = new System.Drawing.Size(1167, 651);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.ribbonControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "StructuraImportFm";
             this.Text = "Импорт структуры";
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
@@ -569,5 +598,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit techProcess004Repository;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit techProcess005Repository;
         private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager;
+        private DevExpress.XtraBars.BarButtonItem importBtn;
+        private DevExpress.XtraBars.BarButtonItem clearBaseBtn;
     }
 }

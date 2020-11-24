@@ -54,12 +54,28 @@
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.passEdit = new DevExpress.XtraEditors.TextEdit();
             this.loginEdit = new DevExpress.XtraEditors.TextEdit();
+            this.usersTab = new DevExpress.XtraTab.XtraTabPage();
+            this.userGridControl = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.barManager = new DevExpress.XtraBars.BarManager(this.components);
+            this.bar1 = new DevExpress.XtraBars.Bar();
+            this.bar2 = new DevExpress.XtraBars.Bar();
+            this.addUserBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.editUserBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.deleteUserBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.standaloneBarDockControl1 = new DevExpress.XtraBars.StandaloneBarDockControl();
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.historyTab = new DevExpress.XtraTab.XtraTabPage();
             this.importTab = new DevExpress.XtraTab.XtraTabPage();
             this.checkPanelControl = new DevExpress.XtraEditors.PanelControl();
             this.importFromExcelBtn = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.existingWorkflowFileEdit = new DevExpress.XtraEditors.TextEdit();
             this.addExistingWorkflowBtn = new DevExpress.XtraEditors.SimpleButton();
+            this.exportTab = new DevExpress.XtraTab.XtraTabPage();
             this.saveBtn = new DevExpress.XtraEditors.SimpleButton();
             this.cancelBtn = new DevExpress.XtraEditors.SimpleButton();
             this.treeListBand1 = new DevExpress.XtraTreeList.Columns.TreeListBand();
@@ -72,22 +88,13 @@
             this.paintMaterialBand = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.laborIntensityBand = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.treeListBand14 = new DevExpress.XtraTreeList.Columns.TreeListBand();
-            this.usersTab = new DevExpress.XtraTab.XtraTabPage();
-            this.historyTab = new DevExpress.XtraTab.XtraTabPage();
-            this.exportTab = new DevExpress.XtraTab.XtraTabPage();
-            this.standaloneBarDockControl1 = new DevExpress.XtraBars.StandaloneBarDockControl();
-            this.barManager = new DevExpress.XtraBars.BarManager(this.components);
-            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.bar1 = new DevExpress.XtraBars.Bar();
-            this.bar2 = new DevExpress.XtraBars.Bar();
-            this.addUserBtn = new DevExpress.XtraBars.BarButtonItem();
-            this.editUserBtn = new DevExpress.XtraBars.BarButtonItem();
-            this.deleteUserBtn = new DevExpress.XtraBars.BarButtonItem();
-            this.userGridControl = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.recoveryTab = new DevExpress.XtraTab.XtraTabPage();
+            this.simpleButton6 = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
+            this.textEdit4 = new DevExpress.XtraEditors.TextEdit();
+            this.simpleButton7 = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
+            this.textEdit5 = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.settangsTab)).BeginInit();
             this.settangsTab.SuspendLayout();
             this.databaseTab.SuspendLayout();
@@ -103,14 +110,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.showPasswordEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.passEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loginEdit.Properties)).BeginInit();
+            this.usersTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.userGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             this.importTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkPanelControl)).BeginInit();
             this.checkPanelControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.existingWorkflowFileEdit.Properties)).BeginInit();
-            this.usersTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userGridControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            this.recoveryTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // settangsTab
@@ -127,7 +137,8 @@
             this.historyTab,
             this.databaseTab,
             this.importTab,
-            this.exportTab});
+            this.exportTab,
+            this.recoveryTab});
             // 
             // databaseTab
             // 
@@ -171,16 +182,16 @@
             // simpleButton3
             // 
             this.simpleButton3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.ImageOptions.Image")));
-            this.simpleButton3.Location = new System.Drawing.Point(425, 231);
+            this.simpleButton3.Location = new System.Drawing.Point(431, 203);
             this.simpleButton3.Name = "simpleButton3";
-            this.simpleButton3.Size = new System.Drawing.Size(104, 23);
+            this.simpleButton3.Size = new System.Drawing.Size(98, 23);
             this.simpleButton3.TabIndex = 139;
             this.simpleButton3.Text = "Change path";
             // 
             // simpleButton2
             // 
             this.simpleButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
-            this.simpleButton2.Location = new System.Drawing.Point(535, 231);
+            this.simpleButton2.Location = new System.Drawing.Point(535, 203);
             this.simpleButton2.Name = "simpleButton2";
             this.simpleButton2.Size = new System.Drawing.Size(129, 23);
             this.simpleButton2.TabIndex = 138;
@@ -194,9 +205,9 @@
             this.labelControl6.Appearance.Options.UseForeColor = true;
             this.labelControl6.Location = new System.Drawing.Point(18, 186);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(150, 13);
+            this.labelControl6.Size = new System.Drawing.Size(251, 13);
             this.labelControl6.TabIndex = 137;
-            this.labelControl6.Text = "Database file storage path";
+            this.labelControl6.Text = "Database technical process file storage path";
             // 
             // backupFileStorageEdit
             // 
@@ -204,7 +215,7 @@
             this.backupFileStorageEdit.Location = new System.Drawing.Point(18, 205);
             this.backupFileStorageEdit.Name = "backupFileStorageEdit";
             this.backupFileStorageEdit.Properties.MaxLength = 12;
-            this.backupFileStorageEdit.Size = new System.Drawing.Size(646, 20);
+            this.backupFileStorageEdit.Size = new System.Drawing.Size(407, 20);
             this.backupFileStorageEdit.TabIndex = 136;
             // 
             // checkEdit1
@@ -316,7 +327,7 @@
             // databaseAliasEdit
             // 
             this.databaseAliasEdit.EditValue = "Admin";
-            this.databaseAliasEdit.Location = new System.Drawing.Point(18, 69);
+            this.databaseAliasEdit.Location = new System.Drawing.Point(18, 66);
             this.databaseAliasEdit.Name = "databaseAliasEdit";
             this.databaseAliasEdit.Properties.MaxLength = 12;
             this.databaseAliasEdit.Size = new System.Drawing.Size(646, 20);
@@ -381,6 +392,155 @@
             this.loginEdit.Size = new System.Drawing.Size(178, 20);
             this.loginEdit.TabIndex = 117;
             // 
+            // usersTab
+            // 
+            this.usersTab.Controls.Add(this.userGridControl);
+            this.usersTab.Controls.Add(this.standaloneBarDockControl1);
+            this.usersTab.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("usersTab.ImageOptions.Image")));
+            this.usersTab.Name = "usersTab";
+            this.usersTab.Size = new System.Drawing.Size(692, 344);
+            this.usersTab.Text = "Пользователи";
+            // 
+            // userGridControl
+            // 
+            this.userGridControl.Location = new System.Drawing.Point(0, 23);
+            this.userGridControl.MainView = this.gridView1;
+            this.userGridControl.MenuManager = this.barManager;
+            this.userGridControl.Name = "userGridControl";
+            this.userGridControl.Size = new System.Drawing.Size(692, 321);
+            this.userGridControl.TabIndex = 1;
+            this.userGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.GridControl = this.userGridControl;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsPrint.PrintFooter = false;
+            this.gridView1.OptionsPrint.PrintGroupFooter = false;
+            this.gridView1.OptionsPrint.PrintHeader = false;
+            this.gridView1.OptionsView.ShowGroupExpandCollapseButtons = false;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            // 
+            // barManager
+            // 
+            this.barManager.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
+            this.bar1,
+            this.bar2});
+            this.barManager.DockControls.Add(this.barDockControlTop);
+            this.barManager.DockControls.Add(this.barDockControlBottom);
+            this.barManager.DockControls.Add(this.barDockControlLeft);
+            this.barManager.DockControls.Add(this.barDockControlRight);
+            this.barManager.DockControls.Add(this.standaloneBarDockControl1);
+            this.barManager.Form = this;
+            this.barManager.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.addUserBtn,
+            this.editUserBtn,
+            this.deleteUserBtn});
+            this.barManager.MainMenu = this.bar2;
+            this.barManager.MaxItemId = 3;
+            this.barManager.PopupMenuAlignment = DevExpress.XtraBars.PopupMenuAlignment.Left;
+            // 
+            // bar1
+            // 
+            this.bar1.BarName = "Tools";
+            this.bar1.DockCol = 0;
+            this.bar1.DockRow = 0;
+            this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.bar1.Text = "Tools";
+            // 
+            // bar2
+            // 
+            this.bar2.BarName = "Main menu";
+            this.bar2.DockCol = 0;
+            this.bar2.DockRow = 0;
+            this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Standalone;
+            this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.addUserBtn),
+            new DevExpress.XtraBars.LinkPersistInfo(this.editUserBtn),
+            new DevExpress.XtraBars.LinkPersistInfo(this.deleteUserBtn)});
+            this.bar2.OptionsBar.DrawBorder = false;
+            this.bar2.OptionsBar.DrawDragBorder = false;
+            this.bar2.OptionsBar.UseWholeRow = true;
+            this.bar2.StandaloneBarDockControl = this.standaloneBarDockControl1;
+            this.bar2.Text = "Main menu";
+            // 
+            // addUserBtn
+            // 
+            this.addUserBtn.Caption = "Добавить";
+            this.addUserBtn.Id = 0;
+            this.addUserBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addUserBtn.ImageOptions.Image")));
+            this.addUserBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("addUserBtn.ImageOptions.LargeImage")));
+            this.addUserBtn.Name = "addUserBtn";
+            this.addUserBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // editUserBtn
+            // 
+            this.editUserBtn.Caption = "Изменить";
+            this.editUserBtn.Id = 1;
+            this.editUserBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("editUserBtn.ImageOptions.Image")));
+            this.editUserBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("editUserBtn.ImageOptions.LargeImage")));
+            this.editUserBtn.Name = "editUserBtn";
+            this.editUserBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // deleteUserBtn
+            // 
+            this.deleteUserBtn.Caption = "Удалить";
+            this.deleteUserBtn.Id = 2;
+            this.deleteUserBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("deleteUserBtn.ImageOptions.Image")));
+            this.deleteUserBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("deleteUserBtn.ImageOptions.LargeImage")));
+            this.deleteUserBtn.Name = "deleteUserBtn";
+            this.deleteUserBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // standaloneBarDockControl1
+            // 
+            this.standaloneBarDockControl1.CausesValidation = false;
+            this.standaloneBarDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.standaloneBarDockControl1.Location = new System.Drawing.Point(0, 0);
+            this.standaloneBarDockControl1.Manager = this.barManager;
+            this.standaloneBarDockControl1.Name = "standaloneBarDockControl1";
+            this.standaloneBarDockControl1.Size = new System.Drawing.Size(692, 23);
+            this.standaloneBarDockControl1.Text = "standaloneBarDockControl1";
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Manager = this.barManager;
+            this.barDockControlTop.Size = new System.Drawing.Size(811, 29);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 390);
+            this.barDockControlBottom.Manager = this.barManager;
+            this.barDockControlBottom.Size = new System.Drawing.Size(811, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 29);
+            this.barDockControlLeft.Manager = this.barManager;
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 361);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(811, 29);
+            this.barDockControlRight.Manager = this.barManager;
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 361);
+            // 
+            // historyTab
+            // 
+            this.historyTab.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("historyTab.ImageOptions.Image")));
+            this.historyTab.Name = "historyTab";
+            this.historyTab.Size = new System.Drawing.Size(692, 344);
+            this.historyTab.Text = "История";
+            // 
             // importTab
             // 
             this.importTab.Appearance.Header.Options.UseTextOptions = true;
@@ -436,6 +596,13 @@
             this.addExistingWorkflowBtn.TabIndex = 111;
             this.addExistingWorkflowBtn.Text = "Добавить";
             this.addExistingWorkflowBtn.Click += new System.EventHandler(this.addExistingWorkflowBtn_Click);
+            // 
+            // exportTab
+            // 
+            this.exportTab.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("exportTab.ImageOptions.Image")));
+            this.exportTab.Name = "exportTab";
+            this.exportTab.Size = new System.Drawing.Size(692, 344);
+            this.exportTab.Text = "Экспорт";
             // 
             // saveBtn
             // 
@@ -560,161 +727,78 @@
             this.treeListBand14.Visible = false;
             this.treeListBand14.Width = 260;
             // 
-            // usersTab
+            // recoveryTab
             // 
-            this.usersTab.Controls.Add(this.userGridControl);
-            this.usersTab.Controls.Add(this.standaloneBarDockControl1);
-            this.usersTab.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("usersTab.ImageOptions.Image")));
-            this.usersTab.Name = "usersTab";
-            this.usersTab.Size = new System.Drawing.Size(692, 344);
-            this.usersTab.Text = "Пользователи";
+            this.recoveryTab.Controls.Add(this.simpleButton6);
+            this.recoveryTab.Controls.Add(this.labelControl11);
+            this.recoveryTab.Controls.Add(this.textEdit4);
+            this.recoveryTab.Controls.Add(this.simpleButton7);
+            this.recoveryTab.Controls.Add(this.labelControl12);
+            this.recoveryTab.Controls.Add(this.textEdit5);
+            this.recoveryTab.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("recoveryTab.ImageOptions.Image")));
+            this.recoveryTab.Name = "recoveryTab";
+            this.recoveryTab.Size = new System.Drawing.Size(692, 344);
+            this.recoveryTab.Text = "Востановление";
             // 
-            // historyTab
+            // simpleButton6
             // 
-            this.historyTab.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("historyTab.ImageOptions.Image")));
-            this.historyTab.Name = "historyTab";
-            this.historyTab.Size = new System.Drawing.Size(692, 344);
-            this.historyTab.Text = "История";
+            this.simpleButton6.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton6.ImageOptions.Image")));
+            this.simpleButton6.Location = new System.Drawing.Point(428, 73);
+            this.simpleButton6.Name = "simpleButton6";
+            this.simpleButton6.Size = new System.Drawing.Size(98, 23);
+            this.simpleButton6.TabIndex = 152;
+            this.simpleButton6.Text = "Change path";
             // 
-            // exportTab
+            // labelControl11
             // 
-            this.exportTab.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("exportTab.ImageOptions.Image")));
-            this.exportTab.Name = "exportTab";
-            this.exportTab.Size = new System.Drawing.Size(692, 344);
-            this.exportTab.Text = "Экспорт";
+            this.labelControl11.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelControl11.Appearance.ForeColor = System.Drawing.Color.Navy;
+            this.labelControl11.Appearance.Options.UseFont = true;
+            this.labelControl11.Appearance.Options.UseForeColor = true;
+            this.labelControl11.Location = new System.Drawing.Point(15, 57);
+            this.labelControl11.Name = "labelControl11";
+            this.labelControl11.Size = new System.Drawing.Size(174, 13);
+            this.labelControl11.TabIndex = 151;
+            this.labelControl11.Text = "Database backup storage path";
             // 
-            // standaloneBarDockControl1
+            // textEdit4
             // 
-            this.standaloneBarDockControl1.CausesValidation = false;
-            this.standaloneBarDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.standaloneBarDockControl1.Location = new System.Drawing.Point(0, 0);
-            this.standaloneBarDockControl1.Manager = this.barManager;
-            this.standaloneBarDockControl1.Name = "standaloneBarDockControl1";
-            this.standaloneBarDockControl1.Size = new System.Drawing.Size(692, 23);
-            this.standaloneBarDockControl1.Text = "standaloneBarDockControl1";
+            this.textEdit4.EditValue = "Admin";
+            this.textEdit4.Location = new System.Drawing.Point(15, 76);
+            this.textEdit4.Name = "textEdit4";
+            this.textEdit4.Properties.MaxLength = 12;
+            this.textEdit4.Size = new System.Drawing.Size(407, 20);
+            this.textEdit4.TabIndex = 150;
             // 
-            // barManager
+            // simpleButton7
             // 
-            this.barManager.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
-            this.bar1,
-            this.bar2});
-            this.barManager.DockControls.Add(this.barDockControlTop);
-            this.barManager.DockControls.Add(this.barDockControlBottom);
-            this.barManager.DockControls.Add(this.barDockControlLeft);
-            this.barManager.DockControls.Add(this.barDockControlRight);
-            this.barManager.DockControls.Add(this.standaloneBarDockControl1);
-            this.barManager.Form = this;
-            this.barManager.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.addUserBtn,
-            this.editUserBtn,
-            this.deleteUserBtn});
-            this.barManager.MainMenu = this.bar2;
-            this.barManager.MaxItemId = 3;
-            this.barManager.PopupMenuAlignment = DevExpress.XtraBars.PopupMenuAlignment.Left;
+            this.simpleButton7.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton7.ImageOptions.Image")));
+            this.simpleButton7.Location = new System.Drawing.Point(428, 31);
+            this.simpleButton7.Name = "simpleButton7";
+            this.simpleButton7.Size = new System.Drawing.Size(98, 23);
+            this.simpleButton7.TabIndex = 149;
+            this.simpleButton7.Text = "Change path";
             // 
-            // barDockControlTop
+            // labelControl12
             // 
-            this.barDockControlTop.CausesValidation = false;
-            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Manager = this.barManager;
-            this.barDockControlTop.Size = new System.Drawing.Size(811, 29);
+            this.labelControl12.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelControl12.Appearance.ForeColor = System.Drawing.Color.Navy;
+            this.labelControl12.Appearance.Options.UseFont = true;
+            this.labelControl12.Appearance.Options.UseForeColor = true;
+            this.labelControl12.Location = new System.Drawing.Point(15, 15);
+            this.labelControl12.Name = "labelControl12";
+            this.labelControl12.Size = new System.Drawing.Size(295, 13);
+            this.labelControl12.TabIndex = 148;
+            this.labelControl12.Text = "Database technical process file backup storage path";
             // 
-            // barDockControlBottom
+            // textEdit5
             // 
-            this.barDockControlBottom.CausesValidation = false;
-            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 390);
-            this.barDockControlBottom.Manager = this.barManager;
-            this.barDockControlBottom.Size = new System.Drawing.Size(811, 0);
-            // 
-            // barDockControlLeft
-            // 
-            this.barDockControlLeft.CausesValidation = false;
-            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 29);
-            this.barDockControlLeft.Manager = this.barManager;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 361);
-            // 
-            // barDockControlRight
-            // 
-            this.barDockControlRight.CausesValidation = false;
-            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(811, 29);
-            this.barDockControlRight.Manager = this.barManager;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 361);
-            // 
-            // bar1
-            // 
-            this.bar1.BarName = "Tools";
-            this.bar1.DockCol = 0;
-            this.bar1.DockRow = 0;
-            this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-            this.bar1.Text = "Tools";
-            // 
-            // bar2
-            // 
-            this.bar2.BarName = "Main menu";
-            this.bar2.DockCol = 0;
-            this.bar2.DockRow = 0;
-            this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Standalone;
-            this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.addUserBtn),
-            new DevExpress.XtraBars.LinkPersistInfo(this.editUserBtn),
-            new DevExpress.XtraBars.LinkPersistInfo(this.deleteUserBtn)});
-            this.bar2.OptionsBar.DrawBorder = false;
-            this.bar2.OptionsBar.DrawDragBorder = false;
-            this.bar2.OptionsBar.UseWholeRow = true;
-            this.bar2.StandaloneBarDockControl = this.standaloneBarDockControl1;
-            this.bar2.Text = "Main menu";
-            // 
-            // addUserBtn
-            // 
-            this.addUserBtn.Caption = "Добавить";
-            this.addUserBtn.Id = 0;
-            this.addUserBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addUserBtn.ImageOptions.Image")));
-            this.addUserBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("addUserBtn.ImageOptions.LargeImage")));
-            this.addUserBtn.Name = "addUserBtn";
-            this.addUserBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            // 
-            // editUserBtn
-            // 
-            this.editUserBtn.Caption = "Изменить";
-            this.editUserBtn.Id = 1;
-            this.editUserBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("editUserBtn.ImageOptions.Image")));
-            this.editUserBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("editUserBtn.ImageOptions.LargeImage")));
-            this.editUserBtn.Name = "editUserBtn";
-            this.editUserBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            // 
-            // deleteUserBtn
-            // 
-            this.deleteUserBtn.Caption = "Удалить";
-            this.deleteUserBtn.Id = 2;
-            this.deleteUserBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("deleteUserBtn.ImageOptions.Image")));
-            this.deleteUserBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("deleteUserBtn.ImageOptions.LargeImage")));
-            this.deleteUserBtn.Name = "deleteUserBtn";
-            this.deleteUserBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            // 
-            // userGridControl
-            // 
-            this.userGridControl.Location = new System.Drawing.Point(0, 23);
-            this.userGridControl.MainView = this.gridView1;
-            this.userGridControl.MenuManager = this.barManager;
-            this.userGridControl.Name = "userGridControl";
-            this.userGridControl.Size = new System.Drawing.Size(692, 321);
-            this.userGridControl.TabIndex = 1;
-            this.userGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            // 
-            // gridView1
-            // 
-            this.gridView1.GridControl = this.userGridControl;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsPrint.PrintFooter = false;
-            this.gridView1.OptionsPrint.PrintGroupFooter = false;
-            this.gridView1.OptionsPrint.PrintHeader = false;
-            this.gridView1.OptionsView.ShowGroupExpandCollapseButtons = false;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.textEdit5.EditValue = "Admin";
+            this.textEdit5.Location = new System.Drawing.Point(15, 34);
+            this.textEdit5.Name = "textEdit5";
+            this.textEdit5.Properties.MaxLength = 12;
+            this.textEdit5.Size = new System.Drawing.Size(407, 20);
+            this.textEdit5.TabIndex = 147;
             // 
             // SettingsFm
             // 
@@ -749,15 +833,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.showPasswordEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.passEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loginEdit.Properties)).EndInit();
+            this.usersTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.userGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
             this.importTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.checkPanelControl)).EndInit();
             this.checkPanelControl.ResumeLayout(false);
             this.checkPanelControl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.existingWorkflowFileEdit.Properties)).EndInit();
-            this.usersTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userGridControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            this.recoveryTab.ResumeLayout(false);
+            this.recoveryTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -823,5 +911,12 @@
         private DevExpress.XtraBars.BarButtonItem deleteUserBtn;
         private DevExpress.XtraGrid.GridControl userGridControl;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraTab.XtraTabPage recoveryTab;
+        private DevExpress.XtraEditors.SimpleButton simpleButton6;
+        private DevExpress.XtraEditors.LabelControl labelControl11;
+        private DevExpress.XtraEditors.TextEdit textEdit4;
+        private DevExpress.XtraEditors.SimpleButton simpleButton7;
+        private DevExpress.XtraEditors.LabelControl labelControl12;
+        private DevExpress.XtraEditors.TextEdit textEdit5;
     }
 }
