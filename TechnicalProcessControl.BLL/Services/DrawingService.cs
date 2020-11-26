@@ -2481,7 +2481,7 @@ namespace TechnicalProcessControl.BLL.Services
 
         public int? CheckDrawings(string currentLevelMenu)
         {
-            var createDrawings = drawings.GetAll().SingleOrDefault(c => c.CurrentLevelMenu == currentLevelMenu);
+            var createDrawings = drawings.GetAll().FirstOrDefault(c => c.CurrentLevelMenu == currentLevelMenu);
             return createDrawings.Id;
         }
 
@@ -2516,7 +2516,9 @@ namespace TechnicalProcessControl.BLL.Services
 
         public int? CheckType(string typeName)
         {
-            var createType = type.GetAll().SingleOrDefault(c => c.TypeName == typeName);
+            var createType = type.GetAll().FirstOrDefault(c => c.TypeName == typeName);
+            if(createType == null)
+                return null;
             return createType.Id;
         }
 
@@ -2551,7 +2553,13 @@ namespace TechnicalProcessControl.BLL.Services
 
         public int? CheckDrawing(string drawingNumber)
         {
-            var checkDrawing = drawing.GetAll().SingleOrDefault(c => c.Number == drawingNumber);
+            var checkDrawing = drawing.GetAll().FirstOrDefault(c => c.Number == drawingNumber);
+
+            //if(checkDrawing.Count()>0)
+            //    return checkDrawing.Id;
+
+            if (checkDrawing == null)
+                return null;
             return checkDrawing.Id;
         }
 

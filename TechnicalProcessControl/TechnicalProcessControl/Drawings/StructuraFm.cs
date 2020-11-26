@@ -107,8 +107,8 @@ namespace TechnicalProcessControl
             drawingService = Program.kernel.Get<IDrawingService>();
             reportService = Program.kernel.Get<IReportService>();
             splashScreenManager.ShowWaitForm();
-
-            var drawingsListInfo = drawingService.GetAllDrawingsProc().OrderBy(bdsm => Convert.ToInt32(bdsm.CurrentLevelMenu.Split('.').Last())).ToList();
+            var drawingsListInfo = drawingService.GetAllDrawingsProc().ToList();
+            //var drawingsListInfo = drawingService.GetAllDrawingsProc().OrderBy(bdsm => Convert.ToInt32(bdsm.CurrentLevelMenu.Split('.').Last())).ToList();
             drawingsList = ConvertList(drawingsListInfo);
             drawingsBS.DataSource = drawingsList;
             drawingTreeListGrid.DataSource = drawingsBS;
@@ -1073,17 +1073,17 @@ namespace TechnicalProcessControl
         //убрать нули
         private void drawingTreeListGrid_CustomColumnDisplayText(object sender, CustomColumnDisplayTextEventArgs e)
         {
-            if (e.Column.FieldName == "Quantity" || e.Column.FieldName == "QuantityR" || e.Column.FieldName == "QuantityL" || e.Column.FieldName == "L"
-                || e.Column.FieldName == "W" || e.Column.FieldName == "W2" || e.Column.FieldName == "TH" || e.Column.FieldName == "Welding20Steel"
+            if (e.Column.FieldName == "Quantity" || e.Column.FieldName == "QuantityR" || e.Column.FieldName == "QuantityL" /*|| e.Column.FieldName == "L"
+                /*|| e.Column.FieldName == "W" || e.Column.FieldName == "W2" || e.Column.FieldName == "TH"*/ || e.Column.FieldName == "Welding20Steel"
                 || e.Column.FieldName == "Welding10" || e.Column.FieldName == "Welding12" || e.Column.FieldName == "Welding16" || e.Column.FieldName == "Welding20"
                 || e.Column.FieldName == "GasArCO2" || e.Column.FieldName == "GasCO3" || e.Column.FieldName == "GasAr" || e.Column.FieldName == "WeldingElektrod"
                 || e.Column.FieldName == "GasO2" || e.Column.FieldName == "GasNature" || e.Column.FieldName == "GasN2" || e.Column.FieldName == "HardKapci881"
                 || e.Column.FieldName == "HardKapciHs6055" || e.Column.FieldName == "HardKapci126" || e.Column.FieldName == "HardKapciPEPutty" || e.Column.FieldName == "HardKapci2KMS651"
                 || e.Column.FieldName == "DilKapci881" || e.Column.FieldName == "DilKapci2K" || e.Column.FieldName == "DilKapci880" || e.Column.FieldName == "PrimerKapci125"
                 || e.Column.FieldName == "PrimerKapci633" || e.Column.FieldName == "EnamelKapci641" || e.Column.FieldName == "EnamelKapci670" || e.Column.FieldName == "EnamelKapci6030"
-                || e.Column.FieldName == "UniversalSikaflex527"|| e.Column.FieldName == "PuttyKapci350" || e.Column.FieldName == "LaborIntensity001"
-                || e.Column.FieldName == "LaborIntensity002"|| e.Column.FieldName == "LaborIntensity003"|| e.Column.FieldName == "LaborIntensity004"
-                || e.Column.FieldName == "LaborIntensity005"|| e.Column.FieldName == "LaborIntensityGeneral"
+                || e.Column.FieldName == "UniversalSikaflex527" || e.Column.FieldName == "PuttyKapci350" || e.Column.FieldName == "LaborIntensity001"
+                || e.Column.FieldName == "LaborIntensity002" || e.Column.FieldName == "LaborIntensity003" || e.Column.FieldName == "LaborIntensity004"
+                || e.Column.FieldName == "LaborIntensity005" || e.Column.FieldName == "LaborIntensityGeneral"
                 || e.Column.FieldName == "Welding20SteelTotal"
                 || e.Column.FieldName == "Welding10Total" || e.Column.FieldName == "Welding12Total" || e.Column.FieldName == "Welding16Total" || e.Column.FieldName == "Welding20Total"
                 || e.Column.FieldName == "GasArCO2Total" || e.Column.FieldName == "GasCO3Total" || e.Column.FieldName == "GasArTotal" || e.Column.FieldName == "WeldingElektrodTotal"

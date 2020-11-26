@@ -155,7 +155,10 @@ namespace TechnicalProcessControl.BLL.Services
 
         public int? CheckMaterial(string materiallName)
         {
-            var checkMaterial = materials.GetAll().SingleOrDefault(c => c.MaterialName == materiallName);
+            var checkMaterial = materials.GetAll().FirstOrDefault(c => c.MaterialName == materiallName);
+
+            if (checkMaterial == null)
+                return null;
             return checkMaterial.Id;
         }
 
@@ -190,7 +193,9 @@ namespace TechnicalProcessControl.BLL.Services
 
         public int? CheckDetail(string detailName)
         {
-            var checkDetail = details.GetAll().SingleOrDefault(c => c.DetailName== detailName);
+            var checkDetail = details.GetAll().FirstOrDefault(c => c.DetailName== detailName);
+            if (checkDetail == null)
+                return null;
             return checkDetail.Id;
         }
 

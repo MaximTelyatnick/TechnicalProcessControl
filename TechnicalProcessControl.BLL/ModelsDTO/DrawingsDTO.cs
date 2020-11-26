@@ -157,6 +157,9 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public decimal? LaborIntensity005Total { get; set; }
         public decimal? LaborIntensityGeneralTotal { get; set; }
 
+        public int IdFake { get; set; }
+        public int? ParentIdFake { get; set; }
+
         public DrawingsDTO()
         {
             this.Quantity = 0;
@@ -228,7 +231,10 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
             this.LaborIntensity003Total = 0;
             this.LaborIntensity004Total = 0;
             this.LaborIntensity005Total = 0;
-        }
+
+            
+
+    }
 
         public object Clone()
         {
