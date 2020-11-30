@@ -11,6 +11,7 @@ using DevExpress.XtraEditors;
 using TechnicalProcessControl.BLL.Interfaces;
 using TechnicalProcessControl.BLL.ModelsDTO;
 using Ninject;
+using System.IO;
 
 namespace TechnicalProcessControl.Settings
 {
@@ -19,6 +20,8 @@ namespace TechnicalProcessControl.Settings
         public static IDrawingService drawingService;
         public static IJournalService journalService;
         public static IReportService reportService;
+
+        private string pathToDirectory;
 
         private List<DrawingsDTO> drawingsList = new List<DrawingsDTO>();
 
@@ -241,5 +244,7 @@ namespace TechnicalProcessControl.Settings
 
             splashScreenManager.CloseWaitForm();
         }
+
+      
     }
 }

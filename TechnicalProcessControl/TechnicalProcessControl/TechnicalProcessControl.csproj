@@ -299,6 +299,12 @@
     <Compile Include="Journals\ScanFm.Designer.cs">
       <DependentUpon>ScanFm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Settings\DrawingScanImportFm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Settings\DrawingScanImportFm.Designer.cs">
+      <DependentUpon>DrawingScanImportFm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Settings\SettingsFm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -455,6 +461,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Journals\ScanFm.resx">
       <DependentUpon>ScanFm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Settings\DrawingScanImportFm.resx">
+      <DependentUpon>DrawingScanImportFm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Settings\SettingsFm.resx">
       <DependentUpon>SettingsFm.cs</DependentUpon>

@@ -1075,6 +1075,11 @@ namespace TechnicalProcessControl.BLL.Services
             return mapper.Map<IEnumerable<DAL.Models.Type>, List<TypeDTO>>(type.GetAll());
         }
 
+        public IEnumerable<DrawingScanDTO> GetDrawingScan()
+        {
+            return mapper.Map<IEnumerable<DrawingScan>, List<DrawingScanDTO>>(drawingScan.GetAll());
+        }
+
         public IEnumerable<RevisionsDTO> GetRevisions()
         {
             return mapper.Map<IEnumerable<Revisions>, List<RevisionsDTO>>(revisions.GetAll());

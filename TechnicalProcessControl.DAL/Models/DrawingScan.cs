@@ -11,7 +11,7 @@ namespace TechnicalProcessControl.DAL.Models
     {
         [Key]
         public int Id { get; set; }
-        public int DrawingId { get; set; }
+        public int? DrawingId { get; set; }
         public byte[] Scan { get; set; }
         public string FileName { get; set; }
         public short? Status { get; set; }

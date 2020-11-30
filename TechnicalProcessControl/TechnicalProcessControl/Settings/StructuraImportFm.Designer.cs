@@ -33,6 +33,7 @@
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.importBtn = new DevExpress.XtraBars.BarButtonItem();
             this.clearBaseBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.importDrawingScanBtn = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
@@ -83,9 +84,10 @@
             this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl1.ExpandCollapseItem,
             this.importBtn,
-            this.clearBaseBtn});
+            this.clearBaseBtn,
+            this.importDrawingScanBtn});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 3;
+            this.ribbonControl1.MaxItemId = 4;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -114,6 +116,15 @@
             this.clearBaseBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.clearBaseBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.clearBaseBtn_ItemClick);
             // 
+            // importDrawingScanBtn
+            // 
+            this.importDrawingScanBtn.Caption = "Импортировать сканы чертежей";
+            this.importDrawingScanBtn.Id = 3;
+            this.importDrawingScanBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("importDrawingScanBtn.ImageOptions.Image")));
+            this.importDrawingScanBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("importDrawingScanBtn.ImageOptions.LargeImage")));
+            this.importDrawingScanBtn.Name = "importDrawingScanBtn";
+            this.importDrawingScanBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -124,6 +135,7 @@
             // ribbonPageGroup1
             // 
             this.ribbonPageGroup1.ItemLinks.Add(this.importBtn);
+            this.ribbonPageGroup1.ItemLinks.Add(this.importDrawingScanBtn);
             this.ribbonPageGroup1.ItemLinks.Add(this.clearBaseBtn);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "Функции";
@@ -600,5 +612,6 @@
         private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager;
         private DevExpress.XtraBars.BarButtonItem importBtn;
         private DevExpress.XtraBars.BarButtonItem clearBaseBtn;
+        private DevExpress.XtraBars.BarButtonItem importDrawingScanBtn;
     }
 }

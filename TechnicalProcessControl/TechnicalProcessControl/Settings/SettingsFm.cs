@@ -12,6 +12,7 @@ using SpreadsheetGear;
 using TechnicalProcessControl.BLL.ModelsDTO;
 using TechnicalProcessControl.Settings;
 using System.Globalization;
+using System.IO;
 
 namespace TechnicalProcessControl
 {
@@ -19,6 +20,7 @@ namespace TechnicalProcessControl
     {
         string pathToXlsImoprtFile;
         List<DrawingsDTO> parseDrawingsList = new List<DrawingsDTO>();
+        List<DrawingScanDTO> parseDrawingScanList = new List<DrawingScanDTO>();
 
         public SettingsFm()
         {
@@ -308,20 +310,87 @@ namespace TechnicalProcessControl
                 //fileName = ofd.SafeFileName;
             }
 
-            //FileBrowserDialog folderBrowserDlg = new FolderBrowserDialog();
-            //folderBrowserDlg.ShowNewFolderButton = true;
-            //DialogResult dlgResult = folderBrowserDlg.ShowDialog();
-            //if (dlgResult.Equals(DialogResult.OK))
-            //{
-            //    existingWorkflowFileEdit.Text = folderBrowserDlg.SelectedPath;
-            //    Environment.SpecialFolder rootFolder = folderBrowserDlg.RootFolder;
-
-            //}
         }
 
         private void showPasswordEdit_CheckedChanged(object sender, EventArgs e)
         {
             passEdit.Properties.UseSystemPasswordChar = !showPasswordEdit.Checked;
+        }
+
+        private void addPathToDrawingScanBtn_Click(object sender, EventArgs e)
+        {
+            //string filePath = "";
+            //string fileName = "";
+            //OpenFileDialog ofd = new OpenFileDialog();
+            //ofd.InitialDirectory = @"D:\";
+            //if (ofd.ShowDialog() == DialogResult.OK)
+            //{
+            //    drawingScanDirectoryEdit.Text = ofd.FileName;
+            //    //fileName = ofd.SafeFileName;
+            //}
+
+            FolderBrowserDialog folderBrowserDlg = new FolderBrowserDialog();
+            folderBrowserDlg.ShowNewFolderButton = true;
+            DialogResult dlgResult = folderBrowserDlg.ShowDialog();
+            if (dlgResult.Equals(DialogResult.OK))
+            {
+                drawingScanDirectoryEdit.Text = folderBrowserDlg.SelectedPath;
+                Environment.SpecialFolder rootFolder = folderBrowserDlg.RootFolder;
+            }
+
+        }
+
+        private void importDrawingScanBtn_Click(object sender, EventArgs e)
+        {
+            if (drawingScanDirectoryEdit.Text != "")
+            {
+                LoadDrawingScan();
+
+                if (parseDrawingScanList.Count > 0)
+                {
+                    using (DrawingScanImportFm drawingScanImportFm = new DrawingScanImportFm(parseDrawingScanList))
+                    {
+                        if (drawingScanImportFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                        {
+
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Перед началом импорта необходимо указать файл", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        public void LoadDrawingScan()
+        {
+
+            parseDrawingScanList.Clear();
+
+            if (!drawingScanDirectoryEdit.Text.Equals(String.Empty) && System.IO.Directory.Exists(drawingScanDirectoryEdit.Text))
+            {
+                if (System.IO.Directory.GetFiles(drawingScanDirectoryEdit.Text).Length > 0)
+                {
+
+                    List<string> files = Directory.GetFiles(drawingScanDirectoryEdit.Text, "*.*", SearchOption.AllDirectories)
+                        .Where(file => new string[] { ".tif" }
+                        .Contains(Path.GetExtension(file)))
+                        .ToList();
+                    int i = 0;
+                    foreach (string file in files)
+                    {
+                        DrawingScanDTO drawingScanDTO = new DrawingScanDTO();
+
+                        drawingScanDTO.FileName = Path.GetFileName(file);
+                        drawingScanDTO.FileNamePath = file;
+                        //drawingScanDTO.Scan = System.IO.File.ReadAllBytes(@file);
+
+                        parseDrawingScanList.Add(drawingScanDTO);
+
+                    }
+                }
+            }
         }
     }
 }

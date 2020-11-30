@@ -76,6 +76,13 @@
             this.existingWorkflowFileEdit = new DevExpress.XtraEditors.TextEdit();
             this.addExistingWorkflowBtn = new DevExpress.XtraEditors.SimpleButton();
             this.exportTab = new DevExpress.XtraTab.XtraTabPage();
+            this.recoveryTab = new DevExpress.XtraTab.XtraTabPage();
+            this.simpleButton6 = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
+            this.textEdit4 = new DevExpress.XtraEditors.TextEdit();
+            this.simpleButton7 = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
+            this.textEdit5 = new DevExpress.XtraEditors.TextEdit();
             this.saveBtn = new DevExpress.XtraEditors.SimpleButton();
             this.cancelBtn = new DevExpress.XtraEditors.SimpleButton();
             this.treeListBand1 = new DevExpress.XtraTreeList.Columns.TreeListBand();
@@ -88,13 +95,10 @@
             this.paintMaterialBand = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.laborIntensityBand = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.treeListBand14 = new DevExpress.XtraTreeList.Columns.TreeListBand();
-            this.recoveryTab = new DevExpress.XtraTab.XtraTabPage();
-            this.simpleButton6 = new DevExpress.XtraEditors.SimpleButton();
-            this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
-            this.textEdit4 = new DevExpress.XtraEditors.TextEdit();
-            this.simpleButton7 = new DevExpress.XtraEditors.SimpleButton();
-            this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
-            this.textEdit5 = new DevExpress.XtraEditors.TextEdit();
+            this.importDrawingScanBtn = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
+            this.drawingScanDirectoryEdit = new DevExpress.XtraEditors.TextEdit();
+            this.addPathToDrawingScanBtn = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.settangsTab)).BeginInit();
             this.settangsTab.SuspendLayout();
             this.databaseTab.SuspendLayout();
@@ -121,6 +125,7 @@
             this.recoveryTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.drawingScanDirectoryEdit.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // settangsTab
@@ -554,6 +559,10 @@
             // 
             // checkPanelControl
             // 
+            this.checkPanelControl.Controls.Add(this.importDrawingScanBtn);
+            this.checkPanelControl.Controls.Add(this.labelControl9);
+            this.checkPanelControl.Controls.Add(this.drawingScanDirectoryEdit);
+            this.checkPanelControl.Controls.Add(this.addPathToDrawingScanBtn);
             this.checkPanelControl.Controls.Add(this.importFromExcelBtn);
             this.checkPanelControl.Controls.Add(this.labelControl8);
             this.checkPanelControl.Controls.Add(this.existingWorkflowFileEdit);
@@ -603,6 +612,79 @@
             this.exportTab.Name = "exportTab";
             this.exportTab.Size = new System.Drawing.Size(692, 344);
             this.exportTab.Text = "Экспорт";
+            // 
+            // recoveryTab
+            // 
+            this.recoveryTab.Controls.Add(this.simpleButton6);
+            this.recoveryTab.Controls.Add(this.labelControl11);
+            this.recoveryTab.Controls.Add(this.textEdit4);
+            this.recoveryTab.Controls.Add(this.simpleButton7);
+            this.recoveryTab.Controls.Add(this.labelControl12);
+            this.recoveryTab.Controls.Add(this.textEdit5);
+            this.recoveryTab.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("recoveryTab.ImageOptions.Image")));
+            this.recoveryTab.Name = "recoveryTab";
+            this.recoveryTab.Size = new System.Drawing.Size(692, 344);
+            this.recoveryTab.Text = "Востановление";
+            // 
+            // simpleButton6
+            // 
+            this.simpleButton6.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton6.ImageOptions.Image")));
+            this.simpleButton6.Location = new System.Drawing.Point(428, 73);
+            this.simpleButton6.Name = "simpleButton6";
+            this.simpleButton6.Size = new System.Drawing.Size(98, 23);
+            this.simpleButton6.TabIndex = 152;
+            this.simpleButton6.Text = "Change path";
+            // 
+            // labelControl11
+            // 
+            this.labelControl11.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelControl11.Appearance.ForeColor = System.Drawing.Color.Navy;
+            this.labelControl11.Appearance.Options.UseFont = true;
+            this.labelControl11.Appearance.Options.UseForeColor = true;
+            this.labelControl11.Location = new System.Drawing.Point(15, 57);
+            this.labelControl11.Name = "labelControl11";
+            this.labelControl11.Size = new System.Drawing.Size(174, 13);
+            this.labelControl11.TabIndex = 151;
+            this.labelControl11.Text = "Database backup storage path";
+            // 
+            // textEdit4
+            // 
+            this.textEdit4.EditValue = "Admin";
+            this.textEdit4.Location = new System.Drawing.Point(15, 76);
+            this.textEdit4.Name = "textEdit4";
+            this.textEdit4.Properties.MaxLength = 12;
+            this.textEdit4.Size = new System.Drawing.Size(407, 20);
+            this.textEdit4.TabIndex = 150;
+            // 
+            // simpleButton7
+            // 
+            this.simpleButton7.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton7.ImageOptions.Image")));
+            this.simpleButton7.Location = new System.Drawing.Point(428, 31);
+            this.simpleButton7.Name = "simpleButton7";
+            this.simpleButton7.Size = new System.Drawing.Size(98, 23);
+            this.simpleButton7.TabIndex = 149;
+            this.simpleButton7.Text = "Change path";
+            // 
+            // labelControl12
+            // 
+            this.labelControl12.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelControl12.Appearance.ForeColor = System.Drawing.Color.Navy;
+            this.labelControl12.Appearance.Options.UseFont = true;
+            this.labelControl12.Appearance.Options.UseForeColor = true;
+            this.labelControl12.Location = new System.Drawing.Point(15, 15);
+            this.labelControl12.Name = "labelControl12";
+            this.labelControl12.Size = new System.Drawing.Size(295, 13);
+            this.labelControl12.TabIndex = 148;
+            this.labelControl12.Text = "Database technical process file backup storage path";
+            // 
+            // textEdit5
+            // 
+            this.textEdit5.EditValue = "Admin";
+            this.textEdit5.Location = new System.Drawing.Point(15, 34);
+            this.textEdit5.Name = "textEdit5";
+            this.textEdit5.Properties.MaxLength = 12;
+            this.textEdit5.Size = new System.Drawing.Size(407, 20);
+            this.textEdit5.TabIndex = 147;
             // 
             // saveBtn
             // 
@@ -727,78 +809,39 @@
             this.treeListBand14.Visible = false;
             this.treeListBand14.Width = 260;
             // 
-            // recoveryTab
+            // importDrawingScanBtn
             // 
-            this.recoveryTab.Controls.Add(this.simpleButton6);
-            this.recoveryTab.Controls.Add(this.labelControl11);
-            this.recoveryTab.Controls.Add(this.textEdit4);
-            this.recoveryTab.Controls.Add(this.simpleButton7);
-            this.recoveryTab.Controls.Add(this.labelControl12);
-            this.recoveryTab.Controls.Add(this.textEdit5);
-            this.recoveryTab.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("recoveryTab.ImageOptions.Image")));
-            this.recoveryTab.Name = "recoveryTab";
-            this.recoveryTab.Size = new System.Drawing.Size(692, 344);
-            this.recoveryTab.Text = "Востановление";
+            this.importDrawingScanBtn.Location = new System.Drawing.Point(530, 86);
+            this.importDrawingScanBtn.Name = "importDrawingScanBtn";
+            this.importDrawingScanBtn.Size = new System.Drawing.Size(126, 22);
+            this.importDrawingScanBtn.TabIndex = 118;
+            this.importDrawingScanBtn.Text = "Начать импорт";
+            this.importDrawingScanBtn.Click += new System.EventHandler(this.importDrawingScanBtn_Click);
             // 
-            // simpleButton6
+            // labelControl9
             // 
-            this.simpleButton6.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton6.ImageOptions.Image")));
-            this.simpleButton6.Location = new System.Drawing.Point(428, 73);
-            this.simpleButton6.Name = "simpleButton6";
-            this.simpleButton6.Size = new System.Drawing.Size(98, 23);
-            this.simpleButton6.TabIndex = 152;
-            this.simpleButton6.Text = "Change path";
+            this.labelControl9.Location = new System.Drawing.Point(5, 63);
+            this.labelControl9.Name = "labelControl9";
+            this.labelControl9.Size = new System.Drawing.Size(29, 13);
+            this.labelControl9.TabIndex = 117;
+            this.labelControl9.Text = "Путь:";
             // 
-            // labelControl11
+            // drawingScanDirectoryEdit
             // 
-            this.labelControl11.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelControl11.Appearance.ForeColor = System.Drawing.Color.Navy;
-            this.labelControl11.Appearance.Options.UseFont = true;
-            this.labelControl11.Appearance.Options.UseForeColor = true;
-            this.labelControl11.Location = new System.Drawing.Point(15, 57);
-            this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(174, 13);
-            this.labelControl11.TabIndex = 151;
-            this.labelControl11.Text = "Database backup storage path";
+            this.drawingScanDirectoryEdit.Location = new System.Drawing.Point(57, 60);
+            this.drawingScanDirectoryEdit.Name = "drawingScanDirectoryEdit";
+            this.drawingScanDirectoryEdit.Size = new System.Drawing.Size(599, 20);
+            this.drawingScanDirectoryEdit.TabIndex = 116;
             // 
-            // textEdit4
+            // addPathToDrawingScanBtn
             // 
-            this.textEdit4.EditValue = "Admin";
-            this.textEdit4.Location = new System.Drawing.Point(15, 76);
-            this.textEdit4.Name = "textEdit4";
-            this.textEdit4.Properties.MaxLength = 12;
-            this.textEdit4.Size = new System.Drawing.Size(407, 20);
-            this.textEdit4.TabIndex = 150;
-            // 
-            // simpleButton7
-            // 
-            this.simpleButton7.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton7.ImageOptions.Image")));
-            this.simpleButton7.Location = new System.Drawing.Point(428, 31);
-            this.simpleButton7.Name = "simpleButton7";
-            this.simpleButton7.Size = new System.Drawing.Size(98, 23);
-            this.simpleButton7.TabIndex = 149;
-            this.simpleButton7.Text = "Change path";
-            // 
-            // labelControl12
-            // 
-            this.labelControl12.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelControl12.Appearance.ForeColor = System.Drawing.Color.Navy;
-            this.labelControl12.Appearance.Options.UseFont = true;
-            this.labelControl12.Appearance.Options.UseForeColor = true;
-            this.labelControl12.Location = new System.Drawing.Point(15, 15);
-            this.labelControl12.Name = "labelControl12";
-            this.labelControl12.Size = new System.Drawing.Size(295, 13);
-            this.labelControl12.TabIndex = 148;
-            this.labelControl12.Text = "Database technical process file backup storage path";
-            // 
-            // textEdit5
-            // 
-            this.textEdit5.EditValue = "Admin";
-            this.textEdit5.Location = new System.Drawing.Point(15, 34);
-            this.textEdit5.Name = "textEdit5";
-            this.textEdit5.Properties.MaxLength = 12;
-            this.textEdit5.Size = new System.Drawing.Size(407, 20);
-            this.textEdit5.TabIndex = 147;
+            this.addPathToDrawingScanBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton5.ImageOptions.Image")));
+            this.addPathToDrawingScanBtn.Location = new System.Drawing.Point(443, 86);
+            this.addPathToDrawingScanBtn.Name = "addPathToDrawingScanBtn";
+            this.addPathToDrawingScanBtn.Size = new System.Drawing.Size(81, 21);
+            this.addPathToDrawingScanBtn.TabIndex = 115;
+            this.addPathToDrawingScanBtn.Text = "Добавить";
+            this.addPathToDrawingScanBtn.Click += new System.EventHandler(this.addPathToDrawingScanBtn_Click);
             // 
             // SettingsFm
             // 
@@ -846,6 +889,7 @@
             this.recoveryTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.drawingScanDirectoryEdit.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -918,5 +962,9 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton7;
         private DevExpress.XtraEditors.LabelControl labelControl12;
         private DevExpress.XtraEditors.TextEdit textEdit5;
+        private DevExpress.XtraEditors.SimpleButton importDrawingScanBtn;
+        private DevExpress.XtraEditors.LabelControl labelControl9;
+        private DevExpress.XtraEditors.TextEdit drawingScanDirectoryEdit;
+        private DevExpress.XtraEditors.SimpleButton addPathToDrawingScanBtn;
     }
 }

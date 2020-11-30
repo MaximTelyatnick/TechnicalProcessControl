@@ -24,6 +24,8 @@ namespace TechnicalProcessControl.BLL.Interfaces
 
         IEnumerable<TypeDTO> GetType();
 
+        IEnumerable<DrawingScanDTO> GetDrawingScan();
+
         //IEnumerable<DetailsDTO> GetDetails();
 
         //DrawingScanDTO GetDrawingScanById(int DrawingId);
