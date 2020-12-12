@@ -42,7 +42,7 @@ namespace TechnicalProcessControl.Settings
         {
             drawingService = Program.kernel.Get<IDrawingService>();
             reportService = Program.kernel.Get<IReportService>();
-            splashScreenManager.ShowWaitForm();
+            splashScreenManager3.ShowWaitForm();
 
 
             //var drawingsListInfo = drawingService.GetAllDrawingsProc().OrderBy(bdsm => Convert.ToInt32(bdsm.CurrentLevelMenu.Split('.').Last())).ToList();
@@ -50,13 +50,13 @@ namespace TechnicalProcessControl.Settings
             scanDrawingGrid.DataSource = drawingScanBS;
 
 
-            splashScreenManager.CloseWaitForm();
+            splashScreenManager3.CloseWaitForm();
         }
 
         private void importBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             drawingService = Program.kernel.Get<IDrawingService>();
-            splashScreenManager.ShowWaitForm();
+            splashScreenManager3.ShowWaitForm();
 
             for (int i = 0; i < drawingScanList.Count(); i++)
             {
@@ -65,7 +65,7 @@ namespace TechnicalProcessControl.Settings
                 {
                     DrawingScanDTO createDrawingScan = new DrawingScanDTO();
 
-                    byte[] scan =  System.IO.File.ReadAllBytes(drawingScanList[i].FileNamePath); ;
+                    byte[] scan =  System.IO.File.ReadAllBytes(drawingScanList[i].FileNamePath);
 
                     
 
@@ -82,14 +82,17 @@ namespace TechnicalProcessControl.Settings
                     }
                     catch (Exception ex)
                     {
+                        splashScreenManager3.CloseWaitForm();
                         MessageBox.Show("Не получилось загрузить изображение " + drawingScanList[i].FileName, "Загрузка изображения", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        splashScreenManager3.ShowWaitForm();
                         continue;
                     }
 
                 }
             }
 
-                splashScreenManager.CloseWaitForm();
+             splashScreenManager3.CloseWaitForm();
+             MessageBox.Show("Загрузка изображений завершена!", "Загрузка изображения", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void clearBaseBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -98,13 +101,19 @@ namespace TechnicalProcessControl.Settings
 
             if (MessageBox.Show("Все сканы чертежей будут удалены?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                splashScreenManager.ShowWaitForm();
+                splashScreenManager3.ShowWaitForm();
                 if (ClearDatabase())
+                {
+                    splashScreenManager3.CloseWaitForm();
                     MessageBox.Show("Все сканы чертежей успешно удалены!", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
                 else
+                {
+                    splashScreenManager3.CloseWaitForm();
                     MessageBox.Show("Во время удаления произошла ошибка", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
-                splashScreenManager.CloseWaitForm();
+                
 
             }
         }
@@ -125,6 +134,60 @@ namespace TechnicalProcessControl.Settings
 
                 return false;
             }
+        }
+
+        private void syncDrawingScanBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            List<DrawingScanDTO> allDrawingScanItem = drawingService.GetDrawingScan().ToList();
+            List<DrawingScanDTO> allDrawingScanItemTransform = new List<DrawingScanDTO>();
+
+            List<DrawingDTO> allDrawingItem = drawingService.GetAllDrawing().ToList();
+            List<DrawingDTO> allDrawingItemTransform = new List<DrawingDTO>();
+
+            //allDrawingScanItemTransform.AddRange(allDrawingScanItem);
+            //allDrawingItemTransform.AddRange(allDrawingItem);
+            try
+            {
+                for(int i=0; i< allDrawingScanItem.Count();++i)
+                {
+                    string buffer = allDrawingScanItem[i].FileName;
+                    buffer = buffer.Replace(@".tif", "");
+                    buffer = buffer.Replace(@"-", "");
+                    buffer = buffer.Replace(@"_", "");
+                    allDrawingScanItem[i].FileName = buffer;
+
+
+                }
+
+                for (int i = 0; i < allDrawingItem.Count(); ++i)
+                {
+                    allDrawingItem[i].Number = allDrawingItem[i].Number.Replace("-", "");
+                    allDrawingItem[i].Number = allDrawingItem[i].Number.Replace("_", "");
+                    allDrawingItem[i].Number = allDrawingItem[i].Number.Replace(" ", "");
+                    allDrawingItem[i].Number = allDrawingItem[i].Number.Replace(".", "");
+                }
+
+                for (int i = 0; i < allDrawingScanItem.Count(); ++i)
+                {
+                    if(allDrawingItem.Select(bdsm=> bdsm.Number).Contains(allDrawingScanItem[i].FileName))
+                    {
+                        MessageBox.Show("Найден чертёж", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("не Найден чертёж", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                }
+
+            }
+            catch (Exception)
+            {
+
+            }
+
+
+
         }
     }
 }

@@ -20,7 +20,8 @@ namespace TechnicalProcessControl.DAL.Repositories
 
         public virtual IQueryable<T> GetAll()
         {
-            return db.Set<T>();
+            var hhh = db.Set<T>();
+            return hhh;
         }
 
         public T Create(T entity)

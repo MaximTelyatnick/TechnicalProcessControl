@@ -32,13 +32,14 @@
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.importBtn = new DevExpress.XtraBars.BarButtonItem();
             this.clearBaseBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.syncDrawingScanBtn = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.scanDrawingGrid = new DevExpress.XtraGrid.GridControl();
             this.scanDrawingGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.drawingScanNameCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.drawingScanPathCol = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.splashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::TechnicalProcessControl.WaitFm), true, true);
+            this.splashScreenManager3 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::TechnicalProcessControl.WaitFm), false, false);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scanDrawingGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scanDrawingGridView)).BeginInit();
@@ -50,15 +51,16 @@
             this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl1.ExpandCollapseItem,
             this.importBtn,
-            this.clearBaseBtn});
+            this.clearBaseBtn,
+            this.syncDrawingScanBtn});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 3;
+            this.ribbonControl1.MaxItemId = 4;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
             this.ribbonControl1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2007;
             this.ribbonControl1.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
-            this.ribbonControl1.Size = new System.Drawing.Size(1116, 95);
+            this.ribbonControl1.Size = new System.Drawing.Size(1457, 95);
             this.ribbonControl1.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             // 
             // importBtn
@@ -81,6 +83,16 @@
             this.clearBaseBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.clearBaseBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.clearBaseBtn_ItemClick);
             // 
+            // syncDrawingScanBtn
+            // 
+            this.syncDrawingScanBtn.Caption = "Привязать чертёж в скану";
+            this.syncDrawingScanBtn.Id = 3;
+            this.syncDrawingScanBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("syncDrawingScanBtn.ImageOptions.Image")));
+            this.syncDrawingScanBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("syncDrawingScanBtn.ImageOptions.LargeImage")));
+            this.syncDrawingScanBtn.Name = "syncDrawingScanBtn";
+            this.syncDrawingScanBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.syncDrawingScanBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.syncDrawingScanBtn_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -92,6 +104,7 @@
             // 
             this.ribbonPageGroup1.ItemLinks.Add(this.importBtn);
             this.ribbonPageGroup1.ItemLinks.Add(this.clearBaseBtn);
+            this.ribbonPageGroup1.ItemLinks.Add(this.syncDrawingScanBtn);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.ShowCaptionButton = false;
             this.ribbonPageGroup1.Text = "Функции";
@@ -102,7 +115,7 @@
             this.scanDrawingGrid.Location = new System.Drawing.Point(0, 95);
             this.scanDrawingGrid.MainView = this.scanDrawingGridView;
             this.scanDrawingGrid.Name = "scanDrawingGrid";
-            this.scanDrawingGrid.Size = new System.Drawing.Size(1116, 363);
+            this.scanDrawingGrid.Size = new System.Drawing.Size(1457, 363);
             this.scanDrawingGrid.TabIndex = 1;
             this.scanDrawingGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.scanDrawingGridView});
@@ -114,6 +127,14 @@
             this.drawingScanPathCol});
             this.scanDrawingGridView.GridControl = this.scanDrawingGrid;
             this.scanDrawingGridView.Name = "scanDrawingGridView";
+            this.scanDrawingGridView.OptionsBehavior.AllowIncrementalSearch = true;
+            this.scanDrawingGridView.OptionsCustomization.CustomizationFormSearchBoxVisible = true;
+            this.scanDrawingGridView.OptionsFind.AlwaysVisible = true;
+            this.scanDrawingGridView.OptionsFind.ClearFindOnClose = false;
+            this.scanDrawingGridView.OptionsFind.FindMode = DevExpress.XtraEditors.FindMode.Always;
+            this.scanDrawingGridView.OptionsFind.ShowClearButton = false;
+            this.scanDrawingGridView.OptionsFind.ShowFindButton = false;
+            this.scanDrawingGridView.OptionsView.ShowAutoFilterRow = true;
             // 
             // drawingScanNameCol
             // 
@@ -122,26 +143,27 @@
             this.drawingScanNameCol.Name = "drawingScanNameCol";
             this.drawingScanNameCol.Visible = true;
             this.drawingScanNameCol.VisibleIndex = 0;
-            this.drawingScanNameCol.Width = 245;
+            this.drawingScanNameCol.Width = 260;
             // 
             // drawingScanPathCol
             // 
             this.drawingScanPathCol.Caption = "Путь к файлу";
             this.drawingScanPathCol.FieldName = "FileNamePath";
             this.drawingScanPathCol.Name = "drawingScanPathCol";
+            this.drawingScanPathCol.OptionsFilter.AutoFilterCondition = DevExpress.XtraGrid.Columns.AutoFilterCondition.Contains;
             this.drawingScanPathCol.Visible = true;
             this.drawingScanPathCol.VisibleIndex = 1;
-            this.drawingScanPathCol.Width = 726;
+            this.drawingScanPathCol.Width = 1179;
             // 
-            // splashScreenManager
+            // splashScreenManager3
             // 
-            this.splashScreenManager.ClosingDelay = 500;
+            this.splashScreenManager3.ClosingDelay = 500;
             // 
             // DrawingScanImportFm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1116, 458);
+            this.ClientSize = new System.Drawing.Size(1457, 458);
             this.Controls.Add(this.scanDrawingGrid);
             this.Controls.Add(this.ribbonControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -170,6 +192,10 @@
         private DevExpress.XtraBars.BarButtonItem clearBaseBtn;
         private DevExpress.XtraGrid.Columns.GridColumn drawingScanNameCol;
         private DevExpress.XtraGrid.Columns.GridColumn drawingScanPathCol;
-        private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager;
+        //private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager;
+        private DevExpress.XtraBars.BarButtonItem syncDrawingScanBtn;
+        private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
+        private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager2;
+        private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager3;
     }
 }
