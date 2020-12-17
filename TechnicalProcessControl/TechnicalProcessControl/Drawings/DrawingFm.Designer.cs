@@ -53,7 +53,6 @@
             this.quantityCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.LQuantityCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.rCol = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.splashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::TechnicalProcessControl.WaitFm), true, true);
             this.drawingTreeListGrid = new DevExpress.XtraTreeList.TreeList();
             this.treeListBand12 = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.drawingNumberTreeCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
@@ -349,10 +348,6 @@
             this.rCol.OptionsColumn.AllowFocus = false;
             this.rCol.Visible = true;
             this.rCol.VisibleIndex = 11;
-            // 
-            // splashScreenManager
-            // 
-            this.splashScreenManager.ClosingDelay = 500;
             // 
             // drawingTreeListGrid
             // 
@@ -747,7 +742,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn quantityCol;
         private DevExpress.XtraGrid.Columns.GridColumn LQuantityCol;
         private DevExpress.XtraGrid.Columns.GridColumn rCol;
-        private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager;
         private DevExpress.XtraTreeList.TreeList drawingTreeListGrid;
         private DevExpress.XtraTreeList.Columns.TreeListColumn drawingNumberTreeCol;
         private DevExpress.XtraTreeList.Columns.TreeListColumn partNameTreeCol;

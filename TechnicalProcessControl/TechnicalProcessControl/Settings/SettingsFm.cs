@@ -72,7 +72,11 @@ namespace TechnicalProcessControl
             var Сells = Worksheet.Cells;
             int lastLevel = 0, currentLevel = 0, j = 10;
             int lastFirstLevelParent = 0, lastSecondLevelParent = 0, lastThreeLevelParent = 0,
-                lastFourthLevelParent = 0, lastFivesLevelParent = 0, lastSixLevelParent = 0, lastSevenLevelParent = 0;
+                lastFourthLevelParent = 0, lastFivesLevelParent = 0, lastSixLevelParent = 0, lastSevenLevelParent = 0,
+                lastEightLevelParent = 0, lastNineLevelParent=0, lastTenLevelParent=0, lastElevenLevelParent = 0,
+                lastTwelweLevelParent = 0, lastThirtenLevelParent=0, lastFourteenLevelParent = 0,
+                lastFifteenLevelParent = 0, lastSixteenLevelParent = 0, lastSeventeenLevelParent=0,
+                lastEighteenLevelParent = 0, lastNineteenLevelParent = 0, lastTwentynLevelParent = 0;
 
             #region Excel Document to list of ExcelModels
 
@@ -267,6 +271,319 @@ namespace TechnicalProcessControl
                             ++j;
                         }
                         break;
+                    case 7:
+                        {
+                            lastEightLevelParent = j;
+                            importDrawingsList.Add(new DrawingsDTO()
+                            {
+                                Id = j,
+                                ParentId = lastSevenLevelParent,
+                                CurrentLevelMenu = Convert.ToString(Сells["C" + i].Value),
+                                Quantity = ParseDecimalValue(Сells["I" + i].Value),
+                                QuantityR = ParseDecimalValue(Сells["G" + i].Value),
+                                QuantityL = ParseDecimalValue(Сells["H" + i].Value),
+                                DetailName = Convert.ToString(Сells["F" + i].Value),
+                                Number = Convert.ToString(Сells["D" + i].Value),
+                                TypeName = Convert.ToString(Сells["A" + i].Value) != "" ? Convert.ToString(Сells["A" + i].Value) : Convert.ToString(Сells["B" + i].Value),
+                                MaterialName = Convert.ToString(Сells["L" + i].Value),
+                                TH = Convert.ToString(Сells["M" + i].Value),
+                                W = Convert.ToString(Сells["N" + i].Value),
+                                W2 = Convert.ToString(Сells["O" + i].Value),
+                                L = Convert.ToString(Сells["P" + i].Value)
+
+                            });
+                            ++j;
+                        }
+                        break;
+                    case 8:
+                        {
+                            lastNineLevelParent = j;
+                            importDrawingsList.Add(new DrawingsDTO()
+                            {
+                                Id = j,
+                                ParentId = lastEightLevelParent,
+                                CurrentLevelMenu = Convert.ToString(Сells["C" + i].Value),
+                                Quantity = ParseDecimalValue(Сells["I" + i].Value),
+                                QuantityR = ParseDecimalValue(Сells["G" + i].Value),
+                                QuantityL = ParseDecimalValue(Сells["H" + i].Value),
+                                DetailName = Convert.ToString(Сells["F" + i].Value),
+                                Number = Convert.ToString(Сells["D" + i].Value),
+                                TypeName = Convert.ToString(Сells["A" + i].Value) != "" ? Convert.ToString(Сells["A" + i].Value) : Convert.ToString(Сells["B" + i].Value),
+                                MaterialName = Convert.ToString(Сells["L" + i].Value),
+                                TH = Convert.ToString(Сells["M" + i].Value),
+                                W = Convert.ToString(Сells["N" + i].Value),
+                                W2 = Convert.ToString(Сells["O" + i].Value),
+                                L = Convert.ToString(Сells["P" + i].Value)
+
+                            });
+                            ++j;
+                        }
+                        break;
+                    case 9:
+                        {
+                            lastTenLevelParent = j;
+                            importDrawingsList.Add(new DrawingsDTO()
+                            {
+                                Id = j,
+                                ParentId = lastNineLevelParent,
+                                CurrentLevelMenu = Convert.ToString(Сells["C" + i].Value),
+                                Quantity = ParseDecimalValue(Сells["I" + i].Value),
+                                QuantityR = ParseDecimalValue(Сells["G" + i].Value),
+                                QuantityL = ParseDecimalValue(Сells["H" + i].Value),
+                                DetailName = Convert.ToString(Сells["F" + i].Value),
+                                Number = Convert.ToString(Сells["D" + i].Value),
+                                TypeName = Convert.ToString(Сells["A" + i].Value) != "" ? Convert.ToString(Сells["A" + i].Value) : Convert.ToString(Сells["B" + i].Value),
+                                MaterialName = Convert.ToString(Сells["L" + i].Value),
+                                TH = Convert.ToString(Сells["M" + i].Value),
+                                W = Convert.ToString(Сells["N" + i].Value),
+                                W2 = Convert.ToString(Сells["O" + i].Value),
+                                L = Convert.ToString(Сells["P" + i].Value)
+
+                            });
+                            ++j;
+                        }
+                        break;
+                    case 10:
+                        {
+                            lastElevenLevelParent = j;
+                            importDrawingsList.Add(new DrawingsDTO()
+                            {
+                                Id = j,
+                                ParentId = lastTenLevelParent,
+                                CurrentLevelMenu = Convert.ToString(Сells["C" + i].Value),
+                                Quantity = ParseDecimalValue(Сells["I" + i].Value),
+                                QuantityR = ParseDecimalValue(Сells["G" + i].Value),
+                                QuantityL = ParseDecimalValue(Сells["H" + i].Value),
+                                DetailName = Convert.ToString(Сells["F" + i].Value),
+                                Number = Convert.ToString(Сells["D" + i].Value),
+                                TypeName = Convert.ToString(Сells["A" + i].Value) != "" ? Convert.ToString(Сells["A" + i].Value) : Convert.ToString(Сells["B" + i].Value),
+                                MaterialName = Convert.ToString(Сells["L" + i].Value),
+                                TH = Convert.ToString(Сells["M" + i].Value),
+                                W = Convert.ToString(Сells["N" + i].Value),
+                                W2 = Convert.ToString(Сells["O" + i].Value),
+                                L = Convert.ToString(Сells["P" + i].Value)
+
+                            });
+                            ++j;
+                        }
+                        break;
+                    case 11:
+                        {
+                            lastTwelweLevelParent = j;
+                            importDrawingsList.Add(new DrawingsDTO()
+                            {
+                                Id = j,
+                                ParentId = lastElevenLevelParent,
+                                CurrentLevelMenu = Convert.ToString(Сells["C" + i].Value),
+                                Quantity = ParseDecimalValue(Сells["I" + i].Value),
+                                QuantityR = ParseDecimalValue(Сells["G" + i].Value),
+                                QuantityL = ParseDecimalValue(Сells["H" + i].Value),
+                                DetailName = Convert.ToString(Сells["F" + i].Value),
+                                Number = Convert.ToString(Сells["D" + i].Value),
+                                TypeName = Convert.ToString(Сells["A" + i].Value) != "" ? Convert.ToString(Сells["A" + i].Value) : Convert.ToString(Сells["B" + i].Value),
+                                MaterialName = Convert.ToString(Сells["L" + i].Value),
+                                TH = Convert.ToString(Сells["M" + i].Value),
+                                W = Convert.ToString(Сells["N" + i].Value),
+                                W2 = Convert.ToString(Сells["O" + i].Value),
+                                L = Convert.ToString(Сells["P" + i].Value)
+
+                            });
+                            ++j;
+                        }
+                        break;
+                    case 12:
+                        {
+                            lastThirtenLevelParent = j;
+                            importDrawingsList.Add(new DrawingsDTO()
+                            {
+                                Id = j,
+                                ParentId = lastTwelweLevelParent,
+                                CurrentLevelMenu = Convert.ToString(Сells["C" + i].Value),
+                                Quantity = ParseDecimalValue(Сells["I" + i].Value),
+                                QuantityR = ParseDecimalValue(Сells["G" + i].Value),
+                                QuantityL = ParseDecimalValue(Сells["H" + i].Value),
+                                DetailName = Convert.ToString(Сells["F" + i].Value),
+                                Number = Convert.ToString(Сells["D" + i].Value),
+                                TypeName = Convert.ToString(Сells["A" + i].Value) != "" ? Convert.ToString(Сells["A" + i].Value) : Convert.ToString(Сells["B" + i].Value),
+                                MaterialName = Convert.ToString(Сells["L" + i].Value),
+                                TH = Convert.ToString(Сells["M" + i].Value),
+                                W = Convert.ToString(Сells["N" + i].Value),
+                                W2 = Convert.ToString(Сells["O" + i].Value),
+                                L = Convert.ToString(Сells["P" + i].Value)
+
+                            });
+                            ++j;
+                        }
+                        break;
+                    case 13:
+                        {
+                            lastFourteenLevelParent = j;
+                            importDrawingsList.Add(new DrawingsDTO()
+                            {
+                                Id = j,
+                                ParentId = lastThirtenLevelParent,
+                                CurrentLevelMenu = Convert.ToString(Сells["C" + i].Value),
+                                Quantity = ParseDecimalValue(Сells["I" + i].Value),
+                                QuantityR = ParseDecimalValue(Сells["G" + i].Value),
+                                QuantityL = ParseDecimalValue(Сells["H" + i].Value),
+                                DetailName = Convert.ToString(Сells["F" + i].Value),
+                                Number = Convert.ToString(Сells["D" + i].Value),
+                                TypeName = Convert.ToString(Сells["A" + i].Value) != "" ? Convert.ToString(Сells["A" + i].Value) : Convert.ToString(Сells["B" + i].Value),
+                                MaterialName = Convert.ToString(Сells["L" + i].Value),
+                                TH = Convert.ToString(Сells["M" + i].Value),
+                                W = Convert.ToString(Сells["N" + i].Value),
+                                W2 = Convert.ToString(Сells["O" + i].Value),
+                                L = Convert.ToString(Сells["P" + i].Value)
+
+                            });
+                            ++j;
+                        }
+                        break;
+                    case 14:
+                        {
+                            lastFifteenLevelParent = j;
+                            importDrawingsList.Add(new DrawingsDTO()
+                            {
+                                Id = j,
+                                ParentId = lastFourteenLevelParent,
+                                CurrentLevelMenu = Convert.ToString(Сells["C" + i].Value),
+                                Quantity = ParseDecimalValue(Сells["I" + i].Value),
+                                QuantityR = ParseDecimalValue(Сells["G" + i].Value),
+                                QuantityL = ParseDecimalValue(Сells["H" + i].Value),
+                                DetailName = Convert.ToString(Сells["F" + i].Value),
+                                Number = Convert.ToString(Сells["D" + i].Value),
+                                TypeName = Convert.ToString(Сells["A" + i].Value) != "" ? Convert.ToString(Сells["A" + i].Value) : Convert.ToString(Сells["B" + i].Value),
+                                MaterialName = Convert.ToString(Сells["L" + i].Value),
+                                TH = Convert.ToString(Сells["M" + i].Value),
+                                W = Convert.ToString(Сells["N" + i].Value),
+                                W2 = Convert.ToString(Сells["O" + i].Value),
+                                L = Convert.ToString(Сells["P" + i].Value)
+
+                            });
+                            ++j;
+                        }
+                        break;
+                    case 15:
+                        {
+                            lastSixteenLevelParent = j;
+                            importDrawingsList.Add(new DrawingsDTO()
+                            {
+                                Id = j,
+                                ParentId = lastFifteenLevelParent,
+                                CurrentLevelMenu = Convert.ToString(Сells["C" + i].Value),
+                                Quantity = ParseDecimalValue(Сells["I" + i].Value),
+                                QuantityR = ParseDecimalValue(Сells["G" + i].Value),
+                                QuantityL = ParseDecimalValue(Сells["H" + i].Value),
+                                DetailName = Convert.ToString(Сells["F" + i].Value),
+                                Number = Convert.ToString(Сells["D" + i].Value),
+                                TypeName = Convert.ToString(Сells["A" + i].Value) != "" ? Convert.ToString(Сells["A" + i].Value) : Convert.ToString(Сells["B" + i].Value),
+                                MaterialName = Convert.ToString(Сells["L" + i].Value),
+                                TH = Convert.ToString(Сells["M" + i].Value),
+                                W = Convert.ToString(Сells["N" + i].Value),
+                                W2 = Convert.ToString(Сells["O" + i].Value),
+                                L = Convert.ToString(Сells["P" + i].Value)
+
+                            });
+                            ++j;
+                        }
+                        break;
+                    case 16:
+                        {
+                            lastSeventeenLevelParent = j;
+                            importDrawingsList.Add(new DrawingsDTO()
+                            {
+                                Id = j,
+                                ParentId = lastSixteenLevelParent,
+                                CurrentLevelMenu = Convert.ToString(Сells["C" + i].Value),
+                                Quantity = ParseDecimalValue(Сells["I" + i].Value),
+                                QuantityR = ParseDecimalValue(Сells["G" + i].Value),
+                                QuantityL = ParseDecimalValue(Сells["H" + i].Value),
+                                DetailName = Convert.ToString(Сells["F" + i].Value),
+                                Number = Convert.ToString(Сells["D" + i].Value),
+                                TypeName = Convert.ToString(Сells["A" + i].Value) != "" ? Convert.ToString(Сells["A" + i].Value) : Convert.ToString(Сells["B" + i].Value),
+                                MaterialName = Convert.ToString(Сells["L" + i].Value),
+                                TH = Convert.ToString(Сells["M" + i].Value),
+                                W = Convert.ToString(Сells["N" + i].Value),
+                                W2 = Convert.ToString(Сells["O" + i].Value),
+                                L = Convert.ToString(Сells["P" + i].Value)
+
+                            });
+                            ++j;
+                        }
+                        break;
+                    case 17:
+                        {
+                            lastEighteenLevelParent = j;
+                            importDrawingsList.Add(new DrawingsDTO()
+                            {
+                                Id = j,
+                                ParentId = lastSeventeenLevelParent,
+                                CurrentLevelMenu = Convert.ToString(Сells["C" + i].Value),
+                                Quantity = ParseDecimalValue(Сells["I" + i].Value),
+                                QuantityR = ParseDecimalValue(Сells["G" + i].Value),
+                                QuantityL = ParseDecimalValue(Сells["H" + i].Value),
+                                DetailName = Convert.ToString(Сells["F" + i].Value),
+                                Number = Convert.ToString(Сells["D" + i].Value),
+                                TypeName = Convert.ToString(Сells["A" + i].Value) != "" ? Convert.ToString(Сells["A" + i].Value) : Convert.ToString(Сells["B" + i].Value),
+                                MaterialName = Convert.ToString(Сells["L" + i].Value),
+                                TH = Convert.ToString(Сells["M" + i].Value),
+                                W = Convert.ToString(Сells["N" + i].Value),
+                                W2 = Convert.ToString(Сells["O" + i].Value),
+                                L = Convert.ToString(Сells["P" + i].Value)
+
+                            });
+                            ++j;
+                        }
+                        break;
+                    case 18:
+                        {
+                            lastNineteenLevelParent = j;
+                            importDrawingsList.Add(new DrawingsDTO()
+                            {
+                                Id = j,
+                                ParentId = lastEighteenLevelParent,
+                                CurrentLevelMenu = Convert.ToString(Сells["C" + i].Value),
+                                Quantity = ParseDecimalValue(Сells["I" + i].Value),
+                                QuantityR = ParseDecimalValue(Сells["G" + i].Value),
+                                QuantityL = ParseDecimalValue(Сells["H" + i].Value),
+                                DetailName = Convert.ToString(Сells["F" + i].Value),
+                                Number = Convert.ToString(Сells["D" + i].Value),
+                                TypeName = Convert.ToString(Сells["A" + i].Value) != "" ? Convert.ToString(Сells["A" + i].Value) : Convert.ToString(Сells["B" + i].Value),
+                                MaterialName = Convert.ToString(Сells["L" + i].Value),
+                                TH = Convert.ToString(Сells["M" + i].Value),
+                                W = Convert.ToString(Сells["N" + i].Value),
+                                W2 = Convert.ToString(Сells["O" + i].Value),
+                                L = Convert.ToString(Сells["P" + i].Value)
+
+                            });
+                            ++j;
+                        }
+                        break;
+                    case 19:
+                        {
+                            lastTwentynLevelParent = j;
+                            importDrawingsList.Add(new DrawingsDTO()
+                            {
+                                Id = j,
+                                ParentId = lastNineteenLevelParent,
+                                CurrentLevelMenu = Convert.ToString(Сells["C" + i].Value),
+                                Quantity = ParseDecimalValue(Сells["I" + i].Value),
+                                QuantityR = ParseDecimalValue(Сells["G" + i].Value),
+                                QuantityL = ParseDecimalValue(Сells["H" + i].Value),
+                                DetailName = Convert.ToString(Сells["F" + i].Value),
+                                Number = Convert.ToString(Сells["D" + i].Value),
+                                TypeName = Convert.ToString(Сells["A" + i].Value) != "" ? Convert.ToString(Сells["A" + i].Value) : Convert.ToString(Сells["B" + i].Value),
+                                MaterialName = Convert.ToString(Сells["L" + i].Value),
+                                TH = Convert.ToString(Сells["M" + i].Value),
+                                W = Convert.ToString(Сells["N" + i].Value),
+                                W2 = Convert.ToString(Сells["O" + i].Value),
+                                L = Convert.ToString(Сells["P" + i].Value)
+
+                            });
+                            ++j;
+                        }
+                        break;
+                    
 
                     default:
                         {

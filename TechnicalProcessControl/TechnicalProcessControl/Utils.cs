@@ -4,7 +4,7 @@ namespace TechnicalProcessControl
 {
     public class Utils
     {
-        internal static string HomePath;
+        internal static string HomePath = @"D:\";
 
         public enum Rules
         {

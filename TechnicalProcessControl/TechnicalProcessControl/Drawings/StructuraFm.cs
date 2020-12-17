@@ -12,6 +12,7 @@ using DevExpress.XtraTreeList.Nodes;
 using DevExpress.XtraTreeList;
 using System.Collections.Generic;
 using TechnicalProcessControl.CustomView;
+using DevExpress.XtraSplashScreen;
 
 namespace TechnicalProcessControl
 {
@@ -21,6 +22,7 @@ namespace TechnicalProcessControl
         public static IJournalService journalService;
         public static IReportService reportService;
 
+        private SplashScreenManager splashScreenManager;
         private UsersDTO usersDTO;
         private List<DrawingsDTO> drawingsList = new List<DrawingsDTO>();
         private List<DrawingsDTO> bifferdrawingsList = new List<DrawingsDTO>();
@@ -88,6 +90,7 @@ namespace TechnicalProcessControl
         {
             InitializeComponent();
 
+            splashScreenManager = new SplashScreenManager(this, typeof(WaitFm), true, true);
             this.usersDTO = usersDTO;
 
             LoadLocalSetting();

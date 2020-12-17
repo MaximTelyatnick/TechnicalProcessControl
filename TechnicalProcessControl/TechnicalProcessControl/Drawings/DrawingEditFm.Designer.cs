@@ -441,7 +441,7 @@
             // 
             // cancelBtn
             // 
-            this.cancelBtn.Location = new System.Drawing.Point(749, 520);
+            this.cancelBtn.Location = new System.Drawing.Point(749, 553);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(75, 23);
             this.cancelBtn.TabIndex = 61;
@@ -450,7 +450,7 @@
             // 
             // saveBtn
             // 
-            this.saveBtn.Location = new System.Drawing.Point(668, 520);
+            this.saveBtn.Location = new System.Drawing.Point(666, 553);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(75, 23);
             this.saveBtn.TabIndex = 60;
@@ -466,7 +466,7 @@
             this.panelControl2.Controls.Add(this.openFileBtn);
             this.panelControl2.Location = new System.Drawing.Point(414, 12);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(410, 502);
+            this.panelControl2.Size = new System.Drawing.Size(410, 535);
             this.panelControl2.TabIndex = 103;
             // 
             // drawingScanEdit
@@ -508,7 +508,7 @@
             this.pictureEdit.Properties.NullText = "Не добавлено файл";
             this.pictureEdit.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
-            this.pictureEdit.Size = new System.Drawing.Size(400, 492);
+            this.pictureEdit.Size = new System.Drawing.Size(400, 525);
             this.pictureEdit.TabIndex = 22;
             this.pictureEdit.Click += new System.EventHandler(this.pictureEdit_Click);
             // 
@@ -528,7 +528,7 @@
             this.groupControl1.Controls.Add(this.drawingScanGrid);
             this.groupControl1.Location = new System.Drawing.Point(12, 343);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(393, 171);
+            this.groupControl1.Size = new System.Drawing.Size(393, 204);
             this.groupControl1.TabIndex = 104;
             this.groupControl1.Text = "Сканы чертежей";
             // 
@@ -602,7 +602,7 @@
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 552);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 588);
             this.barDockControlBottom.Manager = this.barManager1;
             this.barDockControlBottom.Size = new System.Drawing.Size(833, 0);
             // 
@@ -612,7 +612,7 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 552);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 588);
             // 
             // barDockControlRight
             // 
@@ -620,7 +620,7 @@
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(833, 0);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 552);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 588);
             // 
             // deleteBtn
             // 
@@ -636,7 +636,7 @@
             this.drawingScanGrid.Location = new System.Drawing.Point(5, 52);
             this.drawingScanGrid.MainView = this.drawingScanGridView;
             this.drawingScanGrid.Name = "drawingScanGrid";
-            this.drawingScanGrid.Size = new System.Drawing.Size(383, 114);
+            this.drawingScanGrid.Size = new System.Drawing.Size(383, 147);
             this.drawingScanGrid.TabIndex = 0;
             this.drawingScanGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.drawingScanGridView});
@@ -756,7 +756,7 @@
             this.validateLbl.Appearance.ForeColor = System.Drawing.Color.Red;
             this.validateLbl.Appearance.Options.UseFont = true;
             this.validateLbl.Appearance.Options.UseForeColor = true;
-            this.validateLbl.Location = new System.Drawing.Point(15, 524);
+            this.validateLbl.Location = new System.Drawing.Point(12, 553);
             this.validateLbl.Name = "validateLbl";
             this.validateLbl.Size = new System.Drawing.Size(201, 14);
             this.validateLbl.TabIndex = 119;
@@ -777,7 +777,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(833, 552);
+            this.ClientSize = new System.Drawing.Size(833, 588);
             this.Controls.Add(this.assemblyCheckEdit);
             this.Controls.Add(this.validateLbl);
             this.Controls.Add(this.labelControl8);

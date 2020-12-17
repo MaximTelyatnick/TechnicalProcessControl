@@ -52,7 +52,7 @@
             this.TechProcess005Item = new DevExpress.XtraBars.Navigation.TileNavItem();
             this.tileNavCategory4 = new DevExpress.XtraBars.Navigation.TileNavCategory();
             this.materialItem = new DevExpress.XtraBars.Navigation.TileNavItem();
-            this.tileNavItem6 = new DevExpress.XtraBars.Navigation.TileNavItem();
+            this.scanItem = new DevExpress.XtraBars.Navigation.TileNavItem();
             this.detailItem = new DevExpress.XtraBars.Navigation.TileNavItem();
             this.drawingItem = new DevExpress.XtraBars.Navigation.TileNavItem();
             this.operationNameItem = new DevExpress.XtraBars.Navigation.TileNavItem();
@@ -240,7 +240,7 @@
             this.tileNavCategory4.Glyph = ((System.Drawing.Image)(resources.GetObject("tileNavCategory4.Glyph")));
             this.tileNavCategory4.Items.AddRange(new DevExpress.XtraBars.Navigation.TileNavItem[] {
             this.materialItem,
-            this.tileNavItem6,
+            this.scanItem,
             this.detailItem,
             this.drawingItem,
             this.operationNameItem,
@@ -278,24 +278,24 @@
             this.materialItem.Tile.Elements.Add(tileItemElement6);
             this.materialItem.Tile.Name = "tileBarItem1";
             // 
-            // tileNavItem6
+            // scanItem
             // 
-            this.tileNavItem6.Caption = "Сканы чертежей";
-            this.tileNavItem6.Name = "tileNavItem6";
-            this.tileNavItem6.OwnerCollection = this.tileNavCategory4.Items;
+            this.scanItem.Caption = "Сканы чертежей";
+            this.scanItem.Name = "scanItem";
+            this.scanItem.OwnerCollection = this.tileNavCategory4.Items;
             // 
             // 
             // 
-            this.tileNavItem6.Tile.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
-            this.tileNavItem6.Tile.AppearanceItem.Normal.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.tileNavItem6.Tile.AppearanceItem.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tileNavItem6.Tile.AppearanceItem.Normal.Options.UseBackColor = true;
-            this.tileNavItem6.Tile.AppearanceItem.Normal.Options.UseFont = true;
-            this.tileNavItem6.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            this.scanItem.Tile.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+            this.scanItem.Tile.AppearanceItem.Normal.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.scanItem.Tile.AppearanceItem.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.scanItem.Tile.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.scanItem.Tile.AppearanceItem.Normal.Options.UseFont = true;
+            this.scanItem.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
             tileItemElement7.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
             tileItemElement7.Text = "Сканы чертежей";
-            this.tileNavItem6.Tile.Elements.Add(tileItemElement7);
-            this.tileNavItem6.Tile.Name = "tileBarItem2";
+            this.scanItem.Tile.Elements.Add(tileItemElement7);
+            this.scanItem.Tile.Name = "tileBarItem2";
             // 
             // detailItem
             // 
@@ -466,7 +466,7 @@
         private DevExpress.XtraBars.Navigation.TileNavItem TechProcess005Item;
         private DevExpress.XtraBars.Navigation.TileNavCategory tileNavCategory4;
         private DevExpress.XtraBars.Navigation.TileNavItem materialItem;
-        private DevExpress.XtraBars.Navigation.TileNavItem tileNavItem6;
+        private DevExpress.XtraBars.Navigation.TileNavItem scanItem;
         private DevExpress.XtraBars.Navigation.TileNavItem detailItem;
         private DevExpress.XtraBars.Navigation.TileNavItem drawingItem;
         private DevExpress.XtraBars.Navigation.NavButton userBtn;

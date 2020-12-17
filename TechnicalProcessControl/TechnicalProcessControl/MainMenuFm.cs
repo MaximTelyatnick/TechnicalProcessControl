@@ -208,6 +208,12 @@ namespace TechnicalProcessControl
                     OperationPaintMaterialFm operationPaintMaterialFm = new OperationPaintMaterialFm();
                     operationPaintMaterialFm.Show();
                     break;
+                case "scanItem":
+                    ScanFm scanFm = new ScanFm(usersDTO);
+                    scanFm.Text = "Сканы чертежей";
+                    scanFm.MdiParent = this;
+                    scanFm.Show();
+                    break;
 
                     //case "operationNameItem":
                     //    OperationNameFm operationNameFm = new OperationNameFm();

@@ -15,7 +15,7 @@ namespace TechnicalProcessControl
         static void Main()
         {
             Application.EnableVisualStyles();
-            GC.GetTotalMemory(true);
+            //GC.GetTotalMemory(true);
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainMenuFm(null));
             //Application.Run(new LoginFm());

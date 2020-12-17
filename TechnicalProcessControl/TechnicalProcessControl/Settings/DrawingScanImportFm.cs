@@ -145,40 +145,72 @@ namespace TechnicalProcessControl.Settings
             List<DrawingDTO> allDrawingItemTransform = new List<DrawingDTO>();
 
             //allDrawingScanItemTransform.AddRange(allDrawingScanItem);
-            //allDrawingItemTransform.AddRange(allDrawingItem);
+            allDrawingItemTransform.AddRange(allDrawingItem);
+            //allDrawingScanItem = allDrawingItem.Cop
+            //foreach (var item in allDrawingScanItem)
+            //{
+            //    allDrawingScanItemTransform.Add(item);
+            //}
+
+
+            allDrawingScanItemTransform = allDrawingScanItem.Select(p => new DrawingScanDTO()
+            {
+                 Id = p.Id,
+                  Check = p.Check,
+                   DrawingId = p.DrawingId,
+                    FileName = p.FileName,
+                     FileNamePath = p.FileNamePath,
+                      Scan = p.Scan,
+                       Status =p.Status
+            }).ToList();
+
             try
             {
-                for(int i=0; i< allDrawingScanItem.Count();++i)
+                for(int i=0; i< allDrawingScanItemTransform.Count();++i)
                 {
-                    string buffer = allDrawingScanItem[i].FileName;
-                    buffer = buffer.Replace(@".tif", "");
-                    buffer = buffer.Replace(@"-", "");
-                    buffer = buffer.Replace(@"_", "");
-                    allDrawingScanItem[i].FileName = buffer;
-
-
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@".tif", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"-", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"_", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"asm", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.ToUpper();
                 }
 
-                for (int i = 0; i < allDrawingItem.Count(); ++i)
+                for (int i = 0; i < allDrawingItemTransform.Count(); ++i)
                 {
-                    allDrawingItem[i].Number = allDrawingItem[i].Number.Replace("-", "");
-                    allDrawingItem[i].Number = allDrawingItem[i].Number.Replace("_", "");
-                    allDrawingItem[i].Number = allDrawingItem[i].Number.Replace(" ", "");
-                    allDrawingItem[i].Number = allDrawingItem[i].Number.Replace(".", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"-", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"_", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@" ", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@".", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"/", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.ToUpper();
                 }
-
-                for (int i = 0; i < allDrawingScanItem.Count(); ++i)
+                int findDrawing = 0, notFindDrawing = 0;
+                for (int i = 0; i < allDrawingScanItemTransform.Count(); ++i)
                 {
-                    if(allDrawingItem.Select(bdsm=> bdsm.Number).Contains(allDrawingScanItem[i].FileName))
+
+                    var drawings = allDrawingItemTransform.FirstOrDefault(bdsm=>bdsm.Number == allDrawingScanItemTransform[i].FileName);
+
+                    if (drawings!=null)
                     {
-                        MessageBox.Show("Найден чертёж", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        findDrawing++;
+                        allDrawingScanItemTransform[i].Check = true;
+
+                        allDrawingScanItem[i].DrawingId = drawings.Id;
+                        drawingService.DrawingScanUpdate(allDrawingScanItem[i]);
+
                     }
                     else
                     {
-                        MessageBox.Show("не Найден чертёж", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        notFindDrawing++;
+                        allDrawingScanItemTransform[i].Check = false;
                     }
 
                 }
+
+                MessageBox.Show("Найдено чертежей:" + findDrawing +", не найдено чертежей: "+ notFindDrawing, "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                drawingScanBS.DataSource = allDrawingScanItemTransform;
+                scanDrawingGrid.DataSource = drawingScanBS;
 
             }
             catch (Exception)

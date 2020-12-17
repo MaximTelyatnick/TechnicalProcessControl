@@ -408,7 +408,7 @@ namespace TechnicalProcessControl.Drawings
                                 ///////////////////////////////////////////////////////////////////////////////////////////
                                 // Получаем структуру
                                 DrawingsDTO drawingsDTO = new DrawingsDTO();
-                                var drawingList = drawingService.GetAllDrawingsByDrawingId(((DrawingDTO)Item).Id);
+                                var drawingList = drawingService.GetAllDrawingsByDrawingIdForDrawingRevisionProcess(((DrawingDTO)Item).Id);
                                 if (drawingList.Count() == 0)
                                 {
                                     MessageBox.Show("Чертёж " + ((DrawingDTO)Item).FullName + " не подвязан к структуре"

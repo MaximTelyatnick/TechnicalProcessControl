@@ -19,12 +19,16 @@ namespace TechnicalProcessControl.BLL.Interfaces
 
         IEnumerable<DrawingDTO> GetAllDrawingActual();
         IEnumerable<DrawingsDTO> GetAllDrawingsByDrawingId(int drawingId);
+        IEnumerable<DrawingsDTO> GetAllDrawingsByDrawingIdForDrawingRevisionProcess(int drawingId);
 
         IEnumerable<DrawingsDTO> GetDrawingsSimple();
 
         IEnumerable<TypeDTO> GetType();
 
         IEnumerable<DrawingScanDTO> GetDrawingScan();
+        IEnumerable<DrawingScanDTO> GetDrawingScanWithaoutScan();
+        IEnumerable<DrawingScanDTO> GetDrawingScanWithDrawingNumber();
+        DrawingScanDTO GetDrawingScanById(int scanId);
 
         //IEnumerable<DetailsDTO> GetDetails();
 

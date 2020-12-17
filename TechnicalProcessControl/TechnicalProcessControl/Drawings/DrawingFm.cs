@@ -11,11 +11,13 @@ using DevExpress.XtraEditors;
 using TechnicalProcessControl.BLL.Interfaces;
 using Ninject;
 using TechnicalProcessControl.BLL.ModelsDTO;
+using DevExpress.XtraSplashScreen;
 
 namespace TechnicalProcessControl.Drawings
 {
     public partial class DrawingFm : DevExpress.XtraEditors.XtraForm
     {
+        private SplashScreenManager splashScreenManager;
         public IJournalService journalService;
         public IDrawingService drawingService;
         public BindingSource drawingBS = new BindingSource();
@@ -25,6 +27,7 @@ namespace TechnicalProcessControl.Drawings
         public DrawingFm(UsersDTO usersDTO)
         {
             InitializeComponent();
+            splashScreenManager = new SplashScreenManager(this, typeof(WaitFm), true, true);
 
             this.usersDTO = usersDTO;
 

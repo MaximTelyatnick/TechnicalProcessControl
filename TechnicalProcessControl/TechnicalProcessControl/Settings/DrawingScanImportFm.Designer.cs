@@ -40,9 +40,12 @@
             this.drawingScanNameCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.drawingScanPathCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.splashScreenManager3 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::TechnicalProcessControl.WaitFm), false, false);
+            this.checkCol = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scanDrawingGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scanDrawingGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl1
@@ -115,6 +118,8 @@
             this.scanDrawingGrid.Location = new System.Drawing.Point(0, 95);
             this.scanDrawingGrid.MainView = this.scanDrawingGridView;
             this.scanDrawingGrid.Name = "scanDrawingGrid";
+            this.scanDrawingGrid.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemCheckEdit1});
             this.scanDrawingGrid.Size = new System.Drawing.Size(1457, 363);
             this.scanDrawingGrid.TabIndex = 1;
             this.scanDrawingGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -124,7 +129,8 @@
             // 
             this.scanDrawingGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.drawingScanNameCol,
-            this.drawingScanPathCol});
+            this.drawingScanPathCol,
+            this.checkCol});
             this.scanDrawingGridView.GridControl = this.scanDrawingGrid;
             this.scanDrawingGridView.Name = "scanDrawingGridView";
             this.scanDrawingGridView.OptionsBehavior.AllowIncrementalSearch = true;
@@ -159,6 +165,23 @@
             // 
             this.splashScreenManager3.ClosingDelay = 500;
             // 
+            // checkCol
+            // 
+            this.checkCol.AppearanceHeader.Image = ((System.Drawing.Image)(resources.GetObject("checkCol.AppearanceHeader.Image")));
+            this.checkCol.AppearanceHeader.Options.UseImage = true;
+            this.checkCol.ColumnEdit = this.repositoryItemCheckEdit1;
+            this.checkCol.FieldName = "Check";
+            this.checkCol.ImageOptions.Alignment = System.Drawing.StringAlignment.Center;
+            this.checkCol.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("checkCol.ImageOptions.Image")));
+            this.checkCol.Name = "checkCol";
+            this.checkCol.Visible = true;
+            this.checkCol.VisibleIndex = 2;
+            // 
+            // repositoryItemCheckEdit1
+            // 
+            this.repositoryItemCheckEdit1.AutoHeight = false;
+            this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
+            // 
             // DrawingScanImportFm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -176,6 +199,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scanDrawingGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scanDrawingGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -197,5 +221,7 @@
         private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
         private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager2;
         private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager3;
+        private DevExpress.XtraGrid.Columns.GridColumn checkCol;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
     }
 }
