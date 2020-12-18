@@ -25,6 +25,8 @@ namespace TechnicalProcessControl
         public SettingsFm()
         {
             InitializeComponent();
+
+            userDirectoryPathEdit.Text = Properties.Settings.Default.UserDirectoryPath;
         }
 
         private void importFromExcelBtn_Click(object sender, EventArgs e)
@@ -636,15 +638,6 @@ namespace TechnicalProcessControl
 
         private void addPathToDrawingScanBtn_Click(object sender, EventArgs e)
         {
-            //string filePath = "";
-            //string fileName = "";
-            //OpenFileDialog ofd = new OpenFileDialog();
-            //ofd.InitialDirectory = @"D:\";
-            //if (ofd.ShowDialog() == DialogResult.OK)
-            //{
-            //    drawingScanDirectoryEdit.Text = ofd.FileName;
-            //    //fileName = ofd.SafeFileName;
-            //}
 
             FolderBrowserDialog folderBrowserDlg = new FolderBrowserDialog();
             folderBrowserDlg.ShowNewFolderButton = true;
@@ -707,6 +700,20 @@ namespace TechnicalProcessControl
 
                     }
                 }
+            }
+        }
+
+        private void setUserDirectoryPathBtn_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folderBrowserDlg = new FolderBrowserDialog();
+            folderBrowserDlg.ShowNewFolderButton = true;
+            DialogResult dlgResult = folderBrowserDlg.ShowDialog();
+            if (dlgResult.Equals(DialogResult.OK))
+            {
+                userDirectoryPathEdit.Text = folderBrowserDlg.SelectedPath;
+                Properties.Settings.Default.UserDirectoryPath = userDirectoryPathEdit.Text;
+                Properties.Settings.Default.Save();
+                Environment.SpecialFolder rootFolder = folderBrowserDlg.RootFolder;
             }
         }
     }

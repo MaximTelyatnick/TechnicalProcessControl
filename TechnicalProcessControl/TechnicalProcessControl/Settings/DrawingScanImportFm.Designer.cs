@@ -39,7 +39,6 @@
             this.scanDrawingGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.drawingScanNameCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.drawingScanPathCol = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.splashScreenManager3 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::TechnicalProcessControl.WaitFm), false, false);
             this.checkCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
@@ -161,10 +160,6 @@
             this.drawingScanPathCol.VisibleIndex = 1;
             this.drawingScanPathCol.Width = 1179;
             // 
-            // splashScreenManager3
-            // 
-            this.splashScreenManager3.ClosingDelay = 500;
-            // 
             // checkCol
             // 
             this.checkCol.AppearanceHeader.Image = ((System.Drawing.Image)(resources.GetObject("checkCol.AppearanceHeader.Image")));
@@ -220,7 +215,6 @@
         private DevExpress.XtraBars.BarButtonItem syncDrawingScanBtn;
         private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
         private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager2;
-        private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager3;
         private DevExpress.XtraGrid.Columns.GridColumn checkCol;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
     }

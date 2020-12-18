@@ -11,6 +11,7 @@ using DevExpress.XtraEditors;
 using TechnicalProcessControl.BLL.ModelsDTO;
 using TechnicalProcessControl.BLL.Interfaces;
 using Ninject;
+using DevExpress.XtraSplashScreen;
 
 namespace TechnicalProcessControl.Settings
 {
@@ -19,6 +20,8 @@ namespace TechnicalProcessControl.Settings
         public static IDrawingService drawingService;
         public static IJournalService journalService;
         public static IReportService reportService;
+
+        private SplashScreenManager splashScreenManager;
 
         private string pathToDirectory;
 
@@ -33,6 +36,8 @@ namespace TechnicalProcessControl.Settings
         {
             InitializeComponent();
 
+            splashScreenManager = new SplashScreenManager(this, typeof(WaitFm), true, true);
+
             this.drawingScanList = drawingScanList;
             LoadData();
         }
@@ -42,7 +47,7 @@ namespace TechnicalProcessControl.Settings
         {
             drawingService = Program.kernel.Get<IDrawingService>();
             reportService = Program.kernel.Get<IReportService>();
-            splashScreenManager3.ShowWaitForm();
+            splashScreenManager.ShowWaitForm();
 
 
             //var drawingsListInfo = drawingService.GetAllDrawingsProc().OrderBy(bdsm => Convert.ToInt32(bdsm.CurrentLevelMenu.Split('.').Last())).ToList();
@@ -50,13 +55,13 @@ namespace TechnicalProcessControl.Settings
             scanDrawingGrid.DataSource = drawingScanBS;
 
 
-            splashScreenManager3.CloseWaitForm();
+            splashScreenManager.CloseWaitForm();
         }
 
         private void importBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             drawingService = Program.kernel.Get<IDrawingService>();
-            splashScreenManager3.ShowWaitForm();
+            splashScreenManager.ShowWaitForm();
 
             for (int i = 0; i < drawingScanList.Count(); i++)
             {
@@ -82,16 +87,16 @@ namespace TechnicalProcessControl.Settings
                     }
                     catch (Exception ex)
                     {
-                        splashScreenManager3.CloseWaitForm();
+                        splashScreenManager.CloseWaitForm();
                         MessageBox.Show("Не получилось загрузить изображение " + drawingScanList[i].FileName, "Загрузка изображения", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        splashScreenManager3.ShowWaitForm();
+                        splashScreenManager.ShowWaitForm();
                         continue;
                     }
 
                 }
             }
 
-             splashScreenManager3.CloseWaitForm();
+            splashScreenManager.CloseWaitForm();
              MessageBox.Show("Загрузка изображений завершена!", "Загрузка изображения", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -101,15 +106,15 @@ namespace TechnicalProcessControl.Settings
 
             if (MessageBox.Show("Все сканы чертежей будут удалены?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                splashScreenManager3.ShowWaitForm();
+                splashScreenManager.ShowWaitForm();
                 if (ClearDatabase())
                 {
-                    splashScreenManager3.CloseWaitForm();
+                    splashScreenManager.CloseWaitForm();
                     MessageBox.Show("Все сканы чертежей успешно удалены!", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    splashScreenManager3.CloseWaitForm();
+                    splashScreenManager.CloseWaitForm();
                     MessageBox.Show("Во время удаления произошла ошибка", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
@@ -168,21 +173,81 @@ namespace TechnicalProcessControl.Settings
             {
                 for(int i=0; i< allDrawingScanItemTransform.Count();++i)
                 {
-                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@".tif", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.ToUpper();
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@".TIF", "");
                     allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"-", "");
                     allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"_", "");
-                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"asm", "");
-                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.ToUpper();
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@" ", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"ASM", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"S1", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"S2", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"S3", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"S4", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"S5", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"S6", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"S7", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"S8", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"S9", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"REV1", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"REV2", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"REV3", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"REV4", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"REV5", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"REV6", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"REV7", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"REV8", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"REV9", ""); 
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"REPLACED", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"A", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"B", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"C", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"D", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"E", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"F", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"G", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"H", "");
+                    allDrawingScanItemTransform[i].FileName = allDrawingScanItemTransform[i].FileName.Replace(@"J", "");
                 }
 
                 for (int i = 0; i < allDrawingItemTransform.Count(); ++i)
                 {
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.ToUpper();
                     allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"-", "");
                     allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"_", "");
                     allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@" ", "");
                     allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@".", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@" ", "");
                     allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"/", "");
-                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.ToUpper();
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"ASM", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"S1", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"S2", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"S3", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"S4", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"S5", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"S6", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"S7", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"S8", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"S9", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"REV1", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"REV2", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"REV3", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"REV4", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"REV5", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"REV6", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"REV7", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"REV8", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"REV9", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"REPLACED", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"A", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"B", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"C", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"D", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"E", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"F", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"G", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"H", "");
+                    allDrawingItemTransform[i].Number = allDrawingItemTransform[i].Number.Replace(@"J", "");
+
                 }
                 int findDrawing = 0, notFindDrawing = 0;
                 for (int i = 0; i < allDrawingScanItemTransform.Count(); ++i)

@@ -109,9 +109,16 @@ namespace TechnicalProcessControl.Journals
             DrawingScanDTO drawingScanDTO = drawingService.GetDrawingScanById(((DrawingScanDTO)drawingScanBS.Current).Id);
             if (drawingScanDTO != null)
             {
-                string puth = Utils.HomePath + @"\Temp";
-                System.IO.File.WriteAllBytes(puth + drawingScanDTO.FileName, drawingScanDTO.Scan);
-                System.Diagnostics.Process.Start(puth + drawingScanDTO.FileName);
+                if (Properties.Settings.Default.UserDirectoryPath != "")
+                {
+                    string puth = Properties.Settings.Default.UserDirectoryPath + @"\Temp";
+                    System.IO.File.WriteAllBytes(puth + drawingScanDTO.FileName, drawingScanDTO.Scan);
+                    System.Diagnostics.Process.Start(puth + drawingScanDTO.FileName);
+                }
+                else
+                {
+                    MessageBox.Show("В настройках не указан рабочий каталог пользователя!", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
 

@@ -58,5 +58,17 @@ namespace TechnicalProcessControl.Properties {
                 this["ViewType"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserDirectoryPath {
+            get {
+                return ((string)(this["UserDirectoryPath"]));
+            }
+            set {
+                this["UserDirectoryPath"] = value;
+            }
+        }
     }
 }

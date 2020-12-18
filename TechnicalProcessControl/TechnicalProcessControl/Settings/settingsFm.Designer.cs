@@ -71,6 +71,10 @@
             this.historyTab = new DevExpress.XtraTab.XtraTabPage();
             this.importTab = new DevExpress.XtraTab.XtraTabPage();
             this.checkPanelControl = new DevExpress.XtraEditors.PanelControl();
+            this.importDrawingScanBtn = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
+            this.drawingScanDirectoryEdit = new DevExpress.XtraEditors.TextEdit();
+            this.addPathToDrawingScanBtn = new DevExpress.XtraEditors.SimpleButton();
             this.importFromExcelBtn = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.existingWorkflowFileEdit = new DevExpress.XtraEditors.TextEdit();
@@ -95,10 +99,10 @@
             this.paintMaterialBand = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.laborIntensityBand = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.treeListBand14 = new DevExpress.XtraTreeList.Columns.TreeListBand();
-            this.importDrawingScanBtn = new DevExpress.XtraEditors.SimpleButton();
-            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
-            this.drawingScanDirectoryEdit = new DevExpress.XtraEditors.TextEdit();
-            this.addPathToDrawingScanBtn = new DevExpress.XtraEditors.SimpleButton();
+            this.userSettingTab = new DevExpress.XtraTab.XtraTabPage();
+            this.setUserDirectoryPathBtn = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
+            this.userDirectoryPathEdit = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.settangsTab)).BeginInit();
             this.settangsTab.SuspendLayout();
             this.databaseTab.SuspendLayout();
@@ -121,11 +125,13 @@
             this.importTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkPanelControl)).BeginInit();
             this.checkPanelControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.drawingScanDirectoryEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.existingWorkflowFileEdit.Properties)).BeginInit();
             this.recoveryTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.drawingScanDirectoryEdit.Properties)).BeginInit();
+            this.userSettingTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.userDirectoryPathEdit.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // settangsTab
@@ -138,6 +144,7 @@
             this.settangsTab.Size = new System.Drawing.Size(812, 350);
             this.settangsTab.TabIndex = 1;
             this.settangsTab.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.userSettingTab,
             this.usersTab,
             this.historyTab,
             this.databaseTab,
@@ -152,7 +159,7 @@
             this.databaseTab.Controls.Add(this.panelControl1);
             this.databaseTab.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("databaseTab.ImageOptions.Image")));
             this.databaseTab.Name = "databaseTab";
-            this.databaseTab.Size = new System.Drawing.Size(692, 344);
+            this.databaseTab.Size = new System.Drawing.Size(683, 344);
             this.databaseTab.TabPageWidth = 100;
             this.databaseTab.Text = "База данных";
             // 
@@ -403,7 +410,7 @@
             this.usersTab.Controls.Add(this.standaloneBarDockControl1);
             this.usersTab.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("usersTab.ImageOptions.Image")));
             this.usersTab.Name = "usersTab";
-            this.usersTab.Size = new System.Drawing.Size(692, 344);
+            this.usersTab.Size = new System.Drawing.Size(683, 344);
             this.usersTab.Text = "Пользователи";
             // 
             // userGridControl
@@ -504,7 +511,7 @@
             this.standaloneBarDockControl1.Location = new System.Drawing.Point(0, 0);
             this.standaloneBarDockControl1.Manager = this.barManager;
             this.standaloneBarDockControl1.Name = "standaloneBarDockControl1";
-            this.standaloneBarDockControl1.Size = new System.Drawing.Size(692, 23);
+            this.standaloneBarDockControl1.Size = new System.Drawing.Size(683, 23);
             this.standaloneBarDockControl1.Text = "standaloneBarDockControl1";
             // 
             // barDockControlTop
@@ -543,7 +550,7 @@
             // 
             this.historyTab.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("historyTab.ImageOptions.Image")));
             this.historyTab.Name = "historyTab";
-            this.historyTab.Size = new System.Drawing.Size(692, 344);
+            this.historyTab.Size = new System.Drawing.Size(683, 344);
             this.historyTab.Text = "История";
             // 
             // importTab
@@ -553,7 +560,7 @@
             this.importTab.Controls.Add(this.checkPanelControl);
             this.importTab.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("importTab.ImageOptions.Image")));
             this.importTab.Name = "importTab";
-            this.importTab.Size = new System.Drawing.Size(692, 344);
+            this.importTab.Size = new System.Drawing.Size(683, 344);
             this.importTab.TabPageWidth = 100;
             this.importTab.Text = "Імпорт";
             // 
@@ -571,6 +578,40 @@
             this.checkPanelControl.Name = "checkPanelControl";
             this.checkPanelControl.Size = new System.Drawing.Size(666, 317);
             this.checkPanelControl.TabIndex = 115;
+            // 
+            // importDrawingScanBtn
+            // 
+            this.importDrawingScanBtn.Location = new System.Drawing.Point(530, 86);
+            this.importDrawingScanBtn.Name = "importDrawingScanBtn";
+            this.importDrawingScanBtn.Size = new System.Drawing.Size(126, 22);
+            this.importDrawingScanBtn.TabIndex = 118;
+            this.importDrawingScanBtn.Text = "Начать импорт";
+            this.importDrawingScanBtn.Click += new System.EventHandler(this.importDrawingScanBtn_Click);
+            // 
+            // labelControl9
+            // 
+            this.labelControl9.Location = new System.Drawing.Point(5, 63);
+            this.labelControl9.Name = "labelControl9";
+            this.labelControl9.Size = new System.Drawing.Size(29, 13);
+            this.labelControl9.TabIndex = 117;
+            this.labelControl9.Text = "Путь:";
+            // 
+            // drawingScanDirectoryEdit
+            // 
+            this.drawingScanDirectoryEdit.Location = new System.Drawing.Point(57, 60);
+            this.drawingScanDirectoryEdit.Name = "drawingScanDirectoryEdit";
+            this.drawingScanDirectoryEdit.Size = new System.Drawing.Size(599, 20);
+            this.drawingScanDirectoryEdit.TabIndex = 116;
+            // 
+            // addPathToDrawingScanBtn
+            // 
+            this.addPathToDrawingScanBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addPathToDrawingScanBtn.ImageOptions.Image")));
+            this.addPathToDrawingScanBtn.Location = new System.Drawing.Point(443, 86);
+            this.addPathToDrawingScanBtn.Name = "addPathToDrawingScanBtn";
+            this.addPathToDrawingScanBtn.Size = new System.Drawing.Size(81, 21);
+            this.addPathToDrawingScanBtn.TabIndex = 115;
+            this.addPathToDrawingScanBtn.Text = "Добавить";
+            this.addPathToDrawingScanBtn.Click += new System.EventHandler(this.addPathToDrawingScanBtn_Click);
             // 
             // importFromExcelBtn
             // 
@@ -610,7 +651,7 @@
             // 
             this.exportTab.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("exportTab.ImageOptions.Image")));
             this.exportTab.Name = "exportTab";
-            this.exportTab.Size = new System.Drawing.Size(692, 344);
+            this.exportTab.Size = new System.Drawing.Size(683, 344);
             this.exportTab.Text = "Экспорт";
             // 
             // recoveryTab
@@ -623,7 +664,7 @@
             this.recoveryTab.Controls.Add(this.textEdit5);
             this.recoveryTab.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("recoveryTab.ImageOptions.Image")));
             this.recoveryTab.Name = "recoveryTab";
-            this.recoveryTab.Size = new System.Drawing.Size(692, 344);
+            this.recoveryTab.Size = new System.Drawing.Size(683, 344);
             this.recoveryTab.Text = "Востановление";
             // 
             // simpleButton6
@@ -809,39 +850,46 @@
             this.treeListBand14.Visible = false;
             this.treeListBand14.Width = 260;
             // 
-            // importDrawingScanBtn
+            // userSettingTab
             // 
-            this.importDrawingScanBtn.Location = new System.Drawing.Point(530, 86);
-            this.importDrawingScanBtn.Name = "importDrawingScanBtn";
-            this.importDrawingScanBtn.Size = new System.Drawing.Size(126, 22);
-            this.importDrawingScanBtn.TabIndex = 118;
-            this.importDrawingScanBtn.Text = "Начать импорт";
-            this.importDrawingScanBtn.Click += new System.EventHandler(this.importDrawingScanBtn_Click);
+            this.userSettingTab.Controls.Add(this.setUserDirectoryPathBtn);
+            this.userSettingTab.Controls.Add(this.labelControl10);
+            this.userSettingTab.Controls.Add(this.userDirectoryPathEdit);
+            this.userSettingTab.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("userSettingTab.ImageOptions.Image")));
+            this.userSettingTab.Name = "userSettingTab";
+            this.userSettingTab.Size = new System.Drawing.Size(683, 344);
+            this.userSettingTab.Text = "Настройки польз.";
             // 
-            // labelControl9
+            // setUserDirectoryPathBtn
             // 
-            this.labelControl9.Location = new System.Drawing.Point(5, 63);
-            this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(29, 13);
-            this.labelControl9.TabIndex = 117;
-            this.labelControl9.Text = "Путь:";
+            this.setUserDirectoryPathBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton4.ImageOptions.Image")));
+            this.setUserDirectoryPathBtn.Location = new System.Drawing.Point(573, 31);
+            this.setUserDirectoryPathBtn.Name = "setUserDirectoryPathBtn";
+            this.setUserDirectoryPathBtn.Size = new System.Drawing.Size(98, 23);
+            this.setUserDirectoryPathBtn.TabIndex = 155;
+            this.setUserDirectoryPathBtn.Text = "Change path";
+            this.setUserDirectoryPathBtn.Click += new System.EventHandler(this.setUserDirectoryPathBtn_Click);
             // 
-            // drawingScanDirectoryEdit
+            // labelControl10
             // 
-            this.drawingScanDirectoryEdit.Location = new System.Drawing.Point(57, 60);
-            this.drawingScanDirectoryEdit.Name = "drawingScanDirectoryEdit";
-            this.drawingScanDirectoryEdit.Size = new System.Drawing.Size(599, 20);
-            this.drawingScanDirectoryEdit.TabIndex = 116;
+            this.labelControl10.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelControl10.Appearance.ForeColor = System.Drawing.Color.Navy;
+            this.labelControl10.Appearance.Options.UseFont = true;
+            this.labelControl10.Appearance.Options.UseForeColor = true;
+            this.labelControl10.Location = new System.Drawing.Point(21, 15);
+            this.labelControl10.Name = "labelControl10";
+            this.labelControl10.Size = new System.Drawing.Size(110, 13);
+            this.labelControl10.TabIndex = 154;
+            this.labelControl10.Text = "User directory path";
             // 
-            // addPathToDrawingScanBtn
+            // userDirectoryPathEdit
             // 
-            this.addPathToDrawingScanBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton5.ImageOptions.Image")));
-            this.addPathToDrawingScanBtn.Location = new System.Drawing.Point(443, 86);
-            this.addPathToDrawingScanBtn.Name = "addPathToDrawingScanBtn";
-            this.addPathToDrawingScanBtn.Size = new System.Drawing.Size(81, 21);
-            this.addPathToDrawingScanBtn.TabIndex = 115;
-            this.addPathToDrawingScanBtn.Text = "Добавить";
-            this.addPathToDrawingScanBtn.Click += new System.EventHandler(this.addPathToDrawingScanBtn_Click);
+            this.userDirectoryPathEdit.EditValue = "";
+            this.userDirectoryPathEdit.Location = new System.Drawing.Point(21, 34);
+            this.userDirectoryPathEdit.Name = "userDirectoryPathEdit";
+            this.userDirectoryPathEdit.Properties.MaxLength = 12;
+            this.userDirectoryPathEdit.Size = new System.Drawing.Size(546, 20);
+            this.userDirectoryPathEdit.TabIndex = 153;
             // 
             // SettingsFm
             // 
@@ -884,12 +932,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.checkPanelControl)).EndInit();
             this.checkPanelControl.ResumeLayout(false);
             this.checkPanelControl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.drawingScanDirectoryEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.existingWorkflowFileEdit.Properties)).EndInit();
             this.recoveryTab.ResumeLayout(false);
             this.recoveryTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.drawingScanDirectoryEdit.Properties)).EndInit();
+            this.userSettingTab.ResumeLayout(false);
+            this.userSettingTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.userDirectoryPathEdit.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -966,5 +1017,9 @@
         private DevExpress.XtraEditors.LabelControl labelControl9;
         private DevExpress.XtraEditors.TextEdit drawingScanDirectoryEdit;
         private DevExpress.XtraEditors.SimpleButton addPathToDrawingScanBtn;
+        private DevExpress.XtraTab.XtraTabPage userSettingTab;
+        private DevExpress.XtraEditors.SimpleButton setUserDirectoryPathBtn;
+        private DevExpress.XtraEditors.LabelControl labelControl10;
+        private DevExpress.XtraEditors.TextEdit userDirectoryPathEdit;
     }
 }
