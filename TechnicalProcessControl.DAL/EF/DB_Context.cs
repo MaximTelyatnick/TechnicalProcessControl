@@ -15,7 +15,7 @@ namespace TechnicalProcessControl.DAL.EF
         #region DBSet`s
         //A
         // public DbSet<AccessScheduleEntity> AccessScheduleEntites { get; set; }
-        public DbSet<Users> UsersTelegram { get; set; }
+        public DbSet<Users> Users { get; set; }
         public DbSet<TelegramBot> TelegramBot { get; set; }
         public DbSet<TextTelegram> TextTelegram { get; set; }
         public DbSet<Production> Production { get; set; }

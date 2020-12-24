@@ -86,6 +86,7 @@
     <Compile Include="ModelsDTO\ProductionDTO.cs" />
     <Compile Include="ModelsDTO\RevisionsDTO.cs" />
     <Compile Include="ModelsDTO\RoutesDTO.cs" />
+    <Compile Include="ModelsDTO\TechProcessDTO.cs" />
     <Compile Include="ModelsDTO\TestDTO.cs" />
     <Compile Include="ModelsDTO\UserRoleDTO.cs" />
     <Compile Include="ModelsDTO\TechProcess001DTO.cs" />

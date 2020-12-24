@@ -9,7 +9,8 @@ namespace TechnicalProcessControl.BLL.ModelsDTO
         public string Login { get; set; }
         public string Pass { get; set; }
         public string Name { get; set; }
-        public short? RoleId { get; set; }
+        public int RoleId { get; set; }
+        public string RoleName { get; set; }
     }
 }
 

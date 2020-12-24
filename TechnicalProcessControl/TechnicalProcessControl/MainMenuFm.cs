@@ -250,7 +250,7 @@ namespace TechnicalProcessControl
 
         private void settingsBtn_ElementClick(object sender, DevExpress.XtraBars.Navigation.NavElementEventArgs e)
         {
-            using (SettingsFm settingsFm = new SettingsFm())
+            using (SettingsFm settingsFm = new SettingsFm(usersDTO))
             {
                 if (settingsFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {

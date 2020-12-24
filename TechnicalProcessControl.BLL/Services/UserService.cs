@@ -44,11 +44,56 @@ namespace TechnicalProcessControl.BLL.Services
             return mapper.Map<IEnumerable<Users>, List<UsersDTO>>(users.GetAll());
         }
 
+        public IEnumerable<UsersDTO> GetAllUsersWithRole()
+        {
+            var result = (from ur in users.GetAll()
+                          join rl in userRole.GetAll() on ur.RoleId equals rl.Id 
+                          select new UsersDTO
+                          {
+                              Id = ur.Id,
+                              Login = ur.Login,
+                              Name = ur.Name,
+                              Pass = ur.Pass,
+                              RoleId = ur.Id,
+                              RoleName = rl.RoleName
+
+                          }
+                          ).ToList();
+
+            return result;
+        }
+
+
         public UsersDTO CheckUser(string login, string password)
         {
             var user = mapper.Map<Users, UsersDTO>(users.GetAll().FirstOrDefault(bdsm => bdsm.Login == login && bdsm.Pass == password));
 
             return user;
+        }
+
+        public int UserCreate(UsersDTO userDTO)
+        {
+            var createUser = users.Create(mapper.Map<Users>(userDTO));
+            return (int)createUser.Id;
+        }
+
+        public void UserUpdate(UsersDTO userDTO)
+        {
+            var updateUser = users.GetAll().SingleOrDefault(c => c.Id == userDTO.Id);
+            users.Update((mapper.Map<UsersDTO, Users>(userDTO, updateUser)));
+        }
+
+        public bool UserDelete(int id)
+        {
+            try
+            {
+                users.Delete(users.GetAll().FirstOrDefault(c => c.Id == id));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
 

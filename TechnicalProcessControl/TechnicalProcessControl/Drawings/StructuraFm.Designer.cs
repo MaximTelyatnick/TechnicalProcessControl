@@ -638,9 +638,7 @@
             this.drawingTreeListGrid.Location = new System.Drawing.Point(0, 0);
             this.drawingTreeListGrid.MinWidth = 100;
             this.drawingTreeListGrid.Name = "drawingTreeListGrid";
-            this.drawingTreeListGrid.OptionsCustomization.AllowSort = false;
             this.drawingTreeListGrid.OptionsFilter.DefaultFilterEditorView = DevExpress.XtraEditors.FilterEditorViewMode.TextAndVisual;
-            this.drawingTreeListGrid.OptionsFilter.FilterMode = DevExpress.XtraTreeList.FilterMode.Standard;
             this.drawingTreeListGrid.OptionsFind.AlwaysVisible = true;
             this.drawingTreeListGrid.OptionsFind.FindNullPrompt = "Введите текст....";
             this.drawingTreeListGrid.OptionsView.ShowAutoFilterRow = true;
@@ -706,6 +704,7 @@
             this.statusTreeCol.Name = "statusTreeCol";
             this.statusTreeCol.OptionsColumn.AllowEdit = false;
             this.statusTreeCol.OptionsColumn.AllowFocus = false;
+            this.statusTreeCol.OptionsFilter.AutoFilterCondition = DevExpress.XtraTreeList.Columns.AutoFilterCondition.Contains;
             this.statusTreeCol.Visible = true;
             this.statusTreeCol.VisibleIndex = 1;
             this.statusTreeCol.Width = 40;

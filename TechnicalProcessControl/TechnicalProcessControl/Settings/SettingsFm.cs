@@ -13,20 +13,75 @@ using TechnicalProcessControl.BLL.ModelsDTO;
 using TechnicalProcessControl.Settings;
 using System.Globalization;
 using System.IO;
+using TechnicalProcessControl.BLL.Interfaces;
+using Ninject;
 
 namespace TechnicalProcessControl
 {
     public partial class SettingsFm : DevExpress.XtraEditors.XtraForm
     {
         string pathToXlsImoprtFile;
+
+        UsersDTO usersDTO = new UsersDTO();
+
+        public IUserService userService;
+        public BindingSource usersBS = new BindingSource();
+
+
         List<DrawingsDTO> parseDrawingsList = new List<DrawingsDTO>();
         List<DrawingScanDTO> parseDrawingScanList = new List<DrawingScanDTO>();
 
-        public SettingsFm()
+        public SettingsFm(UsersDTO usersDTO)
         {
             InitializeComponent();
+            this.usersDTO = usersDTO;
 
             userDirectoryPathEdit.Text = Properties.Settings.Default.UserDirectoryPath;
+
+            LoadUsers();
+            //LoadHistory();
+
+
+            UserAcces();
+        }
+
+        private void LoadUsers()
+        {
+            userService = Program.kernel.Get<IUserService>();
+            usersBS.DataSource = userService.GetAllUsersWithRole();
+            userGrid.DataSource = usersBS;
+        }
+
+        private void UserAcces()
+        {
+            switch (usersDTO.RoleId)
+            {
+                case 1:
+
+  
+
+                    break;
+                case 2:
+   
+                    //технолог
+
+                    break;
+                case 3:
+    
+                    break;
+                //конструктор
+                case 4:
+                    //usersTab.PageEnabled = false;
+                    //databaseTab.PageEnabled = false;
+                    //recoveryTab.PageEnabled = false;
+                    //importTab.PageEnabled = false;
+                    //exportTab.PageEnabled = false;
+                    //гость
+
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void importFromExcelBtn_Click(object sender, EventArgs e)
@@ -638,7 +693,6 @@ namespace TechnicalProcessControl
 
         private void addPathToDrawingScanBtn_Click(object sender, EventArgs e)
         {
-
             FolderBrowserDialog folderBrowserDlg = new FolderBrowserDialog();
             folderBrowserDlg.ShowNewFolderButton = true;
             DialogResult dlgResult = folderBrowserDlg.ShowDialog();
@@ -647,7 +701,6 @@ namespace TechnicalProcessControl
                 drawingScanDirectoryEdit.Text = folderBrowserDlg.SelectedPath;
                 Environment.SpecialFolder rootFolder = folderBrowserDlg.RootFolder;
             }
-
         }
 
         private void importDrawingScanBtn_Click(object sender, EventArgs e)
@@ -715,6 +768,23 @@ namespace TechnicalProcessControl
                 Properties.Settings.Default.Save();
                 Environment.SpecialFolder rootFolder = folderBrowserDlg.RootFolder;
             }
+        }
+
+        private void addPathToTechProcessBtn_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folderBrowserDlg = new FolderBrowserDialog();
+            folderBrowserDlg.ShowNewFolderButton = true;
+            DialogResult dlgResult = folderBrowserDlg.ShowDialog();
+            if (dlgResult.Equals(DialogResult.OK))
+            {
+                techProcessPathEdit.Text = folderBrowserDlg.SelectedPath;
+                Environment.SpecialFolder rootFolder = folderBrowserDlg.RootFolder;
+            }
+        }
+
+        private void importTechProcessBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

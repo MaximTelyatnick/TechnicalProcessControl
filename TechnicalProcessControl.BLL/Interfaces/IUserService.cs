@@ -10,7 +10,13 @@ namespace TechnicalProcessControl.BLL.Interfaces
     public interface IUserService
     {
         IEnumerable<UsersDTO> GetAllUsers();
+        IEnumerable<UsersDTO> GetAllUsersWithRole();
 
        UsersDTO CheckUser(string login, string password);
+
+        int UserCreate(UsersDTO userDTO);
+        void UserUpdate(UsersDTO userDTO);
+        bool UserDelete(int id);
+
     }
 }
