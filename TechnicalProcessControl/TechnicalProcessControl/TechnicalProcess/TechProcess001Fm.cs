@@ -12,13 +12,16 @@ using TechnicalProcessControl.BLL.Interfaces;
 using TechnicalProcessControl.BLL.ModelsDTO;
 using Ninject;
 using TechnicalProcessControl.BLL.Infrastructure;
+using DevExpress.XtraSplashScreen;
 
 namespace TechnicalProcessControl.TechnicalProcess
 {
     public partial class TechProcess001Fm : DevExpress.XtraEditors.XtraForm
     {
         public static IDrawingService drawingService;
+        public static ITechProcessService techProcesService;
         public static IReportService reportService;
+        private SplashScreenManager splashScreenManager;
 
         private UsersDTO usersDTO;
 
@@ -37,23 +40,22 @@ namespace TechnicalProcessControl.TechnicalProcess
         public TechProcess001Fm(UsersDTO usersDTO)
         {
             InitializeComponent();
+            splashScreenManager = new SplashScreenManager(this, typeof(WaitFm), true, true);
 
             this.usersDTO = usersDTO;
 
-
             LoadData();
-
-
         }
 
         public void LoadData()
         {
             drawingService = Program.kernel.Get<IDrawingService>();
+            techProcesService = Program.kernel.Get<ITechProcessService>();
             reportService = Program.kernel.Get<IReportService>();
 
             splashScreenManager.ShowWaitForm();
 
-            techProcess001BS.DataSource = drawingService.GetAllTechProcess001();
+            techProcess001BS.DataSource = techProcesService.GetAllTechProcess001();
 
             techProcessTreeListGrid.DataSource = techProcess001BS;
             techProcessTreeListGrid.KeyFieldName = "Id";
@@ -87,7 +89,7 @@ namespace TechnicalProcessControl.TechnicalProcess
 
                 drawingService = Program.kernel.Get<IDrawingService>();
 
-                if (drawingService.TechProcess001Delete(((TechProcess001DTO)techProcess001BS.Current).Id))
+                if (techProcesService.TechProcess001Delete(((TechProcess001DTO)techProcess001BS.Current).Id))
                 {
                     //drawingService.FileDelete(((TechProcess001DTO)Item).TechProcessPath);
 

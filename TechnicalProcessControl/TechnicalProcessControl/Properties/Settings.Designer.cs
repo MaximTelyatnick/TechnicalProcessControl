@@ -70,5 +70,17 @@ namespace TechnicalProcessControl.Properties {
                 this["UserDirectoryPath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string TechProcessDirectoryPath {
+            get {
+                return ((string)(this["TechProcessDirectoryPath"]));
+            }
+            set {
+                this["TechProcessDirectoryPath"] = value;
+            }
+        }
     }
 }

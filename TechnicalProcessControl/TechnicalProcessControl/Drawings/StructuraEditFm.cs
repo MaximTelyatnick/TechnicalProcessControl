@@ -16,6 +16,7 @@ using DevExpress.XtraEditors.Controls;
 using TechnicalProcessControl.Journals;
 using TechnicalProcessControl.TechnicalProcess;
 using TechnicalProcessControl.BLL;
+using System.IO;
 
 namespace TechnicalProcessControl.Drawings
 {
@@ -24,6 +25,7 @@ namespace TechnicalProcessControl.Drawings
         private IDrawingService drawingService;
         private IReportService reportService;
         private IJournalService journalService;
+        private ITechProcessService techProcessService;
 
         public Utils.Operation operation;
 
@@ -73,6 +75,7 @@ namespace TechnicalProcessControl.Drawings
 
             drawingService = Program.kernel.Get<IDrawingService>();
             journalService = Program.kernel.Get<IJournalService>();
+            techProcessService = Program.kernel.Get<ITechProcessService>();
 
             this.operation = operation;
             this.usersDTO = usersDTO;
@@ -124,13 +127,13 @@ namespace TechnicalProcessControl.Drawings
             parentCurrentLevelMenuEdit.Properties.DisplayMember = "CurrentLevelMenu";
             parentCurrentLevelMenuEdit.Properties.NullText = "Немає данних";
 
-            techProcess001BS.DataSource = drawingService.GetAllTechProcess001();
+            techProcess001BS.DataSource = techProcessService.GetAllTechProcess001();
             techProcess001Edit.Properties.DataSource = techProcess001BS;
             techProcess001Edit.Properties.ValueMember = "Id";
             techProcess001Edit.Properties.DisplayMember = "TechProcessFullName";
             techProcess001Edit.Properties.NullText = "";
 
-            techProcess002BS.DataSource = drawingService.GetAllTechProcess002();
+            techProcess002BS.DataSource = techProcessService.GetAllTechProcess002();
             techProcess002Edit.Properties.DataSource = techProcess002BS;
             techProcess002Edit.Properties.ValueMember = "Id";
             techProcess002Edit.Properties.DisplayMember = "TechProcessFullName";
@@ -514,10 +517,10 @@ namespace TechnicalProcessControl.Drawings
         {
             if (numberEdit.EditValue != DBNull.Value && numberEdit.EditValue != null && TechProcess001Ready)
             {
-                var techProcess001 = drawingService.GetTechProcess001ByDrawingId((int)numberEdit.EditValue);
+                var techProcess001 = techProcessService.GetTechProcess001ByDrawingId((int)numberEdit.EditValue);
                 if (techProcess001 != null)
                 {
-                    techProcess001BS.DataSource = drawingService.GetAllTechProcess001();
+                    techProcess001BS.DataSource = techProcessService.GetAllTechProcess001();
                     //techProcess001Edit.EditValue = ((TechProcess001DTO)techProcess001).Id;
                     if ((bool)((TechProcess001DTO)techProcess001).OldTechProcess)
                     {
@@ -556,10 +559,10 @@ namespace TechnicalProcessControl.Drawings
         {
             if (numberEdit.EditValue != DBNull.Value && numberEdit.EditValue != null && TechProcess001Ready)
             {
-                var techProcess002 = drawingService.GetTechProcess002ByDrawingId((int)numberEdit.EditValue);
+                var techProcess002 = techProcessService.GetTechProcess002ByDrawingId((int)numberEdit.EditValue);
                 if (techProcess002 != null)
                 {
-                    techProcess002BS.DataSource = drawingService.GetAllTechProcess002();
+                    techProcess002BS.DataSource = techProcessService.GetAllTechProcess002();
                     //techProcess001Edit.EditValue = ((TechProcess001DTO)techProcess001).Id;
                     if ((bool)((TechProcess002DTO)techProcess002).OldTechProcess)
                     {
@@ -676,8 +679,8 @@ namespace TechnicalProcessControl.Drawings
                     techProcess004Edit.Enabled = true;
                     techProcess005Edit.Enabled = true;
 
-                    var techProcess001 = drawingService.GetTechProcess001ByDrawingId((int)key);
-                    var techProcess002 = drawingService.GetTechProcess002ByDrawingId((int)key);
+                    var techProcess001 = techProcessService.GetTechProcess001ByDrawingId((int)key);
+                    var techProcess002 = techProcessService.GetTechProcess002ByDrawingId((int)key);
                     var techProcess003 = drawingService.GetTechProcess003ByDrawingId((int)key);
                     var techProcess004 = drawingService.GetTechProcess004ByDrawingId((int)key);
                     var techProcess005 = drawingService.GetTechProcess005ByDrawingId((int)key);
@@ -687,7 +690,7 @@ namespace TechnicalProcessControl.Drawings
                     {
 
 
-                        techProcess001BS.DataSource = drawingService.GetAllTechProcess001();
+                        techProcess001BS.DataSource = techProcessService.GetAllTechProcess001();
                         techProcess001Edit.EditValue = ((TechProcess001DTO)techProcess001).Id;
                         //((DrawingsDTO)Item).TechProcess001Id = ((TechProcess001DTO)techProcess001).Id;
                         if ((bool)((TechProcess001DTO)techProcess001).OldTechProcess)
@@ -725,7 +728,7 @@ namespace TechnicalProcessControl.Drawings
 
                     if (techProcess002 != null)
                     {
-                        techProcess002BS.DataSource = drawingService.GetAllTechProcess002();
+                        techProcess002BS.DataSource = techProcessService.GetAllTechProcess002();
                         techProcess002Edit.EditValue = ((TechProcess002DTO)techProcess002).Id;
                         //((DrawingsDTO)Item).TechProcess001Id = ((TechProcess001DTO)techProcess001).Id;
                         if ((bool)((TechProcess002DTO)techProcess002).OldTechProcess)
@@ -1110,6 +1113,7 @@ namespace TechnicalProcessControl.Drawings
         private void techProcess002Edit_ButtonClick(object sender, ButtonPressedEventArgs e)
         {
             drawingService = Program.kernel.Get<IDrawingService>();
+            techProcessService = Program.kernel.Get<ITechProcessService>();
             switch (e.Button.Index)
             {
                 case 0: //Додати
@@ -1131,7 +1135,7 @@ namespace TechnicalProcessControl.Drawings
                         {
                             if (techProcess002EditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                             {
-                                techProcess002Edit.Properties.DataSource = drawingService.GetAllTechProcess002();
+                                techProcess002Edit.Properties.DataSource = techProcessService.GetAllTechProcess002();
                                 int return_Id = techProcess002EditFm.Return().Id;
                                 techProcess002Edit.EditValue = return_Id;
 
@@ -1151,13 +1155,13 @@ namespace TechnicalProcessControl.Drawings
                         if (techProcess002Edit.EditValue == DBNull.Value || techProcess002Edit.EditValue == null)
                             return;
 
-                        TechProcess002DTO techProcess002 = drawingService.GetTechProcess002ByDrawingId((int)((DrawingsDTO)Item).DrawingId);
+                        TechProcess002DTO techProcess002 = techProcessService.GetTechProcess002ByDrawingId((int)((DrawingsDTO)Item).DrawingId);
 
                         using (TechProcess002EditFm techProcess002EditFm = new TechProcess002EditFm(usersDTO, Utils.Operation.Update, techProcess002))
                         {
                             if (techProcess002EditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                             {
-                                techProcess002Edit.Properties.DataSource = drawingService.GetAllTechProcess002();
+                                techProcess002Edit.Properties.DataSource = techProcessService.GetAllTechProcess002();
                                 int return_Id = techProcess002EditFm.Return().Id;
                                 techProcess002Edit.EditValue = return_Id;
 
@@ -1172,12 +1176,12 @@ namespace TechnicalProcessControl.Drawings
 
                         if (MessageBox.Show("Удалить?", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
-                            drawingService = Program.kernel.Get<IDrawingService>();
+                            techProcessService = Program.kernel.Get<ITechProcessService>();
                             //получаем айди ревизии техпроцесса, чтобы потом коректно показать что у техпроцесса есть ревизия
-                            var Child = drawingService.GetTechProcess002RevisionByIdFull((int)techProcess002Edit.EditValue);
+                            var Child = techProcessService.GetTechProcess002RevisionByIdFull((int)techProcess002Edit.EditValue);
 
                             //пробуем удалить информацию о техпроцессе в базе, если получается, удаляем файл техпроцесса в файловой БД
-                            if (drawingService.TechProcess002Delete((int)techProcess002Edit.EditValue))
+                            if (techProcessService.TechProcess002Delete((int)techProcess002Edit.EditValue))
                                 MessageBox.Show("Техпроцесс был успешно удалён!", "Потверждение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             else
                                 MessageBox.Show("При удалении техпроцесса возникла ошибка, возможно файл техпроцесса открыт в проводнике!", "Потверждение", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -1316,6 +1320,15 @@ namespace TechnicalProcessControl.Drawings
                         //    MessageBox.Show("Сборка содержит узлы, не возможно добавить этот вид техпроцесса", "Инфо", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         //    return;
                         //}
+
+                        string ggg = Properties.Settings.Default.UserDirectoryPath;
+
+                        if (Properties.Settings.Default.UserDirectoryPath == "" && !Directory.Exists(Properties.Settings.Default.UserDirectoryPath))
+                        {
+                            MessageBox.Show("В настройках не указан путь к базе техпроцессов или указанная папка не существует!", "Инфо", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+
 
                         TechProcess001DTO addTechProcessDTO = new TechProcess001DTO();
                         //addTechProcessDTO.DrawingsId = ((DrawingsDTO)Item).Id;

@@ -19,6 +19,7 @@ namespace TechnicalProcessControl.TechnicalProcess
     {
         public static IDrawingService drawingService;
         public static IReportService reportService;
+        public static ITechProcessService techProcessService;
 
         private UsersDTO usersDTO;
 
@@ -47,10 +48,11 @@ namespace TechnicalProcessControl.TechnicalProcess
         {
             drawingService = Program.kernel.Get<IDrawingService>();
             reportService = Program.kernel.Get<IReportService>();
+            techProcessService = Program.kernel.Get<ITechProcessService>();
 
             splashScreenManager.ShowWaitForm();
 
-            techProcess002BS.DataSource = drawingService.GetAllTechProcess002();
+            techProcess002BS.DataSource = techProcessService.GetAllTechProcess002();
 
             techProcessTreeListGrid.DataSource = techProcess002BS;
             techProcessTreeListGrid.KeyFieldName = "Id";
@@ -147,9 +149,9 @@ namespace TechnicalProcessControl.TechnicalProcess
                         return;
 
 
-                drawingService = Program.kernel.Get<IDrawingService>();
+                
 
-                if (drawingService.TechProcess002Delete(((TechProcess002DTO)techProcess002BS.Current).Id))
+                if (techProcessService.TechProcess002Delete(((TechProcess002DTO)techProcess002BS.Current).Id))
                 {
                    
                         //drawingService.FileDelete(((TechProcess001DTO)Item).TechProcessPath);

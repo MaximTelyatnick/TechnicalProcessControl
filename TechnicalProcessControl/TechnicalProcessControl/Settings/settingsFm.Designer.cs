@@ -33,7 +33,7 @@
             this.settangsTab = new DevExpress.XtraTab.XtraTabControl();
             this.databaseTab = new DevExpress.XtraTab.XtraTabPage();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
+            this.setPathTechProcessFileStorageBtn = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.backupFileStorageEdit = new DevExpress.XtraEditors.TextEdit();
@@ -183,7 +183,7 @@
             // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.simpleButton3);
+            this.panelControl1.Controls.Add(this.setPathTechProcessFileStorageBtn);
             this.panelControl1.Controls.Add(this.simpleButton2);
             this.panelControl1.Controls.Add(this.labelControl6);
             this.panelControl1.Controls.Add(this.backupFileStorageEdit);
@@ -209,14 +209,15 @@
             this.panelControl1.Size = new System.Drawing.Size(669, 317);
             this.panelControl1.TabIndex = 116;
             // 
-            // simpleButton3
+            // setPathTechProcessFileStorageBtn
             // 
-            this.simpleButton3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.ImageOptions.Image")));
-            this.simpleButton3.Location = new System.Drawing.Point(431, 203);
-            this.simpleButton3.Name = "simpleButton3";
-            this.simpleButton3.Size = new System.Drawing.Size(98, 23);
-            this.simpleButton3.TabIndex = 139;
-            this.simpleButton3.Text = "Change path";
+            this.setPathTechProcessFileStorageBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("setPathTechProcessFileStorageBtn.ImageOptions.Image")));
+            this.setPathTechProcessFileStorageBtn.Location = new System.Drawing.Point(431, 203);
+            this.setPathTechProcessFileStorageBtn.Name = "setPathTechProcessFileStorageBtn";
+            this.setPathTechProcessFileStorageBtn.Size = new System.Drawing.Size(98, 23);
+            this.setPathTechProcessFileStorageBtn.TabIndex = 139;
+            this.setPathTechProcessFileStorageBtn.Text = "Change path";
+            this.setPathTechProcessFileStorageBtn.Click += new System.EventHandler(this.setPathTechProcessFileStorageBtn_Click);
             // 
             // simpleButton2
             // 
@@ -241,7 +242,7 @@
             // 
             // backupFileStorageEdit
             // 
-            this.backupFileStorageEdit.EditValue = "Admin";
+            this.backupFileStorageEdit.EditValue = "";
             this.backupFileStorageEdit.Location = new System.Drawing.Point(18, 205);
             this.backupFileStorageEdit.Name = "backupFileStorageEdit";
             this.backupFileStorageEdit.Properties.MaxLength = 12;
@@ -1168,7 +1169,7 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.TextEdit backupFileStorageEdit;
-        private DevExpress.XtraEditors.SimpleButton simpleButton3;
+        private DevExpress.XtraEditors.SimpleButton setPathTechProcessFileStorageBtn;
         private DevExpress.XtraTab.XtraTabPage usersTab;
         private DevExpress.XtraTab.XtraTabPage historyTab;
         private DevExpress.XtraTab.XtraTabPage exportTab;

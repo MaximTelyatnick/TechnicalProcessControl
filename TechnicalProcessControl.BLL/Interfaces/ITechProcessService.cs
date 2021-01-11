@@ -3,12 +3,116 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TechnicalProcessControl.BLL.ModelsDTO;
 
 namespace TechnicalProcessControl.BLL.Interfaces
 {
     public interface ITechProcessService
     {
+        #region TechProcess001 method's
 
+        //получить все техпроцессы 001 по айди техпроцесса с краткой информацией ok
+        IEnumerable<TechProcess001DTO> GetAllTechProcess001Simple();
+
+        //получить техпроцесс 001 по айди техпроцесса с подробной информацией   ok
+        TechProcess001DTO GetTechProcess001ByIdFull(int techProcess001Id);
+
+        //получить техпроцесс 001 по айди техпроцесса с краткой информацией   ok
+        TechProcess001DTO GetTechProcess001Simple(int techProcess001Id);
+
+        //получить ревизию техпроцесса 001 по айди техпроцесса с краткой информацией ok
+        TechProcess001DTO GetTechProcess001RevisionByIdSimple(int techProcess001Id);
+
+        //получить ревизию техпроцесса 001 по айди техпроцесса с подробной информацией ok
+        TechProcess001DTO GetTechProcess001RevisionByIdFull(int techProcess001Id);
+
+
+        //получить актуальный техпроцесс 001 по айди чертежа  с подробной информацией (материалы и трудоёмкость)
+        TechProcess001DTO GetTechProcess001ByDrawingId(int drawingId);
+
+        //получить все техпроцессы 001 и их ревизии с подробной информацией (без материалов и трудоёмкости)
+        IEnumerable<TechProcess001DTO> GetAllTechProcess001();
+
+        //получить только актуальные техпроцессы 001 без ревизий с подробной информацией
+        IEnumerable<TechProcess001DTO> GetAllTechProcessActual001();
+
+        //проверить наличие техпроцесса 001 по его номеру ok
+        bool CheckTechProcess001(long techProcesName);
+
+        //получить номер техпроцесса 001 которого еще не существует в базе (максимальный + 1) ok
+        long GetLastTechProcess001();
+
+        // получить ревизии техпроцесса 001 по Id родителя ok
+        IEnumerable<TechProcess001DTO> GetAllTechProcess001Revision(int techProcessId);
+
+        List<TechProcess001DTO> TechProcess001Revision(TechProcess001DTO techProcess001, List<TechProcess001DTO> alltechProcessRevision);
+
+        // получить  ревизии техпроцесса 001 + актуальный по Id 
+        IEnumerable<TechProcess001DTO> GetAllTechProcess001RevisionWithActualTechprocess(int techProcessId);
+
+        #endregion
+
+        #region TechProcess002 method's
+
+        //получить все техпроцессы 002 по айди техпроцесса с краткой информацией ok
+        IEnumerable<TechProcess002DTO> GetAllTechProcess002Simple();
+
+        //получить техпроцесс 002 по айди техпроцесса с подробной информацией   ok
+        TechProcess002DTO GetTechProcess002ByIdFull(int techProcess002Id);
+
+        //получить техпроцесс 002 по айди техпроцесса с краткой информацией   ok
+        TechProcess002DTO GetTechProcess002Simple(int techProcess002Id);
+        
+
+        //получить ревизию техпроцесса 002 по айди техпроцесса с краткой информацией ok
+        TechProcess002DTO GetTechProcess002RevisionByIdSimple(int techProcess002Id);
+        
+        //получить ревизию техпроцесса 002 по айди техпроцесса с подробной информацией ok
+        TechProcess002DTO GetTechProcess002RevisionByIdFull(int techProcess002Id);
+
+
+        //получить актуальный техпроцесс 002 по айди чертежа  с подробной информацией (материалы и трудоёмкость)
+        TechProcess002DTO GetTechProcess002ByDrawingId(int drawingId);
+
+        //получить все техпроцессы 001 и их ревизии с подробной информацией (без материалов и трудоёмкости)
+        IEnumerable<TechProcess002DTO> GetAllTechProcess002();
+
+        //получить только актуальные техпроцессы 002 без ревизий с подробной информацией
+        IEnumerable<TechProcess002DTO> GetAllTechProcessActual002();
+        
+        //проверить наличие техпроцесса 002 по его номеру ok
+        bool CheckTechProcess002(long techProcesName);
+        
+        //получить номер техпроцесса 002 которого еще не существует в базе (максимальный + 1) ok
+        long GetLastTechProcess002();
+
+        // получить ревизии техпроцесса 002 по Id родителя ok
+        IEnumerable<TechProcess002DTO> GetAllTechProcess002Revision(int techProcessId);
+
+        // получить  ревизии техпроцесса 002 + актуальный по Id 
+        IEnumerable<TechProcess002DTO> GetAllTechProcess002RevisionWithActualTechprocess(int techProcessId);
+
+        #endregion
+
+
+        #region TechProcess001CRUD
+
+        int TechProcess001Create(TechProcess001DTO techProcess001DTO);
+        void TechProcess001Update(TechProcess001DTO techProcess001DTO);
+        bool TechProcess001Delete(int id);
+
+        #endregion
+
+        #region TechProcess002CRUD
+
+        int TechProcess002Create(TechProcess002DTO techProcess002DTO);
+
+        void TechProcess002Update(TechProcess002DTO techProcess002DTO);
+
+        bool TechProcess002Delete(int id);
+        
+
+        #endregion
 
 
     }

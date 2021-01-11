@@ -1,10 +1,13 @@
-﻿using System.Text;
+﻿using System.IO;
+using System.Text;
+using System.Linq;
+using System;
 
 namespace TechnicalProcessControl
 {
     public class Utils
     {
-        internal static string HomePath = @"D:\";
+        public static string HomePath = Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
 
         public enum Rules
         {
@@ -20,6 +23,13 @@ namespace TechnicalProcessControl
             Update,
             Template,
             Custom
+        };
+
+        public enum TechProcesFileMode
+        {
+            AddTechProcess,
+            UpdateTechProcess,
+            TemplateTechProcess
         };
 
         static string[] Article =
@@ -54,6 +64,15 @@ namespace TechnicalProcessControl
             string outputString = utf8.GetString(utf8Bytes);
 
             return outputString;
+        }
+
+
+
+
+        public static bool DirectoryContainFiles(string path)
+        {
+            if (!Directory.Exists(path)) return false;
+            return Directory.EnumerateFiles(path, "*", SearchOption.AllDirectories).Any();
         }
 
 

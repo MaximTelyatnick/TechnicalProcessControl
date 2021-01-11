@@ -329,6 +329,42 @@
     <Compile Include="TechnicalProcess\TechProcess002Fm.Designer.cs">
       <DependentUpon>TechProcess002Fm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TechnicalProcess\TechProcess003Fm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TechnicalProcess\TechProcess003Fm.Designer.cs">
+      <DependentUpon>TechProcess003Fm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TechnicalProcess\TechProcess004EditFm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TechnicalProcess\TechProcess004EditFm.Designer.cs">
+      <DependentUpon>TechProcess004EditFm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TechnicalProcess\TechProcess004Fm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TechnicalProcess\TechProcess004Fm.Designer.cs">
+      <DependentUpon>TechProcess004Fm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TechnicalProcess\TechProcess005EditFm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TechnicalProcess\TechProcess005EditFm.Designer.cs">
+      <DependentUpon>TechProcess005EditFm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TechnicalProcess\TechProcess005Fm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TechnicalProcess\TechProcess005Fm.Designer.cs">
+      <DependentUpon>TechProcess005Fm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TechnicalProcess\TechProcessWithSpecificationFm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TechnicalProcess\TechProcessWithSpecificationFm.Designer.cs">
+      <DependentUpon>TechProcessWithSpecificationFm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TestExcel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -483,6 +519,18 @@
     <EmbeddedResource Include="TechnicalProcess\TechProcess002Fm.resx">
       <DependentUpon>TechProcess002Fm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TechnicalProcess\TechProcess003Fm.resx">
+      <DependentUpon>TechProcess003Fm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TechnicalProcess\TechProcess004Fm.resx">
+      <DependentUpon>TechProcess004Fm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TechnicalProcess\TechProcess005Fm.resx">
+      <DependentUpon>TechProcess005Fm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TechnicalProcess\TechProcessWithSpecificationFm.resx">
+      <DependentUpon>TechProcessWithSpecificationFm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TestExcel.resx">
       <DependentUpon>TestExcel.cs</DependentUpon>
     </EmbeddedResource>
@@ -548,6 +596,7 @@
     </Compile>
     <None Include="Templates\template001New.xls" />
     <None Include="Templates\template002.xls" />
+    <None Include="Templates\template003New.xls" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -576,6 +625,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logoMini.ico" />
+    <None Include="Resources\add-to-cart.png" />
+    <None Include="Resources\welding.png" />
     <Content Include="TPC.ico" />
   </ItemGroup>
   <ItemGroup>

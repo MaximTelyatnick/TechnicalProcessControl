@@ -14,6 +14,7 @@ using TechnicalProcessControl.BLL;
 using TechnicalProcessControl.BLL.Infrastructure;
 using Ninject;
 using DevExpress.Spreadsheet;
+using System.IO;
 
 namespace TechnicalProcessControl.TechnicalProcess
 {
@@ -212,6 +213,12 @@ namespace TechnicalProcessControl.TechnicalProcess
                     return false;
                 }
 
+                if (!Directory.Exists(@Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess003\"))
+                {
+                    MessageBox.Show("Директория техпроцесса 003 не найдена! Директория была создана" + @Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess003\", "Сохранение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Directory.CreateDirectory(@Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess003\");
+                }
+
                 string techProcessName = techProcessNumberEdit.Text;
 
                 if (!useExistingWorkflowCheck.Checked)
@@ -226,29 +233,40 @@ namespace TechnicalProcessControl.TechnicalProcess
                         /////////////////////        \  /
                         /////////////////////         \/
                         DrawingDTO drawingTechproces = drawingService.GetDrawingById((int)((TechProcess003DTO)Item).DrawingId);
+
+                        using (TechProcessWithSpecificationFm techProcessWithSpecificationFm = new TechProcessWithSpecificationFm(Utils.TechProcesFileMode.AddTechProcess,
+                            usersDTO, drawingTechproces, parentDrawings,null, ((TechProcess003DTO)Item),null))
+                        {
+                            if (techProcessWithSpecificationFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                            {
+                                //string return_Id = testFm.Return();
+                                //((TechProcess003DTO)Item).TechProcessFullName = return_Id;
+                            }
+                        }
+
                         //////string path = reportService.CreateTemplateTechProcess001(usersDTO, drawingsDTO, null, parentDrawings);
 
-                        ((TechProcess003DTO)Item).Id = drawingService.TechProcess003Create(((TechProcess003DTO)Item));
-                        if (((TechProcess003DTO)Item).Id > 0)
-                        {
-                            string path = reportService.CreateTemplateTechProcess003Exp(usersDTO, drawingTechproces, parentDrawings, null, ((TechProcess003DTO)Item), null);
-                            if (path != "")
-                            {
-                                using (TestFm testFm = new TestFm(path))
-                                {
-                                    if (testFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                                    {
-                                        string return_Id = testFm.Return();
-                                        ((TechProcess003DTO)Item).TechProcessFullName = return_Id;
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                throw new System.ArgumentException("Не получилось создать файл или сохранить в бд", "Ошибка");
-                            }
+                        //((TechProcess003DTO)Item).Id = drawingService.TechProcess003Create(((TechProcess003DTO)Item));
+                        //if (((TechProcess003DTO)Item).Id > 0)
+                        //{
+                        //    string path = reportService.CreateTemplateTechProcess003Exp(usersDTO, drawingTechproces, parentDrawings, null, ((TechProcess003DTO)Item), null);
+                        //    if (path != "")
+                        //    {
+                        //        using (TestFm testFm = new TestFm(path))
+                        //        {
+                        //            if (testFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                        //            {
+                        //                string return_Id = testFm.Return();
+                        //                ((TechProcess003DTO)Item).TechProcessFullName = return_Id;
+                        //            }
+                        //        }
+                        //    }
+                        //    else
+                        //    {
+                        //        throw new System.ArgumentException("Не получилось создать файл или сохранить в бд", "Ошибка");
+                        //    }
 
-                        }
+                        //}
                         return true;
                     }
                     catch (Exception ex)

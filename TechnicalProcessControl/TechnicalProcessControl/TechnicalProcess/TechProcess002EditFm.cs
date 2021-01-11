@@ -12,6 +12,7 @@ using TechnicalProcessControl.BLL.Infrastructure;
 using TechnicalProcessControl.BLL.ModelsDTO;
 using TechnicalProcessControl.BLL.Interfaces;
 using Ninject;
+using System.IO;
 
 namespace TechnicalProcessControl.TechnicalProcess
 {
@@ -19,6 +20,7 @@ namespace TechnicalProcessControl.TechnicalProcess
     {
         public static IDrawingService drawingService;
         public static IReportService reportService;
+        public static ITechProcessService techProcessService;
 
         private BindingSource drawingsBS = new BindingSource();
         private BindingSource drawingBS = new BindingSource();
@@ -51,6 +53,7 @@ namespace TechnicalProcessControl.TechnicalProcess
             InitializeComponent();
 
             drawingService = Program.kernel.Get<IDrawingService>();
+            techProcessService = Program.kernel.Get<ITechProcessService>();
             drawingDTO = drawingService.GetDrawingById((int)techProcess002DTO.DrawingId);
 
             this.techProcess002DTO = techProcess002DTO;
@@ -141,7 +144,7 @@ namespace TechnicalProcessControl.TechnicalProcess
 
             if (operation == Utils.Operation.Add)
             {
-                ((TechProcess002DTO)Item).TechProcessName = drawingService.GetLastTechProcess002();
+                ((TechProcess002DTO)Item).TechProcessName = techProcessService.GetLastTechProcess002();
                 ((TechProcess002DTO)Item).CreateDate = DateTime.Now;
                 ((TechProcess002DTO)Item).UserId = usersDTO.Id;
                 ((TechProcess002DTO)Item).OldTechProcess = false;
@@ -208,10 +211,16 @@ namespace TechnicalProcessControl.TechnicalProcess
             if (operation == Utils.Operation.Add)
             {
 
-                if (drawingService.CheckTechProcess002(((TechProcess002DTO)Item).TechProcessName))
+                if (techProcessService.CheckTechProcess002(((TechProcess002DTO)Item).TechProcessName))
                 {
                     MessageBox.Show("Техпроцесс с таким именем уже существует!", "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return false;
+                }
+
+                if (!Directory.Exists(@Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess002\"))
+                {
+                    MessageBox.Show("Директория техпроцесса 002 не найдена! Директория была создана" + @Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess002\", "Сохранение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Directory.CreateDirectory(@Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess002\");
                 }
 
                 string techProcessName = techProcessNumber002Edit.Text;
@@ -221,12 +230,12 @@ namespace TechnicalProcessControl.TechnicalProcess
                     try
                     {
 
-                        ((TechProcess002DTO)Item).TechProcessPath = @"C:\TechProcess\" + ((TechProcess002DTO)Item).TechProcessFullName + ".xls";
+                        ((TechProcess002DTO)Item).TechProcessPath = @Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess002\" + ((TechProcess002DTO)Item).TechProcessFullName + ".xls";
                         List<DrawingDTO> parentDrawings = drawingService.GetDrawingParentByDrawingChildId((int)((TechProcess002DTO)Item).DrawingId).ToList();
                         DrawingDTO drawingTechproces = drawingService.GetDrawingById((int)((TechProcess002DTO)Item).DrawingId);
                         //////string path = reportService.CreateTemplateTechProcess001(usersDTO, drawingsDTO, null, parentDrawings);
 
-                        ((TechProcess002DTO)Item).Id = drawingService.TechProcess002Create(((TechProcess002DTO)Item));
+                        ((TechProcess002DTO)Item).Id = techProcessService.TechProcess002Create(((TechProcess002DTO)Item));
                         if (((TechProcess002DTO)Item).Id > 0)
                         {
                             string path = reportService.CreateTemplateTechProcess002Exp(usersDTO, drawingTechproces, parentDrawings, null, ((TechProcess002DTO)Item), null);
@@ -253,7 +262,7 @@ namespace TechnicalProcessControl.TechnicalProcess
                     {
                         try
                         {
-                            drawingService.TechProcess002Delete(((TechProcess002DTO)Item).Id);
+                            techProcessService.TechProcess002Delete(((TechProcess002DTO)Item).Id);
                             MessageBox.Show("При сохранении техпроцесса возникла ошибка. Выполнен откат изменений. " + ex.Message, "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return false;
                         }
@@ -269,12 +278,12 @@ namespace TechnicalProcessControl.TechnicalProcess
                 {
                     try
                     {
-                        ((TechProcess002DTO)Item).TechProcessPath = @"C:\TechProcess\" + ((TechProcess002DTO)Item).TechProcessFullName + ".xls";
+                        ((TechProcess002DTO)Item).TechProcessPath = @Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess002\" + ((TechProcess002DTO)Item).TechProcessFullName + ".xls";
                         ((TechProcess002DTO)Item).TypeId = 5;
                         string path = reportService.ResaveFileTechProcess002(((TechProcess002DTO)Item), existingWorkflowPathEdit.Text);
                         if (path != "")
                         {
-                            ((TechProcess002DTO)Item).Id = drawingService.TechProcess002Create(((TechProcess002DTO)Item));
+                            ((TechProcess002DTO)Item).Id = techProcessService.TechProcess002Create(((TechProcess002DTO)Item));
 
                             if (((TechProcess002DTO)Item).Id > 0)
                             {
@@ -299,7 +308,7 @@ namespace TechnicalProcessControl.TechnicalProcess
             {
                 try
                 {
-                    drawingService.TechProcess002Update(((TechProcess002DTO)Item));
+                    techProcessService.TechProcess002Update(((TechProcess002DTO)Item));
                     return true;
                 }
                 catch (Exception ex)
@@ -314,20 +323,20 @@ namespace TechnicalProcessControl.TechnicalProcess
             {
                 try
                 {
-                    ((TechProcess002DTO)Item).TechProcessPath = @"C:\TechProcess\" + ((TechProcess002DTO)Item).TechProcessFullName + ".xls";
+                    ((TechProcess002DTO)Item).TechProcessPath = @Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess002\" + ((TechProcess002DTO)Item).TechProcessFullName + ".xls"; ;
                     List<DrawingDTO> parentDrawings = drawingService.GetDrawingParentByDrawingChildId((int)((TechProcess002DTO)Item).DrawingId).ToList();
                     DrawingDTO drawingTechproces = drawingService.GetDrawingById((int)((TechProcess002DTO)Item).DrawingId);
 
 
-                    ((TechProcess002DTO)Item).Id = drawingService.TechProcess002Create(((TechProcess002DTO)Item));
+                    ((TechProcess002DTO)Item).Id = techProcessService.TechProcess002Create(((TechProcess002DTO)Item));
 
                     if (((TechProcess002DTO)Item).Id > 0)
                     {
                         techProcess002OldDTO.ParentId = ((TechProcess002DTO)Item).Id;
                         techProcess002OldDTO.TypeId = 2;
-                        drawingService.TechProcess002Update(techProcess002OldDTO);
+                        techProcessService.TechProcess002Update(techProcess002OldDTO);
 
-                        List<TechProcess002DTO> techProcess002Revision = drawingService.GetAllTechProcess002Revision(((TechProcess002DTO)Item).Id).ToList();
+                        List<TechProcess002DTO> techProcess002Revision = techProcessService.GetAllTechProcess002Revision(((TechProcess002DTO)Item).Id).ToList();
 
                         string path = reportService.CreateTemplateTechProcess002Exp(usersDTO, drawingTechproces, parentDrawings, techProcess002Revision, ((TechProcess002DTO)Item), techProcess002OldDTO);
 

@@ -1,6 +1,6 @@
 ﻿namespace TechnicalProcessControl.TechnicalProcess
 {
-    partial class TechProcess001Fm
+    partial class TechProcess005Fm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TechProcess001Fm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TechProcess005Fm));
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.deleteBtn = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -41,7 +41,6 @@
             this.repositoryItemTextEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.fullPathCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            //this.splashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::TechnicalProcessControl.WaitFm), true, true);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.techProcessTreeListGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit)).BeginInit();
@@ -54,19 +53,19 @@
             this.ribbonControl1.ExpandCollapseItem,
             this.deleteBtn});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 4;
+            this.ribbonControl1.MaxItemId = 2;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
             this.ribbonControl1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2007;
             this.ribbonControl1.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
-            this.ribbonControl1.Size = new System.Drawing.Size(1191, 95);
+            this.ribbonControl1.Size = new System.Drawing.Size(914, 95);
             this.ribbonControl1.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             // 
             // deleteBtn
             // 
             this.deleteBtn.Caption = "Удалить";
-            this.deleteBtn.Id = 3;
+            this.deleteBtn.Id = 1;
             this.deleteBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("deleteBtn.ImageOptions.Image")));
             this.deleteBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("deleteBtn.ImageOptions.LargeImage")));
             this.deleteBtn.Name = "deleteBtn";
@@ -84,7 +83,7 @@
             // 
             this.ribbonPageGroup1.ItemLinks.Add(this.deleteBtn);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
-            this.ribbonPageGroup1.Text = "Техпроцес";
+            this.ribbonPageGroup1.Text = "Функции";
             // 
             // techProcessTreeListGrid
             // 
@@ -103,10 +102,8 @@
             this.techProcessTreeListGrid.OptionsView.ShowAutoFilterRow = true;
             this.techProcessTreeListGrid.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTextEdit});
-            this.techProcessTreeListGrid.Size = new System.Drawing.Size(1191, 423);
-            this.techProcessTreeListGrid.TabIndex = 3;
-            this.techProcessTreeListGrid.NodeCellStyle += new DevExpress.XtraTreeList.GetCustomNodeCellStyleEventHandler(this.techProcessTreeListGrid_NodeCellStyle);
-            this.techProcessTreeListGrid.DoubleClick += new System.EventHandler(this.techProcessTreeListGrid_DoubleClick);
+            this.techProcessTreeListGrid.Size = new System.Drawing.Size(914, 296);
+            this.techProcessTreeListGrid.TabIndex = 4;
             // 
             // numberCol
             // 
@@ -161,7 +158,6 @@
             // 
             this.repositoryItemTextEdit.AutoHeight = false;
             this.repositoryItemTextEdit.Name = "repositoryItemTextEdit";
-            this.repositoryItemTextEdit.DoubleClick += new System.EventHandler(this.repositoryItemTextEdit_DoubleClick);
             // 
             // fullPathCol
             // 
@@ -187,20 +183,16 @@
             this.treeListColumn1.Visible = true;
             this.treeListColumn1.VisibleIndex = 5;
             // 
-            // splashScreenManager
-            // 
-            //this.splashScreenManager.ClosingDelay = 500;
-            // 
-            // TechProcess001Fm
+            // TechProcess005Fm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1191, 518);
+            this.ClientSize = new System.Drawing.Size(914, 391);
             this.Controls.Add(this.techProcessTreeListGrid);
             this.Controls.Add(this.ribbonControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "TechProcess001Fm";
-            this.Text = "Заготовительное производство";
+            this.Name = "TechProcess005Fm";
+            this.Text = "Окраска";
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.techProcessTreeListGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit)).EndInit();
@@ -212,17 +204,16 @@
         #endregion
 
         private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl1;
-        private DevExpress.XtraBars.BarButtonItem deleteBtn;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
+        private DevExpress.XtraBars.BarButtonItem deleteBtn;
         private DevExpress.XtraTreeList.TreeList techProcessTreeListGrid;
         private DevExpress.XtraTreeList.Columns.TreeListColumn numberCol;
         private DevExpress.XtraTreeList.Columns.TreeListColumn dateCol;
         private DevExpress.XtraTreeList.Columns.TreeListColumn techProcessFullNameCol;
         private DevExpress.XtraTreeList.Columns.TreeListColumn drawingCol;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit;
         private DevExpress.XtraTreeList.Columns.TreeListColumn fullPathCol;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
-        //private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager;
-        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit;
     }
 }

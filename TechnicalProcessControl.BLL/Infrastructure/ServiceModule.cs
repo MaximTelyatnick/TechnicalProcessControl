@@ -15,6 +15,7 @@ namespace TerminalMKTelegramBot.Infrastructure
             Bind<IDrawingService>().To<DrawingService>();
             Bind<IReportService>().To<ReportService>();
             Bind<IJournalService>().To<JournalService>();
+            Bind<ITechProcessService>().To<TechProcessService>();
             Bind<IUserService>().To<UserService>();
 
         }

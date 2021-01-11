@@ -37,6 +37,7 @@ namespace TechnicalProcessControl
             this.usersDTO = usersDTO;
 
             userDirectoryPathEdit.Text = Properties.Settings.Default.UserDirectoryPath;
+            backupFileStorageEdit.Text = Properties.Settings.Default.TechProcessDirectoryPath;
 
             LoadUsers();
             //LoadHistory();
@@ -785,6 +786,32 @@ namespace TechnicalProcessControl
         private void importTechProcessBtn_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void simpleButton3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void setPathTechProcessFileStorageBtn_Click(object sender, EventArgs e)
+        {
+
+            //Если есть файлы в папке, спрашиваем нужно ли менять
+            if (Utils.DirectoryContainFiles(Properties.Settings.Default.TechProcessDirectoryPath))
+                if (MessageBox.Show("Директория содержит техпроцессы, изменить директорию хранилища техпроцессов?", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)                
+                    return;
+                
+
+            FolderBrowserDialog folderBrowserDlg = new FolderBrowserDialog();
+            folderBrowserDlg.ShowNewFolderButton = true;
+            DialogResult dlgResult = folderBrowserDlg.ShowDialog();
+            if (dlgResult.Equals(DialogResult.OK))
+            {
+                backupFileStorageEdit.Text = folderBrowserDlg.SelectedPath;
+                Properties.Settings.Default.TechProcessDirectoryPath = backupFileStorageEdit.Text;
+                Properties.Settings.Default.Save();
+                Environment.SpecialFolder rootFolder = folderBrowserDlg.RootFolder;
+            }
         }
     }
 }

@@ -12,6 +12,7 @@ using TechnicalProcessControl.BLL.ModelsDTO;
 using TechnicalProcessControl.BLL.Interfaces;
 using Ninject;
 using TechnicalProcessControl.BLL.Infrastructure;
+using System.IO;
 
 namespace TechnicalProcessControl
 {
@@ -19,6 +20,7 @@ namespace TechnicalProcessControl
     {
         public static IDrawingService drawingService;
         public static IReportService reportService;
+        public static ITechProcessService techProcessService;
 
         private BindingSource drawingsBS = new BindingSource();
         private BindingSource drawingBS = new BindingSource();
@@ -51,6 +53,8 @@ namespace TechnicalProcessControl
             InitializeComponent();
 
             drawingService = Program.kernel.Get<IDrawingService>();
+            techProcessService = Program.kernel.Get<ITechProcessService>();
+
             drawingDTO = drawingService.GetDrawingById((int)techProcess001DTO.DrawingId);
 
             this.techProcess001DTO = techProcess001DTO;
@@ -65,9 +69,6 @@ namespace TechnicalProcessControl
 
             techProcessBS.DataSource = Item = techProcess001DTO;
 
-            
-            
-
             drawingNumberEdit.DataBindings.Add("EditValue", techProcessBS, "DrawingNumberWithRevision", true, DataSourceUpdateMode.OnPropertyChanged);
             techProcessNumber001Edit.DataBindings.Add("EditValue", techProcessBS, "TechProcessName", true, DataSourceUpdateMode.OnPropertyChanged);
             revisionEdit.DataBindings.Add("EditValue", techProcessBS, "RevisionId", true, DataSourceUpdateMode.OnPropertyChanged);
@@ -81,9 +82,6 @@ namespace TechnicalProcessControl
             lEdit.DataBindings.Add("EditValue", techProcessBS, "L", true, DataSourceUpdateMode.OnPropertyChanged);
             weightEdit.DataBindings.Add("EditValue", techProcessBS, "Weight", true, DataSourceUpdateMode.OnPropertyChanged);
             revisionDocumentEdit.DataBindings.Add("EditValue", techProcessBS, "RevisionDocumentName", true, DataSourceUpdateMode.OnPropertyChanged);
-
-
-     
 
             welding20SteelEdit.DataBindings.Add("EditValue", techProcessBS, "Welding20Steel", true, DataSourceUpdateMode.OnPropertyChanged);
             welding10Edit.DataBindings.Add("EditValue", techProcessBS, "Welding10", true, DataSourceUpdateMode.OnPropertyChanged);
@@ -141,7 +139,7 @@ namespace TechnicalProcessControl
 
             if (operation == Utils.Operation.Add)
             {
-                ((TechProcess001DTO)Item).TechProcessName = drawingService.GetLastTechProcess001();
+                ((TechProcess001DTO)Item).TechProcessName = techProcessService.GetLastTechProcess001();
                 ((TechProcess001DTO)Item).CreateDate = DateTime.Now;
                 ((TechProcess001DTO)Item).UserId = usersDTO.Id;
                 ((TechProcess001DTO)Item).OldTechProcess = false;
@@ -205,14 +203,25 @@ namespace TechnicalProcessControl
             drawingService = Program.kernel.Get<IDrawingService>();
             reportService = Program.kernel.Get<IReportService>();
 
+
+
+
             if (operation == Utils.Operation.Add)
             {
 
-                if (drawingService.CheckTechProcess001(((TechProcess001DTO)Item).TechProcessName))
+                if (techProcessService.CheckTechProcess001(((TechProcess001DTO)Item).TechProcessName))
                 {
                     MessageBox.Show("Техпроцесс с таким именем уже существует!", "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return false;
                 }
+
+                if (!Directory.Exists(@Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess001\"))
+                {
+                    MessageBox.Show("Директория техпроцесса 001 не найдена! Директория была создана"+ @Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess001\", "Сохранение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Directory.CreateDirectory(@Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess001\");
+                }
+            
+                    
 
                 string techProcessName = techProcessNumber001Edit.Text;
 
@@ -221,12 +230,12 @@ namespace TechnicalProcessControl
                     try
                     {
 
-                        ((TechProcess001DTO)Item).TechProcessPath = @"C:\TechProcess\" + ((TechProcess001DTO)Item).TechProcessFullName + ".xls";
+                        ((TechProcess001DTO)Item).TechProcessPath = @Properties.Settings.Default.TechProcessDirectoryPath.ToString()+@"\TechProcess001\" + ((TechProcess001DTO)Item).TechProcessFullName + ".xls";
                         List<DrawingDTO> parentDrawings = drawingService.GetDrawingParentByDrawingChildId((int)((TechProcess001DTO)Item).DrawingId).ToList();
                         DrawingDTO drawingTechproces = drawingService.GetDrawingById((int)((TechProcess001DTO)Item).DrawingId);
                         //////string path = reportService.CreateTemplateTechProcess001(usersDTO, drawingsDTO, null, parentDrawings);
 
-                        ((TechProcess001DTO)Item).Id = drawingService.TechProcess001Create(((TechProcess001DTO)Item));
+                        ((TechProcess001DTO)Item).Id = techProcessService.TechProcess001Create(((TechProcess001DTO)Item));
                         if (((TechProcess001DTO)Item).Id > 0)
                         {
                             string path = reportService.CreateTemplateTechProcess001Exp(usersDTO, drawingTechproces, parentDrawings,null, ((TechProcess001DTO)Item), null);
@@ -253,7 +262,7 @@ namespace TechnicalProcessControl
                     {
                         try
                         {
-                            drawingService.TechProcess001Delete(((TechProcess001DTO)Item).Id);
+                            techProcessService.TechProcess001Delete(((TechProcess001DTO)Item).Id);
                             MessageBox.Show("При сохранении техпроцесса возникла ошибка. Выполнен откат изменений. " + ex.Message, "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return false;
                         }
@@ -269,12 +278,12 @@ namespace TechnicalProcessControl
                 {
                     try
                     {
-                        ((TechProcess001DTO)Item).TechProcessPath = @"C:\TechProcess\" + ((TechProcess001DTO)Item).TechProcessFullName + ".xls";
+                        ((TechProcess001DTO)Item).TechProcessPath = @Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess001\" + ((TechProcess001DTO)Item).TechProcessFullName + ".xls";
                         ((TechProcess001DTO)Item).TypeId = 5;
                         string path = reportService.ResaveFileTechProcess001(((TechProcess001DTO)Item), existingWorkflowPathEdit.Text);
                         if (path != "")
                         {
-                            ((TechProcess001DTO)Item).Id = drawingService.TechProcess001Create(((TechProcess001DTO)Item));
+                            ((TechProcess001DTO)Item).Id = techProcessService.TechProcess001Create(((TechProcess001DTO)Item));
                             
                             if (((TechProcess001DTO)Item).Id > 0)
                             {
@@ -299,7 +308,7 @@ namespace TechnicalProcessControl
             {
                 try
                 {
-                    drawingService.TechProcess001Update(((TechProcess001DTO)Item));
+                    techProcessService.TechProcess001Update(((TechProcess001DTO)Item));
                     return true;
                 }
                 catch (Exception ex)
@@ -314,20 +323,20 @@ namespace TechnicalProcessControl
             {
                 try
                 {
-                    ((TechProcess001DTO)Item).TechProcessPath = @"C:\TechProcess\" + ((TechProcess001DTO)Item).TechProcessFullName + ".xls";
+                    ((TechProcess001DTO)Item).TechProcessPath = @Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess001\" + ((TechProcess001DTO)Item).TechProcessFullName + ".xls";
                     List<DrawingDTO> parentDrawings = drawingService.GetDrawingParentByDrawingChildId((int)((TechProcess001DTO)Item).DrawingId).ToList();
                     DrawingDTO drawingTechproces = drawingService.GetDrawingById((int)((TechProcess001DTO)Item).DrawingId);
                     
 
-                    ((TechProcess001DTO)Item).Id = drawingService.TechProcess001Create(((TechProcess001DTO)Item));
+                    ((TechProcess001DTO)Item).Id = techProcessService.TechProcess001Create(((TechProcess001DTO)Item));
 
                     if (((TechProcess001DTO)Item).Id > 0)
                     {
                         techProcess001OldDTO.ParentId = ((TechProcess001DTO)Item).Id;
                         techProcess001OldDTO.TypeId = 2;
-                        drawingService.TechProcess001Update(techProcess001OldDTO);
+                        techProcessService.TechProcess001Update(techProcess001OldDTO);
 
-                        List<TechProcess001DTO> techProcess001Revision = drawingService.GetAllTechProcess001Revision(((TechProcess001DTO)Item).Id).ToList();
+                        List<TechProcess001DTO> techProcess001Revision = techProcessService.GetAllTechProcess001Revision(((TechProcess001DTO)Item).Id).ToList();
 
                         string path = reportService.CreateTemplateTechProcess001Exp(usersDTO, drawingTechproces, parentDrawings, techProcess001Revision, ((TechProcess001DTO)Item), techProcess001OldDTO);
 

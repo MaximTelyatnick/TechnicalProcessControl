@@ -140,7 +140,7 @@
             // 
             // TechProcess001Item
             // 
-            this.TechProcess001Item.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TechProcess001Item.Appearance.Font = new System.Drawing.Font("Tahoma", 6.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.TechProcess001Item.Appearance.Options.UseFont = true;
             this.TechProcess001Item.Appearance.Options.UseTextOptions = true;
             this.TechProcess001Item.Caption = "Заготовительное производство";
@@ -149,13 +149,22 @@
             // 
             // 
             // 
-            this.TechProcess001Item.Tile.AppearanceItem.Normal.BackColor = System.Drawing.Color.DarkGreen;
-            this.TechProcess001Item.Tile.AppearanceItem.Normal.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TechProcess001Item.Tile.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
+            this.TechProcess001Item.Tile.AppearanceItem.Normal.BackColor = System.Drawing.Color.SeaGreen;
+            this.TechProcess001Item.Tile.AppearanceItem.Normal.BackColor2 = System.Drawing.Color.SeaGreen;
+            this.TechProcess001Item.Tile.AppearanceItem.Normal.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.TechProcess001Item.Tile.AppearanceItem.Normal.ForeColor = System.Drawing.Color.White;
             this.TechProcess001Item.Tile.AppearanceItem.Normal.Options.UseBackColor = true;
             this.TechProcess001Item.Tile.AppearanceItem.Normal.Options.UseFont = true;
             this.TechProcess001Item.Tile.AppearanceItem.Normal.Options.UseForeColor = true;
-            this.TechProcess001Item.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            this.TechProcess001Item.Tile.AppearanceItem.Normal.Options.UseImage = true;
+            this.TechProcess001Item.Tile.BackgroundImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleLeft;
+            this.TechProcess001Item.Tile.BackgroundImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Stretch;
+            this.TechProcess001Item.Tile.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
+            this.TechProcess001Item.Tile.DropDownOptions.BeakColor = System.Drawing.Color.White;
+            tileItemElement1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
+            tileItemElement1.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
+            tileItemElement1.ImageOptions.ImageToTextIndent = 3;
             tileItemElement1.Text = "Заготовительное производство";
             this.TechProcess001Item.Tile.Elements.Add(tileItemElement1);
             this.TechProcess001Item.Tile.Name = "tileBarItem1";
@@ -168,11 +177,14 @@
             // 
             // 
             // 
+            this.TechProcess002Item.Tile.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
             this.TechProcess002Item.Tile.AppearanceItem.Normal.BackColor = System.Drawing.Color.SteelBlue;
-            this.TechProcess002Item.Tile.AppearanceItem.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TechProcess002Item.Tile.AppearanceItem.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.TechProcess002Item.Tile.AppearanceItem.Normal.Options.UseBackColor = true;
             this.TechProcess002Item.Tile.AppearanceItem.Normal.Options.UseFont = true;
             this.TechProcess002Item.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            tileItemElement2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            tileItemElement2.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
             tileItemElement2.Text = "Механическая обработка";
             this.TechProcess002Item.Tile.Elements.Add(tileItemElement2);
             this.TechProcess002Item.Tile.Name = "tileBarItem2";
@@ -185,11 +197,14 @@
             // 
             // 
             // 
-            this.TechProcess003Item.Tile.AppearanceItem.Normal.BackColor = System.Drawing.Color.MediumPurple;
-            this.TechProcess003Item.Tile.AppearanceItem.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TechProcess003Item.Tile.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
+            this.TechProcess003Item.Tile.AppearanceItem.Normal.BackColor = System.Drawing.Color.DarkCyan;
+            this.TechProcess003Item.Tile.AppearanceItem.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.TechProcess003Item.Tile.AppearanceItem.Normal.Options.UseBackColor = true;
             this.TechProcess003Item.Tile.AppearanceItem.Normal.Options.UseFont = true;
             this.TechProcess003Item.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            tileItemElement3.ImageOptions.Image = global::TechnicalProcessControl.Properties.Resources.welding;
+            tileItemElement3.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
             tileItemElement3.Text = "Сборка с использованием сварки";
             this.TechProcess003Item.Tile.Elements.Add(tileItemElement3);
             this.TechProcess003Item.Tile.Name = "tileBarItem3";
@@ -202,11 +217,14 @@
             // 
             // 
             // 
-            this.TechProcess004Item.Tile.AppearanceItem.Normal.BackColor = System.Drawing.Color.BlueViolet;
-            this.TechProcess004Item.Tile.AppearanceItem.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TechProcess004Item.Tile.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
+            this.TechProcess004Item.Tile.AppearanceItem.Normal.BackColor = System.Drawing.Color.MediumPurple;
+            this.TechProcess004Item.Tile.AppearanceItem.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.TechProcess004Item.Tile.AppearanceItem.Normal.Options.UseBackColor = true;
             this.TechProcess004Item.Tile.AppearanceItem.Normal.Options.UseFont = true;
             this.TechProcess004Item.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            tileItemElement4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
+            tileItemElement4.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
             tileItemElement4.Text = "Общая сборка";
             this.TechProcess004Item.Tile.Elements.Add(tileItemElement4);
             this.TechProcess004Item.Tile.Name = "tileBarItem4";
@@ -219,11 +237,14 @@
             // 
             // 
             // 
-            this.TechProcess005Item.Tile.AppearanceItem.Normal.BackColor = System.Drawing.Color.Sienna;
-            this.TechProcess005Item.Tile.AppearanceItem.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TechProcess005Item.Tile.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
+            this.TechProcess005Item.Tile.AppearanceItem.Normal.BackColor = System.Drawing.Color.Chocolate;
+            this.TechProcess005Item.Tile.AppearanceItem.Normal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.TechProcess005Item.Tile.AppearanceItem.Normal.Options.UseBackColor = true;
             this.TechProcess005Item.Tile.AppearanceItem.Normal.Options.UseFont = true;
             this.TechProcess005Item.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            tileItemElement5.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image3")));
+            tileItemElement5.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Left;
             tileItemElement5.Text = "Подготовка поверхности и окраска";
             this.TechProcess005Item.Tile.Elements.Add(tileItemElement5);
             this.TechProcess005Item.Tile.Name = "tileBarItem5";
@@ -273,7 +294,7 @@
             this.materialItem.Tile.AppearanceItem.Normal.Options.UseFont = true;
             this.materialItem.Tile.AppearanceItem.Normal.Options.UseForeColor = true;
             this.materialItem.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement6.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
+            tileItemElement6.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image4")));
             tileItemElement6.Text = "Материалы";
             this.materialItem.Tile.Elements.Add(tileItemElement6);
             this.materialItem.Tile.Name = "tileBarItem1";
@@ -292,7 +313,7 @@
             this.scanItem.Tile.AppearanceItem.Normal.Options.UseBackColor = true;
             this.scanItem.Tile.AppearanceItem.Normal.Options.UseFont = true;
             this.scanItem.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement7.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            tileItemElement7.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image5")));
             tileItemElement7.Text = "Сканы чертежей";
             this.scanItem.Tile.Elements.Add(tileItemElement7);
             this.scanItem.Tile.Name = "tileBarItem2";
@@ -311,7 +332,7 @@
             this.detailItem.Tile.AppearanceItem.Normal.Options.UseBackColor = true;
             this.detailItem.Tile.AppearanceItem.Normal.Options.UseFont = true;
             this.detailItem.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement8.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
+            tileItemElement8.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image6")));
             tileItemElement8.Text = "Детали";
             this.detailItem.Tile.Elements.Add(tileItemElement8);
             this.detailItem.Tile.Name = "tileBarItem3";
@@ -332,7 +353,7 @@
             this.drawingItem.Tile.AppearanceItem.Normal.Options.UseBackColor = true;
             this.drawingItem.Tile.AppearanceItem.Normal.Options.UseFont = true;
             this.drawingItem.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement9.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image3")));
+            tileItemElement9.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image7")));
             tileItemElement9.Text = "Чертежи";
             this.drawingItem.Tile.Elements.Add(tileItemElement9);
             this.drawingItem.Tile.Name = "tileBarItem1";
@@ -351,7 +372,7 @@
             this.operationNameItem.Tile.AppearanceItem.Normal.Options.UseBackColor = true;
             this.operationNameItem.Tile.AppearanceItem.Normal.Options.UseFont = true;
             this.operationNameItem.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement10.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image4")));
+            tileItemElement10.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image8")));
             tileItemElement10.Text = "Операции";
             this.operationNameItem.Tile.Elements.Add(tileItemElement10);
             this.operationNameItem.Tile.Name = "tileBarItem1";
@@ -372,7 +393,7 @@
             this.operationNumberItem.Tile.AppearanceItem.Normal.Options.UseBackColor = true;
             this.operationNumberItem.Tile.AppearanceItem.Normal.Options.UseFont = true;
             this.operationNumberItem.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement11.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image5")));
+            tileItemElement11.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image9")));
             tileItemElement11.Text = "Номера операций";
             this.operationNumberItem.Tile.Elements.Add(tileItemElement11);
             this.operationNumberItem.Tile.Name = "tileBarItem1";
@@ -391,7 +412,7 @@
             this.operationPaintMaterial.Tile.AppearanceItem.Normal.Options.UseBackColor = true;
             this.operationPaintMaterial.Tile.AppearanceItem.Normal.Options.UseFont = true;
             this.operationPaintMaterial.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement12.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image6")));
+            tileItemElement12.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image10")));
             tileItemElement12.Text = "Операции по окраске";
             this.operationPaintMaterial.Tile.Elements.Add(tileItemElement12);
             this.operationPaintMaterial.Tile.Name = "tileBarItem1";
