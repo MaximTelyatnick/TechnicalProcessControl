@@ -22,7 +22,7 @@ namespace TechnicalProcessControl.TechnicalProcess
     {
         private SplashScreenManager splashScreenManager;
         string techProcessNumber;
-        int defaultLastRow = 189;
+        int defaultLastRow = 190;
         int defaultSpecificationLastRow = 63;
         private string GeneratedReportsDir = Utils.HomePath + @"\Templates\";
 
@@ -254,6 +254,87 @@ namespace TechnicalProcessControl.TechnicalProcess
             workbook.EndUpdate();
             ButtonEnabled(true);
             splashScreenManager.CloseWaitForm();
+        }
+
+        public int GetLastEmptyRow()
+        {
+            int currentLastRow = defaultLastRow;
+            workbook.BeginUpdate();
+            worksheet = workbook.Worksheets[0];
+            while (currentLastRow > 0)
+            {
+                if (worksheet.Cells["A" + (currentLastRow)].Value.IsEmpty)
+                {
+                    if (worksheet.Cells["A" + (currentLastRow + 1)].Value.IsEmpty &&
+                        worksheet.Cells["A" + (currentLastRow + 2)].Value.IsEmpty &&
+                        worksheet.Cells["A" + (currentLastRow + 3)].Value.IsEmpty &&
+                        worksheet.Cells["A" + (currentLastRow + 4)].Value.IsEmpty &&
+                        worksheet.Cells["A" + (currentLastRow + 5)].Value.IsEmpty &&
+                        worksheet.Cells["A" + (currentLastRow + 6)].Value.IsEmpty &&
+                        worksheet.Cells["A" + (currentLastRow + 7)].Value.IsEmpty &&
+                        worksheet.Cells["A" + (currentLastRow + 8)].Value.IsEmpty)
+                    {
+                        workbook.EndUpdate();
+                        return (currentLastRow);
+                    }
+                    else
+                        currentLastRow++;
+                }
+                else
+                    currentLastRow++;
+            }
+            workbook.EndUpdate();
+            return 0;
+        }
+
+        private void addSimpleBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            workbook.BeginUpdate();
+            ++pageNumber;
+
+            worksheet = workbook.Worksheets[0];
+            copyRange = worksheet["A159:DG189"];
+            int lastRow = GetLastEmptyRow();
+            ++lastRow;
+            worksheet.AddPrintRange(worksheet.Range["A" + (lastRow) + ":DG" + (lastRow + 30)]);
+            worksheet.Range["A" + (lastRow) + ":DG" + (lastRow + 30)].CopyFrom(copyRange);
+
+            worksheet.Cells["A" + (lastRow)].RowHeight = 62.5;
+            worksheet.Cells["A" + (lastRow + 1)].RowHeight = 62.5;
+            worksheet.Cells["A" + (lastRow + 2)].RowHeight = 62.5;
+            worksheet.Cells["A" + (lastRow + 3)].RowHeight = 62.5;
+            worksheet.Cells["A" + (lastRow + 4)].RowHeight = 65.6;
+            worksheet.Cells["A" + (lastRow + 5)].RowHeight = 62.5;
+            worksheet.Cells["A" + (lastRow + 6)].RowHeight = 65.6;
+            worksheet.Cells["A" + (lastRow + 7)].RowHeight = 62.5;
+            worksheet.Cells["A" + (lastRow + 8)].RowHeight = 65.6;
+            worksheet.Cells["A" + (lastRow + 9)].RowHeight = 65.6;
+            worksheet.Cells["A" + (lastRow + 10)].RowHeight = 62.5;
+            worksheet.Cells["A" + (lastRow + 11)].RowHeight = 65.6;
+            worksheet.Cells["A" + (lastRow + 12)].RowHeight = 65.6;
+            worksheet.Cells["A" + (lastRow + 13)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 14)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 15)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 16)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 17)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 18)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 19)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 20)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 21)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 22)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 23)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 24)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 25)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 26)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 27)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 28)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 29)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 30)].RowHeight = 65.6;
+
+            
+            //worksheet.Cells["DA" + (lastRow + 5)].Value = pageNumber;
+            //UpdatePageCounter();
+            workbook.EndUpdate();
         }
     }
 }

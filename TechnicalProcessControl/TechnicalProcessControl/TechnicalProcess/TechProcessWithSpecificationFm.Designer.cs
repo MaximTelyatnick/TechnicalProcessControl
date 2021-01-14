@@ -1299,7 +1299,7 @@
             this.deleteSpecSheetBtn,
             this.deleteSimpleShettBtn});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 347;
+            this.ribbonControl1.MaxItemId = 348;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.PageCategories.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageCategory[] {
             this.chartToolsRibbonPageCategory1,
@@ -4682,6 +4682,7 @@
             this.addSimpleBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("addSimpleBtn.ImageOptions.LargeImage")));
             this.addSimpleBtn.Name = "addSimpleBtn";
             this.addSimpleBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.addSimpleBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addSimpleBtn_ItemClick);
             // 
             // deleteSpecSheetBtn
             // 
