@@ -1150,6 +1150,15 @@ namespace TechnicalProcessControl.BLL.Services
             return mapper.Map<IEnumerable<Drawings>, List<DrawingsDTO>>(drawings.GetAll());
         }
 
+        //Получить модель типа чертёж по имени чертёжа, если не нашли получаем null
+        public DrawingDTO GetDrawingByName(string drawingName)
+        {
+            return mapper.Map<Drawing, DrawingDTO>(drawing.GetAll().FirstOrDefault(srch => srch.Number == drawingName));
+        }
+
+
+
+
         public IEnumerable<TypeDTO> GetType()
         {
             return mapper.Map<IEnumerable<DAL.Models.Type>, List<TypeDTO>>(type.GetAll());
@@ -1544,7 +1553,7 @@ namespace TechnicalProcessControl.BLL.Services
             return result.FirstOrDefault();
         }
         //получить все техпроцессы 001 и их ревизии 
-        public IEnumerable<TechProcess001DTO> GetAllTechProcess001()
+        public IEnumerable<TechProcess001DTO>   GetAllTechProcess001()
         {
             var result = (from tcp in techProcess001.GetAll()
                           join rt in revisionsTechProcess001.GetAll() on tcp.RevisionId equals rt.Id into rtt

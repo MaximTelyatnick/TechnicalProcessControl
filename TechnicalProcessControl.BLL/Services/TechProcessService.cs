@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using SpreadsheetGear;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -815,7 +816,72 @@ namespace TechnicalProcessControl.BLL.Services
 
         #endregion
 
+        #region TechProcess003 method's
 
+        //получить все техпроцессы 003 по айди техпроцесса с краткой информацией ok
+        public IEnumerable<TechProcess003DTO> GetAllTechProcess003Simple()
+        {
+            return mapper.Map<IEnumerable<TechProcess003>, List<TechProcess003DTO>>(techProcess003.GetAll());
+        }
+
+
+        #endregion
+
+        #region TechProcess004 method's
+
+        //получить все техпроцессы 004 по айди техпроцесса с краткой информацией ok
+        public IEnumerable<TechProcess004DTO> GetAllTechProcess004Simple()
+        {
+            return mapper.Map<IEnumerable<TechProcess004>, List<TechProcess004DTO>>(techProcess004.GetAll());
+        }
+
+
+        #endregion
+
+        #region TechProcess005 method's
+
+        //получить все техпроцессы 005 по айди техпроцесса с краткой информацией ok
+        public IEnumerable<TechProcess005DTO> GetAllTechProcess005Simple()
+        {
+            return mapper.Map<IEnumerable<TechProcess005>, List<TechProcess005DTO>>(techProcess005.GetAll());
+        }
+
+
+        #endregion
+
+
+        public string ResaveFileTechProcess(string techProcesspath, string fullPathExistingFile)
+        {
+            try
+            {
+                Factory.GetWorkbook(fullPathExistingFile);
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show("Не найдено файл!\n" + ex.Message, "Увага", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return "";
+            }
+
+            IWorkbook workbook = Factory.GetWorkbook(fullPathExistingFile); ;
+            try
+            {
+                workbook.SaveAs(techProcesspath, FileFormat.XLS97);
+            }
+            catch (System.IO.IOException)
+            {
+                //MessageBox.Show("Документ уже открыто!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return "";
+            }
+            catch (System.ComponentModel.Win32Exception)
+            {
+               // MessageBox.Show("На рабочей станции отсутсутствует пакет программ Microsoft Oficce!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return "";
+            }
+            return techProcesspath;
+        }
+
+
+        
 
 
 

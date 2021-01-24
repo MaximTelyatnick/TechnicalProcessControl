@@ -15,6 +15,8 @@ using System.Globalization;
 using System.IO;
 using TechnicalProcessControl.BLL.Interfaces;
 using Ninject;
+using DevExpress.XtraSplashScreen;
+using TechnicalProcessControl.BLL;
 
 namespace TechnicalProcessControl
 {
@@ -24,16 +26,22 @@ namespace TechnicalProcessControl
 
         UsersDTO usersDTO = new UsersDTO();
 
+        private SplashScreenManager splashScreenManager;
         public IUserService userService;
+        public IDrawingService drawingService;
+        public ITechProcessService techProcessService;
         public BindingSource usersBS = new BindingSource();
 
 
         List<DrawingsDTO> parseDrawingsList = new List<DrawingsDTO>();
         List<DrawingScanDTO> parseDrawingScanList = new List<DrawingScanDTO>();
+        List<TechProcessDTO> parseTechProcessList = new List<TechProcessDTO>();
 
         public SettingsFm(UsersDTO usersDTO)
         {
             InitializeComponent();
+
+            splashScreenManager = new SplashScreenManager(this, typeof(WaitFm), true, true);
             this.usersDTO = usersDTO;
 
             userDirectoryPathEdit.Text = Properties.Settings.Default.UserDirectoryPath;
@@ -757,6 +765,36 @@ namespace TechnicalProcessControl
             }
         }
 
+        public void LoadTechProcess()
+        {
+
+            parseTechProcessList.Clear();
+
+            if (!techProcessPathEdit.Text.Equals(String.Empty) && System.IO.Directory.Exists(techProcessPathEdit.Text))
+            {
+                if (System.IO.Directory.GetFiles(techProcessPathEdit.Text).Length > 0)
+                {
+
+                    List<string> files = Directory.GetFiles(techProcessPathEdit.Text, "*.*", SearchOption.AllDirectories)
+                        .Where(file => new string[] { ".xls",".xlsx",".xlsm" }
+                        .Contains(Path.GetExtension(file)))
+                        .ToList();
+                    int i = 0;
+                    foreach (string file in files)
+                    {
+                        TechProcessDTO techProcessDTO = new TechProcessDTO();
+
+                        techProcessDTO.TechProcessFileName = Path.GetFileName(file);
+                        techProcessDTO.TechProcessPath = file;
+                        //drawingScanDTO.Scan = System.IO.File.ReadAllBytes(@file);
+
+                        parseTechProcessList.Add(techProcessDTO);
+
+                    }
+                }
+            }
+        }
+
         private void setUserDirectoryPathBtn_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folderBrowserDlg = new FolderBrowserDialog();
@@ -785,8 +823,275 @@ namespace TechnicalProcessControl
 
         private void importTechProcessBtn_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show("Перед импортом техпроцессов будут удалены все существующие техпроцессы?", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                techProcessService = Program.kernel.Get<ITechProcessService>();
 
+                var techProcess001 = techProcessService.GetAllTechProcess001Simple();
+
+                splashScreenManager.ShowWaitForm();
+                splashScreenManager.SetWaitFormDescription("Удаляем техпроцессы 001");
+
+                foreach (var item in techProcess001)
+                    techProcessService.TechProcess001Delete(item.Id);
+
+                splashScreenManager.CloseWaitForm();
+
+                var techProcess002 = techProcessService.GetAllTechProcess002Simple();
+
+                splashScreenManager.ShowWaitForm();
+                splashScreenManager.SetWaitFormDescription("Удаляем техпроцессы 002");
+
+                foreach (var item in techProcess002)
+                    techProcessService.TechProcess002Delete(item.Id);
+
+                splashScreenManager.CloseWaitForm();
+
+                var techProcess003 = techProcessService.GetAllTechProcess003Simple();
+
+                splashScreenManager.ShowWaitForm();
+                splashScreenManager.SetWaitFormDescription("Удаляем техпроцессы 003");
+
+                foreach (var item in techProcess003)
+                    techProcessService.TechProcess003Delete(item.Id);
+
+                splashScreenManager.CloseWaitForm();
+
+                var techProcess004 = techProcessService.GetAllTechProcess004Simple();
+
+                splashScreenManager.ShowWaitForm();
+                splashScreenManager.SetWaitFormDescription("Удаляем техпроцессы 004");
+
+                foreach (var item in techProcess004)
+                    techProcessService.TechProcess004Delete(item.Id);
+
+                splashScreenManager.CloseWaitForm();
+
+                var techProcess005 = techProcessService.GetAllTechProcess005Simple();
+
+                splashScreenManager.ShowWaitForm();
+                splashScreenManager.SetWaitFormDescription("Удаляем техпроцессы 005");
+
+                foreach (var item in techProcess005)
+                    techProcessService.TechProcess005Delete(item.Id);
+
+                splashScreenManager.CloseWaitForm();
+
+                MessageBox.Show("Все техпроцессы удалены!", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                if (MessageBox.Show("Начать импорт техпроцессов?", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    if (techProcessPathEdit.Text != "")
+                    {
+                        LoadTechProcess();
+
+                        drawingService = Program.kernel.Get<IDrawingService>();
+                        techProcessService = Program.kernel.Get<ITechProcessService>();
+
+                        if (parseTechProcessList.Count > 0)
+                        {
+                            foreach (var item in parseTechProcessList)
+                            {
+                                ParseTechProcessToTechProcess(item);
+
+                            }
+
+
+                            //using (DrawingScanImportFm drawingScanImportFm = new DrawingScanImportFm(parseDrawingScanList))
+                            //{
+                            //    if (drawingScanImportFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                            //    {
+
+                            //    }
+                            //}
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Перед началом импорта необходимо указать файл", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+
+                }
+                else
+                {
+
+                }
+            }
+            else
+            {
+
+            }
         }
+
+        private bool ParseTechProcessToTechProcess(TechProcessDTO techProcess)
+        {
+
+
+            string drawingName = techProcess.TechProcessFileName.Substring(0,techProcess.TechProcessFileName.IndexOf("_TP"));
+            
+            //drawingName = drawingName.Replace(@"_A", "/A");
+            //drawingName = drawingName.Replace(@"_B", "/B");
+            //drawingName = drawingName.Replace(@"_C", "/C");
+            //drawingName = drawingName.Replace(@"_D", "/D");
+            //drawingName = drawingName.Replace(@"_E", "/E");
+            //drawingName = drawingName.Replace(@"_F", "/F");
+            //drawingName = drawingName.Replace(@"_G", "/G");
+            //drawingName = drawingName.Replace(@"_H", "/H");
+            //drawingName = drawingName.Replace(@"_I", "/I");
+            //drawingName = drawingName.Replace(@"_J", "/J");
+            //drawingName = drawingName.Replace(@"_K", "/K");
+            //drawingName = drawingName.Replace(@"_L", "/L");
+            //drawingName = drawingName.Replace(@"_M", "/M");
+            //drawingName = drawingName.Replace(@"_N", "/N");
+            //drawingName = drawingName.Replace(@"_O", "/O");
+            drawingName = drawingName.Replace(@"_", "-");
+
+            DrawingDTO drawingDTO = drawingService.GetDrawingByName(drawingName);
+            if (drawingDTO == null)
+                return false;
+
+            string techProcessNumber = techProcess.TechProcessFileName.Substring(techProcess.TechProcessFileName.IndexOf(@"_TP")+3);
+            techProcessNumber = techProcessNumber.Replace(@"_", "");
+
+            techProcessNumber = Path.GetFileNameWithoutExtension(techProcessNumber);
+
+            //techProcessNumber = techProcessNumber.Substring(0,(techProcess.TechProcessFileName.IndexOf(@"."))-1);
+
+            string techProcessType = techProcessNumber.Substring(2, 3);
+
+            switch (techProcessType)
+            {
+                case "001":
+                    TechProcess001DTO createTechProcess001 = new TechProcess001DTO();
+                    createTechProcess001.TechProcessName = Int64.Parse(techProcessNumber);
+                    createTechProcess001.DrawingId = drawingDTO.Id;
+                    createTechProcess001.DrawingNumberWithRevision = drawingName;
+                    createTechProcess001.TechProcessFullName = createTechProcess001.DrawingNumberWithRevision + "_TP" + createTechProcess001.TechProcessName;
+                    createTechProcess001.TypeId = 5;
+                    createTechProcess001.TechProcessPath = @Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess001\" + createTechProcess001.TechProcessFullName + ".xls";
+                    createTechProcess001.CreateDate = DateTime.Now;
+                    createTechProcess001.OldTechProcess = true;
+                    //createTechProcess001.
+
+                    //((TechProcess001DTO)Item).TechProcessPath = @Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess001\" + ((TechProcess001DTO)Item).TechProcessFullName + ".xls";
+                    //((TechProcess001DTO)Item).TypeId = 5;
+                    string path = techProcessService.ResaveFileTechProcess(createTechProcess001.TechProcessPath, techProcess.TechProcessPath);
+
+                    if (path != "")
+                    {
+                        try
+                        {
+                            createTechProcess001.Id = techProcessService.TechProcess001Create(createTechProcess001);
+                        }
+                        catch
+                        {
+                            techProcessService.FileDelete(path);
+                        }
+
+                       
+                    }
+                    else
+                    {
+
+
+
+                        //throw new System.ArgumentException("Не получилось создать файл или сохранить в бд", "Ошибка");
+                    }
+
+
+                    //techProcessFullName.EditValue = ((TechProcess001DTO)Item).DrawingNumberWithRevision + "_TP" + ((TechProcess001DTO)Item).TechProcessName;
+
+
+                    break;
+                case "002":
+                    TechProcess002DTO createTechProcess002 = new TechProcess002DTO();
+                    createTechProcess002.TechProcessName = Int64.Parse(techProcessNumber);
+                    createTechProcess002.DrawingId = drawingDTO.Id;
+                    createTechProcess002.DrawingNumberWithRevision = drawingName;
+                    createTechProcess002.TechProcessFullName = createTechProcess002.DrawingNumberWithRevision + "_TP" + createTechProcess002.TechProcessName;
+                    createTechProcess002.TypeId = 5;
+                    createTechProcess002.TechProcessPath = @Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess002\" + createTechProcess002.TechProcessFullName + ".xls";
+                    createTechProcess002.CreateDate = DateTime.Now;
+                    createTechProcess002.OldTechProcess = true;
+                    //createTechProcess001.
+
+                    //((TechProcess001DTO)Item).TechProcessPath = @Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess001\" + ((TechProcess001DTO)Item).TechProcessFullName + ".xls";
+                    //((TechProcess001DTO)Item).TypeId = 5;
+                    string path002 = techProcessService.ResaveFileTechProcess(createTechProcess002.TechProcessPath, techProcess.TechProcessPath);
+
+                    if (path002 != "")
+                    {
+                        try
+                        {
+                            createTechProcess002.Id = techProcessService.TechProcess002Create(createTechProcess002);
+                        }
+                        catch
+                        {
+                            techProcessService.FileDelete(path002);
+                        }
+
+
+                    }
+                    else
+                    {
+
+
+
+                        //throw new System.ArgumentException("Не получилось создать файл или сохранить в бд", "Ошибка");
+                    }
+                    break;
+                case "003":
+                    TechProcess003DTO createTechProcess003 = new TechProcess003DTO();
+                    createTechProcess003.TechProcessName = Int64.Parse(techProcessNumber);
+                    createTechProcess003.DrawingId = drawingDTO.Id;
+                    createTechProcess003.DrawingNumberWithRevision = drawingName;
+                    createTechProcess003.TechProcessFullName = createTechProcess003.DrawingNumberWithRevision + "_TP" + createTechProcess003.TechProcessName;
+                    createTechProcess003.TypeId = 5;
+                    createTechProcess003.TechProcessPath = @Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess003\" + createTechProcess003.TechProcessFullName + ".xls";
+                    createTechProcess003.CreateDate = DateTime.Now;
+                    createTechProcess003.OldTechProcess = true;
+                    //createTechProcess001.
+
+                    //((TechProcess001DTO)Item).TechProcessPath = @Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess001\" + ((TechProcess001DTO)Item).TechProcessFullName + ".xls";
+                    //((TechProcess001DTO)Item).TypeId = 5;
+                    string path003 = techProcessService.ResaveFileTechProcess(createTechProcess003.TechProcessPath, techProcess.TechProcessPath);
+
+                    if (path003 != "")
+                    {
+                        try
+                        {
+                            createTechProcess003.Id = techProcessService.TechProcess003Create(createTechProcess003);
+                        }
+                        catch
+                        {
+                            techProcessService.FileDelete(path003);
+                        }
+
+
+                    }
+                    else
+                    {
+
+
+
+                        //throw new System.ArgumentException("Не получилось создать файл или сохранить в бд", "Ошибка");
+                    }
+                    break;
+                case "004":
+                    Console.WriteLine("Case 2");
+                    break;
+                case "005":
+                    Console.WriteLine("Case 2");
+                    break;
+                default:
+                    Console.WriteLine("Default case");
+                    break;
+            }
+
+
+            return true;
+        }
+
 
         private void simpleButton3_Click(object sender, EventArgs e)
         {

@@ -22,8 +22,10 @@ namespace TechnicalProcessControl.TechnicalProcess
     {
         private SplashScreenManager splashScreenManager;
         string techProcessNumber;
-        int defaultLastRow = 190;
+        int defaultLastRow = 189;
         int defaultSpecificationLastRow = 63;
+        int defaultSpecSheet = 1;
+        int defaultSimpleSheett = 2;
         private string GeneratedReportsDir = Utils.HomePath + @"\Templates\";
 
 
@@ -67,6 +69,8 @@ namespace TechnicalProcessControl.TechnicalProcess
 
                     break;
                 case TechProcesFileMode.UpdateTechProcess:
+
+                    //посчитать сколько каких листов
                     break;
                 case TechProcesFileMode.TemplateTechProcess:
                     break;
@@ -96,6 +100,7 @@ namespace TechnicalProcessControl.TechnicalProcess
         {
             workbook.BeginUpdate();
             ++pageNumber;
+            ++defaultSpecSheet;
 
             worksheet = workbook.Worksheets[0];
             copyRange = worksheet["A33:DF64"];
@@ -235,7 +240,7 @@ namespace TechnicalProcessControl.TechnicalProcess
         private void deleteSpecSheetBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             
-            if (GetLastSpecificationRow() == 63)
+            if (defaultSpecSheet<2)
             {
                 MessageBox.Show("Файл содержит только один лист спецификации");
                 return;
@@ -246,8 +251,10 @@ namespace TechnicalProcessControl.TechnicalProcess
             workbook.BeginUpdate();
             worksheet = workbook.Worksheets[0];
             --pageNumber;
+            --defaultSpecSheet;
 
-            
+
+
             int lastSpecificationRowRow = GetLastSpecificationRow();
             int firstDeleteRow = lastSpecificationRowRow - 31;
             worksheet.Rows.Remove(firstDeleteRow, 32);
@@ -263,16 +270,16 @@ namespace TechnicalProcessControl.TechnicalProcess
             worksheet = workbook.Worksheets[0];
             while (currentLastRow > 0)
             {
-                if (worksheet.Cells["A" + (currentLastRow)].Value.IsEmpty)
+                if (worksheet.Cells["B" + (currentLastRow)].Value.IsEmpty)
                 {
-                    if (worksheet.Cells["A" + (currentLastRow + 1)].Value.IsEmpty &&
-                        worksheet.Cells["A" + (currentLastRow + 2)].Value.IsEmpty &&
-                        worksheet.Cells["A" + (currentLastRow + 3)].Value.IsEmpty &&
-                        worksheet.Cells["A" + (currentLastRow + 4)].Value.IsEmpty &&
-                        worksheet.Cells["A" + (currentLastRow + 5)].Value.IsEmpty &&
-                        worksheet.Cells["A" + (currentLastRow + 6)].Value.IsEmpty &&
-                        worksheet.Cells["A" + (currentLastRow + 7)].Value.IsEmpty &&
-                        worksheet.Cells["A" + (currentLastRow + 8)].Value.IsEmpty)
+                    if (worksheet.Cells["B" + (currentLastRow + 1)].Value.IsEmpty &&
+                        worksheet.Cells["B" + (currentLastRow + 2)].Value.IsEmpty &&
+                        worksheet.Cells["B" + (currentLastRow + 3)].Value.IsEmpty &&
+                        worksheet.Cells["B" + (currentLastRow + 4)].Value.IsEmpty &&
+                        worksheet.Cells["B" + (currentLastRow + 5)].Value.IsEmpty &&
+                        worksheet.Cells["B" + (currentLastRow + 6)].Value.IsEmpty &&
+                        worksheet.Cells["B" + (currentLastRow + 7)].Value.IsEmpty &&
+                        worksheet.Cells["B" + (currentLastRow + 8)].Value.IsEmpty)
                     {
                         workbook.EndUpdate();
                         return (currentLastRow);
@@ -291,13 +298,16 @@ namespace TechnicalProcessControl.TechnicalProcess
         {
             workbook.BeginUpdate();
             ++pageNumber;
+            ++defaultSimpleSheett;
 
             worksheet = workbook.Worksheets[0];
-            copyRange = worksheet["A159:DG189"];
+            copyRange = worksheet["A159:DF189"];
             int lastRow = GetLastEmptyRow();
             ++lastRow;
-            worksheet.AddPrintRange(worksheet.Range["A" + (lastRow) + ":DG" + (lastRow + 30)]);
-            worksheet.Range["A" + (lastRow) + ":DG" + (lastRow + 30)].CopyFrom(copyRange);
+            worksheet.AddPrintRange(worksheet.Range["A" + (lastRow) + ":DF" + (lastRow + 30)]);
+            worksheet.Range["A" + (lastRow) + ":DF" + (lastRow + 30)].CopyFrom(copyRange);
+
+            worksheet.Cells["A" + (lastRow-1)].RowHeight = 209.3;
 
             worksheet.Cells["A" + (lastRow)].RowHeight = 62.5;
             worksheet.Cells["A" + (lastRow + 1)].RowHeight = 62.5;
@@ -312,29 +322,54 @@ namespace TechnicalProcessControl.TechnicalProcess
             worksheet.Cells["A" + (lastRow + 10)].RowHeight = 62.5;
             worksheet.Cells["A" + (lastRow + 11)].RowHeight = 65.6;
             worksheet.Cells["A" + (lastRow + 12)].RowHeight = 65.6;
-            worksheet.Cells["A" + (lastRow + 13)].RowHeight = 97.7;
-            worksheet.Cells["A" + (lastRow + 14)].RowHeight = 97.7;
-            worksheet.Cells["A" + (lastRow + 15)].RowHeight = 97.7;
-            worksheet.Cells["A" + (lastRow + 16)].RowHeight = 97.7;
-            worksheet.Cells["A" + (lastRow + 17)].RowHeight = 97.7;
-            worksheet.Cells["A" + (lastRow + 18)].RowHeight = 97.7;
-            worksheet.Cells["A" + (lastRow + 19)].RowHeight = 97.7;
-            worksheet.Cells["A" + (lastRow + 20)].RowHeight = 97.7;
-            worksheet.Cells["A" + (lastRow + 21)].RowHeight = 97.7;
-            worksheet.Cells["A" + (lastRow + 22)].RowHeight = 97.7;
-            worksheet.Cells["A" + (lastRow + 23)].RowHeight = 97.7;
-            worksheet.Cells["A" + (lastRow + 24)].RowHeight = 97.7;
-            worksheet.Cells["A" + (lastRow + 25)].RowHeight = 97.7;
-            worksheet.Cells["A" + (lastRow + 26)].RowHeight = 97.7;
-            worksheet.Cells["A" + (lastRow + 27)].RowHeight = 97.7;
-            worksheet.Cells["A" + (lastRow + 28)].RowHeight = 97.7;
-            worksheet.Cells["A" + (lastRow + 29)].RowHeight = 97.7;
+            worksheet.Cells["A" + (lastRow + 13)].RowHeight = 87.5;
+            worksheet.Cells["A" + (lastRow + 14)].RowHeight = 87.5;
+            worksheet.Cells["A" + (lastRow + 15)].RowHeight = 87.5;
+            worksheet.Cells["A" + (lastRow + 16)].RowHeight = 87.5;
+            worksheet.Cells["A" + (lastRow + 17)].RowHeight = 87.5;
+            worksheet.Cells["A" + (lastRow + 18)].RowHeight = 87.5;
+            worksheet.Cells["A" + (lastRow + 19)].RowHeight = 87.5;
+            worksheet.Cells["A" + (lastRow + 20)].RowHeight = 87.5;
+            worksheet.Cells["A" + (lastRow + 21)].RowHeight = 87.5;
+            worksheet.Cells["A" + (lastRow + 22)].RowHeight = 87.5;
+            worksheet.Cells["A" + (lastRow + 23)].RowHeight = 87.5;
+            worksheet.Cells["A" + (lastRow + 24)].RowHeight = 87.5;
+            worksheet.Cells["A" + (lastRow + 25)].RowHeight = 87.5;
+            worksheet.Cells["A" + (lastRow + 26)].RowHeight = 87.5;
+            worksheet.Cells["A" + (lastRow + 27)].RowHeight = 87.5;
+            worksheet.Cells["A" + (lastRow + 28)].RowHeight = 87.5;
+            worksheet.Cells["A" + (lastRow + 29)].RowHeight = 87.5;
             worksheet.Cells["A" + (lastRow + 30)].RowHeight = 65.6;
 
             
             //worksheet.Cells["DA" + (lastRow + 5)].Value = pageNumber;
             //UpdatePageCounter();
             workbook.EndUpdate();
+        }
+
+        private void deleteSimpleShettBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+            if (defaultSimpleSheett<3)
+            {
+                MessageBox.Show("У файла отсутствуют добавленные листы");
+                return;
+            }
+
+            splashScreenManager.ShowWaitForm();
+            ButtonEnabled(false);
+            workbook.BeginUpdate();
+            worksheet = workbook.Worksheets[0];
+            --pageNumber;
+            --defaultSimpleSheett;
+
+
+            int lastEmptyRow = GetLastEmptyRow();
+            int firstDeleteRow = lastEmptyRow - 31;
+            worksheet.Rows.Remove(firstDeleteRow, 31);
+            workbook.EndUpdate();
+            ButtonEnabled(true);
+            splashScreenManager.CloseWaitForm();
         }
     }
 }

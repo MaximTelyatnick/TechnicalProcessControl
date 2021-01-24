@@ -23,6 +23,9 @@ namespace TechnicalProcessControl.BLL.Interfaces
 
         IEnumerable<DrawingsDTO> GetDrawingsSimple();
 
+        DrawingDTO GetDrawingByName(string drawingName);
+
+
         IEnumerable<TypeDTO> GetType();
 
         IEnumerable<DrawingScanDTO> GetDrawingScan();

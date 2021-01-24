@@ -94,6 +94,31 @@ namespace TechnicalProcessControl.BLL.Interfaces
 
         #endregion
 
+        #region TechProcess003 method's
+
+        //получить все техпроцессы 003 по айди техпроцесса с краткой информацией ok
+        IEnumerable<TechProcess003DTO> GetAllTechProcess003Simple();
+
+        #endregion
+
+        #region TechProcess004 method's
+
+        //получить все техпроцессы 004 по айди техпроцесса с краткой информацией ok
+        IEnumerable<TechProcess004DTO> GetAllTechProcess004Simple();
+
+
+        #endregion
+
+        #region TechProcess005 method's
+
+        //получить все техпроцессы 005 по айди техпроцесса с краткой информацией ok
+        IEnumerable<TechProcess005DTO> GetAllTechProcess005Simple();
+
+
+        #endregion
+
+        string ResaveFileTechProcess(string techProcesspath, string fullPathExistingFile);
+        bool FileDelete(string URI);
 
         #region TechProcess001CRUD
 
@@ -110,7 +135,40 @@ namespace TechnicalProcessControl.BLL.Interfaces
         void TechProcess002Update(TechProcess002DTO techProcess002DTO);
 
         bool TechProcess002Delete(int id);
-        
+
+
+        #endregion
+
+        #region TechProcess003CRUD
+
+        int TechProcess003Create(TechProcess003DTO techProcess003DTO);
+
+        void TechProcess003Update(TechProcess003DTO techProcess003DTO);
+
+        bool TechProcess003Delete(int id);
+
+
+        #endregion
+
+        #region TechProcess004CRUD
+
+        int TechProcess004Create(TechProcess004DTO techProcess004DTO);
+
+        void TechProcess004Update(TechProcess004DTO techProcess004DTO);
+
+        bool TechProcess004Delete(int id);
+
+
+        #endregion
+
+        #region TechProcess005CRUD
+
+        int TechProcess005Create(TechProcess005DTO techProcess005DTO);
+
+        void TechProcess005Update(TechProcess005DTO techProcess005DTO);
+
+        bool TechProcess005Delete(int id);
+
 
         #endregion
 
