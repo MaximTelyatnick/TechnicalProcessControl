@@ -217,6 +217,7 @@ namespace TechnicalProcessControl.BLL.Interfaces
         int? CheckDrawing(string drawingNumber);
         int DrawingCreate(DrawingDTO drawingDTO);
         bool DrawingUpdate(DrawingDTO drawingDTO);
+        bool DrawingParseUpdate(DrawingDTO drawingDTO);
         bool DrawingDelete(int id);
 
         #endregion

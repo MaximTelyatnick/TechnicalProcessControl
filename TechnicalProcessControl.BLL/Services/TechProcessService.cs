@@ -475,6 +475,12 @@ namespace TechnicalProcessControl.BLL.Services
             }
         }
 
+        //проверяем есть ли техпроцессы первого типа подвязанные к айди чертежа ок
+        public bool CheckTechProcess001Drawing(int drawingId)
+        {
+            return techProcess001.GetAll().Any(chk => chk.DrawingId == drawingId);
+        }
+
         #endregion
 
         #region TechProcess002 method's
@@ -814,6 +820,12 @@ namespace TechnicalProcessControl.BLL.Services
             }
         }
 
+        //проверяем есть ли техпроцессы второго типа подвязанные к айди чертежа ок
+        public bool CheckTechProcess002Drawing(int drawingId)
+        {
+            return techProcess002.GetAll().Any(chk => chk.DrawingId == drawingId);
+        }
+
         #endregion
 
         #region TechProcess003 method's
@@ -822,6 +834,12 @@ namespace TechnicalProcessControl.BLL.Services
         public IEnumerable<TechProcess003DTO> GetAllTechProcess003Simple()
         {
             return mapper.Map<IEnumerable<TechProcess003>, List<TechProcess003DTO>>(techProcess003.GetAll());
+        }
+
+        //проверяем есть ли техпроцессы третьего типа подвязанные к айди чертежа ок
+        public bool CheckTechProcess003Drawing(int drawingId)
+        {
+            return techProcess003.GetAll().Any(chk => chk.DrawingId == drawingId);
         }
 
 
@@ -835,6 +853,11 @@ namespace TechnicalProcessControl.BLL.Services
             return mapper.Map<IEnumerable<TechProcess004>, List<TechProcess004DTO>>(techProcess004.GetAll());
         }
 
+        //проверяем есть ли техпроцессы четвертого типа подвязанные к айди чертежа ок
+        public bool CheckTechProcess004Drawing(int drawingId)
+        {
+            return techProcess004.GetAll().Any(chk => chk.DrawingId == drawingId);
+        }
 
         #endregion
 
@@ -846,7 +869,11 @@ namespace TechnicalProcessControl.BLL.Services
             return mapper.Map<IEnumerable<TechProcess005>, List<TechProcess005DTO>>(techProcess005.GetAll());
         }
 
-
+        //проверяем есть ли техпроцессы пятого типа подвязанные к айди чертежа ок
+        public bool CheckTechProcess005Drawing(int drawingId)
+        {
+            return techProcess005.GetAll().Any(chk => chk.DrawingId == drawingId);
+        }
         #endregion
 
 
@@ -905,6 +932,8 @@ namespace TechnicalProcessControl.BLL.Services
             try
             {
                 var techProcessDelete = techProcess001.GetAll().FirstOrDefault(c => c.Id == id);
+                if (((TechProcess001)techProcessDelete).TechProcessName == 100010000)
+                    return true;
                 techProcess001.Delete(techProcess001.GetAll().FirstOrDefault(c => c.Id == id));
                 if (!FileDelete(techProcessDelete.TechProcessPath))
                     return false;
@@ -937,6 +966,8 @@ namespace TechnicalProcessControl.BLL.Services
             try
             {
                 var techProcessDelete = techProcess002.GetAll().FirstOrDefault(c => c.Id == id);
+                if (((TechProcess002)techProcessDelete).TechProcessName == 100020000)
+                    return true;
                 techProcess002.Delete(techProcess002.GetAll().FirstOrDefault(c => c.Id == id));
                 if (!FileDelete(techProcessDelete.TechProcessPath))
                     return false;
@@ -969,6 +1000,8 @@ namespace TechnicalProcessControl.BLL.Services
             try
             {
                 var techProcessDelete = techProcess003.GetAll().FirstOrDefault(c => c.Id == id);
+                if (((TechProcess003)techProcessDelete).TechProcessName == 100030000)
+                    return true;
                 techProcess003.Delete(techProcess003.GetAll().FirstOrDefault(c => c.Id == id));
                 if (!FileDelete(techProcessDelete.TechProcessPath))
                     return false;
@@ -1001,6 +1034,8 @@ namespace TechnicalProcessControl.BLL.Services
             try
             {
                 var techProcessDelete = techProcess004.GetAll().FirstOrDefault(c => c.Id == id);
+                if (((TechProcess004)techProcessDelete).TechProcessName == 100040000)
+                    return true;
                 techProcess004.Delete(techProcess004.GetAll().FirstOrDefault(c => c.Id == id));
                 if (!FileDelete(techProcessDelete.TechProcessPath))
                     return false;
@@ -1033,6 +1068,8 @@ namespace TechnicalProcessControl.BLL.Services
             try
             {
                 var techProcessDelete = techProcess005.GetAll().FirstOrDefault(c => c.Id == id);
+                if (((TechProcess005)techProcessDelete).TechProcessName == 100050000)
+                    return true;
                 techProcess005.Delete(techProcess005.GetAll().FirstOrDefault(c => c.Id == id));
                 if (!FileDelete(techProcessDelete.TechProcessPath))
                     return false;

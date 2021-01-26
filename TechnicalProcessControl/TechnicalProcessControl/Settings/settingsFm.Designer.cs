@@ -114,6 +114,7 @@
             this.paintMaterialBand = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.laborIntensityBand = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.treeListBand14 = new DevExpress.XtraTreeList.Columns.TreeListBand();
+            this.updateDrawingNumberParseBtn = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.settangsTab)).BeginInit();
             this.settangsTab.SuspendLayout();
             this.databaseTab.SuspendLayout();
@@ -809,6 +810,7 @@
             this.groupControl1.AppearanceCaption.ForeColor = System.Drawing.Color.Navy;
             this.groupControl1.AppearanceCaption.Options.UseFont = true;
             this.groupControl1.AppearanceCaption.Options.UseForeColor = true;
+            this.groupControl1.Controls.Add(this.updateDrawingNumberParseBtn);
             this.groupControl1.Controls.Add(this.existingWorkflowFileEdit);
             this.groupControl1.Controls.Add(this.addExistingWorkflowBtn);
             this.groupControl1.Controls.Add(this.labelControl8);
@@ -1060,6 +1062,17 @@
             this.treeListBand14.Visible = false;
             this.treeListBand14.Width = 260;
             // 
+            // updateDrawingNumberParseBtn
+            // 
+            this.updateDrawingNumberParseBtn.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.updateDrawingNumberParseBtn.Appearance.Options.UseFont = true;
+            this.updateDrawingNumberParseBtn.Location = new System.Drawing.Point(5, 57);
+            this.updateDrawingNumberParseBtn.Name = "updateDrawingNumberParseBtn";
+            this.updateDrawingNumberParseBtn.Size = new System.Drawing.Size(126, 22);
+            this.updateDrawingNumberParseBtn.TabIndex = 115;
+            this.updateDrawingNumberParseBtn.Text = "Обновить чертежи";
+            this.updateDrawingNumberParseBtn.Click += new System.EventHandler(this.updateDrawingNumberParseBtn_Click);
+            // 
             // SettingsFm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1212,5 +1225,6 @@
         private DevExpress.XtraEditors.SimpleButton importTechProcessBtn;
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private DevExpress.XtraEditors.GroupControl groupControl1;
+        private DevExpress.XtraEditors.SimpleButton updateDrawingNumberParseBtn;
     }
 }

@@ -1153,7 +1153,7 @@ namespace TechnicalProcessControl.BLL.Services
         //Получить модель типа чертёж по имени чертёжа, если не нашли получаем null
         public DrawingDTO GetDrawingByName(string drawingName)
         {
-            return mapper.Map<Drawing, DrawingDTO>(drawing.GetAll().FirstOrDefault(srch => srch.Number == drawingName));
+            return mapper.Map<Drawing, DrawingDTO>(drawing.GetAll().FirstOrDefault(srch => srch.NumberForParse == drawingName));
         }
 
 
@@ -2727,6 +2727,28 @@ namespace TechnicalProcessControl.BLL.Services
                 return false;
             }
             
+        }
+
+
+        public bool DrawingParseUpdate(DrawingDTO drawingDTO)
+        {
+            drawingDTO.NumberForParse = drawingDTO.Number;
+            drawingDTO.NumberForParse = drawingDTO.NumberForParse.Replace(@".", "");
+            drawingDTO.NumberForParse = drawingDTO.NumberForParse.Replace(@"-", "");
+            drawingDTO.NumberForParse = drawingDTO.NumberForParse.Replace(@"_", "");
+            drawingDTO.NumberForParse = drawingDTO.NumberForParse.Replace(@"/", "");
+
+            try
+            {
+                var updateDrawing = drawing.GetAll().SingleOrDefault(c => c.Id == drawingDTO.Id);
+                drawing.Update((mapper.Map<DrawingDTO, Drawing>(drawingDTO, updateDrawing)));
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
         }
 
         public bool DrawingDelete(int id)

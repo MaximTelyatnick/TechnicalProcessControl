@@ -639,6 +639,69 @@ namespace TechnicalProcessControl
                 }
             }
 
+            if (item.TechProcess004Id != null && e.Column.FieldName == "TechProcess004Name")
+            {
+                switch (item.TechProcess004Type)
+                {
+                    case 1:
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.Black;
+
+                        break;
+                    case 2:
+
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.Gray;
+                        break;
+                    case 3:
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.Green;
+                        break;
+                    case 4:
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.Red;
+                        break;
+                    case 5:
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.Orange;
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+            if (item.TechProcess005Id != null && e.Column.FieldName == "TechProcess005Name")
+            {
+                switch (item.TechProcess005Type)
+                {
+                    case 1:
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.Black;
+
+                        break;
+                    case 2:
+
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.Gray;
+                        break;
+                    case 3:
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.Green;
+                        break;
+                    case 4:
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.Red;
+                        break;
+                    case 5:
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.Orange;
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+
             if (item.CurrentLevelMenuColorId != null && e.Column.FieldName == "CurrentLevelMenu")
             {
                 e.Appearance.BackColor = Color.FromName(item.CurrentLevelMenuColorName);

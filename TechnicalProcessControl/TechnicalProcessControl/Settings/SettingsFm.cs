@@ -890,11 +890,16 @@ namespace TechnicalProcessControl
 
                         if (parseTechProcessList.Count > 0)
                         {
+                            splashScreenManager.ShowWaitForm();
+                            splashScreenManager.SetWaitFormDescription("Импортируем техпроцессы");
+
                             foreach (var item in parseTechProcessList)
                             {
                                 ParseTechProcessToTechProcess(item);
 
                             }
+
+                            splashScreenManager.CloseWaitForm();
 
 
                             //using (DrawingScanImportFm drawingScanImportFm = new DrawingScanImportFm(parseDrawingScanList))
@@ -944,16 +949,32 @@ namespace TechnicalProcessControl
             //drawingName = drawingName.Replace(@"_M", "/M");
             //drawingName = drawingName.Replace(@"_N", "/N");
             //drawingName = drawingName.Replace(@"_O", "/O");
-            drawingName = drawingName.Replace(@"_", "-");
+            drawingName = drawingName.Replace(@"_", "");
+            drawingName = drawingName.Replace(@"/", "");
+            drawingName = drawingName.Replace(@".", "");
+            drawingName = drawingName.Replace(@"-", "");
 
             DrawingDTO drawingDTO = drawingService.GetDrawingByName(drawingName);
             if (drawingDTO == null)
+            {
+                if (!Directory.Exists(@Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\Trash"))
+                {
+                    Directory.CreateDirectory(@Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\Trash");
+                }
+
+                techProcessService.ResaveFileTechProcess(@Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\Trash\"+ techProcess.TechProcessFileName, techProcess.TechProcessPath);
+
                 return false;
+            }
+                
 
             string techProcessNumber = techProcess.TechProcessFileName.Substring(techProcess.TechProcessFileName.IndexOf(@"_TP")+3);
-            techProcessNumber = techProcessNumber.Replace(@"_", "");
-
             techProcessNumber = Path.GetFileNameWithoutExtension(techProcessNumber);
+            //string techProcessNumberParse = techProcessNumber;
+
+            techProcessNumber = techProcessNumber.Replace(@"_", "");
+            techProcessNumber = techProcessNumber.Replace(@"-", "");
+
 
             //techProcessNumber = techProcessNumber.Substring(0,(techProcess.TechProcessFileName.IndexOf(@"."))-1);
 
@@ -962,6 +983,10 @@ namespace TechnicalProcessControl
             switch (techProcessType)
             {
                 case "001":
+
+                    if (techProcessService.CheckTechProcess001Drawing(drawingDTO.Id))
+                        break;
+
                     TechProcess001DTO createTechProcess001 = new TechProcess001DTO();
                     createTechProcess001.TechProcessName = Int64.Parse(techProcessNumber);
                     createTechProcess001.DrawingId = drawingDTO.Id;
@@ -971,6 +996,11 @@ namespace TechnicalProcessControl
                     createTechProcess001.TechProcessPath = @Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess001\" + createTechProcess001.TechProcessFullName + ".xls";
                     createTechProcess001.CreateDate = DateTime.Now;
                     createTechProcess001.OldTechProcess = true;
+
+                    if (!Directory.Exists(@Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess001"))
+                    {
+                        Directory.CreateDirectory(@Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess001");
+                    }
                     //createTechProcess001.
 
                     //((TechProcess001DTO)Item).TechProcessPath = @Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess001\" + ((TechProcess001DTO)Item).TechProcessFullName + ".xls";
@@ -1004,6 +1034,9 @@ namespace TechnicalProcessControl
 
                     break;
                 case "002":
+                    if(techProcessService.CheckTechProcess002Drawing(drawingDTO.Id))
+                        break;
+
                     TechProcess002DTO createTechProcess002 = new TechProcess002DTO();
                     createTechProcess002.TechProcessName = Int64.Parse(techProcessNumber);
                     createTechProcess002.DrawingId = drawingDTO.Id;
@@ -1013,6 +1046,12 @@ namespace TechnicalProcessControl
                     createTechProcess002.TechProcessPath = @Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess002\" + createTechProcess002.TechProcessFullName + ".xls";
                     createTechProcess002.CreateDate = DateTime.Now;
                     createTechProcess002.OldTechProcess = true;
+
+                    if (!Directory.Exists(@Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess002"))
+                    {
+                        Directory.CreateDirectory(@Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess002");
+                    }
+
                     //createTechProcess001.
 
                     //((TechProcess001DTO)Item).TechProcessPath = @Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess001\" + ((TechProcess001DTO)Item).TechProcessFullName + ".xls";
@@ -1041,6 +1080,9 @@ namespace TechnicalProcessControl
                     }
                     break;
                 case "003":
+                    if(techProcessService.CheckTechProcess003Drawing(drawingDTO.Id))
+                        break;
+
                     TechProcess003DTO createTechProcess003 = new TechProcess003DTO();
                     createTechProcess003.TechProcessName = Int64.Parse(techProcessNumber);
                     createTechProcess003.DrawingId = drawingDTO.Id;
@@ -1050,6 +1092,11 @@ namespace TechnicalProcessControl
                     createTechProcess003.TechProcessPath = @Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess003\" + createTechProcess003.TechProcessFullName + ".xls";
                     createTechProcess003.CreateDate = DateTime.Now;
                     createTechProcess003.OldTechProcess = true;
+
+                    if (!Directory.Exists(@Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess003"))
+                    {
+                        Directory.CreateDirectory(@Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess003");
+                    }
                     //createTechProcess001.
 
                     //((TechProcess001DTO)Item).TechProcessPath = @Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess001\" + ((TechProcess001DTO)Item).TechProcessFullName + ".xls";
@@ -1078,13 +1125,97 @@ namespace TechnicalProcessControl
                     }
                     break;
                 case "004":
-                    Console.WriteLine("Case 2");
+                    if (techProcessService.CheckTechProcess004Drawing(drawingDTO.Id))
+                        break;
+
+                    TechProcess004DTO createTechProcess004 = new TechProcess004DTO();
+                    createTechProcess004.TechProcessName = Int64.Parse(techProcessNumber);
+                    createTechProcess004.DrawingId = drawingDTO.Id;
+                    createTechProcess004.DrawingNumberWithRevision = drawingName;
+                    createTechProcess004.TechProcessFullName = createTechProcess004.DrawingNumberWithRevision + "_TP" + createTechProcess004.TechProcessName;
+                    createTechProcess004.TypeId = 5;
+                    createTechProcess004.TechProcessPath = @Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess004\" + createTechProcess004.TechProcessFullName + ".xls";
+                    createTechProcess004.CreateDate = DateTime.Now;
+                    createTechProcess004.OldTechProcess = true;
+
+                    if (!Directory.Exists(@Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess004"))
+                    {
+                        Directory.CreateDirectory(@Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess004");
+                    }
+                    //createTechProcess001.
+
+                    //((TechProcess001DTO)Item).TechProcessPath = @Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess001\" + ((TechProcess001DTO)Item).TechProcessFullName + ".xls";
+                    //((TechProcess001DTO)Item).TypeId = 5;
+                    string path004 = techProcessService.ResaveFileTechProcess(createTechProcess004.TechProcessPath, techProcess.TechProcessPath);
+
+                    if (path004 != "")
+                    {
+                        try
+                        {
+                            createTechProcess004.Id = techProcessService.TechProcess004Create(createTechProcess004);
+                        }
+                        catch
+                        {
+                            techProcessService.FileDelete(path004);
+                        }
+
+
+                    }
+                    else
+                    {
+
+
+
+                        //throw new System.ArgumentException("Не получилось создать файл или сохранить в бд", "Ошибка");
+                    }
                     break;
                 case "005":
-                    Console.WriteLine("Case 2");
+                    if (techProcessService.CheckTechProcess005Drawing(drawingDTO.Id))
+                        break;
+
+                    TechProcess005DTO createTechProcess005 = new TechProcess005DTO();
+                    createTechProcess005.TechProcessName = Int64.Parse(techProcessNumber);
+                    createTechProcess005.DrawingId = drawingDTO.Id;
+                    createTechProcess005.DrawingNumberWithRevision = drawingName;
+                    createTechProcess005.TechProcessFullName = createTechProcess005.DrawingNumberWithRevision + "_TP" + createTechProcess005.TechProcessName;
+                    createTechProcess005.TypeId = 5;
+                    createTechProcess005.TechProcessPath = @Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess005\" + createTechProcess005.TechProcessFullName + ".xls";
+                    createTechProcess005.CreateDate = DateTime.Now;
+                    createTechProcess005.OldTechProcess = true;
+
+                    if (!Directory.Exists(@Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess005"))
+                    {
+                        Directory.CreateDirectory(@Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess005");
+                    }
+                    //createTechProcess001.
+
+                    //((TechProcess001DTO)Item).TechProcessPath = @Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess001\" + ((TechProcess001DTO)Item).TechProcessFullName + ".xls";
+                    //((TechProcess001DTO)Item).TypeId = 5;
+                    string path005 = techProcessService.ResaveFileTechProcess(createTechProcess005.TechProcessPath, techProcess.TechProcessPath);
+
+                    if (path005 != "")
+                    {
+                        try
+                        {
+                            createTechProcess005.Id = techProcessService.TechProcess005Create(createTechProcess005);
+                        }
+                        catch
+                        {
+                            techProcessService.FileDelete(path005);
+                        }
+
+
+                    }
+                    else
+                    {
+
+
+
+                        //throw new System.ArgumentException("Не получилось создать файл или сохранить в бд", "Ошибка");
+                    }
                     break;
                 default:
-                    Console.WriteLine("Default case");
+                    //Console.WriteLine("Default case");
                     break;
             }
 
@@ -1117,6 +1248,20 @@ namespace TechnicalProcessControl
                 Properties.Settings.Default.Save();
                 Environment.SpecialFolder rootFolder = folderBrowserDlg.RootFolder;
             }
+        }
+
+        private void updateDrawingNumberParseBtn_Click(object sender, EventArgs e)
+        {
+            drawingService = Program.kernel.Get<IDrawingService>();
+            var allDrawing = drawingService.GetAllDrawing();
+
+            splashScreenManager.ShowWaitForm();
+            splashScreenManager.SetWaitFormDescription("Обновляем данные чертежей");
+
+            foreach (var item in allDrawing)
+                drawingService.DrawingParseUpdate(item);
+
+            splashScreenManager.CloseWaitForm();
         }
     }
 }

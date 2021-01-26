@@ -50,6 +50,8 @@ namespace TechnicalProcessControl.BLL.Interfaces
         // получить  ревизии техпроцесса 001 + актуальный по Id 
         IEnumerable<TechProcess001DTO> GetAllTechProcess001RevisionWithActualTechprocess(int techProcessId);
 
+        bool CheckTechProcess001Drawing(int drawingId);
+
         #endregion
 
         #region TechProcess002 method's
@@ -92,6 +94,8 @@ namespace TechnicalProcessControl.BLL.Interfaces
         // получить  ревизии техпроцесса 002 + актуальный по Id 
         IEnumerable<TechProcess002DTO> GetAllTechProcess002RevisionWithActualTechprocess(int techProcessId);
 
+        bool CheckTechProcess002Drawing(int drawingId);
+
         #endregion
 
         #region TechProcess003 method's
@@ -99,6 +103,7 @@ namespace TechnicalProcessControl.BLL.Interfaces
         //получить все техпроцессы 003 по айди техпроцесса с краткой информацией ok
         IEnumerable<TechProcess003DTO> GetAllTechProcess003Simple();
 
+        bool CheckTechProcess003Drawing(int drawingId);
         #endregion
 
         #region TechProcess004 method's
@@ -106,6 +111,7 @@ namespace TechnicalProcessControl.BLL.Interfaces
         //получить все техпроцессы 004 по айди техпроцесса с краткой информацией ok
         IEnumerable<TechProcess004DTO> GetAllTechProcess004Simple();
 
+        bool CheckTechProcess004Drawing(int drawingId);
 
         #endregion
 
@@ -113,6 +119,8 @@ namespace TechnicalProcessControl.BLL.Interfaces
 
         //получить все техпроцессы 005 по айди техпроцесса с краткой информацией ok
         IEnumerable<TechProcess005DTO> GetAllTechProcess005Simple();
+
+        bool CheckTechProcess005Drawing(int drawingId);
 
 
         #endregion
