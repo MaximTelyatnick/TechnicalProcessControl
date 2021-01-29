@@ -42,6 +42,32 @@ namespace TechnicalProcessControl.TechnicalProcess
 
 
             LoadData();
+            UserAcces();
+        }
+
+        private void UserAcces()
+        {
+            switch (usersDTO.RoleId)
+            {
+                case 1:
+                    deleteBtn.Enabled = true;
+                    //админ
+                    break;
+                case 2:
+                    deleteBtn.Enabled = true;
+                    //технолог
+                    break;
+                case 3:
+                    deleteBtn.Enabled = false;
+                    //конструктор
+                    break;
+                case 4:
+                    deleteBtn.Enabled = false;
+                    //Пользователь без прав
+                    break;
+                default:
+                    break;
+            }
         }
 
         public void LoadData()
@@ -64,7 +90,7 @@ namespace TechnicalProcessControl.TechnicalProcess
 
         private void techProcessTreeListGrid_NodeCellStyle(object sender, DevExpress.XtraTreeList.GetCustomNodeCellStyleEventArgs e)
         {
-            var item = (TechProcess002DTO)techProcessTreeListGrid.GetDataRecordByNode(e.Node);
+            var item = (TechProcess003DTO)techProcessTreeListGrid.GetDataRecordByNode(e.Node);
 
             if (item == null)
                 return;

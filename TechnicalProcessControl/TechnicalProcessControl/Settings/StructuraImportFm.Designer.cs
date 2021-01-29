@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StructuraImportFm));
-            DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule treeListFormatRule1 = new DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule();
+            DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule treeListFormatRule2 = new DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.importBtn = new DevExpress.XtraBars.BarButtonItem();
             this.clearBaseBtn = new DevExpress.XtraBars.BarButtonItem();
@@ -66,6 +66,7 @@
             this.techProcess004Repository = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.techProcess005Repository = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.splashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::TechnicalProcessControl.WaitFm), true, true);
+            this.clearDrawingBtn = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -85,9 +86,10 @@
             this.ribbonControl1.ExpandCollapseItem,
             this.importBtn,
             this.clearBaseBtn,
-            this.importDrawingScanBtn});
+            this.importDrawingScanBtn,
+            this.clearDrawingBtn});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 4;
+            this.ribbonControl1.MaxItemId = 5;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -108,7 +110,7 @@
             // 
             // clearBaseBtn
             // 
-            this.clearBaseBtn.Caption = "Очистить базу";
+            this.clearBaseBtn.Caption = "Очистить структуру";
             this.clearBaseBtn.Id = 2;
             this.clearBaseBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("clearBaseBtn.ImageOptions.Image")));
             this.clearBaseBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("clearBaseBtn.ImageOptions.LargeImage")));
@@ -137,6 +139,7 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.importBtn);
             this.ribbonPageGroup1.ItemLinks.Add(this.importDrawingScanBtn);
             this.ribbonPageGroup1.ItemLinks.Add(this.clearBaseBtn);
+            this.ribbonPageGroup1.ItemLinks.Add(this.clearDrawingBtn);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "Функции";
             // 
@@ -179,9 +182,9 @@
             this.drawingTreeListGrid.Cursor = System.Windows.Forms.Cursors.SizeWE;
             this.drawingTreeListGrid.DataSource = null;
             this.drawingTreeListGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            treeListFormatRule1.Name = "Format0";
-            treeListFormatRule1.Rule = null;
-            this.drawingTreeListGrid.FormatRules.Add(treeListFormatRule1);
+            treeListFormatRule2.Name = "Format0";
+            treeListFormatRule2.Rule = null;
+            this.drawingTreeListGrid.FormatRules.Add(treeListFormatRule2);
             this.drawingTreeListGrid.Location = new System.Drawing.Point(2, 2);
             this.drawingTreeListGrid.MinWidth = 100;
             this.drawingTreeListGrid.Name = "drawingTreeListGrid";
@@ -547,6 +550,16 @@
             // 
             this.splashScreenManager.ClosingDelay = 500;
             // 
+            // clearDrawingBtn
+            // 
+            this.clearDrawingBtn.Caption = "Очистить чертежи";
+            this.clearDrawingBtn.Id = 4;
+            this.clearDrawingBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("clearDrawingBtn.ImageOptions.Image")));
+            this.clearDrawingBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("clearDrawingBtn.ImageOptions.LargeImage")));
+            this.clearDrawingBtn.Name = "clearDrawingBtn";
+            this.clearDrawingBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.clearDrawingBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.clearDrawingBtn_ItemClick);
+            // 
             // StructuraImportFm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -613,5 +626,6 @@
         private DevExpress.XtraBars.BarButtonItem importBtn;
         private DevExpress.XtraBars.BarButtonItem clearBaseBtn;
         private DevExpress.XtraBars.BarButtonItem importDrawingScanBtn;
+        private DevExpress.XtraBars.BarButtonItem clearDrawingBtn;
     }
 }

@@ -90,6 +90,7 @@
             this.drawingScanDirectoryEdit = new DevExpress.XtraEditors.TextEdit();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.updateDrawingNumberParseBtn = new DevExpress.XtraEditors.SimpleButton();
             this.existingWorkflowFileEdit = new DevExpress.XtraEditors.TextEdit();
             this.addExistingWorkflowBtn = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
@@ -114,7 +115,9 @@
             this.paintMaterialBand = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.laborIntensityBand = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.treeListBand14 = new DevExpress.XtraTreeList.Columns.TreeListBand();
-            this.updateDrawingNumberParseBtn = new DevExpress.XtraEditors.SimpleButton();
+            this.allTechProcessDeleteBtn = new DevExpress.XtraEditors.SimpleButton();
+            this.allScanDeleteBtn = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.settangsTab)).BeginInit();
             this.settangsTab.SuspendLayout();
             this.databaseTab.SuspendLayout();
@@ -702,6 +705,7 @@
             this.groupControl3.AppearanceCaption.ForeColor = System.Drawing.Color.Navy;
             this.groupControl3.AppearanceCaption.Options.UseFont = true;
             this.groupControl3.AppearanceCaption.Options.UseForeColor = true;
+            this.groupControl3.Controls.Add(this.allTechProcessDeleteBtn);
             this.groupControl3.Controls.Add(this.techProcessPathEdit);
             this.groupControl3.Controls.Add(this.addPathToTechProcessBtn);
             this.groupControl3.Controls.Add(this.labelControl13);
@@ -756,6 +760,7 @@
             this.groupControl2.AppearanceCaption.ForeColor = System.Drawing.Color.Navy;
             this.groupControl2.AppearanceCaption.Options.UseFont = true;
             this.groupControl2.AppearanceCaption.Options.UseForeColor = true;
+            this.groupControl2.Controls.Add(this.allScanDeleteBtn);
             this.groupControl2.Controls.Add(this.importDrawingScanBtn);
             this.groupControl2.Controls.Add(this.addPathToDrawingScanBtn);
             this.groupControl2.Controls.Add(this.drawingScanDirectoryEdit);
@@ -810,6 +815,7 @@
             this.groupControl1.AppearanceCaption.ForeColor = System.Drawing.Color.Navy;
             this.groupControl1.AppearanceCaption.Options.UseFont = true;
             this.groupControl1.AppearanceCaption.Options.UseForeColor = true;
+            this.groupControl1.Controls.Add(this.simpleButton4);
             this.groupControl1.Controls.Add(this.updateDrawingNumberParseBtn);
             this.groupControl1.Controls.Add(this.existingWorkflowFileEdit);
             this.groupControl1.Controls.Add(this.addExistingWorkflowBtn);
@@ -820,6 +826,18 @@
             this.groupControl1.Size = new System.Drawing.Size(667, 91);
             this.groupControl1.TabIndex = 123;
             this.groupControl1.Text = "Импорт структуры";
+            // 
+            // updateDrawingNumberParseBtn
+            // 
+            this.updateDrawingNumberParseBtn.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.updateDrawingNumberParseBtn.Appearance.Options.UseFont = true;
+            this.updateDrawingNumberParseBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("updateDrawingNumberParseBtn.ImageOptions.Image")));
+            this.updateDrawingNumberParseBtn.Location = new System.Drawing.Point(202, 58);
+            this.updateDrawingNumberParseBtn.Name = "updateDrawingNumberParseBtn";
+            this.updateDrawingNumberParseBtn.Size = new System.Drawing.Size(126, 22);
+            this.updateDrawingNumberParseBtn.TabIndex = 115;
+            this.updateDrawingNumberParseBtn.Text = "Обновить чертежи";
+            this.updateDrawingNumberParseBtn.Click += new System.EventHandler(this.updateDrawingNumberParseBtn_Click);
             // 
             // existingWorkflowFileEdit
             // 
@@ -1062,16 +1080,38 @@
             this.treeListBand14.Visible = false;
             this.treeListBand14.Width = 260;
             // 
-            // updateDrawingNumberParseBtn
+            // allTechProcessDeleteBtn
             // 
-            this.updateDrawingNumberParseBtn.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.updateDrawingNumberParseBtn.Appearance.Options.UseFont = true;
-            this.updateDrawingNumberParseBtn.Location = new System.Drawing.Point(5, 57);
-            this.updateDrawingNumberParseBtn.Name = "updateDrawingNumberParseBtn";
-            this.updateDrawingNumberParseBtn.Size = new System.Drawing.Size(126, 22);
-            this.updateDrawingNumberParseBtn.TabIndex = 115;
-            this.updateDrawingNumberParseBtn.Text = "Обновить чертежи";
-            this.updateDrawingNumberParseBtn.Click += new System.EventHandler(this.updateDrawingNumberParseBtn_Click);
+            this.allTechProcessDeleteBtn.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.allTechProcessDeleteBtn.Appearance.Options.UseFont = true;
+            this.allTechProcessDeleteBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.ImageOptions.Image")));
+            this.allTechProcessDeleteBtn.Location = new System.Drawing.Point(5, 50);
+            this.allTechProcessDeleteBtn.Name = "allTechProcessDeleteBtn";
+            this.allTechProcessDeleteBtn.Size = new System.Drawing.Size(186, 21);
+            this.allTechProcessDeleteBtn.TabIndex = 123;
+            this.allTechProcessDeleteBtn.Text = "Удалить техпроцессы";
+            // 
+            // allScanDeleteBtn
+            // 
+            this.allScanDeleteBtn.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.allScanDeleteBtn.Appearance.Options.UseFont = true;
+            this.allScanDeleteBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.ImageOptions.Image1")));
+            this.allScanDeleteBtn.Location = new System.Drawing.Point(5, 60);
+            this.allScanDeleteBtn.Name = "allScanDeleteBtn";
+            this.allScanDeleteBtn.Size = new System.Drawing.Size(186, 21);
+            this.allScanDeleteBtn.TabIndex = 124;
+            this.allScanDeleteBtn.Text = "Удалить сканы";
+            // 
+            // simpleButton4
+            // 
+            this.simpleButton4.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.simpleButton4.Appearance.Options.UseFont = true;
+            this.simpleButton4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton4.ImageOptions.Image")));
+            this.simpleButton4.Location = new System.Drawing.Point(10, 59);
+            this.simpleButton4.Name = "simpleButton4";
+            this.simpleButton4.Size = new System.Drawing.Size(186, 21);
+            this.simpleButton4.TabIndex = 125;
+            this.simpleButton4.Text = "Удалить структуру";
             // 
             // SettingsFm
             // 
@@ -1226,5 +1266,8 @@
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraEditors.SimpleButton updateDrawingNumberParseBtn;
+        private DevExpress.XtraEditors.SimpleButton allTechProcessDeleteBtn;
+        private DevExpress.XtraEditors.SimpleButton allScanDeleteBtn;
+        private DevExpress.XtraEditors.SimpleButton simpleButton4;
     }
 }

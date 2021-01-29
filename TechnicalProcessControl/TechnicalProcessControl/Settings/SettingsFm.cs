@@ -146,7 +146,7 @@ namespace TechnicalProcessControl
 
             #region Excel Document to list of ExcelModels
 
-            for (int i = 9; i < 8000; i++)
+            for (int i = 8; i < 8000; i++)
             {
                 decimal quantity = 0.00m;
                 lastLevel = currentLevel;
@@ -877,6 +877,16 @@ namespace TechnicalProcessControl
 
                 splashScreenManager.CloseWaitForm();
 
+                splashScreenManager.ShowWaitForm();
+                splashScreenManager.SetWaitFormDescription("Удаляем хранилище техпроцессов которые не прошли импорт");
+
+                if (Directory.Exists(@Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\Trash"))
+                {
+                    Directory.Delete(@Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\Trash", true);
+                }
+
+                splashScreenManager.CloseWaitForm();
+
                 MessageBox.Show("Все техпроцессы удалены!", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 if (MessageBox.Show("Начать импорт техпроцессов?", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -928,11 +938,29 @@ namespace TechnicalProcessControl
             }
         }
 
+        public void NonUsedTechProcessFile(string pathToFile, string fileName)
+        {
+            if (!Directory.Exists(@Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\Trash"))
+            {
+                Directory.CreateDirectory(@Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\Trash");
+            }
+
+            techProcessService.ResaveFileTechProcess(@Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\Trash\" + fileName, pathToFile);
+        }
+
         private bool ParseTechProcessToTechProcess(TechProcessDTO techProcess)
         {
-
-
-            string drawingName = techProcess.TechProcessFileName.Substring(0,techProcess.TechProcessFileName.IndexOf("_TP"));
+            string drawingName;
+            try
+            {
+                drawingName = techProcess.TechProcessFileName.Substring(0, techProcess.TechProcessFileName.IndexOf("_TP"));
+            }
+            catch (Exception ex)
+            {
+                NonUsedTechProcessFile(techProcess.TechProcessPath, techProcess.TechProcessFileName);
+                return false;
+            }
+            
             
             //drawingName = drawingName.Replace(@"_A", "/A");
             //drawingName = drawingName.Replace(@"_B", "/B");
@@ -957,13 +985,7 @@ namespace TechnicalProcessControl
             DrawingDTO drawingDTO = drawingService.GetDrawingByName(drawingName);
             if (drawingDTO == null)
             {
-                if (!Directory.Exists(@Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\Trash"))
-                {
-                    Directory.CreateDirectory(@Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\Trash");
-                }
-
-                techProcessService.ResaveFileTechProcess(@Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\Trash\"+ techProcess.TechProcessFileName, techProcess.TechProcessPath);
-
+                NonUsedTechProcessFile(techProcess.TechProcessPath, techProcess.TechProcessFileName);
                 return false;
             }
                 

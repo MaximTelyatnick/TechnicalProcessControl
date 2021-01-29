@@ -30,9 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TechProcess004Fm));
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.deleteBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.techProcessTreeListGrid = new DevExpress.XtraTreeList.TreeList();
             this.numberCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.dateCol = new DevExpress.XtraTreeList.Columns.TreeListColumn();
@@ -62,19 +62,6 @@
             this.ribbonControl1.Size = new System.Drawing.Size(854, 95);
             this.ribbonControl1.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             // 
-            // ribbonPageGroup1
-            // 
-            this.ribbonPageGroup1.ItemLinks.Add(this.deleteBtn);
-            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
-            this.ribbonPageGroup1.Text = "Функции";
-            // 
-            // ribbonPage1
-            // 
-            this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup1});
-            this.ribbonPage1.Name = "ribbonPage1";
-            this.ribbonPage1.Text = "ribbonPage1";
-            // 
             // deleteBtn
             // 
             this.deleteBtn.Caption = "Удалить";
@@ -84,6 +71,19 @@
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.deleteBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.deleteBtn_ItemClick);
+            // 
+            // ribbonPage1
+            // 
+            this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup1});
+            this.ribbonPage1.Name = "ribbonPage1";
+            this.ribbonPage1.Text = "ribbonPage1";
+            // 
+            // ribbonPageGroup1
+            // 
+            this.ribbonPageGroup1.ItemLinks.Add(this.deleteBtn);
+            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
+            this.ribbonPageGroup1.Text = "Функции";
             // 
             // techProcessTreeListGrid
             // 
@@ -104,6 +104,8 @@
             this.repositoryItemTextEdit});
             this.techProcessTreeListGrid.Size = new System.Drawing.Size(854, 315);
             this.techProcessTreeListGrid.TabIndex = 5;
+            this.techProcessTreeListGrid.NodeCellStyle += new DevExpress.XtraTreeList.GetCustomNodeCellStyleEventHandler(this.techProcessTreeListGrid_NodeCellStyle);
+            this.techProcessTreeListGrid.DoubleClick += new System.EventHandler(this.techProcessTreeListGrid_DoubleClick);
             // 
             // numberCol
             // 

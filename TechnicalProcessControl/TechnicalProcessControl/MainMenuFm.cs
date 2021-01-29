@@ -194,6 +194,24 @@ namespace TechnicalProcessControl
                     techprocess002Fm.MdiParent = this;
                     techprocess002Fm.Show();
                     break;
+                case "TechProcess003Item":
+                    TechProcess003Fm techprocess003Fm = new TechProcess003Fm(usersDTO);
+                    techprocess003Fm.Text = "Техпроцессы 003";
+                    techprocess003Fm.MdiParent = this;
+                    techprocess003Fm.Show();
+                    break;
+                case "TechProcess004Item":
+                    TechProcess004Fm techprocess004Fm = new TechProcess004Fm(usersDTO);
+                    techprocess004Fm.Text = "Техпроцессы 004";
+                    techprocess004Fm.MdiParent = this;
+                    techprocess004Fm.Show();
+                    break;
+                case "TechProcess005Item":
+                    TechProcess005Fm techprocess005Fm = new TechProcess005Fm(usersDTO);
+                    techprocess005Fm.Text = "Техпроцессы 005";
+                    techprocess005Fm.MdiParent = this;
+                    techprocess005Fm.Show();
+                    break;
                 //case "TechProcess003Item":
                 //    TechProcess003Fm techprocess003Fm = new TechProcess003Fm(usersDTO);
                 //    techprocess003Fm.Text = "Техпроцессы 003";

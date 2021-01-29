@@ -78,11 +78,31 @@ namespace TechnicalProcessControl.Settings
         private bool ClearDatabase()
         {
             var allStructuraItem = drawingService.GetDrawingsSimple();
+            
             try
             {
                 foreach (var item in allStructuraItem)
                 {
                     drawingService.DrawingsDelete(item.Id);
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
+
+        private bool ClearDrawing()
+        {
+            var allDrawingItem = drawingService.GetAllDrawing();
+
+            try
+            {
+                foreach (var item in allDrawingItem)
+                {
+                    drawingService.DrawingDelete(item.Id);
                 }
                 return true;
             }
@@ -245,6 +265,21 @@ namespace TechnicalProcessControl.Settings
             splashScreenManager.CloseWaitForm();
         }
 
-      
+        private void clearDrawingBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            drawingService = Program.kernel.Get<IDrawingService>();
+
+            if (MessageBox.Show("Все чертежи будут удалены?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                splashScreenManager.ShowWaitForm();
+                if (ClearDrawing())
+                    MessageBox.Show("Все чертежи успешно удалены!", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    MessageBox.Show("Во время удаления произошла ошибка", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                splashScreenManager.CloseWaitForm();
+
+            }
+        }
     }
 }

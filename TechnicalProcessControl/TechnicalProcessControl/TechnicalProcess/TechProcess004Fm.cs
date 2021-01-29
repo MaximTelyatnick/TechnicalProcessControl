@@ -36,7 +36,7 @@ namespace TechnicalProcessControl.TechnicalProcess
             }
         }
 
-        public TechProcess004Fm()
+        public TechProcess004Fm(UsersDTO usersDTO)
         {
             InitializeComponent();
 
@@ -46,6 +46,32 @@ namespace TechnicalProcessControl.TechnicalProcess
 
 
             LoadData();
+            UserAcces();
+        }
+
+        private void UserAcces()
+        {
+            switch (usersDTO.RoleId)
+            {
+                case 1:
+                    deleteBtn.Enabled = true;
+                    //админ
+                    break;
+                case 2:
+                    deleteBtn.Enabled = true;
+                    //технолог
+                    break;
+                case 3:
+                    deleteBtn.Enabled = false;
+                    //конструктор
+                    break;
+                case 4:
+                    deleteBtn.Enabled = false;
+                    //Пользователь без прав
+                    break;
+                default:
+                    break;
+            }
         }
 
         public void LoadData()
@@ -99,6 +125,59 @@ namespace TechnicalProcessControl.TechnicalProcess
                     techProcessTreeListGrid.EndUpdate();
 
 
+                }
+            }
+        }
+
+        private void techProcessTreeListGrid_DoubleClick(object sender, EventArgs e)
+        {
+            if (((TechProcess004DTO)techProcess004BS.Current).TechProcessPath != null)
+            {
+                reportService.OpenExcelFile(((TechProcess004DTO)techProcess004BS.Current).TechProcessPath);
+            }
+            else
+            {
+                MessageBox.Show("Техпроцесс не имеет файла в бд. Необходимо пересоздать техпроцесс!", "ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+        }
+
+        private void techProcessTreeListGrid_NodeCellStyle(object sender, DevExpress.XtraTreeList.GetCustomNodeCellStyleEventArgs e)
+        {
+            var item = (TechProcess004DTO)techProcessTreeListGrid.GetDataRecordByNode(e.Node);
+
+            if (item == null)
+                return;
+
+
+            if (item.TypeId != null && e.Column.FieldName == "TechProcessName")
+            {
+                switch (item.TypeId)
+                {
+                    case 1:
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.DarkBlue;
+
+                        break;
+                    case 2:
+
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.Gray;
+                        break;
+                    case 3:
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.Green;
+                        break;
+                    case 4:
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.DarkRed;
+                        break;
+                    case 5:
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                        e.Appearance.ForeColor = Color.DarkOrange;
+                        break;
+
+                    default:
+                        break;
                 }
             }
         }

@@ -104,6 +104,8 @@
             this.repositoryItemTextEdit});
             this.techProcessTreeListGrid.Size = new System.Drawing.Size(914, 296);
             this.techProcessTreeListGrid.TabIndex = 4;
+            this.techProcessTreeListGrid.NodeCellStyle += new DevExpress.XtraTreeList.GetCustomNodeCellStyleEventHandler(this.techProcessTreeListGrid_NodeCellStyle);
+            this.techProcessTreeListGrid.DoubleClick += new System.EventHandler(this.techProcessTreeListGrid_DoubleClick);
             // 
             // numberCol
             // 

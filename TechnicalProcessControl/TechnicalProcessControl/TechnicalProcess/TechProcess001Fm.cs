@@ -37,6 +37,8 @@ namespace TechnicalProcessControl.TechnicalProcess
             }
         }
 
+
+
         public TechProcess001Fm(UsersDTO usersDTO)
         {
             InitializeComponent();
@@ -45,6 +47,32 @@ namespace TechnicalProcessControl.TechnicalProcess
             this.usersDTO = usersDTO;
 
             LoadData();
+            UserAcces();
+        }
+
+        private void UserAcces()
+        {
+            switch (usersDTO.RoleId)
+            {
+                case 1:
+                    deleteBtn.Enabled = true;
+                    //админ
+                    break;
+                case 2:
+                    deleteBtn.Enabled = true;
+                    //технолог
+                    break;
+                case 3:
+                    deleteBtn.Enabled = false;
+                    //конструктор
+                    break;
+                case 4:
+                    deleteBtn.Enabled = false;
+                    //Пользователь без прав
+                    break;
+                default:
+                    break;
+            }
         }
 
         public void LoadData()

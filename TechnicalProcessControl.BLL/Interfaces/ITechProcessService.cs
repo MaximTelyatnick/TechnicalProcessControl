@@ -104,6 +104,8 @@ namespace TechnicalProcessControl.BLL.Interfaces
         IEnumerable<TechProcess003DTO> GetAllTechProcess003Simple();
 
         bool CheckTechProcess003Drawing(int drawingId);
+
+        IEnumerable<TechProcess003DTO> GetAllTechProcess003();
         #endregion
 
         #region TechProcess004 method's
@@ -112,6 +114,8 @@ namespace TechnicalProcessControl.BLL.Interfaces
         IEnumerable<TechProcess004DTO> GetAllTechProcess004Simple();
 
         bool CheckTechProcess004Drawing(int drawingId);
+
+        IEnumerable<TechProcess004DTO> GetAllTechProcess004();
 
         #endregion
 
@@ -122,6 +126,7 @@ namespace TechnicalProcessControl.BLL.Interfaces
 
         bool CheckTechProcess005Drawing(int drawingId);
 
+        IEnumerable<TechProcess005DTO> GetAllTechProcess005();
 
         #endregion
 
