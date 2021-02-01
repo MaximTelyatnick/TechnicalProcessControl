@@ -202,6 +202,7 @@ namespace TechnicalProcessControl
 
             drawingService = Program.kernel.Get<IDrawingService>();
             reportService = Program.kernel.Get<IReportService>();
+            techProcessService = Program.kernel.Get<ITechProcessService>();
 
 
 
@@ -280,7 +281,8 @@ namespace TechnicalProcessControl
                     {
                         ((TechProcess001DTO)Item).TechProcessPath = @Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess001\" + ((TechProcess001DTO)Item).TechProcessFullName + ".xls";
                         ((TechProcess001DTO)Item).TypeId = 5;
-                        string path = reportService.ResaveFileTechProcess001(((TechProcess001DTO)Item), existingWorkflowPathEdit.Text);
+                        //string path = reportService.ResaveFileTechProcess001(((TechProcess001DTO)Item), existingWorkflowPathEdit.Text);
+                        string path = techProcessService.ResaveFileTechProcess(((TechProcess001DTO)Item).TechProcessPath, existingWorkflowPathEdit.Text);
                         if (path != "")
                         {
                             ((TechProcess001DTO)Item).Id = techProcessService.TechProcess001Create(((TechProcess001DTO)Item));

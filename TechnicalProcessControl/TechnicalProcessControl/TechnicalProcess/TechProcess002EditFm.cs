@@ -207,6 +207,7 @@ namespace TechnicalProcessControl.TechnicalProcess
 
             drawingService = Program.kernel.Get<IDrawingService>();
             reportService = Program.kernel.Get<IReportService>();
+            techProcessService = Program.kernel.Get<ITechProcessService>();
 
             if (operation == Utils.Operation.Add)
             {

@@ -22,6 +22,7 @@ namespace TechnicalProcessControl.TechnicalProcess
     {
         public static IDrawingService drawingService;
         public static IReportService reportService;
+        public static ITechProcessService techProcessService;
 
         private BindingSource drawingsBS = new BindingSource();
         private BindingSource drawingBS = new BindingSource();
@@ -203,6 +204,7 @@ namespace TechnicalProcessControl.TechnicalProcess
 
             drawingService = Program.kernel.Get<IDrawingService>();
             reportService = Program.kernel.Get<IReportService>();
+            techProcessService = Program.kernel.Get<ITechProcessService>();
 
             if (operation == Utils.Operation.Add)
             {
@@ -289,9 +291,9 @@ namespace TechnicalProcessControl.TechnicalProcess
                 {
                     try
                     {
-                        ((TechProcess003DTO)Item).TechProcessPath = @"C:\TechProcess\" + ((TechProcess003DTO)Item).TechProcessFullName + ".xls";
+                        ((TechProcess003DTO)Item).TechProcessPath = @Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess003\" + ((TechProcess003DTO)Item).TechProcessFullName + ".xls";
                         ((TechProcess003DTO)Item).TypeId = 5;
-                        string path = reportService.ResaveFileTechProcess003(((TechProcess003DTO)Item), existingWorkflowPathEdit.Text);
+                        string path = techProcessService.ResaveFileTechProcess(((TechProcess003DTO)Item).TechProcessPath, existingWorkflowPathEdit.Text);
                         if (path != "")
                         {
                             ((TechProcess003DTO)Item).Id = drawingService.TechProcess003Create(((TechProcess003DTO)Item));
