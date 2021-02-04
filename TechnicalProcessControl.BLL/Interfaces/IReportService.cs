@@ -26,6 +26,8 @@ namespace TechnicalProcessControl.BLL.Interfaces
         string CreateTemplateTechProcess003(DrawingsDTO drawingsDTO, List<DrawingsDTO> drawingsListDTO, TechProcess003DTO techProcess003OldDTO = null);
         string ResaveFileTechProcess003(TechProcess003DTO techProcess003, string fullPathExistingFile);
 
+        string CreateTemplateTechProcess005Exp(UsersDTO usersDTO, DrawingDTO techProces005Drawing, List<DrawingDTO> techProcess005DrawingParent, List<TechProcess005DTO> techProcess005Revision, TechProcess005DTO techProcess005, TechProcess005DTO techProcess005Old = null);
+
         void OpenExcelFile(string fullPath);
 
         string TechProcesNameToStr(long? techProcessName);

@@ -100,6 +100,15 @@ namespace TechnicalProcessControl.BLL.Interfaces
 
         #region TechProcess003 method's
 
+        //получить актуальный техпроцесс 003 по айди чертежа  с подробной информацией (материалы и трудоёмкость)
+        TechProcess003DTO GetTechProcess003ByDrawingId(int drawingId);
+
+        //получить номер техпроцесса 003 которого еще не существует в базе (максимальный + 1) ok
+        long GetLastTechProcess003();
+
+        //проверить наличие техпроцесса 003 по его номеру ok
+        bool CheckTechProcess003(long techProcesName);
+
         //получить все техпроцессы 003 по айди техпроцесса с краткой информацией ok
         IEnumerable<TechProcess003DTO> GetAllTechProcess003Simple();
 
@@ -109,6 +118,15 @@ namespace TechnicalProcessControl.BLL.Interfaces
         #endregion
 
         #region TechProcess004 method's
+
+        //получить актуальный техпроцесс 004 по айди чертежа  с подробной информацией (материалы и трудоёмкость)
+        TechProcess004DTO GetTechProcess004ByDrawingId(int drawingId);
+
+        //получить номер техпроцесса 004 которого еще не существует в базе (максимальный + 1) ok
+        long GetLastTechProcess004();
+
+        //проверить наличие техпроцесса 004 по его номеру ok
+        bool CheckTechProcess004(long techProcesName);
 
         //получить все техпроцессы 004 по айди техпроцесса с краткой информацией ok
         IEnumerable<TechProcess004DTO> GetAllTechProcess004Simple();
@@ -121,12 +139,28 @@ namespace TechnicalProcessControl.BLL.Interfaces
 
         #region TechProcess005 method's
 
+        //получить актуальный техпроцесс 005 по айди чертежа  с подробной информацией (материалы и трудоёмкость)
+        TechProcess005DTO GetTechProcess005ByDrawingId(int drawingId);
+
+        //получить номер техпроцесса 005 которого еще не существует в базе (максимальный + 1) ok
+        long GetLastTechProcess005();
+
+        //проверить наличие техпроцесса 005 по его номеру ok
+        bool CheckTechProcess005(long techProcesName);
+
         //получить все техпроцессы 005 по айди техпроцесса с краткой информацией ok
         IEnumerable<TechProcess005DTO> GetAllTechProcess005Simple();
 
         bool CheckTechProcess005Drawing(int drawingId);
 
+        //получить ревизию техпроцесса 005 по айди техпроцесса с подробной информацией ok
+        TechProcess005DTO GetTechProcess005RevisionByIdFull(int techProcess005Id);
+
         IEnumerable<TechProcess005DTO> GetAllTechProcess005();
+
+        IEnumerable<TechProcess005DTO> GetAllTechProcess005Revision(int techProcessId);
+
+        List<TechProcess005DTO> TechProcess005Revision(TechProcess005DTO techProcess005, List<TechProcess005DTO> alltechProcessRevision);
 
         #endregion
 

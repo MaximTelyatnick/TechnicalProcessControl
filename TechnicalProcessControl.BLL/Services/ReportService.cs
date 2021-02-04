@@ -1573,8 +1573,406 @@ namespace TechnicalProcessControl.BLL.Services
             return techProcessNameStr;
         }
 
-        
+        public string CreateTemplateTechProcess005Exp(UsersDTO usersDTO, DrawingDTO techProces005Drawing, List<DrawingDTO> techProcess005DrawingParent, List<TechProcess005DTO> techProcess005Revision, TechProcess005DTO techProcess005, TechProcess005DTO techProcess005Old = null)
+        {
+            try
+            {
+                if (techProcess005Old == null)
+                    Factory.GetWorkbook(GeneratedReportsDir + @"\template001.xls");
+                else
+                    Factory.GetWorkbook(techProcess005Old.TechProcessPath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Не найден шаблон документа!\n" + ex.Message, "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return "";
+            }
 
+            IWorkbook workbook = null;
+
+            if (techProcess005Old == null)
+                workbook = Factory.GetWorkbook(GeneratedReportsDir + @"\template001New.xls");
+            else
+                workbook = Factory.GetWorkbook(techProcess005Old.TechProcessPath);
+
+            var Worksheet = workbook.Worksheets[0];
+            var Сells = Worksheet.Cells;
+            IRange cells = Worksheet.Cells;
+
+            int pagesStock = 4;
+            int pagesOpenDocument = GetNumberDocumentPages(workbook);
+            string parentDrawings = "";
+            //получаем чертеж на который создаём техпроцесс
+            //var drawingDTO = drawingService.GetDrawingById((int)techProcess001DTO.DrawingId);
+            //получаем все чертежи-родители 
+            //var listParentDrawings = GetDrawingParentByDrawingChildId((int)techProcess001DTO.DrawingId);
+            if (techProcess005DrawingParent != null)
+                parentDrawings = String.Join(", ", techProcess005DrawingParent.Select(bdsm => bdsm.Number).ToArray());
+
+            Сells["AG" + 24].Value = "Machining";
+            Сells["AG" + 24].HorizontalAlignment = HAlign.Center;
+
+
+            cells["BY" + 28].Value = "Created by " + usersDTO.Name + " " + techProcess005.CreateDate.Value.ToShortDateString();
+            //cells["J" + 41].Value = techProcess002.UserName;
+            cells["J" + 41].Value = usersDTO.Name;
+            cells["AF" + 41].Value = techProcess005.CreateDate.Value.ToShortDateString();
+            cells["D" + 30].Value = "Date of issue ";
+
+
+            Сells["AQ" + 10].Value = techProces005Drawing.DetailName;
+            Сells["AQ" + 10].HorizontalAlignment = HAlign.Center;
+            Сells["AL" + 44].Value = techProces005Drawing.DetailName;
+            Сells["AL" + 44].HorizontalAlignment = HAlign.Center;
+
+            if (techProcess005Revision != null)
+            {
+                for (int i = 0; i < techProcess005Revision.Count(); i++)
+                {
+                    if (i == 0)
+                    {
+                        Сells["AW" + 3 + ":" + "BV" + 3].Font.Bold = false;
+                        Сells["AW" + 3 + ":" + "BV" + 3].Font.Italic = false;
+                        Сells["AW" + 3 + ":" + "BV" + 3].Font.Size = 8;
+                        Сells["AW" + 3].HorizontalAlignment = HAlign.Center;
+                        Сells["AW" + 3].Value = techProcess005Revision[0].RivisionName;
+                        Сells["BN" + 3].HorizontalAlignment = HAlign.Left;
+                        Сells["BN" + 3].Value = usersDTO.Name;
+                        Сells["BE" + 3].HorizontalAlignment = HAlign.Center;
+                        Сells["BE" + 3].Value = techProcess005Revision[0].RevisionDocumentName;
+                        Сells["BV" + 3].HorizontalAlignment = HAlign.Left;
+                        Сells["BV" + 3].Font.Size = 6;
+                        Сells["BV" + 3].Value = techProcess005Revision[0].CreateDate.Value.ToShortDateString();
+
+                        Сells["AW" + 37 + ":" + "BV" + 37].Font.Bold = false;
+                        Сells["AW" + 37 + ":" + "BV" + 37].Font.Italic = false;
+                        Сells["AW" + 37 + ":" + "BV" + 37].Font.Size = 8;
+                        Сells["AW" + 37].HorizontalAlignment = HAlign.Center;
+                        Сells["AW" + 37].Value = techProcess005Revision[0].RivisionName;
+                        Сells["BN" + 37].HorizontalAlignment = HAlign.Left;
+                        Сells["BN" + 37].Value = usersDTO.Name;
+                        Сells["BE" + 37].HorizontalAlignment = HAlign.Center;
+                        Сells["BE" + 37].Value = techProcess005Revision[0].RevisionDocumentName;
+                        Сells["BV" + 37].HorizontalAlignment = HAlign.Left;
+                        Сells["BV" + 37].Font.Size = 6;
+                        Сells["BV" + 37].Value = techProcess005Revision[0].CreateDate.Value.ToShortDateString();
+
+                        Сells["AW" + 70 + ":" + "BV" + 70].Font.Bold = false;
+                        Сells["AW" + 70 + ":" + "BV" + 70].Font.Italic = false;
+                        Сells["AW" + 70 + ":" + "BV" + 70].Font.Size = 8;
+                        Сells["AW" + 70].HorizontalAlignment = HAlign.Center;
+                        Сells["AW" + 70].Value = techProcess005Revision[0].RivisionName;
+                        Сells["BN" + 70].HorizontalAlignment = HAlign.Left;
+                        Сells["BN" + 70].Value = usersDTO.Name;
+                        Сells["BE" + 70].HorizontalAlignment = HAlign.Center;
+                        Сells["BE" + 70].Value = techProcess005Revision[0].RevisionDocumentName;
+                        Сells["BV" + 70].HorizontalAlignment = HAlign.Left;
+                        Сells["BV" + 70].Font.Size = 6;
+                        Сells["BV" + 70].Value = techProcess005Revision[0].CreateDate.Value.ToShortDateString();
+
+                        Сells["AW" + 100 + ":" + "BV" + 100].Font.Bold = false;
+                        Сells["AW" + 100 + ":" + "BV" + 100].Font.Italic = false;
+                        Сells["AW" + 100 + ":" + "BV" + 100].Font.Size = 8;
+                        Сells["AW" + 100].HorizontalAlignment = HAlign.Center;
+                        Сells["AW" + 100].Value = techProcess005Revision[0].RivisionName;
+                        Сells["BN" + 100].HorizontalAlignment = HAlign.Left;
+                        Сells["BN" + 100].Value = usersDTO.Name;
+                        Сells["BE" + 100].HorizontalAlignment = HAlign.Center;
+                        Сells["BE" + 100].Value = techProcess005Revision[0].RevisionDocumentName;
+                        Сells["BV" + 100].HorizontalAlignment = HAlign.Left;
+                        Сells["BV" + 100].Font.Size = 6;
+                        Сells["BV" + 100].Value = techProcess005Revision[0].CreateDate.Value.ToShortDateString();
+                        continue;
+                    }
+                    if (i == 1)
+                    {
+                        Сells["CB" + 2 + ":" + "DA" + 2].Font.Bold = false;
+                        Сells["CB" + 2 + ":" + "DA" + 2].Font.Italic = false;
+                        Сells["CB" + 2 + ":" + "DA" + 2].Font.Size = 8;
+                        Сells["CB" + 2].HorizontalAlignment = HAlign.Center;
+                        Сells["CB" + 2].Value = techProcess005Revision[1].RivisionName;
+                        Сells["CS" + 2].HorizontalAlignment = HAlign.Left;
+                        Сells["CS" + 2].Value = usersDTO.Name;
+                        Сells["CJ" + 2].HorizontalAlignment = HAlign.Center;
+                        Сells["CJ" + 2].Value = techProcess005Revision[1].RevisionDocumentName;
+                        Сells["DA" + 2].HorizontalAlignment = HAlign.Left;
+                        Сells["DA" + 2].Font.Size = 6;
+                        Сells["DA" + 2].Value = techProcess005Revision[1].CreateDate.Value.ToShortDateString();
+
+                        Сells["CB" + 35 + ":" + "DA" + 35].Font.Bold = false;
+                        Сells["CB" + 35 + ":" + "DA" + 35].Font.Italic = false;
+                        Сells["CB" + 35 + ":" + "DA" + 35].Font.Size = 8;
+                        Сells["CB" + 35].HorizontalAlignment = HAlign.Center;
+                        Сells["CB" + 35].Value = techProcess005Revision[1].RivisionName;
+                        Сells["CS" + 35].HorizontalAlignment = HAlign.Left;
+                        Сells["CS" + 35].Value = usersDTO.Name;
+                        Сells["CJ" + 35].HorizontalAlignment = HAlign.Center;
+                        Сells["CJ" + 35].Value = techProcess005Revision[1].RevisionDocumentName;
+                        Сells["DA" + 35].HorizontalAlignment = HAlign.Left;
+                        Сells["DA" + 35].Font.Size = 6;
+                        Сells["DA" + 35].Value = techProcess005Revision[1].CreateDate.Value.ToShortDateString();
+
+                        Сells["CB" + 68 + ":" + "DA" + 68].Font.Bold = false;
+                        Сells["CB" + 68 + ":" + "DA" + 68].Font.Italic = false;
+                        Сells["CB" + 68 + ":" + "DA" + 68].Font.Size = 8;
+                        Сells["CB" + 68].HorizontalAlignment = HAlign.Center;
+                        Сells["CB" + 68].Value = techProcess005Revision[1].RivisionName;
+                        Сells["CS" + 68].HorizontalAlignment = HAlign.Left;
+                        Сells["CS" + 68].Value = usersDTO.Name;
+                        Сells["CJ" + 68].HorizontalAlignment = HAlign.Center;
+                        Сells["CJ" + 68].Value = techProcess005Revision[1].RevisionDocumentName;
+                        Сells["DA" + 68].HorizontalAlignment = HAlign.Left;
+                        Сells["DA" + 68].Font.Size = 6;
+                        Сells["DA" + 68].Value = techProcess005Revision[1].CreateDate.Value.ToShortDateString();
+
+                        Сells["CB" + 98 + ":" + "DA" + 98].Font.Bold = false;
+                        Сells["CB" + 98 + ":" + "DA" + 98].Font.Italic = false;
+                        Сells["CB" + 98 + ":" + "DA" + 98].Font.Size = 8;
+                        Сells["CB" + 98].HorizontalAlignment = HAlign.Center;
+                        Сells["CB" + 98].Value = techProcess005Revision[1].RivisionName;
+                        Сells["CS" + 98].HorizontalAlignment = HAlign.Left;
+                        Сells["CS" + 98].Value = usersDTO.Name;
+                        Сells["CJ" + 98].HorizontalAlignment = HAlign.Center;
+                        Сells["CJ" + 98].Value = techProcess005Revision[1].RevisionDocumentName;
+                        Сells["DA" + 98].HorizontalAlignment = HAlign.Left;
+                        Сells["DA" + 98].Font.Size = 6;
+                        Сells["DA" + 98].Value = techProcess005Revision[1].CreateDate.Value.ToShortDateString();
+                        continue;
+                    }
+                    if (i == 2)
+                    {
+                        Сells["CB" + 3 + ":" + "DA" + 3].Font.Bold = false;
+                        Сells["CB" + 3 + ":" + "DA" + 3].Font.Italic = false;
+                        Сells["CB" + 3 + ":" + "DA" + 3].Font.Size = 8;
+                        Сells["CB" + 3].HorizontalAlignment = HAlign.Center;
+                        Сells["CB" + 3].Value = techProcess005Revision[2].RivisionName;
+                        Сells["CS" + 3].HorizontalAlignment = HAlign.Left;
+                        Сells["CS" + 3].Value = usersDTO.Name;
+                        Сells["CJ" + 3].HorizontalAlignment = HAlign.Center;
+                        Сells["CJ" + 3].Value = techProcess005Revision[2].RevisionDocumentName;
+                        Сells["DA" + 3].HorizontalAlignment = HAlign.Left;
+                        Сells["DA" + 3].Font.Size = 6;
+                        Сells["DA" + 3].Value = techProcess005Revision[2].CreateDate.Value.ToShortDateString();
+
+                        Сells["CB" + 36 + ":" + "DA" + 36].Font.Bold = false;
+                        Сells["CB" + 36 + ":" + "DA" + 36].Font.Italic = false;
+                        Сells["CB" + 36 + ":" + "DA" + 36].Font.Size = 8;
+                        Сells["CB" + 36].HorizontalAlignment = HAlign.Center;
+                        Сells["CB" + 36].Value = techProcess005Revision[2].RivisionName;
+                        Сells["CS" + 36].HorizontalAlignment = HAlign.Left;
+                        Сells["CS" + 36].Value = usersDTO.Name;
+                        Сells["CJ" + 36].HorizontalAlignment = HAlign.Center;
+                        Сells["CJ" + 36].Value = techProcess005Revision[2].RevisionDocumentName;
+                        Сells["DA" + 36].HorizontalAlignment = HAlign.Left;
+                        Сells["DA" + 36].Font.Size = 6;
+                        Сells["DA" + 36].Value = techProcess005Revision[2].CreateDate.Value.ToShortDateString();
+
+                        Сells["CB" + 69 + ":" + "DA" + 69].Font.Bold = false;
+                        Сells["CB" + 69 + ":" + "DA" + 69].Font.Italic = false;
+                        Сells["CB" + 69 + ":" + "DA" + 69].Font.Size = 8;
+                        Сells["CB" + 69].HorizontalAlignment = HAlign.Center;
+                        Сells["CB" + 69].Value = techProcess005Revision[2].RivisionName;
+                        Сells["CS" + 69].HorizontalAlignment = HAlign.Left;
+                        Сells["CS" + 69].Value = usersDTO.Name;
+                        Сells["CJ" + 69].HorizontalAlignment = HAlign.Center;
+                        Сells["CJ" + 69].Value = techProcess005Revision[2].RevisionDocumentName;
+                        Сells["DA" + 69].HorizontalAlignment = HAlign.Left;
+                        Сells["DA" + 69].Font.Size = 6;
+                        Сells["DA" + 69].Value = techProcess005Revision[2].CreateDate.Value.ToShortDateString();
+
+
+
+                        Сells["CB" + 99 + ":" + "DA" + 99].Font.Bold = false;
+                        Сells["CB" + 99 + ":" + "DA" + 99].Font.Italic = false;
+                        Сells["CB" + 99 + ":" + "DA" + 99].Font.Size = 8;
+                        Сells["CB" + 99].HorizontalAlignment = HAlign.Center;
+                        Сells["CB" + 99].Value = techProcess005Revision[2].RivisionName;
+                        Сells["CS" + 99].HorizontalAlignment = HAlign.Left;
+                        Сells["CS" + 99].Value = usersDTO.Name;
+                        Сells["CJ" + 99].HorizontalAlignment = HAlign.Center;
+                        Сells["CJ" + 99].Value = techProcess005Revision[2].RevisionDocumentName;
+                        Сells["DA" + 99].HorizontalAlignment = HAlign.Left;
+                        Сells["DA" + 99].Font.Size = 6;
+                        Сells["DA" + 99].Value = techProcess005Revision[2].CreateDate.Value.ToShortDateString();
+                        continue;
+                    }
+                    if (i == 3)
+                    {
+                        Сells["CB" + 37 + ":" + "DA" + 37].Font.Bold = false;
+                        Сells["CB" + 37 + ":" + "DA" + 37].Font.Italic = false;
+                        Сells["CB" + 37 + ":" + "DA" + 37].Font.Size = 8;
+                        Сells["CB" + 37].HorizontalAlignment = HAlign.Center;
+                        Сells["CB" + 37].Value = techProcess005Revision[3].RivisionName;
+                        Сells["CS" + 37].HorizontalAlignment = HAlign.Left;
+                        Сells["CS" + 37].Value = usersDTO.Name;
+                        Сells["CJ" + 37].HorizontalAlignment = HAlign.Center;
+                        Сells["CJ" + 37].Value = techProcess005Revision[3].RevisionDocumentName;
+                        Сells["DA" + 37].HorizontalAlignment = HAlign.Left;
+                        Сells["DA" + 37].Font.Size = 6;
+                        Сells["DA" + 37].Value = techProcess005Revision[3].CreateDate.Value.ToShortDateString();
+
+                        Сells["CB" + 70 + ":" + "DA" + 70].Font.Bold = false;
+                        Сells["CB" + 70 + ":" + "DA" + 70].Font.Italic = false;
+                        Сells["CB" + 70 + ":" + "DA" + 70].Font.Size = 8;
+                        Сells["CB" + 70].HorizontalAlignment = HAlign.Center;
+                        Сells["CB" + 70].Value = techProcess005Revision[3].RivisionName;
+                        Сells["CS" + 70].HorizontalAlignment = HAlign.Left;
+                        Сells["CS" + 70].Value = usersDTO.Name;
+                        Сells["CJ" + 70].HorizontalAlignment = HAlign.Center;
+                        Сells["CJ" + 70].Value = techProcess005Revision[3].RevisionDocumentName;
+                        Сells["DA" + 70].HorizontalAlignment = HAlign.Left;
+                        Сells["DA" + 70].Font.Size = 6;
+                        Сells["DA" + 70].Value = techProcess005Revision[3].CreateDate.Value.ToShortDateString();
+
+                        Сells["CB" + 100 + ":" + "DA" + 100].Font.Bold = false;
+                        Сells["CB" + 100 + ":" + "DA" + 100].Font.Italic = false;
+                        Сells["CB" + 100 + ":" + "DA" + 100].Font.Size = 8;
+                        Сells["CB" + 100].HorizontalAlignment = HAlign.Center;
+                        Сells["CB" + 100].Value = techProcess005Revision[3].RivisionName;
+                        Сells["CS" + 100].HorizontalAlignment = HAlign.Left;
+                        Сells["CS" + 100].Value = usersDTO.Name;
+                        Сells["CJ" + 100].HorizontalAlignment = HAlign.Center;
+                        Сells["CJ" + 100].Value = techProcess005Revision[3].RevisionDocumentName;
+                        Сells["DA" + 100].HorizontalAlignment = HAlign.Left;
+                        Сells["DA" + 100].Font.Size = 6;
+                        Сells["DA" + 100].Value = techProcess005Revision[3].CreateDate.Value.ToShortDateString();
+                        continue;
+                    }
+                    if (i == 4)
+                        break;
+                }
+            }
+
+
+            Сells["F" + 46].Value = techProces005Drawing.MaterialName;
+            Сells["F" + 46].HorizontalAlignment = HAlign.Left;
+
+            Сells["A" + 39].Value = parentDrawings;
+            Сells["A" + 39].HorizontalAlignment = HAlign.Center;
+            Сells["W" + 48].Value = techProcess005.Weight;
+            Сells["W" + 48].HorizontalAlignment = HAlign.Center;
+
+            string paramaterBlank = "";
+
+            if (techProcess005.TH != "" && techProcess005.TH != null)
+                paramaterBlank += techProcess005.TH.ToString() + "х";
+            if (techProcess005.W != "" && techProcess005.W != null)
+                paramaterBlank += techProcess005.W.ToString() + "x";
+            if (techProcess005.W2 != "" && techProcess005.W2 != null)
+                paramaterBlank += techProcess005.W2.ToString() + "x";
+            if (techProcess005.L != "" && techProcess005.L != null)
+                paramaterBlank += techProcess005.L.ToString();
+
+            Сells["BI" + 48].Value = paramaterBlank;
+            Сells["BI" + 48].HorizontalAlignment = HAlign.Center;
+
+            //Количество, нужно ли??????????????
+            //Сells["CD" + 48].Value = drawingsDTO.Quantity;
+            //Сells["CD" + 48].HorizontalAlignment = HAlign.Center;
+            Сells["BB" + 7].Value = techProces005Drawing.Number;
+            Сells["BB" + 7].HorizontalAlignment = HAlign.Center;
+            Сells["BB" + 41].Value = techProces005Drawing.Number;
+            Сells["BB" + 41].HorizontalAlignment = HAlign.Center;
+            Сells["BS" + 74].Value = techProces005Drawing.Number;
+            Сells["BS" + 74].HorizontalAlignment = HAlign.Center;
+            Сells["BS" + 104].Value = techProces005Drawing.Number;
+            Сells["BS" + 104].HorizontalAlignment = HAlign.Center;
+            Сells["CO" + 07].Value = TechProcesNameToStr(techProcess005.TechProcessName);
+            Сells["CO" + 07].HorizontalAlignment = HAlign.Center;
+            Сells["CO" + 41].Value = TechProcesNameToStr(techProcess005.TechProcessName);
+            Сells["CO" + 41].HorizontalAlignment = HAlign.Center;
+            Сells["CO" + 74].Value = TechProcesNameToStr(techProcess005.TechProcessName);
+            Сells["CO" + 74].HorizontalAlignment = HAlign.Center;
+            Сells["CO" + 104].Value = TechProcesNameToStr(techProcess005.TechProcessName);
+            Сells["CO" + 104].HorizontalAlignment = HAlign.Center;
+
+            if (pagesOpenDocument > pagesStock)
+            {
+                for (int i = 1; i <= pagesOpenDocument - pagesStock; i++)
+                {
+                    Сells["CO" + (104 + (30 * i))].Value = TechProcesNameToStr(techProcess005.TechProcessName);
+                    Сells["CO" + (104 + (30 * i))].HorizontalAlignment = HAlign.Center;
+                    Сells["BS" + (104 + (30 * i))].Value = techProces005Drawing.Number;
+                    Сells["BS" + (104 + (30 * i))].HorizontalAlignment = HAlign.Center;
+
+                    if (techProcess005Revision != null)
+                    {
+                        for (int j = 0; j < techProcess005Revision.Count(); j++)
+                        {
+                            if (j == 0)
+                            {
+                                Сells["AW" + (100 + (30 * i))].HorizontalAlignment = HAlign.Center;
+                                Сells["AW" + (100 + (30 * i))].Value = techProcess005Revision[0].RivisionName;
+                                Сells["BN" + (100 + (30 * i))].HorizontalAlignment = HAlign.Left;
+                                Сells["BN" + (100 + (30 * i))].Value = usersDTO.Name;
+                                Сells["BV" + (100 + (30 * i))].HorizontalAlignment = HAlign.Left;
+                                Сells["BV" + (100 + (30 * i))].Font.Size = 6;
+                                Сells["BV" + (100 + (30 * i))].Value = techProcess005Revision[0].CreateDate.Value.ToShortDateString();
+                                continue;
+                            }
+                            if (j == 1)
+                            {
+                                Сells["CB" + (98 + (30 * i))].HorizontalAlignment = HAlign.Center;
+                                Сells["CB" + (98 + (30 * i))].Value = techProcess005Revision[1].RivisionName;
+                                Сells["CS" + (98 + (30 * i))].HorizontalAlignment = HAlign.Left;
+                                Сells["CS" + (98 + (30 * i))].Value = usersDTO.Name;
+                                Сells["DA" + (98 + (30 * i))].HorizontalAlignment = HAlign.Left;
+                                Сells["DA" + (98 + (30 * i))].Font.Size = 6;
+                                Сells["DA" + (98 + (30 * i))].Value = techProcess005Revision[1].CreateDate.Value.ToShortDateString();
+                                continue;
+                            }
+                            if (j == 2)
+                            {
+
+                                Сells["CB" + (99 + (30 * i))].HorizontalAlignment = HAlign.Center;
+                                Сells["CB" + (99 + (30 * i))].Value = techProcess005Revision[2].RivisionName;
+                                Сells["CS" + (99 + (30 * i))].HorizontalAlignment = HAlign.Left;
+                                Сells["CS" + (99 + (30 * i))].Value = usersDTO.Name;
+                                Сells["DA" + (99 + (30 * i))].Font.Size = 6;
+                                Сells["DA" + (99 + (30 * i))].HorizontalAlignment = HAlign.Left;
+                                Сells["DA" + (99 + (30 * i))].Value = techProcess005Revision[2].CreateDate.Value.ToShortDateString();
+                                continue;
+                            }
+                            if (j == 3)
+                            {
+
+                                Сells["CB" + (100 + (30 * i))].HorizontalAlignment = HAlign.Center;
+                                Сells["CB" + (100 + (30 * i))].Value = techProcess005Revision[3].RivisionName;
+                                Сells["CS" + (100 + (30 * i))].HorizontalAlignment = HAlign.Left;
+                                Сells["CS" + (100 + (30 * i))].Value = usersDTO.Name;
+                                Сells["DA" + (100 + (30 * i))].Font.Size = 6;
+                                Сells["DA" + (100 + (30 * i))].HorizontalAlignment = HAlign.Left;
+                                Сells["DA" + (100 + (30 * i))].Value = techProcess005Revision[3].CreateDate.Value.ToShortDateString();
+                                continue;
+                            }
+                            if (j == 4)
+                                break;
+
+                        }
+                    }
+                }
+            }
+
+            try
+            {
+                workbook.SaveAs(techProcess005.TechProcessPath, FileFormat.XLS97);
+            }
+
+            catch (System.IO.IOException)
+            {
+                MessageBox.Show("Документ уже открыто!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return "";
+            }
+            catch (System.ComponentModel.Win32Exception)
+            {
+                MessageBox.Show("На рабочей станции отсутсутствует пакет программ Microsoft Oficce!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return "";
+            }
+
+            return techProcess005.TechProcessPath;
+
+
+        }
 
         public IEnumerable<DrawingsDTO> GetChildDrawings(DrawingsDTO drawingsDTO)
         {

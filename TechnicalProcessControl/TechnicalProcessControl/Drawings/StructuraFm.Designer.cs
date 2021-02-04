@@ -962,8 +962,6 @@
             this.drawingScanCol.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("drawingScanCol.ImageOptions.Image")));
             this.drawingScanCol.MinWidth = 30;
             this.drawingScanCol.Name = "drawingScanCol";
-            this.drawingScanCol.OptionsColumn.AllowEdit = false;
-            this.drawingScanCol.OptionsColumn.AllowFocus = false;
             this.drawingScanCol.UnboundType = DevExpress.XtraTreeList.Data.UnboundColumnType.Object;
             this.drawingScanCol.Visible = true;
             this.drawingScanCol.VisibleIndex = 14;
@@ -972,6 +970,7 @@
             // repositoryItemPictureEdit1
             // 
             this.repositoryItemPictureEdit1.Name = "repositoryItemPictureEdit1";
+            this.repositoryItemPictureEdit1.DoubleClick += new System.EventHandler(this.repositoryItemPictureEdit1_DoubleClick);
             // 
             // techProcessBand
             // 
@@ -3805,6 +3804,8 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn LaborIntensityGeneralCol;
         private DevExpress.XtraTreeList.Columns.TreeListColumn LaborIntensityGeneralTotalCol;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup visibleColumnRibbon;
+        private DevExpress.XtraBars.BarButtonItem showNodeStatBtn;
+        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit partNameRepository;
         private DevExpress.XtraTreeList.Columns.TreeListBand treeListBand1;
         private DevExpress.XtraTreeList.Columns.TreeListBand treeListBand12;
         private DevExpress.XtraTreeList.Columns.TreeListBand treeListBand2;
@@ -3889,7 +3890,5 @@
         private DevExpress.XtraTreeList.Columns.TreeListBand treeListBand14;
         private DevExpress.XtraTreeList.Columns.TreeListBand treeListBand17;
         private DevExpress.XtraTreeList.Columns.TreeListBand treeListBand16;
-        private DevExpress.XtraBars.BarButtonItem showNodeStatBtn;
-        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit partNameRepository;
     }
 }

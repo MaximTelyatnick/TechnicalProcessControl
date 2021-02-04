@@ -832,6 +832,87 @@ namespace TechnicalProcessControl.BLL.Services
 
         #region TechProcess003 method's
 
+        //получить актуальный техпроцесс 003 по айди чертежа  с подробной информацией (материалы и трудоёмкость)
+        public TechProcess003DTO GetTechProcess003ByDrawingId(int drawingId)
+        {
+            var result = (from tcp in techProcess003.GetAll()
+                          join rt in revisionsTechProcess003.GetAll() on tcp.RevisionId equals rt.Id into rtt
+                          from rt in rtt.DefaultIfEmpty()
+                          join dr in drawing.GetAll() on tcp.DrawingId equals dr.Id into drr
+                          from dr in drr.DefaultIfEmpty()
+                          join rd in revisions.GetAll() on dr.RevisionId equals rd.Id into rdd
+                          from rd in rdd.DefaultIfEmpty()
+                          join usr in users.GetAll() on tcp.UserId equals usr.Id into usrr
+                          from usr in usrr.DefaultIfEmpty()
+                          where tcp.DrawingId == drawingId && tcp.ParentId == null
+                          select new TechProcess003DTO
+                          {
+                              Id = tcp.Id,
+                              CreateDate = tcp.CreateDate,
+                              ParentId = tcp.ParentId,
+                              RevisionId = tcp.RevisionId,
+                              TH = tcp.TH,
+                              W = tcp.W,
+                              W2 = tcp.W2,
+                              L = tcp.L,
+                              Weight = tcp.Weight,
+                              TechProcessName = tcp.TechProcessName,
+                              DrawingId = tcp.DrawingId,
+                              DrawingNumber = dr.Number,
+                              TechProcessFullName = tcp.TechProcessFullName,
+                              TechProcessPath = tcp.TechProcessPath,
+                              DrawingNumberWithRevision = rd.Symbol == null ? dr.Number : (dr.Number + "_" + rd.Symbol),
+                              RivisionName = rt.Symbol,
+                              TypeId = tcp.TypeId,
+                              UserId = usr.Id,
+                              UserName = usr.Name,
+                              OldTechProcess = tcp.OldTechProcess,
+                              RevisionDocumentName = tcp.RevisionDocumentName,
+                              CopyDrawingId = tcp.CopyDrawingId,
+                              DilKapci2K = tcp.DilKapci2K,
+                              DilKapci880 = tcp.DilKapci880,
+                              DilKapci881 = tcp.DilKapci881,
+                              EnamelKapci6030 = tcp.EnamelKapci6030,
+                              EnamelKapci641 = tcp.EnamelKapci641,
+                              EnamelKapci670 = tcp.EnamelKapci670,
+                              GasAr = tcp.GasAr,
+                              GasArCO2 = tcp.GasArCO2,
+                              GasCO3 = tcp.GasCO3,
+                              GasN2 = tcp.GasN2,
+                              GasNature = tcp.GasNature,
+                              GasO2 = tcp.GasO2,
+                              HardKapci126 = tcp.HardKapci126,
+                              HardKapci2KMS651 = tcp.HardKapci2KMS651,
+                              HardKapci881 = tcp.HardKapci881,
+                              HardKapciHs6055 = tcp.HardKapciHs6055,
+                              HardKapciPEPutty = tcp.HardKapciPEPutty,
+                              LaborIntensity001 = tcp.LaborIntensity001,
+                              LaborIntensity002 = tcp.LaborIntensity002,
+                              LaborIntensity003 = tcp.LaborIntensity003,
+                              LaborIntensity004 = tcp.LaborIntensity004,
+                              LaborIntensity005 = tcp.LaborIntensity005,
+                              PrimerKapci125 = tcp.PrimerKapci125,
+                              PrimerKapci633 = tcp.PrimerKapci633,
+                              PuttyKapci350 = tcp.PuttyKapci350,
+                              UniversalSikaflex527 = tcp.UniversalSikaflex527,
+                              Welding10 = tcp.Welding10,
+                              Welding12 = tcp.Welding12,
+                              Welding16 = tcp.Welding16,
+                              Welding20 = tcp.Welding20,
+                              Welding20Steel = tcp.Welding20Steel,
+                              WeldingElektrod = tcp.WeldingElektrod
+                          }
+                          ).ToList();
+
+            return result.FirstOrDefault();
+        }
+
+        //проверить наличие техпроцесса 003 по его номеру ok
+        public bool CheckTechProcess003(long techProcesName)
+        {
+            return techProcess003.GetAll().Any(chk => chk.TechProcessName == techProcesName);
+        }
+
         //получить все техпроцессы 003 по айди техпроцесса с краткой информацией ok
         public IEnumerable<TechProcess003DTO> GetAllTechProcess003Simple()
         {
@@ -889,10 +970,107 @@ namespace TechnicalProcessControl.BLL.Services
             return result;
         }
 
+        //получить номер техпроцесса 003 которого еще не существует в базе (максимальный + 1) ok
+        public long GetLastTechProcess003()
+        {
+            long maxValue = techProcess003.GetAll().Where(srt => srt.TechProcessName < 400000000).Select(bdsm => bdsm.TechProcessName).Max();
+            ++maxValue;
+            return maxValue;
+        }
+
 
         #endregion
 
         #region TechProcess004 method's
+
+        //получить актуальный техпроцесс 002 по айди чертежа  с подробной информацией (материалы и трудоёмкость)
+        public TechProcess004DTO GetTechProcess004ByDrawingId(int drawingId)
+        {
+            var result = (from tcp in techProcess004.GetAll()
+                          join rt in revisionsTechProcess004.GetAll() on tcp.RevisionId equals rt.Id into rtt
+                          from rt in rtt.DefaultIfEmpty()
+                          join dr in drawing.GetAll() on tcp.DrawingId equals dr.Id into drr
+                          from dr in drr.DefaultIfEmpty()
+                          join rd in revisions.GetAll() on dr.RevisionId equals rd.Id into rdd
+                          from rd in rdd.DefaultIfEmpty()
+                          join usr in users.GetAll() on tcp.UserId equals usr.Id into usrr
+                          from usr in usrr.DefaultIfEmpty()
+                          where tcp.DrawingId == drawingId && tcp.ParentId == null
+                          select new TechProcess004DTO
+                          {
+                              Id = tcp.Id,
+                              CreateDate = tcp.CreateDate,
+                              ParentId = tcp.ParentId,
+                              RevisionId = tcp.RevisionId,
+                              TH = tcp.TH,
+                              W = tcp.W,
+                              W2 = tcp.W2,
+                              L = tcp.L,
+                              Weight = tcp.Weight,
+                              TechProcessName = tcp.TechProcessName,
+                              DrawingId = tcp.DrawingId,
+                              DrawingNumber = dr.Number,
+                              TechProcessFullName = tcp.TechProcessFullName,
+                              TechProcessPath = tcp.TechProcessPath,
+                              DrawingNumberWithRevision = rd.Symbol == null ? dr.Number : (dr.Number + "_" + rd.Symbol),
+                              RivisionName = rt.Symbol,
+                              TypeId = tcp.TypeId,
+                              UserId = usr.Id,
+                              UserName = usr.Name,
+                              OldTechProcess = tcp.OldTechProcess,
+                              RevisionDocumentName = tcp.RevisionDocumentName,
+                              CopyDrawingId = tcp.CopyDrawingId,
+                              DilKapci2K = tcp.DilKapci2K,
+                              DilKapci880 = tcp.DilKapci880,
+                              DilKapci881 = tcp.DilKapci881,
+                              EnamelKapci6030 = tcp.EnamelKapci6030,
+                              EnamelKapci641 = tcp.EnamelKapci641,
+                              EnamelKapci670 = tcp.EnamelKapci670,
+                              GasAr = tcp.GasAr,
+                              GasArCO2 = tcp.GasArCO2,
+                              GasCO3 = tcp.GasCO3,
+                              GasN2 = tcp.GasN2,
+                              GasNature = tcp.GasNature,
+                              GasO2 = tcp.GasO2,
+                              HardKapci126 = tcp.HardKapci126,
+                              HardKapci2KMS651 = tcp.HardKapci2KMS651,
+                              HardKapci881 = tcp.HardKapci881,
+                              HardKapciHs6055 = tcp.HardKapciHs6055,
+                              HardKapciPEPutty = tcp.HardKapciPEPutty,
+                              LaborIntensity001 = tcp.LaborIntensity001,
+                              LaborIntensity002 = tcp.LaborIntensity002,
+                              LaborIntensity003 = tcp.LaborIntensity003,
+                              LaborIntensity004 = tcp.LaborIntensity004,
+                              LaborIntensity005 = tcp.LaborIntensity005,
+                              PrimerKapci125 = tcp.PrimerKapci125,
+                              PrimerKapci633 = tcp.PrimerKapci633,
+                              PuttyKapci350 = tcp.PuttyKapci350,
+                              UniversalSikaflex527 = tcp.UniversalSikaflex527,
+                              Welding10 = tcp.Welding10,
+                              Welding12 = tcp.Welding12,
+                              Welding16 = tcp.Welding16,
+                              Welding20 = tcp.Welding20,
+                              Welding20Steel = tcp.Welding20Steel,
+                              WeldingElektrod = tcp.WeldingElektrod
+                          }
+                          ).ToList();
+
+            return result.FirstOrDefault();
+        }
+
+        //получить номер техпроцесса 004 которого еще не существует в базе (максимальный + 1) ok
+        public long GetLastTechProcess004()
+        {
+            long maxValue = techProcess004.GetAll().Where(srt => srt.TechProcessName < 500000000).Select(bdsm => bdsm.TechProcessName).Max();
+            ++maxValue;
+            return maxValue;
+        }
+
+        //проверить наличие техпроцесса 004 по его номеру ok
+        public bool CheckTechProcess004(long techProcesName)
+        {
+            return techProcess004.GetAll().Any(chk => chk.TechProcessName == techProcesName);
+        }
 
         //получить все техпроцессы 004 по айди техпроцесса с краткой информацией ok
         public IEnumerable<TechProcess004DTO> GetAllTechProcess004Simple()
@@ -955,6 +1133,95 @@ namespace TechnicalProcessControl.BLL.Services
 
         #region TechProcess005 method's
 
+        //получить актуальный техпроцесс 005 по айди чертежа  с подробной информацией (материалы и трудоёмкость)
+        public TechProcess005DTO GetTechProcess005ByDrawingId(int drawingId)
+        {
+            var result = (from tcp in techProcess005.GetAll()
+                          join rt in revisionsTechProcess005.GetAll() on tcp.RevisionId equals rt.Id into rtt
+                          from rt in rtt.DefaultIfEmpty()
+                          join dr in drawing.GetAll() on tcp.DrawingId equals dr.Id into drr
+                          from dr in drr.DefaultIfEmpty()
+                          join rd in revisions.GetAll() on dr.RevisionId equals rd.Id into rdd
+                          from rd in rdd.DefaultIfEmpty()
+                          join usr in users.GetAll() on tcp.UserId equals usr.Id into usrr
+                          from usr in usrr.DefaultIfEmpty()
+                          where tcp.DrawingId == drawingId && tcp.ParentId == null
+                          select new TechProcess005DTO
+                          {
+                              Id = tcp.Id,
+                              CreateDate = tcp.CreateDate,
+                              ParentId = tcp.ParentId,
+                              RevisionId = tcp.RevisionId,
+                              TH = tcp.TH,
+                              W = tcp.W,
+                              W2 = tcp.W2,
+                              L = tcp.L,
+                              Weight = tcp.Weight,
+                              TechProcessName = tcp.TechProcessName,
+                              DrawingId = tcp.DrawingId,
+                              DrawingNumber = dr.Number,
+                              TechProcessFullName = tcp.TechProcessFullName,
+                              TechProcessPath = tcp.TechProcessPath,
+                              DrawingNumberWithRevision = rd.Symbol == null ? dr.Number : (dr.Number + "_" + rd.Symbol),
+                              RivisionName = rt.Symbol,
+                              TypeId = tcp.TypeId,
+                              UserId = usr.Id,
+                              UserName = usr.Name,
+                              OldTechProcess = tcp.OldTechProcess,
+                              RevisionDocumentName = tcp.RevisionDocumentName,
+                              CopyDrawingId = tcp.CopyDrawingId,
+                              DilKapci2K = tcp.DilKapci2K,
+                              DilKapci880 = tcp.DilKapci880,
+                              DilKapci881 = tcp.DilKapci881,
+                              EnamelKapci6030 = tcp.EnamelKapci6030,
+                              EnamelKapci641 = tcp.EnamelKapci641,
+                              EnamelKapci670 = tcp.EnamelKapci670,
+                              GasAr = tcp.GasAr,
+                              GasArCO2 = tcp.GasArCO2,
+                              GasCO3 = tcp.GasCO3,
+                              GasN2 = tcp.GasN2,
+                              GasNature = tcp.GasNature,
+                              GasO2 = tcp.GasO2,
+                              HardKapci126 = tcp.HardKapci126,
+                              HardKapci2KMS651 = tcp.HardKapci2KMS651,
+                              HardKapci881 = tcp.HardKapci881,
+                              HardKapciHs6055 = tcp.HardKapciHs6055,
+                              HardKapciPEPutty = tcp.HardKapciPEPutty,
+                              LaborIntensity001 = tcp.LaborIntensity001,
+                              LaborIntensity002 = tcp.LaborIntensity002,
+                              LaborIntensity003 = tcp.LaborIntensity003,
+                              LaborIntensity004 = tcp.LaborIntensity004,
+                              LaborIntensity005 = tcp.LaborIntensity005,
+                              PrimerKapci125 = tcp.PrimerKapci125,
+                              PrimerKapci633 = tcp.PrimerKapci633,
+                              PuttyKapci350 = tcp.PuttyKapci350,
+                              UniversalSikaflex527 = tcp.UniversalSikaflex527,
+                              Welding10 = tcp.Welding10,
+                              Welding12 = tcp.Welding12,
+                              Welding16 = tcp.Welding16,
+                              Welding20 = tcp.Welding20,
+                              Welding20Steel = tcp.Welding20Steel,
+                              WeldingElektrod = tcp.WeldingElektrod
+                          }
+                          ).ToList();
+
+            return result.FirstOrDefault();
+        }
+
+        //получить номер техпроцесса 005 которого еще не существует в базе (максимальный + 1) ok
+        public long GetLastTechProcess005()
+        {
+            long maxValue = techProcess005.GetAll().Where(srt => srt.TechProcessName < 600000000).Select(bdsm => bdsm.TechProcessName).Max();
+            ++maxValue;
+            return maxValue;
+        }
+
+        //проверить наличие техпроцесса 005 по его номеру ok
+        public bool CheckTechProcess005(long techProcesName)
+        {
+            return techProcess005.GetAll().Any(chk => chk.TechProcessName == techProcesName);
+        }
+
         //получить все техпроцессы 005 по айди техпроцесса с краткой информацией ok
         public IEnumerable<TechProcess005DTO> GetAllTechProcess005Simple()
         {
@@ -1010,6 +1277,81 @@ namespace TechnicalProcessControl.BLL.Services
                           ).ToList();
 
             return result;
+        }
+
+        // получить ревизии техпроцесса 005 по Id родителя ok
+        public IEnumerable<TechProcess005DTO> GetAllTechProcess005Revision(int techProcessId)
+        {
+            List<TechProcess005DTO> allRevisiontechProcess005 = new List<TechProcess005DTO>();
+
+            var techProcess005 = GetTechProcess005RevisionByIdFull(techProcessId);
+            if (techProcess005 == null)
+            {
+                return allRevisiontechProcess005;
+            }
+            else
+            {
+                allRevisiontechProcess005.Add(techProcess005);
+                allRevisiontechProcess005 = TechProcess005Revision(techProcess005, allRevisiontechProcess005);
+                return allRevisiontechProcess005;
+            }
+        }
+
+        public List<TechProcess005DTO> TechProcess005Revision(TechProcess005DTO techProcess005, List<TechProcess005DTO> alltechProcessRevision)
+        {
+            var techProcessRevision005 = GetTechProcess005RevisionByIdFull(((TechProcess002DTO)techProcess002).Id);
+            if (techProcessRevision005 == null)
+            {
+                return alltechProcessRevision;
+            }
+            else
+            {
+                alltechProcessRevision.Add(techProcessRevision005);
+                alltechProcessRevision = TechProcess005Revision(techProcessRevision005, alltechProcessRevision);
+                return alltechProcessRevision;
+            }
+        }
+
+        //получить ревизию техпроцесса 005 по айди техпроцесса с подробной информацией ok
+        public TechProcess005DTO GetTechProcess005RevisionByIdFull(int techProcess005Id)
+        {
+            var result = (from tcp in techProcess005.GetAll()
+                          join rt in revisionsTechProcess005.GetAll() on tcp.RevisionId equals rt.Id into rtt
+                          from rt in rtt.DefaultIfEmpty()
+                          join dr in drawing.GetAll() on tcp.DrawingId equals dr.Id into drr
+                          from dr in drr.DefaultIfEmpty()
+                          join rd in revisions.GetAll() on dr.RevisionId equals rd.Id into rdd
+                          from rd in rdd.DefaultIfEmpty()
+                          join usr in users.GetAll() on tcp.UserId equals usr.Id into usrr
+                          from usr in usrr.DefaultIfEmpty()
+                          where tcp.ParentId == techProcess005Id
+                          select new TechProcess005DTO
+                          {
+                              Id = tcp.Id,
+                              CreateDate = tcp.CreateDate,
+                              ParentId = tcp.ParentId,
+                              RevisionId = tcp.RevisionId,
+                              TH = tcp.TH,
+                              W = tcp.W,
+                              W2 = tcp.W2,
+                              L = tcp.L,
+                              Weight = tcp.Weight,
+                              TechProcessName = tcp.TechProcessName,
+                              DrawingId = tcp.DrawingId,
+                              DrawingNumber = dr.Number,
+                              TechProcessFullName = tcp.TechProcessFullName,
+                              TechProcessPath = tcp.TechProcessPath,
+                              DrawingNumberWithRevision = rd.Symbol == null ? dr.Number : (dr.Number + "_" + rd.Symbol),
+                              RivisionName = rt.Symbol,
+                              TypeId = tcp.TypeId,
+                              OldTechProcess = tcp.OldTechProcess,
+                              RevisionDocumentName = tcp.RevisionDocumentName,
+                              UserId = tcp.UserId,
+                              UserName = usr.Name
+                          }
+                          ).ToList();
+
+            return result.FirstOrDefault();
         }
 
 

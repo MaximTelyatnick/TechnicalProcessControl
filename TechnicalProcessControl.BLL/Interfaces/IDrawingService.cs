@@ -32,6 +32,7 @@ namespace TechnicalProcessControl.BLL.Interfaces
         IEnumerable<DrawingScanDTO> GetDrawingScanWithaoutScan();
         IEnumerable<DrawingScanDTO> GetDrawingScanWithDrawingNumber();
         DrawingScanDTO GetDrawingScanById(int scanId);
+        IEnumerable<DrawingScanDTO> GetDrawingScanByDrawingId(int drawingId);
 
         //IEnumerable<DetailsDTO> GetDetails();
 
@@ -111,10 +112,27 @@ namespace TechnicalProcessControl.BLL.Interfaces
         //IEnumerable<TechProcess003DTO> GetAllTechProcess003();
         //IEnumerable<TechProcess003DTO> GetAllTechProcessActual003();
 
-
+        //получить техпроцесс 004 по айди техпроцесса с подробной информацией
+        TechProcess004DTO GetTechProcess004ByIdFull(int techProcess004Id);
         IEnumerable<TechProcess004DTO> GetAllTechProcess004();
         IEnumerable<TechProcess004DTO> GetAllTechProcessActual004();
+        //получить техпроцесс 004 по айди техпроцесса с краткой информацией
+        TechProcess004DTO GetTechProcess004Simple(int techProcess004Id);
+        // получить  ревизии техпроцесса 004 + актуальный по Id 
+        IEnumerable<TechProcess004DTO> GetAllTechProcess004RevisionWithActualTechprocess(int techProcessId);
+        TechProcess004DTO GetTechProcess004RevisionByIdFull(int techProcess004Id);
+        List<TechProcess004DTO> TechProcess004Revision(TechProcess004DTO techProcess004, List<TechProcess004DTO> alltechProcessRevision);
 
+
+
+        //получить техпроцесс 005 по айди техпроцесса с подробной информацией
+        TechProcess005DTO GetTechProcess005ByIdFull(int techProcess005Id);
+        //получить техпроцесс 004 по айди техпроцесса с краткой информацией
+        TechProcess005DTO GetTechProcess005Simple(int techProcess005Id);
+        // получить  ревизии техпроцесса 005 + актуальный по Id 
+        IEnumerable<TechProcess005DTO> GetAllTechProcess005RevisionWithActualTechprocess(int techProcessId);
+        TechProcess005DTO GetTechProcess005RevisionByIdFull(int techProcess005Id);
+        List<TechProcess005DTO> TechProcess005Revision(TechProcess005DTO techProcess005, List<TechProcess005DTO> alltechProcessRevision);
 
         IEnumerable<TechProcess005DTO> GetAllTechProcess005();
         IEnumerable<TechProcess005DTO> GetAllTechProcessActual005();

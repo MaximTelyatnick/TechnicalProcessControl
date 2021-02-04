@@ -1161,5 +1161,25 @@ namespace TechnicalProcessControl
                 if (Convert.ToDouble(e.Value) == 0D)
                     e.DisplayText = string.Empty;
         }
+
+        private void repositoryItemPictureEdit1_DoubleClick(object sender, EventArgs e)
+        {
+            //DrawingScanDTO drawingScanDTO = (DrawingScanDTO)drawingScanEdit.GetSelectedDataRow();
+            if (((DrawingsDTO)drawingsBS.Current).DrawingId != null)
+            {
+                var drawingScanDTO = drawingService.GetDrawingScanByDrawingId((int)((DrawingsDTO)drawingsBS.Current).DrawingId);
+
+                if (drawingScanDTO != null && drawingScanDTO.Count()>0)
+                {
+                    foreach (var item in drawingScanDTO)
+                    {
+                        string puth = Utils.HomePath + @"\Temp";
+                        System.IO.File.WriteAllBytes(puth + item.FileName, item.Scan);
+                        System.Diagnostics.Process.Start(puth + item.FileName);
+                    }
+                    
+                }
+            }
+        }
     }
 }

@@ -24,15 +24,15 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <MinimumRequiredVersion>1.0.0.19</MinimumRequiredVersion>
-    <ApplicationRevision>20</ApplicationRevision>
+    <MinimumRequiredVersion>1.0.0.21</MinimumRequiredVersion>
+    <ApplicationRevision>22</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -522,8 +522,14 @@
     <EmbeddedResource Include="TechnicalProcess\TechProcess003Fm.resx">
       <DependentUpon>TechProcess003Fm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TechnicalProcess\TechProcess004EditFm.resx">
+      <DependentUpon>TechProcess004EditFm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TechnicalProcess\TechProcess004Fm.resx">
       <DependentUpon>TechProcess004Fm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TechnicalProcess\TechProcess005EditFm.resx">
+      <DependentUpon>TechProcess005EditFm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TechnicalProcess\TechProcess005Fm.resx">
       <DependentUpon>TechProcess005Fm.cs</DependentUpon>
