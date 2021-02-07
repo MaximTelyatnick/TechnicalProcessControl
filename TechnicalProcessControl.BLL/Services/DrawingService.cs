@@ -1136,12 +1136,62 @@ namespace TechnicalProcessControl.BLL.Services
                               W2 = dr.W2,
                               MaterialName = mat.MaterialName,
                               DetailWeight = dr.DetailWeight,
+                               
                           }
                           ).ToList();
 
 
 
            return result.GroupBy(x => x.Id).Select(y => y.First()).ToList();
+        }
+
+        //по id структуры получить все структуры - наследники и прикрепленные к ним чертежи
+        public IEnumerable<DrawingsDTO> GetDrawingsParentByDrawingChildId(int drawingsId)
+        {
+            var result = (from drw in drawings.GetAll()
+                          join dr in drawing.GetAll() on drw.DrawingId equals dr.Id into drr
+                          from dr in drr.DefaultIfEmpty()
+                          join drwch in drawingsChild.GetAll() on drw.Id equals drwch.ParentId into drwchh
+                          from drwch in drwchh.DefaultIfEmpty()
+                          join drch in drawingChild.GetAll() on drwch.DrawingId equals drch.Id into drchh
+                          from drch in drchh.DefaultIfEmpty()
+                          join tp in type.GetAll() on dr.TypeId equals tp.Id into tpp
+                          from tp in tpp.DefaultIfEmpty()
+                          join det in details.GetAll() on dr.DetailId equals det.Id into dett
+                          from det in dett.DefaultIfEmpty()
+                          join mat in materials.GetAll() on dr.MaterialId equals mat.Id into matt
+                          from mat in matt.DefaultIfEmpty()
+                          join rev in revisions.GetAll() on dr.RevisionId equals rev.Id into revv
+                          from rev in revv.DefaultIfEmpty()
+                          where drw.ParentId == drawingsId && drw.StructuraDisable != true && dr.ParentId == null
+
+                          select new DrawingsDTO
+                          {
+                              Id = drw.Id == null ? -1 : drw.Id,
+                              DrawingId = dr.Id,
+                               CurrentLevelMenu = drw.CurrentLevelMenu,
+                               Quantity = drw.Quantity,
+                                QuantityL = drw.QuantityL,
+                                 QuantityR = drw.QuantityR,
+                                 StructuraDisable = drw.StructuraDisable,   
+                              Number = dr.Number,
+                              CreateDate = dr.CreateDate,
+                              DetailName = det.DetailName,
+                              RevisionName = rev.Symbol,
+                              TypeName = tp.TypeName,
+                              L = dr.L,
+                              TH = dr.TH,
+                              W = dr.W,
+                              W2 = dr.W2,
+                              MaterialName = mat.MaterialName,
+                              DetailWeight = dr.DetailWeight,
+
+                          }
+                          ).ToList();
+
+
+
+            return result.GroupBy(x => x.Id).Select(y => y.First()).ToList();
         }
 
 

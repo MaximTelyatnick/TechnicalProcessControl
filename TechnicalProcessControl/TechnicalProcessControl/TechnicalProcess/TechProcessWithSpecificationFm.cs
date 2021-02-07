@@ -39,8 +39,19 @@ namespace TechnicalProcessControl.TechnicalProcess
         public Worksheet worksheet;
         public Range copyRange;
 
+        public string parentDrawings = "";
 
-        public TechProcessWithSpecificationFm(TechProcesFileMode techProcessFileMode, UsersDTO usersDTO, DrawingDTO techProces003Drawing, List<DrawingDTO> techProcess003DrawingsParent, List<TechProcess003DTO> techProcess003Revision, TechProcess003DTO techProcess003, TechProcess003DTO techProcess003Old = null)
+        /*
+         * Тип работы с файлом
+         * Параметры пользователя
+         * Информация о чертеже
+         * Структуры которые входят в сборку
+         * Чертежи в которые входит чертёж
+         * Чертежи которые входят в сборку
+         * Ревизии техпроцесса
+         * Старый техпроцесс
+         * */
+        public TechProcessWithSpecificationFm(TechProcesFileMode techProcessFileMode, UsersDTO usersDTO, DrawingDTO techProces003Drawing, List<DrawingDTO> drawingParent, List<DrawingsDTO> techProcess003DrawingsChild, List<TechProcess003DTO> techProcess003Revision, TechProcess003DTO techProcess003, TechProcess003DTO techProcess003Old = null)
         {
             InitializeComponent();
 
@@ -55,17 +66,64 @@ namespace TechnicalProcessControl.TechnicalProcess
             switch (techProcessFileMode)
             {
                 case TechProcesFileMode.AddTechProcess:
-                    techProcessNumber = reportService.TechProcesNameToStr(techProcess003.TechProcessName);
-                    worksheet.Cells["CO6"].Value = techProcessNumber;
-                    worksheet.Cells["BB6"].Value = techProces003Drawing.Number;
-                    worksheet.Cells["AQ9"].Value = techProces003Drawing.DetailName;
-                    worksheet.Cells["BX27"].Value = "Created by " + usersDTO.Name + " " + techProcess003.CreateDate.Value.ToShortDateString();
-
-                    //worksheet.Cells["CS6"].Value = pageNumber;
+                    if (drawingParent != null)
+                        parentDrawings = String.Join(", ", drawingParent.Select(bdsm => bdsm.Number).ToArray());
 
 
+                    if (techProcess003DrawingsChild.Count() < 15)
+                    {
+                        techProcessNumber = reportService.TechProcesNameToStr(techProcess003.TechProcessName);
+                        worksheet.Cells["CO6"].Value = techProcessNumber;
+                        worksheet.Cells["CL40"].Value = techProcessNumber;
+                        worksheet.Cells["CM72"].Value = techProcessNumber;
+                        worksheet.Cells["CM104"].Value = techProcessNumber;
+                        worksheet.Cells["CM135"].Value = techProcessNumber;
+                        worksheet.Cells["CM166"].Value = techProcessNumber;
+
+                        worksheet.Cells["BB6"].Value = techProces003Drawing.Number;
+                        worksheet.Cells["AV40"].Value = techProces003Drawing.Number;
+                        worksheet.Cells["AZ72"].Value = techProces003Drawing.Number;
+                        worksheet.Cells["BQ104"].Value = techProces003Drawing.Number;
+                        worksheet.Cells["BQ135"].Value = techProces003Drawing.Number;
+                        worksheet.Cells["BQ166"].Value = techProces003Drawing.Number;
+
+                        worksheet.Cells["x79"].Value = techProces003Drawing.DetailWeight;
+
+                        worksheet.Cells["AQ9"].Value = techProces003Drawing.DetailName;
+                        worksheet.Cells["AJ24"].Value = techProces003Drawing.DetailName;
+                        worksheet.Cells["AN43"].Value = techProces003Drawing.DetailName;
+                        worksheet.Cells["AO75"].Value = techProces003Drawing.DetailName;
+
+                        worksheet.Cells["BX27"].Value = "Created by " + usersDTO.Name + " " + techProcess003.CreateDate.Value.ToShortDateString();
+                        worksheet.Cells["J40"].Value = usersDTO.Name;
+                        worksheet.Cells["AB40"].Value = techProcess003.CreateDate.Value.ToShortDateString();
+                        worksheet.Cells["K72"].Value = usersDTO.Name;
+                        worksheet.Cells["AC72"].Value = techProcess003.CreateDate.Value.ToShortDateString();
+
+                        worksheet.Cells["A38"].Value = parentDrawings;
+                        worksheet.Cells["B70"].Value = parentDrawings;
+
+                        int specCounter = 48;
+
+                        foreach (var item in techProcess003DrawingsChild)
+                        {
+                            string[] subs = item.CurrentLevelMenu.Split('.');
+
+                            worksheet.Cells["W" + (specCounter)].Value = subs.LastOrDefault();
+                            worksheet.Cells["AA" + (specCounter)].Value = item.DetailName;
+                            worksheet.Cells["BD" + (specCounter)].Value = item.NumberWithRevisionName;
+                            worksheet.Cells["CH" + (specCounter)].Value = "kg";
+                            worksheet.Cells["CL" + (specCounter)].Value = item.DetailWeight;
+                            worksheet.Cells["CQ" + (specCounter)].Value = item.Quantity+item.QuantityL+item.QuantityR;
+                            ++specCounter;
+
+                        }
+
+                        //worksheet.Cells["CS6"].Value = pageNumber;
 
 
+
+                    }
 
                     break;
                 case TechProcesFileMode.UpdateTechProcess:

@@ -11,6 +11,9 @@ namespace TechnicalProcessControl.BLL.Interfaces
     {
         bool FindDublicateDrawing(DrawingDTO drawingDTO);
 
+        //по id структуры получить все структуры - наследники и прикрепленные к ним чертежи
+        IEnumerable<DrawingsDTO> GetDrawingsParentByDrawingChildId(int drawingsId);
+
         IEnumerable<DrawingsDTO> GetAllDrawings();
         IEnumerable<DrawingsDTO> GetAllDrawingsWithoutMaterials();
         IEnumerable<DrawingsDTO> GetAllDrawingsWithLaborIntensity();

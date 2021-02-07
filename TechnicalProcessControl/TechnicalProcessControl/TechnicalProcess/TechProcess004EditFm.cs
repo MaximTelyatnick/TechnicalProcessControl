@@ -250,9 +250,10 @@ namespace TechnicalProcessControl.TechnicalProcess
                         /////////////////////        \  /
                         /////////////////////         \/
                         DrawingDTO drawingTechproces = drawingService.GetDrawingById((int)((TechProcess004DTO)Item).DrawingId);
+                        List<DrawingsDTO> structuraParent = drawingService.GetDrawingsParentByDrawingChildId(drawingsDTO.Id).ToList();
 
                         using (TechProcessWithSpecificationFm techProcessWithSpecificationFm = new TechProcessWithSpecificationFm(Utils.TechProcesFileMode.AddTechProcess,
-                            usersDTO, drawingTechproces, parentDrawings, null, null, null))
+                            usersDTO, drawingTechproces, parentDrawings,structuraParent, null, null, null))
                         {
                             if (techProcessWithSpecificationFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                             {
