@@ -111,17 +111,40 @@ namespace TechnicalProcessControl.TechnicalProcess
 
                             worksheet.Cells["W" + (specCounter)].Value = subs.LastOrDefault();
                             worksheet.Cells["AA" + (specCounter)].Value = item.DetailName;
-                            worksheet.Cells["BD" + (specCounter)].Value = item.NumberWithRevisionName;
+                            worksheet.Cells["BD" + (specCounter)].Value = item.Number;
                             worksheet.Cells["CH" + (specCounter)].Value = "kg";
                             worksheet.Cells["CL" + (specCounter)].Value = item.DetailWeight;
                             worksheet.Cells["CQ" + (specCounter)].Value = item.Quantity+item.QuantityL+item.QuantityR;
                             ++specCounter;
 
                         }
+                    }
+                    else
+                    {
+                        int specCounter = 48;
+                        int rowCounter = 0;
 
-                        //worksheet.Cells["CS6"].Value = pageNumber;
+                        foreach (var item in techProcess003DrawingsChild)
+                        {
+                            
+                            string[] subs = item.CurrentLevelMenu.Split('.');
 
+                            worksheet.Cells["W" + (specCounter)].Value = subs.LastOrDefault();
+                            worksheet.Cells["AA" + (specCounter)].Value = item.DetailName;
+                            worksheet.Cells["BD" + (specCounter)].Value = item.Number;
+                            worksheet.Cells["CH" + (specCounter)].Value = "kg";
+                            worksheet.Cells["CL" + (specCounter)].Value = item.DetailWeight;
+                            worksheet.Cells["CQ" + (specCounter)].Value = item.Quantity + item.QuantityL + item.QuantityR;
+                            ++specCounter;
+                            ++rowCounter;
 
+                            if (rowCounter == 14)
+                            {
+                                rowCounter = 0;
+                                specCounter += 18;
+                                AddSpecSheet();
+                            }
+                        }
 
                     }
 
@@ -154,7 +177,7 @@ namespace TechnicalProcessControl.TechnicalProcess
             
         }
 
-        private void addSpecSheetBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void AddSpecSheet()
         {
             workbook.BeginUpdate();
             ++pageNumber;
@@ -168,10 +191,11 @@ namespace TechnicalProcessControl.TechnicalProcess
             //++lastRow;
             //worksheet.InsertCells(copyRange);
             worksheet.Rows.Insert(lastSpecificationRowRow, 32);
-            worksheet.AddPrintRange(worksheet.Range["A" + (lastSpecificationRowRow+1) + ":DF" + (lastSpecificationRowRow + 32)]);
-            worksheet.Range["A" + (lastSpecificationRowRow+1) + ":DF" + (lastSpecificationRowRow + 32)].CopyFrom(copyRange);
+            worksheet.AddPrintRange(worksheet.Range["A" + (lastSpecificationRowRow + 1) + ":DF" + (lastSpecificationRowRow + 32)]);
+            worksheet.Range["A" + (lastSpecificationRowRow + 1) + ":DF" + (lastSpecificationRowRow + 32)].CopyFrom(copyRange);
 
             worksheet.Cells["A" + (lastSpecificationRowRow)].RowHeight = 100.5;
+            //worksheet.Cells["A" + (lastSpecificationRowRow)].RowHeight = 90.5;
             worksheet.Cells["A" + (lastSpecificationRowRow + 1)].RowHeight = 87.5;
             worksheet.Cells["A" + (lastSpecificationRowRow + 2)].RowHeight = 62.5;
             worksheet.Cells["A" + (lastSpecificationRowRow + 3)].RowHeight = 62.5;
@@ -193,6 +217,7 @@ namespace TechnicalProcessControl.TechnicalProcess
             worksheet.Cells["A" + (lastSpecificationRowRow + 19)].RowHeight = 87.5;
             worksheet.Cells["A" + (lastSpecificationRowRow + 20)].RowHeight = 87.5;
             worksheet.Cells["A" + (lastSpecificationRowRow + 21)].RowHeight = 87.5;
+            worksheet.Cells["A" + (lastSpecificationRowRow + 22)].RowHeight = 87.5;
             worksheet.Cells["A" + (lastSpecificationRowRow + 23)].RowHeight = 87.5;
             worksheet.Cells["A" + (lastSpecificationRowRow + 24)].RowHeight = 87.5;
             worksheet.Cells["A" + (lastSpecificationRowRow + 25)].RowHeight = 87.5;
@@ -203,41 +228,25 @@ namespace TechnicalProcessControl.TechnicalProcess
             worksheet.Cells["A" + (lastSpecificationRowRow + 30)].RowHeight = 87.5;
             worksheet.Cells["A" + (lastSpecificationRowRow + 31)].RowHeight = 87.5;
 
+            for (int i = 16; i < 30; i++)
+            {
+                worksheet.Cells["W" + (lastSpecificationRowRow + i)].Value ="";
+                worksheet.Cells["AA" + (lastSpecificationRowRow + i)].Value = "";
+                worksheet.Cells["BD" + (lastSpecificationRowRow + i)].Value = "";
+                worksheet.Cells["CH" + (lastSpecificationRowRow + i)].Value = "";
+                worksheet.Cells["CL" + (lastSpecificationRowRow + i)].Value = "";
+                worksheet.Cells["CQ" + (lastSpecificationRowRow + i)].Value = "";
+            }
+            
 
-            //worksheet.Cells["A" + (lastRow + 2)].RowHeight = 60.28;
-            //worksheet.Cells["A" + (lastRow + 3)].RowHeight = 60.28;
-            //worksheet.Cells["A" + (lastRow + 4)].RowHeight = 60.28;
-            //worksheet.Cells["A" + (lastRow + 5)].RowHeight = 60.28;
-            //worksheet.Cells["A" + (lastRow + 6)].RowHeight = 60.28;
-            //worksheet.Cells["A" + (lastRow + 7)].RowHeight = 60.28;
-            //worksheet.Cells["A" + (lastRow + 8)].RowHeight = 60.28;
-            //worksheet.Cells["A" + (lastRow + 9)].RowHeight = 60.28;
-            //worksheet.Cells["A" + (lastRow + 10)].RowHeight = 60.28;
-            //worksheet.Cells["A" + (lastRow + 11)].RowHeight = 60.28;
-            //worksheet.Cells["A" + (lastRow + 12)].RowHeight = 97.7;
-            //worksheet.Cells["A" + (lastRow + 13)].RowHeight = 97.7;
-
-            //worksheet.Cells["A" + (lastRow + 29)].RowHeight = 60.28;
-            //worksheet.Cells["A" + (lastRow + 14)].RowHeight = 97.7;
-            //worksheet.Cells["A" + (lastRow + 15)].RowHeight = 97.7;
-            //worksheet.Cells["A" + (lastRow + 16)].RowHeight = 97.7;
-            //worksheet.Cells["A" + (lastRow + 17)].RowHeight = 97.7;
-            //worksheet.Cells["A" + (lastRow + 18)].RowHeight = 97.7;
-            //worksheet.Cells["A" + (lastRow + 19)].RowHeight = 97.7;
-            //worksheet.Cells["A" + (lastRow + 20)].RowHeight = 97.7;
-            //worksheet.Cells["A" + (lastRow + 21)].RowHeight = 97.7;
-            //worksheet.Cells["A" + (lastRow + 22)].RowHeight = 97.7;
-            //worksheet.Cells["A" + (lastRow + 23)].RowHeight = 97.7;
-            //worksheet.Cells["A" + (lastRow + 24)].RowHeight = 97.7;
-            //worksheet.Cells["A" + (lastRow + 25)].RowHeight = 97.7;
-            //worksheet.Cells["A" + (lastRow + 26)].RowHeight = 97.7;
-            //worksheet.Cells["A" + (lastRow + 27)].RowHeight = 97.7;
-            //worksheet.Cells["A" + (lastRow + 28)].RowHeight = 97.7;
-            ////worksheet.Cells["A" + (lastRow + 29)].RowHeight = 97.7;
-            ////worksheet.Cells["A" + (lastRow + 30)].RowHeight = 97.7;
-            //worksheet.Cells["DA" + (lastRow + 5)].Value = pageNumber;
             UpdatePageCounter();
             workbook.EndUpdate();
+        }
+
+
+        private void addSpecSheetBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            AddSpecSheet();
         }
 
         public int GetLastSpecificationRow()
