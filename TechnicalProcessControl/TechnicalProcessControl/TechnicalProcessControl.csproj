@@ -24,8 +24,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <MinimumRequiredVersion>1.0.0.21</MinimumRequiredVersion>
-    <ApplicationRevision>22</ApplicationRevision>
+    <MinimumRequiredVersion>1.0.0.29</MinimumRequiredVersion>
+    <ApplicationRevision>30</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -39,7 +39,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>0</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -359,6 +359,12 @@
     <Compile Include="TechnicalProcess\TechProcess005Fm.Designer.cs">
       <DependentUpon>TechProcess005Fm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TechnicalProcess\TechProcessWithSpecification004Fm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TechnicalProcess\TechProcessWithSpecification004Fm.Designer.cs">
+      <DependentUpon>TechProcessWithSpecification004Fm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TechnicalProcess\TechProcessWithSpecificationFm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -534,6 +540,9 @@
     <EmbeddedResource Include="TechnicalProcess\TechProcess005Fm.resx">
       <DependentUpon>TechProcess005Fm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TechnicalProcess\TechProcessWithSpecification004Fm.resx">
+      <DependentUpon>TechProcessWithSpecification004Fm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TechnicalProcess\TechProcessWithSpecificationFm.resx">
       <DependentUpon>TechProcessWithSpecificationFm.cs</DependentUpon>
     </EmbeddedResource>
@@ -560,7 +569,7 @@
       <DependentUpon>ProductionFm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -602,7 +611,12 @@
     </Compile>
     <None Include="Templates\template001New.xls" />
     <None Include="Templates\template002.xls" />
-    <None Include="Templates\template003New.xls" />
+    <Content Include="Templates\template003New.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\template004New.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

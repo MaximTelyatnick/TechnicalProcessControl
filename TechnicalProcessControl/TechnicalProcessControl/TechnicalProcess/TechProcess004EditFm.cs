@@ -236,6 +236,7 @@ namespace TechnicalProcessControl.TechnicalProcess
                     Directory.CreateDirectory(@Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess004\");
                 }
 
+
                 string techProcessName = techProcessNumberEdit.Text;
 
                 if (!useExistingWorkflowCheck.Checked)
@@ -243,48 +244,27 @@ namespace TechnicalProcessControl.TechnicalProcess
                     try
                     {
 
-                        ((TechProcess004DTO)Item).TechProcessPath = @"C:\TechProcess\" + ((TechProcess004DTO)Item).TechProcessFullName + ".xls";
+                        ((TechProcess004DTO)Item).TechProcessPath = @Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess004\" + ((TechProcess004DTO)Item).TechProcessFullName + ".xls";
                         List<DrawingDTO> parentDrawings = drawingService.GetDrawingParentByDrawingChildId((int)((TechProcess004DTO)Item).DrawingId).ToList();
                         ///////////////////////////////////
                         ///// внимание               _||_
                         /////////////////////        \  /
                         /////////////////////         \/
                         DrawingDTO drawingTechproces = drawingService.GetDrawingById((int)((TechProcess004DTO)Item).DrawingId);
-                        List<DrawingsDTO> structuraParent = drawingService.GetDrawingsParentByDrawingChildId(drawingsDTO.Id).ToList();
+                        List<DrawingsDTO> structuraChilds = drawingService.GetDrawingsParentByDrawingChildId(drawingsDTO.Id).ToList();
 
-                        using (TechProcessWithSpecificationFm techProcessWithSpecificationFm = new TechProcessWithSpecificationFm(Utils.TechProcesFileMode.AddTechProcess,
-                            usersDTO, drawingTechproces, parentDrawings,structuraParent, null, null, null))
+                        using (TechProcessWithSpecification004Fm techProcessWithSpecificationFm = new TechProcessWithSpecification004Fm(Utils.TechProcesFileMode.AddTechProcess,
+                            usersDTO, drawingTechproces, parentDrawings, structuraChilds, null, ((TechProcess004DTO)Item), null))
                         {
                             if (techProcessWithSpecificationFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                             {
-                                //string return_Id = testFm.Return();
-                                //((TechProcess003DTO)Item).TechProcessFullName = return_Id;
+                                string returnModel = techProcessWithSpecificationFm.Return().TechProcessPath;
+                                //((TechProcess003DTO)Item).TechProcessFullName = returnModel;
+                                ((TechProcess004DTO)Item).Id = techProcessService.TechProcess004Create(((TechProcess004DTO)Item));
                             }
+
                         }
 
-                        //////string path = reportService.CreateTemplateTechProcess001(usersDTO, drawingsDTO, null, parentDrawings);
-
-                        //((TechProcess003DTO)Item).Id = drawingService.TechProcess003Create(((TechProcess003DTO)Item));
-                        //if (((TechProcess003DTO)Item).Id > 0)
-                        //{
-                        //    string path = reportService.CreateTemplateTechProcess003Exp(usersDTO, drawingTechproces, parentDrawings, null, ((TechProcess003DTO)Item), null);
-                        //    if (path != "")
-                        //    {
-                        //        using (TestFm testFm = new TestFm(path))
-                        //        {
-                        //            if (testFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                        //            {
-                        //                string return_Id = testFm.Return();
-                        //                ((TechProcess003DTO)Item).TechProcessFullName = return_Id;
-                        //            }
-                        //        }
-                        //    }
-                        //    else
-                        //    {
-                        //        throw new System.ArgumentException("Не получилось создать файл или сохранить в бд", "Ошибка");
-                        //    }
-
-                        //}
                         return true;
                     }
                     catch (Exception ex)
@@ -335,64 +315,62 @@ namespace TechnicalProcessControl.TechnicalProcess
             }
             else if (operation == Utils.Operation.Update)
             {
-                //try
-                //{
-                //    drawingService.TechProcess003Update(((TechProcess004DTO)Item));
-                //    return true;
-                //}
-                //catch (Exception ex)
-                //{
-                //    MessageBox.Show("При обновлении техпроцесса возникла ошибка. " + ex.Message, "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //    return false;
-                //}
+                try
+                {
+                    drawingService.TechProcess004Update(((TechProcess004DTO)Item));
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("При обновлении техпроцесса возникла ошибка. " + ex.Message, "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
 
 
             }
             else if (operation == Utils.Operation.Custom)
             {
-                //try
-                //{
-                //    ((TechProcess003DTO)Item).TechProcessPath = @"C:\TechProcess\" + ((TechProcess003DTO)Item).TechProcessFullName + ".xls";
-                //    List<DrawingDTO> parentDrawings = drawingService.GetDrawingParentByDrawingChildId((int)((TechProcess003DTO)Item).DrawingId).ToList();
-                //    DrawingDTO drawingTechproces = drawingService.GetDrawingById((int)((TechProcess003DTO)Item).DrawingId);
+                try
+                {
+                    ((TechProcess004DTO)Item).TechProcessPath = @Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess004\" + ((TechProcess004DTO)Item).TechProcessFullName + ".xls";
+                    List<DrawingDTO> parentDrawings = drawingService.GetDrawingParentByDrawingChildId((int)((TechProcess004DTO)Item).DrawingId).ToList();
 
+                    ///////////////////////////////////
+                    ///// внимание               _||_
+                    /////////////////////        \  /
+                    /////////////////////         \/
+                    DrawingDTO drawingTechproces = drawingService.GetDrawingById((int)((TechProcess004DTO)Item).DrawingId);
+                    List<DrawingsDTO> structuraChilds = drawingService.GetDrawingsParentByDrawingChildId(drawingsDTO.Id).ToList();
 
-                //    ((TechProcess003DTO)Item).Id = drawingService.TechProcess003Create(((TechProcess003DTO)Item));
+                    using (TechProcessWithSpecification004Fm techProcessWithSpecificationFm = new TechProcessWithSpecification004Fm(Utils.TechProcesFileMode.UpdateTechProcess,
+                            usersDTO, drawingTechproces, parentDrawings, structuraChilds, null, ((TechProcess004DTO)Item), techProcess004OldDTO))
+                    {
+                        if (techProcessWithSpecificationFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                        {
+                            string returnModel = techProcessWithSpecificationFm.Return().TechProcessPath;
+                            //((TechProcess003DTO)Item).TechProcessFullName = returnModel;
+                            ((TechProcess004DTO)Item).Id = techProcessService.TechProcess004Create(((TechProcess004DTO)Item));
+                        }
 
-                //    if (((TechProcess003DTO)Item).Id > 0)
-                //    {
-                //        techProcess003OldDTO.ParentId = ((TechProcess002DTO)Item).Id;
-                //        techProcess003OldDTO.TypeId = 2;
-                //        drawingService.TechProcess003Update(techProcess003OldDTO);
+                    }
 
-                //        List<TechProcess003DTO> techProcess003Revision = drawingService.GetAllTechProcess003Revision(((TechProcess003DTO)Item).Id).ToList();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    try
+                    {
+                        drawingService.TechProcess003Delete(((TechProcess004DTO)Item).Id);
+                        MessageBox.Show("При сохранении техпроцесса возникла ошибка. Выполнен откат изменений. " + ex.Message, "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("При сохранении техпроцесса возникла ошибка. Не удалось выполнить откат изменений. " + ex.Message, "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
 
-                //        string path = reportService.CreateTemplateTechProcess003Exp(usersDTO, drawingTechproces, parentDrawings, techProcess003Revision, ((TechProcess003DTO)Item), techProcess003OldDTO);
-
-                //        if (path != "")
-                //        {
-                //            using (TestFm testFm = new TestFm(path))
-                //            {
-                //                if (testFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                //                {
-                //                    string return_Id = testFm.Return();
-                //                    ((TechProcess002DTO)Item).TechProcessFullName = return_Id;
-                //                }
-                //            }
-                //        }
-                //        else
-                //        {
-                //            throw new System.ArgumentException("Не получилось создать файл или сохранить в бд", "Ошибка");
-                //        }
-                //    }
-
-                //    return true;
-                //}
-                //catch (Exception ex)
-                //{
-                //    MessageBox.Show("При сохранении техпроцесса возникла ошибка. " + ex.Message, "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //    return false;
-                //}
+                }
             }
             return false;
         }

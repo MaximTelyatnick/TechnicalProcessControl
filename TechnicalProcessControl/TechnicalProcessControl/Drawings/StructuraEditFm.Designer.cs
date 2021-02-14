@@ -886,8 +886,9 @@ namespace TechnicalProcessControl.Drawings
             // 
             // techProcess005Edit
             // 
-            this.techProcess005Edit.Location = new System.Drawing.Point(6, 221);
+            this.techProcess005Edit.Location = new System.Drawing.Point(6, 223);
             this.techProcess005Edit.Name = "techProcess005Edit";
+            this.techProcess005Edit.Properties.AllowMouseWheel = false;
             this.techProcess005Edit.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             editorButtonImageOptions5.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions5.Image")));
             serializableAppearanceObject17.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject17.Image")));
@@ -931,6 +932,7 @@ namespace TechnicalProcessControl.Drawings
             // 
             this.techProcess004Edit.Location = new System.Drawing.Point(5, 181);
             this.techProcess004Edit.Name = "techProcess004Edit";
+            this.techProcess004Edit.Properties.AllowMouseWheel = false;
             this.techProcess004Edit.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             editorButtonImageOptions11.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions11.Image")));
             serializableAppearanceObject41.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject41.Image")));
@@ -974,6 +976,7 @@ namespace TechnicalProcessControl.Drawings
             // 
             this.techProcess003Edit.Location = new System.Drawing.Point(5, 135);
             this.techProcess003Edit.Name = "techProcess003Edit";
+            this.techProcess003Edit.Properties.AllowMouseWheel = false;
             this.techProcess003Edit.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             editorButtonImageOptions17.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions17.Image")));
             serializableAppearanceObject65.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject65.Image")));
@@ -1017,6 +1020,7 @@ namespace TechnicalProcessControl.Drawings
             // 
             this.techProcess002Edit.Location = new System.Drawing.Point(6, 89);
             this.techProcess002Edit.Name = "techProcess002Edit";
+            this.techProcess002Edit.Properties.AllowMouseWheel = false;
             this.techProcess002Edit.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             editorButtonImageOptions23.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions23.Image")));
             serializableAppearanceObject89.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject89.Image")));
@@ -1060,6 +1064,7 @@ namespace TechnicalProcessControl.Drawings
             // 
             this.techProcess001Edit.Location = new System.Drawing.Point(6, 43);
             this.techProcess001Edit.Name = "techProcess001Edit";
+            this.techProcess001Edit.Properties.AllowMouseWheel = false;
             this.techProcess001Edit.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             editorButtonImageOptions29.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions29.Image")));
             serializableAppearanceObject113.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject113.Image")));
