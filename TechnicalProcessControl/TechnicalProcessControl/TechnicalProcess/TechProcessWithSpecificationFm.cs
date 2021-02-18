@@ -44,7 +44,7 @@ namespace TechnicalProcessControl.TechnicalProcess
 
         private Utils.Operation operation;
 
-        public int pageNumber;
+        public int pageNumber = 0;
 
         public IWorkbook workbook, workbookOld;
 
@@ -140,7 +140,7 @@ namespace TechnicalProcessControl.TechnicalProcess
  
         }
 
-
+        //создаём титульную странницу
         private void PrintHeader()
         {
             worksheet.Cells["CO6"].Value = techProcessNumber;
@@ -148,23 +148,36 @@ namespace TechnicalProcessControl.TechnicalProcess
             worksheet.Cells["AQ9"].Value = techProces003Drawing.DetailName;
             worksheet.Cells["AJ24"].Value = techProces003Drawing.DetailName;
             worksheet.Cells["BX27"].Value = "Created by " + usersDTO.Name + " " + techProcess003.CreateDate.Value.ToShortDateString();
-
+            ++pageNumber;
         }
 
+        //создаём странницы спецыфикации
         private void PrintSpecification()
         {
+            int specCounter = 48; //строка с которой начинается перечесление спецификации
+
+            worksheet.Cells["CL40"].Value = techProcessNumber;
+            worksheet.Cells["AV40"].Value = techProces003Drawing.Number;
+            worksheet.Cells["AN43"].Value = techProces003Drawing.DetailName;
+            worksheet.Cells["J40"].Value = usersDTO.Name;
+            worksheet.Cells["AB40"].Value = techProcess003.CreateDate.Value.ToShortDateString();
+            worksheet.Cells["A38"].Value = parentDrawings;
+            worksheet.Cells["CV38"].Value = (defaultSpecSheet + 1);
+
+            // сортируем по последнему номеру элемента структуры (если там не цыфра - выводим сообщение что не можем отфильтровать)
+            try
+            {
+                techProcess003DrawingsChild = techProcess003DrawingsChild.OrderBy(bdsm => Convert.ToInt32(bdsm.CurrentLevelMenu.Split('.').Last())).ToList();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("не получилось выполнить сортировку, в номере структры присутствуют буквы");
+            }
+            
+            //Если состоит не больше чем из 15, то 1 лист спецификации
             if (techProcess003DrawingsChild.Count() < 15)
             {
-                worksheet.Cells["CL40"].Value = techProcessNumber;
-                worksheet.Cells["AV40"].Value = techProces003Drawing.Number;
-                worksheet.Cells["AN43"].Value = techProces003Drawing.DetailName;
-                worksheet.Cells["J40"].Value = usersDTO.Name;
-                worksheet.Cells["AB40"].Value = techProcess003.CreateDate.Value.ToShortDateString();
-                worksheet.Cells["A38"].Value = parentDrawings;
-                worksheet.Cells["CV38"].Value = (defaultSpecSheet+1);
-
-                int specCounter = 48;
-
+                ++pageNumber;
                 foreach (var item in techProcess003DrawingsChild)
                 {
                     string[] subs = item.CurrentLevelMenu.Split('.');
@@ -172,7 +185,7 @@ namespace TechnicalProcessControl.TechnicalProcess
                     worksheet.Cells["W" + (specCounter)].Value = subs.LastOrDefault();
                     worksheet.Cells["AA" + (specCounter)].Value = item.DetailName;
                     worksheet.Cells["BD" + (specCounter)].Value = item.Number;
-                    worksheet.Cells["CH" + (specCounter)].Value = "kg";
+                    worksheet.Cells["CH" + (specCounter)].Value = "";
                     worksheet.Cells["CL" + (specCounter)].Value = item.DetailWeight;
                     worksheet.Cells["CQ" + (specCounter)].Value = item.Quantity + item.QuantityL + item.QuantityR;
                     ++specCounter;
@@ -181,77 +194,57 @@ namespace TechnicalProcessControl.TechnicalProcess
             }
             else
             {
-                worksheet.Cells["CL40"].Value = techProcessNumber;
-                worksheet.Cells["AV40"].Value = techProces003Drawing.Number;
-                worksheet.Cells["AN43"].Value = techProces003Drawing.DetailName;
-                worksheet.Cells["J40"].Value = usersDTO.Name;
-                worksheet.Cells["AB40"].Value = techProcess003.CreateDate.Value.ToShortDateString();
-                worksheet.Cells["A38"].Value = parentDrawings;
-                worksheet.Cells["CV38"].Value = (defaultSpecSheet + 1);
-
-                int specCounter = 48;
-                int rowCounter = 0;
+                int rowCounter = 0;//счетчик переполнения текущего листа спецыфикации
+                ++pageNumber;
 
                 foreach (var item in techProcess003DrawingsChild)
                 {
-
                     string[] subs = item.CurrentLevelMenu.Split('.');
 
                     worksheet.Cells["W" + (specCounter)].Value = subs.LastOrDefault();
                     worksheet.Cells["AA" + (specCounter)].Value = item.DetailName;
                     worksheet.Cells["BD" + (specCounter)].Value = item.Number;
-                    worksheet.Cells["CH" + (specCounter)].Value = "kg";
+                    worksheet.Cells["CH" + (specCounter)].Value = "";
                     worksheet.Cells["CL" + (specCounter)].Value = item.DetailWeight;
                     worksheet.Cells["CQ" + (specCounter)].Value = item.Quantity + item.QuantityL + item.QuantityR;
                     ++specCounter;
                     ++rowCounter;
 
-                    if (rowCounter == 14)
+                    if (rowCounter == 14)//на одном листе не больше 14 чертежей
                     {
                         rowCounter = 0;
-                        specCounter += 18;
-                        AddSpecSheet();
+                        specCounter += 18;//смещение при переходе не следующую странницу
+                        AddSpecSheet(); //добавляем еще один лист
                     }
                 }
             }
 
         }
 
+        //создаём пояснительную строку 
         private void PrintFormTittle()
         {
-            if (techProcess003DrawingsChild.Count() < 15)
-            {
-                worksheet.Cells["CM72"].Value = techProcessNumber;
-                worksheet.Cells["AZ72"].Value = techProces003Drawing.Number;
-                worksheet.Cells["X79"].Value = techProces003Drawing.DetailWeight;
-                worksheet.Cells["AO75"].Value = techProces003Drawing.DetailName;
-                worksheet.Cells["K72"].Value = usersDTO.Name;
-                worksheet.Cells["AC72"].Value = techProcess003.CreateDate.Value.ToShortDateString();
-                worksheet.Cells["B70"].Value = parentDrawings;
-                worksheet.Cells["DA70"].Value = (defaultSpecSheet + 2);
+            ++pageNumber;
+            worksheet.Cells["CM" + (72 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1))].Value = techProcessNumber;
+            worksheet.Cells["AZ" + (72 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1))].Value = techProces003Drawing.Number;
+            worksheet.Cells["X" + (79 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1))].Value = techProces003Drawing.DetailWeight;
+            worksheet.Cells["AO" + (75 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1))].Value = techProces003Drawing.DetailName;
+            worksheet.Cells["K" + (72 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1))].Value = usersDTO.Name;
+            worksheet.Cells["AC" + (72 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1))].Value = techProcess003.CreateDate.Value.ToShortDateString();
+            worksheet.Cells["B" + (70 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1))].Value = parentDrawings;
+            worksheet.Cells["DA" + (70 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1))].Value = (defaultSpecSheet + 2);
+            
 
-            }
-            else
-            {
-                worksheet.Cells["CM"+(72+(31 * (defaultSpecSheet-1))+(defaultSpecSheet-1))].Value = techProcessNumber;
-                worksheet.Cells["AZ"+(72 + (31 * (defaultSpecSheet-1)) + (defaultSpecSheet - 1))].Value = techProces003Drawing.Number;
-                worksheet.Cells["X"+(79 + (31 * (defaultSpecSheet-1)) + (defaultSpecSheet - 1))].Value = techProces003Drawing.DetailWeight;
-                worksheet.Cells["AO"+(75 + (31 * (defaultSpecSheet-1)) + (defaultSpecSheet - 1))].Value = techProces003Drawing.DetailName;
-                worksheet.Cells["K"+(72 + (31 * (defaultSpecSheet-1)) + (defaultSpecSheet - 1))].Value = usersDTO.Name;
-                worksheet.Cells["AC"+(72 + (31 * (defaultSpecSheet-1)) + (defaultSpecSheet - 1))].Value = techProcess003.CreateDate.Value.ToShortDateString();
-                worksheet.Cells["B"+(70 + (31 * (defaultSpecSheet-1)) + (defaultSpecSheet - 1))].Value = parentDrawings;
-                worksheet.Cells["DA"+(70 + (31 * (defaultSpecSheet-1)) + (defaultSpecSheet - 1))].Value = (defaultSpecSheet + 2);
-            }
 
         }
 
+        //по умолчанию в шаблоне 3 простые строки
         private void PrintSimpleSheet()
         {
             for (int i = 0; i < defaultSimpleSheett; i++)
             {
-
-                ++realSimpleSheet;
-                worksheet.Cells["CY"+(102+ (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * i))].Value = (defaultSpecSheet+2)+ realSimpleSheet;
+                ++pageNumber;
+                worksheet.Cells["CY"+(102+ (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * i))].Value = pageNumber;
                 worksheet.Cells["CM"+(104+(31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * i))].Value = techProcessNumber;
                 worksheet.Cells["BQ"+(104 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * i))].Value = techProces003Drawing.Number;
             }
@@ -350,11 +343,14 @@ namespace TechnicalProcessControl.TechnicalProcess
             //copyRangeFromOldFile.R
             for (int i = 0; i < copyRangeFromOldFile.Count; i++)
             {
+                if (i > 2)
+                    AddFormSpecificationInfo();
                 //worksheet.Range["A" + (97 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * i)) + ":DF" + (127 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * i))].UnMerge();
                 //worksheet.Range["A" + (317 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * i)) + ":DF" + (347 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * i))].GetMergedRanges();
                 workbook.Worksheets[0].Range["A" + (97 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * i))+":DF"+ (127 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * i))].CopyFrom(copyRangeFromOldFile[i], PasteSpecial.Values | PasteSpecial.NumberFormats);
                 //workbook.Worksheets[0].Range["A" + (317 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * i)) + ":DF" + (347 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * i))].CopyFrom(workbookOld.Worksheets[0].Range["A" + ((lastOldSpecRow + 34) + (31 * i)) + ":" + "DF" + ((lastOldSpecRow + 34 + 31) + (31 * i) - 1)]);
                 //workbook.Range["A" + (317 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * i)) + ":DF" + (347 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * i))].CopyFrom(workbookOld.Worksheets[0].(copyRangeFromOldFile[i]));
+                
             }
                
             
@@ -446,10 +442,12 @@ namespace TechnicalProcessControl.TechnicalProcess
             worksheet.Cells["A" + (lastRow + 29)].RowHeight = 87.5;
             worksheet.Cells["A" + (lastRow + 30)].RowHeight = 65.6;
 
-            worksheet.Cells["CY" + (102 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * realSimpleSheet))].Value = (defaultSpecSheet + 2) + realSimpleSheet + 1;
-            worksheet.Cells["CM" + (104 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * realSimpleSheet))].Value = techProcessNumber;
-            worksheet.Cells["BQ" + (104 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * realSimpleSheet))].Value = techProces003Drawing.Number;
-            ++realSimpleSheet;
+
+            worksheet.Cells["CY" + (102 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * (defaultSimpleSheett-1)))].Value = (defaultSpecSheet + 2) + defaultSimpleSheett;
+            //worksheet.Cells["CY" + (102 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * realSimpleSheet))].Value = (defaultSpecSheet + 2) + realSimpleSheet + 1;
+            worksheet.Cells["CM" + (104 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * (defaultSimpleSheett-1)))].Value = techProcessNumber;
+            worksheet.Cells["BQ" + (104 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * (defaultSimpleSheett-1)))].Value = techProces003Drawing.Number;
+            //++realSimpleSheet;
 
             //worksheet.Cells["DA" + (lastRow + 5)].Value = pageNumber;
             //UpdatePageCounter();
@@ -499,11 +497,12 @@ namespace TechnicalProcessControl.TechnicalProcess
             return lastBomPosition;
         }
 
+        //обновляем счетчик общего количества странниц в шаблоне
         public void UpdatePageCounter()
         {
-            //workbook.BeginUpdate();
+            workbook.BeginUpdate();
             worksheet.Cells["CS5"].Value = pageNumber;
-            //workbook.EndUpdate();
+            workbook.EndUpdate();
         }
 
         public void ButtonEnabled(bool flag)
@@ -514,11 +513,7 @@ namespace TechnicalProcessControl.TechnicalProcess
             deleteSpecSheetBtn.Enabled = flag;
         }
 
-        private void deleteSpecSheetBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            
-            
-        }
+ 
 
         public int GetLastEmptyRow(IWorkbook workbook)
         {
@@ -558,15 +553,15 @@ namespace TechnicalProcessControl.TechnicalProcess
 
         private void deleteSimpleSheetBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (defaultSimpleSheett < 3)
+            if (defaultSimpleSheett < 4)
             {
                 MessageBox.Show("У файла отсутствуют добавленные листы");
                 return;
             }
 
-            worksheet.Cells["CY" + (102 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * realSimpleSheet))].Value = "";
-            worksheet.Cells["CM" + (104 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * realSimpleSheet))].Value = "";
-            worksheet.Cells["BQ" + (104 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * realSimpleSheet))].Value = "";
+            worksheet.Cells["CY" + (102 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * (defaultSimpleSheett - 1)))].Value = "";
+            worksheet.Cells["CM" + (104 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * (defaultSimpleSheett - 1)))].Value = "";
+            worksheet.Cells["BQ" + (104 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * (defaultSimpleSheett - 1)))].Value = "";
 
 
             splashScreenManager.ShowWaitForm();
@@ -575,7 +570,6 @@ namespace TechnicalProcessControl.TechnicalProcess
             worksheet = workbook.Worksheets[0];
             --pageNumber;
             --defaultSimpleSheett;
-            --realSimpleSheet;
 
 
             int lastEmptyRow = GetLastEmptyRow(workbook);
@@ -619,6 +613,7 @@ namespace TechnicalProcessControl.TechnicalProcess
         private void addSimpleSheetBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             AddFormSpecificationInfo();
+            //++defaultSimpleSheett;
         }
 
         private void saveTemplateBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

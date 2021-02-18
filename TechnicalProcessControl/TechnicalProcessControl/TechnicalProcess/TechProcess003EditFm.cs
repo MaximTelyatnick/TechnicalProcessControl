@@ -334,6 +334,13 @@ namespace TechnicalProcessControl.TechnicalProcess
                             string returnModel = techProcessWithSpecificationFm.Return().TechProcessPath;
                             //((TechProcess003DTO)Item).TechProcessFullName = returnModel;
                             ((TechProcess003DTO)Item).Id = techProcessService.TechProcess003Create(((TechProcess003DTO)Item));
+
+                            if (((TechProcess003DTO)Item).Id > 0)
+                            {
+                                techProcess003OldDTO.ParentId = ((TechProcess003DTO)Item).Id;
+                                techProcess003OldDTO.TypeId = 2;
+                                techProcessService.TechProcess003Update(techProcess003OldDTO);
+                            }
                         }
 
                     }

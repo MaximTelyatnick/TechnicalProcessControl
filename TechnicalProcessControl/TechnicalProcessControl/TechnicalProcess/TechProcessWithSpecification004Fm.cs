@@ -488,7 +488,12 @@ namespace TechnicalProcessControl.TechnicalProcess
             //workbook.EndUpdate();
         }
 
-        private void saveBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void addSpecSheetBtn_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            AddSpecSheet();
+        }
+
+        private void saveTemplateBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             try
             {
@@ -512,12 +517,7 @@ namespace TechnicalProcessControl.TechnicalProcess
             }
         }
 
-        private void addSpecSheetBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            AddSpecSheet();
-        }
-
-        private void deleteSpecSheetBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void deleteSpecSheetBtn_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (defaultSpecSheet < 2)
             {
@@ -542,12 +542,12 @@ namespace TechnicalProcessControl.TechnicalProcess
             splashScreenManager.CloseWaitForm();
         }
 
-        private void addSimpleBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void addSimpleSheetBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             AddFormSpecificationInfo();
         }
 
-        private void deleteSimpleShettBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void deleteSimpleSheetBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (defaultSimpleSheett < 3)
             {
@@ -579,9 +579,9 @@ namespace TechnicalProcessControl.TechnicalProcess
 
         public void ButtonEnabled(bool flag)
         {
-            addSimpleBtn.Enabled = flag;
+            addSimpleSheetBtn.Enabled = flag;
             addSpecSheetBtn.Enabled = flag;
-            deleteSimpleShettBtn.Enabled = flag;
+            deleteSimpleSheetBtn.Enabled = flag;
             deleteSpecSheetBtn.Enabled = flag;
         }
 

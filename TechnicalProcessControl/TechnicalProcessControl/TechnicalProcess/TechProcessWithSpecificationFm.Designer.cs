@@ -844,6 +844,9 @@
             this.galleryPivotStylesItem1 = new DevExpress.XtraSpreadsheet.UI.GalleryPivotStylesItem();
             this.addSpecSheetBtn = new DevExpress.XtraBars.BarButtonItem();
             this.deleteSpecSheetBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.addSimpleSheetBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.deleteSimpleSheetBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.saveTemplateBtn = new DevExpress.XtraBars.BarButtonItem();
             this.chartToolsRibbonPageCategory1 = new DevExpress.XtraSpreadsheet.UI.ChartToolsRibbonPageCategory();
             this.chartsDesignRibbonPage1 = new DevExpress.XtraSpreadsheet.UI.ChartsDesignRibbonPage();
             this.chartsDesignTypeRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.ChartsDesignTypeRibbonPageGroup();
@@ -883,7 +886,9 @@
             this.pivotTableDesignPivotTableStyleOptionsRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.PivotTableDesignPivotTableStyleOptionsRibbonPageGroup();
             this.pivotTableDesignPivotTableStylesRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.PivotTableDesignPivotTableStylesRibbonPageGroup();
             this.templatePage = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.fileRibbonPage1 = new DevExpress.XtraSpreadsheet.UI.FileRibbonPage();
             this.commonRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.CommonRibbonPageGroup();
             this.infoRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.InfoRibbonPageGroup();
@@ -956,11 +961,7 @@
             this.spreadsheetCommandBarButtonItem137 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandBarButtonItem();
             this.spreadsheetCommandBarButtonItem138 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandBarButtonItem();
             this.spreadsheetCommandBarButtonItem139 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandBarButtonItem();
-            this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.addSimpleSheetBtn = new DevExpress.XtraBars.BarButtonItem();
-            this.deleteSimpleSheetBtn = new DevExpress.XtraBars.BarButtonItem();
-            this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.saveTemplateBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.spreadsheetControlOld = new DevExpress.XtraSpreadsheet.SpreadsheetControl();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarGalleryDropDown26)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemFontEdit1)).BeginInit();
@@ -1568,7 +1569,7 @@
             this.deleteSimpleSheetBtn,
             this.saveTemplateBtn});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 345;
+            this.ribbonControl1.MaxItemId = 354;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.PageCategories.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageCategory[] {
             this.chartToolsRibbonPageCategory1,
@@ -4942,6 +4943,33 @@
             this.deleteSpecSheetBtn.Name = "deleteSpecSheetBtn";
             this.deleteSpecSheetBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.deleteSpecSheetBtn_ItemClick_1);
             // 
+            // addSimpleSheetBtn
+            // 
+            this.addSimpleSheetBtn.Caption = "Добавить простой лист";
+            this.addSimpleSheetBtn.Id = 342;
+            this.addSimpleSheetBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addSimpleSheetBtn.ImageOptions.Image")));
+            this.addSimpleSheetBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("addSimpleSheetBtn.ImageOptions.LargeImage")));
+            this.addSimpleSheetBtn.Name = "addSimpleSheetBtn";
+            this.addSimpleSheetBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addSimpleSheetBtn_ItemClick);
+            // 
+            // deleteSimpleSheetBtn
+            // 
+            this.deleteSimpleSheetBtn.Caption = "Удалить простой лист";
+            this.deleteSimpleSheetBtn.Id = 343;
+            this.deleteSimpleSheetBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("deleteSimpleSheetBtn.ImageOptions.Image")));
+            this.deleteSimpleSheetBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("deleteSimpleSheetBtn.ImageOptions.LargeImage")));
+            this.deleteSimpleSheetBtn.Name = "deleteSimpleSheetBtn";
+            this.deleteSimpleSheetBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.deleteSimpleSheetBtn_ItemClick);
+            // 
+            // saveTemplateBtn
+            // 
+            this.saveTemplateBtn.Caption = "Сохранить";
+            this.saveTemplateBtn.Id = 344;
+            this.saveTemplateBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("saveTemplateBtn.ImageOptions.Image")));
+            this.saveTemplateBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("saveTemplateBtn.ImageOptions.LargeImage")));
+            this.saveTemplateBtn.Name = "saveTemplateBtn";
+            this.saveTemplateBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.saveTemplateBtn_ItemClick);
+            // 
             // chartToolsRibbonPageCategory1
             // 
             this.chartToolsRibbonPageCategory1.Control = this.spreadsheetControl;
@@ -5224,12 +5252,25 @@
             this.templatePage.Name = "templatePage";
             this.templatePage.Text = "Изменение шаблона";
             // 
+            // ribbonPageGroup3
+            // 
+            this.ribbonPageGroup3.ItemLinks.Add(this.saveTemplateBtn);
+            this.ribbonPageGroup3.Name = "ribbonPageGroup3";
+            this.ribbonPageGroup3.Text = "Шаблон";
+            // 
             // ribbonPageGroup1
             // 
             this.ribbonPageGroup1.ItemLinks.Add(this.addSpecSheetBtn);
             this.ribbonPageGroup1.ItemLinks.Add(this.deleteSpecSheetBtn);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
-            this.ribbonPageGroup1.Text = "Спецификация";
+            this.ribbonPageGroup1.Text = "Лист спецификации";
+            // 
+            // ribbonPageGroup2
+            // 
+            this.ribbonPageGroup2.ItemLinks.Add(this.addSimpleSheetBtn);
+            this.ribbonPageGroup2.ItemLinks.Add(this.deleteSimpleSheetBtn);
+            this.ribbonPageGroup2.Name = "ribbonPageGroup2";
+            this.ribbonPageGroup2.Text = "Лист техпроцесса";
             // 
             // fileRibbonPage1
             // 
@@ -7646,45 +7687,16 @@
             this.spreadsheetCommandBarButtonItem139.Id = -1;
             this.spreadsheetCommandBarButtonItem139.Name = "spreadsheetCommandBarButtonItem139";
             // 
-            // ribbonPageGroup2
+            // spreadsheetControlOld
             // 
-            this.ribbonPageGroup2.ItemLinks.Add(this.addSimpleSheetBtn);
-            this.ribbonPageGroup2.ItemLinks.Add(this.deleteSimpleSheetBtn);
-            this.ribbonPageGroup2.Name = "ribbonPageGroup2";
-            this.ribbonPageGroup2.Text = "Лист техпроцесса";
-            // 
-            // addSimpleSheetBtn
-            // 
-            this.addSimpleSheetBtn.Caption = "Добавить простой лист";
-            this.addSimpleSheetBtn.Id = 342;
-            this.addSimpleSheetBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
-            this.addSimpleSheetBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
-            this.addSimpleSheetBtn.Name = "addSimpleSheetBtn";
-            this.addSimpleSheetBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addSimpleSheetBtn_ItemClick);
-            // 
-            // deleteSimpleSheetBtn
-            // 
-            this.deleteSimpleSheetBtn.Caption = "Удалить простой лист";
-            this.deleteSimpleSheetBtn.Id = 343;
-            this.deleteSimpleSheetBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.Image")));
-            this.deleteSimpleSheetBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.LargeImage")));
-            this.deleteSimpleSheetBtn.Name = "deleteSimpleSheetBtn";
-            this.deleteSimpleSheetBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.deleteSimpleSheetBtn_ItemClick);
-            // 
-            // ribbonPageGroup3
-            // 
-            this.ribbonPageGroup3.ItemLinks.Add(this.saveTemplateBtn);
-            this.ribbonPageGroup3.Name = "ribbonPageGroup3";
-            this.ribbonPageGroup3.Text = "Шаблон";
-            // 
-            // saveTemplateBtn
-            // 
-            this.saveTemplateBtn.Caption = "Сохранить";
-            this.saveTemplateBtn.Id = 344;
-            this.saveTemplateBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("saveTemplateBtn.ImageOptions.Image")));
-            this.saveTemplateBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("saveTemplateBtn.ImageOptions.LargeImage")));
-            this.saveTemplateBtn.Name = "saveTemplateBtn";
-            this.saveTemplateBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.saveTemplateBtn_ItemClick);
+            this.spreadsheetControlOld.Location = new System.Drawing.Point(433, 227);
+            this.spreadsheetControlOld.MenuManager = this.ribbonControl1;
+            this.spreadsheetControlOld.Name = "spreadsheetControlOld";
+            this.spreadsheetControlOld.Options.Import.Csv.Encoding = ((System.Text.Encoding)(resources.GetObject("spreadsheetControlOld.Options.Import.Csv.Encoding")));
+            this.spreadsheetControlOld.Options.Import.Txt.Encoding = ((System.Text.Encoding)(resources.GetObject("spreadsheetControlOld.Options.Import.Txt.Encoding")));
+            this.spreadsheetControlOld.Size = new System.Drawing.Size(400, 200);
+            this.spreadsheetControlOld.TabIndex = 3;
+            this.spreadsheetControlOld.Text = "spreadsheetControl1";
             // 
             // TechProcessWithSpecificationFm
             // 
@@ -7693,6 +7705,7 @@
             this.ClientSize = new System.Drawing.Size(1050, 494);
             this.Controls.Add(this.spreadsheetControl);
             this.Controls.Add(this.ribbonControl1);
+            this.Controls.Add(this.spreadsheetControlOld);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TechProcessWithSpecificationFm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -8245,5 +8258,6 @@
         private DevExpress.XtraBars.BarButtonItem saveTemplateBtn;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
+        private DevExpress.XtraSpreadsheet.SpreadsheetControl spreadsheetControlOld;
     }
 }
