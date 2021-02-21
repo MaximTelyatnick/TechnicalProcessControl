@@ -37,6 +37,7 @@ namespace TechnicalProcessControl.TechnicalProcess
         private TechProcess003DTO techProcess003Old;
         private UsersDTO usersDTO;
         private List<DrawingsDTO> techProcess003DrawingsChild;
+        private List<TechProcess003DTO> techProcess003Revision;
 
 
         private IReportService reportService;
@@ -76,6 +77,7 @@ namespace TechnicalProcessControl.TechnicalProcess
             this.usersDTO = usersDTO;
             this.techProcess003 = techProcess003;
             this.techProcess003Old = techProcess003Old;
+            this.techProcess003Revision = techProcess003Revision;
 
             reportService = Program.kernel.Get<IReportService>();
             techProcessService = Program.kernel.Get<ITechProcessService>();
@@ -140,6 +142,197 @@ namespace TechnicalProcessControl.TechnicalProcess
  
         }
 
+        //прописываем ревизии на титульном листе
+        private void PrintHeaderRevision()
+        {
+            if (techProcess003Revision.Count() == 1)
+            {
+                worksheet.Range["AW2:BV2"].Font.Bold = false;
+                worksheet.Range["AW" + 2 + ":" + "BV" + 2].Font.Italic = false;
+                worksheet.Range["AW" + 2 + ":" + "BV" + 2].Font.Size = 8;
+                worksheet.Cells["AW" + 2].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
+                worksheet.Cells["AW" + 2].Value = techProcess003Revision[0].RivisionName;
+                worksheet.Cells["BN" + 2].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
+                worksheet.Cells["BN" + 2].Value = usersDTO.Name;
+                worksheet.Cells["BE" + 2].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
+                worksheet.Cells["BE" + 2].Value = techProcess003Revision[0].RevisionDocumentName;
+                worksheet.Cells["BV" + 2].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
+                worksheet.Cells["BV" + 2].Font.Size = 6;
+                worksheet.Cells["BV" + 2].Value = techProcess003Revision[0].CreateDate.Value.ToShortDateString();
+            }
+            else if (techProcess003Revision.Count() == 2)
+            {
+                worksheet.Range["AW2:BV2"].Font.Bold = false;
+                worksheet.Range["AW" + 2 + ":" + "BV" + 2].Font.Italic = false;
+                worksheet.Range["AW" + 2 + ":" + "BV" + 2].Font.Size = 8;
+                worksheet.Cells["AW" + 2].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
+                worksheet.Cells["AW" + 2].Value = techProcess003Revision[0].RivisionName;
+                worksheet.Cells["BN" + 2].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
+                worksheet.Cells["BN" + 2].Value = usersDTO.Name;
+                worksheet.Cells["BE" + 2].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
+                worksheet.Cells["BE" + 2].Value = techProcess003Revision[0].RevisionDocumentName;
+                worksheet.Cells["BV" + 2].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
+                worksheet.Cells["BV" + 2].Font.Size = 6;
+                worksheet.Cells["BV" + 2].Value = techProcess003Revision[0].CreateDate.Value.ToShortDateString();
+
+                worksheet.Range["CB" + 1 + ":" + "DA" + 1].Font.Bold = false;
+                worksheet.Range["CB" + 1 + ":" + "DA" + 1].Font.Italic = false;
+                worksheet.Range["CB" + 1 + ":" + "DA" + 1].Font.Size = 8;
+                worksheet.Cells["CB" + 1].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
+                worksheet.Cells["CB" + 1].Value = techProcess003Revision[1].RivisionName;
+                worksheet.Cells["CS" + 1].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
+                worksheet.Cells["CS" + 1].Value = usersDTO.Name;
+                worksheet.Cells["CJ" + 1].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
+                worksheet.Cells["CJ" + 1].Value = techProcess003Revision[1].RevisionDocumentName;
+                worksheet.Cells["DA" + 1].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
+                worksheet.Cells["DA" + 1].Font.Size = 6;
+                worksheet.Cells["DA" + 1].Value = techProcess003Revision[1].CreateDate.Value.ToShortDateString();
+            }
+            else if (techProcess003Revision.Count() > 2)
+            {
+                worksheet.Range["AW2:BV2"].Font.Bold = false;
+                worksheet.Range["AW" + 2 + ":" + "BV" + 2].Font.Italic = false;
+                worksheet.Range["AW" + 2 + ":" + "BV" + 2].Font.Size = 8;
+                worksheet.Cells["AW" + 2].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
+                worksheet.Cells["AW" + 2].Value = techProcess003Revision[0].RivisionName;
+                worksheet.Cells["BN" + 2].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
+                worksheet.Cells["BN" + 2].Value = usersDTO.Name;
+                worksheet.Cells["BE" + 2].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
+                worksheet.Cells["BE" + 2].Value = techProcess003Revision[0].RevisionDocumentName;
+                worksheet.Cells["BV" + 2].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
+                worksheet.Cells["BV" + 2].Font.Size = 6;
+                worksheet.Cells["BV" + 2].Value = techProcess003Revision[0].CreateDate.Value.ToShortDateString();
+
+                worksheet.Range["CB" + 1 + ":" + "DA" + 1].Font.Bold = false;
+                worksheet.Range["CB" + 1 + ":" + "DA" + 1].Font.Italic = false;
+                worksheet.Range["CB" + 1 + ":" + "DA" + 1].Font.Size = 8;
+                worksheet.Cells["CB" + 1].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
+                worksheet.Cells["CB" + 1].Value = techProcess003Revision[1].RivisionName;
+                worksheet.Cells["CS" + 1].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
+                worksheet.Cells["CS" + 1].Value = usersDTO.Name;
+                worksheet.Cells["CJ" + 1].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
+                worksheet.Cells["CJ" + 1].Value = techProcess003Revision[1].RevisionDocumentName;
+                worksheet.Cells["DA" + 1].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
+                worksheet.Cells["DA" + 1].Font.Size = 6;
+                worksheet.Cells["DA" + 1].Value = techProcess003Revision[1].CreateDate.Value.ToShortDateString();
+
+                worksheet.Range["CB" + 2 + ":" + "DA" + 2].Font.Bold = false;
+                worksheet.Range["CB" + 2 + ":" + "DA" + 2].Font.Italic = false;
+                worksheet.Range["CB" + 2 + ":" + "DA" + 2].Font.Size = 8;
+                worksheet.Cells["CB" + 2].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
+                worksheet.Cells["CB" + 2].Value = techProcess003Revision[2].RivisionName;
+                worksheet.Cells["CS" + 2].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
+                worksheet.Cells["CS" + 2].Value = usersDTO.Name;
+                worksheet.Cells["CJ" + 2].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
+                worksheet.Cells["CJ" + 2].Value = techProcess003Revision[2].RevisionDocumentName;
+                worksheet.Cells["DA" + 2].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
+                worksheet.Cells["DA" + 2].Font.Size = 6;
+                worksheet.Cells["DA" + 2].Value = techProcess003Revision[2].CreateDate.Value.ToShortDateString();
+            }
+        }
+
+        private void PrintSpecificationEasyRevision()
+        {
+            if (techProcess003Revision.Count() == 1)
+            {
+                worksheet.Range["AT"+36+":"+"BS"+36].Font.Bold = false;
+                worksheet.Range["AT" + 36 + ":" + "BS" + 36].Font.Italic = false;
+                worksheet.Range["AT" + 36 + ":" + "BS" + 36].Font.Size = 8;
+                worksheet.Cells["AT" + 36].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
+                worksheet.Cells["AT" + 36].Value = techProcess003Revision[0].RivisionName;
+                worksheet.Cells["BK" + 36].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
+                worksheet.Cells["BK" + 36].Value = usersDTO.Name;
+                worksheet.Cells["BB" + 36].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
+                worksheet.Cells["BB" + 36].Value = techProcess003Revision[0].RevisionDocumentName;
+                worksheet.Cells["BS" + 36].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
+                worksheet.Cells["BS" + 36].Font.Size = 6;
+                worksheet.Cells["BS" + 36].Value = techProcess003Revision[0].CreateDate.Value.ToShortDateString();
+            }
+            else if (techProcess003Revision.Count() == 2)
+            {
+                worksheet.Range["AT" + 36 + ":" + "BS" + 36].Font.Bold = false;
+                worksheet.Range["AT" + 36 + ":" + "BS" + 36].Font.Italic = false;
+                worksheet.Range["AT" + 36 + ":" + "BS" + 36].Font.Size = 8;
+                worksheet.Cells["AT" + 36].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
+                worksheet.Cells["AT" + 36].Value = techProcess003Revision[0].RivisionName;
+                worksheet.Cells["BK" + 36].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
+                worksheet.Cells["BK" + 36].Value = usersDTO.Name;
+                worksheet.Cells["BB" + 36].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
+                worksheet.Cells["BB" + 36].Value = techProcess003Revision[0].RevisionDocumentName;
+                worksheet.Cells["BS" + 36].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
+                worksheet.Cells["BS" + 36].Font.Size = 6;
+                worksheet.Cells["BS" + 36].Value = techProcess003Revision[0].CreateDate.Value.ToShortDateString();
+
+                worksheet.Range["BY" + 34 + ":" + "CX" + 34].Font.Bold = false;
+                worksheet.Range["BY" + 34 + ":" + "CX" + 34].Font.Italic = false;
+                worksheet.Range["BY" + 34 + ":" + "CX" + 34].Font.Size = 8;
+                worksheet.Cells["BY" + 34].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
+                worksheet.Cells["BY" + 34].Value = techProcess003Revision[1].RivisionName;
+                worksheet.Cells["CP" + 34].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
+                worksheet.Cells["CP" + 34].Value = usersDTO.Name;
+                worksheet.Cells["CG" + 34].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
+                worksheet.Cells["CG" + 34].Value = techProcess003Revision[1].RevisionDocumentName;
+                worksheet.Cells["CX" + 34].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
+                worksheet.Cells["CX" + 34].Font.Size = 6;
+                worksheet.Cells["CX" + 34].Value = techProcess003Revision[1].CreateDate.Value.ToShortDateString();
+            }
+            else if (techProcess003Revision.Count() == 3)
+            {
+                worksheet.Range["AT" + 36 + ":" + "BS" + 36].Font.Bold = false;
+                worksheet.Range["AT" + 36 + ":" + "BS" + 36].Font.Italic = false;
+                worksheet.Range["AT" + 36 + ":" + "BS" + 36].Font.Size = 8;
+                worksheet.Cells["AT" + 36].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
+                worksheet.Cells["AT" + 36].Value = techProcess003Revision[0].RivisionName;
+                worksheet.Cells["BK" + 36].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
+                worksheet.Cells["BK" + 36].Value = usersDTO.Name;
+                worksheet.Cells["BB" + 36].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
+                worksheet.Cells["BB" + 36].Value = techProcess003Revision[0].RevisionDocumentName;
+                worksheet.Cells["BS" + 36].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
+                worksheet.Cells["BS" + 36].Font.Size = 6;
+                worksheet.Cells["BS" + 36].Value = techProcess003Revision[0].CreateDate.Value.ToShortDateString();
+
+                worksheet.Range["BY" + 34 + ":" + "CX" + 34].Font.Bold = false;
+                worksheet.Range["BY" + 34 + ":" + "CX" + 34].Font.Italic = false;
+                worksheet.Range["BY" + 34 + ":" + "CX" + 34].Font.Size = 8;
+                worksheet.Cells["BY" + 34].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
+                worksheet.Cells["BY" + 34].Value = techProcess003Revision[1].RivisionName;
+                worksheet.Cells["CP" + 34].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
+                worksheet.Cells["CP" + 34].Value = usersDTO.Name;
+                worksheet.Cells["CG" + 34].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
+                worksheet.Cells["CG" + 34].Value = techProcess003Revision[1].RevisionDocumentName;
+                worksheet.Cells["CX" + 34].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
+                worksheet.Cells["CX" + 34].Font.Size = 6;
+                worksheet.Cells["CX" + 34].Value = techProcess003Revision[1].CreateDate.Value.ToShortDateString();
+
+                worksheet.Range["BY" + 35 + ":" + "CX" + 35].Font.Bold = false;
+                worksheet.Range["BY" + 35 + ":" + "CX" + 35].Font.Italic = false;
+                worksheet.Range["BY" + 35 + ":" + "CX" + 35].Font.Size = 8;
+                worksheet.Cells["BY" + 35].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
+                worksheet.Cells["BY" + 35].Value = techProcess003Revision[2].RivisionName;
+                worksheet.Cells["CP" + 35].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
+                worksheet.Cells["CP" + 35].Value = usersDTO.Name;
+                worksheet.Cells["CG" + 35].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
+                worksheet.Cells["CG" + 35].Value = techProcess003Revision[2].RevisionDocumentName;
+                worksheet.Cells["CX" + 35].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
+                worksheet.Cells["CX" + 35].Font.Size = 6;
+                worksheet.Cells["CX" + 35].Value = techProcess003Revision[2].CreateDate.Value.ToShortDateString();
+
+                worksheet.Range["BY" + 36 + ":" + "CX" + 36].Font.Bold = false;
+                worksheet.Range["BY" + 36 + ":" + "CX" + 36].Font.Italic = false;
+                worksheet.Range["BY" + 36 + ":" + "CX" + 36].Font.Size = 8;
+                worksheet.Cells["BY" + 36].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
+                worksheet.Cells["BY" + 36].Value = techProcess003Revision[2].RivisionName;
+                worksheet.Cells["CP" + 36].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
+                worksheet.Cells["CP" + 36].Value = usersDTO.Name;
+                worksheet.Cells["CG" + 36].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
+                worksheet.Cells["CG" + 36].Value = techProcess003Revision[2].RevisionDocumentName;
+                worksheet.Cells["CX" + 36].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
+                worksheet.Cells["CX" + 36].Font.Size = 6;
+                worksheet.Cells["CX" + 36].Value = techProcess003Revision[2].CreateDate.Value.ToShortDateString();
+            }
+        }
+
+
         //создаём титульную странницу
         private void PrintHeader()
         {
@@ -148,6 +341,10 @@ namespace TechnicalProcessControl.TechnicalProcess
             worksheet.Cells["AQ9"].Value = techProces003Drawing.DetailName;
             worksheet.Cells["AJ24"].Value = techProces003Drawing.DetailName;
             worksheet.Cells["BX27"].Value = "Created by " + usersDTO.Name + " " + techProcess003.CreateDate.Value.ToShortDateString();
+
+            if (techProcess003Revision != null)
+                PrintHeaderRevision();
+
             ++pageNumber;
         }
 

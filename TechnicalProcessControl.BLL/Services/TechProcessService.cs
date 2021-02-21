@@ -907,6 +907,82 @@ namespace TechnicalProcessControl.BLL.Services
             return result.FirstOrDefault();
         }
 
+        // получить ревизии техпроцесса 003 по Id родителя ok
+        public IEnumerable<TechProcess003DTO> GetAllTechProcess003Revision(int techProcessId)
+        {
+            List<TechProcess003DTO> allRevisiontechProcess003 = new List<TechProcess003DTO>();
+
+            var techProcess003 = GetTechProcess003RevisionByIdFull(techProcessId);
+            if (techProcess003 == null)
+            {
+                return allRevisiontechProcess003;
+            }
+            else
+            {
+                allRevisiontechProcess003.Add(techProcess003);
+                allRevisiontechProcess003 = TechProcess003Revision(techProcess003, allRevisiontechProcess003);
+                return allRevisiontechProcess003;
+            }
+        }
+
+        public List<TechProcess003DTO> TechProcess003Revision(TechProcess003DTO techProcess003, List<TechProcess003DTO> alltechProcessRevision)
+        {
+            var techProcessRevision003 = GetTechProcess003RevisionByIdFull(((TechProcess003DTO)techProcess003).Id);
+            if (techProcessRevision003 == null)
+            {
+                return alltechProcessRevision;
+            }
+            else
+            {
+                alltechProcessRevision.Add(techProcessRevision003);
+                alltechProcessRevision = TechProcess003Revision(techProcessRevision003, alltechProcessRevision);
+                return alltechProcessRevision;
+            }
+        }
+
+        //получить ревизию техпроцесса 003 по айди техпроцесса с подробной информацией ok
+        public TechProcess003DTO GetTechProcess003RevisionByIdFull(int techProcess003Id)
+        {
+            var result = (from tcp in techProcess003.GetAll()
+                          join rt in revisionsTechProcess003.GetAll() on tcp.RevisionId equals rt.Id into rtt
+                          from rt in rtt.DefaultIfEmpty()
+                          join dr in drawing.GetAll() on tcp.DrawingId equals dr.Id into drr
+                          from dr in drr.DefaultIfEmpty()
+                          join rd in revisions.GetAll() on dr.RevisionId equals rd.Id into rdd
+                          from rd in rdd.DefaultIfEmpty()
+                          join usr in users.GetAll() on tcp.UserId equals usr.Id into usrr
+                          from usr in usrr.DefaultIfEmpty()
+                          where tcp.ParentId == techProcess003Id
+                          select new TechProcess003DTO
+                          {
+                              Id = tcp.Id,
+                              CreateDate = tcp.CreateDate,
+                              ParentId = tcp.ParentId,
+                              RevisionId = tcp.RevisionId,
+                              TH = tcp.TH,
+                              W = tcp.W,
+                              W2 = tcp.W2,
+                              L = tcp.L,
+                              Weight = tcp.Weight,
+                              TechProcessName = tcp.TechProcessName,
+                              DrawingId = tcp.DrawingId,
+                              DrawingNumber = dr.Number,
+                              TechProcessFullName = tcp.TechProcessFullName,
+                              TechProcessPath = tcp.TechProcessPath,
+                              DrawingNumberWithRevision = rd.Symbol == null ? dr.Number : (dr.Number + "_" + rd.Symbol),
+                              RivisionName = rt.Symbol,
+                              TypeId = tcp.TypeId,
+                              OldTechProcess = tcp.OldTechProcess,
+                              RevisionDocumentName = tcp.RevisionDocumentName,
+                              UserId = tcp.UserId,
+                              UserName = usr.Name
+                          }
+                          ).ToList();
+
+            return result.FirstOrDefault();
+        }
+
+
         //проверить наличие техпроцесса 003 по его номеру ok
         public bool CheckTechProcess003(long techProcesName)
         {
@@ -1052,6 +1128,48 @@ namespace TechnicalProcessControl.BLL.Services
                               Welding20 = tcp.Welding20,
                               Welding20Steel = tcp.Welding20Steel,
                               WeldingElektrod = tcp.WeldingElektrod
+                          }
+                          ).ToList();
+
+            return result.FirstOrDefault();
+        }
+
+        //получить ревизию техпроцесса 004 по айди техпроцесса с подробной информацией ok
+        public TechProcess004DTO GetTechProcess004RevisionByIdFull(int techProcess004Id)
+        {
+            var result = (from tcp in techProcess004.GetAll()
+                          join rt in revisionsTechProcess004.GetAll() on tcp.RevisionId equals rt.Id into rtt
+                          from rt in rtt.DefaultIfEmpty()
+                          join dr in drawing.GetAll() on tcp.DrawingId equals dr.Id into drr
+                          from dr in drr.DefaultIfEmpty()
+                          join rd in revisions.GetAll() on dr.RevisionId equals rd.Id into rdd
+                          from rd in rdd.DefaultIfEmpty()
+                          join usr in users.GetAll() on tcp.UserId equals usr.Id into usrr
+                          from usr in usrr.DefaultIfEmpty()
+                          where tcp.ParentId == techProcess004Id
+                          select new TechProcess004DTO
+                          {
+                              Id = tcp.Id,
+                              CreateDate = tcp.CreateDate,
+                              ParentId = tcp.ParentId,
+                              RevisionId = tcp.RevisionId,
+                              TH = tcp.TH,
+                              W = tcp.W,
+                              W2 = tcp.W2,
+                              L = tcp.L,
+                              Weight = tcp.Weight,
+                              TechProcessName = tcp.TechProcessName,
+                              DrawingId = tcp.DrawingId,
+                              DrawingNumber = dr.Number,
+                              TechProcessFullName = tcp.TechProcessFullName,
+                              TechProcessPath = tcp.TechProcessPath,
+                              DrawingNumberWithRevision = rd.Symbol == null ? dr.Number : (dr.Number + "_" + rd.Symbol),
+                              RivisionName = rt.Symbol,
+                              TypeId = tcp.TypeId,
+                              OldTechProcess = tcp.OldTechProcess,
+                              RevisionDocumentName = tcp.RevisionDocumentName,
+                              UserId = tcp.UserId,
+                              UserName = usr.Name
                           }
                           ).ToList();
 

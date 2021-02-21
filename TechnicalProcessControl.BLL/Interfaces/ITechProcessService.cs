@@ -115,6 +115,16 @@ namespace TechnicalProcessControl.BLL.Interfaces
         bool CheckTechProcess003Drawing(int drawingId);
 
         IEnumerable<TechProcess003DTO> GetAllTechProcess003();
+
+       
+
+
+        // получить ревизии техпроцесса 003 по Id родителя ok
+        IEnumerable<TechProcess003DTO> GetAllTechProcess003Revision(int techProcessId);
+
+        List<TechProcess003DTO> TechProcess003Revision(TechProcess003DTO techProcess003, List<TechProcess003DTO> alltechProcessRevision);
+
+        TechProcess003DTO GetTechProcess003RevisionByIdFull(int techProcess003Id);
         #endregion
 
         #region TechProcess004 method's

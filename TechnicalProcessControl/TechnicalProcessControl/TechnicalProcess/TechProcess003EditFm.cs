@@ -318,7 +318,8 @@ namespace TechnicalProcessControl.TechnicalProcess
                 {
                     ((TechProcess003DTO)Item).TechProcessPath = @Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess003\" + ((TechProcess003DTO)Item).TechProcessFullName + ".xls";
                     List<DrawingDTO> parentDrawings = drawingService.GetDrawingParentByDrawingChildId((int)((TechProcess003DTO)Item).DrawingId).ToList();
-
+                    List<TechProcess003DTO> techProcess003Revision = techProcessService.GetAllTechProcess003Revision(((TechProcess003DTO)Item).Id).ToList();
+                    List<TechProcess003DTO> techProcess003RevisionOld = techProcessService.GetAllTechProcess003Revision(techProcess003OldDTO.Id).ToList();
                     ///////////////////////////////////
                     ///// внимание               _||_
                     /////////////////////        \  /
@@ -327,7 +328,7 @@ namespace TechnicalProcessControl.TechnicalProcess
                     List<DrawingsDTO> structuraChilds = drawingService.GetDrawingsParentByDrawingChildId(drawingsDTO.Id).ToList();
 
                     using (TechProcessWithSpecificationFm techProcessWithSpecificationFm = new TechProcessWithSpecificationFm(Utils.TechProcesFileMode.UpdateTechProcess,
-                            usersDTO, drawingTechproces, parentDrawings, structuraChilds, null, ((TechProcess003DTO)Item), techProcess003OldDTO))
+                            usersDTO, drawingTechproces, parentDrawings, structuraChilds, techProcess003Revision, ((TechProcess003DTO)Item), techProcess003OldDTO))
                     {
                         if (techProcessWithSpecificationFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                         {
