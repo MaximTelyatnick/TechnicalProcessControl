@@ -24,15 +24,15 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <MinimumRequiredVersion>1.0.0.30</MinimumRequiredVersion>
-    <ApplicationRevision>31</ApplicationRevision>
+    <MinimumRequiredVersion>1.0.0.31</MinimumRequiredVersion>
+    <ApplicationRevision>32</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -365,11 +365,11 @@
     <Compile Include="TechnicalProcess\TechProcessWithSpecification004Fm.Designer.cs">
       <DependentUpon>TechProcessWithSpecification004Fm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TechnicalProcess\TechProcessWithSpecificationFm.cs">
+    <Compile Include="TechnicalProcess\TechProcessWithSpecification003Fm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TechnicalProcess\TechProcessWithSpecificationFm.Designer.cs">
-      <DependentUpon>TechProcessWithSpecificationFm.cs</DependentUpon>
+    <Compile Include="TechnicalProcess\TechProcessWithSpecification003Fm.Designer.cs">
+      <DependentUpon>TechProcessWithSpecification003Fm.cs</DependentUpon>
     </Compile>
     <Compile Include="TestExcel.cs">
       <SubType>Form</SubType>
@@ -440,10 +440,10 @@
     <Compile Include="TechnicalProcess\TechProcess003EditFm.Designer.cs">
       <DependentUpon>TechProcess003EditFm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TestFm.cs">
+    <Compile Include="TechnicalProcess\TestFm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TestFm.Designer.cs">
+    <Compile Include="TechnicalProcess\TestFm.Designer.cs">
       <DependentUpon>TestFm.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils.cs" />
@@ -543,8 +543,8 @@
     <EmbeddedResource Include="TechnicalProcess\TechProcessWithSpecification004Fm.resx">
       <DependentUpon>TechProcessWithSpecification004Fm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TechnicalProcess\TechProcessWithSpecificationFm.resx">
-      <DependentUpon>TechProcessWithSpecificationFm.cs</DependentUpon>
+    <EmbeddedResource Include="TechnicalProcess\TechProcessWithSpecification003Fm.resx">
+      <DependentUpon>TechProcessWithSpecification003Fm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TestExcel.resx">
       <DependentUpon>TestExcel.cs</DependentUpon>
@@ -590,7 +590,7 @@
     <EmbeddedResource Include="TechnicalProcess\TechProcess003EditFm.resx">
       <DependentUpon>TechProcess003EditFm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TestFm.resx">
+    <EmbeddedResource Include="TechnicalProcess\TestFm.resx">
       <DependentUpon>TestFm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitFm.resx">

@@ -108,8 +108,29 @@ namespace TechnicalProcessControl
             drawingService = Program.kernel.Get<IDrawingService>();
             reportService = Program.kernel.Get<IReportService>();
             splashScreenManager.ShowWaitForm();
-            var drawingsListInfo = drawingService.GetAllDrawingsProc().ToList();
-            //var drawingsListInfo = drawingService.GetAllDrawingsProc().OrderBy(bdsm => Convert.ToInt32(bdsm.CurrentLevelMenu.Split('.').Last())).ToList();
+            //var drawingsListInfo = drawingService.GetAllDrawingsProc().ToList();
+            var drawingsListInfoNoSort = drawingService.GetAllDrawingsProc().ToList();
+            List<DrawingsInfoDTO> updateDrawingsScan = new List<DrawingsInfoDTO>();
+            List<DrawingsInfoDTO> updateNoDrawingsScan = new List<DrawingsInfoDTO>();
+
+            for (int i = 0; i < drawingsListInfoNoSort.Count; ++i)
+            {
+                //drawingsListInfoNoSort[i].CurrentLevelMenu = drawingsListInfoNoSort[i].CurrentLevelMenu.Replace(@"-", "");
+                //drawingsListInfoNoSort[i].CurrentLevelMenu = drawingsListInfoNoSort[i].CurrentLevelMenu.Replace(@",", ".");
+
+                try
+                {
+                    Convert.ToInt32(drawingsListInfoNoSort[i].CurrentLevelMenu.Split('.').Last());
+                    updateDrawingsScan.Add(drawingsListInfoNoSort[i]);
+                }
+                catch (Exception ex)
+                {
+                    updateNoDrawingsScan.Add(drawingsListInfoNoSort[i]);
+                    continue;
+                }
+
+            }
+            var drawingsListInfo = updateDrawingsScan.OrderBy(bdsm => Convert.ToInt32(bdsm.CurrentLevelMenu.Split('.').Last())).ToList();
             drawingsList = ConvertList(drawingsListInfo);
             drawingsBS.DataSource = drawingsList;
             drawingTreeListGrid.DataSource = drawingsBS;

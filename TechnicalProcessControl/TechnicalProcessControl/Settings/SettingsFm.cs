@@ -67,16 +67,16 @@ namespace TechnicalProcessControl
             {
                 case 1:
 
-  
+
 
                     break;
                 case 2:
-   
+
                     //технолог
 
                     break;
                 case 3:
-    
+
                     break;
                 //конструктор
                 case 4:
@@ -128,7 +128,7 @@ namespace TechnicalProcessControl
 
             return value;
         }
-        
+
 
         public List<DrawingsDTO> StartParseStructura(string pathToXlsImoprtFile)
         {
@@ -139,9 +139,9 @@ namespace TechnicalProcessControl
             int lastLevel = 0, currentLevel = 0, j = 10;
             int lastFirstLevelParent = 0, lastSecondLevelParent = 0, lastThreeLevelParent = 0,
                 lastFourthLevelParent = 0, lastFivesLevelParent = 0, lastSixLevelParent = 0, lastSevenLevelParent = 0,
-                lastEightLevelParent = 0, lastNineLevelParent=0, lastTenLevelParent=0, lastElevenLevelParent = 0,
-                lastTwelweLevelParent = 0, lastThirtenLevelParent=0, lastFourteenLevelParent = 0,
-                lastFifteenLevelParent = 0, lastSixteenLevelParent = 0, lastSeventeenLevelParent=0,
+                lastEightLevelParent = 0, lastNineLevelParent = 0, lastTenLevelParent = 0, lastElevenLevelParent = 0,
+                lastTwelweLevelParent = 0, lastThirtenLevelParent = 0, lastFourteenLevelParent = 0,
+                lastFifteenLevelParent = 0, lastSixteenLevelParent = 0, lastSeventeenLevelParent = 0,
                 lastEighteenLevelParent = 0, lastNineteenLevelParent = 0, lastTwentynLevelParent = 0;
 
             #region Excel Document to list of ExcelModels
@@ -155,7 +155,7 @@ namespace TechnicalProcessControl
                     continue;
                 currentLevel = CellLevelAnalizator(Convert.ToString(Сells["C" + i].Value));
 
-                
+
 
                 //if(Сells["I" + i].Value.ToString().Contains())
 
@@ -178,13 +178,13 @@ namespace TechnicalProcessControl
                                 QuantityR = ParseDecimalValue(Сells["G" + i].Value),
                                 QuantityL = ParseDecimalValue(Сells["H" + i].Value),
                                 DetailName = Convert.ToString(Сells["F" + i].Value),
-                                    Number = Convert.ToString(Сells["D" + i].Value),
-                                     TypeName = Convert.ToString(Сells["A" + i].Value)!=""? Convert.ToString(Сells["A" + i].Value): Convert.ToString(Сells["B" + i].Value),
-                                      MaterialName = Convert.ToString(Сells["L" + i].Value),
-                                       TH = Convert.ToString(Сells["M" + i].Value),
-                                       W = Convert.ToString(Сells["N" + i].Value),
-                                       W2 = Convert.ToString(Сells["O" + i].Value),
-                                       L = Convert.ToString(Сells["P" + i].Value)
+                                Number = Convert.ToString(Сells["D" + i].Value),
+                                TypeName = Convert.ToString(Сells["A" + i].Value) != "" ? Convert.ToString(Сells["A" + i].Value) : Convert.ToString(Сells["B" + i].Value),
+                                MaterialName = Convert.ToString(Сells["L" + i].Value),
+                                TH = Convert.ToString(Сells["M" + i].Value),
+                                W = Convert.ToString(Сells["N" + i].Value),
+                                W2 = Convert.ToString(Сells["O" + i].Value),
+                                L = Convert.ToString(Сells["P" + i].Value)
                             });
                             ++j;
                         }
@@ -649,7 +649,7 @@ namespace TechnicalProcessControl
                             ++j;
                         }
                         break;
-                    
+
 
                     default:
                         {
@@ -776,7 +776,7 @@ namespace TechnicalProcessControl
                 {
 
                     List<string> files = Directory.GetFiles(techProcessPathEdit.Text, "*.*", SearchOption.AllDirectories)
-                        .Where(file => new string[] { ".xls",".xlsx",".xlsm" }
+                        .Where(file => new string[] { ".xls", ".xlsx", ".xlsm" }
                         .Contains(Path.GetExtension(file)))
                         .ToList();
                     int i = 0;
@@ -960,8 +960,8 @@ namespace TechnicalProcessControl
                 NonUsedTechProcessFile(techProcess.TechProcessPath, techProcess.TechProcessFileName);
                 return false;
             }
-            
-            
+
+
             //drawingName = drawingName.Replace(@"_A", "/A");
             //drawingName = drawingName.Replace(@"_B", "/B");
             //drawingName = drawingName.Replace(@"_C", "/C");
@@ -988,9 +988,9 @@ namespace TechnicalProcessControl
                 NonUsedTechProcessFile(techProcess.TechProcessPath, techProcess.TechProcessFileName);
                 return false;
             }
-                
 
-            string techProcessNumber = techProcess.TechProcessFileName.Substring(techProcess.TechProcessFileName.IndexOf(@"_TP")+3);
+
+            string techProcessNumber = techProcess.TechProcessFileName.Substring(techProcess.TechProcessFileName.IndexOf(@"_TP") + 3);
             techProcessNumber = Path.GetFileNameWithoutExtension(techProcessNumber);
             //string techProcessNumberParse = techProcessNumber;
 
@@ -1040,7 +1040,7 @@ namespace TechnicalProcessControl
                             techProcessService.FileDelete(path);
                         }
 
-                       
+
                     }
                     else
                     {
@@ -1056,7 +1056,7 @@ namespace TechnicalProcessControl
 
                     break;
                 case "002":
-                    if(techProcessService.CheckTechProcess002Drawing(drawingDTO.Id))
+                    if (techProcessService.CheckTechProcess002Drawing(drawingDTO.Id))
                         break;
 
                     TechProcess002DTO createTechProcess002 = new TechProcess002DTO();
@@ -1102,7 +1102,7 @@ namespace TechnicalProcessControl
                     }
                     break;
                 case "003":
-                    if(techProcessService.CheckTechProcess003Drawing(drawingDTO.Id))
+                    if (techProcessService.CheckTechProcess003Drawing(drawingDTO.Id))
                         break;
 
                     TechProcess003DTO createTechProcess003 = new TechProcess003DTO();
@@ -1256,9 +1256,9 @@ namespace TechnicalProcessControl
 
             //Если есть файлы в папке, спрашиваем нужно ли менять
             if (Utils.DirectoryContainFiles(Properties.Settings.Default.TechProcessDirectoryPath))
-                if (MessageBox.Show("Директория содержит техпроцессы, изменить директорию хранилища техпроцессов?", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)                
+                if (MessageBox.Show("Директория содержит техпроцессы, изменить директорию хранилища техпроцессов?", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     return;
-                
+
 
             FolderBrowserDialog folderBrowserDlg = new FolderBrowserDialog();
             folderBrowserDlg.ShowNewFolderButton = true;
@@ -1285,5 +1285,76 @@ namespace TechnicalProcessControl
 
             splashScreenManager.CloseWaitForm();
         }
+
+        private void allTechProcessDeleteBtn_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Будут удалены все существующие техпроцессы?", "Потверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                techProcessService = Program.kernel.Get<ITechProcessService>();
+
+                var techProcess001 = techProcessService.GetAllTechProcess001Simple();
+
+                splashScreenManager.ShowWaitForm();
+                splashScreenManager.SetWaitFormDescription("Удаляем техпроцессы 001");
+
+                foreach (var item in techProcess001)
+                    techProcessService.TechProcess001Delete(item.Id);
+
+                splashScreenManager.CloseWaitForm();
+
+                var techProcess002 = techProcessService.GetAllTechProcess002Simple();
+
+                splashScreenManager.ShowWaitForm();
+                splashScreenManager.SetWaitFormDescription("Удаляем техпроцессы 002");
+
+                foreach (var item in techProcess002)
+                    techProcessService.TechProcess002Delete(item.Id);
+
+                splashScreenManager.CloseWaitForm();
+
+                var techProcess003 = techProcessService.GetAllTechProcess003Simple();
+
+                splashScreenManager.ShowWaitForm();
+                splashScreenManager.SetWaitFormDescription("Удаляем техпроцессы 003");
+
+                foreach (var item in techProcess003)
+                    techProcessService.TechProcess003Delete(item.Id);
+
+                splashScreenManager.CloseWaitForm();
+
+                var techProcess004 = techProcessService.GetAllTechProcess004Simple();
+
+                splashScreenManager.ShowWaitForm();
+                splashScreenManager.SetWaitFormDescription("Удаляем техпроцессы 004");
+
+                foreach (var item in techProcess004)
+                    techProcessService.TechProcess004Delete(item.Id);
+
+                splashScreenManager.CloseWaitForm();
+
+                var techProcess005 = techProcessService.GetAllTechProcess005Simple();
+
+                splashScreenManager.ShowWaitForm();
+                splashScreenManager.SetWaitFormDescription("Удаляем техпроцессы 005");
+
+                foreach (var item in techProcess005)
+                    techProcessService.TechProcess005Delete(item.Id);
+
+                splashScreenManager.CloseWaitForm();
+
+                splashScreenManager.ShowWaitForm();
+                splashScreenManager.SetWaitFormDescription("Удаляем хранилище техпроцессов которые не прошли импорт");
+
+                if (Directory.Exists(@Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\Trash"))
+                {
+                    Directory.Delete(@Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\Trash", true);
+                }
+
+                splashScreenManager.CloseWaitForm();
+
+                MessageBox.Show("Все техпроцессы удалены!", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
     }
 }

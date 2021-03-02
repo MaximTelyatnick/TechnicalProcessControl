@@ -420,6 +420,10 @@
             // userBtn
             // 
             this.userBtn.Alignment = DevExpress.XtraBars.Navigation.NavButtonAlignment.Right;
+            this.userBtn.AppearanceHovered.BackColor = System.Drawing.Color.LightGreen;
+            this.userBtn.AppearanceHovered.Options.UseBackColor = true;
+            this.userBtn.AppearanceSelected.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.userBtn.AppearanceSelected.Options.UseBackColor = true;
             this.userBtn.Caption = "UserName";
             this.userBtn.Name = "userBtn";
             this.userBtn.ElementClick += new DevExpress.XtraBars.Navigation.NavElementClickEventHandler(this.navButton2_ElementClick);
@@ -430,6 +434,10 @@
             this.settingsBtn.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
             this.settingsBtn.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("settingsBtn.Appearance.Image")));
             this.settingsBtn.Appearance.Options.UseImage = true;
+            this.settingsBtn.AppearanceHovered.BackColor = System.Drawing.Color.LightGreen;
+            this.settingsBtn.AppearanceHovered.Options.UseBackColor = true;
+            this.settingsBtn.AppearanceSelected.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.settingsBtn.AppearanceSelected.Options.UseBackColor = true;
             this.settingsBtn.Caption = "Настройки";
             this.settingsBtn.Glyph = ((System.Drawing.Image)(resources.GetObject("settingsBtn.Glyph")));
             this.settingsBtn.Name = "settingsBtn";

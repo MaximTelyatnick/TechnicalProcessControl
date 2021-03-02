@@ -1,6 +1,6 @@
 ﻿namespace TechnicalProcessControl.TechnicalProcess
 {
-    partial class TechProcessWithSpecificationFm
+    partial class TechProcessWithSpecification003Fm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItemGroup spreadsheetCommandGalleryItemGroup1 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItemGroup();
             DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem spreadsheetCommandGalleryItem1 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TechProcessWithSpecificationFm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TechProcessWithSpecification003Fm));
             DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem spreadsheetCommandGalleryItem2 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem();
             DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem spreadsheetCommandGalleryItem3 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem();
             DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem spreadsheetCommandGalleryItem4 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem();
@@ -847,44 +847,6 @@
             this.addSimpleSheetBtn = new DevExpress.XtraBars.BarButtonItem();
             this.deleteSimpleSheetBtn = new DevExpress.XtraBars.BarButtonItem();
             this.saveTemplateBtn = new DevExpress.XtraBars.BarButtonItem();
-            this.chartToolsRibbonPageCategory1 = new DevExpress.XtraSpreadsheet.UI.ChartToolsRibbonPageCategory();
-            this.chartsDesignRibbonPage1 = new DevExpress.XtraSpreadsheet.UI.ChartsDesignRibbonPage();
-            this.chartsDesignTypeRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.ChartsDesignTypeRibbonPageGroup();
-            this.chartsDesignDataRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.ChartsDesignDataRibbonPageGroup();
-            this.chartsDesignLayoutsRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.ChartsDesignLayoutsRibbonPageGroup();
-            this.chartsDesignStylesRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.ChartsDesignStylesRibbonPageGroup();
-            this.chartsDesignLocationRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.ChartsDesignLocationRibbonPageGroup();
-            this.chartsLayoutRibbonPage1 = new DevExpress.XtraSpreadsheet.UI.ChartsLayoutRibbonPage();
-            this.chartsLayoutAxesRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.ChartsLayoutAxesRibbonPageGroup();
-            this.chartsLayoutLabelsRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.ChartsLayoutLabelsRibbonPageGroup();
-            this.chartsLayoutAnalysisRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.ChartsLayoutAnalysisRibbonPageGroup();
-            this.chartsFormatRibbonPage1 = new DevExpress.XtraSpreadsheet.UI.ChartsFormatRibbonPage();
-            this.chartsFormatArrangeRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.ChartsFormatArrangeRibbonPageGroup();
-            this.tableToolsRibbonPageCategory1 = new DevExpress.XtraSpreadsheet.UI.TableToolsRibbonPageCategory();
-            this.tableToolsDesignRibbonPage1 = new DevExpress.XtraSpreadsheet.UI.TableToolsDesignRibbonPage();
-            this.tablePropertiesRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.TablePropertiesRibbonPageGroup();
-            this.tableToolsRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.TableToolsRibbonPageGroup();
-            this.tableStyleOptionsRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.TableStyleOptionsRibbonPageGroup();
-            this.tableStylesRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.TableStylesRibbonPageGroup();
-            this.drawingToolsRibbonPageCategory1 = new DevExpress.XtraSpreadsheet.UI.DrawingToolsRibbonPageCategory();
-            this.drawingFormatRibbonPage1 = new DevExpress.XtraSpreadsheet.UI.DrawingFormatRibbonPage();
-            this.drawingFormatArrangeRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.DrawingFormatArrangeRibbonPageGroup();
-            this.pictureToolsRibbonPageCategory1 = new DevExpress.XtraSpreadsheet.UI.PictureToolsRibbonPageCategory();
-            this.pictureFormatRibbonPage1 = new DevExpress.XtraSpreadsheet.UI.PictureFormatRibbonPage();
-            this.pictureFormatArrangeRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.PictureFormatArrangeRibbonPageGroup();
-            this.pivotTableToolsRibbonPageCategory1 = new DevExpress.XtraSpreadsheet.UI.PivotTableToolsRibbonPageCategory();
-            this.pivotTableAnalyzeRibbonPage1 = new DevExpress.XtraSpreadsheet.UI.PivotTableAnalyzeRibbonPage();
-            this.pivotTableAnalyzePivotTableRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.PivotTableAnalyzePivotTableRibbonPageGroup();
-            this.pivotTableAnalyzeActiveFieldRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.PivotTableAnalyzeActiveFieldRibbonPageGroup();
-            this.pivotTableAnalyzeGroupRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.PivotTableAnalyzeGroupRibbonPageGroup();
-            this.pivotTableAnalyzeDataRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.PivotTableAnalyzeDataRibbonPageGroup();
-            this.pivotTableAnalyzeActionsRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.PivotTableAnalyzeActionsRibbonPageGroup();
-            this.pivotTableAnalyzeCalculationsRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.PivotTableAnalyzeCalculationsRibbonPageGroup();
-            this.pivotTableAnalyzeShowRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.PivotTableAnalyzeShowRibbonPageGroup();
-            this.pivotTableDesignRibbonPage1 = new DevExpress.XtraSpreadsheet.UI.PivotTableDesignRibbonPage();
-            this.pivotTableDesignLayoutRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.PivotTableDesignLayoutRibbonPageGroup();
-            this.pivotTableDesignPivotTableStyleOptionsRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.PivotTableDesignPivotTableStyleOptionsRibbonPageGroup();
-            this.pivotTableDesignPivotTableStylesRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.PivotTableDesignPivotTableStylesRibbonPageGroup();
             this.templatePage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -1569,14 +1531,8 @@
             this.deleteSimpleSheetBtn,
             this.saveTemplateBtn});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 355;
+            this.ribbonControl1.MaxItemId = 372;
             this.ribbonControl1.Name = "ribbonControl1";
-            this.ribbonControl1.PageCategories.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageCategory[] {
-            this.chartToolsRibbonPageCategory1,
-            this.tableToolsRibbonPageCategory1,
-            this.drawingToolsRibbonPageCategory1,
-            this.pictureToolsRibbonPageCategory1,
-            this.pivotTableToolsRibbonPageCategory1});
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.templatePage,
             this.fileRibbonPage1,
@@ -4970,279 +4926,6 @@
             this.saveTemplateBtn.Name = "saveTemplateBtn";
             this.saveTemplateBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.saveTemplateBtn_ItemClick);
             // 
-            // chartToolsRibbonPageCategory1
-            // 
-            this.chartToolsRibbonPageCategory1.Control = this.spreadsheetControl;
-            this.chartToolsRibbonPageCategory1.Name = "chartToolsRibbonPageCategory1";
-            this.chartToolsRibbonPageCategory1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
-            this.chartsDesignRibbonPage1,
-            this.chartsLayoutRibbonPage1,
-            this.chartsFormatRibbonPage1});
-            this.chartToolsRibbonPageCategory1.Visible = false;
-            // 
-            // chartsDesignRibbonPage1
-            // 
-            this.chartsDesignRibbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.chartsDesignTypeRibbonPageGroup1,
-            this.chartsDesignDataRibbonPageGroup1,
-            this.chartsDesignLayoutsRibbonPageGroup1,
-            this.chartsDesignStylesRibbonPageGroup1,
-            this.chartsDesignLocationRibbonPageGroup1});
-            this.chartsDesignRibbonPage1.Name = "chartsDesignRibbonPage1";
-            this.chartsDesignRibbonPage1.Visible = false;
-            // 
-            // chartsDesignTypeRibbonPageGroup1
-            // 
-            this.chartsDesignTypeRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarButtonItem171);
-            this.chartsDesignTypeRibbonPageGroup1.Name = "chartsDesignTypeRibbonPageGroup1";
-            // 
-            // chartsDesignDataRibbonPageGroup1
-            // 
-            this.chartsDesignDataRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarButtonItem172);
-            this.chartsDesignDataRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarButtonItem173);
-            this.chartsDesignDataRibbonPageGroup1.Name = "chartsDesignDataRibbonPageGroup1";
-            // 
-            // chartsDesignLayoutsRibbonPageGroup1
-            // 
-            this.chartsDesignLayoutsRibbonPageGroup1.ItemLinks.Add(this.galleryChartLayoutItem1);
-            this.chartsDesignLayoutsRibbonPageGroup1.Name = "chartsDesignLayoutsRibbonPageGroup1";
-            // 
-            // chartsDesignStylesRibbonPageGroup1
-            // 
-            this.chartsDesignStylesRibbonPageGroup1.ItemLinks.Add(this.galleryChartStyleItem1);
-            this.chartsDesignStylesRibbonPageGroup1.Name = "chartsDesignStylesRibbonPageGroup1";
-            // 
-            // chartsDesignLocationRibbonPageGroup1
-            // 
-            this.chartsDesignLocationRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarButtonItem174);
-            this.chartsDesignLocationRibbonPageGroup1.Name = "chartsDesignLocationRibbonPageGroup1";
-            // 
-            // chartsLayoutRibbonPage1
-            // 
-            this.chartsLayoutRibbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.chartsLayoutAxesRibbonPageGroup1,
-            this.chartsLayoutLabelsRibbonPageGroup1,
-            this.chartsLayoutAnalysisRibbonPageGroup1});
-            this.chartsLayoutRibbonPage1.Name = "chartsLayoutRibbonPage1";
-            this.chartsLayoutRibbonPage1.Visible = false;
-            // 
-            // chartsLayoutAxesRibbonPageGroup1
-            // 
-            this.chartsLayoutAxesRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarSubItem29);
-            this.chartsLayoutAxesRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarSubItem30);
-            this.chartsLayoutAxesRibbonPageGroup1.Name = "chartsLayoutAxesRibbonPageGroup1";
-            // 
-            // chartsLayoutLabelsRibbonPageGroup1
-            // 
-            this.chartsLayoutLabelsRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarButtonGalleryDropDownItem15);
-            this.chartsLayoutLabelsRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarSubItem31);
-            this.chartsLayoutLabelsRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarButtonGalleryDropDownItem18);
-            this.chartsLayoutLabelsRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarButtonGalleryDropDownItem19);
-            this.chartsLayoutLabelsRibbonPageGroup1.Name = "chartsLayoutLabelsRibbonPageGroup1";
-            // 
-            // chartsLayoutAnalysisRibbonPageGroup1
-            // 
-            this.chartsLayoutAnalysisRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarButtonGalleryDropDownItem20);
-            this.chartsLayoutAnalysisRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarButtonGalleryDropDownItem21);
-            this.chartsLayoutAnalysisRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarButtonGalleryDropDownItem22);
-            this.chartsLayoutAnalysisRibbonPageGroup1.Name = "chartsLayoutAnalysisRibbonPageGroup1";
-            // 
-            // chartsFormatRibbonPage1
-            // 
-            this.chartsFormatRibbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.chartsFormatArrangeRibbonPageGroup1});
-            this.chartsFormatRibbonPage1.Name = "chartsFormatRibbonPage1";
-            this.chartsFormatRibbonPage1.Visible = false;
-            // 
-            // chartsFormatArrangeRibbonPageGroup1
-            // 
-            this.chartsFormatArrangeRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarSubItem20);
-            this.chartsFormatArrangeRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarSubItem21);
-            this.chartsFormatArrangeRibbonPageGroup1.Name = "chartsFormatArrangeRibbonPageGroup1";
-            // 
-            // tableToolsRibbonPageCategory1
-            // 
-            this.tableToolsRibbonPageCategory1.Control = this.spreadsheetControl;
-            this.tableToolsRibbonPageCategory1.Name = "tableToolsRibbonPageCategory1";
-            this.tableToolsRibbonPageCategory1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
-            this.tableToolsDesignRibbonPage1});
-            this.tableToolsRibbonPageCategory1.Visible = false;
-            // 
-            // tableToolsDesignRibbonPage1
-            // 
-            this.tableToolsDesignRibbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.tablePropertiesRibbonPageGroup1,
-            this.tableToolsRibbonPageGroup1,
-            this.tableStyleOptionsRibbonPageGroup1,
-            this.tableStylesRibbonPageGroup1});
-            this.tableToolsDesignRibbonPage1.Name = "tableToolsDesignRibbonPage1";
-            this.tableToolsDesignRibbonPage1.Visible = false;
-            // 
-            // tablePropertiesRibbonPageGroup1
-            // 
-            this.tablePropertiesRibbonPageGroup1.ItemLinks.Add(this.renameTableItemCaption1);
-            this.tablePropertiesRibbonPageGroup1.ItemLinks.Add(this.renameTableItem1);
-            this.tablePropertiesRibbonPageGroup1.Name = "tablePropertiesRibbonPageGroup1";
-            // 
-            // tableToolsRibbonPageGroup1
-            // 
-            this.tableToolsRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarCheckItem27);
-            this.tableToolsRibbonPageGroup1.Name = "tableToolsRibbonPageGroup1";
-            // 
-            // tableStyleOptionsRibbonPageGroup1
-            // 
-            this.tableStyleOptionsRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarCheckItem28);
-            this.tableStyleOptionsRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarCheckItem29);
-            this.tableStyleOptionsRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarCheckItem30);
-            this.tableStyleOptionsRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarCheckItem31);
-            this.tableStyleOptionsRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarCheckItem32);
-            this.tableStyleOptionsRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarCheckItem33);
-            this.tableStyleOptionsRibbonPageGroup1.Name = "tableStyleOptionsRibbonPageGroup1";
-            // 
-            // tableStylesRibbonPageGroup1
-            // 
-            this.tableStylesRibbonPageGroup1.ItemLinks.Add(this.galleryTableStylesItem1);
-            this.tableStylesRibbonPageGroup1.Name = "tableStylesRibbonPageGroup1";
-            // 
-            // drawingToolsRibbonPageCategory1
-            // 
-            this.drawingToolsRibbonPageCategory1.Control = this.spreadsheetControl;
-            this.drawingToolsRibbonPageCategory1.Name = "drawingToolsRibbonPageCategory1";
-            this.drawingToolsRibbonPageCategory1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
-            this.drawingFormatRibbonPage1});
-            this.drawingToolsRibbonPageCategory1.Visible = false;
-            // 
-            // drawingFormatRibbonPage1
-            // 
-            this.drawingFormatRibbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.drawingFormatArrangeRibbonPageGroup1});
-            this.drawingFormatRibbonPage1.Name = "drawingFormatRibbonPage1";
-            this.drawingFormatRibbonPage1.Visible = false;
-            // 
-            // drawingFormatArrangeRibbonPageGroup1
-            // 
-            this.drawingFormatArrangeRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarSubItem20);
-            this.drawingFormatArrangeRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarSubItem21);
-            this.drawingFormatArrangeRibbonPageGroup1.Name = "drawingFormatArrangeRibbonPageGroup1";
-            // 
-            // pictureToolsRibbonPageCategory1
-            // 
-            this.pictureToolsRibbonPageCategory1.Control = this.spreadsheetControl;
-            this.pictureToolsRibbonPageCategory1.Name = "pictureToolsRibbonPageCategory1";
-            this.pictureToolsRibbonPageCategory1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
-            this.pictureFormatRibbonPage1});
-            this.pictureToolsRibbonPageCategory1.Visible = false;
-            // 
-            // pictureFormatRibbonPage1
-            // 
-            this.pictureFormatRibbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.pictureFormatArrangeRibbonPageGroup1});
-            this.pictureFormatRibbonPage1.Name = "pictureFormatRibbonPage1";
-            this.pictureFormatRibbonPage1.Visible = false;
-            // 
-            // pictureFormatArrangeRibbonPageGroup1
-            // 
-            this.pictureFormatArrangeRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarSubItem20);
-            this.pictureFormatArrangeRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarSubItem21);
-            this.pictureFormatArrangeRibbonPageGroup1.Name = "pictureFormatArrangeRibbonPageGroup1";
-            // 
-            // pivotTableToolsRibbonPageCategory1
-            // 
-            this.pivotTableToolsRibbonPageCategory1.Control = this.spreadsheetControl;
-            this.pivotTableToolsRibbonPageCategory1.Name = "pivotTableToolsRibbonPageCategory1";
-            this.pivotTableToolsRibbonPageCategory1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
-            this.pivotTableAnalyzeRibbonPage1,
-            this.pivotTableDesignRibbonPage1});
-            this.pivotTableToolsRibbonPageCategory1.Visible = false;
-            // 
-            // pivotTableAnalyzeRibbonPage1
-            // 
-            this.pivotTableAnalyzeRibbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.pivotTableAnalyzePivotTableRibbonPageGroup1,
-            this.pivotTableAnalyzeActiveFieldRibbonPageGroup1,
-            this.pivotTableAnalyzeGroupRibbonPageGroup1,
-            this.pivotTableAnalyzeDataRibbonPageGroup1,
-            this.pivotTableAnalyzeActionsRibbonPageGroup1,
-            this.pivotTableAnalyzeCalculationsRibbonPageGroup1,
-            this.pivotTableAnalyzeShowRibbonPageGroup1});
-            this.pivotTableAnalyzeRibbonPage1.Name = "pivotTableAnalyzeRibbonPage1";
-            this.pivotTableAnalyzeRibbonPage1.Visible = false;
-            // 
-            // pivotTableAnalyzePivotTableRibbonPageGroup1
-            // 
-            this.pivotTableAnalyzePivotTableRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarButtonItem175);
-            this.pivotTableAnalyzePivotTableRibbonPageGroup1.Name = "pivotTableAnalyzePivotTableRibbonPageGroup1";
-            // 
-            // pivotTableAnalyzeActiveFieldRibbonPageGroup1
-            // 
-            this.pivotTableAnalyzeActiveFieldRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarButtonItem176);
-            this.pivotTableAnalyzeActiveFieldRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarButtonItem177);
-            this.pivotTableAnalyzeActiveFieldRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarButtonItem178);
-            this.pivotTableAnalyzeActiveFieldRibbonPageGroup1.Name = "pivotTableAnalyzeActiveFieldRibbonPageGroup1";
-            // 
-            // pivotTableAnalyzeGroupRibbonPageGroup1
-            // 
-            this.pivotTableAnalyzeGroupRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarButtonItem179);
-            this.pivotTableAnalyzeGroupRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarButtonItem180);
-            this.pivotTableAnalyzeGroupRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarButtonItem181);
-            this.pivotTableAnalyzeGroupRibbonPageGroup1.Name = "pivotTableAnalyzeGroupRibbonPageGroup1";
-            // 
-            // pivotTableAnalyzeDataRibbonPageGroup1
-            // 
-            this.pivotTableAnalyzeDataRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarSubItem32);
-            this.pivotTableAnalyzeDataRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarButtonItem184);
-            this.pivotTableAnalyzeDataRibbonPageGroup1.Name = "pivotTableAnalyzeDataRibbonPageGroup1";
-            // 
-            // pivotTableAnalyzeActionsRibbonPageGroup1
-            // 
-            this.pivotTableAnalyzeActionsRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarSubItem33);
-            this.pivotTableAnalyzeActionsRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarSubItem34);
-            this.pivotTableAnalyzeActionsRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarButtonItem190);
-            this.pivotTableAnalyzeActionsRibbonPageGroup1.Name = "pivotTableAnalyzeActionsRibbonPageGroup1";
-            // 
-            // pivotTableAnalyzeCalculationsRibbonPageGroup1
-            // 
-            this.pivotTableAnalyzeCalculationsRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarSubItem35);
-            this.pivotTableAnalyzeCalculationsRibbonPageGroup1.Name = "pivotTableAnalyzeCalculationsRibbonPageGroup1";
-            // 
-            // pivotTableAnalyzeShowRibbonPageGroup1
-            // 
-            this.pivotTableAnalyzeShowRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarCheckItem34);
-            this.pivotTableAnalyzeShowRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarCheckItem35);
-            this.pivotTableAnalyzeShowRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarCheckItem36);
-            this.pivotTableAnalyzeShowRibbonPageGroup1.Name = "pivotTableAnalyzeShowRibbonPageGroup1";
-            // 
-            // pivotTableDesignRibbonPage1
-            // 
-            this.pivotTableDesignRibbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.pivotTableDesignLayoutRibbonPageGroup1,
-            this.pivotTableDesignPivotTableStyleOptionsRibbonPageGroup1,
-            this.pivotTableDesignPivotTableStylesRibbonPageGroup1});
-            this.pivotTableDesignRibbonPage1.Name = "pivotTableDesignRibbonPage1";
-            this.pivotTableDesignRibbonPage1.Visible = false;
-            // 
-            // pivotTableDesignLayoutRibbonPageGroup1
-            // 
-            this.pivotTableDesignLayoutRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarSubItem36);
-            this.pivotTableDesignLayoutRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarSubItem37);
-            this.pivotTableDesignLayoutRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarSubItem38);
-            this.pivotTableDesignLayoutRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarSubItem39);
-            this.pivotTableDesignLayoutRibbonPageGroup1.Name = "pivotTableDesignLayoutRibbonPageGroup1";
-            // 
-            // pivotTableDesignPivotTableStyleOptionsRibbonPageGroup1
-            // 
-            this.pivotTableDesignPivotTableStyleOptionsRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarCheckItem37);
-            this.pivotTableDesignPivotTableStyleOptionsRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarCheckItem38);
-            this.pivotTableDesignPivotTableStyleOptionsRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarCheckItem39);
-            this.pivotTableDesignPivotTableStyleOptionsRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarCheckItem40);
-            this.pivotTableDesignPivotTableStyleOptionsRibbonPageGroup1.ItemsLayout = DevExpress.XtraBars.Ribbon.RibbonPageGroupItemsLayout.TwoRows;
-            this.pivotTableDesignPivotTableStyleOptionsRibbonPageGroup1.Name = "pivotTableDesignPivotTableStyleOptionsRibbonPageGroup1";
-            // 
-            // pivotTableDesignPivotTableStylesRibbonPageGroup1
-            // 
-            this.pivotTableDesignPivotTableStylesRibbonPageGroup1.ItemLinks.Add(this.galleryPivotStylesItem1);
-            this.pivotTableDesignPivotTableStylesRibbonPageGroup1.Name = "pivotTableDesignPivotTableStylesRibbonPageGroup1";
-            // 
             // templatePage
             // 
             this.templatePage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -7689,12 +7372,12 @@
             // 
             // spreadsheetControlOld
             // 
-            this.spreadsheetControlOld.Location = new System.Drawing.Point(433, 227);
+            this.spreadsheetControlOld.Location = new System.Drawing.Point(650, 137);
             this.spreadsheetControlOld.MenuManager = this.ribbonControl1;
             this.spreadsheetControlOld.Name = "spreadsheetControlOld";
             this.spreadsheetControlOld.Options.Import.Csv.Encoding = ((System.Text.Encoding)(resources.GetObject("spreadsheetControlOld.Options.Import.Csv.Encoding")));
             this.spreadsheetControlOld.Options.Import.Txt.Encoding = ((System.Text.Encoding)(resources.GetObject("spreadsheetControlOld.Options.Import.Txt.Encoding")));
-            this.spreadsheetControlOld.Size = new System.Drawing.Size(400, 200);
+            this.spreadsheetControlOld.Size = new System.Drawing.Size(400, 319);
             this.spreadsheetControlOld.TabIndex = 3;
             this.spreadsheetControlOld.Text = "spreadsheetControl1";
             // 
@@ -8168,44 +7851,6 @@
         private DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandBarCheckItem spreadsheetCommandBarCheckItem39;
         private DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandBarCheckItem spreadsheetCommandBarCheckItem40;
         private DevExpress.XtraSpreadsheet.UI.GalleryPivotStylesItem galleryPivotStylesItem1;
-        private DevExpress.XtraSpreadsheet.UI.ChartToolsRibbonPageCategory chartToolsRibbonPageCategory1;
-        private DevExpress.XtraSpreadsheet.UI.ChartsDesignRibbonPage chartsDesignRibbonPage1;
-        private DevExpress.XtraSpreadsheet.UI.ChartsDesignTypeRibbonPageGroup chartsDesignTypeRibbonPageGroup1;
-        private DevExpress.XtraSpreadsheet.UI.ChartsDesignDataRibbonPageGroup chartsDesignDataRibbonPageGroup1;
-        private DevExpress.XtraSpreadsheet.UI.ChartsDesignLayoutsRibbonPageGroup chartsDesignLayoutsRibbonPageGroup1;
-        private DevExpress.XtraSpreadsheet.UI.ChartsDesignStylesRibbonPageGroup chartsDesignStylesRibbonPageGroup1;
-        private DevExpress.XtraSpreadsheet.UI.ChartsDesignLocationRibbonPageGroup chartsDesignLocationRibbonPageGroup1;
-        private DevExpress.XtraSpreadsheet.UI.ChartsLayoutRibbonPage chartsLayoutRibbonPage1;
-        private DevExpress.XtraSpreadsheet.UI.ChartsLayoutAxesRibbonPageGroup chartsLayoutAxesRibbonPageGroup1;
-        private DevExpress.XtraSpreadsheet.UI.ChartsLayoutLabelsRibbonPageGroup chartsLayoutLabelsRibbonPageGroup1;
-        private DevExpress.XtraSpreadsheet.UI.ChartsLayoutAnalysisRibbonPageGroup chartsLayoutAnalysisRibbonPageGroup1;
-        private DevExpress.XtraSpreadsheet.UI.ChartsFormatRibbonPage chartsFormatRibbonPage1;
-        private DevExpress.XtraSpreadsheet.UI.ChartsFormatArrangeRibbonPageGroup chartsFormatArrangeRibbonPageGroup1;
-        private DevExpress.XtraSpreadsheet.UI.TableToolsRibbonPageCategory tableToolsRibbonPageCategory1;
-        private DevExpress.XtraSpreadsheet.UI.TableToolsDesignRibbonPage tableToolsDesignRibbonPage1;
-        private DevExpress.XtraSpreadsheet.UI.TablePropertiesRibbonPageGroup tablePropertiesRibbonPageGroup1;
-        private DevExpress.XtraSpreadsheet.UI.TableToolsRibbonPageGroup tableToolsRibbonPageGroup1;
-        private DevExpress.XtraSpreadsheet.UI.TableStyleOptionsRibbonPageGroup tableStyleOptionsRibbonPageGroup1;
-        private DevExpress.XtraSpreadsheet.UI.TableStylesRibbonPageGroup tableStylesRibbonPageGroup1;
-        private DevExpress.XtraSpreadsheet.UI.DrawingToolsRibbonPageCategory drawingToolsRibbonPageCategory1;
-        private DevExpress.XtraSpreadsheet.UI.DrawingFormatRibbonPage drawingFormatRibbonPage1;
-        private DevExpress.XtraSpreadsheet.UI.DrawingFormatArrangeRibbonPageGroup drawingFormatArrangeRibbonPageGroup1;
-        private DevExpress.XtraSpreadsheet.UI.PictureToolsRibbonPageCategory pictureToolsRibbonPageCategory1;
-        private DevExpress.XtraSpreadsheet.UI.PictureFormatRibbonPage pictureFormatRibbonPage1;
-        private DevExpress.XtraSpreadsheet.UI.PictureFormatArrangeRibbonPageGroup pictureFormatArrangeRibbonPageGroup1;
-        private DevExpress.XtraSpreadsheet.UI.PivotTableToolsRibbonPageCategory pivotTableToolsRibbonPageCategory1;
-        private DevExpress.XtraSpreadsheet.UI.PivotTableAnalyzeRibbonPage pivotTableAnalyzeRibbonPage1;
-        private DevExpress.XtraSpreadsheet.UI.PivotTableAnalyzePivotTableRibbonPageGroup pivotTableAnalyzePivotTableRibbonPageGroup1;
-        private DevExpress.XtraSpreadsheet.UI.PivotTableAnalyzeActiveFieldRibbonPageGroup pivotTableAnalyzeActiveFieldRibbonPageGroup1;
-        private DevExpress.XtraSpreadsheet.UI.PivotTableAnalyzeGroupRibbonPageGroup pivotTableAnalyzeGroupRibbonPageGroup1;
-        private DevExpress.XtraSpreadsheet.UI.PivotTableAnalyzeDataRibbonPageGroup pivotTableAnalyzeDataRibbonPageGroup1;
-        private DevExpress.XtraSpreadsheet.UI.PivotTableAnalyzeActionsRibbonPageGroup pivotTableAnalyzeActionsRibbonPageGroup1;
-        private DevExpress.XtraSpreadsheet.UI.PivotTableAnalyzeCalculationsRibbonPageGroup pivotTableAnalyzeCalculationsRibbonPageGroup1;
-        private DevExpress.XtraSpreadsheet.UI.PivotTableAnalyzeShowRibbonPageGroup pivotTableAnalyzeShowRibbonPageGroup1;
-        private DevExpress.XtraSpreadsheet.UI.PivotTableDesignRibbonPage pivotTableDesignRibbonPage1;
-        private DevExpress.XtraSpreadsheet.UI.PivotTableDesignLayoutRibbonPageGroup pivotTableDesignLayoutRibbonPageGroup1;
-        private DevExpress.XtraSpreadsheet.UI.PivotTableDesignPivotTableStyleOptionsRibbonPageGroup pivotTableDesignPivotTableStyleOptionsRibbonPageGroup1;
-        private DevExpress.XtraSpreadsheet.UI.PivotTableDesignPivotTableStylesRibbonPageGroup pivotTableDesignPivotTableStylesRibbonPageGroup1;
         private DevExpress.XtraBars.Ribbon.RibbonPage templatePage;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
         private DevExpress.XtraSpreadsheet.UI.FileRibbonPage fileRibbonPage1;

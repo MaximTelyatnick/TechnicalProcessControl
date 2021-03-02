@@ -80,16 +80,19 @@
             this.importTab = new DevExpress.XtraTab.XtraTabPage();
             this.checkPanelControl = new DevExpress.XtraEditors.PanelControl();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
+            this.allTechProcessDeleteBtn = new DevExpress.XtraEditors.SimpleButton();
             this.techProcessPathEdit = new DevExpress.XtraEditors.TextEdit();
             this.addPathToTechProcessBtn = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             this.importTechProcessBtn = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.allScanDeleteBtn = new DevExpress.XtraEditors.SimpleButton();
             this.importDrawingScanBtn = new DevExpress.XtraEditors.SimpleButton();
             this.addPathToDrawingScanBtn = new DevExpress.XtraEditors.SimpleButton();
             this.drawingScanDirectoryEdit = new DevExpress.XtraEditors.TextEdit();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
             this.updateDrawingNumberParseBtn = new DevExpress.XtraEditors.SimpleButton();
             this.existingWorkflowFileEdit = new DevExpress.XtraEditors.TextEdit();
             this.addExistingWorkflowBtn = new DevExpress.XtraEditors.SimpleButton();
@@ -115,9 +118,6 @@
             this.paintMaterialBand = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.laborIntensityBand = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.treeListBand14 = new DevExpress.XtraTreeList.Columns.TreeListBand();
-            this.allTechProcessDeleteBtn = new DevExpress.XtraEditors.SimpleButton();
-            this.allScanDeleteBtn = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.settangsTab)).BeginInit();
             this.settangsTab.SuspendLayout();
             this.databaseTab.SuspendLayout();
@@ -716,6 +716,18 @@
             this.groupControl3.TabIndex = 125;
             this.groupControl3.Text = "Импорт техпроцессов";
             // 
+            // allTechProcessDeleteBtn
+            // 
+            this.allTechProcessDeleteBtn.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.allTechProcessDeleteBtn.Appearance.Options.UseFont = true;
+            this.allTechProcessDeleteBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("allTechProcessDeleteBtn.ImageOptions.Image")));
+            this.allTechProcessDeleteBtn.Location = new System.Drawing.Point(5, 50);
+            this.allTechProcessDeleteBtn.Name = "allTechProcessDeleteBtn";
+            this.allTechProcessDeleteBtn.Size = new System.Drawing.Size(186, 21);
+            this.allTechProcessDeleteBtn.TabIndex = 123;
+            this.allTechProcessDeleteBtn.Text = "Удалить техпроцессы";
+            this.allTechProcessDeleteBtn.Click += new System.EventHandler(this.allTechProcessDeleteBtn_Click);
+            // 
             // techProcessPathEdit
             // 
             this.techProcessPathEdit.Location = new System.Drawing.Point(57, 23);
@@ -770,6 +782,17 @@
             this.groupControl2.Size = new System.Drawing.Size(667, 87);
             this.groupControl2.TabIndex = 124;
             this.groupControl2.Text = "Импорт сканов";
+            // 
+            // allScanDeleteBtn
+            // 
+            this.allScanDeleteBtn.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.allScanDeleteBtn.Appearance.Options.UseFont = true;
+            this.allScanDeleteBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("allScanDeleteBtn.ImageOptions.Image")));
+            this.allScanDeleteBtn.Location = new System.Drawing.Point(5, 60);
+            this.allScanDeleteBtn.Name = "allScanDeleteBtn";
+            this.allScanDeleteBtn.Size = new System.Drawing.Size(186, 21);
+            this.allScanDeleteBtn.TabIndex = 124;
+            this.allScanDeleteBtn.Text = "Удалить сканы";
             // 
             // importDrawingScanBtn
             // 
@@ -826,6 +849,17 @@
             this.groupControl1.Size = new System.Drawing.Size(667, 91);
             this.groupControl1.TabIndex = 123;
             this.groupControl1.Text = "Импорт структуры";
+            // 
+            // simpleButton4
+            // 
+            this.simpleButton4.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.simpleButton4.Appearance.Options.UseFont = true;
+            this.simpleButton4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton4.ImageOptions.Image")));
+            this.simpleButton4.Location = new System.Drawing.Point(10, 59);
+            this.simpleButton4.Name = "simpleButton4";
+            this.simpleButton4.Size = new System.Drawing.Size(186, 21);
+            this.simpleButton4.TabIndex = 125;
+            this.simpleButton4.Text = "Удалить структуру";
             // 
             // updateDrawingNumberParseBtn
             // 
@@ -1079,39 +1113,6 @@
             this.treeListBand14.Name = "treeListBand14";
             this.treeListBand14.Visible = false;
             this.treeListBand14.Width = 260;
-            // 
-            // allTechProcessDeleteBtn
-            // 
-            this.allTechProcessDeleteBtn.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.allTechProcessDeleteBtn.Appearance.Options.UseFont = true;
-            this.allTechProcessDeleteBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.ImageOptions.Image")));
-            this.allTechProcessDeleteBtn.Location = new System.Drawing.Point(5, 50);
-            this.allTechProcessDeleteBtn.Name = "allTechProcessDeleteBtn";
-            this.allTechProcessDeleteBtn.Size = new System.Drawing.Size(186, 21);
-            this.allTechProcessDeleteBtn.TabIndex = 123;
-            this.allTechProcessDeleteBtn.Text = "Удалить техпроцессы";
-            // 
-            // allScanDeleteBtn
-            // 
-            this.allScanDeleteBtn.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.allScanDeleteBtn.Appearance.Options.UseFont = true;
-            this.allScanDeleteBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.ImageOptions.Image1")));
-            this.allScanDeleteBtn.Location = new System.Drawing.Point(5, 60);
-            this.allScanDeleteBtn.Name = "allScanDeleteBtn";
-            this.allScanDeleteBtn.Size = new System.Drawing.Size(186, 21);
-            this.allScanDeleteBtn.TabIndex = 124;
-            this.allScanDeleteBtn.Text = "Удалить сканы";
-            // 
-            // simpleButton4
-            // 
-            this.simpleButton4.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.simpleButton4.Appearance.Options.UseFont = true;
-            this.simpleButton4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton4.ImageOptions.Image")));
-            this.simpleButton4.Location = new System.Drawing.Point(10, 59);
-            this.simpleButton4.Name = "simpleButton4";
-            this.simpleButton4.Size = new System.Drawing.Size(186, 21);
-            this.simpleButton4.TabIndex = 125;
-            this.simpleButton4.Text = "Удалить структуру";
             // 
             // SettingsFm
             // 

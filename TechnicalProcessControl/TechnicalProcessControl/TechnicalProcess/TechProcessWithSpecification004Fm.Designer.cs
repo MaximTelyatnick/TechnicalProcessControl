@@ -1955,7 +1955,7 @@
             this.addSimpleSheetBtn,
             this.deleteSimpleSheetBtn});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 349;
+            this.ribbonControl1.MaxItemId = 353;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.PageCategories.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageCategory[] {
             this.chartToolsRibbonPageCategory1,
