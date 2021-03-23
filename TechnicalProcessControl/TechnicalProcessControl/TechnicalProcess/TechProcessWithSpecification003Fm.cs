@@ -129,7 +129,6 @@ namespace TechnicalProcessControl.TechnicalProcess
                     PrintSimpleSheetFromRevision();
 
 
-
                     workbookOld.EndUpdate();
                     workbook.EndUpdate();
                     break;
@@ -894,7 +893,6 @@ namespace TechnicalProcessControl.TechnicalProcess
             List<Range> copyRangeFromOldFile = GetSimpleSheetInfoRange();
             defaultSimpleSheett = copyRangeFromOldFile.Count;
 
-            //copyRangeFromOldFile.R
             for (int i = 0; i < copyRangeFromOldFile.Count; i++)
             {
 
@@ -913,6 +911,8 @@ namespace TechnicalProcessControl.TechnicalProcess
                 // PrintSpecificationInfoRevisionAdded(i);
 
             }
+
+            PrintSpecificationInfoRevisionAdded(copyRangeFromOldFile.Count);
 
             //PrintSpecificationInfoRevisionAdded(copyRangeFromOldFile.Count);
 

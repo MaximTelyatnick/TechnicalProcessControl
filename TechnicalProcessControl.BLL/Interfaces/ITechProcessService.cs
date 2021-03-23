@@ -100,6 +100,15 @@ namespace TechnicalProcessControl.BLL.Interfaces
 
         #region TechProcess003 method's
 
+        //получить техпроцесс 003 по айди техпроцесса с краткой информацией и именем ревизии   ok
+        TechProcess003DTO GetTechProcess003SimpleWithRevisionName(int techProcess003Id);
+
+        //получить техпроцесс 003 по айди техпроцесса с краткой информацией   ok
+        TechProcess003DTO GetTechProcess003Simple(int techProcess003Id);
+
+        // получить  ревизии техпроцесса 003 + актуальный по Id 
+        IEnumerable<TechProcess003DTO> GetAllTechProcess003RevisionWithActualTechprocess(int techProcessId);
+
         //получить актуальный техпроцесс 003 по айди чертежа  с подробной информацией (материалы и трудоёмкость)
         TechProcess003DTO GetTechProcess003ByDrawingId(int drawingId);
 

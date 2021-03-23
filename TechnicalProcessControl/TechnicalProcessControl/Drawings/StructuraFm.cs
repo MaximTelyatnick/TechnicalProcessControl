@@ -120,7 +120,7 @@ namespace TechnicalProcessControl
 
                 try
                 {
-                    Convert.ToInt32(drawingsListInfoNoSort[i].CurrentLevelMenu.Split('.').Last());
+                    Convert.ToInt64(drawingsListInfoNoSort[i].CurrentLevelMenu.Split('.').Last());
                     updateDrawingsScan.Add(drawingsListInfoNoSort[i]);
                 }
                 catch (Exception ex)
@@ -130,7 +130,11 @@ namespace TechnicalProcessControl
                 }
 
             }
+
             var drawingsListInfo = updateDrawingsScan.OrderBy(bdsm => Convert.ToInt32(bdsm.CurrentLevelMenu.Split('.').Last())).ToList();
+            //var drawingsListInfo = drawingsListInfoNoSort.ToList();
+
+
             drawingsList = ConvertList(drawingsListInfo);
             drawingsBS.DataSource = drawingsList;
             drawingTreeListGrid.DataSource = drawingsBS;
@@ -236,30 +240,35 @@ namespace TechnicalProcessControl
                     StructuraDisable = item.StructuraDisable,
                     TechProcess001Id = item.TechProcess001Id,
                     TechProcess001Name = item.TechProcess001Name,
+                     TechProcess001NameString = item.TechProcess001NameString,
                     TechProcess001Old = item.TechProcess001Old,
                     TechProcess001Path = item.TechProcess001Path,
                     TechProcess001PathOld = item.TechProcess001PathOld,
                     TechProcess001Type = item.TechProcess001Type,
                     TechProcess002Id = item.TechProcess002Id,
                     TechProcess002Name = item.TechProcess002Name,
+                    TechProcess002NameString = item.TechProcess002NameString,
                     TechProcess002Old = item.TechProcess002Old,
                     TechProcess002Path = item.TechProcess002Path,
                     TechProcess002PathOld = item.TechProcess002PathOld,
                     TechProcess002Type = item.TechProcess002Type,
                     TechProcess003Id = item.TechProcess003Id,
                     TechProcess003Name = item.TechProcess003Name,
+                    TechProcess003NameString = item.TechProcess003NameString,
                     TechProcess003Old = item.TechProcess003Old,
                     TechProcess003Path = item.TechProcess003Path,
                     TechProcess003PathOld = item.TechProcess003PathOld,
                     TechProcess003Type = item.TechProcess003Type,
                     TechProcess004Id = item.TechProcess004Id,
                     TechProcess004Name = item.TechProcess004Name,
+                    TechProcess004NameString = item.TechProcess004NameString,
                     TechProcess004Old = item.TechProcess004Old,
                     TechProcess004Path = item.TechProcess004Path,
                     TechProcess004PathOld = item.TechProcess004PathOld,
                     TechProcess004Type = item.TechProcess004Type,
                     TechProcess005Id = item.TechProcess005Id,
                     TechProcess005Name = item.TechProcess005Name,
+                    TechProcess005NameString = item.TechProcess005NameString,
                     TechProcess005Old = item.TechProcess005Old,
                     TechProcess005Path = item.TechProcess005Path,
                     TechProcess005PathOld = item.TechProcess005PathOld,
@@ -564,7 +573,7 @@ namespace TechnicalProcessControl
                 e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Regular);
             }
 
-            if (item.TechProcess001Id != null && e.Column.FieldName == "TechProcess001Name")
+            if (item.TechProcess001Id != null && e.Column.FieldName == "TechProcess001NameString")
             {
                 switch (item.TechProcess001Type)
                 {
@@ -596,7 +605,7 @@ namespace TechnicalProcessControl
                 }
             }
 
-            if (item.TechProcess002Id != null && e.Column.FieldName == "TechProcess002Name")
+            if (item.TechProcess002Id != null && e.Column.FieldName == "TechProcess002NameString")
             {
                 switch (item.TechProcess002Type)
                 {
@@ -628,7 +637,7 @@ namespace TechnicalProcessControl
                 }
             }
 
-            if (item.TechProcess003Id != null && e.Column.FieldName == "TechProcess003Name")
+            if (item.TechProcess003Id != null && e.Column.FieldName == "TechProcess003NameString")
             {
                 switch (item.TechProcess003Type)
                 {
@@ -660,7 +669,7 @@ namespace TechnicalProcessControl
                 }
             }
 
-            if (item.TechProcess004Id != null && e.Column.FieldName == "TechProcess004Name")
+            if (item.TechProcess004Id != null && e.Column.FieldName == "TechProcess004NameString")
             {
                 switch (item.TechProcess004Type)
                 {
@@ -691,7 +700,7 @@ namespace TechnicalProcessControl
                         break;
                 }
             }
-            if (item.TechProcess005Id != null && e.Column.FieldName == "TechProcess005Name")
+            if (item.TechProcess005Id != null && e.Column.FieldName == "TechProcess005NameString")
             {
                 switch (item.TechProcess005Type)
                 {

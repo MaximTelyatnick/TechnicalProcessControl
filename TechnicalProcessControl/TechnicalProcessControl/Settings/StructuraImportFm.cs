@@ -212,7 +212,7 @@ namespace TechnicalProcessControl.Settings
                         drawingsDTO.ParentId = parentId.Id;
                         drawingsList[i].ParentId = parentId.Id;
                     }
-                    drawingsDTO.CurrentLevelMenu = drawingsList[i].CurrentLevelMenu;
+                    drawingsDTO.CurrentLevelMenu = drawingsList[i].CurrentLevelMenu.Replace(",",".");
                     drawingsDTO.Id = drawingService.DrawingsCreate(drawingsDTO);
                     drawingsList[i].Id = drawingsDTO.Id;
 

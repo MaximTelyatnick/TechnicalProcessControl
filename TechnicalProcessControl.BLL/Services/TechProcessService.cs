@@ -907,6 +907,64 @@ namespace TechnicalProcessControl.BLL.Services
             return result.FirstOrDefault();
         }
 
+        //получить техпроцесс 003 по айди техпроцесса с краткой информацией и именем ревизии   ok
+        public TechProcess003DTO GetTechProcess003SimpleWithRevisionName(int techProcess003Id)
+        {
+            var result = (from tcp in techProcess003.GetAll()
+                          join rd in revisions.GetAll() on tcp.RevisionId equals rd.Id into rdd
+                          from rd in rdd.DefaultIfEmpty()
+                          where (tcp.Id == techProcess003Id)
+                          select new TechProcess003DTO
+                          {
+                              Id = tcp.Id,
+                              CreateDate = tcp.CreateDate,
+                              ParentId = tcp.ParentId,
+                              RevisionId = tcp.RevisionId,
+                              TH = tcp.TH,
+                              W = tcp.W,
+                              W2 = tcp.W2,
+                              L = tcp.L,
+                              Weight = tcp.Weight,
+                              TechProcessName = tcp.TechProcessName,
+                              DrawingId = tcp.DrawingId,
+                              TechProcessFullName = tcp.TechProcessFullName,
+                              TechProcessPath = tcp.TechProcessPath,
+                              RivisionName = rd.Symbol,
+                              OldTechProcess = tcp.OldTechProcess,
+                              TypeId = tcp.TypeId,
+                              RevisionDocumentName = tcp.RevisionDocumentName
+                          }
+                          ).FirstOrDefault();
+
+            return result;
+        }
+
+        //получить техпроцесс 003 по айди техпроцесса с краткой информацией   ok
+        public TechProcess003DTO GetTechProcess003Simple(int techProcess003Id)
+        {
+            return mapper.Map<TechProcess003, TechProcess003DTO>(techProcess003.GetAll().FirstOrDefault(srt => srt.Id == techProcess003Id));
+        }
+
+        // получить  ревизии техпроцесса 003 + актуальный по Id 
+        public IEnumerable<TechProcess003DTO> GetAllTechProcess003RevisionWithActualTechprocess(int techProcessId)
+        {
+            List<TechProcess003DTO> allRevisiontechProcess003 = new List<TechProcess003DTO>();
+            var techProcess003Actial = GetTechProcess003SimpleWithRevisionName(techProcessId);
+            allRevisiontechProcess003.Add(techProcess003Actial);
+
+            var techProcess003 = GetTechProcess003RevisionByIdFull(techProcessId);
+            if (techProcess003 == null)
+            {
+                return allRevisiontechProcess003;
+            }
+            else
+            {
+                allRevisiontechProcess003.Add(techProcess003);
+                allRevisiontechProcess003 = TechProcess003Revision(techProcess003, allRevisiontechProcess003);
+                return allRevisiontechProcess003;
+            }
+        }
+
         // получить ревизии техпроцесса 003 по Id родителя ok
         public IEnumerable<TechProcess003DTO> GetAllTechProcess003Revision(int techProcessId)
         {
@@ -1059,7 +1117,80 @@ namespace TechnicalProcessControl.BLL.Services
 
         #region TechProcess004 method's
 
-        //получить актуальный техпроцесс 002 по айди чертежа  с подробной информацией (материалы и трудоёмкость)
+        public List<TechProcess004DTO> TechProcess004Revision(TechProcess004DTO techProcess004, List<TechProcess004DTO> alltechProcessRevision)
+        {
+            var techProcessRevision004 = GetTechProcess004RevisionByIdFull(((TechProcess004DTO)techProcess004).Id);
+            if (techProcessRevision004 == null)
+            {
+                return alltechProcessRevision;
+            }
+            else
+            {
+                alltechProcessRevision.Add(techProcessRevision004);
+                alltechProcessRevision = TechProcess004Revision(techProcessRevision004, alltechProcessRevision);
+                return alltechProcessRevision;
+            }
+        }
+
+        //получить техпроцесс 003 по айди техпроцесса с краткой информацией и именем ревизии   ok
+        public TechProcess004DTO GetTechProcess004SimpleWithRevisionName(int techProcess004Id)
+        {
+            var result = (from tcp in techProcess004.GetAll()
+                          join rd in revisions.GetAll() on tcp.RevisionId equals rd.Id into rdd
+                          from rd in rdd.DefaultIfEmpty()
+                          where (tcp.Id == techProcess004Id)
+                          select new TechProcess004DTO
+                          {
+                              Id = tcp.Id,
+                              CreateDate = tcp.CreateDate,
+                              ParentId = tcp.ParentId,
+                              RevisionId = tcp.RevisionId,
+                              TH = tcp.TH,
+                              W = tcp.W,
+                              W2 = tcp.W2,
+                              L = tcp.L,
+                              Weight = tcp.Weight,
+                              TechProcessName = tcp.TechProcessName,
+                              DrawingId = tcp.DrawingId,
+                              TechProcessFullName = tcp.TechProcessFullName,
+                              TechProcessPath = tcp.TechProcessPath,
+                              RivisionName = rd.Symbol,
+                              OldTechProcess = tcp.OldTechProcess,
+                              TypeId = tcp.TypeId,
+                              RevisionDocumentName = tcp.RevisionDocumentName
+                          }
+                          ).FirstOrDefault();
+
+            return result;
+        }
+
+        //получить техпроцесс 004 по айди техпроцесса с краткой информацией   ok
+        public TechProcess004DTO GetTechProcess004Simple(int techProcess004Id)
+        {
+            return mapper.Map<TechProcess004, TechProcess004DTO>(techProcess004.GetAll().FirstOrDefault(srt => srt.Id == techProcess004Id));
+        }
+
+        // получить  ревизии техпроцесса 004 + актуальный по Id 
+        public IEnumerable<TechProcess004DTO> GetAllTechProcess004RevisionWithActualTechprocess(int techProcessId)
+        {
+            List<TechProcess004DTO> allRevisiontechProcess004 = new List<TechProcess004DTO>();
+            var techProcess004Actial = GetTechProcess004SimpleWithRevisionName(techProcessId);
+            allRevisiontechProcess004.Add(techProcess004Actial);
+
+            var techProcess004 = GetTechProcess004RevisionByIdFull(techProcessId);
+            if (techProcess004 == null)
+            {
+                return allRevisiontechProcess004;
+            }
+            else
+            {
+                allRevisiontechProcess004.Add(techProcess004);
+                allRevisiontechProcess004 = TechProcess004Revision(techProcess004, allRevisiontechProcess004);
+                return allRevisiontechProcess004;
+            }
+        }
+
+        //получить актуальный техпроцесс 004 по айди чертежа  с подробной информацией (материалы и трудоёмкость)
         public TechProcess004DTO GetTechProcess004ByDrawingId(int drawingId)
         {
             var result = (from tcp in techProcess004.GetAll()

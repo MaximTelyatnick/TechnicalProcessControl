@@ -261,8 +261,8 @@
             this.удалитьСборкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.structuraColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.drawingColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.detailColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.drawingColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
             this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
             this.xtraScrollableControl2 = new DevExpress.XtraEditors.XtraScrollableControl();
@@ -1026,7 +1026,7 @@
             this.techProcessOneTreeCol.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.techProcessOneTreeCol.Caption = "Number";
             this.techProcessOneTreeCol.ColumnEdit = this.techProcess001Repository;
-            this.techProcessOneTreeCol.FieldName = "TechProcess001Name";
+            this.techProcessOneTreeCol.FieldName = "TechProcess001NameString";
             this.techProcessOneTreeCol.Name = "techProcessOneTreeCol";
             this.techProcessOneTreeCol.OptionsFilter.AutoFilterCondition = DevExpress.XtraTreeList.Columns.AutoFilterCondition.Contains;
             this.techProcessOneTreeCol.Visible = true;
@@ -1103,7 +1103,7 @@
             this.techProcessTwooTreeCol.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.techProcessTwooTreeCol.Caption = "Number";
             this.techProcessTwooTreeCol.ColumnEdit = this.techProcess002Repository;
-            this.techProcessTwooTreeCol.FieldName = "TechProcess002Name";
+            this.techProcessTwooTreeCol.FieldName = "TechProcess002NameString";
             this.techProcessTwooTreeCol.Name = "techProcessTwooTreeCol";
             this.techProcessTwooTreeCol.OptionsColumn.AllowMove = false;
             this.techProcessTwooTreeCol.OptionsFilter.AutoFilterCondition = DevExpress.XtraTreeList.Columns.AutoFilterCondition.Contains;
@@ -1183,7 +1183,7 @@
             this.techProcessThreeTreeCol.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.techProcessThreeTreeCol.Caption = "Number";
             this.techProcessThreeTreeCol.ColumnEdit = this.techProcess003Repository;
-            this.techProcessThreeTreeCol.FieldName = "TechProcess003Name";
+            this.techProcessThreeTreeCol.FieldName = "TechProcess003NameString";
             this.techProcessThreeTreeCol.Name = "techProcessThreeTreeCol";
             this.techProcessThreeTreeCol.OptionsColumn.AllowMove = false;
             this.techProcessThreeTreeCol.OptionsFilter.AutoFilterCondition = DevExpress.XtraTreeList.Columns.AutoFilterCondition.Contains;
@@ -1264,7 +1264,7 @@
             this.techProcessFourTreeCol.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.techProcessFourTreeCol.Caption = "Number";
             this.techProcessFourTreeCol.ColumnEdit = this.techProcess004Repository;
-            this.techProcessFourTreeCol.FieldName = "TechProcess004Name";
+            this.techProcessFourTreeCol.FieldName = "TechProcess004NameString";
             this.techProcessFourTreeCol.Name = "techProcessFourTreeCol";
             this.techProcessFourTreeCol.OptionsColumn.AllowMove = false;
             this.techProcessFourTreeCol.OptionsFilter.AutoFilterCondition = DevExpress.XtraTreeList.Columns.AutoFilterCondition.Contains;
@@ -1345,7 +1345,7 @@
             this.techProcessFiveTreeCol.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.techProcessFiveTreeCol.Caption = "Number";
             this.techProcessFiveTreeCol.ColumnEdit = this.techProcess005Repository;
-            this.techProcessFiveTreeCol.FieldName = "TechProcess005Name";
+            this.techProcessFiveTreeCol.FieldName = "TechProcess005NameString";
             this.techProcessFiveTreeCol.Name = "techProcessFiveTreeCol";
             this.techProcessFiveTreeCol.OptionsColumn.AllowMove = false;
             this.techProcessFiveTreeCol.OptionsFilter.AutoFilterCondition = DevExpress.XtraTreeList.Columns.AutoFilterCondition.Contains;
@@ -3575,8 +3575,16 @@
             // colorMenu
             // 
             this.colorMenu.Name = "colorMenu";
-            this.colorMenu.OwnerItem = this.detailColorToolStripMenuItem;
+            this.colorMenu.OwnerItem = this.drawingColorToolStripMenuItem;
             this.colorMenu.Size = new System.Drawing.Size(61, 4);
+            // 
+            // detailColorToolStripMenuItem
+            // 
+            this.detailColorToolStripMenuItem.DropDown = this.colorMenu;
+            this.detailColorToolStripMenuItem.Name = "detailColorToolStripMenuItem";
+            this.detailColorToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.detailColorToolStripMenuItem.Text = "Выделить деталь";
+            this.detailColorToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.detailColorToolStripMenuItem_DropDownItemClicked);
             // 
             // drawingColorToolStripMenuItem
             // 
@@ -3586,14 +3594,6 @@
             this.drawingColorToolStripMenuItem.Text = "Выделить чертёж";
             this.drawingColorToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.drawingColorToolStripMenuItem_DropDownItemClicked);
             this.drawingColorToolStripMenuItem.Click += new System.EventHandler(this.выделитьToolStripMenuItem_Click);
-            // 
-            // detailColorToolStripMenuItem
-            // 
-            this.detailColorToolStripMenuItem.DropDown = this.colorMenu;
-            this.detailColorToolStripMenuItem.Name = "detailColorToolStripMenuItem";
-            this.detailColorToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.detailColorToolStripMenuItem.Text = "Выделить деталь";
-            this.detailColorToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.detailColorToolStripMenuItem_DropDownItemClicked);
             // 
             // imageCollection
             // 

@@ -1531,7 +1531,7 @@
             this.deleteSimpleSheetBtn,
             this.saveTemplateBtn});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 372;
+            this.ribbonControl1.MaxItemId = 375;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.templatePage,
@@ -7381,7 +7381,7 @@
             this.spreadsheetControlOld.TabIndex = 3;
             this.spreadsheetControlOld.Text = "spreadsheetControl1";
             // 
-            // TechProcessWithSpecificationFm
+            // TechProcessWithSpecification003Fm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -7390,7 +7390,7 @@
             this.Controls.Add(this.ribbonControl1);
             this.Controls.Add(this.spreadsheetControlOld);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "TechProcessWithSpecificationFm";
+            this.Name = "TechProcessWithSpecification003Fm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Редактирование техпроцесса";
             ((System.ComponentModel.ISupportInitialize)(this.commandBarGalleryDropDown26)).EndInit();

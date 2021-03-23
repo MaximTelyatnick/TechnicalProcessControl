@@ -237,6 +237,8 @@ namespace TechnicalProcessControl.TechnicalProcess
                         DrawingDTO drawingTechproces = drawingService.GetDrawingById((int)((TechProcess003DTO)Item).DrawingId);
                         List<DrawingsDTO> structuraChilds = drawingService.GetDrawingsParentByDrawingChildId(drawingsDTO.Id).ToList();
 
+
+
                         using (TechProcessWithSpecification003Fm techProcessWithSpecificationFm = new TechProcessWithSpecification003Fm(Utils.TechProcesFileMode.AddTechProcess,
                             usersDTO, drawingTechproces, parentDrawings, structuraChilds, null, ((TechProcess003DTO)Item), null))
                         {
@@ -318,8 +320,12 @@ namespace TechnicalProcessControl.TechnicalProcess
                 {
                     ((TechProcess003DTO)Item).TechProcessPath = @Properties.Settings.Default.TechProcessDirectoryPath.ToString() + @"\TechProcess003\" + ((TechProcess003DTO)Item).TechProcessFullName + ".xls";
                     List<DrawingDTO> parentDrawings = drawingService.GetDrawingParentByDrawingChildId((int)((TechProcess003DTO)Item).DrawingId).ToList();
-                    List<TechProcess003DTO> techProcess003Revision = techProcessService.GetAllTechProcess003Revision(((TechProcess003DTO)Item).Id).ToList();
+                    //List<TechProcess003DTO> techProcess003Revision = techProcessService.GetAllTechProcess003Revision(((TechProcess003DTO)Item).Id).ToList();
                     List<TechProcess003DTO> techProcess003RevisionOld = techProcessService.GetAllTechProcess003Revision(techProcess003OldDTO.Id).ToList();
+
+                    List<TechProcess003DTO> techProcess003Revision = techProcessService.GetAllTechProcess003RevisionWithActualTechprocess(techProcess003OldDTO.Id).ToList();
+                    ((TechProcess003DTO)Item).RivisionName = revisionEdit.Text;
+                    techProcess003Revision.Insert(0, (TechProcess003DTO)Item);
                     ///////////////////////////////////
                     ///// внимание               _||_
                     /////////////////////        \  /

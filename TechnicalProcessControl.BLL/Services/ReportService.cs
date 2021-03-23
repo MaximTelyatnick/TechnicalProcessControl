@@ -673,7 +673,7 @@ namespace TechnicalProcessControl.BLL.Services
             try
             {
                // workbook.Protect("gbhj98PK3", false, false);
-                workbook.ProtectStructure = true;
+                //workbook.ProtectStructure = true;
                 workbook.ProtectWindows = true;
                 workbook.SaveAs(techProcess001.TechProcessPath, FileFormat.XLS97);
             }
