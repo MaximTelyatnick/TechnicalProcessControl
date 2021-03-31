@@ -359,6 +359,12 @@
     <Compile Include="TechnicalProcess\TechProcess005Fm.Designer.cs">
       <DependentUpon>TechProcess005Fm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TechnicalProcess\TechProcessTempXls001Fm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TechnicalProcess\TechProcessTempXls001Fm.Designer.cs">
+      <DependentUpon>TechProcessTempXls001Fm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TechnicalProcess\TechProcessWithSpecification004Fm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -539,6 +545,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TechnicalProcess\TechProcess005Fm.resx">
       <DependentUpon>TechProcess005Fm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TechnicalProcess\TechProcessTempXls001Fm.resx">
+      <DependentUpon>TechProcessTempXls001Fm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TechnicalProcess\TechProcessWithSpecification004Fm.resx">
       <DependentUpon>TechProcessWithSpecification004Fm.cs</DependentUpon>

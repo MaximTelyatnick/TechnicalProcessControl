@@ -18,7 +18,7 @@ using DevExpress.XtraSplashScreen;
 
 namespace TechnicalProcessControl.TechnicalProcess
 {
-    public partial class TechProcessWithSpecification003Fm : DevExpress.XtraEditors.XtraForm
+    public partial class TechProcessTemp001Fm : DevExpress.XtraEditors.XtraForm
     {
         private SplashScreenManager splashScreenManager;
         string techProcessNumber;
@@ -68,7 +68,7 @@ namespace TechnicalProcessControl.TechnicalProcess
          * Ревизии техпроцесса
          * Старый техпроцесс
          * */
-        public TechProcessWithSpecification003Fm(TechProcesFileMode techProcessFileMode, UsersDTO usersDTO, DrawingDTO techProces003Drawing, List<DrawingDTO> drawingParent, List<DrawingsDTO> techProcess003DrawingsChild, List<TechProcess003DTO> techProcess003Revision, TechProcess003DTO techProcess003, TechProcess003DTO techProcess003Old = null)
+        public TechProcessTemp001Fm(TechProcesFileMode techProcessFileMode, UsersDTO usersDTO, DrawingDTO techProces003Drawing, List<DrawingDTO> drawingParent, List<DrawingsDTO> techProcess003DrawingsChild, List<TechProcess003DTO> techProcess003Revision, TechProcess003DTO techProcess003, TechProcess003DTO techProcess003Old = null)
         {
             InitializeComponent();
 

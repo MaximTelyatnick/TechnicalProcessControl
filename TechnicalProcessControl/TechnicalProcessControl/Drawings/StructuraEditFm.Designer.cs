@@ -244,6 +244,18 @@ namespace TechnicalProcessControl.Drawings
             this.typeEdit = new DevExpress.XtraEditors.TextEdit();
             this.numberEdit = new DevExpress.XtraEditors.GridLookUpEdit();
             this.gridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.numberCol = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.revisionDrawingCol = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.assemblyCol = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.detailCol = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.materialNameCol = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.thCol = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.lCol = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.wCol = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.w2Col = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.detailWeightCol = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.dateCol = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.noteCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.weightEdit = new DevExpress.XtraEditors.TextEdit();
             this.lEdit = new DevExpress.XtraEditors.TextEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
@@ -284,17 +296,6 @@ namespace TechnicalProcessControl.Drawings
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.replaceDrawingEdit = new DevExpress.XtraEditors.GridLookUpEdit();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.labelControl21 = new DevExpress.XtraEditors.LabelControl();
-            this.firstUseDrawingEdit = new DevExpress.XtraEditors.GridLookUpEdit();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
-            this.quantityREdit = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl19 = new DevExpress.XtraEditors.LabelControl();
-            this.quantityLEdit = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl18 = new DevExpress.XtraEditors.LabelControl();
-            this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
-            this.dxValidationProvider = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
-            this.validateLbl = new DevExpress.XtraEditors.LabelControl();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -303,6 +304,9 @@ namespace TechnicalProcessControl.Drawings
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.labelControl21 = new DevExpress.XtraEditors.LabelControl();
+            this.firstUseDrawingEdit = new DevExpress.XtraEditors.GridLookUpEdit();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -311,18 +315,14 @@ namespace TechnicalProcessControl.Drawings
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.numberCol = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.revisionDrawingCol = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.assemblyCol = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.detailCol = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.materialNameCol = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.thCol = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.lCol = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.wCol = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.w2Col = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.detailWeightCol = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.dateCol = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.noteCol = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
+            this.quantityREdit = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl19 = new DevExpress.XtraEditors.LabelControl();
+            this.quantityLEdit = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl18 = new DevExpress.XtraEditors.LabelControl();
+            this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
+            this.dxValidationProvider = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
+            this.validateLbl = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.assemblyEditCheck.Properties)).BeginInit();
@@ -499,6 +499,110 @@ namespace TechnicalProcessControl.Drawings
             this.gridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridLookUpEdit1View.OptionsView.ShowAutoFilterRow = true;
             this.gridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            // 
+            // numberCol
+            // 
+            this.numberCol.Caption = "Номер чертежа";
+            this.numberCol.FieldName = "Number";
+            this.numberCol.Name = "numberCol";
+            this.numberCol.Visible = true;
+            this.numberCol.VisibleIndex = 0;
+            this.numberCol.Width = 150;
+            // 
+            // revisionDrawingCol
+            // 
+            this.revisionDrawingCol.Caption = "Ревизия";
+            this.revisionDrawingCol.FieldName = "RevisionName";
+            this.revisionDrawingCol.Name = "revisionDrawingCol";
+            this.revisionDrawingCol.Visible = true;
+            this.revisionDrawingCol.VisibleIndex = 1;
+            // 
+            // assemblyCol
+            // 
+            this.assemblyCol.Caption = "Тип чертежа";
+            this.assemblyCol.FieldName = "AssemblyName";
+            this.assemblyCol.Name = "assemblyCol";
+            this.assemblyCol.Visible = true;
+            this.assemblyCol.VisibleIndex = 2;
+            // 
+            // detailCol
+            // 
+            this.detailCol.Caption = "Деталь";
+            this.detailCol.FieldName = "DetailName";
+            this.detailCol.Name = "detailCol";
+            this.detailCol.Visible = true;
+            this.detailCol.VisibleIndex = 3;
+            this.detailCol.Width = 60;
+            // 
+            // materialNameCol
+            // 
+            this.materialNameCol.Caption = "Материал";
+            this.materialNameCol.FieldName = "MaterialName";
+            this.materialNameCol.Name = "materialNameCol";
+            this.materialNameCol.Visible = true;
+            this.materialNameCol.VisibleIndex = 4;
+            this.materialNameCol.Width = 50;
+            // 
+            // thCol
+            // 
+            this.thCol.Caption = "TH";
+            this.thCol.FieldName = "TH";
+            this.thCol.Name = "thCol";
+            this.thCol.Visible = true;
+            this.thCol.VisibleIndex = 5;
+            this.thCol.Width = 23;
+            // 
+            // lCol
+            // 
+            this.lCol.Caption = "L";
+            this.lCol.FieldName = "L";
+            this.lCol.Name = "lCol";
+            this.lCol.Visible = true;
+            this.lCol.VisibleIndex = 6;
+            this.lCol.Width = 23;
+            // 
+            // wCol
+            // 
+            this.wCol.Caption = "W";
+            this.wCol.FieldName = "W";
+            this.wCol.Name = "wCol";
+            this.wCol.Visible = true;
+            this.wCol.VisibleIndex = 7;
+            this.wCol.Width = 23;
+            // 
+            // w2Col
+            // 
+            this.w2Col.Caption = "W2";
+            this.w2Col.FieldName = "W2";
+            this.w2Col.Name = "w2Col";
+            this.w2Col.Visible = true;
+            this.w2Col.VisibleIndex = 8;
+            this.w2Col.Width = 23;
+            // 
+            // detailWeightCol
+            // 
+            this.detailWeightCol.Caption = "Вес";
+            this.detailWeightCol.FieldName = "DetailWeight";
+            this.detailWeightCol.Name = "detailWeightCol";
+            this.detailWeightCol.Visible = true;
+            this.detailWeightCol.VisibleIndex = 9;
+            this.detailWeightCol.Width = 32;
+            // 
+            // dateCol
+            // 
+            this.dateCol.Caption = "Дата";
+            this.dateCol.FieldName = "CreateDate";
+            this.dateCol.Name = "dateCol";
+            this.dateCol.Visible = true;
+            this.dateCol.VisibleIndex = 10;
+            // 
+            // noteCol
+            // 
+            this.noteCol.Caption = "Приметка";
+            this.noteCol.FieldName = "Note";
+            this.noteCol.Name = "noteCol";
+            this.noteCol.Visible = true;
+            this.noteCol.VisibleIndex = 11;
             // 
             // weightEdit
             // 
@@ -739,7 +843,7 @@ namespace TechnicalProcessControl.Drawings
             // 
             // pictureEdit
             // 
-            this.pictureEdit.Location = new System.Drawing.Point(5, 24);
+            this.pictureEdit.Location = new System.Drawing.Point(10, 23);
             this.pictureEdit.Name = "pictureEdit";
             this.pictureEdit.Properties.AccessibleDescription = "";
             this.pictureEdit.Properties.AllowDisposeImage = true;
@@ -1070,6 +1174,70 @@ namespace TechnicalProcessControl.Drawings
             this.gridView2.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridView2.OptionsView.ShowGroupPanel = false;
             // 
+            // gridColumn9
+            // 
+            this.gridColumn9.Caption = "Номер чертежа";
+            this.gridColumn9.FieldName = "Number";
+            this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.Visible = true;
+            this.gridColumn9.VisibleIndex = 0;
+            // 
+            // gridColumn10
+            // 
+            this.gridColumn10.Caption = "Деталь";
+            this.gridColumn10.FieldName = "DetailName";
+            this.gridColumn10.Name = "gridColumn10";
+            this.gridColumn10.Visible = true;
+            this.gridColumn10.VisibleIndex = 1;
+            // 
+            // gridColumn11
+            // 
+            this.gridColumn11.Caption = "Материал";
+            this.gridColumn11.FieldName = "MaterialName";
+            this.gridColumn11.Name = "gridColumn11";
+            this.gridColumn11.Visible = true;
+            this.gridColumn11.VisibleIndex = 2;
+            // 
+            // gridColumn12
+            // 
+            this.gridColumn12.Caption = "TH";
+            this.gridColumn12.FieldName = "TH";
+            this.gridColumn12.Name = "gridColumn12";
+            this.gridColumn12.Visible = true;
+            this.gridColumn12.VisibleIndex = 3;
+            // 
+            // gridColumn13
+            // 
+            this.gridColumn13.Caption = "L";
+            this.gridColumn13.FieldName = "L";
+            this.gridColumn13.Name = "gridColumn13";
+            this.gridColumn13.Visible = true;
+            this.gridColumn13.VisibleIndex = 4;
+            // 
+            // gridColumn14
+            // 
+            this.gridColumn14.Caption = "W";
+            this.gridColumn14.FieldName = "W";
+            this.gridColumn14.Name = "gridColumn14";
+            this.gridColumn14.Visible = true;
+            this.gridColumn14.VisibleIndex = 5;
+            // 
+            // gridColumn15
+            // 
+            this.gridColumn15.Caption = "W2";
+            this.gridColumn15.FieldName = "W2";
+            this.gridColumn15.Name = "gridColumn15";
+            this.gridColumn15.Visible = true;
+            this.gridColumn15.VisibleIndex = 6;
+            // 
+            // gridColumn16
+            // 
+            this.gridColumn16.Caption = "Вес";
+            this.gridColumn16.FieldName = "DetailWeight";
+            this.gridColumn16.Name = "gridColumn16";
+            this.gridColumn16.Visible = true;
+            this.gridColumn16.VisibleIndex = 7;
+            // 
             // labelControl21
             // 
             this.labelControl21.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -1114,6 +1282,70 @@ namespace TechnicalProcessControl.Drawings
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "Номер чертежа";
+            this.gridColumn1.FieldName = "Number";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 0;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "Деталь";
+            this.gridColumn2.FieldName = "DetailName";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 1;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "Материал";
+            this.gridColumn3.FieldName = "MaterialName";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 2;
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "TH";
+            this.gridColumn4.FieldName = "TH";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 3;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "L";
+            this.gridColumn5.FieldName = "L";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 4;
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "W";
+            this.gridColumn6.FieldName = "W";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 5;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "W2";
+            this.gridColumn7.FieldName = "W2";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 6;
+            // 
+            // gridColumn8
+            // 
+            this.gridColumn8.Caption = "Вес";
+            this.gridColumn8.FieldName = "DetailWeight";
+            this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.Visible = true;
+            this.gridColumn8.VisibleIndex = 7;
             // 
             // labelControl20
             // 
@@ -1185,238 +1417,6 @@ namespace TechnicalProcessControl.Drawings
             this.validateLbl.Size = new System.Drawing.Size(218, 14);
             this.validateLbl.TabIndex = 120;
             this.validateLbl.Text = "Невозможно сохранить структуру";
-            // 
-            // gridColumn9
-            // 
-            this.gridColumn9.Caption = "Номер чертежа";
-            this.gridColumn9.FieldName = "Number";
-            this.gridColumn9.Name = "gridColumn9";
-            this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 0;
-            // 
-            // gridColumn10
-            // 
-            this.gridColumn10.Caption = "Деталь";
-            this.gridColumn10.FieldName = "DetailName";
-            this.gridColumn10.Name = "gridColumn10";
-            this.gridColumn10.Visible = true;
-            this.gridColumn10.VisibleIndex = 1;
-            // 
-            // gridColumn11
-            // 
-            this.gridColumn11.Caption = "Материал";
-            this.gridColumn11.FieldName = "MaterialName";
-            this.gridColumn11.Name = "gridColumn11";
-            this.gridColumn11.Visible = true;
-            this.gridColumn11.VisibleIndex = 2;
-            // 
-            // gridColumn12
-            // 
-            this.gridColumn12.Caption = "TH";
-            this.gridColumn12.FieldName = "TH";
-            this.gridColumn12.Name = "gridColumn12";
-            this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 3;
-            // 
-            // gridColumn13
-            // 
-            this.gridColumn13.Caption = "L";
-            this.gridColumn13.FieldName = "L";
-            this.gridColumn13.Name = "gridColumn13";
-            this.gridColumn13.Visible = true;
-            this.gridColumn13.VisibleIndex = 4;
-            // 
-            // gridColumn14
-            // 
-            this.gridColumn14.Caption = "W";
-            this.gridColumn14.FieldName = "W";
-            this.gridColumn14.Name = "gridColumn14";
-            this.gridColumn14.Visible = true;
-            this.gridColumn14.VisibleIndex = 5;
-            // 
-            // gridColumn15
-            // 
-            this.gridColumn15.Caption = "W2";
-            this.gridColumn15.FieldName = "W2";
-            this.gridColumn15.Name = "gridColumn15";
-            this.gridColumn15.Visible = true;
-            this.gridColumn15.VisibleIndex = 6;
-            // 
-            // gridColumn16
-            // 
-            this.gridColumn16.Caption = "Вес";
-            this.gridColumn16.FieldName = "DetailWeight";
-            this.gridColumn16.Name = "gridColumn16";
-            this.gridColumn16.Visible = true;
-            this.gridColumn16.VisibleIndex = 7;
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "Номер чертежа";
-            this.gridColumn1.FieldName = "Number";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
-            // 
-            // gridColumn2
-            // 
-            this.gridColumn2.Caption = "Деталь";
-            this.gridColumn2.FieldName = "DetailName";
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 1;
-            // 
-            // gridColumn3
-            // 
-            this.gridColumn3.Caption = "Материал";
-            this.gridColumn3.FieldName = "MaterialName";
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 2;
-            // 
-            // gridColumn4
-            // 
-            this.gridColumn4.Caption = "TH";
-            this.gridColumn4.FieldName = "TH";
-            this.gridColumn4.Name = "gridColumn4";
-            this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 3;
-            // 
-            // gridColumn5
-            // 
-            this.gridColumn5.Caption = "L";
-            this.gridColumn5.FieldName = "L";
-            this.gridColumn5.Name = "gridColumn5";
-            this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 4;
-            // 
-            // gridColumn6
-            // 
-            this.gridColumn6.Caption = "W";
-            this.gridColumn6.FieldName = "W";
-            this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 5;
-            // 
-            // gridColumn7
-            // 
-            this.gridColumn7.Caption = "W2";
-            this.gridColumn7.FieldName = "W2";
-            this.gridColumn7.Name = "gridColumn7";
-            this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 6;
-            // 
-            // gridColumn8
-            // 
-            this.gridColumn8.Caption = "Вес";
-            this.gridColumn8.FieldName = "DetailWeight";
-            this.gridColumn8.Name = "gridColumn8";
-            this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 7;
-            // 
-            // numberCol
-            // 
-            this.numberCol.Caption = "Номер чертежа";
-            this.numberCol.FieldName = "Number";
-            this.numberCol.Name = "numberCol";
-            this.numberCol.Visible = true;
-            this.numberCol.VisibleIndex = 0;
-            this.numberCol.Width = 150;
-            // 
-            // revisionDrawingCol
-            // 
-            this.revisionDrawingCol.Caption = "Ревизия";
-            this.revisionDrawingCol.FieldName = "RevisionName";
-            this.revisionDrawingCol.Name = "revisionDrawingCol";
-            this.revisionDrawingCol.Visible = true;
-            this.revisionDrawingCol.VisibleIndex = 1;
-            // 
-            // assemblyCol
-            // 
-            this.assemblyCol.Caption = "Тип чертежа";
-            this.assemblyCol.FieldName = "AssemblyName";
-            this.assemblyCol.Name = "assemblyCol";
-            this.assemblyCol.Visible = true;
-            this.assemblyCol.VisibleIndex = 2;
-            // 
-            // detailCol
-            // 
-            this.detailCol.Caption = "Деталь";
-            this.detailCol.FieldName = "DetailName";
-            this.detailCol.Name = "detailCol";
-            this.detailCol.Visible = true;
-            this.detailCol.VisibleIndex = 3;
-            this.detailCol.Width = 60;
-            // 
-            // materialNameCol
-            // 
-            this.materialNameCol.Caption = "Материал";
-            this.materialNameCol.FieldName = "MaterialName";
-            this.materialNameCol.Name = "materialNameCol";
-            this.materialNameCol.Visible = true;
-            this.materialNameCol.VisibleIndex = 4;
-            this.materialNameCol.Width = 50;
-            // 
-            // thCol
-            // 
-            this.thCol.Caption = "TH";
-            this.thCol.FieldName = "TH";
-            this.thCol.Name = "thCol";
-            this.thCol.Visible = true;
-            this.thCol.VisibleIndex = 5;
-            this.thCol.Width = 23;
-            // 
-            // lCol
-            // 
-            this.lCol.Caption = "L";
-            this.lCol.FieldName = "L";
-            this.lCol.Name = "lCol";
-            this.lCol.Visible = true;
-            this.lCol.VisibleIndex = 6;
-            this.lCol.Width = 23;
-            // 
-            // wCol
-            // 
-            this.wCol.Caption = "W";
-            this.wCol.FieldName = "W";
-            this.wCol.Name = "wCol";
-            this.wCol.Visible = true;
-            this.wCol.VisibleIndex = 7;
-            this.wCol.Width = 23;
-            // 
-            // w2Col
-            // 
-            this.w2Col.Caption = "W2";
-            this.w2Col.FieldName = "W2";
-            this.w2Col.Name = "w2Col";
-            this.w2Col.Visible = true;
-            this.w2Col.VisibleIndex = 8;
-            this.w2Col.Width = 23;
-            // 
-            // detailWeightCol
-            // 
-            this.detailWeightCol.Caption = "Вес";
-            this.detailWeightCol.FieldName = "DetailWeight";
-            this.detailWeightCol.Name = "detailWeightCol";
-            this.detailWeightCol.Visible = true;
-            this.detailWeightCol.VisibleIndex = 9;
-            this.detailWeightCol.Width = 32;
-            // 
-            // dateCol
-            // 
-            this.dateCol.Caption = "Дата";
-            this.dateCol.FieldName = "CreateDate";
-            this.dateCol.Name = "dateCol";
-            this.dateCol.Visible = true;
-            this.dateCol.VisibleIndex = 10;
-            // 
-            // noteCol
-            // 
-            this.noteCol.Caption = "Приметка";
-            this.noteCol.FieldName = "Note";
-            this.noteCol.Name = "noteCol";
-            this.noteCol.Visible = true;
-            this.noteCol.VisibleIndex = 11;
             // 
             // StructuraEditFm
             // 

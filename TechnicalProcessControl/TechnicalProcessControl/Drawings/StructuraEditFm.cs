@@ -1550,35 +1550,35 @@ namespace TechnicalProcessControl.Drawings
                     }
                 case 3://Создать ревизию
                     {
-                        //if (techProcess001Edit.EditValue == DBNull.Value || techProcess001Edit.EditValue == null)
-                        //    return;
+                        if (techProcess001Edit.EditValue == DBNull.Value || techProcess001Edit.EditValue == null)
+                            return;
 
-                        //drawingService = Program.kernel.Get<IDrawingService>();
-                        //TechProcess001DTO techProcess001OldDTO = drawingService.GetTechProcess001ByDrawingId((int)((DrawingsDTO)Item).DrawingId);
-                        //TechProcess001DTO addTechProcessRevisionDTO = new TechProcess001DTO();
+                        drawingService = Program.kernel.Get<IDrawingService>();
+                        TechProcess001DTO techProcess001OldDTO = drawingService.GetTechProcess001ByDrawingId((int)((DrawingsDTO)Item).DrawingId);
+                        TechProcess001DTO addTechProcessRevisionDTO = new TechProcess001DTO();
 
-                        //addTechProcessRevisionDTO = (TechProcess001DTO)techProcess001OldDTO.Clone();
+                        addTechProcessRevisionDTO = (TechProcess001DTO)techProcess001OldDTO.Clone();
 
-                        //addTechProcessRevisionDTO.DrawingId = ((DrawingsDTO)Item).DrawingId;
-                        //addTechProcessRevisionDTO.RevisionId = techProcess001OldDTO.RevisionId;
-                        //addTechProcessRevisionDTO.TechProcessName = techProcess001OldDTO.TechProcessName;
-                        //addTechProcessRevisionDTO.DrawingNumber = ((DrawingsDTO)Item).Number;
-                        //addTechProcessRevisionDTO.DrawingNumberWithRevision = ((DrawingsDTO)Item).NumberWithRevisionName;
+                        addTechProcessRevisionDTO.DrawingId = ((DrawingsDTO)Item).DrawingId;
+                        addTechProcessRevisionDTO.RevisionId = techProcess001OldDTO.RevisionId;
+                        addTechProcessRevisionDTO.TechProcessName = techProcess001OldDTO.TechProcessName;
+                        addTechProcessRevisionDTO.DrawingNumber = ((DrawingsDTO)Item).Number;
+                        addTechProcessRevisionDTO.DrawingNumberWithRevision = ((DrawingsDTO)Item).NumberWithRevisionName;
 
-                        ////if (((DrawingsDTO)Item).RevisionName != null)
-                        ////    addTechProcessRevisionDTO.DrawingNumber = ((DrawingsDTO)Item).Number;
-                        ////else
-                        ////    addTechProcessRevisionDTO.DrawingNumber = ((DrawingsDTO)Item).Number;
+                        //if (((DrawingsDTO)Item).RevisionName != null)
+                        //    addTechProcessRevisionDTO.DrawingNumber = ((DrawingsDTO)Item).Number;
+                        //else
+                        //    addTechProcessRevisionDTO.DrawingNumber = ((DrawingsDTO)Item).Number;
 
-                        //using (TechProcess001EditFm techProcess001EditFm = new TechProcess001EditFm(usersDTO, Utils.Operation.Custom, addTechProcessRevisionDTO, ((DrawingsDTO)Item), techProcess001OldDTO))
-                        //{
-                        //    if (techProcess001EditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                        //    {
-                        //        techProcess001Edit.Properties.DataSource = drawingService.GetAllTechProcess001();
-                        //        int return_Id = techProcess001EditFm.Return().Id;
-                        //        techProcess001Edit.EditValue = return_Id;
-                        //    }
-                        //}
+                        using (TechProcess001EditFm techProcess001EditFm = new TechProcess001EditFm(usersDTO, Utils.Operation.Custom, addTechProcessRevisionDTO, ((DrawingsDTO)Item), techProcess001OldDTO))
+                        {
+                            if (techProcess001EditFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                            {
+                                techProcess001Edit.Properties.DataSource = drawingService.GetAllTechProcess001();
+                                int return_Id = techProcess001EditFm.Return().Id;
+                                techProcess001Edit.EditValue = return_Id;
+                            }
+                        }
 
                         break;
                     }
@@ -1955,8 +1955,9 @@ namespace TechnicalProcessControl.Drawings
                                 techProcess004Edit.EditValue = return_Id;
                             }
                         }
+
                         break;
-                    
+
                     }
                 case 4://просмотр
                     {

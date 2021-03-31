@@ -138,6 +138,17 @@ namespace TechnicalProcessControl.BLL.Interfaces
 
         #region TechProcess004 method's
 
+        List<TechProcess004DTO> TechProcess004Revision(TechProcess004DTO techProcess004, List<TechProcess004DTO> alltechProcessRevision);
+
+        //получить техпроцесс 003 по айди техпроцесса с краткой информацией и именем ревизии   ok
+        TechProcess004DTO GetTechProcess004SimpleWithRevisionName(int techProcess004Id);
+
+        //получить техпроцесс 004 по айди техпроцесса с краткой информацией   ok
+        TechProcess004DTO GetTechProcess004Simple(int techProcess004Id);
+
+        // получить  ревизии техпроцесса 004 + актуальный по Id 
+        IEnumerable<TechProcess004DTO> GetAllTechProcess004RevisionWithActualTechprocess(int techProcessId);
+
         //получить актуальный техпроцесс 004 по айди чертежа  с подробной информацией (материалы и трудоёмкость)
         TechProcess004DTO GetTechProcess004ByDrawingId(int drawingId);
 

@@ -277,8 +277,6 @@ namespace TechnicalProcessControl
             worksheet.Cells["DA" + (lastRow + 5)].Value = pageNumber;
             UpdatePageCounter();
             workbook.EndUpdate();
-
-
         }
 
         public void UpdatePageCounter()

@@ -239,7 +239,7 @@ namespace TechnicalProcessControl.TechnicalProcess
 
 
 
-                        using (TechProcessWithSpecification003Fm techProcessWithSpecificationFm = new TechProcessWithSpecification003Fm(Utils.TechProcesFileMode.AddTechProcess,
+                        using (TechProcessTemp001Fm techProcessWithSpecificationFm = new TechProcessTemp001Fm(Utils.TechProcesFileMode.AddTechProcess,
                             usersDTO, drawingTechproces, parentDrawings, structuraChilds, null, ((TechProcess003DTO)Item), null))
                         {
                             if (techProcessWithSpecificationFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -333,7 +333,7 @@ namespace TechnicalProcessControl.TechnicalProcess
                     DrawingDTO drawingTechproces = drawingService.GetDrawingById((int)((TechProcess003DTO)Item).DrawingId);
                     List<DrawingsDTO> structuraChilds = drawingService.GetDrawingsParentByDrawingChildId(drawingsDTO.Id).ToList();
 
-                    using (TechProcessWithSpecification003Fm techProcessWithSpecificationFm = new TechProcessWithSpecification003Fm(Utils.TechProcesFileMode.UpdateTechProcess,
+                    using (TechProcessTemp001Fm techProcessWithSpecificationFm = new TechProcessTemp001Fm(Utils.TechProcesFileMode.UpdateTechProcess,
                             usersDTO, drawingTechproces, parentDrawings, structuraChilds, techProcess003Revision, ((TechProcess003DTO)Item), techProcess003OldDTO))
                     {
                         if (techProcessWithSpecificationFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -367,52 +367,7 @@ namespace TechnicalProcessControl.TechnicalProcess
                         MessageBox.Show("При сохранении техпроцесса возникла ошибка. Не удалось выполнить откат изменений. " + ex.Message, "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return false;
                     }
-
                 }
-
-                //((TechProcess003DTO)Item).TechProcessPath = @"C:\TechProcess\" + ((TechProcess003DTO)Item).TechProcessFullName + ".xls";
-                //List<DrawingDTO> parentDrawings = drawingService.GetDrawingParentByDrawingChildId((int)((TechProcess003DTO)Item).DrawingId).ToList();
-                //DrawingDTO drawingTechproces = drawingService.GetDrawingById((int)((TechProcess003DTO)Item).DrawingId);
-
-
-                //((TechProcess003DTO)Item).Id = drawingService.TechProcess003Create(((TechProcess003DTO)Item));
-
-                //if (((TechProcess003DTO)Item).Id > 0)
-                //{
-                //    techProcess003OldDTO.ParentId = ((TechProcess002DTO)Item).Id;
-                //    techProcess003OldDTO.TypeId = 2;
-                //    drawingService.TechProcess003Update(techProcess003OldDTO);
-
-                //    List<TechProcess003DTO> techProcess003Revision = drawingService.GetAllTechProcess003Revision(((TechProcess003DTO)Item).Id).ToList();
-
-                //    string path = reportService.CreateTemplateTechProcess003Exp(usersDTO, drawingTechproces, parentDrawings, techProcess003Revision, ((TechProcess003DTO)Item), techProcess003OldDTO);
-
-                //    if (path != "")
-                //    {
-                //        using (TestFm testFm = new TestFm(path))
-                //        {
-                //            if (testFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                //            {
-                //                string return_Id = testFm.Return();
-                //                ((TechProcess002DTO)Item).TechProcessFullName = return_Id;
-                //            }
-                //        }
-                //    }
-                //    else
-                //    {
-                //        throw new System.ArgumentException("Не получилось создать файл или сохранить в бд", "Ошибка");
-                //    }
-                //}
-
-                //return true;
-                //}
-                //    catch (Exception ex)
-                //    {
-                //        MessageBox.Show("При сохранении техпроцесса возникла ошибка. " + ex.Message, "Збереження", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //        return false;
-                //    }
-                //}
-                //return false;
             }
             return true;
         }
