@@ -1,6 +1,6 @@
 ﻿namespace TechnicalProcessControl.TechnicalProcess
 {
-    partial class TechProcessTempXls001Fm
+    partial class TechProcessTempXls005Fm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItemGroup spreadsheetCommandGalleryItemGroup1 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItemGroup();
             DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem spreadsheetCommandGalleryItem1 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TechProcessTempXls001Fm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TechProcessTempXls005Fm));
             DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem spreadsheetCommandGalleryItem2 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem();
             DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem spreadsheetCommandGalleryItem3 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem();
             DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem spreadsheetCommandGalleryItem4 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem();
@@ -627,11 +627,9 @@
             this.spreadsheetCommandBarCheckItem39 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandBarCheckItem();
             this.spreadsheetCommandBarCheckItem40 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandBarCheckItem();
             this.galleryPivotStylesItem1 = new DevExpress.XtraSpreadsheet.UI.GalleryPivotStylesItem();
-            this.saveTemplateBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.addSimpleSheetBtn = new DevExpress.XtraBars.BarButtonItem();
             this.deleteSimpleSheetBtn = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
             this.chartToolsRibbonPageCategory1 = new DevExpress.XtraSpreadsheet.UI.ChartToolsRibbonPageCategory();
             this.chartsDesignRibbonPage1 = new DevExpress.XtraSpreadsheet.UI.ChartsDesignRibbonPage();
             this.chartsDesignTypeRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.ChartsDesignTypeRibbonPageGroup();
@@ -657,8 +655,6 @@
             this.pictureToolsRibbonPageCategory1 = new DevExpress.XtraSpreadsheet.UI.PictureToolsRibbonPageCategory();
             this.pictureFormatRibbonPage1 = new DevExpress.XtraSpreadsheet.UI.PictureFormatRibbonPage();
             this.pictureFormatArrangeRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.PictureFormatArrangeRibbonPageGroup();
-            this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.pivotTableToolsRibbonPageCategory1 = new DevExpress.XtraSpreadsheet.UI.PivotTableToolsRibbonPageCategory();
             this.pivotTableAnalyzeRibbonPage1 = new DevExpress.XtraSpreadsheet.UI.PivotTableAnalyzeRibbonPage();
             this.pivotTableAnalyzePivotTableRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.PivotTableAnalyzePivotTableRibbonPageGroup();
@@ -674,7 +670,6 @@
             this.pivotTableDesignPivotTableStylesRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.PivotTableDesignPivotTableStylesRibbonPageGroup();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.fileRibbonPage1 = new DevExpress.XtraSpreadsheet.UI.FileRibbonPage();
             this.commonRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.CommonRibbonPageGroup();
             this.infoRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.InfoRibbonPageGroup();
@@ -1296,13 +1291,11 @@
             this.spreadsheetCommandBarCheckItem39,
             this.spreadsheetCommandBarCheckItem40,
             this.galleryPivotStylesItem1,
-            this.saveTemplateBtn,
+            this.barButtonItem1,
             this.addSimpleSheetBtn,
-            this.deleteSimpleSheetBtn,
-            this.barButtonItem3,
-            this.barButtonItem4});
+            this.deleteSimpleSheetBtn});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 355;
+            this.ribbonControl1.MaxItemId = 347;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.PageCategories.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageCategory[] {
             this.chartToolsRibbonPageCategory1,
@@ -1326,7 +1319,7 @@
             this.repositoryItemPopupGalleryEdit1,
             this.repositoryItemTextEdit1});
             this.ribbonControl1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2007;
-            this.ribbonControl1.Size = new System.Drawing.Size(1048, 141);
+            this.ribbonControl1.Size = new System.Drawing.Size(1141, 141);
             // 
             // spreadsheetCommandBarButtonItem1
             // 
@@ -1467,7 +1460,7 @@
             this.spreadsheetControl.Name = "spreadsheetControl";
             this.spreadsheetControl.Options.Import.Csv.Encoding = ((System.Text.Encoding)(resources.GetObject("spreadsheetControl.Options.Import.Csv.Encoding")));
             this.spreadsheetControl.Options.Import.Txt.Encoding = ((System.Text.Encoding)(resources.GetObject("spreadsheetControl.Options.Import.Txt.Encoding")));
-            this.spreadsheetControl.Size = new System.Drawing.Size(1048, 385);
+            this.spreadsheetControl.Size = new System.Drawing.Size(1141, 351);
             this.spreadsheetControl.TabIndex = 1;
             // 
             // spreadsheetCommandBarButtonItem16
@@ -4658,20 +4651,20 @@
             this.galleryPivotStylesItem1.Id = 338;
             this.galleryPivotStylesItem1.Name = "galleryPivotStylesItem1";
             // 
-            // saveTemplateBtn
+            // barButtonItem1
             // 
-            this.saveTemplateBtn.Caption = "Сохранить";
-            this.saveTemplateBtn.Id = 339;
-            this.saveTemplateBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("saveTemplateBtn.ImageOptions.Image")));
-            this.saveTemplateBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("saveTemplateBtn.ImageOptions.LargeImage")));
-            this.saveTemplateBtn.Name = "saveTemplateBtn";
-            this.saveTemplateBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.saveTemplateBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.saveTemplateBtn_ItemClick);
+            this.barButtonItem1.Caption = "Сохранить";
+            this.barButtonItem1.Id = 340;
+            this.barButtonItem1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
+            this.barButtonItem1.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
+            this.barButtonItem1.Name = "barButtonItem1";
+            this.barButtonItem1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
             // 
             // addSimpleSheetBtn
             // 
-            this.addSimpleSheetBtn.Caption = "Добавить лист";
-            this.addSimpleSheetBtn.Id = 340;
+            this.addSimpleSheetBtn.Caption = "Добавить странницу";
+            this.addSimpleSheetBtn.Id = 341;
             this.addSimpleSheetBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addSimpleSheetBtn.ImageOptions.Image")));
             this.addSimpleSheetBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("addSimpleSheetBtn.ImageOptions.LargeImage")));
             this.addSimpleSheetBtn.Name = "addSimpleSheetBtn";
@@ -4680,27 +4673,13 @@
             // 
             // deleteSimpleSheetBtn
             // 
-            this.deleteSimpleSheetBtn.Caption = "Удалить лист";
-            this.deleteSimpleSheetBtn.Id = 341;
+            this.deleteSimpleSheetBtn.Caption = "Удалить странницу";
+            this.deleteSimpleSheetBtn.Id = 342;
             this.deleteSimpleSheetBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("deleteSimpleSheetBtn.ImageOptions.Image")));
             this.deleteSimpleSheetBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("deleteSimpleSheetBtn.ImageOptions.LargeImage")));
             this.deleteSimpleSheetBtn.Name = "deleteSimpleSheetBtn";
             this.deleteSimpleSheetBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.deleteSimpleSheetBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.deleteSimpleSheetBtn_ItemClick);
-            // 
-            // barButtonItem3
-            // 
-            this.barButtonItem3.Caption = "barButtonItem3";
-            this.barButtonItem3.Id = 342;
-            this.barButtonItem3.Name = "barButtonItem3";
-            this.barButtonItem3.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            // 
-            // barButtonItem4
-            // 
-            this.barButtonItem4.Caption = "barButtonItem4";
-            this.barButtonItem4.Id = 343;
-            this.barButtonItem4.Name = "barButtonItem4";
-            this.barButtonItem4.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             // 
             // chartToolsRibbonPageCategory1
             // 
@@ -4862,8 +4841,7 @@
             this.pictureToolsRibbonPageCategory1.Control = this.spreadsheetControl;
             this.pictureToolsRibbonPageCategory1.Name = "pictureToolsRibbonPageCategory1";
             this.pictureToolsRibbonPageCategory1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
-            this.pictureFormatRibbonPage1,
-            this.ribbonPage2});
+            this.pictureFormatRibbonPage1});
             this.pictureToolsRibbonPageCategory1.Visible = false;
             // 
             // pictureFormatRibbonPage1
@@ -4878,19 +4856,6 @@
             this.pictureFormatArrangeRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarSubItem20);
             this.pictureFormatArrangeRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarSubItem21);
             this.pictureFormatArrangeRibbonPageGroup1.Name = "pictureFormatArrangeRibbonPageGroup1";
-            // 
-            // ribbonPage2
-            // 
-            this.ribbonPage2.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup2});
-            this.ribbonPage2.Name = "ribbonPage2";
-            this.ribbonPage2.Text = "ribbonPage2";
-            this.ribbonPage2.Visible = false;
-            // 
-            // ribbonPageGroup2
-            // 
-            this.ribbonPageGroup2.Name = "ribbonPageGroup2";
-            this.ribbonPageGroup2.Text = "ribbonPageGroup2";
             // 
             // pivotTableToolsRibbonPageCategory1
             // 
@@ -4992,23 +4957,17 @@
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup1,
-            this.ribbonPageGroup3});
+            this.ribbonPageGroup1});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "Изменение шаблона";
             // 
             // ribbonPageGroup1
             // 
-            this.ribbonPageGroup1.ItemLinks.Add(this.saveTemplateBtn);
+            this.ribbonPageGroup1.ItemLinks.Add(this.barButtonItem1);
+            this.ribbonPageGroup1.ItemLinks.Add(this.addSimpleSheetBtn);
+            this.ribbonPageGroup1.ItemLinks.Add(this.deleteSimpleSheetBtn);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "ribbonPageGroup1";
-            // 
-            // ribbonPageGroup3
-            // 
-            this.ribbonPageGroup3.ItemLinks.Add(this.addSimpleSheetBtn);
-            this.ribbonPageGroup3.ItemLinks.Add(this.deleteSimpleSheetBtn);
-            this.ribbonPageGroup3.Name = "ribbonPageGroup3";
-            this.ribbonPageGroup3.Text = "ribbonPageGroup3";
             // 
             // fileRibbonPage1
             // 
@@ -5672,26 +5631,25 @@
             // 
             // spreadsheetControlOld
             // 
-            this.spreadsheetControlOld.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.spreadsheetControlOld.Location = new System.Drawing.Point(0, 0);
+            this.spreadsheetControlOld.Location = new System.Drawing.Point(702, 233);
             this.spreadsheetControlOld.MenuManager = this.ribbonControl1;
             this.spreadsheetControlOld.Name = "spreadsheetControlOld";
             this.spreadsheetControlOld.Options.Import.Csv.Encoding = ((System.Text.Encoding)(resources.GetObject("spreadsheetControlOld.Options.Import.Csv.Encoding")));
             this.spreadsheetControlOld.Options.Import.Txt.Encoding = ((System.Text.Encoding)(resources.GetObject("spreadsheetControlOld.Options.Import.Txt.Encoding")));
-            this.spreadsheetControlOld.Size = new System.Drawing.Size(1048, 526);
-            this.spreadsheetControlOld.TabIndex = 2;
-            this.spreadsheetControlOld.Text = "spreadsheetControlOld";
+            this.spreadsheetControlOld.Size = new System.Drawing.Size(400, 200);
+            this.spreadsheetControlOld.TabIndex = 3;
+            this.spreadsheetControlOld.Text = "spreadsheetControl1";
             // 
-            // TechProcessTempXls001Fm
+            // TechProcessTempXls005Fm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1048, 526);
+            this.ClientSize = new System.Drawing.Size(1141, 492);
             this.Controls.Add(this.spreadsheetControl);
             this.Controls.Add(this.ribbonControl1);
             this.Controls.Add(this.spreadsheetControlOld);
-            this.Name = "TechProcessTempXls001Fm";
-            this.Text = "TechProcessTempXls001Fm";
+            this.Name = "TechProcessTempXls005Fm";
+            this.Text = "TechProcessTempXls005Fm";
             ((System.ComponentModel.ISupportInitialize)(this.commandBarGalleryDropDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemFontEdit1)).EndInit();
@@ -6124,8 +6082,6 @@
         private DevExpress.XtraSpreadsheet.UI.PictureToolsRibbonPageCategory pictureToolsRibbonPageCategory1;
         private DevExpress.XtraSpreadsheet.UI.PictureFormatRibbonPage pictureFormatRibbonPage1;
         private DevExpress.XtraSpreadsheet.UI.PictureFormatArrangeRibbonPageGroup pictureFormatArrangeRibbonPageGroup1;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
         private DevExpress.XtraSpreadsheet.UI.PivotTableToolsRibbonPageCategory pivotTableToolsRibbonPageCategory1;
         private DevExpress.XtraSpreadsheet.UI.PivotTableAnalyzeRibbonPage pivotTableAnalyzeRibbonPage1;
         private DevExpress.XtraSpreadsheet.UI.PivotTableAnalyzePivotTableRibbonPageGroup pivotTableAnalyzePivotTableRibbonPageGroup1;
@@ -6183,12 +6139,9 @@
         private DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandBarButtonItem spreadsheetCommandBarButtonItem132;
         private DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandBarButtonItem spreadsheetCommandBarButtonItem133;
         private DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandBarButtonItem spreadsheetCommandBarButtonItem134;
-        private DevExpress.XtraBars.BarButtonItem saveTemplateBtn;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
         private DevExpress.XtraBars.BarButtonItem addSimpleSheetBtn;
         private DevExpress.XtraBars.BarButtonItem deleteSimpleSheetBtn;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem3;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem4;
         private DevExpress.XtraSpreadsheet.SpreadsheetControl spreadsheetControlOld;
     }
 }

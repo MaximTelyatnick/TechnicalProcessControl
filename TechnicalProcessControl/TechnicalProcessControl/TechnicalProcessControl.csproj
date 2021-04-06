@@ -24,8 +24,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <MinimumRequiredVersion>1.0.0.31</MinimumRequiredVersion>
-    <ApplicationRevision>32</ApplicationRevision>
+    <MinimumRequiredVersion>1.0.0.32</MinimumRequiredVersion>
+    <ApplicationRevision>33</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -365,6 +365,18 @@
     <Compile Include="TechnicalProcess\TechProcessTempXls001Fm.Designer.cs">
       <DependentUpon>TechProcessTempXls001Fm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TechnicalProcess\TechProcessTempXls002Fm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TechnicalProcess\TechProcessTempXls002Fm.Designer.cs">
+      <DependentUpon>TechProcessTempXls002Fm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TechnicalProcess\TechProcessTempXls005Fm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TechnicalProcess\TechProcessTempXls005Fm.Designer.cs">
+      <DependentUpon>TechProcessTempXls005Fm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TechnicalProcess\TechProcessWithSpecification004Fm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -549,6 +561,12 @@
     <EmbeddedResource Include="TechnicalProcess\TechProcessTempXls001Fm.resx">
       <DependentUpon>TechProcessTempXls001Fm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TechnicalProcess\TechProcessTempXls002Fm.resx">
+      <DependentUpon>TechProcessTempXls002Fm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TechnicalProcess\TechProcessTempXls005Fm.resx">
+      <DependentUpon>TechProcessTempXls005Fm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TechnicalProcess\TechProcessWithSpecification004Fm.resx">
       <DependentUpon>TechProcessWithSpecification004Fm.cs</DependentUpon>
     </EmbeddedResource>
@@ -618,12 +636,20 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Templates\template001New.xls" />
+    <Content Include="Templates\template001New.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Templates\template002.xls" />
     <Content Include="Templates\template003New.xls">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\template004New.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\template002New.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\template005New.xls">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

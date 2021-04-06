@@ -117,10 +117,6 @@ namespace TechnicalProcessControl.TechnicalProcess
 
                     UpdatePageCounter();
 
-
-
-
-
                     workbookOld.EndUpdate();
                     workbook.EndUpdate();
                     break;
@@ -138,11 +134,8 @@ namespace TechnicalProcessControl.TechnicalProcess
 
             workbook.BeginUpdate();
             worksheet = workbook.Worksheets[0];
-
             workbook.Worksheets[0].Range["A" + (34) + ":" + "DG" + (66)].CopyFrom(copySecondSheetRange);
-
             PrintRevisionSecondheet();
-
             workbook.EndUpdate();
         }
 
@@ -160,21 +153,18 @@ namespace TechnicalProcessControl.TechnicalProcess
 
         private void PrintHeader()
         {
-
             worksheet.Cells["AG" + 24].Value = "Metal forming and cutting";
             worksheet.Cells["AG" + 24].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center; ;
             worksheet.Cells["BY" + 28].Value = "Created by " + usersDTO.Name + " " + techProcess001.CreateDate.Value.ToShortDateString();
             //cells["J" + 41].Value = techProcess001.UserName;
             worksheet.Cells["D" + 30].Value = "Date of issue ";
             worksheet.Cells["DA" + 6].Value = "1";
-
             worksheet.Cells["AQ" + 10].Value = techProces001Drawing.DetailName;
             worksheet.Cells["AQ" + 10].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center; ;
             worksheet.Cells["BB" + 7].Value = techProces001Drawing.Number;
             worksheet.Cells["BB" + 7].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
             worksheet.Cells["CO" + 07].Value = reportService.TechProcesNameToStr(techProcess001.TechProcessName);
             worksheet.Cells["CO" + 07].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
-
             worksheet.Cells["CO7"].Value = techProcessNumber;
             worksheet.Cells["BB6"].Value = techProces001Drawing.Number;
             worksheet.Cells["AQ9"].Value = techProces001Drawing.DetailName;
@@ -218,7 +208,6 @@ namespace TechnicalProcessControl.TechnicalProcess
                 worksheet.Cells["BV" + 3].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
                 worksheet.Cells["BV" + 3].Font.Size = 6;
                 worksheet.Cells["BV" + 3].Value = techProcess001Revision[0].CreateDate.Value.ToShortDateString();
-
                 worksheet.Range["CB" + 2 + ":" + "DA" + 2].Font.Bold = false;
                 worksheet.Range["CB" + 2 + ":" + "DA" + 2].Font.Italic = false;
                 worksheet.Range["CB" + 2 + ":" + "DA" + 2].Font.Size = 8;
@@ -246,7 +235,6 @@ namespace TechnicalProcessControl.TechnicalProcess
                 worksheet.Cells["BV" + 3].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
                 worksheet.Cells["BV" + 3].Font.Size = 6;
                 worksheet.Cells["BV" + 3].Value = techProcess001Revision[0].CreateDate.Value.ToShortDateString();
-
                 worksheet.Range["CB" + 2 + ":" + "DA" + 2].Font.Bold = false;
                 worksheet.Range["CB" + 2 + ":" + "DA" + 2].Font.Italic = false;
                 worksheet.Range["CB" + 2 + ":" + "DA" + 2].Font.Size = 8;
@@ -259,7 +247,6 @@ namespace TechnicalProcessControl.TechnicalProcess
                 worksheet.Cells["DA" + 2].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
                 worksheet.Cells["DA" + 2].Font.Size = 6;
                 worksheet.Cells["DA" + 2].Value = techProcess001Revision[1].CreateDate.Value.ToShortDateString();
-
                 worksheet.Range["CB" + 3 + ":" + "DA" + 3].Font.Bold = false;
                 worksheet.Range["CB" + 3 + ":" + "DA" + 3].Font.Italic = false;
                 worksheet.Range["CB" + 3 + ":" + "DA" + 3].Font.Size = 8;
@@ -290,7 +277,6 @@ namespace TechnicalProcessControl.TechnicalProcess
             {
                 copySheetrange.Add(worksheetOld.Range["A" + ((lastOldSpecRow) + (30 * i)) + ":" + "DG" + ((lastOldSpecRow+29) + (30 * i))]);
             }
-
             return copySheetrange;
         }
 
@@ -309,7 +295,6 @@ namespace TechnicalProcessControl.TechnicalProcess
             }
 
             PrintRevisionInfoSheets(defaultSimpleSheett);
-
             //PrintSpecificationInfoRevisionAdded(copyRangeFromOldFile.Count);
             workbook.EndUpdate();
         }
@@ -356,7 +341,6 @@ namespace TechnicalProcessControl.TechnicalProcess
             worksheet.Cells["A" + (lastRow + 27)].RowHeight = 97.7;
             worksheet.Cells["A" + (lastRow + 28)].RowHeight = 97.7;
             worksheet.Cells["DA" + (lastRow + 5)].Value = pageNumber;
-            //UpdatePageCounter();
             workbook.EndUpdate();
         }
 
@@ -372,9 +356,7 @@ namespace TechnicalProcessControl.TechnicalProcess
             worksheet.Cells["A" + 39].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
             worksheet.Cells["W" + 48].Value = techProcess001.Weight;
             worksheet.Cells["W" + 48].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
-
             string paramaterBlank = "";
-
             if (techProcess001.TH != "" && techProcess001.TH != null)
                 paramaterBlank += techProcess001.TH.ToString() + "х";
             if (techProcess001.W != "" && techProcess001.W != null)
@@ -383,26 +365,20 @@ namespace TechnicalProcessControl.TechnicalProcess
                 paramaterBlank += techProcess001.W2.ToString() + "x";
             if (techProcess001.L != "" && techProcess001.L != null)
                 paramaterBlank += techProcess001.L.ToString();
-
             worksheet.Cells["BI" + 48].Value = paramaterBlank;
             worksheet.Cells["BI" + 48].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
-
             worksheet.Cells["BB" + 41].Value = techProces001Drawing.Number;
             worksheet.Cells["BB" + 41].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
             worksheet.Cells["CO" + 41].Value = reportService.TechProcesNameToStr(techProcess001.TechProcessName);
             worksheet.Cells["CO" + 41].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
-
             worksheet.Cells["DC" + 39].Value = "2";
-
             PrintRevisionSecondheet();
-
         }
 
 
         //прописываем ревизии на листе спецификации
         private void PrintRevisionSecondheet()
-        {
-           
+        {      
             if (techProcess001Revision != null)
             {
                 if (techProcess001Revision.Count() == 1)
@@ -434,7 +410,6 @@ namespace TechnicalProcessControl.TechnicalProcess
                     worksheet.Cells["BV" + 37].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
                     worksheet.Cells["BV" + 37].Font.Size = 6;
                     worksheet.Cells["BV" + 37].Value = techProcess001Revision[0].CreateDate.Value.ToShortDateString();
-
                     worksheet.Range["CB" + 35 + ":" + "CX" + 35].Font.Bold = false;
                     worksheet.Range["CB" + 35 + ":" + "CX" + 35].Font.Italic = false;
                     worksheet.Range["CB" + 35 + ":" + "CX" + 35].Font.Size = 8;
@@ -462,7 +437,6 @@ namespace TechnicalProcessControl.TechnicalProcess
                     worksheet.Cells["BV" + 37].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
                     worksheet.Cells["BV" + 37].Font.Size = 6;
                     worksheet.Cells["BV" + 37].Value = techProcess001Revision[0].CreateDate.Value.ToShortDateString();
-
                     worksheet.Range["CB" + 35 + ":" + "CX" + 35].Font.Bold = false;
                     worksheet.Range["CB" + 35 + ":" + "CX" + 35].Font.Italic = false;
                     worksheet.Range["CB" + 35 + ":" + "CX" + 35].Font.Size = 8;
@@ -475,7 +449,6 @@ namespace TechnicalProcessControl.TechnicalProcess
                     worksheet.Cells["DA" + 35].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
                     worksheet.Cells["DA" + 35].Font.Size = 6;
                     worksheet.Cells["DA" + 35].Value = techProcess001Revision[1].CreateDate.Value.ToShortDateString();
-
                     worksheet.Range["CB" + 36 + ":" + "CX" + 36].Font.Bold = false;
                     worksheet.Range["CB" + 36 + ":" + "CX" + 36].Font.Italic = false;
                     worksheet.Range["CB" + 36 + ":" + "CX" + 36].Font.Size = 8;
@@ -488,7 +461,6 @@ namespace TechnicalProcessControl.TechnicalProcess
                     worksheet.Cells["DA" + 36].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
                     worksheet.Cells["DA" + 36].Font.Size = 6;
                     worksheet.Cells["DA" + 36].Value = techProcess001Revision[2].CreateDate.Value.ToShortDateString();
-
                 }
                 else if (techProcess001Revision.Count() > 3)
                 {
@@ -504,7 +476,6 @@ namespace TechnicalProcessControl.TechnicalProcess
                     worksheet.Cells["BV" + 37].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
                     worksheet.Cells["BV" + 37].Font.Size = 6;
                     worksheet.Cells["BV" + 37].Value = techProcess001Revision[0].CreateDate.Value.ToShortDateString();
-
                     worksheet.Range["CB" + 35 + ":" + "CX" + 35].Font.Bold = false;
                     worksheet.Range["CB" + 35 + ":" + "CX" + 35].Font.Italic = false;
                     worksheet.Range["CB" + 35 + ":" + "CX" + 35].Font.Size = 8;
@@ -517,7 +488,6 @@ namespace TechnicalProcessControl.TechnicalProcess
                     worksheet.Cells["DA" + 35].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
                     worksheet.Cells["DA" + 35].Font.Size = 6;
                     worksheet.Cells["DA" + 35].Value = techProcess001Revision[1].CreateDate.Value.ToShortDateString();
-
                     worksheet.Range["CB" + 36 + ":" + "CX" + 36].Font.Bold = false;
                     worksheet.Range["CB" + 36 + ":" + "CX" + 36].Font.Italic = false;
                     worksheet.Range["CB" + 36 + ":" + "CX" + 36].Font.Size = 8;
@@ -530,7 +500,6 @@ namespace TechnicalProcessControl.TechnicalProcess
                     worksheet.Cells["DA" + 36].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
                     worksheet.Cells["DA" + 36].Font.Size = 6;
                     worksheet.Cells["DA" + 36].Value = techProcess001Revision[2].CreateDate.Value.ToShortDateString();
-
                     worksheet.Range["CB" + 37 + ":" + "CX" + 37].Font.Bold = false;
                     worksheet.Range["CB" + 37 + ":" + "CX" + 37].Font.Italic = false;
                     worksheet.Range["CB" + 37 + ":" + "CX" + 37].Font.Size = 8;
@@ -546,7 +515,6 @@ namespace TechnicalProcessControl.TechnicalProcess
                 }
             }
         }
-
 
         private void PrintRevisionInfoSheets(int pageNumber)
         {
@@ -583,7 +551,6 @@ namespace TechnicalProcessControl.TechnicalProcess
                         worksheet.Cells["BV" + (70 + (30 * (i)))].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
                         worksheet.Cells["BV" + (70 + (30 * (i)))].Font.Size = 6;
                         worksheet.Cells["BV" + (70 + (30 * (i)))].Value = techProcess001Revision[0].CreateDate.Value.ToShortDateString();
-
                         worksheet.Range["CB" + (68 + (30 * (i))) + ":" + "CX" + (68 + (30 * (i)))].Font.Bold = false;
                         worksheet.Range["CB" + (68 + (30 * (i))) + ":" + "CX" + (68 + (30 * (i)))].Font.Italic = false;
                         worksheet.Range["CB" + (68 + (30 * (i))) + ":" + "CX" + (68 + (30 * (i)))].Font.Size = 8;
@@ -611,7 +578,6 @@ namespace TechnicalProcessControl.TechnicalProcess
                         worksheet.Cells["BV" + (70 + (30 * (i)))].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
                         worksheet.Cells["BV" + (70 + (30 * (i)))].Font.Size = 6;
                         worksheet.Cells["BV" + (70 + (30 * (i)))].Value = techProcess001Revision[0].CreateDate.Value.ToShortDateString();
-
                         worksheet.Range["CB" + (68 + (30 * (i))) + ":" + "CX" + (68 + (30 * (i)))].Font.Bold = false;
                         worksheet.Range["CB" + (68 + (30 * (i))) + ":" + "CX" + (68 + (30 * (i)))].Font.Italic = false;
                         worksheet.Range["CB" + (68 + (30 * (i))) + ":" + "CX" + (68 + (30 * (i)))].Font.Size = 8;
@@ -624,7 +590,6 @@ namespace TechnicalProcessControl.TechnicalProcess
                         worksheet.Cells["DA" + (68 + (30 * (i)))].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
                         worksheet.Cells["DA" + (68 + (30 * (i)))].Font.Size = 6;
                         worksheet.Cells["DA" + (68 + (30 * (i)))].Value = techProcess001Revision[1].CreateDate.Value.ToShortDateString();
-
                         worksheet.Range["CB" + (69 + (30 * (i))) + ":" + "CX" + (69 + (30 * (i)))].Font.Bold = false;
                         worksheet.Range["CB" + (69 + (30 * (i))) + ":" + "CX" + (69 + (30 * (i)))].Font.Italic = false;
                         worksheet.Range["CB" + (69 + (30 * (i))) + ":" + "CX" + (69 + (30 * (i)))].Font.Size = 8;
@@ -637,7 +602,6 @@ namespace TechnicalProcessControl.TechnicalProcess
                         worksheet.Cells["DA" + (69 + (30 * (i)))].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
                         worksheet.Cells["DA" + (69 + (30 * (i)))].Font.Size = 6;
                         worksheet.Cells["DA" + (69 + (30 * (i)))].Value = techProcess001Revision[2].CreateDate.Value.ToShortDateString();
-
                     }
                     else if (techProcess001Revision.Count() > 3)
                     {
@@ -653,7 +617,6 @@ namespace TechnicalProcessControl.TechnicalProcess
                         worksheet.Cells["BV" + (70 + (30 * (i)))].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
                         worksheet.Cells["BV" + (70 + (30 * (i)))].Font.Size = 6;
                         worksheet.Cells["BV" + (70 + (30 * (i)))].Value = techProcess001Revision[0].CreateDate.Value.ToShortDateString();
-
                         worksheet.Range["CB" + (68 + (30 * (i))) + ":" + "CX" + (68 + (30 * (i)))].Font.Bold = false;
                         worksheet.Range["CB" + (68 + (30 * (i))) + ":" + "CX" + (68 + (30 * (i)))].Font.Italic = false;
                         worksheet.Range["CB" + (68 + (30 * (i))) + ":" + "CX" + (68 + (30 * (i)))].Font.Size = 8;
@@ -666,7 +629,6 @@ namespace TechnicalProcessControl.TechnicalProcess
                         worksheet.Cells["DA" + (68 + (30 * (i)))].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
                         worksheet.Cells["DA" + (68 + (30 * (i)))].Font.Size = 6;
                         worksheet.Cells["DA" + (68 + (30 * (i)))].Value = techProcess001Revision[1].CreateDate.Value.ToShortDateString();
-
                         worksheet.Range["CB" + (69 + (30 * (i))) + ":" + "CX" + (69 + (30 * (i)))].Font.Bold = false;
                         worksheet.Range["CB" + (69 + (30 * (i))) + ":" + "CX" + (69 + (30 * (i)))].Font.Italic = false;
                         worksheet.Range["CB" + (69 + (30 * (i))) + ":" + "CX" + (69 + (30 * (i)))].Font.Size = 8;
@@ -679,7 +641,6 @@ namespace TechnicalProcessControl.TechnicalProcess
                         worksheet.Cells["DA" + (69 + (30 * (i)))].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
                         worksheet.Cells["DA" + (69 + (30 * (i)))].Font.Size = 6;
                         worksheet.Cells["DA" + (69 + (30 * (i)))].Value = techProcess001Revision[2].CreateDate.Value.ToShortDateString();
-
                         worksheet.Range["CB" + (70 + (30 * (i))) + ":" + "CX" + (70 + (30 * (i)))].Font.Bold = false;
                         worksheet.Range["CB" + (70 + (30 * (i))) + ":" + "CX" + (70 + (30 * (i)))].Font.Italic = false;
                         worksheet.Range["CB" + (70 + (30 * (i))) + ":" + "CX" + (70 + (30 * (i)))].Font.Size = 8;
@@ -727,7 +688,6 @@ namespace TechnicalProcessControl.TechnicalProcess
             int currentLastRow = 97;
             var worksheet = workbook.Worksheets[0];
 
-            //worksheet = workbook.Worksheets[0];
             while (currentLastRow > 0)
             {
                 if (worksheet.Cells["A" + (currentLastRow)].Value.IsEmpty)
@@ -761,7 +721,6 @@ namespace TechnicalProcessControl.TechnicalProcess
             ++lastRow;
             worksheet.AddPrintRange(worksheet.Range["A" + (lastRow) + ":DG" + (lastRow + 29)]);
             worksheet.Range["A" + (lastRow) + ":DG" + (lastRow + 29)].CopyFrom(copyRange);
-
             worksheet.Cells["A" + (lastRow)].RowHeight = 60.28;
             worksheet.Cells["A" + (lastRow + 1)].RowHeight = 60.28;
             worksheet.Cells["A" + (lastRow + 2)].RowHeight = 60.28;
@@ -776,7 +735,6 @@ namespace TechnicalProcessControl.TechnicalProcess
             worksheet.Cells["A" + (lastRow + 11)].RowHeight = 60.28;
             worksheet.Cells["A" + (lastRow + 12)].RowHeight = 97.7;
             worksheet.Cells["A" + (lastRow + 13)].RowHeight = 97.7;
-
             worksheet.Cells["A" + (lastRow + 29)].RowHeight = 60.28;
             worksheet.Cells["A" + (lastRow + 14)].RowHeight = 97.7;
             worksheet.Cells["A" + (lastRow + 15)].RowHeight = 97.7;
@@ -793,10 +751,7 @@ namespace TechnicalProcessControl.TechnicalProcess
             worksheet.Cells["A" + (lastRow + 26)].RowHeight = 97.7;
             worksheet.Cells["A" + (lastRow + 27)].RowHeight = 97.7;
             worksheet.Cells["A" + (lastRow + 28)].RowHeight = 97.7;
-            //worksheet.Cells["A" + (lastRow + 29)].RowHeight = 97.7;
-            //worksheet.Cells["A" + (lastRow + 30)].RowHeight = 97.7;
             worksheet.Cells["DA" + (lastRow + 5)].Value = pageNumber;
-            //UpdatePageCounter();
             workbook.EndUpdate();
         }
 
@@ -807,8 +762,7 @@ namespace TechnicalProcessControl.TechnicalProcess
         }
 
         private void deleteSimpleSheetBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            
+        {       
             if(GetNumberDocumentPages(workbook)<4)
             {
                 MessageBox.Show("Файл содержит минимальное количество листов");
@@ -817,13 +771,10 @@ namespace TechnicalProcessControl.TechnicalProcess
 
             workbook.BeginUpdate();
             worksheet = workbook.Worksheets[0];
-
             int lastEmptyRow = GetLastEmptyRow(workbook);
-
             int firstDeleteRow = lastEmptyRow - 30;
             worksheet.Rows.Remove(firstDeleteRow, 30);
             workbook.EndUpdate();
-
             UpdatePageCounter();
 
         }
@@ -867,15 +818,6 @@ namespace TechnicalProcessControl.TechnicalProcess
             worksheet.Cells["A" + (lastRow + 26)].RowHeight = 97.7;
             worksheet.Cells["A" + (lastRow + 27)].RowHeight = 97.7;
             worksheet.Cells["A" + (lastRow + 28)].RowHeight = 97.7;
-
-
-            //////worksheet.Cells["CY" + (102 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * (defaultSimpleSheett-1)))].Value = (defaultSpecSheet + 2) + defaultSimpleSheett;
-            //////worksheet.Cells["CM" + (104 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * (defaultSimpleSheett-1)))].Value = techProcessNumber;
-            //////worksheet.Cells["CM" + (104 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * (defaultSimpleSheett - 1)))].Font.Bold = true;
-            //////worksheet.Cells["CM" + (104 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * (defaultSimpleSheett - 1)))].Font.Size = 11;
-            //////worksheet.Cells["BQ" + (104 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * (defaultSimpleSheett-1)))].Value = techProces003Drawing.Number;
-            //++realSimpleSheet;
-
             worksheet.Cells["DA" + (lastRow + 5)].Value = GetNumberDocumentPages(workbook);
             workbook.EndUpdate();
         }

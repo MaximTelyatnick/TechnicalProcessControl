@@ -1149,21 +1149,15 @@ namespace TechnicalProcessControl.TechnicalProcess
                 return;
             }
 
-            splashScreenManager.ShowWaitForm();
-            //ButtonEnabled(false);
             workbook.BeginUpdate();
             worksheet = workbook.Worksheets[0];
             --pageNumber;
             --defaultSpecSheet;
 
-
-
             int lastSpecificationRowRow = GetLastSpecificationRow(workbook);
             int firstDeleteRow = lastSpecificationRowRow - 31;
             worksheet.Rows.Remove(firstDeleteRow, 32);
             workbook.EndUpdate();
-            //ButtonEnabled(true);
-            splashScreenManager.CloseWaitForm();
         }
 
         private void addSimpleSheetBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -1173,32 +1167,28 @@ namespace TechnicalProcessControl.TechnicalProcess
 
         private void deleteSimpleSheetBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (defaultSimpleSheett < 3)
+            if (defaultSimpleSheett < 4)
             {
                 MessageBox.Show("У файла отсутствуют добавленные листы");
                 return;
             }
 
-            worksheet.Cells["CY" + (102 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * realSimpleSheet))].Value = "";
-            worksheet.Cells["CM" + (104 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * realSimpleSheet))].Value = "";
-            worksheet.Cells["BQ" + (104 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * realSimpleSheet))].Value = "";
+            worksheet.Cells["CY" + (102 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * (defaultSimpleSheett - 1)))].Value = "";
+            worksheet.Cells["CM" + (104 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * (defaultSimpleSheett - 1)))].Value = "";
+            worksheet.Cells["BQ" + (104 + (31 * (defaultSpecSheet - 1)) + (defaultSpecSheet - 1) + (31 * (defaultSimpleSheett - 1)))].Value = "";
 
 
-            splashScreenManager.ShowWaitForm();
-            //ButtonEnabled(false);
+
             workbook.BeginUpdate();
             worksheet = workbook.Worksheets[0];
             --pageNumber;
             --defaultSimpleSheett;
-            --realSimpleSheet;
 
 
             int lastEmptyRow = GetLastEmptyRow(workbook);
             int firstDeleteRow = lastEmptyRow - 31;
             worksheet.Rows.Remove(firstDeleteRow, 31);
             workbook.EndUpdate();
-            //ButtonEnabled(true);
-            splashScreenManager.CloseWaitForm();
         }
 
         public TechProcess004DTO Return()

@@ -1,6 +1,6 @@
 ﻿namespace TechnicalProcessControl.TechnicalProcess
 {
-    partial class TechProcessTemp001Fm
+    partial class TechProcessWithSpecification003Fm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItemGroup spreadsheetCommandGalleryItemGroup1 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItemGroup();
             DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem spreadsheetCommandGalleryItem1 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TechProcessTemp001Fm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TechProcessWithSpecification003Fm));
             DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem spreadsheetCommandGalleryItem2 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem();
             DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem spreadsheetCommandGalleryItem3 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem();
             DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem spreadsheetCommandGalleryItem4 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem();
@@ -1531,7 +1531,7 @@
             this.deleteSimpleSheetBtn,
             this.saveTemplateBtn});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 380;
+            this.ribbonControl1.MaxItemId = 386;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.templatePage,
@@ -7381,7 +7381,7 @@
             this.spreadsheetControlOld.TabIndex = 3;
             this.spreadsheetControlOld.Text = "spreadsheetControl1";
             // 
-            // TechProcessTemp001Fm
+            // TechProcessWithSpecification003Fm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -7390,7 +7390,7 @@
             this.Controls.Add(this.ribbonControl1);
             this.Controls.Add(this.spreadsheetControlOld);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "TechProcessTemp001Fm";
+            this.Name = "TechProcessWithSpecification003Fm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Редактирование техпроцесса";
             ((System.ComponentModel.ISupportInitialize)(this.commandBarGalleryDropDown26)).EndInit();

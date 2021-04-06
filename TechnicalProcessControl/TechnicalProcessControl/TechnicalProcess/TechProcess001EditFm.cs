@@ -67,7 +67,6 @@ namespace TechnicalProcessControl
             techProcess001DTO.DrawingNumberWithRevision = drawingDTO.FullName;
             techProcess001DTO.DrawingNumber = drawingDTO.Number;
 
-
             techProcessBS.DataSource = Item = techProcess001DTO;
 
             drawingNumberEdit.DataBindings.Add("EditValue", techProcessBS, "DrawingNumberWithRevision", true, DataSourceUpdateMode.OnPropertyChanged);

@@ -239,7 +239,7 @@ namespace TechnicalProcessControl.TechnicalProcess
 
 
 
-                        using (TechProcessTemp001Fm techProcessWithSpecificationFm = new TechProcessTemp001Fm(Utils.TechProcesFileMode.AddTechProcess,
+                        using (TechProcessWithSpecification003Fm techProcessWithSpecificationFm = new TechProcessWithSpecification003Fm(Utils.TechProcesFileMode.AddTechProcess,
                             usersDTO, drawingTechproces, parentDrawings, structuraChilds, null, ((TechProcess003DTO)Item), null))
                         {
                             if (techProcessWithSpecificationFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -333,7 +333,7 @@ namespace TechnicalProcessControl.TechnicalProcess
                     DrawingDTO drawingTechproces = drawingService.GetDrawingById((int)((TechProcess003DTO)Item).DrawingId);
                     List<DrawingsDTO> structuraChilds = drawingService.GetDrawingsParentByDrawingChildId(drawingsDTO.Id).ToList();
 
-                    using (TechProcessTemp001Fm techProcessWithSpecificationFm = new TechProcessTemp001Fm(Utils.TechProcesFileMode.UpdateTechProcess,
+                    using (TechProcessWithSpecification003Fm techProcessWithSpecificationFm = new TechProcessWithSpecification003Fm(Utils.TechProcesFileMode.UpdateTechProcess,
                             usersDTO, drawingTechproces, parentDrawings, structuraChilds, techProcess003Revision, ((TechProcess003DTO)Item), techProcess003OldDTO))
                     {
                         if (techProcessWithSpecificationFm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
