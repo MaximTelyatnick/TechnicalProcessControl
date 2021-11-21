@@ -84,7 +84,7 @@
 
 <!--[![Product Name Screen Shot][product-screenshot]] -->
 <a href="https://github.com/MaximTelyatnick/TechnicalProcessControlg">
-    <img src="Screenshots/StructuraWindow.PNG" alt="Main window" width="640" height="480">
+    <img src="Screenshots/StructuraWindow.PNG" alt="Main window" width="1920" height="1080">
   </a>
 
 The software allows you to simplify the process of controlling drawing revisions and revisions of their technical processes.
