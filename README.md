@@ -49,7 +49,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-The main form of the application includes the structural number of the product, the drawing of the part, the technical process of creating the product, the materials spent on manufacturing.
+<p align="left">The main form of the application includes the structural number of the product, the drawing of the part, the technical process of creating the product, the materials spent on manufacturing.</p>
  <br />
 <a href="https://github.com/MaximTelyatnick/TechnicalProcessControlg">
     <img src="Screenshots/MainForm.jpg" alt="Main window" width="1000" height="480">
