@@ -1,13 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechnicalProcessControl", "TechnicalProcessControl\TechnicalProcessControl\TechnicalProcessControl.csproj", "{4ADD59E9-497A-452B-ABF7-1316CB5EA4CF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{04EFC2E3-9D16-436C-B1F2-F8DBEADB90DC} = {04EFC2E3-9D16-436C-B1F2-F8DBEADB90DC}
+		{5085E3E3-9DB9-4C0A-A5D6-B61A40AC3065} = {5085E3E3-9DB9-4C0A-A5D6-B61A40AC3065}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechnicalProcessControl.DAL", "TechnicalProcessControl.DAL\TechnicalProcessControl.DAL.csproj", "{04EFC2E3-9D16-436C-B1F2-F8DBEADB90DC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechnicalProcessControl.BLL", "TechnicalProcessControl.BLL\TechnicalProcessControl.BLL.csproj", "{5085E3E3-9DB9-4C0A-A5D6-B61A40AC3065}"
+	ProjectSection(ProjectDependencies) = postProject
+		{04EFC2E3-9D16-436C-B1F2-F8DBEADB90DC} = {04EFC2E3-9D16-436C-B1F2-F8DBEADB90DC}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

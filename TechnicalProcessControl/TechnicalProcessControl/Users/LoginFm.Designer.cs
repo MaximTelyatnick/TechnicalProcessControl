@@ -48,9 +48,9 @@
             this.labelControl2.Appearance.Options.UseForeColor = true;
             this.labelControl2.Location = new System.Drawing.Point(12, 55);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(43, 13);
+            this.labelControl2.Size = new System.Drawing.Size(26, 13);
             this.labelControl2.TabIndex = 10;
-            this.labelControl2.Text = "Пароль";
+            this.labelControl2.Text = "Pass";
             // 
             // labelControl1
             // 
@@ -60,9 +60,9 @@
             this.labelControl1.Appearance.Options.UseForeColor = true;
             this.labelControl1.Location = new System.Drawing.Point(12, 10);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(34, 13);
+            this.labelControl1.Size = new System.Drawing.Size(30, 13);
             this.labelControl1.TabIndex = 9;
-            this.labelControl1.Text = "Логин";
+            this.labelControl1.Text = "Login";
             // 
             // passEdit
             // 
@@ -87,14 +87,14 @@
             this.authBtn.Name = "authBtn";
             this.authBtn.Size = new System.Drawing.Size(201, 23);
             this.authBtn.TabIndex = 11;
-            this.authBtn.Text = "Войти";
+            this.authBtn.Text = "Login";
             this.authBtn.Click += new System.EventHandler(this.authBtn_Click);
             // 
             // showPasswordEdit
             // 
             this.showPasswordEdit.Location = new System.Drawing.Point(13, 101);
             this.showPasswordEdit.Name = "showPasswordEdit";
-            this.showPasswordEdit.Properties.Caption = "Не скрывать пароль";
+            this.showPasswordEdit.Properties.Caption = "Don\'t hide password";
             this.showPasswordEdit.Size = new System.Drawing.Size(200, 19);
             this.showPasswordEdit.TabIndex = 12;
             this.showPasswordEdit.CheckedChanged += new System.EventHandler(this.showPasswordEdit_CheckedChanged);
