@@ -59,7 +59,7 @@
   The structure editing form allows you to specify the parent links of the structural element, the parent drawing, the current drawing (or call the form for creating a drawing, editing, creating a revision), workflows (and editing operations for workflows).
 </p>
   <a href="https://github.com/MaximTelyatnick/TechnicalProcessControlg">
-    <img src="Screenshots/StructuraEditForm.jpg" alt="Main window" width="1372" height="719">
+    <img src="Screenshots/StructuraEditForm.jpg" alt="Main window" width="1372" height="500">
   </a>
   <h4 align="center">Main Form Structure</h4>
 
