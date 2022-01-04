@@ -51,8 +51,9 @@
 ## About The Project
 
 <a href="https://github.com/MaximTelyatnick/TechnicalProcessControlg">
-    <img src="Screenshots/MainForm.jpg" alt="Main window" width="1280" height="720">
+    <img src="Screenshots/MainForm.jpg" alt="Main window" width="800" height="450">
   </a>
+  <h4 align="center">Main Form</h4>
 
 The main form of the application includes the structural number of the product, the drawing of the part, the technical process of creating the product, the materials spent on manufacturing.
 
