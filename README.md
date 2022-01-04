@@ -46,43 +46,15 @@
 
 
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
-
-
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<!--[![Product Name Screen Shot][product-screenshot]] -->
 <a href="https://github.com/MaximTelyatnick/TechnicalProcessControlg">
-    <img src="Screenshots/StructuraWindow.PNG" alt="Main window" width="1280" height="720">
+    <img src="Screenshots/MainForm.jpg" alt="Main window" width="1280" height="720">
   </a>
 
-The software allows you to simplify the process of controlling drawing revisions and revisions of their technical processes.
+The main form of the application includes the structural number of the product, the drawing of the part, the technical process of creating the product, the materials spent on manufacturing.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
