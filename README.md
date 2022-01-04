@@ -51,7 +51,7 @@
 ## About The Project
 
 <a href="https://github.com/MaximTelyatnick/TechnicalProcessControlg">
-    <img src="Screenshots/MainForm.jpg" alt="Main window" width="800" height="450">
+    <img src="Screenshots/MainForm.jpg" alt="Main window" width="1000" height="450">
   </a>
   <h4 align="center">Main Form</h4>
 
