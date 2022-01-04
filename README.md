@@ -49,14 +49,19 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-<p align="left">The main form of the application includes the structural number of the product, the drawing of the part, the technical process of creating the product, the materials spent on manufacturing.</p>
+<p align="left">The main application form includes the structural number of the product, the drawing of the part, the technical process of creating the product, the materials spent on manufacturing. Using the buttons "Add", "Edit", "Delete", the user can edit the structure element, which consists of the drawing number, the number of blanks, physical parameters of the product, and the type of material.</p>
  <br />
 <a href="https://github.com/MaximTelyatnick/TechnicalProcessControlg">
     <img src="Screenshots/MainForm.jpg" alt="Main window" width="1000" height="480">
   </a>
-  <h4 align="center">Main Form</h4>
-   <br />
-  
+  <h4 align="center">Main Form Structure</h4>
+<p align="left">
+  The structure editing form allows you to specify the parent links of the structural element, the parent drawing, the current drawing (or call the form for creating a drawing, editing, creating a revision), workflows (and editing operations for workflows).
+</p>
+  <a href="https://github.com/MaximTelyatnick/TechnicalProcessControlg">
+    <img src="Screenshots/StructuraEditForm.jpg" alt="Main window" width="1372" height="719">
+  </a>
+  <h4 align="center">Main Form Structure</h4>
 
 
 
