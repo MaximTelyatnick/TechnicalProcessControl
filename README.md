@@ -61,7 +61,7 @@
   <a href="https://github.com/MaximTelyatnick/TechnicalProcessControlg">
     <img src="Screenshots/StructuraEditForm.jpg" alt="Main window" width="1372" height="500">
   </a>
-  <h4 align="center">Main Form Structure</h4>
+  <h4 align="center">Structure editing form</h4>
 
 
 
