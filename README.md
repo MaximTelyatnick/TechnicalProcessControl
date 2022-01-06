@@ -31,7 +31,6 @@
 
 
 <!-- PROJECT LOGO -->
-<br />
 <div align="center">
   <a href="https://github.com/MaximTelyatnick/TechnicalProcessControlg">
     <img src="Screenshots/TPC.png" alt="Logo" width="80" height="80">
@@ -81,17 +80,23 @@ The program supports five types of technical processes.
   
   
   The form for editing the technical process allows you to specify the size of the drawing of the product, revision of the technical process, parameters of the workpiece, date of creation of the technical process, consumables. A universal template of the .xls format has been developed to simplify the creation of technical processes; it is also possible to use a ready-made technical process (automatic change of parameters within the technical process file does not work in this case).
-</p>
+
 <div align="center">
   <a href="https://github.com/MaximTelyatnick/TechnicalProcessControlg">
     <img src="Screenshots/EditTechnicalProcess.jpg" alt="Process editing form" width="541" height="437">
   </a>
   <h4 align="center">Process editing form</h4>
  </div>
+ The program contains the following bases: base of drawings, base of materials, base of product details, base of scanned drawings, base of operations.
+<div align="center">
+  <a href="https://github.com/MaximTelyatnick/TechnicalProcessControlg">
+    <img src="Screenshots/BasesMenu.jpg" alt="Bases menu" width="1000" height="400">
+  </a>
+  <h4 align="center">Bases menu</h4>
+ </div>
 
 
 
-<p align="right">(<a href="#top">back to top</a>)</p>
 
 
 
