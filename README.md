@@ -42,16 +42,20 @@
   <p align="center">
     The program allows you to simplify the process of creating technical processes.
     <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
+    [Getting started](#getting-started)
     <br />
-    <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
+    <a href="https://www.youtube.com/watch?v=hffeZHG6lZE">View Demo</a>
+   <br />
+    
+  <br />
+   
   </p>
 </div>
+ 
+ [About The Project](#about-the-project) •
+[Installation](#installation) •
+[Configuration](#configuration) •
+[Integrations](#third-party-integrations)
 
 
 
