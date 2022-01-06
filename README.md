@@ -43,6 +43,7 @@
     The program allows you to simplify the process of creating technical processes.
     </p>
   <div align="center">
+   <br />
      [About The Project](#about-the-project) •
      <a href="https://www.youtube.com/watch?v=hffeZHG6lZE">View Demo •</a>
      [Installation](#installation) •
