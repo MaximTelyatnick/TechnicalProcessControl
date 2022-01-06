@@ -51,6 +51,7 @@
    </div>
  [About The Project](#about-the-project) •
  </div>
+
 [Getting started](#getting-started) •
 [Installation](#installation) •
 [Configuration](#configuration) •
