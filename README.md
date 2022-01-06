@@ -120,15 +120,7 @@ The program supports five types of technical processes.
   <summary>Database settings and description</summary>
 
 
-<HR><A NAME="_DOMAINS"><P CLASS="Header0">Domains</P></A>
-<P CLASS="Base">&nbsp;</P>
-<TABLE CLASS="dtArg" CELLSPACING="0">
-  <TH WIDTH="1%"><P CLASS="Base2"><B>Domain</B></P>
-  <TH WIDTH="1%"><P CLASS="Base2"><B>Type</B></P>
-  <TH WIDTH="1%" ALIGN="middle"><P CLASS="Base2"><B>NN</B></P>
-  <TH WIDTH="1%"><P CLASS="Base2"><B>Default</B></P>
-  <TH WIDTH="50%"><P CLASS="Base2"><B>Description</B></P>
-</TABLE>
+
 
 <HR>
 <A NAME="_TABLES"><P CLASS="Header0">Tables</P></A>
