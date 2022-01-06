@@ -38,14 +38,17 @@
   </a>
 
 <h3 align="center">TechnicalProcessControl</h3>
-
+<br/>
   <p align="center">
     The program allows you to simplify the process of creating technical processes.
+    </p>
+  <div align="center">
      [About The Project](#about-the-project) •
      <a href="https://www.youtube.com/watch?v=hffeZHG6lZE">View Demo •</a>
      [Installation](#installation) •
     [Configuration](#configuration) •
-  </p>
+   </div>
+ 
 </div>
  
 
