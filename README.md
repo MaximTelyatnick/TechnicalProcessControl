@@ -10552,6 +10552,6 @@ The program supports five types of technical processes.
 <p>Project Link: [https://github.com/MaximTelyatnick/TechnicalProcessControl](https://github.com/MaximTelyatnick/TechnicalProcessControl)</p>
 
 
-<p align="right">(<a href="#top">Вверх</a>)</p>
+<p align="right">(<a href="#top">Up</a>)</p>
 
 
