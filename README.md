@@ -10525,9 +10525,4 @@ The program supports five types of technical processes.
 </pre></code>
 </span></P>
 
-<HR>
-<A NAME="FKEY_FK_TechProcess004_TypeId"><P CLASS="Header0">Foreign Key: FK_TechProcess004_TypeId</P><P CLASS="Base">&nbsp;</P>
-<P CLASS="Header1">Definition</P>
-<P CLASS="Base"><span class="DDLCode">
-<code><pre>
-<b>ALTER</b
+
