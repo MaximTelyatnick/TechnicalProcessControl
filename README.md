@@ -42,22 +42,16 @@
   <p align="center">
     The program allows you to simplify the process of creating technical processes.
     <br />
-    [Getting started](#getting-started)
+     [About The Project](#about-the-project) •
     <br />
     <a href="https://www.youtube.com/watch?v=hffeZHG6lZE">View Demo</a>
    <br />
-    
+    [Installation](#installation) •
   <br />
-   
+   [Configuration](#configuration) •
   </p>
 </div>
  
- [About The Project](#about-the-project) •
-[Installation](#installation) •
-[Configuration](#configuration) •
-[Integrations](#third-party-integrations)
-
-
 
 
 <!-- ABOUT THE PROJECT -->
