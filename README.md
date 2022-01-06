@@ -110,7 +110,12 @@ The program supports five types of technical processes.
 
 
 ## Installation
-
+1. Clone the repo
+   ```sh
+   git clone https://github.com/MaximTelyatnick/TechnicalProcessControl.git
+   ```
+2. Build all project in solution 
+3. Create database in firebird (support firebird 2.5)
 <details>
   <summary>Database settings and description</summary>
 
