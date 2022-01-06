@@ -62,6 +62,13 @@
     <img src="Screenshots/StructuraEditForm.jpg" alt="Main window" width="1372" height="500">
   </a>
   <h4 align="center">Structure editing form</h4>
+  
+  The form for editing the technical process allows you to specify the size of the drawing of the product, revision of the technical process, parameters of the workpiece, date of creation of the technical process, consumables. A universal template of the .xls format has been developed to simplify the creation of technical processes; it is also possible to use a ready-made technical process (automatic change of parameters within the technical process file does not work in this case).
+</p>
+  <a href="https://github.com/MaximTelyatnick/TechnicalProcessControlg">
+    <img src="Screenshots/EditTechnicalProcess.jpg.jpg" alt="Main window" align="center" width="541" height="437">
+  </a>
+  <h4 align="center">Process editing form</h4>
 
 
 
