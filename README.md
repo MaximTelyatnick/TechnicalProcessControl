@@ -49,9 +49,9 @@
      [Installation](#installation) •
     [Configuration](#configuration) •
    </div>
- 
+ [About The Project](#about-the-project) •
 </div>
-  [About The Project](#about-the-project) •
+  
 
 
 <!-- ABOUT THE PROJECT -->
