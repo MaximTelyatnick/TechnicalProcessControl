@@ -107,7 +107,7 @@ The program supports five types of technical processes.
 ## Installation
 
 <details>
-  <summary>Database settings</summary>
+  <summary>Database settings and description</summary>
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
