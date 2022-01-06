@@ -46,7 +46,7 @@
    [About The Project](#about-the-project) •
    <a href="https://www.youtube.com/watch?v=hffeZHG6lZE">View Demo •</a>
    [Installation](#installation) •
-   [Configuration](#configuration) •
+
    
    </div>
  </div>
