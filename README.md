@@ -103,6 +103,14 @@ The program supports five types of technical processes.
 * [Visual Studio Code](https://code.visualstudio.com/)
 * [DevExpress](https://www.devexpress.com/)
 
+
+
+## How to use
+
+<details>
+  <summary>Database settings</summary>
+
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <P CLASS="Base">&nbsp;</P>
@@ -10524,5 +10532,7 @@ The program supports five types of technical processes.
 
 </pre></code>
 </span></P>
+ 
+ </details>
 
 
