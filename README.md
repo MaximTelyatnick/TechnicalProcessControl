@@ -55,19 +55,28 @@
     <img src="Screenshots/MainForm.jpg" alt="Main window" width="1000" height="480">
   </a>
   <h4 align="center">Main Form Structure</h4>
-<p align="left">
+The program supports five types of technical processes.
   The structure editing form allows you to specify the parent links of the structural element, the parent drawing, the current drawing (or call the form for creating a drawing, editing, creating a revision), workflows (and editing operations for workflows).
 </p>
   <a href="https://github.com/MaximTelyatnick/TechnicalProcessControlg">
     <img src="Screenshots/StructuraEditForm.jpg" alt="Main window" width="1372" height="500">
   </a>
   <h4 align="center">Structure editing form</h4>
+<p align="left">  The program supports five types of technical processes. </p>
+  <div align="center">
+  <a href="https://github.com/MaximTelyatnick/TechnicalProcessControlg">
+    <img src="Screenshots/TechnicallProcessesType.jpg" alt="Types of technical processes" width="1000" height="400">
+  </a>
+  <h4 align="center">Types of technical processes</h4>
+ </div>
+  
+  
   
   The form for editing the technical process allows you to specify the size of the drawing of the product, revision of the technical process, parameters of the workpiece, date of creation of the technical process, consumables. A universal template of the .xls format has been developed to simplify the creation of technical processes; it is also possible to use a ready-made technical process (automatic change of parameters within the technical process file does not work in this case).
 </p>
 <div align="center">
   <a href="https://github.com/MaximTelyatnick/TechnicalProcessControlg">
-    <img src="Screenshots/EditTechnicalProcess.jpg" alt="Main window" align="center" width="541" height="437">
+    <img src="Screenshots/EditTechnicalProcess.jpg" alt="Process editing form" width="541" height="437">
   </a>
   <h4 align="center">Process editing form</h4>
  </div>
