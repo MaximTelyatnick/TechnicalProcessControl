@@ -50,13 +50,8 @@
    [Configuration](#configuration) •
    
    </div>
- [About The Project](#about-the-project) •
  </div>
 
-[Getting started](#getting-started) •
-[Installation](#installation) •
-[Configuration](#configuration) •
-[Integrations](#third-party-integrations)
   
 
 
@@ -109,7 +104,7 @@ The program supports five types of technical processes.
 
 
 
-## How to use
+## Installation
 
 <details>
   <summary>Database settings</summary>
