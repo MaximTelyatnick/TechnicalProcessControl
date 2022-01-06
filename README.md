@@ -41,14 +41,10 @@
 
   <p align="center">
     The program allows you to simplify the process of creating technical processes.
-    <br />
      [About The Project](#about-the-project) •
-    <br />
-    <a href="https://www.youtube.com/watch?v=hffeZHG6lZE">View Demo</a>
-   <br />
-    [Installation](#installation) •
-  <br />
-   [Configuration](#configuration) •
+     <a href="https://www.youtube.com/watch?v=hffeZHG6lZE">View Demo •</a>
+     [Installation](#installation) •
+    [Configuration](#configuration) •
   </p>
 </div>
  
