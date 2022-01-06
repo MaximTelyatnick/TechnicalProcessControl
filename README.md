@@ -50,7 +50,11 @@
     [Configuration](#configuration) •
    </div>
  [About The Project](#about-the-project) •
-</div>
+ </div>
+[Getting started](#getting-started) •
+[Installation](#installation) •
+[Configuration](#configuration) •
+[Integrations](#third-party-integrations)
   
 
 
