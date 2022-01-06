@@ -120,23 +120,6 @@ The program supports five types of technical processes.
   <summary>Database settings and description</summary>
 
 
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-<P CLASS="Base">&nbsp;</P>
-<P CLASS="Base">Database: F:\Soft\DataBase\ib\TECHDATABASEDB</P>
-<P CLASS="Base">&nbsp;</P>
-<P CLASS="Base">Domains&nbsp(0)</P>
-<P CLASS="Base"><A HREF="#_TABLES">Tables</A>&nbsp(19)</P>
-<P CLASS="Base">Views&nbsp(0)</P>
-<P CLASS="Base"><A HREF="#_PROCEDURES">Procedures</A>&nbsp(2)</P>
-<P CLASS="Base"><A HREF="#_TRIGGERS">Triggers</A>&nbsp(19)</P>
-<P CLASS="Base"><A HREF="#_GENERATORS">Generators</A>&nbsp(21)</P>
-<P CLASS="Base">Exceptions&nbsp(0)</P>
-<P CLASS="Base">UDFs&nbsp(0)</P>
-<P CLASS="Base"><A HREF="#_INDICES">Indices</A>&nbsp(64)</P>
-<P CLASS="Base"><A HREF="#_FOREIGN_KEYS">Foreign Keys</A>&nbsp(45)</P>
-<P CLASS="Base">Checks&nbsp(0)</P>
-<P CLASS="Base">Roles&nbsp(0)</P>
 <HR><A NAME="_DOMAINS"><P CLASS="Header0">Domains</P></A>
 <P CLASS="Base">&nbsp;</P>
 <TABLE CLASS="dtArg" CELLSPACING="0">
@@ -155,86 +138,86 @@ The program supports five types of technical processes.
   <TH><P CLASS="Base2"><B>Description</B></P>
   <TR>
     <TD><P CLASS="Base2"><A HREF="#TBL_Colors"><NOBR>Colors</NOBR></A></TD>
-    <TD><P CLASS="Base2">&nbsp</TD>
+    <TD><P CLASS="Base2">Used to mark lines</TD>
   </TR>
   <TR>
     <TD><P CLASS="Base2"><A HREF="#TBL_Details"><NOBR>Details</NOBR></A></TD>
-    <TD><P CLASS="Base2">&nbsp</TD>
+    <TD><P CLASS="Base2">Part name in the drawing.</TD>
   </TR>
   <TR>
     <TD><P CLASS="Base2"><A HREF="#TBL_Drawing"><NOBR>Drawing</NOBR></A></TD>
-    <TD><P CLASS="Base2">&nbsp</TD>
+    <TD><P CLASS="Base2">Drawing numbers</TD>
   </TR>
   <TR>
     <TD><P CLASS="Base2"><A HREF="#TBL_DrawingScan"><NOBR>DrawingScan</NOBR></A></TD>
-    <TD><P CLASS="Base2">&nbsp</TD>
+    <TD><P CLASS="Base2">Contains scanned drawing files</TD>
   </TR>
   <TR>
     <TD><P CLASS="Base2"><A HREF="#TBL_Drawings"><NOBR>Drawings</NOBR></A></TD>
-    <TD><P CLASS="Base2">&nbsp</TD>
+    <TD><P CLASS="Base2">Contains an assembly structure tree</TD>
   </TR>
   <TR>
     <TD><P CLASS="Base2"><A HREF="#TBL_Materials"><NOBR>Materials</NOBR></A></TD>
-    <TD><P CLASS="Base2">&nbsp</TD>
+    <TD><P CLASS="Base2">Contains a base of materials</TD>
   </TR>
   <TR>
     <TD><P CLASS="Base2"><A HREF="#TBL_OperationName"><NOBR>OperationName</NOBR></A></TD>
-    <TD><P CLASS="Base2">&nbsp</TD>
+    <TD><P CLASS="Base2">Contains the base of operation name</TD>
   </TR>
   <TR>
     <TD><P CLASS="Base2"><A HREF="#TBL_OperationNumber"><NOBR>OperationNumber</NOBR></A></TD>
-    <TD><P CLASS="Base2">&nbsp</TD>
+    <TD><P CLASS="Base2">Contains the base of operation number</TD>
   </TR>
   <TR>
     <TD><P CLASS="Base2"><A HREF="#TBL_OperationPaintMaterial"><NOBR>OperationPaintMaterial</NOBR></A></TD>
-    <TD><P CLASS="Base2">&nbsp</TD>
+    <TD><P CLASS="Base2">Contains the base of paint operation</TD>
   </TR>
   <TR>
     <TD><P CLASS="Base2"><A HREF="#TBL_RevisionType"><NOBR>RevisionType</NOBR></A></TD>
-    <TD><P CLASS="Base2">&nbsp</TD>
+    <TD><P CLASS="Base2">Contains the base of the stages of the state of the drawing part</TD>
   </TR>
   <TR>
     <TD><P CLASS="Base2"><A HREF="#TBL_Revisions"><NOBR>Revisions</NOBR></A></TD>
-    <TD><P CLASS="Base2">&nbsp</TD>
+    <TD><P CLASS="Base2">Contains the base of the revision stage</TD>
   </TR>
   <TR>
     <TD><P CLASS="Base2"><A HREF="#TBL_TechProcess001"><NOBR>TechProcess001</NOBR></A></TD>
-    <TD><P CLASS="Base2">&nbsp</TD>
+    <TD><P CLASS="Base2">Contains a base of technological processes for metal processing by pressure and cutting.</TD>
   </TR>
   <TR>
     <TD><P CLASS="Base2"><A HREF="#TBL_TechProcess002"><NOBR>TechProcess002</NOBR></A></TD>
-    <TD><P CLASS="Base2">&nbsp</TD>
+    <TD><P CLASS="Base2">Contains a base of technological processes for machining.</TD>
   </TR>
   <TR>
     <TD><P CLASS="Base2"><A HREF="#TBL_TechProcess003"><NOBR>TechProcess003</NOBR></A></TD>
-    <TD><P CLASS="Base2">&nbsp</TD>
+    <TD><P CLASS="Base2">Contains a base of technological processes for assembly and welding.</TD>
   </TR>
   <TR>
     <TD><P CLASS="Base2"><A HREF="#TBL_TechProcess004"><NOBR>TechProcess004</NOBR></A></TD>
-    <TD><P CLASS="Base2">&nbsp</TD>
+    <TD><P CLASS="Base2">Contains a base of technological processes for general assembly.</TD>
   </TR>
   <TR>
     <TD><P CLASS="Base2"><A HREF="#TBL_TechProcess005"><NOBR>TechProcess005</NOBR></A></TD>
-    <TD><P CLASS="Base2">&nbsp</TD>
+    <TD><P CLASS="Base2">Contains a base of technological processes for surface preparation and painting, abrasive blasting.</TD>
   </TR>
   <TR>
     <TD><P CLASS="Base2"><A HREF="#TBL_Type"><NOBR>Type</NOBR></A></TD>
-    <TD><P CLASS="Base2">&nbsp</TD>
+    <TD><P CLASS="Base2">Contains a base of drawing types</TD>
   </TR>
   <TR>
     <TD><P CLASS="Base2"><A HREF="#TBL_UserRole"><NOBR>UserRole</NOBR></A></TD>
-    <TD><P CLASS="Base2">&nbsp</TD>
+    <TD><P CLASS="Base2">Contains a database of user roles</TD>
   </TR>
   <TR>
     <TD><P CLASS="Base2"><A HREF="#TBL_Users"><NOBR>Users</NOBR></A></TD>
-    <TD><P CLASS="Base2">&nbsp</TD>
+    <TD><P CLASS="Base2">Contains a base of users</TD>
   </TR>
 </TABLE>
 
 <HR>
 <A NAME="TBL_Colors"><P CLASS="Header0">Table: Colors</P><P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Description</P>
-<P CLASS="Base"><I>(There is no description for table Colors)</I></P>
+<P CLASS="Base">Used to mark lines</P>
 <P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Fields</P>
 <TABLE CLASS="dtArg" CELLSPACING="0">
@@ -388,7 +371,7 @@ The program supports five types of technical processes.
 <HR>
 <A NAME="TBL_Details"><P CLASS="Header0">Table: Details</P><P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Description</P>
-<P CLASS="Base"><I>(There is no description for table Details)</I></P>
+<P CLASS="Base">Part name in the drawing.</P>
 <P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Fields</P>
 <TABLE CLASS="dtArg" CELLSPACING="0">
@@ -493,7 +476,7 @@ The program supports five types of technical processes.
 <HR>
 <A NAME="TBL_Drawing"><P CLASS="Header0">Table: Drawing</P><P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Description</P>
-<P CLASS="Base"><I>(There is no description for table Drawing)</I></P>
+<P CLASS="Base">Drawing numbers</P>
 <P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Fields</P>
 <TABLE CLASS="dtArg" CELLSPACING="0">
@@ -978,7 +961,7 @@ The program supports five types of technical processes.
 <HR>
 <A NAME="TBL_DrawingScan"><P CLASS="Header0">Table: DrawingScan</P><P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Description</P>
-<P CLASS="Base"><I>(There is no description for table DrawingScan)</I></P>
+<P CLASS="Base">Contains scanned drawing files</P>
 <P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Fields</P>
 <TABLE CLASS="dtArg" CELLSPACING="0">
@@ -1124,7 +1107,7 @@ The program supports five types of technical processes.
 <HR>
 <A NAME="TBL_Drawings"><P CLASS="Header0">Table: Drawings</P><P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Description</P>
-<P CLASS="Base"><I>(There is no description for table Drawings)</I></P>
+<P CLASS="Base">Contains an assembly structure tree</P>
 <P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Fields</P>
 <TABLE CLASS="dtArg" CELLSPACING="0">
@@ -1469,7 +1452,7 @@ The program supports five types of technical processes.
 <HR>
 <A NAME="TBL_Materials"><P CLASS="Header0">Table: Materials</P><P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Description</P>
-<P CLASS="Base"><I>(There is no description for table Materials)</I></P>
+<P CLASS="Base">Contains a base of materials</P>
 <P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Fields</P>
 <TABLE CLASS="dtArg" CELLSPACING="0">
@@ -1574,7 +1557,7 @@ The program supports five types of technical processes.
 <HR>
 <A NAME="TBL_OperationName"><P CLASS="Header0">Table: OperationName</P><P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Description</P>
-<P CLASS="Base"><I>(There is no description for table OperationName)</I></P>
+<P CLASS="Base">Contains the base of operation name</P>
 <P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Fields</P>
 <TABLE CLASS="dtArg" CELLSPACING="0">
@@ -1708,7 +1691,7 @@ The program supports five types of technical processes.
 <HR>
 <A NAME="TBL_OperationNumber"><P CLASS="Header0">Table: OperationNumber</P><P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Description</P>
-<P CLASS="Base"><I>(There is no description for table OperationNumber)</I></P>
+<P CLASS="Base">Contains the base of operation number</P>
 <P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Fields</P>
 <TABLE CLASS="dtArg" CELLSPACING="0">
@@ -1809,7 +1792,7 @@ The program supports five types of technical processes.
 <HR>
 <A NAME="TBL_OperationPaintMaterial"><P CLASS="Header0">Table: OperationPaintMaterial</P><P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Description</P>
-<P CLASS="Base"><I>(There is no description for table OperationPaintMaterial)</I></P>
+<P CLASS="Base">Contains the base of paint operation</P>
 <P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Fields</P>
 <TABLE CLASS="dtArg" CELLSPACING="0">
@@ -1932,7 +1915,7 @@ The program supports five types of technical processes.
 <HR>
 <A NAME="TBL_RevisionType"><P CLASS="Header0">Table: RevisionType</P><P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Description</P>
-<P CLASS="Base"><I>(There is no description for table RevisionType)</I></P>
+<P CLASS="Base">Contains the base of the stages of the state of the drawing part</P>
 <P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Fields</P>
 <TABLE CLASS="dtArg" CELLSPACING="0">
@@ -2069,7 +2052,7 @@ The program supports five types of technical processes.
 <HR>
 <A NAME="TBL_Revisions"><P CLASS="Header0">Table: Revisions</P><P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Description</P>
-<P CLASS="Base"><I>(There is no description for table Revisions)</I></P>
+<P CLASS="Base">Contains the base of the revision stage</P>
 <P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Fields</P>
 <TABLE CLASS="dtArg" CELLSPACING="0">
@@ -2214,7 +2197,7 @@ The program supports five types of technical processes.
 <HR>
 <A NAME="TBL_TechProcess001"><P CLASS="Header0">Table: TechProcess001</P><P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Description</P>
-<P CLASS="Base"><I>(There is no description for table TechProcess001)</I></P>
+<P CLASS="Base">Contains a base of technological processes for metal processing by pressure and cutting.</P>
 <P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Fields</P>
 <TABLE CLASS="dtArg" CELLSPACING="0">
@@ -2950,7 +2933,7 @@ The program supports five types of technical processes.
 <HR>
 <A NAME="TBL_TechProcess002"><P CLASS="Header0">Table: TechProcess002</P><P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Description</P>
-<P CLASS="Base"><I>(There is no description for table TechProcess002)</I></P>
+<P CLASS="Base">Contains a base of technological processes for machining.</P>
 <P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Fields</P>
 <TABLE CLASS="dtArg" CELLSPACING="0">
@@ -3686,7 +3669,7 @@ The program supports five types of technical processes.
 <HR>
 <A NAME="TBL_TechProcess003"><P CLASS="Header0">Table: TechProcess003</P><P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Description</P>
-<P CLASS="Base"><I>(There is no description for table TechProcess003)</I></P>
+<P CLASS="Base">Contains a base of technological processes for assembly and welding.</P>
 <P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Fields</P>
 <TABLE CLASS="dtArg" CELLSPACING="0">
@@ -4422,7 +4405,7 @@ The program supports five types of technical processes.
 <HR>
 <A NAME="TBL_TechProcess004"><P CLASS="Header0">Table: TechProcess004</P><P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Description</P>
-<P CLASS="Base"><I>(There is no description for table TechProcess004)</I></P>
+<P CLASS="Base">Contains a base of technological processes for general assembly.</P>
 <P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Fields</P>
 <TABLE CLASS="dtArg" CELLSPACING="0">
@@ -5158,7 +5141,7 @@ The program supports five types of technical processes.
 <HR>
 <A NAME="TBL_TechProcess005"><P CLASS="Header0">Table: TechProcess005</P><P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Description</P>
-<P CLASS="Base"><I>(There is no description for table TechProcess005)</I></P>
+<P CLASS="Base">Contains a base of technological processes for surface preparation and painting, abrasive blasting.</P>
 <P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Fields</P>
 <TABLE CLASS="dtArg" CELLSPACING="0">
@@ -5894,7 +5877,7 @@ The program supports five types of technical processes.
 <HR>
 <A NAME="TBL_Type"><P CLASS="Header0">Table: Type</P><P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Description</P>
-<P CLASS="Base"><I>(There is no description for table Type)</I></P>
+<P CLASS="Base">Contains a base of drawing types</P>
 <P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Fields</P>
 <TABLE CLASS="dtArg" CELLSPACING="0">
@@ -5999,7 +5982,7 @@ The program supports five types of technical processes.
 <HR>
 <A NAME="TBL_UserRole"><P CLASS="Header0">Table: UserRole</P><P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Description</P>
-<P CLASS="Base"><I>(There is no description for table UserRole)</I></P>
+<P CLASS="Base">Contains a database of user roles</P>
 <P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Fields</P>
 <TABLE CLASS="dtArg" CELLSPACING="0">
@@ -6104,7 +6087,7 @@ The program supports five types of technical processes.
 <HR>
 <A NAME="TBL_Users"><P CLASS="Header0">Table: Users</P><P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Description</P>
-<P CLASS="Base"><I>(There is no description for table Users)</I></P>
+<P CLASS="Base">Contains a base of users</P>
 <P CLASS="Base">&nbsp;</P>
 <P CLASS="Header1">Fields</P>
 <TABLE CLASS="dtArg" CELLSPACING="0">
@@ -6824,10 +6807,6 @@ The program supports five types of technical processes.
   <TH WIDTH="50%"><P CLASS="Base2"><B>Description</B></P>
   <TR>
     <TD><P CLASS="Base2"><A HREF="#PROC_GetDrawings">GetDrawings</A></TD>
-    <TD><P CLASS="Base2">&nbsp</TD>
-  </TR>
-  <TR>
-    <TD><P CLASS="Base2"><A HREF="#PROC_TestProc">TestProc</A></TD>
     <TD><P CLASS="Base2">&nbsp</TD>
   </TR>
 </TABLE>
@@ -8083,72 +8062,6 @@ The program supports five types of technical processes.
 <b>         </b>:&quot;LaborIntensity005Total&quot;<b>,</b>
 <b>         </b>:&quot;LaborIntensityGeneral&quot;<b>,</b>
 <b>         </b>:&quot;LaborIntensityGeneralTotal&quot;
-<b>  </b><b>DO</b>
-<b>  </b><b>BEGIN</b>
-<b>    </b><b>SUSPEND</b><b>;</b>
-<b>  </b><b>END</b>
-<b>END</b>
-
-</pre></code>
-</span></P>
-<P CLASS="Base">&nbsp;</P>
-
-<HR>
-<A NAME="PROC_TestProc"><P CLASS="Header0">Procedure: TestProc</P><P CLASS="Base">&nbsp;</P>
-<P CLASS="Header1">Input Parameters</P>
-<TABLE CLASS="dtArg" CELLSPACING="0">
-  <TH WIDTH="1%"><P CLASS="Base2"><B>Parameter</B></P>
-  <TH WIDTH="20%"><P CLASS="Base2"><B>Type</B></P>
-  <TH WIDTH="50%"><P CLASS="Base2"><B>Description</B></P>
-  <TR>
-    <TD><P CLASS="Base2">DateNow</TD>
-    <TD><P CLASS="Base2">DATE</TD>
-    <TD><P CLASS="Base2">&nbsp;</TD>
-  </TR>
-</TABLE>
-<P CLASS="Base">&nbsp;</P>
-<P CLASS="Header1">Output Parameters</P>
-<TABLE CLASS="dtArg" CELLSPACING="0">
-  <TH WIDTH="1%"><P CLASS="Base2"><B>Parameter</B></P>
-  <TH WIDTH="20%"><P CLASS="Base2"><B>Type</B></P>
-  <TH WIDTH="50%"><P CLASS="Base2"><B>Description</B></P>
-  <TR>
-    <TD><P CLASS="Base2">Id</TD>
-    <TD><P CLASS="Base2">INTEGER</TD>
-    <TD><P CLASS="Base2">&nbsp;</TD>
-  </TR>
-  <TR>
-    <TD><P CLASS="Base2">ParentId</TD>
-    <TD><P CLASS="Base2">INTEGER</TD>
-    <TD><P CLASS="Base2">&nbsp;</TD>
-  </TR>
-</TABLE>
-<P CLASS="Base">&nbsp;</P>
-<P CLASS="Header1">Description</P>
-<P CLASS="Base"><I>(There is no description for procedure TestProc)</I></P>
-<P CLASS="Base">&nbsp;</P>
-<P CLASS="Header1">Definition</P>
-<P CLASS="Base"><span class="DDLCode">
-<code><pre>
-<b>CREATE</b><b> </b><b>PROCEDURE</b><b> </b><font color="# 080 0"><u>&quot;TestProc&quot;</u></font><b>(</b>
-<b>    </b>&quot;DateNow&quot;<b> </b><b>DATE</b><b>)</b>
-<b>RETURNS</b><b> </b><b>(</b>
-<b>    </b>&quot;Id&quot;<b> </b><b>INTEGER</b><b>,</b>
-<b>    </b>&quot;ParentId&quot;<b> </b><b>INTEGER</b><b>)</b>
-<b>AS</b>
-<b>BEGIN</b>
-<b>  </b><b>FOR</b>
-<b>    </b><b>SELECT</b>
-<b>    </b>
-<b>    </b>drw<b>.</b>&quot;Id&quot;<b> </b><b>as</b><b> </b>&quot;Id&quot;<b>,</b>
-<b>    </b>drw<b>.</b>&quot;ParentId&quot;
-<b>    </b><b>from</b>
-<b>        </b><font color="# 080 0"><u>&quot;Drawings&quot;</u></font><b> </b>drw
-<b>    </b><b>LEFT</b><b> </b><b>join</b>
-<b>        </b><font color="# 080 0"><u>&quot;Drawing&quot;</u></font><b> </b>dr<b> </b><b>on</b><b> </b>drw<b>.</b>&quot;DrawingId&quot;<b> </b><b>=</b><b> </b>dr<b>.</b>&quot;Id&quot;
-<b>    </b><b>where</b><b> </b>dr<b>.</b>&quot;CreateDate&quot;<b>&lt;</b><b>=</b>:&quot;DateNow&quot;
-<b>    </b><b>INTO</b><b> </b>:&quot;Id&quot;<b>,</b>
-<b>         </b>:&quot;ParentId&quot;
 <b>  </b><b>DO</b>
 <b>  </b><b>BEGIN</b>
 <b>    </b><b>SUSPEND</b><b>;</b>
@@ -10538,6 +10451,117 @@ The program supports five types of technical processes.
 <b>ALTER</b><b> </b><b>TABLE</b><b> </b><font color="# 080 0"><u>&quot;TechProcess004&quot;</u></font><b> </b><b>ADD</b><b> </b><b>CONSTRAINT</b><b> </b>&quot;FK_TechProcess004_RevisionId&quot;
 <b>FOREIGN</b><b> </b><b>KEY</b><b> </b><b>(</b>RevisionId<b>)</b>
 <b>REFERENCES</b><b> </b><font color="# 080 0"><u>&quot;Revisions&quot;</u></font><b> </b><b>(</b>Id<b>)</b>
+
+</pre></code>
+</span></P>
+
+<HR>
+<A NAME="FKEY_FK_TechProcess004_TypeId"><P CLASS="Header0">Foreign Key: FK_TechProcess004_TypeId</P><P CLASS="Base">&nbsp;</P>
+<P CLASS="Header1">Definition</P>
+<P CLASS="Base"><span class="DDLCode">
+<code><pre>
+<b>ALTER</b><b> </b><b>TABLE</b><b> </b><font color="# 080 0"><u>&quot;TechProcess004&quot;</u></font><b> </b><b>ADD</b><b> </b><b>CONSTRAINT</b><b> </b>&quot;FK_TechProcess004_TypeId&quot;
+<b>FOREIGN</b><b> </b><b>KEY</b><b> </b><b>(</b>TypeId<b>)</b>
+<b>REFERENCES</b><b> </b><font color="# 080 0"><u>&quot;RevisionType&quot;</u></font><b> </b><b>(</b>Id<b>)</b>
+
+</pre></code>
+</span></P>
+
+<HR>
+<A NAME="FKEY_FK_TechProcess004_UserId"><P CLASS="Header0">Foreign Key: FK_TechProcess004_UserId</P><P CLASS="Base">&nbsp;</P>
+<P CLASS="Header1">Definition</P>
+<P CLASS="Base"><span class="DDLCode">
+<code><pre>
+<b>ALTER</b><b> </b><b>TABLE</b><b> </b><font color="# 080 0"><u>&quot;TechProcess004&quot;</u></font><b> </b><b>ADD</b><b> </b><b>CONSTRAINT</b><b> </b>&quot;FK_TechProcess004_UserId&quot;
+<b>FOREIGN</b><b> </b><b>KEY</b><b> </b><b>(</b>UserId<b>)</b>
+<b>REFERENCES</b><b> </b><font color="# 080 0"><u>&quot;Users&quot;</u></font><b> </b><b>(</b>Id<b>)</b>
+
+</pre></code>
+</span></P>
+
+<HR>
+<A NAME="FKEY_FK_TechProcess005_CopyDrawingId"><P CLASS="Header0">Foreign Key: FK_TechProcess005_CopyDrawingId</P><P CLASS="Base">&nbsp;</P>
+<P CLASS="Header1">Definition</P>
+<P CLASS="Base"><span class="DDLCode">
+<code><pre>
+<b>ALTER</b><b> </b><b>TABLE</b><b> </b><font color="# 080 0"><u>&quot;TechProcess005&quot;</u></font><b> </b><b>ADD</b><b> </b><b>CONSTRAINT</b><b> </b>&quot;FK_TechProcess005_CopyDrawingId&quot;
+<b>FOREIGN</b><b> </b><b>KEY</b><b> </b><b>(</b>CopyDrawingId<b>)</b>
+<b>REFERENCES</b><b> </b><font color="# 080 0"><u>&quot;Drawing&quot;</u></font><b> </b><b>(</b>Id<b>)</b>
+<b>ON</b><b> </b><b>DELETE</b><b> </b><b>SET</b><b> </b><b>NULL</b>
+
+</pre></code>
+</span></P>
+
+<HR>
+<A NAME="FKEY_FK_TechProcess005_DrawingId"><P CLASS="Header0">Foreign Key: FK_TechProcess005_DrawingId</P><P CLASS="Base">&nbsp;</P>
+<P CLASS="Header1">Definition</P>
+<P CLASS="Base"><span class="DDLCode">
+<code><pre>
+<b>ALTER</b><b> </b><b>TABLE</b><b> </b><font color="# 080 0"><u>&quot;TechProcess005&quot;</u></font><b> </b><b>ADD</b><b> </b><b>CONSTRAINT</b><b> </b>&quot;FK_TechProcess005_DrawingId&quot;
+<b>FOREIGN</b><b> </b><b>KEY</b><b> </b><b>(</b>DrawingId<b>)</b>
+<b>REFERENCES</b><b> </b><font color="# 080 0"><u>&quot;Drawing&quot;</u></font><b> </b><b>(</b>Id<b>)</b>
+<b>ON</b><b> </b><b>DELETE</b><b> </b><b>SET</b><b> </b><b>NULL</b>
+
+</pre></code>
+</span></P>
+
+<HR>
+<A NAME="FKEY_FK_TechProcess005_ParentId"><P CLASS="Header0">Foreign Key: FK_TechProcess005_ParentId</P><P CLASS="Base">&nbsp;</P>
+<P CLASS="Header1">Definition</P>
+<P CLASS="Base"><span class="DDLCode">
+<code><pre>
+<b>ALTER</b><b> </b><b>TABLE</b><b> </b><font color="# 080 0"><u>&quot;TechProcess005&quot;</u></font><b> </b><b>ADD</b><b> </b><b>CONSTRAINT</b><b> </b>&quot;FK_TechProcess005_ParentId&quot;
+<b>FOREIGN</b><b> </b><b>KEY</b><b> </b><b>(</b>ParentId<b>)</b>
+<b>REFERENCES</b><b> </b><font color="# 080 0"><u>&quot;TechProcess005&quot;</u></font><b> </b><b>(</b>Id<b>)</b>
+<b>ON</b><b> </b><b>DELETE</b><b> </b><b>SET</b><b> </b><b>NULL</b>
+
+</pre></code>
+</span></P>
+
+<HR>
+<A NAME="FKEY_FK_TechProcess005_RevisionId"><P CLASS="Header0">Foreign Key: FK_TechProcess005_RevisionId</P><P CLASS="Base">&nbsp;</P>
+<P CLASS="Header1">Definition</P>
+<P CLASS="Base"><span class="DDLCode">
+<code><pre>
+<b>ALTER</b><b> </b><b>TABLE</b><b> </b><font color="# 080 0"><u>&quot;TechProcess005&quot;</u></font><b> </b><b>ADD</b><b> </b><b>CONSTRAINT</b><b> </b>&quot;FK_TechProcess005_RevisionId&quot;
+<b>FOREIGN</b><b> </b><b>KEY</b><b> </b><b>(</b>RevisionId<b>)</b>
+<b>REFERENCES</b><b> </b><font color="# 080 0"><u>&quot;Revisions&quot;</u></font><b> </b><b>(</b>Id<b>)</b>
+
+</pre></code>
+</span></P>
+
+<HR>
+<A NAME="FKEY_FK_TechProcess005_TypeId"><P CLASS="Header0">Foreign Key: FK_TechProcess005_TypeId</P><P CLASS="Base">&nbsp;</P>
+<P CLASS="Header1">Definition</P>
+<P CLASS="Base"><span class="DDLCode">
+<code><pre>
+<b>ALTER</b><b> </b><b>TABLE</b><b> </b><font color="# 080 0"><u>&quot;TechProcess005&quot;</u></font><b> </b><b>ADD</b><b> </b><b>CONSTRAINT</b><b> </b>&quot;FK_TechProcess005_TypeId&quot;
+<b>FOREIGN</b><b> </b><b>KEY</b><b> </b><b>(</b>TypeId<b>)</b>
+<b>REFERENCES</b><b> </b><font color="# 080 0"><u>&quot;RevisionType&quot;</u></font><b> </b><b>(</b>Id<b>)</b>
+
+</pre></code>
+</span></P>
+
+<HR>
+<A NAME="FKEY_FK_TechProcess005_UserId"><P CLASS="Header0">Foreign Key: FK_TechProcess005_UserId</P><P CLASS="Base">&nbsp;</P>
+<P CLASS="Header1">Definition</P>
+<P CLASS="Base"><span class="DDLCode">
+<code><pre>
+<b>ALTER</b><b> </b><b>TABLE</b><b> </b><font color="# 080 0"><u>&quot;TechProcess005&quot;</u></font><b> </b><b>ADD</b><b> </b><b>CONSTRAINT</b><b> </b>&quot;FK_TechProcess005_UserId&quot;
+<b>FOREIGN</b><b> </b><b>KEY</b><b> </b><b>(</b>UserId<b>)</b>
+<b>REFERENCES</b><b> </b><font color="# 080 0"><u>&quot;Users&quot;</u></font><b> </b><b>(</b>Id<b>)</b>
+
+</pre></code>
+</span></P>
+
+<HR>
+<A NAME="FKEY_FK_Users_RoleId"><P CLASS="Header0">Foreign Key: FK_Users_RoleId</P><P CLASS="Base">&nbsp;</P>
+<P CLASS="Header1">Definition</P>
+<P CLASS="Base"><span class="DDLCode">
+<code><pre>
+<b>ALTER</b><b> </b><b>TABLE</b><b> </b><font color="# 080 0"><u>&quot;Users&quot;</u></font><b> </b><b>ADD</b><b> </b><b>CONSTRAINT</b><b> </b>&quot;FK_Users_RoleId&quot;
+<b>FOREIGN</b><b> </b><b>KEY</b><b> </b><b>(</b>RoleId<b>)</b>
+<b>REFERENCES</b><b> </b><font color="# 080 0"><u>&quot;UserRole&quot;</u></font><b> </b><b>(</b>Id<b>)</b>
 
 </pre></code>
 </span></P>
