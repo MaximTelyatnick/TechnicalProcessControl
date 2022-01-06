@@ -10543,5 +10543,15 @@ The program supports five types of technical processes.
 </span></P>
  
  </details>
+ 
+ <!-- CONTACT -->
+## Контакты
+
+<p>Mail - <a href="mailto:maxtel011395@gmail.com">maxtel011395@gmail.com</a></p>
+<p>Linkedin - <a href="https://www.linkedin.com/in/maksym-teliatnyk-7a767516b/">Maksym Teliatnyk</a></p> 
+<p>Project Link: [https://github.com/MaximTelyatnick/TechnicalProcessControl](https://github.com/MaximTelyatnick/TechnicalProcessControl)</p>
+
+
+<p align="right">(<a href="#top">Вверх</a>)</p>
 
 
